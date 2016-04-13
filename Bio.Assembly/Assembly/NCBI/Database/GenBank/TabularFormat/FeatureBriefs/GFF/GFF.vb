@@ -1,0 +1,261 @@
+﻿Imports System.Text.RegularExpressions
+Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+Imports System.Text
+Imports System.Data.Linq.Mapping
+
+Namespace Assembly.NCBI.GenBank.TabularFormat
+
+    'http://www.sanger.ac.uk/resources/software/gff/spec.html
+
+    ''' <summary>
+    ''' GFF (General Feature Format) specifications document
+    ''' </summary>
+    Public Class GFF : Inherits Microsoft.VisualBasic.ComponentModel.ITextFile
+
+#Region "Meta Data"
+
+        ''' <summary>
+        ''' gff-version   (##gff-version 2)
+        ''' 
+        ''' GFF version - In Case it Is a real success And we want To change it. The current Default version Is 2, 
+        ''' so If this line Is Not present version 2 Is assumed. 
+        ''' </summary>
+        ''' <returns></returns>
+        <Column(Name:="##gff-version")> Public Property GffVersion As Integer
+
+        ''' <summary>
+        ''' source-version   (##source-version &lt;source> &lt;version text>)
+        ''' 
+        ''' So that people can record what version Of a program Or package was used To make the data In this file. 
+        ''' I suggest the version Is text without whitespace. That allows things Like 1.3, 4a etc. There should be 
+        ''' at most one source-version line per source.
+        ''' </summary>
+        ''' <returns></returns>
+        <Column(Name:="##source-version")> Public Property SrcVersion As String
+
+        ''' <summary>
+        ''' date    (##date &lt;date>)
+        ''' 
+        ''' The date the file was made, Or perhaps that the prediction programs were run. We suggest to use 
+        ''' astronomical format 1997-11-08 for 8th November 1997, first because these sort properly, And 
+        ''' second to avoid any US/European bias. 
+        ''' </summary>
+        ''' <returns></returns>
+        <Column(Name:="##date")> Public Property [Date] As String
+
+        ''' <summary>
+        ''' type   (##Type &lt;type> [&lt;seqname>])
+        ''' 
+        ''' The type Of host sequence described by the features. Standard types are 'DNA', 'Protein' and 'RNA'. 
+        ''' The optional &lt;seqname> allows multiple ##Type definitions describing multiple GFF sets in one file, 
+        ''' each of which have a distinct type. If the name is not provided, then all the features in the file 
+        ''' are of the given type. Thus, with this meta-comment, a single file could contain DNA, RNA and 
+        ''' Protein features, for example, representing a single genomic locus or 'gene', alongside type-specific 
+        ''' features of its transcribed mRNA and translated protein sequences. If no ##Type meta-comment is 
+        ''' provided for a given GFF file, then the type is assumed to be DNA. 
+        ''' </summary>
+        ''' <returns></returns>
+        <Column(Name:="##type")> Public Property Type As String
+
+        ''' <summary>
+        ''' DNA 
+        ''' 
+        ''' (##DNA &lt;seqname>
+        '''  ##acggctcggattggcgctggatgatagatcagacgac
+        '''  ##...
+        '''  ##End-DNA)
+        ''' 
+        ''' To give a DNA sequence. Several people have pointed out that it may be convenient to include the sequence in the file. It should Not become mandatory to do so, And in our experience this has been very little used. Often the seqname will be a well-known identifier, And the sequence can easily be retrieved from a database, Or an accompanying file.
+        ''' </summary>
+        ''' <returns></returns>
+        Public Property DNA As String
+
+        ''' <summary>
+        ''' RNA 
+        ''' 
+        ''' (##RNA &lt;seqname>
+        '''  ##acggcucggauuggcgcuggaugauagaucagacgac
+        '''  ##...
+        '''  ##End-RNA)
+        ''' 
+        ''' Similar to DNA. Creates an implicit ##Type RNA &lt;seqname> directive.
+        ''' </summary>
+        ''' <returns></returns>
+        Public Property RNA As String
+
+        ''' <summary>
+        ''' Protein
+        ''' 
+        ''' (##Protein &lt;seqname>
+        '''
+        '''  ##MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSF
+        '''  ##...
+        '''  ##End-Protein)
+        ''' 
+        ''' Similar to DNA. Creates an implicit ##Type Protein &lt;seqname> directive.
+        ''' </summary>
+        ''' <returns></returns>
+        Public Property Protein As String
+
+        ''' <summary>
+        ''' sequence-region  (##sequence-region &lt;seqname> &lt;start> &lt;end>)
+        ''' 
+        ''' To indicate that this file only contains entries for the specified subregion of a sequence.
+        ''' </summary>
+        ''' <returns></returns>
+        <Column(Name:="##sequence-region")> Public Property SeqRegion As SeqRegion
+#End Region
+
+        ''' <summary>
+        ''' Genome size
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property Size As Integer
+            Get
+                Return SeqRegion.Ends
+            End Get
+        End Property
+
+        ''' <summary>
+        ''' 基因组上面的特性位点
+        ''' </summary>
+        ''' <returns></returns>
+        Public Property Features As Feature()
+
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="Name"><see cref="feature.attributes"/> -> name</param>
+        ''' <returns></returns>
+        Public Function GetByName(Name As String) As Feature
+            Dim LQuery = From Feature As Feature
+                         In Me.Features
+                         Where Feature.attributes.ContainsKey("name") AndAlso
+                             String.Equals(Feature.attributes("name"), Name, StringComparison.OrdinalIgnoreCase)
+                         Select Feature
+            Return LQuery.FirstOrDefault
+        End Function
+
+        Public Function GenerateDocument() As String
+            Dim docBuilder As StringBuilder = New StringBuilder("track name=Genes color=255,0,255" & vbCrLf)
+            Dim MetaProperty = (From p As System.Reflection.PropertyInfo
+                                In GetType(GFF).GetProperties(Reflection.BindingFlags.Public Or Reflection.BindingFlags.Instance)
+                                Let attrs As Object() = p.GetCustomAttributes(attributeType:=GetType(ColumnAttribute), inherit:=True)
+                                Where Not attrs.IsNullOrEmpty
+                                Select p, Name = DirectCast(attrs.First, ColumnAttribute).Name).ToArray
+            For Each [Property] In MetaProperty
+                Dim value As Object = [Property].p.GetValue(Me)
+                Dim str As String = Scripting.ToString(value)
+                If String.IsNullOrEmpty(str) Then
+                    Continue For
+                End If
+                Call docBuilder.AppendLine($"{[Property].Name} {str}")
+            Next
+
+            Call docBuilder.AppendLine(String.Join(vbCrLf, (From Feature In Me.Features Select Feature.GenerateDocumentLine).ToArray))
+
+            Return docBuilder.ToString
+        End Function
+
+        Public Overrides Function Save(Optional Path As String = "", Optional encoding As Encoding = Nothing) As Boolean
+            Dim doc As String = Me.GenerateDocument
+            Return doc.SaveTo(getPath(Path), encoding)
+        End Function
+
+        ''' <summary>
+        ''' Load a GFF (General Feature Format) specifications document file from a plant text file.
+        ''' (从一个指定的文本文件之中加载基因组特性片段的数据)
+        ''' </summary>
+        ''' <param name="Path"></param>
+        ''' <returns></returns>
+        Public Shared Function LoadDocument(Path As String) As GFF
+            Dim Text As String() = IO.File.ReadAllLines(Path)
+            Dim GFF As GFF = New GFF With {
+                .FilePath = Path
+            }
+
+            Call TrySetMetaData(Text, GFF)
+            Call GFF.InvokeSet(NameOf(GFF.Features), TryGetFreaturesData(Text, GFF.GffVersion))
+            Call $"There are {GFF.Features.Length} genome features exists in the gff file: {GFF.FilePath.ToFileURL}".__DEBUG_ECHO
+
+            Return GFF
+        End Function
+
+        Private Shared Sub TrySetMetaData(s_Data As String(), ByRef Gff As GFF)
+            s_Data = TryGetMetaData(s_Data)
+
+            Dim LQuery = From Token As String In s_Data
+                         Where Not Token.IndexOf(" "c) = -1  ' ### 这种情况下mid函数会出错
+                         Let p As Integer = InStr(Token, " ")
+                         Let Name As String = Mid(Token, 1, p - 1)
+                         Let Value As String = Mid(Token, p + 1)
+                         Select Name, Value '
+            Dim hash As Dictionary(Of String, String) =
+                LQuery.ToDictionary(Function(obj) obj.Name.ToLower,
+                                    Function(obj) obj.Value)
+
+            Call $"There are {hash.Count} meta data was parsed from the gff file.".__DEBUG_ECHO
+
+            Gff.GffVersion = CInt(Val(TryGetValue(hash, "##gff-version")))
+            Gff.Date = TryGetValue(hash, "##date")
+            Gff.SrcVersion = TryGetValue(hash, "##source-version")
+            Gff.Type = TryGetValue(hash, "##type")
+            Gff.SeqRegion = SeqRegion.Parser(TryGetValue(hash, "##sequence-region"))
+
+            Call $"The parser version of the gff file is version {Gff.GffVersion}...".__DEBUG_ECHO
+        End Sub
+
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="hash"></param>
+        ''' <param name="Key">全部是小写字符</param>
+        ''' <returns></returns>
+        Private Shared Function TryGetValue(hash As Dictionary(Of String, String), Key As String) As String
+            If hash.ContainsKey(Key) Then
+                Return hash(Key)
+            Else
+                Return ""
+            End If
+        End Function
+
+        Private Shared Function TryGetFreaturesData(s_Data As String(), version As Integer) As Feature()
+            Dim loadBuffer As String() = (From s As String In s_Data
+                                          Where Not String.IsNullOrWhiteSpace(s) AndAlso
+                                              Not s.First = "#"c
+                                          Select s).ToArray
+            Dim Features As Feature() = (From sLine As String
+                                         In loadBuffer
+                                         Select Feature.CreateObject(sLine, version)).ToArray
+            Return Features
+        End Function
+
+        Private Shared Function TryGetMetaData(s_Data As String()) As String()
+            Try
+                Dim LQuery = (From sLine As String In s_Data
+                              Where Not String.IsNullOrEmpty(sLine) AndAlso
+                                  Len(sLine) > 2 AndAlso
+                                  String.Equals(Mid(sLine, 1, 2), "##")
+                              Select sLine).ToArray
+                Return LQuery
+            Catch ex As Exception
+                Call App.LogException(New Exception(s_Data.JoinBy(vbCrLf), ex))
+                Return New String() {}
+            End Try
+        End Function
+
+        Public Function ProtId2Locus() As Dictionary(Of String, String)
+            Dim CDS = (From x In Features Where String.Equals(x.Feature, "CDS", StringComparison.OrdinalIgnoreCase) Select x).ToArray
+            Dim gene = (From x In Features
+                        Where String.Equals(x.Feature, "gene", StringComparison.OrdinalIgnoreCase)
+                        Select x).ToDictionary(Function(x) x.attributes("id"))
+            Dim transformHash As Dictionary(Of String, String) = (From x As Feature In CDS
+                                                                  Let parent As String = x.attributes("parent")
+                                                                  Where gene.ContainsKey(parent)
+                                                                  Select x, locus_tag = gene(parent).attributes("locus_tag")) _
+                                                                        .ToDictionary(Function(x) x.x.attributes("name"),
+                                                                                      Function(x) x.locus_tag)
+            Return transformHash
+        End Function
+    End Class
+End Namespace
