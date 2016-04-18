@@ -46,7 +46,7 @@ Namespace Assembly.MetaCyc.Schema.PathwayBrief
             Dim MetaCycGene = MetaCyc.GetGenes
 
             For Each item In MetaCycData
-                Call NCBICollection.Add(item.Key, (From strid As String In item.Value Select MetaCycGene.Select(strid).Accession1).ToArray)
+                Call NCBICollection.Add(item.Key, (From strid As String In item.Value Select MetaCycGene.Item(strid).Accession1).ToArray)
             Next
 
             Return NCBICollection
@@ -66,7 +66,7 @@ Namespace Assembly.MetaCyc.Schema.PathwayBrief
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function AssignGenes(Enzrxn As Slots.Enzrxn) As KeyValuePair(Of String, String())
-            Dim EnzymeProtein As Slots.Protein = Proteins.Select(Enzrxn.Enzyme) '获取酶分子，蛋白质或者蛋白质复合物
+            Dim EnzymeProtein As Slots.Protein = Proteins.Item(Enzrxn.Enzyme) '获取酶分子，蛋白质或者蛋白质复合物
             Dim List = New KeyValuePair(Of String, String())(key:=Enzrxn.Identifier, value:=GetGenes(EnzymeProtein, Proteins))
             Return List
         End Function

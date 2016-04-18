@@ -3,7 +3,7 @@ Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Reflection
 
 Namespace Assembly.MetaCyc.File.DataFiles
 
-    Partial Class DataFile(Of T As MetaCyc.File.DataFiles.Slots.Object)
+    Partial Class DataFile(Of T As Slots.Object)
 
         ''' <summary>
         ''' 使用Index对象进行对象实例目标的查找操作
@@ -22,34 +22,6 @@ Namespace Assembly.MetaCyc.File.DataFiles
         End Function
 
         ''' <summary>
-        ''' 按照指定的UniqueID查找目标对象，当没有找到对象的时候，本函数不会像Select和Select2函数抛出错误，而是会返回一个空引用对象
-        ''' </summary>
-        ''' <param name="UniqueId"></param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
-        Public Function [Get](UniqueId As String) As T
-            Dim LQuery As Generic.IEnumerable(Of T) =
-                From ItemObject As T In FrameObjects.AsParallel
-                Where String.Equals(UniqueId, ItemObject.Identifier)
-                Select ItemObject '
-            Return LQuery.FirstOrDefault
-        End Function
-
-        ''' <summary>
-        ''' Get a object from current list object using its <see cref="MetaCyc.File.DataFiles.Slots.[Object].Identifier">unique-id</see> property.(根据一个对象的Unique-Id字段的值来获取该目标对象，查询失败则返回空值)
-        ''' </summary>
-        ''' <param name="UniqueId"></param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
-        Public Overridable Function [Select](UniqueId As String) As T
-            If _InnerDictionary.ContainsKey(UniqueId) Then
-                Return _InnerDictionary(UniqueId)
-            Else
-                Return Nothing
-            End If
-        End Function
-
-        ''' <summary>
         ''' Takes a sub list of the elements that were pointed by the unique-id collection.
         ''' (获取一个UniqueId集合所指向的对象元素列表，会自动过滤掉不存在的UniqueId值)
         ''' </summary>
@@ -60,7 +32,7 @@ Namespace Assembly.MetaCyc.File.DataFiles
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function Takes(UniqueIdCollection As Generic.IEnumerable(Of String)) As T()
-            Dim LQuery As Generic.IEnumerable(Of T) = From Id As String In UniqueIdCollection Where Array.IndexOf(Index, Id) > -1 Select [Select](Id) '
+            Dim LQuery As IEnumerable(Of T) = From Id As String In UniqueIdCollection Where Array.IndexOf(Index, Id) > -1 Select Item(Id) '
             Return LQuery.ToArray
         End Function
 
@@ -73,7 +45,7 @@ Namespace Assembly.MetaCyc.File.DataFiles
         ''' <remarks></remarks>
         Public Function [Select]([Object] As T, ParamArray Fields As String()) As T()
             Dim LQuery = From obj As T In Me.AsParallel
-                         Where LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Reflection.FileStream.Equals(Of T)(obj, [Object], Fields)
+                         Where FileStream.Equals(Of T)(obj, [Object], Fields)
                          Select obj  '
             Return LQuery.ToArray
         End Function
@@ -87,14 +59,16 @@ Namespace Assembly.MetaCyc.File.DataFiles
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function [Select]([Object] As T, ItemProperties As PropertyInfo(), FieldAttributes As MetaCycField(), Optional AllowEmpty As Boolean = False) As T()
-            Dim LQuery As System.Linq.ParallelQuery(Of T)
+            Dim LQuery As ParallelQuery(Of T)
 
             If AllowEmpty Then
-                LQuery = From obj As T In Me.AsParallel Where LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Reflection.FileStream.Equals(Of T) _
+                LQuery = From obj As T In Me.AsParallel
+                         Where FileStream.Equals(Of T) _
                             (obj, [Object], ItemProperties, FieldAttributes)
                          Select obj  '
             Else
-                LQuery = From obj As T In Me.AsParallel Where LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Reflection.FileStream.Equals(Of T) _
+                LQuery = From obj As T In Me.AsParallel
+                         Where FileStream.Equals(Of T) _
                             (obj, [Object], ItemProperties, FieldAttributes, True)
                          Select obj  '
             End If

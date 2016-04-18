@@ -38,6 +38,10 @@ Namespace Assembly.NCBI.GenBank.TabularFormat.ComponentModels
         ''' <returns></returns>
         ''' <remarks></remarks>
         <XmlText> Public Property Product As String Implements I_GeneBrief.Product
+        ''' <summary>
+        ''' The NT length of this ORF.
+        ''' </summary>
+        ''' <returns></returns>
         <XmlAttribute> Public Property Length As Integer Implements I_GeneBrief.Length
         ''' <summary>
         ''' 我们所正常熟知的基因编号，<see cref="PTT"/>对象主要是使用这个属性值来生成字典对象的

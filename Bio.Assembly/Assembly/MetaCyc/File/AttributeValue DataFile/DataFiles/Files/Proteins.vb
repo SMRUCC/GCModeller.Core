@@ -9,32 +9,32 @@ Namespace Assembly.MetaCyc.File.DataFiles
     ''' <remarks>
     ''' 对于某一种蛋白质而言，其以单体形式存在的时候，没有催化能力，但是在形成了蛋白质复合物之后，具备了催化能力
     ''' </remarks>
-    Public Class Proteins : Inherits DataFile(Of MetaCyc.File.DataFiles.Slots.Protein)
+    Public Class Proteins : Inherits DataFile(Of Slots.Protein)
 
-        Public Shared Shadows ReadOnly AttributeList As String() =
-            {
-                "UNIQUE-ID", "TYPES", "COMMON-NAME", "ABBREV-NAME", "AROMATIC-RINGS", "ATOM-CHARGES",
-                "CATALYZES", "CHEMICAL-FORMULA", "CITATIONS", "COFACTORS-OF", "COFACTORS-OR-PROSTHETIC-GROUPS-OF",
-                "COMMENT", "COMMENT-INTERNAL", "COMPONENT-COEFFICIENTS", "COMPONENT-OF", "COMPONENTS",
-                "CONSENSUS-SEQUENCE", "CREDITS", "DATA-SOURCE", "DBLINKS", "DNA-FOOTPRINT-SIZE",
-                "DOCUMENTATION", "ENZYME-NOT-USED-IN", "FEATURES", "FUNCTIONAL-ASSIGNMENT-COMMENT",
-                "FUNCTIONAL-ASSIGNMENT-STATUS", "GENE", "GO-TERMS", "HAS-NO-STRUCTURE?", "HIDE-SLOT?",
-                "IN-MIXTURE", "INCHI", "INSTANCE-NAME-TEMPLATE", "INTERNALS-OF-GROUP",
-                "ISOZYME-SEQUENCE-SIMILARITY", "LOCATIONS", "MEMBER-SORT-FN", "MODIFIED-FORM",
-                "MOLECULAR-WEIGHT", "MOLECULAR-WEIGHT-EXP", "MOLECULAR-WEIGHT-KD", "MOLECULAR-WEIGHT-SEQ",
-                "MONOISOTOPIC-MW", "N+1-NAME", "N-1-NAME", "N-NAME", "NEIDHARDT-SPOT-NUMBER",
-                "NON-STANDARD-INCHI", "PI", "PKA1", "PKA2", "PKA3", "PROMOTER-BOX-NAME-1",
-                "PROMOTER-BOX-NAME-2", "PROSTHETIC-GROUPS-OF", "RADICAL-ATOMS", "RECOGNIZED-PROMOTERS",
-                "REGULATED-BY", "REGULATES", "SMILES", "SPECIES", "SPLICE-FORM-INTRONS", "STRUCTURE-BONDS",
-                "SUPERATOMS", "SYMMETRY", "SYNONYMS", "SYSTEMATIC-NAME", "TAUTOMERS", "TEMPLATE-FILE",
-                "UNMODIFIED-FORM"}
+        Public Overrides ReadOnly Property AttributeList As String()
+            Get
+                Return {
+                    "UNIQUE-ID", "TYPES", "COMMON-NAME", "ABBREV-NAME", "AROMATIC-RINGS", "ATOM-CHARGES",
+                    "CATALYZES", "CHEMICAL-FORMULA", "CITATIONS", "COFACTORS-OF",
+                    "COFACTORS-OR-PROSTHETIC-GROUPS-OF", "COMMENT", "COMMENT-INTERNAL", "COMPONENT-COEFFICIENTS",
+                    "COMPONENT-OF", "COMPONENTS", "CONSENSUS-SEQUENCE", "CREDITS", "DATA-SOURCE", "DBLINKS",
+                    "DNA-FOOTPRINT-SIZE", "DOCUMENTATION", "ENZYME-NOT-USED-IN", "FEATURES",
+                    "FUNCTIONAL-ASSIGNMENT-COMMENT", "FUNCTIONAL-ASSIGNMENT-STATUS", "GENE", "GO-TERMS",
+                    "HAS-NO-STRUCTURE?", "HIDE-SLOT?", "IN-MIXTURE", "INCHI", "INSTANCE-NAME-TEMPLATE",
+                    "INTERNALS-OF-GROUP", "ISOZYME-SEQUENCE-SIMILARITY", "LOCATIONS", "MEMBER-SORT-FN",
+                    "MODIFIED-FORM", "MOLECULAR-WEIGHT", "MOLECULAR-WEIGHT-EXP", "MOLECULAR-WEIGHT-KD",
+                    "MOLECULAR-WEIGHT-SEQ", "MONOISOTOPIC-MW", "N+1-NAME", "N-1-NAME", "N-NAME",
+                    "NEIDHARDT-SPOT-NUMBER", "NON-STANDARD-INCHI", "PI", "PKA1", "PKA2", "PKA3", "PROMOTER-BOX-NAME-1",
+                    "PROMOTER-BOX-NAME-2", "PROSTHETIC-GROUPS-OF", "RADICAL-ATOMS", "RECOGNIZED-PROMOTERS",
+                    "REGULATED-BY", "REGULATES", "SMILES", "SPECIES", "SPLICE-FORM-INTRONS", "STRUCTURE-BONDS",
+                    "SUPERATOMS", "SYMMETRY", "SYNONYMS", "SYSTEMATIC-NAME", "TAUTOMERS", "TEMPLATE-FILE",
+                    "UNMODIFIED-FORM"
+                }
+            End Get
+        End Property
 
         Public Overrides Function ToString() As String
             Return String.Format("{0}  {1} frame object records.", DbProperty.ToString, FrameObjects.Count)
-        End Function
-
-        Friend Overrides Function GetAttributeList() As String()
-            Return (From s As String In Proteins.AttributeList Select s Order By Len(s) Descending).ToArray
         End Function
 
         ''' <summary>
@@ -51,10 +51,6 @@ Namespace Assembly.MetaCyc.File.DataFiles
             Next
             Return List.ToArray
         End Function
-
-        Public Shared Shadows Widening Operator CType(Array As List(Of MetaCyc.File.DataFiles.Slots.Protein)) As Proteins
-            Return New Proteins With {.FrameObjects = Array}
-        End Operator
 
         Public Shared Shadows Widening Operator CType(Path As String) As Proteins
             Dim Proteins As Proteins = New Proteins

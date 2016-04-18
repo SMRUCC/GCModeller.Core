@@ -28,7 +28,7 @@ Namespace ProteinModel
         Implements sIdEnumerable
 
         Public Property Position As Location
-        Public Property EValue As String
+        Public Property EValue As Double
         Public Property BitScore As String
         ''' <summary>
         ''' 百分比位置

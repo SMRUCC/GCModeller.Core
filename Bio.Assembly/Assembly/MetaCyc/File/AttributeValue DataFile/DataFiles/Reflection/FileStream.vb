@@ -25,7 +25,7 @@ Namespace Assembly.MetaCyc.File.DataFiles.Reflection
                 sBuilder.AppendLine(Stream.DbProperty.Generate)
             End If
             Call GetMetaCycField(Of TObject)(ItemProperties, FieldAttributes)
-            Dim LQuery As IEnumerable(Of String) = From e As TObject In Stream.FrameObjects.AsParallel Select Generate(e, ItemProperties, FieldAttributes) 'AsParallel
+            Dim LQuery As IEnumerable(Of String) = From e As TObject In Stream.Values Select Generate(e, ItemProperties, FieldAttributes) 'AsParallel
             For Each [Object] As String In LQuery
                 sBuilder.Append([Object])
             Next
@@ -144,12 +144,10 @@ Namespace Assembly.MetaCyc.File.DataFiles.Reflection
                           In FileStream.Objects.AsParallel
                           Select [CType](Of TObject)(c, ItemProperties, FieldAttributes)).ToList  '.AsParallel
 #End If
-            Stream.FrameObjects = LQuery
+            Stream.Values = LQuery
             Stream.DbProperty = FileStream.DbProperty
 
             Call Console.WriteLine("DATABASE_LOAD_DATA() -> Performance {0} ms", PerformenceClock.ElapsedMilliseconds)
-            Call Console.WriteLine("Indexing data set..." & vbCrLf)
-            Call Stream.Indexing() 'Create the query index for the object that in the table using its unique-id
 
             Return Stream
         End Function

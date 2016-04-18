@@ -196,7 +196,7 @@ Namespace Assembly.NCBI.GenBank
             Dim LQuery = (From FeatureData As Feature
                           In gbk.Features._innerList.AsParallel
                           Where String.Equals(FeatureData.KeyName, "CDS", StringComparison.OrdinalIgnoreCase)
-                          Select GeneDumpInfo.InternalConvertExport(New CDS(FeatureData))).ToArray
+                          Select GeneDumpInfo.DumpEXPORT(New CDS(FeatureData))).ToArray
             GeneList = LQuery
             Return New KeyValuePair(Of gbEntryBrief, String)(gbEntryBrief.ConvertObject(Of gbEntryBrief)(gbk), gbk.Origin.SequenceData)
         End Function
@@ -231,7 +231,7 @@ Namespace Assembly.NCBI.GenBank
                                 Let GenesTempChunk As GeneDumpInfo() = (From FeatureData As Feature
                                                                         In GBKFF.Features._innerList.AsParallel
                                                                         Where String.Equals(FeatureData.KeyName, "CDS", StringComparison.OrdinalIgnoreCase)
-                                                                        Select GeneDumpInfo.InternalConvertExport(New CDS(FeatureData))).ToArray
+                                                                        Select GeneDumpInfo.DumpEXPORT(New CDS(FeatureData))).ToArray
                                 Let Entry = gbEntryBrief.ConvertObject(Of gbEntryBrief)(GBKFF)
                                 Let FastaDump As FASTA.FastaFile =
                                     If(FastaWithAnnotation, __exportWithAnnotation(GenesTempChunk), __exportNoAnnotation(GenesTempChunk))
@@ -287,7 +287,7 @@ Namespace Assembly.NCBI.GenBank
             Dim GenesTempChunk As GeneDumpInfo() = (From FeatureData As Feature
                                                     In gbk.Features._innerList.AsParallel
                                                     Where String.Equals(FeatureData.KeyName, "CDS", StringComparison.OrdinalIgnoreCase)
-                                                    Select GeneDumpInfo.InternalConvertExport(New CDS(FeatureData))).ToArray
+                                                    Select GeneDumpInfo.DumpEXPORT(New CDS(FeatureData))).ToArray
             Return GenesTempChunk
         End Function
 
@@ -348,7 +348,7 @@ Namespace Assembly.NCBI.GenBank
                 Dim GenesTempChunk As GeneDumpInfo() = (From FeatureData As Feature
                                                         In GBKFF.Features._innerList.AsParallel
                                                         Where String.Equals(FeatureData.KeyName, "CDS", StringComparison.OrdinalIgnoreCase)
-                                                        Select GeneDumpInfo.InternalConvertExport(New CDS(FeatureData))).ToArray
+                                                        Select GeneDumpInfo.DumpEXPORT(New CDS(FeatureData))).ToArray
                 Dim Entry = NCBI.GenBank.CsvExports.Plasmid.Build(GBKFF)
 
                 Call ExportList.Add(Entry, GBKFF.Origin.SequenceData)

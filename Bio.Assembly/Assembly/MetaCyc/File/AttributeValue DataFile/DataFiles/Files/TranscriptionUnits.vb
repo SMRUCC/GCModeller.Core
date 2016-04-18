@@ -19,37 +19,21 @@ Namespace Assembly.MetaCyc.File.DataFiles
         ''' 定义在转录单元类型之中的所有的属性的列表
         ''' </summary>
         ''' <remarks></remarks>
-        Public Shared Shadows ReadOnly AttributeList As String() = {
- _
-            "UNIQUE-ID", "TYPES", "COMMON-NAME", "CITATIONS", "COMMENT", "COMMENT-INTERNAL",
-            "COMPONENT-OF", "COMPONENTS", "CREDITS", "DATA-SOURCE", "DBLINKS", "DOCUMENTATION",
-            "EXTENT-UNKNOWN?", "HIDE-SLOT?", "INSTANCE-NAME-TEMPLATE", "LEFT-END-POSITION",
-            "MEMBER-SORT-FN", "REGULATED-BY", "RIGHT-END-POSITION", "SYNONYMS", "TEMPLATE-FILE"}
+        Public Overrides ReadOnly Property AttributeList As String()
+            Get
+                Return {
+                    "UNIQUE-ID", "TYPES", "COMMON-NAME", "CITATIONS", "COMMENT",
+                    "COMMENT-INTERNAL", "COMPONENT-OF", "COMPONENTS", "CREDITS",
+                    "DATA-SOURCE", "DBLINKS", "DOCUMENTATION", "EXTENT-UNKNOWN?",
+                    "HIDE-SLOT?", "INSTANCE-NAME-TEMPLATE", "LEFT-END-POSITION",
+                    "MEMBER-SORT-FN", "REGULATED-BY", "RIGHT-END-POSITION",
+                    "SYNONYMS", "TEMPLATE-FILE"
+                }
+            End Get
+        End Property
 
         Public Overrides Function ToString() As String
             Return String.Format("{0}  {1} frame object records.", DbProperty.ToString, FrameObjects.Count)
         End Function
-
-        Friend Overrides Function GetAttributeList() As String()
-            Return (From s As String In TransUnits.AttributeList Select s Order By Len(s) Descending).ToArray
-        End Function
-
-        'Public Shared Shadows Widening Operator CType(e As LANS.SystemsBiology.Assembly.MetaCyc.File.AttributeValue) As TransUnits
-        '    Dim TransUnits As TransUnits = New TransUnits
-        '    Dim Query As Generic.IEnumerable(Of MetaCyc.File.DataFiles.Slots.TransUnit) =
-        '        From c As MetaCyc.File.AttributeValue.Object
-        '        In e.Objects.AsParallel
-        '        Select CType(c, MetaCyc.File.DataFiles.Slots.TransUnit)
-
-        '    TransUnits.DbProperty = e.DbProperty
-        '    TransUnits.FrameObjects = Query.ToList
-
-        '    Return TransUnits
-        'End Operator
-
-        'Public Shared Shadows Widening Operator CType(spath As String) As TransUnits
-        '    Dim File As MetaCyc.File.AttributeValue = spath
-        '    Return CType(File, TransUnits)
-        'End Operator
     End Class
 End Namespace

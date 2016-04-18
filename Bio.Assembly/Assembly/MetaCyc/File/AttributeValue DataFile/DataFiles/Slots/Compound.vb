@@ -2,6 +2,7 @@
 Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema.Reflection
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 
 Namespace Assembly.MetaCyc.File.DataFiles.Slots
 
@@ -13,8 +14,9 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
     ''' <remarks>
     ''' One of the component in the Class ProtLigandCplxe (Protein-Small-Molecule-Complexes) with class protein
     ''' </remarks>
-    Public Class Compound : Inherits MetaCyc.File.DataFiles.Slots.Object
+    Public Class Compound : Inherits Slots.Object
         Implements Regulation.IRegulator
+        Implements sIdEnumerable
 
         <MetaCycField> Public Overrides Property CommonName As String Implements Regulation.IRegulator.CommonName
             Get
@@ -28,7 +30,7 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
         Public Property Components As List(Of String) Implements Regulation.IRegulator.Components
         <ExternalKey("compounds,proteins,protligandcplxes", "", ExternalKey.Directions.In)> <MetaCycField(Type:=MetaCycField.Types.TStr)>
         Public Property ComponentOf As List(Of String) Implements Regulation.IRegulator.ComponentOf
-        <MetaCycField(type:=MetaCycField.Types.TStr)> Public Overrides Property Types As List(Of String) Implements Regulation.IRegulator.Types
+        <MetaCycField(Type:=MetaCycField.Types.TStr)> Public Overrides Property Types As List(Of String) Implements Regulation.IRegulator.Types
             Get
                 Return MyBase.Types
             End Get
@@ -36,7 +38,7 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
                 MyBase.Types = value
             End Set
         End Property
-        <MetaCycField> Public Overrides Property Identifier As String Implements Regulation.IRegulator.locusId
+        <MetaCycField> Public Overrides Property Identifier As String Implements Regulation.IRegulator.locusId, sIdEnumerable.Identifier
             Get
                 Return MyBase.Identifier
             End Get
@@ -45,10 +47,10 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
             End Set
         End Property
 
-        <MetaCycField(name:="MOLECULAR-WEIGHT")> Public Property MolecularWeight As String
-        <MetaCycField(name:="MONOISOTOPIC-MW")> Public Property MonoisotopicMW As String
+        <MetaCycField(Name:="MOLECULAR-WEIGHT")> Public Property MolecularWeight As String
+        <MetaCycField(Name:="MONOISOTOPIC-MW")> Public Property MonoisotopicMW As String
 
-        <MetaCycField(type:=MetaCycField.Types.TStr)> Public Shadows Property Names As String()
+        <MetaCycField(Type:=MetaCycField.Types.TStr)> Public Shadows Property Names As String()
             Get
                 Dim List As List(Of String) = New List(Of String)
                 Call List.Add(Me.AbbrevName)
@@ -68,7 +70,7 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
         ''' 
         ''' </summary>
         ''' <remarks></remarks>
-        <ExternalKey("regulations", "involved in", ExternalKey.Directions.Out)> <MetaCycField(type:=MetaCycField.Types.TStr)> Public Property Regulates As List(Of String) Implements Regulation.IRegulator.Regulates
+        <ExternalKey("regulations", "involved in", ExternalKey.Directions.Out)> <MetaCycField(Type:=MetaCycField.Types.TStr)> Public Property Regulates As List(Of String) Implements Regulation.IRegulator.Regulates
 
         Public Overrides ReadOnly Property Table As [Object].Tables
             Get
@@ -111,7 +113,7 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
 
         Dim _CheBI As String()
 
-        <MetaCycField(name:="DBLINKS", type:=MetaCycField.Types.TStr)> Public Overrides Property DBLinks As String()
+        <MetaCycField(Name:="DBLINKS", Type:=MetaCycField.Types.TStr)> Public Overrides Property DBLinks As String()
             Get
                 Return _DBLinks.DBLinks
             End Get

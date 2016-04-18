@@ -1,4 +1,5 @@
-﻿Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema.Metabolism
+﻿Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
+Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema.Metabolism
 
 Namespace Assembly.MetaCyc
 
@@ -11,5 +12,14 @@ Namespace Assembly.MetaCyc
             {"REVERSIBLE", ReactionDirections.Reversible},
             {"RIGHT-TO-LEFT", ReactionDirections.RightToLeft}
         }
+
+        Public Function GetAttributeList(Of T As Slots.Object)(data As DataFile(Of T)) As String()
+            Return (From s As String
+                    In data.AttributeList
+                    Where Not s.IsBlank
+                    Select s
+                    Distinct
+                    Order By s.Length Descending).ToArray
+        End Function
     End Module
 End Namespace

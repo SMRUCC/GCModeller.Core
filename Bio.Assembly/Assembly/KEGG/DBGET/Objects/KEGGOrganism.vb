@@ -37,17 +37,14 @@ Namespace Assembly.KEGG.DBGET.bGetObject.Organism
         ''' 
         <ExportAPI("KEGG.spCode", Info:="Convert the species genome full name into the KEGG 3 letters briefly code.")>
         Public Function GetKEGGSpeciesCode(Name As String) As String
-            Dim LQuery = (From x As Organism In __cacheList.ToArray.AsParallel
-                          Let lev As DistResult = StatementMatches.Match(Name, x.Species)
-                          Where Not lev Is Nothing AndAlso
-                              lev.NumMatches >= 2
-                          Select x, lev
-                          Order By lev.Score Descending).ToArray
-            If LQuery.Length = 0 Then
+            Dim LQuery = (From x As Organism In __cacheList.ToArray.AsParallel ' Let lev As DistResult = StatementMatches.Match(Name, x.Species) Where Not lev Is Nothing AndAlso lev.NumMatches >= 2
+                          Where String.Equals(Name, x.Species, StringComparison.OrdinalIgnoreCase)
+                          Select x).FirstOrDefault
+            If LQuery Is Nothing Then
                 Call $"Could not found any entry for ""{Name}"" from KEGG...".__DEBUG_ECHO
                 Return ""
             Else
-                Return LQuery.First.x.KEGGId
+                Return LQuery.KEGGId
             End If
         End Function
 

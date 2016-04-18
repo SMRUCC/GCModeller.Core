@@ -1,4 +1,5 @@
-﻿Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
+﻿Imports System.Text
+Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
 Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Slots.Object
 Imports LANS.SystemsBiology.Assembly.MetaCyc.File.FileSystem.FastaObjects
 Imports LANS.SystemsBiology.SequenceModel
@@ -11,7 +12,7 @@ Namespace Assembly.MetaCyc.File.FileSystem
     ''' (MetaCyc数据库文件的读取对象)
     ''' </summary>
     ''' <remarks>DataFiles</remarks>
-    Public Class PGDB : Implements PGDB.MetaCycTable
+    Public Class PGDB
 
         ''' <summary>
         ''' Binding reactions.(调控因子与DNA分子的结合反应)
@@ -136,72 +137,63 @@ Namespace Assembly.MetaCyc.File.FileSystem
             End Get
         End Property
 
-        Public Sub Indexing() Implements MetaCycTable.Indexing
-            'Do Nothing
-        End Sub
-
         ''' <summary>
         ''' 保存数据库，假若SavedDir参数不为空的话，则保存至SavedDir所指示的文件夹之内
         ''' </summary>
-        ''' <param name="SavedDir">可选参数，目标MetaCyc数据库所要保存的文件夹位置</param>
+        ''' <param name="EXPORT">可选参数，目标MetaCyc数据库所要保存的文件夹位置</param>
         ''' <remarks></remarks>
-        Public Sub Save(Optional SavedDir As String = "") Implements MetaCycTable.Save
-            If String.IsNullOrEmpty(SavedDir) Then
-                SavedDir = _DIR
+        Public Sub Save(Optional EXPORT As String = "")
+            If String.IsNullOrEmpty(EXPORT) Then
+                EXPORT = _DIR
             End If
 
             On Error Resume Next '好邪恶
 
-            Call FileIO.FileSystem.CreateDirectory(SavedDir)
-            If Not String.Equals(FileIO.FileSystem.GetDirectoryInfo(_DIR).FullName, FileIO.FileSystem.GetDirectoryInfo(SavedDir).FullName) Then
-                Call FileIO.FileSystem.CopyDirectory(_DIR, SavedDir)
-                _DIR = SavedDir
+            Call FileIO.FileSystem.CreateDirectory(EXPORT)
+            If Not String.Equals(FileIO.FileSystem.GetDirectoryInfo(_DIR).FullName, FileIO.FileSystem.GetDirectoryInfo(EXPORT).FullName) Then
+                Call FileIO.FileSystem.CopyDirectory(_DIR, EXPORT)
+                _DIR = EXPORT
             End If
 
             Using Loader = MetaCyc.File.FileSystem.DatabaseLoadder.CreateInstance(Me)
-                Call Loader.GetBindRxns.Save(SavedDir & "/bindrxns.dat")
-                Call Loader.GetCompounds.Save(SavedDir & "/compounds.dat")
-                Call Loader.GetDNABindingSites.Save(SavedDir & "/dnabindsites.dat")
-                Call Loader.GetEnzrxns.Save(SavedDir & "/enzrxns.dat")
-                Call Loader.GetGenes.Save(SavedDir & "/genes.dat")
-                Call Loader.GetPathways.Save(SavedDir & "/pathways.dat")
-                Call Loader.GetPromoters.Save(SavedDir & "/promoters.dat")
-                Call Loader.GetProteins.Save(SavedDir & "/proteins.dat")
-                Call Loader.GetProteinFeature.Save(SavedDir & "/protein-features.dat")
-                Call Loader.GetProtLigandCplx.Save(SavedDir & "/protligandcplxes.dat")
-                Call Loader.GetReactions.Save(SavedDir & "/reactions.dat")
-                Call Loader.GetRegulations.Save(SavedDir & "/regulation.dat")
-                Call Loader.GetTerminators.Save(SavedDir & "/terminators.dat")
-                Call Loader.GetTransUnits.Save(SavedDir & "/transunits.dat")
+                Call Loader.GetBindRxns.Save(EXPORT & "/bindrxns.dat")
+                Call Loader.GetCompounds.Save(EXPORT & "/compounds.dat")
+                Call Loader.GetDNABindingSites.Save(EXPORT & "/dnabindsites.dat")
+                Call Loader.GetEnzrxns.Save(EXPORT & "/enzrxns.dat")
+                Call Loader.GetGenes.Save(EXPORT & "/genes.dat")
+                Call Loader.GetPathways.Save(EXPORT & "/pathways.dat")
+                Call Loader.GetPromoters.Save(EXPORT & "/promoters.dat")
+                Call Loader.GetProteins.Save(EXPORT & "/proteins.dat")
+                Call Loader.GetProteinFeature.Save(EXPORT & "/protein-features.dat")
+                Call Loader.GetProtLigandCplx.Save(EXPORT & "/protligandcplxes.dat")
+                Call Loader.GetReactions.Save(EXPORT & "/reactions.dat")
+                Call Loader.GetRegulations.Save(EXPORT & "/regulation.dat")
+                Call Loader.GetTerminators.Save(EXPORT & "/terminators.dat")
+                Call Loader.GetTransUnits.Save(EXPORT & "/transunits.dat")
 
-                Call Me.Species.Save(SavedDir & "/species.dat")
+                Call Me.Species.Save(EXPORT & "/species.dat")
 
-                If Me.Species.Count = 1 Then
+                If Me.Species.NumOfTokens = 1 Then
                     Dim Specie = Species.First
 
-                    Call Me.WholeGenome.SaveTo(String.Format("{0}/{1}-{2}.fsa", SavedDir, Specie.Identifier, Specie.Genome))
-                    Call MetaCyc.File.FileSystem.FastaObjects.GeneObject.Save(Me.FASTAFiles.DNAseq, SavedDir & "/dnaseq.fsa")
-                    Call MetaCyc.File.FileSystem.FastaObjects.Proteins.Save(Me.FASTAFiles.protseq, SavedDir & "/protseq.fsa")
+                    Call Me.WholeGenome.SaveTo(String.Format("{0}/{1}-{2}.fsa", EXPORT, Specie.Identifier, Specie.Genome))
+                    Call MetaCyc.File.FileSystem.FastaObjects.GeneObject.Save(Me.FASTAFiles.DNAseq, EXPORT & "/dnaseq.fsa")
+                    Call MetaCyc.File.FileSystem.FastaObjects.Proteins.Save(Me.FASTAFiles.protseq, EXPORT & "/protseq.fsa")
                 End If
             End Using
         End Sub
 
-        Public Interface MetaCycTable
-            Sub Indexing()
-            Sub Save(Optional SavedDir As String = "")
-        End Interface
-
         ''' <summary>
         ''' (使用反射机制进行数据库数据的加载操作，根据条件编译来选择为并行加载还是串行加载)
         ''' </summary>
-        ''' <param name="Dir"></param>
+        ''' <param name="DIR"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function Load(Dir As String) As PGDB
+        Public Shared Function Load(DIR As String) As PGDB
 #If PARALLEL Then
             Return MetaCyc.File.FileSystem.PGDB.ParallelReadingMetaCyc(Dir)
 #Else
-            Return MetaCyc.File.FileSystem.PGDB.ReflectionLoadMetaCyc(Dir)
+            Return MetaCyc.File.FileSystem.PGDB.ReflectionLoadMetaCyc(DIR)
 #End If
         End Function
 
@@ -218,7 +210,7 @@ Namespace Assembly.MetaCyc.File.FileSystem
             }
             MetaCyc.Species = DataFiles.Reflection.FileStream.Read(Of Slots.Specie, Species)(DIR & "/species.dat", New Species)
 
-            If MetaCyc.Species.Count = 1 Then
+            If MetaCyc.Species.NumOfTokens = 1 Then
                 Dim Specie = MetaCyc.Species.First
 
                 MetaCyc.FASTAFiles.ProteinSourceFile = DIR & "/protseq.fsa"

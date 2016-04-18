@@ -19,31 +19,31 @@ Namespace Assembly.MetaCyc.File.DataFiles
     ''' This file lists all chemical reactions in the PGDB.
     ''' (本数据库文件中记录了本菌种内所有的化学反应)
     ''' </remarks>
-    Public Class Reactions : Inherits DataFile(Of MetaCyc.File.DataFiles.Slots.Reaction)
+    Public Class Reactions : Inherits DataFile(Of Slots.Reaction)
 
-        Public Shared Shadows ReadOnly AttributeList As String() =
-            {
-                "UNIQUE-ID", "TYPES", "COMMON-NAME", "ATOM-MAPPINGS", "CANNOT-BALANCE?",
-                "CITATIONS", "COMMENT", "COMMENT-INTERNAL", "CREDITS", "DATA-SOURCE",
-                "DBLINKS", "DELTAG0", "DOCUMENTATION", "EC-NUMBER", "ENZYMATIC-REACTION",
-                "ENZYMES-NOT-USED", "EQUILIBRIUM-CONSTANT", "HIDE-SLOT?", "IN-PATHWAY",
-                "INSTANCE-NAME-TEMPLATE", "LEFT", "MEMBER-SORT-FN", "ORPHAN?",
-                "PHYSIOLOGICALLY-RELEVANT?", "PREDECESSORS", "PRIMARIES", "REACTION-DIRECTION",
-                "REACTION-LIST", "REGULATED-BY", "REQUIREMENTS", "RIGHT", "RXN-LOCATIONS",
-                "SIGNAL", "SPECIES", "SPONTANEOUS?", "STD-REDUCTION-POTENTIAL", "SYNONYMS",
-                "SYSTEMATIC-NAME", "TEMPLATE-FILE"}
+        Public Overrides ReadOnly Property AttributeList As String()
+            Get
+                Return {
+                    "UNIQUE-ID", "TYPES", "COMMON-NAME", "ATOM-MAPPINGS", "CANNOT-BALANCE?",
+                    "CITATIONS", "COMMENT", "COMMENT-INTERNAL", "CREDITS", "DATA-SOURCE",
+                    "DBLINKS", "DELTAG0", "DOCUMENTATION", "EC-NUMBER", "ENZYMATIC-REACTION",
+                    "ENZYMES-NOT-USED", "EQUILIBRIUM-CONSTANT", "HIDE-SLOT?", "IN-PATHWAY",
+                    "INSTANCE-NAME-TEMPLATE", "LEFT", "MEMBER-SORT-FN", "ORPHAN?",
+                    "PHYSIOLOGICALLY-RELEVANT?", "PREDECESSORS", "PRIMARIES", "REACTION-DIRECTION",
+                    "REACTION-LIST", "REGULATED-BY", "REQUIREMENTS", "RIGHT", "RXN-LOCATIONS",
+                    "SIGNAL", "SPECIES", "SPONTANEOUS?", "STD-REDUCTION-POTENTIAL", "SYNONYMS",
+                    "SYSTEMATIC-NAME", "TEMPLATE-FILE"
+                }
+            End Get
+        End Property
 
         Public Overrides Function ToString() As String
             Return String.Format("{0}  {1} frame object records.", DbProperty.ToString, FrameObjects.Count)
         End Function
 
-        Friend Overrides Function GetAttributeList() As String()
-            Return (From s As String In Reactions.AttributeList Select s Order By Len(s) Descending).ToArray
-        End Function
-
         Public Function GetTransportReactions() As MetaCyc.Schema.TransportReaction()
             Dim LQuery = (From ReactionObject As Slots.Reaction
-                          In MyBase.FrameObjects
+                          In MyBase.Values
                           Where ReactionObject.IsTransportReaction
                           Select New MetaCyc.Schema.TransportReaction(ReactionObject)).ToArray
             Return LQuery
@@ -65,7 +65,10 @@ Namespace Assembly.MetaCyc.File.DataFiles
                                         Order By value Ascending).ToArray
             Dim Dict As Dictionary(Of String, Slots.Reaction()) = New Dictionary(Of String, Slots.Reaction())
             For Each strECId As String In ECIdlist
-                Call Dict.Add(strECId.Replace("EC-", ""), (From item As Slots.Reaction In Me.FrameObjects.AsParallel Where String.Equals(item.ECNumber, strECId) Select item).ToArray)
+                Call Dict.Add(strECId.Replace("EC-", ""), (From item As Slots.Reaction
+                                                           In Me.Values.AsParallel
+                                                           Where String.Equals(item.ECNumber, strECId)
+                                                           Select item).ToArray)
             Next
 
             Return Dict

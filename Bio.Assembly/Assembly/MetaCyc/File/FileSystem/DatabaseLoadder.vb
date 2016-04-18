@@ -7,13 +7,13 @@ Namespace Assembly.MetaCyc.File.FileSystem
     ''' </summary>
     ''' <remarks></remarks>
     Public Class DatabaseLoadder : Inherits ComponentModel.TabularLazyLoader
-        Implements System.IDisposable, PGDB.MetaCycTable
+        Implements IDisposable
 
         ''' <summary>
         ''' MetaCyc database directory.(MetaCyc数据库文件夹)
         ''' </summary>
         ''' <remarks></remarks>
-        Public Property Database As LANS.SystemsBiology.Assembly.MetaCyc.File.FileSystem.PGDB
+        Public Property Database As PGDB
 
         Public ReadOnly Property SBMLMetabolismModel As String
             Get
@@ -21,13 +21,13 @@ Namespace Assembly.MetaCyc.File.FileSystem
             End Get
         End Property
 
-        Public Sub New(MetaCyc As LANS.SystemsBiology.Assembly.MetaCyc.File.FileSystem.PGDB)
+        Public Sub New(MetaCyc As PGDB)
             Call MyBase.New(MetaCyc.DataDIR, {"*.dat"})
             Me.Database = MetaCyc
         End Sub
 
-        Public Shared Widening Operator CType(MetaCycDir As String) As DatabaseLoadder
-            Return MetaCyc.File.FileSystem.DatabaseLoadder.CreateInstance(MetaCycDir)
+        Public Shared Widening Operator CType(MetaCycDIR As String) As DatabaseLoadder
+            Return DatabaseLoadder.CreateInstance(MetaCycDIR)
         End Operator
 
         ''' <summary>
@@ -44,7 +44,7 @@ Namespace Assembly.MetaCyc.File.FileSystem
                 Call Assembly.MetaCyc.File.DataFiles.Reflection.FileStream.Read(Of
                      MetaCyc.File.DataFiles.Slots.Compound,
                      MetaCyc.File.DataFiles.Compounds)(Path, Database.Compounds)
-                Database.Compounds.FrameObjects = (From cp In Database.Compounds.FrameObjects Select cp.Trim).ToList
+                Database.Compounds.Values = (From cp In Database.Compounds.Values Select cp.Trim).ToList
             End If
             Return Database.Compounds
         End Function
@@ -99,7 +99,7 @@ Namespace Assembly.MetaCyc.File.FileSystem
                 Call Assembly.MetaCyc.File.DataFiles.Reflection.FileStream.Read(Of
                      MetaCyc.File.DataFiles.Slots.Reaction,
                      MetaCyc.File.DataFiles.Reactions)(Path, Database.Reactions)
-                Database.Reactions.FrameObjects = (From item In Database.Reactions.FrameObjects Select DataFiles.Reactions.Trim(item)).ToList
+                Database.Reactions.Values = (From item In Database.Reactions.Values Select DataFiles.Reactions.Trim(item)).ToList
             End If
             Return Database.Reactions
         End Function
@@ -336,12 +336,8 @@ Namespace Assembly.MetaCyc.File.FileSystem
         End Sub
 #End Region
 
-        Public Sub Indexing() Implements MetaCyc.File.FileSystem.PGDB.MetaCycTable.Indexing
-            Call Database.Indexing()
-        End Sub
-
-        Public Sub Save(Optional SavedDir As String = "") Implements MetaCyc.File.FileSystem.PGDB.MetaCycTable.Save
-            Call Database.Save(SavedDir)
+        Public Sub Save(Optional EXPORT As String = "")
+            Call Database.Save(EXPORT)
         End Sub
     End Class
 End Namespace

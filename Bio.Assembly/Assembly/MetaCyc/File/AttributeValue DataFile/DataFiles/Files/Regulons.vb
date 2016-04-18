@@ -8,7 +8,14 @@
     ''' 进行结合而发挥调控作用的基因)
     ''' </summary>
     ''' <remarks></remarks>
-    Public Class Regulons : Inherits DataFile(Of MetaCyc.File.DataFiles.Slots.Regulon)
+    Public Class Regulons : Inherits DataFile(Of Slots.Regulon)
+
+        Public Overrides ReadOnly Property AttributeList As String()
+            Get
+                Throw New NotImplementedException()
+            End Get
+        End Property
+
         Public Overrides Function ToString() As String
             Return String.Format("{0}  {1} frame object records.", DbProperty.ToString, FrameObjects.Count)
         End Function

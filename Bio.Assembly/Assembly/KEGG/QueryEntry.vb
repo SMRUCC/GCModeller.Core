@@ -32,14 +32,24 @@ Namespace Assembly.KEGG.WebServices
         Public Function QuerySpCode() As String
             Dim sp As String = DBGET.bGetObject.Organism.GetKEGGSpeciesCode(genome)
             If String.IsNullOrEmpty(sp) Then
-                Dim locus As String = locusId.First
-                Dim entry As QueryEntry = GetQueryEntry(locus)
+                Dim i As Integer
 
-                If entry Is Nothing Then
-                    Return ""
-                Else
-                    sp = entry.SpeciesId
-                End If
+                For Each locus As String In locusId
+                    Dim entry As QueryEntry = GetQueryEntry(locus)
+
+                    If entry Is Nothing Then
+
+                    Else
+                        sp = entry.SpeciesId
+                        Exit For
+                    End If
+
+                    If i > 5 Then
+                        Return ""
+                    Else
+                        i += 1
+                    End If
+                Next
             End If
 
             Return sp

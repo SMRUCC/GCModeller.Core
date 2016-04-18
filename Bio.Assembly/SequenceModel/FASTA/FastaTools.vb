@@ -77,12 +77,17 @@ Namespace SequenceModel.FASTA.Reflection
         ''' Only merge fasta files in the top level directory.
         ''' </summary>
         ''' <param name="inDIR"></param>
-        ''' <param name="Trim"></param>
+        ''' <param name="trim"></param>
         ''' <returns></returns>
         <ExportAPI("Merge", Info:="Merge the fasta sequence file from a directory.")>
-        Public Function Merge(inDIR As String, Trim As Boolean) As SequenceModel.FASTA.FastaFile
+        Public Function Merge(inDIR As String, trim As Boolean) As FastaFile
             Dim files = FileIO.FileSystem.GetFiles(inDIR, FileIO.SearchOption.SearchTopLevelOnly, "*.fa", "*.fsa", "*.fas", "*.fasta")
-            Return files.Merge(Trim)
+            Return files.Merge(trim)
+        End Function
+
+        Public Function Merge(inDIR As String, ext As String, trim As Boolean) As FastaFile
+            Dim files As IEnumerable(Of String) = FileIO.FileSystem.GetFiles(inDIR, FileIO.SearchOption.SearchTopLevelOnly, ext)
+            Return files.Merge(trim)
         End Function
 
         Const HTML_CHARS As String = "</>!\[].+:()0123456789"

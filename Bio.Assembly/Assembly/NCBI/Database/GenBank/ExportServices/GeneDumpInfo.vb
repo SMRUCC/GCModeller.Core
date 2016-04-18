@@ -6,14 +6,15 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Namespace Assembly.NCBI.GenBank.CsvExports
 
     ''' <summary>
-    ''' 从GBK文件之中所导出来的一个基因对象的简要信息
+    ''' The gene dump information from the NCBI genbank.
+    ''' (从GBK文件之中所导出来的一个基因对象的简要信息)
     ''' </summary>
     ''' <remarks></remarks>
     Public Class GeneDumpInfo : Implements sIdEnumerable
         Implements I_GeneBrief
 
         ''' <summary>
-        ''' 假若在GBK文件之中没有Locus_tag属性，则导出函数<see cref="InternalConvertExport"></see>会尝试使用<see cref="ProteinId"></see>来替代
+        ''' 假若在GBK文件之中没有Locus_tag属性，则导出函数<see cref="DumpEXPORT"></see>会尝试使用<see cref="ProteinId"></see>来替代
         ''' </summary>
         ''' <value></value>
         ''' <returns></returns>
@@ -52,11 +53,11 @@ Namespace Assembly.NCBI.GenBank.CsvExports
 
         Public Property COG As String Implements I_COGEntry.COG
         Public Property Length As Integer Implements I_COGEntry.Length
-        Public Property Location As ComponentModel.Loci.NucleotideLocation Implements I_GeneBrief.Location
+        Public Property Location As NucleotideLocation Implements I_GeneBrief.Location
             Get
-                Return New ComponentModel.Loci.NucleotideLocation(Left, Right, Strand:=Strand)
+                Return New NucleotideLocation(Left, Right, Strand:=Strand)
             End Get
-            Set(value As ComponentModel.Loci.NucleotideLocation)
+            Set(value As NucleotideLocation)
                 Left = value.Left
                 Right = value.Right
                 Strand = If(value.Strand = Strands.Forward, "+", "-")
@@ -71,12 +72,12 @@ Namespace Assembly.NCBI.GenBank.CsvExports
         End Function
 
         ''' <summary>
-        ''' 
+        ''' Convert a feature site data in the NCBI GenBank file to the dump information table.
         ''' </summary>
         ''' <param name="obj">CDS标记的特性字段</param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function InternalConvertExport(obj As CDS) As GeneDumpInfo
+        Public Shared Function DumpEXPORT(obj As CDS) As GeneDumpInfo
             Dim GeneObject As GeneDumpInfo = New GeneDumpInfo
 
             Call obj.TryGetValue("product", GeneObject.CommonName)
@@ -112,7 +113,10 @@ Namespace Assembly.NCBI.GenBank.CsvExports
                 GeneObject.Right = obj.Location.ContiguousRegion.Right
                 GeneObject.Strand = If(obj.Location.Complement, "-", "+")
             Catch ex As Exception
-                Call $"{obj.GBKEntry.Accession.AccessionId} location data is null!".__DEBUG_ECHO
+                Dim msg As String = $"{obj.GBKEntry.Accession.AccessionId} location data is null!"
+                ex = New Exception(msg)
+                Call VBDebugger.Warning(msg)
+                Call App.LogException(ex)
             End Try
 
             Return GeneObject
