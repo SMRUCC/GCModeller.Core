@@ -1,4 +1,5 @@
 ﻿Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema.Reflection
+Imports Microsoft.VisualBasic
 
 Namespace Assembly.MetaCyc.File.DataFiles
 
@@ -63,6 +64,18 @@ Namespace Assembly.MetaCyc.File.DataFiles
 
         Public Overrides Function ToString() As String
             Return String.Format("{0}  {1} frame object records.", DbProperty.ToString, FrameObjects.Count)
+        End Function
+
+        ''' <summary>
+        ''' Tested load method.
+        ''' </summary>
+        ''' <param name="path"></param>
+        ''' <returns></returns>
+        Public Shared Function LoadCompoundsData(path As String) As Compounds
+            Dim dat As New Compounds
+            Reflection.FileStream.Read(Of Slots.Compound, Compounds)(path, dat)
+            dat.Values = (From met As Slots.Compound In dat.Values Select met.Trim).ToList
+            Return dat
         End Function
     End Class
 End Namespace

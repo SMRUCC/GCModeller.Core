@@ -1,10 +1,13 @@
 ﻿Imports LANS.SystemsBiology.Assembly.KEGG.Archives.Xml
 Imports LANS.SystemsBiology.Assembly.KEGG.DBGET
+Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
 Imports Microsoft.VisualBasic.Linq
 
 Module DEBUG_MAIN
 
     Sub Main()
+
+        Dim compound As Compounds = Compounds.LoadCompoundsData("G:\1.13.RegPrecise_network\FBA\xcam314565\19.0\data\compounds.dat")
 
 
         Dim rxn = bGetObject.Reaction.DownloadFrom("http://www.genome.jp/dbget-bin/www_bget?rn:R00086")

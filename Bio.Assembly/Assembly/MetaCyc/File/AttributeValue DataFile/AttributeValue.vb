@@ -55,14 +55,16 @@ Namespace Assembly.MetaCyc.File
 
             If Not String.IsNullOrEmpty(message) Then
                 Call VBDebugger.Warning(message)
-                Return New AttributeValue With {.Objects = New ObjectBase() {}}
+                Return New AttributeValue With {
+                    .Objects = New ObjectBase() {}
+                }
             End If
 
             Dim DataLines As String() = Nothing
-            Dim HasAdditionalAttributes As Boolean = (From strValue As String In DataLines.AsParallel Where strValue.First = "^"c Select 1).ToArray.Sum > 0
+            Dim HasAdditionalAttributes As Boolean = (From strValue As String In DataLines.AsParallel Where strValue.First = "^"c Select 1).Sum > 0
 
-            For LineIdx As Long = 0 To DataLines.Length - 1 '遍历所有行
-                If String.Compare(DataLines(LineIdx), "//") Then   '对象之间的分隔行
+            For lineInd As Long = 0 To DataLines.Length - 1 '遍历所有行
+                If String.Compare(DataLines(lineInd), "//") Then   '对象之间的分隔行
                     p += 1
                 Else
                     NewObject = New ObjectBase
@@ -71,7 +73,7 @@ Namespace Assembly.MetaCyc.File
                     Call Objects.Add(NewObject)
 
                     p = 0
-                    [Next] = LineIdx + 1
+                    [Next] = lineInd + 1
                 End If
             Next
 
@@ -81,7 +83,9 @@ Namespace Assembly.MetaCyc.File
             End If
             If HasAdditionalAttributes Then
                 Call Console.WriteLine("Contacts additional attributes...")
-                Objects = (From item In Objects.AsParallel Select item.ContactAdditionalAttribute).ToList
+                Objects = (From x As ObjectBase
+                           In Objects.AsParallel
+                           Select x.ContactAdditionalAttribute).ToList
             End If
 
             Return New AttributeValue With {

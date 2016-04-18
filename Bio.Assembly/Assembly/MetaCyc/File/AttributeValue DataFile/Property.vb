@@ -40,7 +40,7 @@ Namespace Assembly.MetaCyc.File
         ''' <remarks></remarks>
         Public Shared Function CreateFrom(data As String()) As [Property]
             Dim this As New [Property]
-            Dim e As String = Contact(data)
+            Dim e As String = ContactLines(data)
             Dim Match As Match
             Dim p As Integer, [Next] As Integer
             Dim chunkBuffer() As String
@@ -81,47 +81,6 @@ Namespace Assembly.MetaCyc.File
 
         Public Overrides Function ToString() As String
             Return String.Format("{0} --> {1}", Species, FileName)
-        End Function
-
-        ''' <summary>
-        ''' 不会保留PGDB中的断行
-        ''' </summary>
-        ''' <param name="e"></param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
-        Public Shared Function Contact(e As Generic.IEnumerable(Of String)) As String
-            Dim sBuilder As StringBuilder = New StringBuilder(1024)
-            Dim BreakContact As StringBuilder = New StringBuilder(512)
-
-            For Line As Integer = 0 To e.Count - 1
-                If Line = e.Count - 1 Then
-                    sBuilder.AppendLine(e(Line))
-                    Exit For
-                End If
-
-                If String.Compare(e(Line + 1).Chars(0), "/") = 0 Then
-                    BreakContact.Clear()
-                    BreakContact.Append(e(Line))
-                    Line += 1
-
-                    Do While String.Compare(e(Line).Chars(0), "/") = 0
-                        BreakContact.Append(" ")
-                        BreakContact.Append(e(Line).Substring(1))
-                        Line += 1
-
-                        If Line >= e.Count - 1 Then
-                            Exit Do
-                        End If
-                    Loop
-
-                    sBuilder.AppendLine(BreakContact.ToString)
-                Else
-                    sBuilder.AppendLine(e(Line))
-                End If
-            Next
-            sBuilder.Replace("  ", " ")
-
-            Return sBuilder.ToString
         End Function
     End Class
 End Namespace

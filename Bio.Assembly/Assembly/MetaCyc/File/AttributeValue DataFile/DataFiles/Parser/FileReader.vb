@@ -71,7 +71,9 @@ Namespace Assembly.MetaCyc.File
             Dim LQuery As String() = (From Line As String In buffer
                                       Where Not String.IsNullOrEmpty(Line) AndAlso Line.Chars(Scan0) <> "#"c
                                       Select Line).ToArray 'Select the text line that not is a comment line
-            Yield LQuery.Split("//")
+            For Each block As String() In LQuery.Split("//")
+                Yield block
+            Next
         End Function
     End Module
 End Namespace
