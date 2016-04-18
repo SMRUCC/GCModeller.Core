@@ -144,7 +144,8 @@
     <Compile Include="Assembly\bac-srna.org\Interaction.vb" />
     <Compile Include="Assembly\bac-srna.org\Database.vb" />
     <Compile Include="Assembly\DOMINE\ImportsAPI.vb" />
-    <Compile Include="Assembly\DOOR\DoorAPI.vb" />
+    <Compile Include="Assembly\DOOR\DOOR.vb" />
+    <Compile Include="Assembly\DOOR\DOOR_API.vb" />
     <Compile Include="Assembly\DOOR\Operon.vb" />
     <Compile Include="Assembly\DOOR\OperonView.vb" />
     <Compile Include="Assembly\DOOR\Gene.vb" />
@@ -268,7 +269,6 @@
     <Compile Include="Assembly\MetaCyc\Schemas\TransportReactions.vb" />
     <Compile Include="Assembly\MetaCyc\Schemas\EquationEquals.vb" />
     <Compile Include="Assembly\MetaCyc\Schemas\Mappings\CompoundsMapping.vb" />
-    <Compile Include="Assembly\DOOR\Door.vb" />
     <Compile Include="Assembly\Expasy\NomenclatureDB\NomenclatureDB.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\Equation.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\SSDB\OrthologREST.vb" />

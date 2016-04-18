@@ -76,9 +76,9 @@ Namespace My.Resources
         '''  &lt;td width=&quot;180&quot; align=&quot;center&quot; rowspan=&quot;2&quot;&gt;
         '''    &lt;a href=&quot;http://www.kegg.jp/kegg/&quot;&gt;&lt;img src=&quot;./KEGG Organisms_ Complete Genomes_files/kegg128.gif [rest of string was truncated]&quot;;.
         '''</summary>
-        Friend ReadOnly Property KEGG_Organisms__Complete_Genomes() As String
+        Friend ReadOnly Property KEGG_Organism_Complete_Genomes() As String
             Get
-                Return ResourceManager.GetString("KEGG_Organisms__Complete_Genomes", resourceCulture)
+                Return ResourceManager.GetString("KEGG_Organism_Complete_Genomes", resourceCulture)
             End Get
         End Property
     End Module
