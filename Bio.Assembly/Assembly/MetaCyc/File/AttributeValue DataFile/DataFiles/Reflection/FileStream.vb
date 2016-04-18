@@ -122,25 +122,25 @@ Namespace Assembly.MetaCyc.File.DataFiles.Reflection
         ''' </summary>
         ''' <typeparam name="TObject"></typeparam>
         ''' <typeparam name="T"></typeparam>
-        ''' <param name="File"></param>
+        ''' <param name="file"></param>
         ''' <param name="Stream">
         ''' The stream object for output the read data, it must be construct first before call this method.
         ''' (用于输出所读取的数据的流对象，其在调用本函数之前必须被构造出来)
         ''' </param>
         ''' <remarks></remarks>
-        Public Function Read(Of TObject As Slots.Object, T As DataFile(Of TObject))(File As String, ByRef Stream As T) As T
+        Public Function Read(Of TObject As Slots.Object, T As DataFile(Of TObject))(file As String, ByRef Stream As T) As T
             Dim ItemProperties As PropertyInfo() = New PropertyInfo() {}, FieldAttributes As MetaCycField() = New MetaCycField() {}
-            Dim FileStream As MetaCyc.File.AttributeValue = File
+            Dim FileStream As MetaCyc.File.AttributeValue = AttributeValue.LoadDoc(file)
             Dim PerformenceClock = Stopwatch.StartNew
 
-            Call Console.WriteLine("DataSize:={0} Bytes", FileIO.FileSystem.GetFileInfo(File).Length)
+            Call Console.WriteLine("DataSize:={0} Bytes", FileIO.FileSystem.GetFileInfo(file).Length)
             Call GetMetaCycField(Of TObject)(ItemProperties, FieldAttributes)
 #If DEBUG Then
             Dim LQuery = (From c As ObjectBase
                           In FileStream.Objects
                           Select [CType](Of TObject)(c, ItemProperties, FieldAttributes)).ToList '.AsParallel
 #Else
-            Dim LQuery = (From c As Objectbase
+            Dim LQuery = (From c As ObjectModel
                           In FileStream.Objects.AsParallel
                           Select [CType](Of TObject)(c, ItemProperties, FieldAttributes)).ToList  '.AsParallel
 #End If
@@ -152,18 +152,20 @@ Namespace Assembly.MetaCyc.File.DataFiles.Reflection
             Return Stream
         End Function
 
-        Private Function [CType](Of TObject As Slots.Object)(e As ObjectBase, ItemProperties As PropertyInfo(), FieldAttributes As MetaCycField()) As TObject
-            Dim NewTObject As TObject = Activator.CreateInstance(Of TObject)()
+        Private Function [CType](Of TObject As Slots.Object)(om As ObjectModel, ItemProperties As PropertyInfo(), FieldAttributes As MetaCycField()) As TObject
+            Dim x As TObject = Activator.CreateInstance(Of TObject)()
             Dim stringTypeInfo As System.Type = GetType(String)
             Dim stringPropertyCollection = (From [propertyInfo] As System.Reflection.PropertyInfo
                                             In GetType(TObject).GetProperties(BindingFlags.Public Or BindingFlags.Instance)
-                                            Where propertyInfo.PropertyType = stringTypeInfo AndAlso propertyInfo.CanWrite
+                                            Where propertyInfo.PropertyType = stringTypeInfo AndAlso
+                                                propertyInfo.CanWrite
                                             Select propertyInfo).ToArray
 
-            Call MetaCyc.File.DataFiles.Slots.[Object].TypeCast(Of TObject)(ObjectBase.CreateDictionary(e), NewTObject)
+            Call Slots.[Object].TypeCast(Of TObject)(ObjectModel.CreateDictionary(om), x)
+
             For i As Integer = 0 To stringPropertyCollection.Length - 1
                 Dim [Property] = stringPropertyCollection(i)
-                Call [Property].SetValue(NewTObject, "")
+                Call [Property].SetValue(x, "")
             Next
 
             For Index As Integer = 0 To ItemProperties.Length - 1
@@ -172,18 +174,18 @@ Namespace Assembly.MetaCyc.File.DataFiles.Reflection
 
                 If Field.Type = MetaCycField.Types.TStr Then
                     If [Property].PropertyType.IsArray Then
-                        Call [Property].SetValue(NewTObject, NewTObject.StringQuery(Field.Name).ToArray)
+                        Call [Property].SetValue(x, x.StringQuery(Field.Name).ToArray)
                     Else
-                        Call [Property].SetValue(NewTObject, NewTObject.StringQuery(Field.Name).ToList)
+                        Call [Property].SetValue(x, x.StringQuery(Field.Name).ToList)
                     End If
                 Else
-                    If NewTObject.Exists(Field.Name) Then
-                        [Property].SetValue(NewTObject, NewTObject.StringQuery(Field.Name).First)
+                    If x.Exists(Field.Name) Then
+                        [Property].SetValue(x, x.StringQuery(Field.Name).First)
                     End If
                 End If
             Next
 
-            Return NewTObject
+            Return x
         End Function
 
         ''' <summary>

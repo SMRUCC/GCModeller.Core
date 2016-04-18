@@ -2,6 +2,7 @@
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Linq
+Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
 
 Namespace Assembly.MetaCyc.File
 
@@ -43,6 +44,10 @@ Namespace Assembly.MetaCyc.File
                 .uid = hash.TryGetValue(UNIQUE_ID).FirstOrDefault,
                 .Properties = hash
             }
+        End Function
+
+        Public Shared Function CreateDictionary(om As ObjectModel) As Slots.Object
+            Return New Slots.Object(om.Properties)
         End Function
     End Class
 End Namespace

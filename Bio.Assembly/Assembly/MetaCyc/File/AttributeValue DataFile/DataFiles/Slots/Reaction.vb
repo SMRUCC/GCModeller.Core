@@ -2,6 +2,7 @@
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic
 Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema.Metabolism
+Imports Microsoft.VisualBasic.Linq
 
 Namespace Assembly.MetaCyc.File.DataFiles.Slots
 
@@ -211,8 +212,11 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
         <MetaCycField()> Public Property ReactionDirection As String
 
         Public Function IsTransportReaction() As Boolean
-            Dim LQuery = (From strLine In Me.[_1ObjectArray] Where Regex.Match(strLine.Value, "\[\^COMPARTMENT - .+?\]").Success Select strLine).ToArray
-            Return Not LQuery.IsNullOrEmpty
+            Dim LQuery = (From strLine As String
+                          In Me._innerHash.Values.MatrixAsIterator
+                          Where Regex.Match(strLine, "\[\^COMPARTMENT - .+?\]").Success
+                          Select strLine).FirstOrDefault
+            Return Not String.IsNullOrEmpty(LQuery)
         End Function
 
         ''' <summary>

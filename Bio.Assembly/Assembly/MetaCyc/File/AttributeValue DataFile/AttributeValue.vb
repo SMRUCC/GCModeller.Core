@@ -1,6 +1,7 @@
 ﻿Imports System.Text
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.MetaCyc.File
 
@@ -40,61 +41,32 @@ Namespace Assembly.MetaCyc.File
     ''' LEFT - NADP
     ''' ^COEFFICIENT - 1
     ''' </remarks>
-    Public Class AttributeValue : Implements IEnumerable(Of ObjectBase)
+    Public Class AttributeValue : Inherits ClassObject
+        Implements IEnumerable(Of ObjectModel)
 
+        ''' <summary>
+        ''' The database property in the head section.
+        ''' </summary>
+        ''' <returns></returns>
         Public Property DbProperty As [Property]
-        Public Property Objects As ObjectBase()
+        ''' <summary>
+        ''' Slots objects reader model.
+        ''' </summary>
+        ''' <returns></returns>
+        Public Property Objects As ObjectModel()
 
-        Public Shared Widening Operator CType(Path As String) As AttributeValue
-            Dim File As ObjectModel() = Nothing
+        Public Shared Function LoadDoc(path As String) As AttributeValue
+            Dim file As ObjectModel() = Nothing
             Dim prop As [Property] = Nothing
-            Dim message As String = FileReader.TryParse(Path, prop, File)
-            Dim Objects As New List(Of ObjectBase)
-            Dim p As Integer, [Next] As Integer = 0
-            Dim NewObject As ObjectBase
-
-            If Not String.IsNullOrEmpty(message) Then
-                Call VBDebugger.Warning(message)
-                Return New AttributeValue With {
-                    .Objects = New ObjectBase() {}
-                }
-            End If
-
-            Dim DataLines As String() = Nothing
-            Dim HasAdditionalAttributes As Boolean = (From strValue As String In DataLines.AsParallel Where strValue.First = "^"c Select 1).Sum > 0
-
-            For lineInd As Long = 0 To DataLines.Length - 1 '遍历所有行
-                If String.Compare(DataLines(lineInd), "//") Then   '对象之间的分隔行
-                    p += 1
-                Else
-                    NewObject = New ObjectBase
-                    ReDim NewObject.TextLine(p - 1)
-                    Call Array.ConstrainedCopy(DataLines, [Next], NewObject.TextLine, Scan0, p)
-                    Call Objects.Add(NewObject)
-
-                    p = 0
-                    [Next] = lineInd + 1
-                End If
-            Next
-
-            If Objects.Count = 0 AndAlso p > 0 Then
-                NewObject = New ObjectBase With {.TextLine = DataLines}
-                Call Objects.Add(NewObject)
-            End If
-            If HasAdditionalAttributes Then
-                Call Console.WriteLine("Contacts additional attributes...")
-                Objects = (From x As ObjectBase
-                           In Objects.AsParallel
-                           Select x.ContactAdditionalAttribute).ToList
-            End If
+            Dim message As String = FileReader.TryParse(path, prop, file)
 
             Return New AttributeValue With {
-                .Objects = Objects.ToArray,
+                .Objects = file.ToArray,
                 .DbProperty = prop
             }
-        End Operator
+        End Function
 
-        Public Iterator Function GetEnumerator() As IEnumerator(Of ObjectBase) Implements IEnumerable(Of ObjectBase).GetEnumerator
+        Public Iterator Function GetEnumerator() As IEnumerator(Of ObjectModel) Implements IEnumerable(Of ObjectModel).GetEnumerator
             For i As Integer = 0 To Objects.Count - 1
                 Yield Objects(i)
             Next

@@ -83,8 +83,14 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
             End Set
         End Property
 
-        <XmlIgnore> Protected Friend [_1ObjectArray] As List(Of KeyValuePair(Of String, String))
-        Protected Friend _DBLinks As MetaCyc.Schema.DBLinkManager
+        Protected _innerHash As Dictionary(Of String, String())
+        Protected _DBLinks As Schema.DBLinkManager
+
+        Public ReadOnly Property DBLinksMgr As Schema.DBLinkManager
+            Get
+                Return _DBLinks
+            End Get
+        End Property
 
         ''' <summary>
         ''' (解析Unique-Id字段的值所需要的正则表达式)
@@ -131,25 +137,32 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
         End Enum
 
         ''' <summary>
-        ''' 使用关键词查询<see cref="[Object]._1ObjectArray"></see>字典对象
+        ''' 使用关键词查询<see cref="[Object]._innerHash"></see>字典对象
         ''' </summary>
         ''' <param name="Key"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function StringQuery(Key As String) As List(Of String)
-            Dim QueryString As String = Key.ToUpper
-            Dim LQuery = (From item In Me.[_1ObjectArray] Where String.Equals(item.Key, QueryString) Select item.Value).ToList
-            Return LQuery
+            If Not _innerHash.ContainsKey(Key) Then
+                Dim QueryString As String = Key.ToUpper
+                If Not _innerHash.ContainsKey(QueryString) Then
+                    Return Nothing
+                Else
+                    Return _innerHash(QueryString).ToList
+                End If
+            Else
+                Return _innerHash(Key).ToList
+            End If
         End Function
 
-        Public Sub CopyTo(Of T As [Object])(ByRef e As T)
-            With e
+        Public Sub CopyTo(Of T As [Object])(ByRef target As T)
+            With target
                 .AbbrevName = AbbrevName
                 .Citations = Citations
                 .Comment = Comment
                 .CommonName = CommonName
                 .Names = Names
-                .[_1ObjectArray] = [_1ObjectArray]
+                ._innerHash = _innerHash
                 .Synonyms = Synonyms
                 .Identifier = Identifier
                 .Types = Types
@@ -163,9 +176,8 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function Exists(KeyName As String) As Boolean
-            KeyName = KeyName.ToUpper
-            Dim LQuery = (From item In Me.[_1ObjectArray] Where String.Equals(item.Key, KeyName) Select 1).ToArray.Count
-            Return LQuery > 0
+            Return _innerHash.ContainsKey(KeyName) OrElse
+                _innerHash.ContainsKey(KeyName.ToUpper)
         End Function
 
         Public ReadOnly Property Item(Name As String) As String()
@@ -178,44 +190,31 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
             Return Identifier
         End Function
 
-        Public Shared Widening Operator CType(lst As List(Of KeyValuePair(Of String, String))) As [Object]
-            Dim [Object] As New [Object] With {
-                .[_1ObjectArray] = lst
-            }
-            'Dim strTemp As List(Of String)
+        Sub New()
+        End Sub
 
-            '[Object].UniqueId = [Object].StringQuery("UNIQUE-ID").First
-
-            'strTemp = [Object].StringQuery("COMMON-NAME"): If strTemp .Count > 0 then [Object] .
-            'If [Object].Exists("") Then [Object].CommonName = e("COMMON-NAME") Else [Object].CommonName = [Object].UniqueId
-            'If [Object].Exists("ABBREV-NAME") Then [Object].AbbrevName = e("ABBREV-NAME")
-            'If [Object].Exists("COMMENT") Then [Object].Comment = e("COMMENT")
-
-            '[Object].Synonyms = [Object].StringQuery("SYNONYMS( \d+)?")
-            '[Object].Types = [Object].StringQuery("TYPES( \d+)?")
-            '[Object].Citations = [Object].StringQuery("CITATIONS( \d+)?")
-
-            Return [Object]
-        End Operator
+        Sub New(lst As Dictionary(Of String, String()))
+            _innerHash = lst
+        End Sub
 
         ''' <summary>
         ''' 基类至派生类的转换
         ''' </summary>
-        ''' <param name="e">数据源，基类</param>
+        ''' <param name="target">数据源，基类</param>
         ''' <param name="ToType">转换至的目标类型</param> 
         ''' <typeparam name="T">类型约束</typeparam> 
         ''' <remarks></remarks>
-        Public Shared Sub [TypeCast](Of T As [Object])(e As [Object], ByRef ToType As T)
+        Public Shared Sub [TypeCast](Of T As [Object])(target As [Object], ByRef ToType As T)
             With ToType
-                .AbbrevName = e.AbbrevName
-                .Citations = e.Citations
-                .Comment = e.Comment
-                .CommonName = e.CommonName
-                .Names = e.Names
-                .[_1ObjectArray] = e.[_1ObjectArray]
-                .Synonyms = e.Synonyms
-                .Identifier = e.Identifier
-                .Types = e.Types
+                .AbbrevName = target.AbbrevName
+                .Citations = target.Citations
+                .Comment = target.Comment
+                .CommonName = target.CommonName
+                .Names = target.Names
+                ._innerHash = target._innerHash
+                .Synonyms = target.Synonyms
+                .Identifier = target.Identifier
+                .Types = target.Types
             End With
         End Sub
     End Class
