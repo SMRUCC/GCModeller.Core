@@ -13,7 +13,8 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
     <XmlType("MetaCyc-Slot-Object")>
     Public Class [Object] : Implements sIdEnumerable
 
-        <MetaCycField()> <XmlAttribute> Public Overridable Property Identifier As String Implements sIdEnumerable.Identifier
+        <MetaCycField(Name:="UNIQUE-ID")> <XmlAttribute>
+        Public Overridable Property Identifier As String Implements sIdEnumerable.Identifier
 
         ''' <summary>
         ''' (Common-Name) This slot defines the primary name by which an object is known 
@@ -142,11 +143,11 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
         ''' <param name="Key"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Function StringQuery(Key As String) As List(Of String)
+        Public Function StringQuery(Key As String, Optional emptyNull As Boolean = False) As List(Of String)
             If Not _innerHash.ContainsKey(Key) Then
                 Dim QueryString As String = Key.ToUpper
                 If Not _innerHash.ContainsKey(QueryString) Then
-                    Return Nothing
+                    Return If(emptyNull, New List(Of String), Nothing)
                 Else
                     Return _innerHash(QueryString).ToList
                 End If

@@ -30,7 +30,9 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
         Public Property Components As List(Of String) Implements Regulation.IRegulator.Components
         <ExternalKey("compounds,proteins,protligandcplxes", "", ExternalKey.Directions.In)> <MetaCycField(Type:=MetaCycField.Types.TStr)>
         Public Property ComponentOf As List(Of String) Implements Regulation.IRegulator.ComponentOf
-        <MetaCycField(Type:=MetaCycField.Types.TStr)> Public Overrides Property Types As List(Of String) Implements Regulation.IRegulator.Types
+
+        <MetaCycField(Type:=MetaCycField.Types.TStr)>
+        Public Overrides Property Types As List(Of String) Implements Regulation.IRegulator.Types
             Get
                 Return MyBase.Types
             End Get
@@ -38,7 +40,9 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
                 MyBase.Types = value
             End Set
         End Property
-        <MetaCycField> Public Overrides Property Identifier As String Implements Regulation.IRegulator.locusId, sIdEnumerable.Identifier
+
+        <MetaCycField(Name:="UNIQUE-ID")>
+        Public Overrides Property Identifier As String Implements Regulation.IRegulator.locusId, sIdEnumerable.Identifier
             Get
                 Return MyBase.Identifier
             End Get

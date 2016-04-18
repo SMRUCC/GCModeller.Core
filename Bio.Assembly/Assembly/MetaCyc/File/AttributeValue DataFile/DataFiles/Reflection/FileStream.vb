@@ -1,6 +1,7 @@
 ﻿Imports System.Text
 Imports System.Reflection
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Linq
 
 Namespace Assembly.MetaCyc.File.DataFiles.Reflection
 
@@ -130,19 +131,26 @@ Namespace Assembly.MetaCyc.File.DataFiles.Reflection
         ''' <remarks></remarks>
         Public Function Read(Of TObject As Slots.Object, T As DataFile(Of TObject))(file As String, ByRef Stream As T) As T
             Dim ItemProperties As PropertyInfo() = New PropertyInfo() {}, FieldAttributes As MetaCycField() = New MetaCycField() {}
-            Dim FileStream As MetaCyc.File.AttributeValue = AttributeValue.LoadDoc(file)
+            Dim FileStream As AttributeValue = AttributeValue.LoadDoc(file)
             Dim PerformenceClock = Stopwatch.StartNew
 
             Call Console.WriteLine("DataSize:={0} Bytes", FileIO.FileSystem.GetFileInfo(file).Length)
             Call GetMetaCycField(Of TObject)(ItemProperties, FieldAttributes)
+
+            Dim TSchema As PropertyInfo() = (From [propertyInfo] As PropertyInfo
+                                             In GetType(TObject).GetProperties(BindingFlags.Public Or BindingFlags.Instance)
+                                             Where propertyInfo.PropertyType = stringTypeInfo AndAlso
+                                                 propertyInfo.CanWrite
+                                             Select propertyInfo).ToArray
+
 #If DEBUG Then
-            Dim LQuery = (From c As ObjectBase
+            Dim LQuery = (From c As ObjectModel
                           In FileStream.Objects
-                          Select [CType](Of TObject)(c, ItemProperties, FieldAttributes)).ToList '.AsParallel
+                          Select [CType](Of TObject)(c, TSchema, ItemProperties, FieldAttributes)).ToList '.AsParallel
 #Else
             Dim LQuery = (From c As ObjectModel
                           In FileStream.Objects.AsParallel
-                          Select [CType](Of TObject)(c, ItemProperties, FieldAttributes)).ToList  '.AsParallel
+                          Select [CType](Of TObject)(c, TSchema, ItemProperties, FieldAttributes)).ToList  '.AsParallel
 #End If
             Stream.Values = LQuery
             Stream.DbProperty = FileStream.DbProperty
@@ -152,35 +160,45 @@ Namespace Assembly.MetaCyc.File.DataFiles.Reflection
             Return Stream
         End Function
 
-        Private Function [CType](Of TObject As Slots.Object)(om As ObjectModel, ItemProperties As PropertyInfo(), FieldAttributes As MetaCycField()) As TObject
+        ReadOnly stringTypeInfo As Type = GetType(String)
+
+        ''' <summary>
+        ''' 使用反射，将字典之中的数据赋值到相对应的属性之上
+        ''' </summary>
+        ''' <typeparam name="TObject"></typeparam>
+        ''' <param name="om"></param>
+        ''' <param name="ItemProperties"></param>
+        ''' <param name="FieldAttributes"></param>
+        ''' <param name="TSchema"><typeparamref name="TObject"/>的Schema的缓存</param>
+        ''' <returns></returns>
+        Private Function [CType](Of TObject As Slots.Object)(
+                                    om As ObjectModel,
+                                    TSchema As PropertyInfo(),
+                                    ItemProperties As PropertyInfo(),
+                                    FieldAttributes As MetaCycField()) As TObject
+
             Dim x As TObject = Activator.CreateInstance(Of TObject)()
-            Dim stringTypeInfo As System.Type = GetType(String)
-            Dim stringPropertyCollection = (From [propertyInfo] As System.Reflection.PropertyInfo
-                                            In GetType(TObject).GetProperties(BindingFlags.Public Or BindingFlags.Instance)
-                                            Where propertyInfo.PropertyType = stringTypeInfo AndAlso
-                                                propertyInfo.CanWrite
-                                            Select propertyInfo).ToArray
 
             Call Slots.[Object].TypeCast(Of TObject)(ObjectModel.CreateDictionary(om), x)
 
-            For i As Integer = 0 To stringPropertyCollection.Length - 1
-                Dim [Property] = stringPropertyCollection(i)
+            For i As Integer = 0 To TSchema.Length - 1
+                Dim [Property] = TSchema(i)
                 Call [Property].SetValue(x, "")
             Next
 
             For Index As Integer = 0 To ItemProperties.Length - 1
-                Dim [Property] = ItemProperties(Index)
-                Dim Field As Reflection.MetaCycField = FieldAttributes(Index)
+                Dim [Property] As PropertyInfo = ItemProperties(Index)
+                Dim Field As MetaCycField = FieldAttributes(Index)
 
                 If Field.Type = MetaCycField.Types.TStr Then
                     If [Property].PropertyType.IsArray Then
-                        Call [Property].SetValue(x, x.StringQuery(Field.Name).ToArray)
+                        Call [Property].SetValue(x, x.StringQuery(Field.Name, True).ToArray)
                     Else
                         Call [Property].SetValue(x, x.StringQuery(Field.Name).ToList)
                     End If
                 Else
                     If x.Exists(Field.Name) Then
-                        [Property].SetValue(x, x.StringQuery(Field.Name).First)
+                        [Property].SetValue(x, x.StringQuery(Field.Name).DefaultFirst(""))
                     End If
                 End If
             Next
