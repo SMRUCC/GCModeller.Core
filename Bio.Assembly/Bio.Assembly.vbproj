@@ -286,13 +286,13 @@
     <Compile Include="ProteinModel\DomainModels.vb" />
     <Compile Include="SequenceModel\Abstract.vb" />
     <Compile Include="SequenceModel\FASTA\Abstract.vb" />
-    <Compile Include="SequenceModel\FASTA\StreamIterator.vb" />
+    <Compile Include="SequenceModel\FASTA\IO\StreamIterator.vb" />
     <Compile Include="SequenceModel\ISequenceModel.vb" />
     <Compile Include="SequenceModel\FASTA\Clustal\SRChain.vb" />
     <Compile Include="SequenceModel\FASTA\Clustal\Residue.vb" />
     <Compile Include="SequenceModel\FASTA\Clustal\Clustal.vb" />
-    <Compile Include="SequenceModel\FASTA\FastaTools.vb" />
-    <Compile Include="SequenceModel\FASTA\UltralargeSizeFastaReader.vb" />
+    <Compile Include="SequenceModel\FASTA\Reflection\FastaTools.vb" />
+    <Compile Include="SequenceModel\FASTA\IO\UltralargeSizeFastaReader.vb" />
     <Compile Include="SequenceModel\NucleicAcid\Contig.vb" />
     <Compile Include="SequenceModel\NucleicAcid\Parser\SimpleSegment.vb" />
     <Compile Include="SequenceModel\NucleicAcid\Extensions.vb" />
@@ -325,7 +325,7 @@
     <Compile Include="Assembly\KEGG\WebRequest.vb" />
     <Compile Include="Assembly\MetaCyc\Schemas\PathwayLink.vb" />
     <Compile Include="Assembly\NCBI\WebServiceHandler\Entrez\Protein.vb" />
-    <Compile Include="SequenceModel\FASTA\Attributes.vb" />
+    <Compile Include="SequenceModel\FASTA\Reflection\Attributes.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\Extensions.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\ACCESSION.vb" />
     <Compile Include="ComponentModel\Generic\ValuePair.vb" />
@@ -336,7 +336,7 @@
     <Compile Include="ProteinModel\ProteinDomains.vb" />
     <Compile Include="Assembly\DOMINE\Database.vb" />
     <Compile Include="Assembly\DOMINE\Tables.vb" />
-    <Compile Include="SequenceModel\FASTA\FastaFile.vb" />
+    <Compile Include="SequenceModel\FASTA\IO\FastaFile.vb" />
     <Compile Include="Assembly\MetaCyc\File\AttributeValue DataFile\DataFiles\DataFile\CollectionQuery.vb" />
     <Compile Include="Assembly\MetaCyc\File\AttributeValue DataFile\DataFiles\Reflection\FileStream.vb" />
     <Compile Include="Assembly\MetaCyc\File\AttributeValue DataFile\DataFiles\Reflection\MetaCycField.vb" />
@@ -349,7 +349,7 @@
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\FEATURES\Nodes\Qualifier.vb" />
     <Compile Include="SequenceModel\NucleicAcid\NucleicAcid.vb" />
     <Compile Include="ComponentModel\ECNumber.vb" />
-    <Compile Include="SequenceModel\FASTA\FastaToken.vb" />
+    <Compile Include="SequenceModel\FASTA\IO\FastaToken.vb" />
     <Compile Include="Assembly\MetaCyc\File\AttributeValue DataFile\AttributeValue.vb" />
     <Compile Include="Assembly\MetaCyc\File\AttributeValue DataFile\DataFiles\Files\BindRxns.vb" />
     <Compile Include="Assembly\MetaCyc\File\AttributeValue DataFile\DataFiles\Files\tRNA.vb" />

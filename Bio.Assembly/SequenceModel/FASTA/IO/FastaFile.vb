@@ -16,14 +16,14 @@ Namespace SequenceModel.FASTA
     ''' <remarks></remarks>
     Public Class FastaFile : Inherits ITextFile
         Implements IDisposable
-        Implements Generic.IEnumerable(Of FastaToken)
-        Implements Generic.IList(Of SequenceModel.FASTA.FastaToken)
+        Implements IEnumerable(Of FastaToken)
+        Implements IList(Of FastaToken)
 
-        Public Shared Shadows Widening Operator CType(File As Path) As FastaFile
+        Public Overloads Shared Widening Operator CType(File As Path) As FastaFile
             Return FastaFile.Read(File)
         End Operator
 
-        Public Shared Shadows Widening Operator CType(lstFiles As String()) As FastaFile
+        Public Overloads Shared Widening Operator CType(lstFiles As String()) As FastaFile
             Return lstFiles.Merge(True)
         End Operator
 
@@ -413,9 +413,12 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function Generate() As String
-            Dim sBuilder As StringBuilder = New StringBuilder(10 * 1024)
-            For Each FASTA As SequenceModel.FASTA.FastaToken In __innerList
-                Call sBuilder.AppendLine(FASTA.GenerateDocument(LineBreak:=60))
+            Dim sBuilder As New StringBuilder(10 * 1024)
+            Dim token As String
+
+            For Each FASTA As FastaToken In __innerList
+                token = FASTA.GenerateDocument(LineBreak:=60)
+                Call sBuilder.AppendLine(token)
             Next
             Return sBuilder.ToString
         End Function
@@ -423,39 +426,33 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
         ''' <summary>
         '''
         ''' </summary>
-        ''' <param name="File">
+        ''' <param name="file">
         ''' The target FASTA file that to append this FASTA sequences.(将要拓展这些FASTA序列的目标FASTA文件)
         ''' </param>
         ''' <remarks></remarks>
-        Public Sub AppendToFile(File As Path)
-            Dim sBuilder As StringBuilder = New StringBuilder(10 * 1024)
-
-            For Each FASTA As SequenceModel.FASTA.FastaToken In __innerList
-                Call sBuilder.AppendLine(FASTA.GenerateDocument(LineBreak:=60))
-            Next
-
-            Call FileIO.FileSystem.WriteAllText(File, sBuilder.ToString, append:=True)
+        Public Sub AppendToFile(file As Path)
+            Call FileIO.FileSystem.WriteAllText(file, Generate, append:=True)
         End Sub
 
         Public Overrides Function ToString() As String
             Return String.Format("{0}; [{1} records]", FilePath, Count)
         End Function
 
-        Public Shared Shadows Widening Operator CType(Collection As FastaToken()) As FastaFile
+        Public Shared Shadows Widening Operator CType(source As FastaToken()) As FastaFile
             Return New FastaFile With {
-                .__innerList = Collection.ToList
+                .__innerList = source.ToList
             }
         End Operator
 
-        Public Shared Shadows Widening Operator CType(Collection As List(Of FastaToken)) As FastaFile
+        Public Shared Shadows Widening Operator CType(source As List(Of FastaToken)) As FastaFile
             Return New FastaFile With {
-                .__innerList = Collection
+                .__innerList = source
             }
         End Operator
 
-        Public Shared Shadows Widening Operator CType(FastaObject As FastaToken) As FastaFile
+        Public Shared Shadows Widening Operator CType(fa As FastaToken) As FastaFile
             Return New FastaFile With {
-                .__innerList = New List(Of FastaToken) From {FastaObject}
+                .__innerList = New List(Of FastaToken) From {fa}
             }
         End Operator
 

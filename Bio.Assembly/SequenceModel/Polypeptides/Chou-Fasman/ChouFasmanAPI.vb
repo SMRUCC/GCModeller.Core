@@ -85,13 +85,13 @@ Namespace SequenceModel.Polypeptides.SecondaryStructure
             Return ChouFasman.Calculate(sequence.SequenceData)
         End Function
 
-        Public Function ToString(ChunkBuffer As AminoAcid()) As String
-            Dim aa_Builder As StringBuilder = New StringBuilder(ChunkBuffer.Count - 1)
-            Dim st_Builder As StringBuilder = New StringBuilder(ChunkBuffer.Count - 1)
+        Public Function ToString(aa As AminoAcid()) As String
+            Dim aa_Builder As StringBuilder = New StringBuilder(aa.Length - 1)
+            Dim st_Builder As StringBuilder = New StringBuilder(aa.Length - 1)
 
-            For Each Token In ChunkBuffer
-                Call aa_Builder.Append(SequenceModel.Polypeptides.Polypeptides.ToChar(Token.AminoAcid))
-                Call st_Builder.Append(ChouFasman.StructureTypesToChar(Token.StructureType))
+            For Each residue As AminoAcid In aa
+                Call aa_Builder.Append(SequenceModel.Polypeptides.Polypeptides.ToChar(residue.AminoAcid))
+                Call st_Builder.Append(ChouFasman.StructureTypesToChar(residue.StructureType))
             Next
 
             Dim sBuilder As StringBuilder = New StringBuilder(String.Format("Key,Value" & vbCrLf & "SequenceData,{0}" & vbCrLf & "Structure,{1}", aa_Builder.ToString, st_Builder.ToString))

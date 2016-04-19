@@ -3,6 +3,7 @@ Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Language.UnixBash
 
 Namespace SequenceModel.FASTA.Reflection
 
@@ -23,12 +24,12 @@ Namespace SequenceModel.FASTA.Reflection
         ''' 
         <ExportAPI("Complement"), Extension>
         Public Function Complement(FASTA2 As FastaFile) As FastaFile
-            Dim Query = From FASTA In FASTA2.AsParallel
-                        Let cpFASTA = FastaToken.Complement(FASTA)
-                        Where Not cpFASTA Is Nothing
-                        Select cpFASTA
-                        Order By cpFASTA.ToString Ascending  '
-            Return New SequenceModel.FASTA.FastaFile(Query.ToArray)
+            Dim LQuery = From FASTA In FASTA2.AsParallel
+                         Let cpFASTA = FastaToken.Complement(FASTA)
+                         Where Not cpFASTA Is Nothing
+                         Select cpFASTA
+                         Order By cpFASTA.ToString Ascending  '
+            Return New FastaFile(LQuery)
         End Function
 
         ''' <summary>
@@ -40,29 +41,29 @@ Namespace SequenceModel.FASTA.Reflection
         <ExportAPI("Reverse")>
         <Extension>
         Public Function Reverse(fa As FastaFile) As FastaFile
-            Dim LQuery = From FASTA As LANS.SystemsBiology.SequenceModel.FASTA.FastaToken In fa.AsParallel
+            Dim LQuery = From FASTA As FastaToken In fa.AsParallel
                          Let rvFASTA = FASTA.Reverse
                          Select rvFASTA
                          Order By rvFASTA.ToString Ascending '
-            Return New SequenceModel.FASTA.FastaFile(LQuery.ToArray)
+            Return New FastaFile(LQuery)
         End Function
 
         <ExportAPI("Merge", Info:="Merge the fasta sequence file from a file list.")>
         <Extension>
-        Public Function Merge(list As Generic.IEnumerable(Of String), Trim As Boolean) As FastaFile
+        Public Function Merge(list As IEnumerable(Of String), Trim As Boolean) As FastaFile
             Dim MergeFa = (From file As String In list.AsParallel Select FastaFile.Read(file)).MatrixToList
 
             If Trim Then
-                MergeFa = (From fa As SequenceModel.FASTA.FastaToken
+                MergeFa = (From fa As FastaToken
                            In MergeFa.AsParallel
                            Let attrs As String() = New String() {fa.Attributes.First.Split.First}
                            Select fa.InvokeSet(NameOf(fa.Attributes), attrs)).ToList
             End If
 
-            MergeFa = (From fa As SequenceModel.FASTA.FastaToken
+            MergeFa = (From fa As FastaToken
                        In MergeFa.AsParallel
                        Select fa.FastaTrimCorrupt).ToList
-            MergeFa = (From fa As SequenceModel.FASTA.FastaToken
+            MergeFa = (From fa As FastaToken
                        In MergeFa.AsParallel
                        Where Not String.IsNullOrEmpty(fa.SequenceData)
                        Select fa).ToList
@@ -81,12 +82,12 @@ Namespace SequenceModel.FASTA.Reflection
         ''' <returns></returns>
         <ExportAPI("Merge", Info:="Merge the fasta sequence file from a directory.")>
         Public Function Merge(inDIR As String, trim As Boolean) As FastaFile
-            Dim files = FileIO.FileSystem.GetFiles(inDIR, FileIO.SearchOption.SearchTopLevelOnly, "*.fa", "*.fsa", "*.fas", "*.fasta")
+            Dim files As IEnumerable(Of String) = ls - l - wildcards("*.fa", "*.fsa", "*.fas", "*.fasta") <= inDIR
             Return files.Merge(trim)
         End Function
 
         Public Function Merge(inDIR As String, ext As String, trim As Boolean) As FastaFile
-            Dim files As IEnumerable(Of String) = FileIO.FileSystem.GetFiles(inDIR, FileIO.SearchOption.SearchTopLevelOnly, ext)
+            Dim files As IEnumerable(Of String) = ls - l - wildcards(ext) <= inDIR
             Return files.Merge(trim)
         End Function
 
@@ -98,7 +99,7 @@ Namespace SequenceModel.FASTA.Reflection
         ''' <param name="fa"></param>
         ''' <returns></returns>
         <ExportAPI("Fasta.Corrupted?")>
-        <Extension> Public Function FastaCorrupted(fa As SequenceModel.FASTA.FastaToken) As Boolean
+        <Extension> Public Function FastaCorrupted(fa As FastaToken) As Boolean
             Return __seqCorrupted(fa.SequenceData)
         End Function
 
@@ -120,7 +121,7 @@ Namespace SequenceModel.FASTA.Reflection
         ''' <returns></returns>
         <ExportAPI("Fasta.Removes.Corruption")>
         <Extension>
-        Public Function FastaTrimCorrupt(fa As SequenceModel.FASTA.FastaToken) As FASTA.FastaToken
+        Public Function FastaTrimCorrupt(fa As FastaToken) As FastaToken
             Dim seq As String = fa.SequenceData
             Dim isCorrupted As Boolean
             Dim n As Integer
@@ -156,54 +157,52 @@ REDO:           seq = Mid(seq, i)
                 Call $"{fa.ToString} was corrupted, automatically corrected as {locus}!".__DEBUG_ECHO
             End If
 
-            Return New SequenceModel.FASTA.FastaToken With {
+            Return New FastaToken With {
                 .Attributes = {locus},
                 .SequenceData = seq
             }
         End Function
 
         <ExportAPI("Read.Fasta")>
-        Public Function Load(path As String) As LANS.SystemsBiology.SequenceModel.FASTA.FastaFile
-            Return LANS.SystemsBiology.SequenceModel.FASTA.FastaFile.Read(path)
+        Public Function Load(path As String) As FastaFile
+            Return FastaFile.Read(path)
         End Function
 
         <ExportAPI("Read.FastaToken")>
-        Public Function LoadFastaToken(path As String) As LANS.SystemsBiology.SequenceModel.FASTA.FastaToken
-            Return LANS.SystemsBiology.SequenceModel.FASTA.FastaToken.Load(path)
+        Public Function LoadFastaToken(path As String) As FastaToken
+            Return FastaToken.Load(path)
         End Function
 
-        Public Function Export(Of T As I_FastaObject)(FastaCollection As Generic.IEnumerable(Of T)) As LANS.SystemsBiology.SequenceModel.FASTA.FastaFile
+        Public Function Export(Of T As I_FastaObject)(source As IEnumerable(Of T)) As FastaFile
             Dim SchemaCache As SchemaCache = New SchemaCache(GetType(T))
             Dim LQuery = (From objItem As T
-                          In FastaCollection
-                          Let fsa As LANS.SystemsBiology.SequenceModel.FASTA.FastaToken = Export(objItem, SchemaCache)
+                          In source
+                          Let fsa As FastaToken = Export(objItem, SchemaCache)
                           Where Not fsa Is Nothing
                           Select fsa).ToArray
             Return LQuery
         End Function
 
-        Public Function Export(Of TFsaObject As I_FastaObject)(objItem As TFsaObject) As LANS.SystemsBiology.SequenceModel.FASTA.FastaToken
-            If String.IsNullOrEmpty(objItem.GetSequenceData) Then
+        Public Function Export(Of TFsaObject As I_FastaObject)(fa As TFsaObject) As FastaToken
+            If String.IsNullOrEmpty(fa.GetSequenceData) Then
                 Return Nothing
             End If
 
             Dim SchemaCache As SchemaCache = New SchemaCache(GetType(TFsaObject))
-            Dim Fsa = Export(objItem, SchemaCache)
-            Return Fsa
+            Dim fsa As FastaToken = Export(fa, SchemaCache)
+            Return fsa
         End Function
 
-        Private Function Export(objItem As I_FastaObject, SchemaCache As SchemaCache) As LANS.SystemsBiology.SequenceModel.FASTA.FastaToken
+        Private Function Export(objItem As I_FastaObject, SchemaCache As SchemaCache) As FastaToken
             If String.IsNullOrEmpty(SchemaCache.TitleFormat) Then
                 Dim stringItems = (From pairItem As KeyValuePair(Of FastaAttributeItem, System.Reflection.PropertyInfo)
-                               In SchemaCache.attributes
+                                   In SchemaCache.attributes
                                    Let value As String = pairItem.Value.GetValue(objItem).ToString
                                    Select If(String.IsNullOrEmpty(pairItem.Key.Precursor), New String() {value}, New String() {pairItem.Key.Precursor, value})).ToArray
-                Dim itemList As List(Of String) = New List(Of String)
-                For Each item In stringItems
-                    Call itemList.AddRange(item)
-                Next
-                Dim Fsa As LANS.SystemsBiology.SequenceModel.FASTA.FastaToken = New SequenceModel.FASTA.FastaToken With {
-                    .SequenceData = objItem.GetSequenceData, .Attributes = itemList.ToArray}
+                Dim Fsa As FastaToken = New FastaToken With {
+                    .SequenceData = objItem.GetSequenceData,
+                    .Attributes = stringItems.MatrixToVector
+                }
                 Return Fsa
             Else
                 Dim stringItems = (From pairItem As KeyValuePair(Of FastaAttributeItem, System.Reflection.PropertyInfo)
@@ -211,8 +210,10 @@ REDO:           seq = Mid(seq, i)
                                    Let value As String = pairItem.Value.GetValue(objItem).ToString
                                    Select If(String.IsNullOrEmpty(pairItem.Key.Format), value, String.Format(pairItem.Key.Format, value))).ToArray
                 Dim Title As String = String.Format(SchemaCache.TitleFormat, stringItems)
-                Dim Fsa As LANS.SystemsBiology.SequenceModel.FASTA.FastaToken = New SequenceModel.FASTA.FastaToken With {
-                    .SequenceData = objItem.GetSequenceData, .Attributes = Title.Split(CChar("|"))}
+                Dim Fsa As FastaToken = New FastaToken With {
+                    .SequenceData = objItem.GetSequenceData,
+                    .Attributes = Title.Split(CChar("|"))
+                }
                 Return Fsa
             End If
         End Function

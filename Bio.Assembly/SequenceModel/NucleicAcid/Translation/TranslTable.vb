@@ -89,7 +89,7 @@ Namespace SequenceModel.NucleotideModels.Translation
                            Where Not codon.Key.IsStopCodon
                            Select codon) _
                                .ToDictionary(Function(codon) codon.Key.TranslHash,
-                                             elementSelector:=Function(codon) codon.Value)
+                                             Function(codon) codon.Value)
         End Sub
 
         Private Shared Function __parseTable(Tokens As String(), ByRef transl_table As Integer) As Dictionary(Of Codon, AminoAcid)
@@ -109,7 +109,7 @@ Namespace SequenceModel.NucleotideModels.Translation
             Dim MAT = tokens.ToArray(Function(token As String) Regex.Split(token, "\s+"))
             Dim Codons = MAT.ToArray(Function(line) __split(line)).MatrixToList
             Dim LQuery = (From Token As String() In Codons Select code = New Codon(Token), AA = Token(1).First).ToArray
-            Dim hash = LQuery.ToDictionary(Function(obj) obj.code, elementSelector:=Function(obj) SequenceModel.Polypeptides.ToEnums(obj.AA))
+            Dim hash = LQuery.ToDictionary(Function(obj) obj.code, Function(obj) SequenceModel.Polypeptides.ToEnums(obj.AA))
             Return hash
         End Function
 
