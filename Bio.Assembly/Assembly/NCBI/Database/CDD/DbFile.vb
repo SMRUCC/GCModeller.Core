@@ -1,8 +1,11 @@
-﻿Imports Dir = System.String
+﻿Imports DIR = System.String
 Imports System.Text
 Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.ConsoleDevice.Utility
+Imports LANS.SystemsBiology.SequenceModel
 
 Namespace Assembly.NCBI.CDD
 
@@ -66,7 +69,7 @@ Here, we report on the progress of the curation effort and associated improvemen
           Issue:="Database issue",
           Pages:="D192-6",
           PubMed:=15608175)>
-    Public Class DbFile : Inherits Microsoft.VisualBasic.ComponentModel.ITextFile
+    Public Class DbFile : Inherits ITextFile
 
         Dim _innerDict As Dictionary(Of String, CDD.SmpFile)
 
@@ -144,20 +147,22 @@ Here, we report on the progress of the curation effort and associated improvemen
                 Return _innerDict(Id)
             End If
 
-            Return (From item In _innerDict.Values.AsParallel
-                    Where String.Equals(item.CommonName, Id) OrElse String.Equals(item.Id.ToString, Id)
-                    Select item).FirstOrDefault
+            Return (From smp As SmpFile
+                    In _innerDict.Values.AsParallel
+                    Where String.Equals(smp.CommonName, Id) OrElse
+                        String.Equals(smp.Id.ToString, Id)
+                    Select smp).FirstOrDefault
         End Function
 
-        Private Shared Sub __buildDb(DbDir As String, Export As String)
-            For Each Pn As Pn In PreLoad(DbDir)
+        Private Shared Sub __buildDb(DIR As String, EXPORT As String)
+            For Each Pn As Pn In PreLoad(DIR)
                 Call $"> Build {Pn.FilePath.ToFileURL}".__DEBUG_ECHO
-                Call __buildDb(Pn, Export)
+                Call __buildDb(Pn, EXPORT)
             Next
         End Sub
 
-        Private Shared Sub __buildDb(pn As Pn, Export As String)
-            Dim File As String = String.Format("{0}/{1}", Export, pn.ToString.Split(CChar("/")).Last.Replace(".pn", String.Empty))
+        Private Shared Sub __buildDb(pn As Pn, EXPORT As String)
+            Dim File As String = String.Format("{0}/{1}", EXPORT, pn.ToString.Split(CChar("/")).Last.Replace(".pn", String.Empty))
             Dim FASTA As String = File & ".fasta"
             Dim LQuery = From FilePath As String
                          In pn.AsParallel
@@ -181,29 +186,26 @@ Here, we report on the progress of the curation effort and associated improvemen
         End Sub
 
         <ExportAPI("Db.Build")>
-        Public Shared Sub BuildDb(DbDir As String, Export As Dir)
-            Using busy As Microsoft.VisualBasic.ConsoleDevice.Utility.CBusyIndicator =
-                New Microsoft.VisualBasic.ConsoleDevice.Utility.CBusyIndicator
-
-                Call FileIO.FileSystem.CreateDirectory(Export)
+        Public Shared Sub BuildDb(DIR As String, EXPORT As Dir)
+            Using busy As New CBusyIndicator
+                Call FileIO.FileSystem.CreateDirectory(EXPORT)
                 Call busy.Start()
-                Call __buildDb(DbDir, Export)
+                Call __buildDb(DIR, EXPORT)
             End Using
         End Sub
 
-        Public Overloads Function ExportFASTA() As LANS.SystemsBiology.SequenceModel.FASTA.FastaFile
-            Dim Fasta As LANS.SystemsBiology.SequenceModel.FASTA.FastaFile = ExportFASTA(Me)
+        Public Overloads Function ExportFASTA() As FASTA.FastaFile
+            Dim Fasta As FASTA.FastaFile = ExportFASTA(Me)
             Call Fasta.Save(Me.FastaUrl)
             Return Fasta
         End Function
 
         <ExportAPI("Fasta.Export")>
-        Public Overloads Shared Function ExportFASTA(Db As DbFile) As LANS.SystemsBiology.SequenceModel.FASTA.FastaFile
-            Dim LQuery = From Smp As CDD.SmpFile
+        Public Overloads Shared Function ExportFASTA(Db As DbFile) As FASTA.FastaFile
+            Dim LQuery = From smp As CDD.SmpFile
                          In Db.SmpData
-                         Select Smp.Export '
-            Dim Fasta As LANS.SystemsBiology.SequenceModel.FASTA.FastaFile =
-                CType(LQuery.ToArray, SequenceModel.FASTA.FastaFile)
+                         Select smp.Export '
+            Dim Fasta As New FASTA.FastaFile(LQuery)
             Return Fasta
         End Function
 
@@ -217,7 +219,7 @@ Here, we report on the progress of the curation effort and associated improvemen
         ''' <param name="lstAccId"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Function Takes(lstAccId As Generic.IEnumerable(Of String)) As DbFile
+        Public Function Takes(lstAccId As IEnumerable(Of String)) As DbFile
             Dim Ids As String() = lstAccId.ToArray
             Dim LQuery = From smp As SmpFile
                          In Me.SmpData.AsParallel
@@ -231,15 +233,15 @@ Here, we report on the progress of the curation effort and associated improvemen
         ''' <summary>
         ''' 在编译整个CDD数据库之前进行预加载
         ''' </summary>
-        ''' <param name="Dir"></param>
+        ''' <param name="DIR"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
         ''' 
         <ExportAPI("Db.PreLoad")>
-        Public Shared Function PreLoad(Dir As Dir) As Pn()
-            Dim LQuery As Generic.IEnumerable(Of Pn) = From File As String
-                                                       In FileIO.FileSystem.GetFiles(Dir, FileIO.SearchOption.SearchTopLevelOnly, "*.pn")
-                                                       Select CType(File, Pn) '
+        Public Shared Function PreLoad(DIR As Dir) As Pn()
+            Dim LQuery As IEnumerable(Of Pn) = From File As String
+                                               In FileIO.FileSystem.GetFiles(DIR, FileIO.SearchOption.SearchTopLevelOnly, "*.pn")
+                                               Select CType(File, Pn) '
             Return LQuery.ToArray
         End Function
 

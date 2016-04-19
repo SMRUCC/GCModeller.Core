@@ -52,5 +52,4 @@ Namespace Assembly.NCBI.CDD.Blastp
             Return a.Left < b.Left
         End Operator
     End Structure
-
 End Namespace

@@ -1,4 +1,4 @@
-﻿Imports Dir = System.String
+﻿Imports DIR = System.String
 Imports System.Text
 
 Namespace Assembly.NCBI.CDD
@@ -9,7 +9,7 @@ Namespace Assembly.NCBI.CDD
     ''' <remarks></remarks>
     Public Class DomainInfo
 
-        Dim Dir As Dir, CDDInfoLoader As CDDLoader
+        Dim Dir As DIR, CDDInfoLoader As CDDLoader
 
         Friend ReadOnly Property DataLoadMethods As Dictionary(Of String, System.Func(Of CDD.DbFile)) =
             New Dictionary(Of String, Func(Of CDD.DbFile)) From {

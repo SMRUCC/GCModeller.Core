@@ -14,7 +14,7 @@
         ''' </summary>
         ''' <remarks></remarks>
         Protected Friend FilePath As String
-        Protected Friend Dir As String
+        Protected Friend DIR As String
 
         Default Public Property File(Index As Integer) As String
             Get
@@ -38,17 +38,16 @@
         End Operator
 
         Public Shared Widening Operator CType(File As String) As Pn
-            File = File.Replace("\", "/")
             Return New Pn With {
                 .FileList = IO.File.ReadAllLines(File),
                 .FilePath = File,
-                .Dir = FileIO.FileSystem.GetParentPath(File)
+                .DIR = FileIO.FileSystem.GetParentPath(File)
             }
         End Operator
 
         Public Iterator Function GetEnumerator() As IEnumerator(Of String) Implements IEnumerable(Of String).GetEnumerator
             For i As Integer = 0 To FileList.Length - 1
-                Yield Dir & "/" & FileList(i)
+                Yield DIR & "/" & FileList(i)
             Next
         End Function
 

@@ -1,4 +1,6 @@
-﻿Namespace Assembly.NCBI.CDD
+﻿Imports LANS.SystemsBiology.SequenceModel
+
+Namespace Assembly.NCBI.CDD
 
     Public Class Database : Implements System.IDisposable
 
@@ -7,7 +9,7 @@
         Public ReadOnly Property DomainInfo As DomainInfo
 
         Sub New(DbDIR As String)
-            _DomainInfo = Assembly.NCBI.CDD.DomainInfo.PreLoad(DbDIR)
+            _DomainInfo = DomainInfo.PreLoad(DbDIR)
             _DIR = DbDIR
             _FastaLoader = New FastaLoader With {
                 .Database = Me
@@ -108,7 +110,7 @@
             Return Nothing '没有查询到任何记录
         End Function
 
-        Public Function GetDomainFasta(Id As String) As SequenceModel.FASTA.FastaToken
+        Public Function GetDomainFasta(Id As String) As FASTA.FastaToken
             For Each DbPath In DbPaths.Values
                 Dim Db As SequenceModel.FASTA.FastaFile = DbPath.Value()()
                 Dim LQuery = From Fsa In Db Where String.Equals(Fsa.Attributes(0), Id) Select Fsa '
