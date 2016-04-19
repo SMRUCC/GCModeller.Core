@@ -217,6 +217,9 @@
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\GbkWriter.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\SOURCE\ORGANISM.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\PTT\DbAPI.vb" />
+    <Compile Include="Assembly\Uniprot\UniprotFasta.vb" />
+    <Compile Include="Assembly\Uniprot\IdMapping.vb" />
+    <Compile Include="Assembly\Uniprot\Web\Entry.vb" />
     <Compile Include="ComponentModel\DBLinkBuilder\DBLink.vb" />
     <Compile Include="ComponentModel\DBLinkBuilder\Abstract.vb" />
     <Compile Include="ComponentModel\DBLinkBuilder\DBLinksManager.vb" />
@@ -314,7 +317,7 @@
     <Compile Include="SequenceModel\Polypeptides\Chou-Fasman\Rules\RuleAlphaHelix.vb" />
     <Compile Include="SequenceModel\Polypeptides\Chou-Fasman\Rules\RuleOverlap.vb" />
     <Compile Include="SequenceModel\Polypeptides\Polypeptides.vb" />
-    <Compile Include="Assembly\Uniprot.vb" />
+    <Compile Include="Assembly\Uniprot\Web\Uniprot.vb" />
     <Compile Include="Assembly\NCBI\Database\CDD\CDD.vb" />
     <Compile Include="Assembly\NCBI\Database\CDD\CDDLoader.vb" />
     <Compile Include="Assembly\NCBI\Database\CDD\Database.vb" />
