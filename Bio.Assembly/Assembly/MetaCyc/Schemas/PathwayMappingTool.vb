@@ -27,7 +27,7 @@ Namespace Assembly.MetaCyc.Schema.Metabolism
                               In Me.MetaCyc.GetProteins.Values
                               Let Id As String = DBLinkManager.DBLink.GetUniprotId(Protein.DBLinksMgr)
                               Where Not String.IsNullOrEmpty(Id)
-                              Select Uniprot.DownloadProtein(Id)).ToArray
+                              Select Uniprot.Web.DownloadProtein(Id)).ToArray
                 Call CType(LQuery, SequenceModel.FASTA.FastaFile).Save(Me.MetaCyc.Database.FASTAFiles.ProteinSourceFile)
             End If
         End Sub
@@ -49,9 +49,9 @@ Namespace Assembly.MetaCyc.Schema.Metabolism
                     Dim Err As String = String.Format("[FASTA_OBJECT_NOT_DOWNLOAD] {0}", Protein.Identifier)
                     NotDownloads += 1
                     Call Console.WriteLine(Err)
-                    Call FileIO.FileSystem.WriteAllText(System.Windows.Forms.Application.StartupPath & "/Err.log", Err & vbCrLf, append:=True)
+                    Call FileIO.FileSystem.WriteAllText(App.CurrentWork & "/Err.log", Err & vbCrLf, append:=True)
                 Else
-                    Dim fasta As SequenceModel.FASTA.FastaToken = Uniprot.DownloadProtein(UniprotId:=Id)
+                    Dim fasta As SequenceModel.FASTA.FastaToken = Uniprot.Web.DownloadProtein(UniprotId:=Id)
                     If Len(fasta.SequenceData) = 0 Then
                         Dim Err As String = String.Format("[FASTA_OBJECT_NOT_DOWNLOAD] {0}", Protein.Identifier)
                         NotDownloads += 1
