@@ -2,6 +2,7 @@
 Imports System.Text
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports LANS.SystemsBiology.Assembly.MetaCyc.File.FileSystem
+Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
 
 Namespace Assembly.MetaCyc.Schema
 
@@ -29,6 +30,9 @@ Namespace Assembly.MetaCyc.Schema
         Public Property MetaCycId As String
         Public Property CommonName As String
         Public Property Synonym As String
+
+        Sub New()
+        End Sub
 
         Public Overrides Function ToString() As String
             Return String.Format("{0} --> {1}", Effector, MetaCycId)

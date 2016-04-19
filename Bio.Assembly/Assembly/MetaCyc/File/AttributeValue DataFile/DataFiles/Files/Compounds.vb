@@ -1,5 +1,7 @@
-﻿Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema.Reflection
+﻿Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema
+Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema.Reflection
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Linq
 
 Namespace Assembly.MetaCyc.File.DataFiles
 
@@ -35,6 +37,10 @@ Namespace Assembly.MetaCyc.File.DataFiles
                 }
             End Get
         End Property
+
+        Public Function GetCompoundsAbstract() As ICompoundObject()
+            Return Values.ToArray(Function(x) DirectCast(x, ICompoundObject))
+        End Function
 
         ''' <summary>
         ''' Get an object instance in the compounds table using its common name or synonymous name.

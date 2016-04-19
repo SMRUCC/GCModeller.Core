@@ -1,8 +1,9 @@
 ﻿Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Reflection
-Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema.Reflection
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema
+Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema.Reflection
 
 Namespace Assembly.MetaCyc.File.DataFiles.Slots
 
@@ -17,6 +18,7 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
     Public Class Compound : Inherits Slots.Object
         Implements Regulation.IRegulator
         Implements sIdEnumerable
+        Implements ICompoundObject
 
         <MetaCycField> Public Overrides Property CommonName As String Implements Regulation.IRegulator.CommonName
             Get
@@ -42,7 +44,7 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
         End Property
 
         <MetaCycField(Name:="UNIQUE-ID")>
-        Public Overrides Property Identifier As String Implements Regulation.IRegulator.locusId, sIdEnumerable.Identifier
+        Public Overrides Property Identifier As String Implements Regulation.IRegulator.locusId, sIdEnumerable.Identifier, ICompoundObject.locusId
             Get
                 Return MyBase.Identifier
             End Get
@@ -54,16 +56,17 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
         <MetaCycField(Name:="MOLECULAR-WEIGHT")> Public Property MolecularWeight As String
         <MetaCycField(Name:="MONOISOTOPIC-MW")> Public Property MonoisotopicMW As String
 
-        <MetaCycField(Type:=MetaCycField.Types.TStr)> Public Shadows Property Names As String()
+        <MetaCycField(Type:=MetaCycField.Types.TStr)> Public Shadows Property Names As String() Implements ICompoundObject.CommonNames
             Get
-                Dim List As List(Of String) = New List(Of String)
-                Call List.Add(Me.AbbrevName)
-                Call List.Add(Me.CommonName)
-                Call List.AddRange(MyBase.Names)
-                Call List.AddRange(Me.Synonyms)
-                Call List.AddRange(Me.Types)
-
-                Return (From strValue As String In List Let strItem As String = strValue.Trim.ToLower Where Not String.IsNullOrEmpty(strItem) Select strItem Distinct).ToArray
+                If MyBase.Names.IsNullOrEmpty Then
+                    MyBase.Names = (From strValue As String
+                                    In New List(Of String) +
+                                        Me.AbbrevName + Me.CommonName + Me.Synonyms + Me.Types.ToArray
+                                    Let strItem As String = strValue.Trim.ToLower
+                                    Where Not String.IsNullOrEmpty(strItem)
+                                    Select strItem Distinct).ToList
+                End If
+                Return MyBase.Names
             End Get
             Set(value As String())
                 MyBase.Names = value.ToList
@@ -111,11 +114,11 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
 
         Public ReadOnly Property CHEBI As String()
             Get
-                Return _CheBI
+                Return __cheBI
             End Get
         End Property
 
-        Dim _CheBI As String()
+        Private Property __cheBI As String() Implements ICompoundObject.CHEBI
 
         <MetaCycField(Name:="DBLINKS", Type:=MetaCycField.Types.TStr)> Public Overrides Property DBLinks As String()
             Get
@@ -123,17 +126,26 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
             End Get
             Set(value As String())
                 _DBLinks = Schema.DBLinkManager.CreateFromMetaCycFormat(value)
-                _CheBI = (From item In _DBLinks.CHEBI Select item.AccessionId).ToArray
+                __cheBI = (From item In _DBLinks.CHEBI Select item.AccessionId).ToArray
             End Set
         End Property
 
         Public ReadOnly Property PUBCHEM As String
+            Get
+                Return __pubChem
+            End Get
+        End Property
+
+        Private Property __pubChem As String Implements ICompoundObject.PUBCHEM
             Get
                 If _DBLinks.PUBCHEM Is Nothing Then
                     Return ""
                 End If
                 Return _DBLinks.PUBCHEM.AccessionId
             End Get
+            Set(value As String)
+                _DBLinks.PUBCHEM.AccessionId = value
+            End Set
         End Property
 
         Public Function GetDBLinkManager() As MetaCyc.Schema.DBLinkManager
