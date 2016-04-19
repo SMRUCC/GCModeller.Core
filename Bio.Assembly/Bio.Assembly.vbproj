@@ -194,7 +194,9 @@
     <Compile Include="Assembly\MetaCyc\Schemas\PathwayBrief\Models.vb" />
     <Compile Include="Assembly\MetaCyc\Schemas\Reaction\ReactionDirections.vb" />
     <Compile Include="Assembly\MetaCyc\Schemas\Reflection\Schema.vb" />
-    <Compile Include="Assembly\MiST2\DocArchive\DocNodes.vb" />
+    <Compile Include="Assembly\MiST2\DocArchive\Models\Replicon.vb" />
+    <Compile Include="Assembly\MiST2\DocArchive\Models\TwoComponent.vb" />
+    <Compile Include="Assembly\MiST2\DocArchive\Models\Transducin.vb" />
     <Compile Include="Assembly\MiST2\DocArchive\MiST2.vb" />
     <Compile Include="Assembly\MiST2\WebHandler.vb" />
     <Compile Include="Assembly\NCBI\Database\CDD\BLAST\Domain.vb" />
@@ -216,7 +218,7 @@
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\SOURCE\ORGANISM.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\PTT\DbAPI.vb" />
     <Compile Include="ComponentModel\DBLinkBuilder\DBLink.vb" />
-    <Compile Include="ComponentModel\DBLinkBuilder\LDM.vb" />
+    <Compile Include="ComponentModel\DBLinkBuilder\Abstract.vb" />
     <Compile Include="ComponentModel\DBLinkBuilder\DBLinksManager.vb" />
     <Compile Include="ComponentModel\Equations\Abstract.vb" />
     <Compile Include="ComponentModel\Equations\Reaction%28Of T%29.vb" />

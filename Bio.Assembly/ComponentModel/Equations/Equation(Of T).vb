@@ -46,8 +46,13 @@ Namespace ComponentModel.EquaionModel
         Protected __rightHash As Dictionary(Of String, T())
 
         Private Shared Function __gethash(value As T()) As Dictionary(Of String, T())
-            Dim Groups = (From x In value Select x Group x By x.Identifier.ToLower Into Group)
-            Dim hash = Groups.ToDictionary(Function(x) x.ToLower, Function(x) x.Group.ToArray)
+            Dim Groups = (From x As T
+                          In value
+                          Select x
+                          Group x By x.Identifier.ToLower Into Group)
+            Dim hash As Dictionary(Of String, T()) =
+                Groups.ToDictionary(Function(x) x.ToLower,
+                                    Function(x) x.Group.ToArray)
             Return hash
         End Function
 

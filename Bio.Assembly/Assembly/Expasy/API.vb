@@ -112,17 +112,22 @@ Namespace Assembly.Expasy.AnnotationsTool
         ''' <param name="Aligned">经过筛选之后的之后比对结果</param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Function InvokeAnnotations(Expasy As Expasy.Database.NomenclatureDB, Aligned As Expasy.AnnotationsTool.T_EnzymeClass_BLAST_OUT()) As EnzymeClass()
-            Dim QueryProteins = (From item In Aligned
-                                 Select item
-                                 Group item By item.ProteinId Into Group) _
-                                    .ToDictionary(keySelector:=Function(item) item.ProteinId, elementSelector:=Function(item) item.Group.ToArray)  '先按照蛋白质的编号进行分组
+        Public Function InvokeAnnotations(Expasy As Expasy.Database.NomenclatureDB, Aligned As T_EnzymeClass_BLAST_OUT()) As EnzymeClass()
+            Dim QueryProteins = (From hit As T_EnzymeClass_BLAST_OUT
+                                 In Aligned
+                                 Select hit
+                                 Group hit By hit.ProteinId Into Group) _
+                                      .ToDictionary(Function(item) item.ProteinId,
+                                                    Function(item) item.Group.ToArray)  '先按照蛋白质的编号进行分组
             Dim LQuery As EnzymeClass() = (From item As KeyValuePair(Of String, T_EnzymeClass_BLAST_OUT())
                                            In QueryProteins
                                            Select New EnzymeClass With {
                                                .ProteinId = item.Key,
                                                .Hits = (From n In item.Value Select n.UniprotMatched).ToArray,
-                                               .EC_Class = (From n In item.Value Select n.Class Distinct).ToArray}).ToArray '得到初步的导出数据
+                                               .EC_Class = (From n As T_EnzymeClass_BLAST_OUT
+                                                            In item.Value
+                                                            Select n.Class
+                                                            Distinct).ToArray}).ToArray '得到初步的导出数据
             LQuery = (From item As EnzymeClass
                       In LQuery.AsParallel
                       Let annotations = (From ec As String In item.EC_Class
@@ -158,7 +163,7 @@ Namespace Assembly.Expasy.AnnotationsTool
                              In Annotations
                              Select (From nn As String
                                      In item.CatalyticActivity
-                                     Select String.Format("[{0}] {1}", item.Identification, nn)).ToArray).ToArray.MatrixToVector
+                                     Select String.Format("[{0}] {1}", item.Identification, nn)).ToArray).MatrixToVector
             Return raw
         End Function
     End Module

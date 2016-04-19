@@ -16,7 +16,7 @@ Namespace Assembly.Expasy.Database.CsvExport
             Return Identification
         End Function
 
-        Public Shared Function CreateObject(EnzymeData As Global.LANS.SystemsBiology.Assembly.Expasy.Database.Enzyme) As Enzyme
+        Public Shared Function CreateObject(EnzymeData As Database.Enzyme) As Enzyme
             Dim EnzymeObject As Enzyme =
                 New Enzyme With {
                     .AlternateName = EnzymeData.AlternateName,
@@ -39,7 +39,7 @@ Namespace Assembly.Expasy.Database.CsvExport
             Return Entry
         End Function
 
-        Public Shared Function CreateObjects(Enzyme As LANS.SystemsBiology.Assembly.Expasy.Database.Enzyme) As SwissProt()
+        Public Shared Function CreateObjects(Enzyme As Database.Enzyme) As SwissProt()
             Dim LQuery = (From Id As String
                           In Enzyme.SwissProt
                           Select New SwissProt With {

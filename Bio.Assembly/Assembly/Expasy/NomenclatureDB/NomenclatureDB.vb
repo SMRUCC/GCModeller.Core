@@ -1,8 +1,11 @@
 ﻿Imports System.Text.RegularExpressions
 Imports System.Text
+Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic
-Imports System.Xml.Serialization
+Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Linq
+Imports LANS.SystemsBiology.SequenceModel
 
 Namespace Assembly.Expasy.Database
 
@@ -11,7 +14,7 @@ Namespace Assembly.Expasy.Database
     ''' </summary>
     ''' <remarks></remarks>
     <XmlRoot("ENZYME nomenclature database", Namespace:="http://enzyme.expasy.org/")>
-    Public Class NomenclatureDB : Inherits Microsoft.VisualBasic.ComponentModel.ITextFile
+    Public Class NomenclatureDB : Inherits ITextFile
 
         Dim __defHash As Dictionary(Of String, Enzyme)
 
@@ -53,17 +56,29 @@ Namespace Assembly.Expasy.Database
                     Return New String() {}
                 End If
 
-                Dim LQuery = (From item In Enzymes Where InStr(item.Identification, ECNumber) = 1 Select item.SwissProt).ToArray
-                Return LQuery.MatrixToVector.Distinct.ToArray
+                Dim LQuery = (From enz As Enzyme
+                              In Enzymes
+                              Where InStr(enz.Identification, ECNumber) = 1
+                              Select enz.SwissProt).ToArray
+                Return LQuery.MatrixAsIterator.Distinct.ToArray
             Else
-                Return (From id As String In Enzymes.GetItem(ECNumber).SwissProt Where Not String.IsNullOrEmpty(id) Select id Distinct).ToArray
+                Return (From id As String
+                        In Enzymes.GetItem(ECNumber).SwissProt
+                        Where Not String.IsNullOrEmpty(id)
+                        Select id
+                        Distinct).ToArray
             End If
         End Function
 
-        Public Function TryExportUniprotFasta(data As Generic.IEnumerable(Of LANS.SystemsBiology.Assembly.Uniprot.UniprotFasta)) As LANS.SystemsBiology.SequenceModel.FASTA.FastaFile
-            Dim UniprotIDs As String() = (From item In Me.Enzymes Select item.SwissProt).ToArray.MatrixToList.Distinct.ToArray
-            Dim LQuery As LANS.SystemsBiology.SequenceModel.FASTA.FastaToken() = (From item In data.AsParallel Where Array.IndexOf(UniprotIDs, item.UniprotID) Select item).ToArray
-            Return CType(LQuery, LANS.SystemsBiology.SequenceModel.FASTA.FastaFile)
+        Public Function TryExportUniprotFasta(data As IEnumerable(Of Uniprot.UniprotFasta)) As FASTA.FastaFile
+            Dim UniprotIDs As String() = (From enz As Enzyme
+                                          In Me.Enzymes
+                                          Select enz.SwissProt).MatrixAsIterator.Distinct.ToArray
+            Dim LQuery As IEnumerable(Of FASTA.FastaToken) = From fa As Uniprot.UniprotFasta
+                                                             In data.AsParallel
+                                                             Where Array.IndexOf(UniprotIDs, fa.UniprotID)
+                                                             Select fa
+            Return New FASTA.FastaFile(LQuery)
         End Function
 
         ''' <summary>
@@ -93,12 +108,10 @@ Namespace Assembly.Expasy.Database
         End Function
 
         Public Sub Export(ByRef Classes As CsvExport.Enzyme(), ByRef SwissProt As CsvExport.SwissProt())
-            Classes = (From item In Enzymes Select CsvExport.Enzyme.CreateObject(item)).ToArray
-            Dim SwissProtList As List(Of CsvExport.SwissProt) = New List(Of CsvExport.SwissProt)
-            For Each item In Enzymes
-                Call SwissProtList.AddRange(CsvExport.SwissProt.CreateObjects(item))
-            Next
-            SwissProt = SwissProtList.ToArray
+            Classes = (From enz As Enzyme
+                       In Enzymes
+                       Select CsvExport.Enzyme.CreateObject(enz)).ToArray
+            SwissProt = Enzymes.Select(AddressOf CsvExport.SwissProt.CreateObjects).MatrixToVector
         End Sub
 
         Public Overrides Function Save(Optional FilePath As String = "", Optional Encoding As Encoding = Nothing) As Boolean
