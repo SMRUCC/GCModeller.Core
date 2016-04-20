@@ -1,5 +1,6 @@
 ﻿Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
+Imports LANS.SystemsBiology.Assembly.KEGG.WebServices
 
 Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
 
@@ -17,7 +18,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
 
     Public Class SShit
 
-        Public Property Entry As KEGG.WebServices.QueryEntry
+        Public Property Entry As QueryEntry
         Public Property EntryUrl As String
         Public Property KO As ComponentModel.KeyValuePair
         <XmlAttribute> Public Property Length As String
@@ -60,8 +61,13 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
                 TempChunk(1) = Mid(TempChunk(1), 1, Len(TempChunk(1)) - 4)
                 ResultItem.KO = New ComponentModel.KeyValuePair With {.Key = TempChunk(0), .Value = TempChunk(1)}
 
-                Dim strValue As String() = (From n In (From item As Match In Regex.Matches(strData, "</a>[^<]+<a", RegexOptions.IgnoreCase) Select item.Value).ToArray.Last.Split Where Not String.IsNullOrEmpty(n.Trim) Select n).ToArray
-                Dim BestValue As String = (From item As Match In Regex.Matches(strData, "<a href='.+?' target=_ortholog>\d+</a>", RegexOptions.IgnoreCase) Select item.Value).ToArray.Last
+                Dim strValue As String() = (From n As String
+                                            In (From item As Match In Regex.Matches(strData, "</a>[^<]+<a", RegexOptions.IgnoreCase) Select item.Value).ToArray.Last.Split
+                                            Where Not String.IsNullOrEmpty(n.Trim)
+                                            Select n).ToArray
+                Dim BestValue As String = (From item As Match
+                                           In Regex.Matches(strData, "<a href='.+?' target=_ortholog>\d+</a>", RegexOptions.IgnoreCase)
+                                           Select item.Value).ToArray.Last
                 Dim p As Integer = 1
 
                 ResultItem.Length = strValue(p.MoveNext)

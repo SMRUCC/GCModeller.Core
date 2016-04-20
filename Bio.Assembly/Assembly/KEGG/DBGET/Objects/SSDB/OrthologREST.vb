@@ -9,6 +9,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
     ''' 
     <XmlType("Ortholog")>
     Public Class OrthologREST
+
         Public Const URL As String = "http://www.kegg.jp/ssdb-bin/ssdb_best?org_gene={0}:{1}"
 
         <XmlAttribute> Public Property KEGG_ID As String
@@ -29,7 +30,8 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
             Dim Items As String() = (From strData As Match
                                      In Regex.Matches(Tokens.Last, REGEX_ORTHO_ITEM, RegexOptions.IgnoreCase + RegexOptions.Singleline)
                                      Select strData.Value).ToArray
-            Dim LQuery = (From strData As String In Items
+            Dim LQuery = (From strData As String
+                          In Items
                           Select KEGG.DBGET.bGetObject.SSDB.SShit.CreateObject(strData)).ToArray
             Ortholog.Orthologs = LQuery
             Ortholog.KEGG_ID = Entry.ToString

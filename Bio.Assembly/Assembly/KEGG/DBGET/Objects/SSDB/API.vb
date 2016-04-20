@@ -4,6 +4,9 @@ Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.WebRequest
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Linq.Extensions
+Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Language.UnixBash
+Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
 
 Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
 
@@ -30,12 +33,12 @@ both of these relationships hold
 
         <ExportAPI("Query")>
         Public Function HandleQuery(GeneName As String) As KEGG.WebServices.QueryEntry()
-            Dim PageContent As String = String.Format(ORTHOLOGY_URL_QUERY, GeneName).GET
-            Return __queryEntryParser(PageContent)
+            Dim html As String = String.Format(ORTHOLOGY_URL_QUERY, GeneName).GET
+            Return __queryEntryParser(html)
         End Function
 
-        Private Function __queryEntryParser(PageContent As String) As QueryEntry()
-            Dim matches = Regex.Matches(PageContent, QUERY_RESULT_LINK_ITEM)
+        Private Function __queryEntryParser(html As String) As QueryEntry()
+            Dim matches = Regex.Matches(html, QUERY_RESULT_LINK_ITEM)
 
             If matches.Count = 0 Then Return New QueryEntry() {}
 
@@ -73,7 +76,7 @@ both of these relationships hold
         ''' 
         <ExportAPI("HandleDownloads")>
         Public Function HandleDownloads(<Parameter("List.Entry", "The entry point list of the kegg orthology.")>
-                                        EntryList As Generic.IEnumerable(Of QueryEntry)) As QueryEntry()
+                                        EntryList As IEnumerable(Of QueryEntry)) As QueryEntry()
             Dim LQuery = (From EntryPoint As QueryEntry
                           In EntryList
                           Select HandleDownload(EntryPoint.LocusId)).ToArray
@@ -101,7 +104,7 @@ both of these relationships hold
             Return __genesParser(WebForm, KO_ID)
         End Function
 
-        Private Function __genesParser(WebForm As KEGG.WebServices.InternalWebFormParsers.WebForm, EntryID As String) As QueryEntry()
+        Private Function __genesParser(WebForm As WebForm, EntryID As String) As QueryEntry()
             Dim GeneData As String
 
             Try
@@ -137,13 +140,13 @@ both of these relationships hold
         End Function
 
         <ExportAPI("Query")>
-        Public Function Query(ko As String) As KEGG.DBGET.bGetObject.SSDB.Orthology
-            Dim url As String = String.Format(KEGG.DBGET.bGetObject.SSDB.API.ORTHOLOGY_WEBFORM, ko)
+        Public Function Query(ko As String) As Orthology
+            Dim url As String = String.Format(SSDB.API.ORTHOLOGY_WEBFORM, ko)
             Return API.QueryURL(url)
         End Function
 
         <ExportAPI("Query.From.URL")>
-        Public Function QueryURL(url As String) As KEGG.DBGET.bGetObject.SSDB.Orthology
+        Public Function QueryURL(url As String) As Orthology
             Dim WebForm As KEGG.WebServices.InternalWebFormParsers.WebForm =
                 New InternalWebFormParsers.WebForm(url)
             Dim Orthology As New SSDB.Orthology With {
@@ -174,26 +177,27 @@ both of these relationships hold
 
         Const xRef As String = "<div style=""float:left"">.+?</div><div.*?</div>"
 
-        Public Function xRefParser(str As String()) As Microsoft.VisualBasic.ComponentModel.TripleKeyValuesPair()
+        Public Function xRefParser(str As String()) As TripleKeyValuesPair()
             If str.IsNullOrEmpty Then
-                Return New Microsoft.VisualBasic.ComponentModel.TripleKeyValuesPair() {}
+                Return New TripleKeyValuesPair() {}
             End If
             Dim DBs As String() = (From ss As String
-                                       In str
+                                   In str
                                    Select (From m As Match
-                                               In Regex.Matches(ss, xRef, RegexOptions.IgnoreCase + RegexOptions.Singleline)
-                                           Select m.Value).ToArray).ToArray.MatrixToVector
+                                           In Regex.Matches(ss, xRef, RegexOptions.IgnoreCase + RegexOptions.Singleline)
+                                           Select m.Value)).MatrixToVector
             Dim Values = DBs.ToArray(Function(lnk) __xRefParser(lnk)).MatrixToVector
             Return Values
         End Function
 
-        Private Function __xRefParser(lnk As String) As Microsoft.VisualBasic.ComponentModel.TripleKeyValuesPair()
+        Private Function __xRefParser(lnk As String) As TripleKeyValuesPair()
             Dim Name As String = Regex.Match(lnk, "<div.+?</div>").Value.GetValue.Split(":"c).First
             Dim Links = (From m As Match In Regex.Matches(lnk, "<a.+?</a>") Select m.Value).ToArray
-            Dim values = Links.ToArray(Function(ss) New Microsoft.VisualBasic.ComponentModel.TripleKeyValuesPair With {
-                                               .Key = Name,
-                                               .Value1 = ss.Get_href,
-                                               .Value2 = ss.GetValue})
+            Dim values As TripleKeyValuesPair() = Links.ToArray(
+                Function(ss) New TripleKeyValuesPair With {
+                    .Key = Name,
+                    .Value1 = ss.Get_href,
+                    .Value2 = ss.GetValue})
             Return values
         End Function
 
@@ -204,10 +208,10 @@ both of these relationships hold
 
         <ExportAPI("ImportsDB")>
         Public Function Transform(<Parameter("source.DIR")> source As String) As SSDB.Ortholog()
-            Dim Xmls = FileIO.FileSystem.GetFiles(source, FileIO.SearchOption.SearchTopLevelOnly, "*.xml")
+            Dim Xmls As IEnumerable(Of String) = ls - l - wildcards("*.xml") <= source
             Dim LQuery = (From xml As String In Xmls.AsParallel
                           Let result As SSDB.OrthologREST = xml.LoadXml(Of SSDB.OrthologREST)
-                          Select SSDB.Ortholog.CreateObjects(result)).ToArray.MatrixToVector
+                          Select SSDB.Ortholog.CreateObjects(result)).MatrixToVector
             Return LQuery
         End Function
     End Module

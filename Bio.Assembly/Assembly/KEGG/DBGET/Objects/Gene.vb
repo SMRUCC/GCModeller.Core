@@ -20,9 +20,9 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         End Function
 
         Public Shared Function Download(url As String) As Gene()
-            Dim pageContent As String = Strings.Split(url.GET, modParser.SEPERATOR).Last
+            Dim html As String = Strings.Split(url.GET, modParser.SEPERATOR).Last
             Dim Entries = (From Match As Match
-                           In Regex.Matches(pageContent, "<a href="".+?"">.+?</a>.+?$", RegexOptions.Multiline + RegexOptions.IgnoreCase)
+                           In Regex.Matches(html, "<a href="".+?"">.+?</a>.+?$", RegexOptions.Multiline + RegexOptions.IgnoreCase)
                            Select Match.Value).ToArray
             Entries = Entries.Take(Entries.Count - 1).ToArray
 
@@ -33,7 +33,10 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 Entry = Mid(Entry, 2, Len(Entry) - 5)
                 Dim Description As String = Strings.Split(Item, "</a>").Last.Trim
 
-                Genes(i) = New Gene With {.Identifier = Entry, .Description = Description}
+                Genes(i) = New Gene With {
+                    .Identifier = Entry,
+                    .Description = Description
+                }
             Next
 
             Return Genes

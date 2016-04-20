@@ -1,6 +1,8 @@
 ﻿Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
+Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Language.UnixBash
 
 Namespace Assembly.KEGG.DBGET.bGetObject
 
@@ -207,23 +209,36 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         Const GENE_SPLIT As String = "<a href=""/dbget-bin/www_bget\?{0}:.+?"">.+?</a>"
         Const COMPOUND_SPLIT As String = "\<a href\=""/dbget-bin/www_bget\?cpd:.+?""\>.+?\</a\>.+?"
 
-        Public Shared Function GetCompoundCollection(Collection As Generic.IEnumerable(Of Pathway)) As String()
+        Public Shared Function GetCompoundCollection(source As IEnumerable(Of Pathway)) As String()
             Dim CompoundList As List(Of String) = New List(Of String)
-            For Each Pathway In Collection
+
+            For Each Pathway In source
                 If Pathway.Compound.IsNullOrEmpty Then
                     Continue For
                 End If
 
-                Call CompoundList.AddRange((From item In Pathway.Compound Select item.Key).ToArray)
+                CompoundList += From met As ComponentModel.KeyValuePair
+                                In Pathway.Compound
+                                Select met.Key
             Next
 
-            Return (From strid As String In CompoundList Where Not String.IsNullOrEmpty(strid) Select strid Distinct Order By strid Ascending).ToArray
+            Return (From strid As String
+                    In CompoundList
+                    Where Not String.IsNullOrEmpty(strid)
+                    Select strid
+                    Distinct
+                    Order By strid Ascending).ToArray
         End Function
 
-        Public Shared Function GetCompoundCollection(ImportsDir As String) As String()
-            Dim LQuery = (From file As String
-                          In FileIO.FileSystem.GetFiles(ImportsDir, FileIO.SearchOption.SearchAllSubDirectories, "*.xml")
-                          Select file.LoadXml(Of Pathway)()).ToArray
+        ''' <summary>
+        ''' Imports KEGG compounds from pathways model.
+        ''' </summary>
+        ''' <param name="ImportsDIR"></param>
+        ''' <returns></returns>
+        Public Shared Function GetCompoundCollection(ImportsDIR As String) As String()
+            Dim LQuery As IEnumerable(Of Pathway) = From xml As String
+                                                    In ls - l - r - wildcards("*.xml") <= ImportsDIR
+                                                    Select xml.LoadXml(Of Pathway)()
             Return GetCompoundCollection(LQuery)
         End Function
 
@@ -270,8 +285,8 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 Dim ModuleEntry As String = Regex.Match(strTemp, SplitRegex).Value
                 Dim ModuleFunction As String = strTemp.Replace(ModuleEntry, "").Trim
 
-                ModuleEntry = KEGG.WebServices.InternalWebFormParsers.WebForm.GetNodeValue(ModuleEntry)
-                ModuleFunction = KEGG.WebServices.InternalWebFormParsers.WebForm.RemoveHrefLink(ModuleFunction)
+                ModuleEntry = WebForm.GetNodeValue(ModuleEntry)
+                ModuleFunction = WebForm.RemoveHrefLink(ModuleFunction)
 
                 Call ModuleList.Add(New ComponentModel.KeyValuePair With {.Key = ModuleEntry, .Value = ModuleFunction})
             Next
@@ -280,8 +295,8 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             s_Value = Mid(s_Value, p)
             Dim LastEntry As ComponentModel.KeyValuePair = New ComponentModel.KeyValuePair
             LastEntry.Key = Regex.Match(s_Value, SplitRegex).Value
-            LastEntry.Value = KEGG.WebServices.InternalWebFormParsers.WebForm.RemoveHrefLink(s_Value.Replace(LastEntry.Key, "").Trim)
-            LastEntry.Key = KEGG.WebServices.InternalWebFormParsers.WebForm.GetNodeValue(LastEntry.Key)
+            LastEntry.Value = WebForm.RemoveHrefLink(s_Value.Replace(LastEntry.Key, "").Trim)
+            LastEntry.Key = WebForm.GetNodeValue(LastEntry.Key)
 
             Call ModuleList.Add(LastEntry)
 
@@ -337,14 +352,14 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         Private Shared Function GenerateObject(strValue As String) As PathwayEntry
             Dim EntryItem As PathwayEntry = New PathwayEntry
             Dim ChunkBuffer As String() = Strings.Split(strValue, vbLf)
-            EntryItem.Entry = KEGG.WebServices.InternalWebFormParsers.WebForm.GetNodeValue(ChunkBuffer.First)
+            EntryItem.Entry = WebForm.GetNodeValue(ChunkBuffer.First)
             EntryItem.Url = ChunkBuffer.First.Get_href
             ChunkBuffer = ChunkBuffer.Skip(3).ToArray
             Dim p As Integer = 0
-            EntryItem.Name = KEGG.WebServices.InternalWebFormParsers.WebForm.GetNodeValue(ChunkBuffer(p.MoveNext))
-            EntryItem.Description = KEGG.WebServices.InternalWebFormParsers.WebForm.GetNodeValue(ChunkBuffer(p.MoveNext))
-            EntryItem.Object = KEGG.WebServices.InternalWebFormParsers.WebForm.GetNodeValue(ChunkBuffer(p.MoveNext))
-            EntryItem.Legend = KEGG.WebServices.InternalWebFormParsers.WebForm.GetNodeValue(ChunkBuffer(p.MoveNext))
+            EntryItem.Name = WebForm.GetNodeValue(ChunkBuffer(p.MoveNext))
+            EntryItem.Description = WebForm.GetNodeValue(ChunkBuffer(p.MoveNext))
+            EntryItem.Object = WebForm.GetNodeValue(ChunkBuffer(p.MoveNext))
+            EntryItem.Legend = WebForm.GetNodeValue(ChunkBuffer(p.MoveNext))
 
             Return EntryItem
         End Function

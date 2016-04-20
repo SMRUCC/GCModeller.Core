@@ -1,10 +1,11 @@
-﻿
+﻿Imports Microsoft.VisualBasic.Language
+
 Namespace Assembly.KEGG.DBGET.bGetObject
 
     ''' <summary>
     ''' dbget-bin/www_bget
     ''' </summary>
-    Public MustInherit Class bGetObject
+    Public MustInherit Class bGetObject : Inherits ClassObject
 
         Public MustOverride ReadOnly Property Code As String
 

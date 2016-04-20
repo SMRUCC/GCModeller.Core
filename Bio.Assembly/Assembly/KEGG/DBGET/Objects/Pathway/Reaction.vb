@@ -121,7 +121,10 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         ''' <remarks></remarks>
         Public Function GetSubstrateCompounds() As String()
             Dim FluxModel = EquationBuilder.CreateObject(Of DefaultTypes.CompoundSpecieReference, DefaultTypes.Equation)(Regex.Replace(Equation, "(\s*\(.+?\))|(n )", ""))
-            Dim Compounds = (From csr In {FluxModel.Reactants, FluxModel.Products}.MatrixToVector Select csr.Identifier Distinct).ToArray
+            Dim Compounds = (From csr As DefaultTypes.CompoundSpecieReference
+                             In {FluxModel.Reactants, FluxModel.Products}.MatrixAsIterator
+                             Select csr.Identifier
+                             Distinct).ToArray
             Return Compounds
         End Function
 
