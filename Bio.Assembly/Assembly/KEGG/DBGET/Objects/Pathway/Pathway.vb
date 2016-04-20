@@ -181,8 +181,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         End Function
 
         Public Shared Function DownloadPage(url As String) As Pathway
-            Dim WebForm As KEGG.WebServices.InternalWebFormParsers.WebForm =
-                New WebServices.InternalWebFormParsers.WebForm(url)
+            Dim WebForm As New WebForm(url)
 
             If WebForm.Count = 0 Then
                 Return Nothing
@@ -210,24 +209,24 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         Const COMPOUND_SPLIT As String = "\<a href\=""/dbget-bin/www_bget\?cpd:.+?""\>.+?\</a\>.+?"
 
         Public Shared Function GetCompoundCollection(source As IEnumerable(Of Pathway)) As String()
-            Dim CompoundList As List(Of String) = New List(Of String)
+            Dim CompoundList As New List(Of String)
 
-            For Each Pathway In source
-                If Pathway.Compound.IsNullOrEmpty Then
+            For Each pwy As Pathway In source
+                If pwy.Compound.IsNullOrEmpty Then
                     Continue For
                 End If
 
                 CompoundList += From met As ComponentModel.KeyValuePair
-                                In Pathway.Compound
+                                In pwy.Compound
                                 Select met.Key
             Next
 
-            Return (From strid As String
+            Return (From sId As String
                     In CompoundList
-                    Where Not String.IsNullOrEmpty(strid)
-                    Select strid
+                    Where Not String.IsNullOrEmpty(sId)
+                    Select sId
                     Distinct
-                    Order By strid Ascending).ToArray
+                    Order By sId Ascending).ToArray
         End Function
 
         ''' <summary>

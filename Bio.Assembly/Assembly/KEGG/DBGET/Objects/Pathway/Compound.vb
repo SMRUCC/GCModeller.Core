@@ -4,6 +4,7 @@ Imports System.Xml.Serialization
 Imports LANS.SystemsBiology.ComponentModel.DBLinkBuilder
 Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Linq
 
 Namespace Assembly.KEGG.DBGET.bGetObject
 
@@ -60,9 +61,10 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         End Function
 
         Private Shared Function GetKeyValuePair(strData As String()) As KeyValuePair(Of String, String)()
-            Dim LQuery = (From strValue As String In strData
-                          Let Id As String = Regex.Match(strValue, "[.+?]").Value
-                          Let value As String = strValue.Replace(Id, "").Trim
+            Dim LQuery = (From s As String
+                          In strData
+                          Let Id As String = Regex.Match(s, "[.+?]").Value
+                          Let value As String = s.Replace(Id, "").Trim
                           Select New KeyValuePair(Of String, String)(Id, value)).ToArray
             Return LQuery
         End Function
@@ -94,19 +96,19 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         ''' <summary>
         ''' 
         ''' </summary>
-        ''' <param name="IdList"></param>
-        ''' <param name="ExportDir"></param>
+        ''' <param name="lstId"></param>
+        ''' <param name="EXPORT"></param>
         ''' <returns>返回成功下载的对象的数目</returns>
         ''' <remarks></remarks>
-        Public Shared Function FetchTo(IdList As String(), ExportDir As String) As Integer
+        Public Shared Function FetchTo(lstId As String(), EXPORT As String) As Integer
             Dim i As Integer = 0
 
-            Call Console.WriteLine("{0} go to download!", IdList.Count)
+            Call $"{lstId} go to download!".__DEBUG_ECHO
 
-            For Each Id As String In IdList
-                Dim Path As String = String.Format("{0}/{1}.xml", ExportDir, Id)
+            For Each Id As String In lstId
+                Dim path As String = String.Format("{0}/{1}.xml", EXPORT, Id)
 
-                If Not FileIO.FileSystem.FileExists(Path) OrElse FileIO.FileSystem.GetFileInfo(Path).Length = 0 Then
+                If Not path.FileExists Then
                     Dim CompoundData As Compound = Compound.Download(Id)
 
                     If CompoundData Is Nothing Then
@@ -116,7 +118,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                         Continue For
                     End If
                     i += 1
-                    Call CompoundData.GetXml.SaveTo(Path)
+                    Call CompoundData.GetXml.SaveTo(path)
                 End If
             Next
 
@@ -131,32 +133,34 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 Return Nothing
             End If
 
-            Dim Tokens As String() = (From m As Match In Regex.Matches(strData, REGEX_DBLINK, RegexOptions.IgnoreCase) Select m.Value).ToArray
-            Dim LQuery = (From strValue As String In Tokens Select TryParse(strValue)).ToArray
-            Dim List As List(Of DBLink) = New List(Of DBLink)
-            For Each item In LQuery
-                Call List.AddRange(item)
-            Next
-            Return New DBLinks(List)
+            Dim Tokens As String() = (From m As Match
+                                      In Regex.Matches(strData, REGEX_DBLINK, RegexOptions.IgnoreCase)
+                                      Select m.Value).ToArray
+            Dim LQuery As IEnumerable(Of DBLink()) = From s As String In Tokens Select TryParse(s)
+            Return New DBLinks(LQuery.MatrixAsIterator)
         End Function
 
         Private Shared Function TryParse(str As String) As DBLink()
             Dim TempChunk As String() = Strings.Split(str, ": ")
             Dim DBName As String = TempChunk.First
             Dim Entries As String() = GetValues(TempChunk.Last)
-            Dim LQuery = (From prefixName As String
-                          In ComponentModel.DBLinkBuilder.DBLinks.PrefixDB
-                          Where InStr(DBName, prefixName, CompareMethod.Text) > 0
-                          Select prefixName).FirstOrDefault
+            Dim LQuery As String = (From prefixName As String
+                                    In ComponentModel.DBLinkBuilder.DBLinks.PrefixDB
+                                    Where InStr(DBName, prefixName, CompareMethod.Text) > 0
+                                    Select prefixName).FirstOrDefault
 
             DBName = If(String.IsNullOrEmpty(LQuery), DBName, LQuery)
 
-            Return (From strValue As String In Entries Select New DBLink With {.DBName = DBName, .Entry = strValue}).ToArray
+            Return (From s As String
+                    In Entries
+                    Select New DBLink With {.DBName = DBName, .Entry = s}).ToArray
         End Function
 
         Private Shared Function GetValues(str As String) As String()
-            Dim ChunkBuffer As String() = (From m As Match In Regex.Matches(str, "<a href="".+?"">.+?</a>") Select m.Value).ToArray
-            Dim LQuery = (From strValue As String In ChunkBuffer Select WebServices.InternalWebFormParsers.WebForm.GetNodeValue(strValue)).ToArray
+            Dim buf As String() = (From m As Match In Regex.Matches(str, "<a href="".+?"">.+?</a>") Select m.Value).ToArray
+            Dim LQuery As String() = (From s As String
+                                      In buf
+                                      Select WebServices.InternalWebFormParsers.WebForm.GetNodeValue(s)).ToArray
             Return LQuery
         End Function
 
@@ -165,9 +169,13 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 Return New String() {}
             End If
 
-            Dim ChunkBuffer As String() = (From m As Match In Regex.Matches(strData, "<a href="".+?"">.+?</a>", RegexOptions.Singleline) Select m.Value).ToArray
-            ChunkBuffer = (From strValue As String In ChunkBuffer Select KEGG.WebServices.InternalWebFormParsers.WebForm.GetNodeValue(strValue)).ToArray
-            Return ChunkBuffer
+            Dim buf As String() = (From m As Match
+                                   In Regex.Matches(strData, "<a href="".+?"">.+?</a>", RegexOptions.Singleline)
+                                   Select m.Value).ToArray
+            buf = (From s As String
+                   In buf
+                   Select KEGG.WebServices.InternalWebFormParsers.WebForm.GetNodeValue(s)).ToArray
+            Return buf
         End Function
 
         Friend Shared Function GetCommonNames(strData As String) As String()
@@ -175,10 +183,14 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 Return New String() {}
             End If
 
-            Dim TempChunk As String() = Strings.Split(strData, "<br>")
-            TempChunk = (From strValue As String In TempChunk Let strItem As String = strValue.Replace(";", "").Trim Where Not String.IsNullOrEmpty(strItem) Select strItem).ToArray
+            Dim buf As String() = Strings.Split(strData, "<br>")
+            buf = (From s As String
+                   In buf
+                   Let strItem As String = s.Replace(";", "").Trim
+                   Where Not String.IsNullOrEmpty(strItem)
+                   Select strItem).ToArray
 
-            Return TempChunk
+            Return buf
         End Function
 
         Public Property CHEBI As String() Implements ICompoundObject.CHEBI

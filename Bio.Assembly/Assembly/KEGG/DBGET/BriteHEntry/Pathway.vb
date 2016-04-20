@@ -31,7 +31,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Property Entry As LANS.SystemsBiology.ComponentModel.KeyValuePair
+        Public Property Entry As ComponentModel.KeyValuePair
 
         Public Overrides Function ToString() As String
             Return String.Format("[{0}]{1}   {2}", [Class], Category, Entry.ToString)
@@ -115,9 +115,14 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         End Property
 
         Public Shared Function GetClass(EntryID As String, data As Pathway()) As Pathway
-            Dim MatchID = (From m As Match In Regex.Matches(EntryID, "\d{5}") Select m.Value).Last
-            Dim LQuery = (From item In data Where String.Equals(MatchID, item.Entry.Key) Select item).ToArray
-            Return LQuery.FirstOrDefault
+            Dim MatchID As String = (From m As Match
+                                     In Regex.Matches(EntryID, "\d{5}")
+                                     Select m.Value).Last
+            Dim LQuery As Pathway = (From pwy As Pathway
+                                     In data
+                                     Where String.Equals(MatchID, pwy.Entry.Key)
+                                     Select pwy).FirstOrDefault
+            Return LQuery
         End Function
     End Class
 End Namespace
