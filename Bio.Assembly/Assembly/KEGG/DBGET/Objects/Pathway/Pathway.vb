@@ -76,8 +76,11 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 Return False
             End If
 
-            Dim LQuery = (From comp In Compound Where String.Equals(comp.Key, KEGGCompound) Select comp).ToArray
-            Return Not LQuery.IsNullOrEmpty
+            Dim LQuery = (From comp As ComponentModel.KeyValuePair
+                          In Compound
+                          Where String.Equals(comp.Key, KEGGCompound)
+                          Select comp).FirstOrDefault
+            Return Not LQuery Is Nothing
         End Function
 
         Public Function IsContainsGeneObject(GeneId As String) As Boolean

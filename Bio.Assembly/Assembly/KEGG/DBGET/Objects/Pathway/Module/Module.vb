@@ -122,21 +122,22 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             End Get
         End Property
 
-        Public Shared Function GetKEGGReactionIdlist(ModuleCollection As Generic.IEnumerable(Of [Module])) As String()
-            Dim ChunkBuffer As List(Of String) = New List(Of String)
-            For Each [Module] In ModuleCollection
-                If [Module].Reaction.IsNullOrEmpty Then
+        Public Shared Function GetKEGGReactionIdlist(mods As IEnumerable(Of [Module])) As String()
+            Dim buf As New List(Of String)
+
+            For Each [mod] As [Module] In mods
+                If [mod].Reaction.IsNullOrEmpty Then
                     Continue For
                 End If
 
-                Call ChunkBuffer.AddRange((From item In [Module].Reaction Select item.Key).ToArray)
+                buf += From rxn As ComponentModel.KeyValuePair In [mod].Reaction Select rxn.Key
             Next
 
-            Return (From strId As String In ChunkBuffer Select strId Distinct).ToArray
+            Return (From strId As String In buf Select strId Distinct).ToArray
         End Function
 
         Public Shared Function Download(url As String) As [Module]
-            Dim WebForm As KEGG.WebServices.InternalWebFormParsers.WebForm = New WebForm(url)
+            Dim WebForm As New WebForm(url)
 
             If WebForm.Count = 0 Then
                 Return Nothing

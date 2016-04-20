@@ -77,7 +77,9 @@ Namespace Assembly.KEGG.DBGET.bGetObject
 
         Public Shared Function DownloadFrom(url As String) As Compound
             Dim WebForm As New KEGG.WebServices.InternalWebFormParsers.WebForm(url)
-            Dim Compound As Compound = New Compound With {.Entry = Regex.Match(WebForm.GetValue("Entry").FirstOrDefault, "[GC]\d+").Value}
+            Dim Compound As New Compound With {
+                .Entry = Regex.Match(WebForm.GetValue("Entry").FirstOrDefault, "[GC]\d+").Value
+            }
             Compound.CommonNames = GetCommonNames(WebForm.GetValue("Name").FirstOrDefault())
             Compound.Formula = WebForm.GetValue("Formula").FirstOrDefault.Replace("<br>", "")
             Compound.InvolvedReactions = GetReactionList(WebForm.GetValue("Reaction").FirstOrDefault)
