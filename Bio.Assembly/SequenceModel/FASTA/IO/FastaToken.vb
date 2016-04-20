@@ -325,7 +325,7 @@ Namespace SequenceModel.FASTA
         ''' </summary>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Function Copy() As FastaToken
+        Public Overloads Function Copy() As FastaToken
             Dim FastaObject As FastaToken = New FastaToken With {
                 .Attributes = New String(Me.Attributes.Count - 1) {}
             }
@@ -356,7 +356,7 @@ Namespace SequenceModel.FASTA
         ''' <typeparam name="T">Type information of the target fasta object.</typeparam>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Function Copy(Of T As FastaToken)() As T
+        Public Overloads Function Copy(Of T As FastaToken)() As T
             Dim Model As T = Activator.CreateInstance(Of T)()
             Call CopyTo(Model)
             Return Model
