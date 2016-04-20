@@ -308,6 +308,7 @@
     <Compile Include="SequenceModel\NucleicAcid\Translation\TranslationTable.vb" />
     <Compile Include="SequenceModel\NucleicAcid\Parser\SegmentReader.vb" />
     <Compile Include="SequenceModel\NucleicAcid\NucleicAcidStaticsProperty.vb" />
+    <Compile Include="SequenceModel\Patterns\IPatterns.vb" />
     <Compile Include="SequenceModel\Polypeptides\Chou-Fasman\ChouFasmanAPI.vb" />
     <Compile Include="SequenceModel\MWCalculator.vb" />
     <Compile Include="SequenceModel\Polypeptides\Chou-Fasman\Matrix.vb" />
