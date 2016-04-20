@@ -74,8 +74,8 @@ Namespace Assembly.KEGG.WebServices.InternalWebFormParsers
                 Dim ComponentEntry As String = Regex.Match(strTemp, SplitRegx).Value
                 Dim ComponentDescription As String = strTemp.Replace(ComponentEntry, "").Trim
 
-                ComponentEntry = KEGG.WebServices.InternalWebFormParsers.WebForm.GetNodeValue(ComponentEntry)
-                ComponentDescription = KEGG.WebServices.InternalWebFormParsers.WebForm.RemoveHrefLink(ComponentDescription)
+                ComponentEntry = WebForm.GetNodeValue(ComponentEntry)
+                ComponentDescription = WebForm.RemoveHrefLink(ComponentDescription)
 
                 Call ComponentList.Add(New ComponentModel.KeyValuePair With {.Key = ComponentEntry, .Value = ComponentDescription})
             Next
@@ -84,8 +84,8 @@ Namespace Assembly.KEGG.WebServices.InternalWebFormParsers
             strValue = Mid(strValue, p)
             Dim LastEntry As ComponentModel.KeyValuePair = New ComponentModel.KeyValuePair
             LastEntry.Key = Regex.Match(strValue, SplitRegx).Value
-            LastEntry.Value = KEGG.WebServices.InternalWebFormParsers.WebForm.RemoveHrefLink(strValue.Replace(LastEntry.Key, "").Trim)
-            LastEntry.Key = KEGG.WebServices.InternalWebFormParsers.WebForm.GetNodeValue(LastEntry.Key)
+            LastEntry.Value = WebForm.RemoveHrefLink(strValue.Replace(LastEntry.Key, "").Trim)
+            LastEntry.Key = WebForm.GetNodeValue(LastEntry.Key)
 
             Call ComponentList.Add(LastEntry)
 

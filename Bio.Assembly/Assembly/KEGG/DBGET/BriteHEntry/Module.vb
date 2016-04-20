@@ -118,9 +118,9 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
             Return 0
         End Function
 
-        Private Shared Sub __downloadModules(sp As String, Export As String, Entry As [Module])
+        Private Shared Sub __downloadModules(sp As String, EXPORT As String, Entry As [Module])
             Dim EntryId As String = String.Format("{0}{1}", sp, Entry.Entry.Key)
-            Dim SaveToDir As String = $"{Export}/{TrimPath(Entry.Class)}/{TrimPath(Entry.Category)}/{TrimPath(Entry.SubCategory)}"
+            Dim SaveToDir As String = $"{EXPORT}/{TrimPath(Entry.Class)}/{TrimPath(Entry.Category)}/{TrimPath(Entry.SubCategory)}"
             Dim XmlFile As String = String.Format("{0}/{1}.xml", SaveToDir, EntryId)
 
             If FileIO.FileSystem.FileExists(XmlFile) Then

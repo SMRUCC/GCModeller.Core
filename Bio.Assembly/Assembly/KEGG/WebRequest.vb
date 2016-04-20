@@ -276,11 +276,11 @@ Namespace Assembly.KEGG.WebServices
         End Function
 
         <ExportAPI("Fasta.Download")>
-        Public Function Downloads(DIR As String, sId As String) As LANS.SystemsBiology.SequenceModel.FASTA.FastaToken
+        Public Function Downloads(DIR As String, sId As String) As FASTA.FastaToken
             Dim path As String = $"{DIR}/Downloaded/{sId}.fasta"
 
             If path.FileExists Then
-                Return LANS.SystemsBiology.SequenceModel.FASTA.FastaToken.Load(path)
+                Return FASTA.FastaToken.Load(path)
             Else
                 Try
                     Return __downloads(path, sId)
@@ -304,7 +304,7 @@ Namespace Assembly.KEGG.WebServices
         ''' 
         <ExportAPI("Downloads.Batch",
                    Info:="It is recommended using this method for the batch downloaded of the protein sequence from the KEGG server when the protein is in the same genome.")>
-        Public Function DownloadsBatch(DIR As String, lstId As Generic.IEnumerable(Of String)) As LANS.SystemsBiology.SequenceModel.FASTA.FastaFile
+        Public Function DownloadsBatch(DIR As String, lstId As IEnumerable(Of String)) As FASTA.FastaFile
             Dim LQuery = (From sId As String
                           In lstId
                           Let Entry As QueryEntry = GetQueryEntry(sId)
@@ -317,18 +317,18 @@ Namespace Assembly.KEGG.WebServices
 
             Dim sp As String = LQuery.SpeciesId
             Dim Downloads = (From sId As String In lstId Select __downloadDirect(DIR, sId, sp)).ToArray
-            Return New SequenceModel.FASTA.FastaFile(Downloads)
+            Return New FASTA.FastaFile(Downloads)
         End Function
 
-        Private Function __downloadDirect(DIR As String, sId As String, sp As String) As LANS.SystemsBiology.SequenceModel.FASTA.FastaToken
+        Private Function __downloadDirect(DIR As String, sId As String, sp As String) As FASTA.FastaToken
             Dim path As String = $"{DIR}/Downloaded/{sId}.fasta"
 
             If path.FileExists Then
-                Return LANS.SystemsBiology.SequenceModel.FASTA.FastaToken.Load(path)
+                Return FASTA.FastaToken.Load(path)
             Else
                 Try
                     Dim Entry As New QueryEntry With {.SpeciesId = sp, .LocusId = sId}
-                    Dim fa = LANS.SystemsBiology.Assembly.KEGG.WebServices.WebRequest.FetchSeq(Entry)
+                    Dim fa As FASTA.FastaToken = WebRequest.FetchSeq(Entry)
                     If Not fa Is Nothing Then Call fa.SaveTo(path)
                     Return fa
                 Catch ex As Exception

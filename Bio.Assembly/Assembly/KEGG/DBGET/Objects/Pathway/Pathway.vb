@@ -2,7 +2,9 @@
 Imports System.Xml.Serialization
 Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Language.UnixBash
+Imports Microsoft.VisualBasic.Linq
 
 Namespace Assembly.KEGG.DBGET.bGetObject
 
@@ -47,7 +49,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             Set(value As ComponentModel.KeyValuePair())
                 _lstGene = value
                 If Not value.IsNullOrEmpty Then _
-                    _GeneDict = value.ToDictionary(Function(item As ComponentModel.KeyValuePair) item.Key) Else _
+                    _GeneDict = value.ToDictionary(Function(x) x.Key) Else _
                     _GeneDict = New Dictionary(Of String, ComponentModel.KeyValuePair)
             End Set
         End Property
@@ -76,11 +78,13 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 Return False
             End If
 
-            Dim LQuery = (From comp As ComponentModel.KeyValuePair
-                          In Compound
-                          Where String.Equals(comp.Key, KEGGCompound)
-                          Select comp).FirstOrDefault
-            Return Not LQuery Is Nothing
+            Dim thisLinq As IEnumerable(Of ComponentModel.KeyValuePair) =
+                DefaultFirst(Of ComponentModel.KeyValuePair)() <= From comp As ComponentModel.KeyValuePair
+                                                                  In Compound
+                                                                  Where String.Equals(comp.Key, KEGGCompound)
+                                                                  Select comp
+
+            Return Not [Class](Of ComponentModel.KeyValuePair).IsNullOrEmpty Like thisLinq
         End Function
 
         Public Function IsContainsGeneObject(GeneId As String) As Boolean
@@ -106,19 +110,19 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         ''' <summary>
         ''' Downloads all of the available pathway information for the target species genome.(下载目标基因组对象之中的所有可用的代谢途径信息)
         ''' </summary>
-        ''' <param name="SpeciesCode">The brief code of the target genome species in KEGG database.(目标基因组在KEGG数据库之中的简写编号.)</param>
-        ''' <param name="Export"></param>
+        ''' <param name="sp">The brief code of the target genome species in KEGG database.(目标基因组在KEGG数据库之中的简写编号.)</param>
+        ''' <param name="EXPORT"></param>
         ''' <returns>返回成功下载的代谢途径的数目</returns>
         ''' <remarks></remarks>
-        Public Shared Function Download(SpeciesCode As String, Export As String, Optional BriefFile As String = "") As Integer
+        Public Shared Function Download(sp As String, EXPORT As String, Optional BriefFile As String = "") As Integer
             Dim BriefEntries As KEGG.DBGET.BriteHEntry.Pathway() =
                 If(String.IsNullOrEmpty(BriefFile),
                    KEGG.DBGET.BriteHEntry.Pathway.LoadFromResource,
                    KEGG.DBGET.BriteHEntry.Pathway.LoadData(BriefFile))
 
             For Each Entry As KEGG.DBGET.BriteHEntry.Pathway In BriefEntries
-                Dim EntryId As String = String.Format("{0}{1}", SpeciesCode, Entry.Entry.Key)
-                Dim SaveToDir As String = BriteHEntry.Pathway.CombineDIR(Entry, Export)
+                Dim EntryId As String = String.Format("{0}{1}", sp, Entry.Entry.Key)
+                Dim SaveToDir As String = BriteHEntry.Pathway.CombineDIR(Entry, EXPORT)
 
                 Dim XmlFile As String = String.Format("{0}/{1}.xml", SaveToDir, EntryId)
                 Dim PngFile As String = String.Format("{0}/{1}.png", SaveToDir, EntryId)
@@ -127,14 +131,14 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                     Continue For
                 End If
 
-                Dim Pathway As Pathway = DownloadPage(SpeciesCode, Entry.Entry.Key)
+                Dim Pathway As Pathway = DownloadPage(sp, Entry.Entry.Key)
 
                 If Pathway Is Nothing Then
-                    Call $"[{SpeciesCode}] {Entry.ToString} is not exists in the KEGG!".__DEBUG_ECHO
+                    Call $"[{sp}] {Entry.ToString} is not exists in the KEGG!".__DEBUG_ECHO
                     Continue For
                 End If
 
-                Call DownloadPathwayMap(SpeciesCode, Entry.Entry.Key, SaveLocationDir:=SaveToDir)
+                Call DownloadPathwayMap(sp, Entry.Entry.Key, SaveLocationDir:=SaveToDir)
                 Call Pathway.GetXml.SaveTo(XmlFile)
             Next
 

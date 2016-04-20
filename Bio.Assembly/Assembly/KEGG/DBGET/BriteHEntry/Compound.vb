@@ -28,7 +28,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         Public Property Entry As ComponentModel.KeyValuePair
 
         Private Shared Function Build(Model As BriteHText) As Compound()
-            Dim CompoundList As List(Of Compound) = New List(Of Compound)
+            Dim CompoundList As New List(Of Compound)
 
             Select Case Model.Degree
 
@@ -44,15 +44,16 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                                 Continue For
                             End If
 
-                            Call CompoundList.AddRange((From item As BriteHText
-                                                        In Category.CategoryItems
-                                                        Select New Compound With {
-                                                            .Class = [Class].ClassLabel,
-                                                            .Category = Category.ClassLabel,
-                                                            .Entry = New ComponentModel.KeyValuePair With {
-                                                                .Key = item.EntryId,
-                                                                .Value = item.Description
-                                                            }}).ToArray)
+                            CompoundList += From htext As BriteHText
+                                            In Category.CategoryItems
+                                            Select New Compound With {
+                                                .Class = [Class].ClassLabel,
+                                                .Category = Category.ClassLabel,
+                                                .Entry = New ComponentModel.KeyValuePair With {
+                                                    .Key = htext.EntryId,
+                                                    .Value = htext.Description
+                                                }
+                                            }
                         Next
                     Next
 
@@ -139,26 +140,28 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         '''  br08009  Natural toxins
         '''  br08010  Target-based classification of compounds
         ''' </summary>
-        ''' <param name="Export"></param>
+        ''' <param name="EXPORT"></param>
         ''' <param name="DirectoryOrganized"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function DownloadFromResource(Export As String, Optional DirectoryOrganized As Boolean = True) As Integer
-            Dim Resource = {New KeyValuePair(Of String, Compound())("Compounds with biological roles", Build(BriteHText.Load(My.Resources.br08001))),
-                            New KeyValuePair(Of String, Compound())("Lipids", Build(BriteHText.Load(My.Resources.br08002))),
-                            New KeyValuePair(Of String, Compound())("Phytochemical compounds", Build(BriteHText.Load(My.Resources.br08003))),
-                            New KeyValuePair(Of String, Compound())("Bioactive peptides", Build(BriteHText.Load(My.Resources.br08005))),
-                            New KeyValuePair(Of String, Compound())("Endocrine disrupting compounds", Build(BriteHText.Load(My.Resources.br08006))),
-                            New KeyValuePair(Of String, Compound())("Pesticides", Build(BriteHText.Load(My.Resources.br08007))),
-                            New KeyValuePair(Of String, Compound())("Carcinogens", Build(BriteHText.Load(My.Resources.br08008))),
-                            New KeyValuePair(Of String, Compound())("Natural toxins", Build(BriteHText.Load(My.Resources.br08009))),
-                            New KeyValuePair(Of String, Compound())("Target-based classification of compounds", Build(BriteHText.Load(My.Resources.br08010)))}
+        Public Shared Function DownloadFromResource(EXPORT As String, Optional DirectoryOrganized As Boolean = True) As Integer
+            Dim Resource = {
+                New KeyValuePair(Of String, Compound())("Compounds with biological roles", Build(BriteHText.Load(My.Resources.br08001))),
+                New KeyValuePair(Of String, Compound())("Lipids", Build(BriteHText.Load(My.Resources.br08002))),
+                New KeyValuePair(Of String, Compound())("Phytochemical compounds", Build(BriteHText.Load(My.Resources.br08003))),
+                New KeyValuePair(Of String, Compound())("Bioactive peptides", Build(BriteHText.Load(My.Resources.br08005))),
+                New KeyValuePair(Of String, Compound())("Endocrine disrupting compounds", Build(BriteHText.Load(My.Resources.br08006))),
+                New KeyValuePair(Of String, Compound())("Pesticides", Build(BriteHText.Load(My.Resources.br08007))),
+                New KeyValuePair(Of String, Compound())("Carcinogens", Build(BriteHText.Load(My.Resources.br08008))),
+                New KeyValuePair(Of String, Compound())("Natural toxins", Build(BriteHText.Load(My.Resources.br08009))),
+                New KeyValuePair(Of String, Compound())("Target-based classification of compounds", Build(BriteHText.Load(My.Resources.br08010)))
+            }
 
             For Each BriteEntry In Resource
 
                 For Each Entry As Compound In BriteEntry.Value
                     Dim EntryId As String = Entry.Entry.Key
-                    Dim SaveToDir As String = If(DirectoryOrganized, String.Join("/", Export, BriteEntry.Key, BriteHText.NormalizePath(Entry.Class), BriteHText.NormalizePath(Entry.Category), BriteHText.NormalizePath(Entry.SubCategory)), Export)
+                    Dim SaveToDir As String = If(DirectoryOrganized, String.Join("/", EXPORT, BriteEntry.Key, BriteHText.NormalizePath(Entry.Class), BriteHText.NormalizePath(Entry.Category), BriteHText.NormalizePath(Entry.SubCategory)), EXPORT)
                     Dim XmlFile As String = String.Format("{0}/{1}.xml", SaveToDir, EntryId)
 
                     If FileIO.FileSystem.FileExists(XmlFile) Then

@@ -99,8 +99,7 @@ both of these relationships hold
         <ExportAPI("HandleDownload")>
         Public Function HandleDownload(KO_ID As String) As QueryEntry()
             Dim URL As String = String.Format(ORTHOLOGY_WEBFORM, KO_ID)
-            Dim WebForm As KEGG.WebServices.InternalWebFormParsers.WebForm =
-                New InternalWebFormParsers.WebForm(URL)
+            Dim WebForm As New WebForm(URL)
             Return __genesParser(WebForm, KO_ID)
         End Function
 
@@ -147,8 +146,7 @@ both of these relationships hold
 
         <ExportAPI("Query.From.URL")>
         Public Function QueryURL(url As String) As Orthology
-            Dim WebForm As KEGG.WebServices.InternalWebFormParsers.WebForm =
-                New InternalWebFormParsers.WebForm(url)
+            Dim WebForm As New WebForm(url)
             Dim Orthology As New SSDB.Orthology With {
                 .Entry = WebForm.GetValue("Entry").FirstOrDefault
             }

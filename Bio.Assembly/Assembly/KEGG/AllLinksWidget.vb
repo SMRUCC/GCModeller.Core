@@ -20,10 +20,10 @@ Namespace Assembly.KEGG.WebServices.InternalWebFormParsers
             End Get
         End Property
 
-        Public Shared Function InternalParser(PageContent As String) As AllLinksWidget
+        Public Shared Function InternalParser(html As String) As AllLinksWidget
             Dim Links As AllLinksWidget = New AllLinksWidget
-            PageContent = Regex.Match(PageContent, "All links.+</pre>", RegexOptions.Singleline).Value
-            Dim TempChunk As String() = (From m As Match In Regex.Matches(PageContent, "<a href="".+?"">.+?</a>") Select m.Value).ToArray
+            html = Regex.Match(html, "All links.+</pre>", RegexOptions.Singleline).Value
+            Dim TempChunk As String() = (From m As Match In Regex.Matches(html, "<a href="".+?"">.+?</a>") Select m.Value).ToArray
 
             Links.Links = (From s As String In TempChunk
                            Let url As String = "http://www.genome.jp" & s.Get_href

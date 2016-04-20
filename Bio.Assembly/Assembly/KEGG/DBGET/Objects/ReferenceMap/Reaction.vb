@@ -1,6 +1,7 @@
 ﻿Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
 Imports LANS.SystemsBiology.Assembly.KEGG.WebServices
+Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 
 Namespace Assembly.KEGG.DBGET.ReferenceMap
@@ -19,7 +20,7 @@ Namespace Assembly.KEGG.DBGET.ReferenceMap
         Const ENTRY_PATTERN As String = "<a href=""/dbget-bin/www_bget\?ko:K\d+"
 
         Public Overloads Shared Function Download(Entry As WebServices.ListEntry) As ReferenceMap.ReferenceReaction
-            Dim WebForm = New KEGG.WebServices.InternalWebFormParsers.WebForm(Url:=Entry.Url)
+            Dim WebForm As New WebForm(Url:=Entry.Url)
 
             If WebForm.Count = 0 Then
                 Return Nothing
