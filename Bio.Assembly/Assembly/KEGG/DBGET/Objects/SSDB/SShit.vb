@@ -29,6 +29,12 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
         <XmlAttribute> Public Property Overlap As String
         Public Property Best As ComponentModel.KeyValuePair
 
+        Public ReadOnly Property Coverage As Double
+            Get
+                Return Val(Overlap) / Val(Length)
+            End Get
+        End Property
+
         Public Overrides Function ToString() As String
             Return Entry.ToString
         End Function
