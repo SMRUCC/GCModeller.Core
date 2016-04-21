@@ -66,7 +66,7 @@ Namespace SequenceModel.Patterns
         End Property
 
         Sub New(rs As IEnumerable(Of SimpleSite))
-            Residues = rs
+            Residues = rs.ToArray
         End Sub
 
         Public Iterator Function PWM() As IEnumerable(Of IPatternSite) Implements IPatternProvider.PWM
