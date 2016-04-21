@@ -40,7 +40,7 @@ Namespace SequenceModel.FASTA.Clustal
         ''' </summary>
         Private Sub __initCommon()
             _SRChains = SR.FromAlign(_innerList, levels:=_innerList.Count)
-            Dim variations = BioAssemblyExtensions.Frequency(_innerList)
+            Dim variations = Patterns.Frequency(_innerList)
             Dim dict As IReadOnlyDictionary(Of Integer, IReadOnlyDictionary(Of Char, Double)) =
                 variations.ToDictionary(Function(x) x.Key,
                                         Function(y) DirectCast(y.Value, IReadOnlyDictionary(Of Char, Double))) _
