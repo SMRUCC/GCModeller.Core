@@ -5,6 +5,7 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.ComponentModel
 
 Namespace SequenceModel.Patterns
 
@@ -13,7 +14,7 @@ Namespace SequenceModel.Patterns
         Function PWM() As IEnumerable(Of IPatternSite)
     End Interface
 
-    Public Interface IPatternSite
+    Public Interface IPatternSite : Inherits IAddressHandle
         Default ReadOnly Property Probability(c As Char) As Double
 
         Function EnumerateKeys() As IEnumerable(Of Char)
@@ -31,8 +32,11 @@ Namespace SequenceModel.Patterns
             End Get
         End Property
 
-        Sub New(f As Dictionary(Of Char, Double))
+        Public Property AddrHwnd As Long Implements IAddressHandle.AddrHwnd
+
+        Sub New(f As Dictionary(Of Char, Double), i As Integer)
             Alphabets = f
+            AddrHwnd = i
         End Sub
 
         Public Overrides Function ToString() As String
@@ -46,6 +50,9 @@ Namespace SequenceModel.Patterns
         Public Function EnumerateValues() As IEnumerable(Of Double) Implements IPatternSite.EnumerateValues
             Return Alphabets.Values
         End Function
+
+        Public Sub Dispose() Implements IDisposable.Dispose
+        End Sub
     End Structure
 
     Public Structure PatternModel : Implements IPatternProvider
@@ -118,8 +125,8 @@ Namespace SequenceModel.Patterns
                           Select pos, row = (From c As Char In Chars Select c, f = __frequency(fa, pos, c, Counts)).ToArray
                           Order By pos Ascending).ToArray
             Dim Model As IEnumerable(Of SimpleSite) =
-                From x In LQuery
-                Select New SimpleSite(x.row.ToDictionary(Function(o0) o0.c, Function(o0) o0.f))
+                From x In LQuery.SeqIterator
+                Select New SimpleSite(x.obj.row.ToDictionary(Function(o0) o0.c, Function(o0) o0.f), x.Pos)
 
             Return New PatternModel(Model)
         End Function
