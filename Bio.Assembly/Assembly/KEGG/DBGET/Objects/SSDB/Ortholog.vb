@@ -1,9 +1,13 @@
 ﻿Imports System.Data.Linq.Mapping
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic.Linq.Extensions
+Imports Microsoft.VisualBasic.Serialization
 
 Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
 
+    ''' <summary>
+    ''' http://www.kegg.jp/ssdb-bin/ssdb_best?org_gene=sp:locus_tag
+    ''' </summary>
     Public Class Ortholog
 
         Public Property sp As String
@@ -12,17 +16,21 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
         ''' </summary>
         ''' <returns></returns>
         Public Property LocusId As String
-        Public Property hit_name As String
+        <Column(Name:="KEGG_Entry")> Public Property hit_name As String
         Public Property Definition As String
         Public Property KO As String
         Public Property query_length As Integer
-        Public Property len As Integer
+        <Column(Name:="Length")> Public Property len As Integer
         <Column(Name:="SW-score")> Public Property SW As Double
-        Public Property margin As Integer
+        <Column(Name:="Margin")> Public Property margin As Integer
         Public Property bits As Double
         Public Property identity As Double
         Public Property overlap As Double
-        <Column(Name:="SW-score")> Public Property bestAll As String
+        <Column(Name:="best(all)")> Public Property bestAll As String
+
+        Public Overrides Function ToString() As String
+            Return Me.GetJson
+        End Function
 
         Public Shared Function CreateObjects(result As SSDB.OrthologREST) As Ortholog()
             Return result.Orthologs.ToArray(Function(x) __createObject(result, x))
