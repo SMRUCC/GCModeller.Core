@@ -4,6 +4,7 @@ Imports LANS.SystemsBiology.Assembly.KEGG.WebServices
 Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
 Imports LANS.SystemsBiology.SequenceModel
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 
 Namespace Assembly.KEGG.DBGET.ReferenceMap
@@ -106,23 +107,23 @@ Namespace Assembly.KEGG.DBGET.ReferenceMap
 
             sValue = Form("Module").FirstOrDefault
             If Not String.IsNullOrEmpty(sValue) Then
-                RefMap.Module = Linq.Exec(Of ComponentModel.KeyValuePair)() <= From m As Match
-                                                                               In Regex.Matches(sValue, MODULE_PATTERN)
-                                                                               Let str As String = m.Value
-                                                                               Let ModID As String = Regex.Match(str, "M\d+").Value
-                                                                               Let descr As String = str.Replace(String.Format("<a href=""/kegg-bin/show_module?{0}"">{0}</a>", ModID), "").Trim
-                                                                               Select New ComponentModel.KeyValuePair With {
-                                                                                   .Key = ModID,
-                                                                                   .Value = Regex.Replace(descr, "<a href=""/kegg-bin/show_pathway?map\d+\+M\d+"">map\d+</a>", ModID)
-                                                                               }
+                RefMap.Module = LinqAPI.Exec(Of ComponentModel.KeyValuePair)() <= From m As Match
+                                                                                  In Regex.Matches(sValue, MODULE_PATTERN)
+                                                                                  Let str As String = m.Value
+                                                                                  Let ModID As String = Regex.Match(str, "M\d+").Value
+                                                                                  Let descr As String = str.Replace(String.Format("<a href=""/kegg-bin/show_module?{0}"">{0}</a>", ModID), "").Trim
+                                                                                  Select New ComponentModel.KeyValuePair With {
+                                                                                        .Key = ModID,
+                                                                                        .Value = Regex.Replace(descr, "<a href=""/kegg-bin/show_pathway?map\d+\+M\d+"">map\d+</a>", ModID)
+                                                                                  }
             End If
 
             sValue = Form("Disease").FirstOrDefault
             If Not String.IsNullOrEmpty(sValue) Then
-                RefMap.Disease = Linq.Exec(Of ComponentModel.KeyValuePair) <= From m As Match
-                                                                              In Regex.Matches(sValue, "<a href=""/dbget-bin/www_bget\?ds:H.+?"">H.+?</a> [^<]+")
-                                                                              Let str As String = m.Value
-                                                                              Select __diseaseParser(str)
+                RefMap.Disease = LinqAPI.Exec(Of ComponentModel.KeyValuePair) <= From m As Match
+                                                                                 In Regex.Matches(sValue, "<a href=""/dbget-bin/www_bget\?ds:H.+?"">H.+?</a> [^<]+")
+                                                                                 Let str As String = m.Value
+                                                                                 Select __diseaseParser(str)
             End If
 
             sValue = Form("Other DBs").FirstOrDefault
@@ -136,9 +137,9 @@ Namespace Assembly.KEGG.DBGET.ReferenceMap
             RefMap.ReferenceGenes = (From item As ListEntry In RefGeneEntryList
                                      Select New KeyValuePairObject(Of ListEntry, KeyValuePairObject(Of String, FASTA.FastaToken)()) _
                                      With {.Key = item, .Value = Nothing}).ToArray
-            RefMap.Reactions = Linq.Exec(Of ReferenceReaction) <= From Entry As ListEntry
-                                                                  In ReactionEntryList
-                                                                  Select __downloadRefRxn(Entry)
+            RefMap.Reactions = LinqAPI.Exec(Of ReferenceReaction) <= From Entry As ListEntry
+                                                                     In ReactionEntryList
+                                                                     Select __downloadRefRxn(Entry)
 
             Return RefMap
         End Function

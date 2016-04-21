@@ -79,10 +79,10 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             End If
 
             Dim thisLinq As IEnumerable(Of ComponentModel.KeyValuePair) =
-                DefaultFirst(Of ComponentModel.KeyValuePair)() <= From comp As ComponentModel.KeyValuePair
-                                                                  In Compound
-                                                                  Where String.Equals(comp.Key, KEGGCompound)
-                                                                  Select comp
+                LinqAPI.DefaultFirst(Of ComponentModel.KeyValuePair)() <= From comp As ComponentModel.KeyValuePair
+                                                                          In Compound
+                                                                          Where String.Equals(comp.Key, KEGGCompound)
+                                                                          Select comp
 
             Return Not [Class](Of ComponentModel.KeyValuePair).IsNullOrEmpty Like thisLinq
         End Function

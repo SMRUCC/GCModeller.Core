@@ -1,7 +1,9 @@
 ﻿Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
+Imports LANS.SystemsBiology.Assembly.KEGG.WebServices
 Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema
 Imports LANS.SystemsBiology.ComponentModel.DBLinkBuilder
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.KEGG.DBGET.bGetObject
 
@@ -31,13 +33,13 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             Compound.Composition = WebForm.GetValue("Composition").FirstOrDefault.Replace("<br>", "")
             Compound.Reactions = KEGG.DBGET.bGetObject.Compound.GetReactionList(WebForm.GetValue("Reaction").FirstOrDefault)
             Compound.Pathway =
-                Linq.Exec(Of String) <= From x As ComponentModel.KeyValuePair
-                                        In KEGG.WebServices.InternalWebFormParsers.WebForm.parseList(WebForm.GetValue("Pathway").FirstOrDefault, "<a href="".*/kegg-bin/show_pathway\?.+?"">.+?</a>")
-                                        Select String.Format("[{0}] {1}", x.Key, x.Value)
+                LinqAPI.Exec(Of String) <= From x As ComponentModel.KeyValuePair
+                                           In InternalWebFormParsers.WebForm.parseList(WebForm.GetValue("Pathway").FirstOrDefault, "<a href="".*/kegg-bin/show_pathway\?.+?"">.+?</a>")
+                                           Select String.Format("[{0}] {1}", x.Key, x.Value)
             Compound.Module =
-                Linq.Exec(Of String) <= From x As ComponentModel.KeyValuePair
-                                        In KEGG.WebServices.InternalWebFormParsers.WebForm.parseList(WebForm.GetValue("Module").FirstOrDefault, "<a href="".*/kegg-bin/show_module\?.+?"">.+?</a>")
-                                        Select String.Format("[{0}] {1}", x.Key, x.Value)
+                LinqAPI.Exec(Of String) <= From x As ComponentModel.KeyValuePair
+                                           In InternalWebFormParsers.WebForm.parseList(WebForm.GetValue("Module").FirstOrDefault, "<a href="".*/kegg-bin/show_module\?.+?"">.+?</a>")
+                                           Select String.Format("[{0}] {1}", x.Key, x.Value)
             Compound._DBLinks = KEGG.DBGET.bGetObject.Compound.GetDBLinks(WebForm.GetValue("Other DBs").FirstOrDefault)
             Compound.Mass = Val(WebForm.GetValue("Mass").FirstOrDefault)
 
