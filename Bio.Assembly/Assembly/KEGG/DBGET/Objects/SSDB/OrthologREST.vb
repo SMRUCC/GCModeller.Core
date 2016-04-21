@@ -6,7 +6,9 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
     ''' <summary>
     ''' 蛋白质直系同源比对blastp结果
     ''' </summary>
-    ''' 
+    ''' <remarks>
+    ''' 在直系同源的数据被下载下来之后，这个对象会被直接保存为Xml文档
+    ''' </remarks>
     <XmlType("Ortholog")>
     Public Class OrthologREST
 
