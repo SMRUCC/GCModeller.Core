@@ -57,7 +57,7 @@ Namespace Assembly.MetaCyc.Schema.PathwayBrief
 
         Public Property Is_Super_Pathway As Boolean
 
-        Public ReadOnly Property Associated_gene_counts As Integer
+        Public ReadOnly Property NumOfGenes As Integer
             Get
                 If PathwayGenes.IsNullOrEmpty Then
                     Return 0

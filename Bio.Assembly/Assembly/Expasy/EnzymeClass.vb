@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+Imports Microsoft.VisualBasic.Serialization
 
 Namespace Assembly.Expasy.AnnotationsTool
 
@@ -42,6 +43,10 @@ Namespace Assembly.Expasy.AnnotationsTool
 
         Public Property ProteinId As String Implements sIdEnumerable.Identifier, IKeyValuePairObject(Of String, String).Identifier
         Public Property UniprotMatched As String Implements IKeyValuePairObject(Of String, String).Value
+
+        Public Overrides Function ToString() As String
+            Return MyClass.GetJson
+        End Function
     End Class
 
     ''' <summary>

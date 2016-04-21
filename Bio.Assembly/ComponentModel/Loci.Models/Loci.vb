@@ -7,7 +7,7 @@ Namespace ComponentModel.Loci
 
         Public Property TagData As String
         Public Property Left As Long Implements ILocationComponent.Left
-        Public Property Right As Long Implements ILocationComponent.Right
+        Public Property Right As Long Implements ILocationComponent.Address
 
         Public Overrides Function ToString() As String
             Return TagData

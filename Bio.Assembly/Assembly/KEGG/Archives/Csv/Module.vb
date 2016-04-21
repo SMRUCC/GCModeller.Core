@@ -81,11 +81,11 @@ Namespace Assembly.KEGG.Archives.Csv
         ''' <summary>
         ''' 导出XML文件之中的数据至Csv文件之中
         ''' </summary>
-        ''' <typeparam name="CollectionType"></typeparam>
+        ''' <typeparam name="TSource"></typeparam>
         ''' <param name="Data"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function [Imports](Of CollectionType As Generic.IEnumerable(Of KEGG.DBGET.bGetObject.Module))(Data As CollectionType) As [Module]()
+        Public Shared Function [Imports](Of TSource As IEnumerable(Of KEGG.DBGET.bGetObject.Module))(Data As TSource) As [Module]()
             Dim mods = (From kmod As KEGG.DBGET.bGetObject.Module
                         In Data
                         Select GenerateObject(kmod)).ToArray

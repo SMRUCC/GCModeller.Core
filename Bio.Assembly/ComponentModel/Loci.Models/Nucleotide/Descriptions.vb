@@ -26,7 +26,7 @@ Namespace ComponentModel.Loci
 
         <Extension> Public Function BlankSegment(Of T As I_GeneBrief)(Location As NucleotideLocation) As T
             Dim BlankData = Activator.CreateInstance(Of T)()
-            BlankData.COG = BLANK_VALUE
+            BlankData.Address = BLANK_VALUE
             BlankData.Product = BLANK_VALUE
             BlankData.Identifier = BLANK_VALUE
             BlankData.Length = Location.FragmentSize

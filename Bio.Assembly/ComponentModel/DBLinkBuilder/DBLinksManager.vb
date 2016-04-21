@@ -47,7 +47,7 @@ Namespace ComponentModel.DBLinkBuilder
         Public Sub AddEntry(Entry As TLink)
             Dim LQuery = (From item As TLink In DBLinkObjects
                           Where String.Equals(item.locusId, Entry.locusId, StringComparison.OrdinalIgnoreCase) AndAlso
-                              String.Equals(item.Entry, Entry.Entry, StringComparison.OrdinalIgnoreCase)
+                              String.Equals(item.Address, Entry.Address, StringComparison.OrdinalIgnoreCase)
                           Select item).ToArray
 
             If LQuery.IsNullOrEmpty Then
@@ -61,7 +61,7 @@ Namespace ComponentModel.DBLinkBuilder
             If Not links.IsNullOrEmpty Then
                 For Each ll In (From n As TLink
                                 In links
-                                Where String.Equals(n.Entry, Entry, StringComparison.OrdinalIgnoreCase)
+                                Where String.Equals(n.Address, Entry, StringComparison.OrdinalIgnoreCase)
                                 Select n).ToArray
                     Call _DBLinkObjects.Remove(ll)
                 Next
@@ -71,7 +71,7 @@ Namespace ComponentModel.DBLinkBuilder
         Public Sub AddEntry(DBName As String, Entry As String)
             Dim EntryObject As TLink = Activator.CreateInstance(Of TLink)()
             EntryObject.locusId = DBName
-            EntryObject.Entry = Entry
+            EntryObject.Address = Entry
             Call AddEntry(Entry:=EntryObject)
         End Sub
 

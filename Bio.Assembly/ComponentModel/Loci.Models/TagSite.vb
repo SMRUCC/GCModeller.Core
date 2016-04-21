@@ -6,9 +6,9 @@ Imports Microsoft.VisualBasic
 Namespace ComponentModel.Loci.Abstract
 
     Public Interface ITagSite
-        Property tag As String
+        Property Address As String
         ''' <summary>
-        ''' 当前的这个位点对象距离<see cref="tag"/>所标记的位点的距离
+        ''' 当前的这个位点对象距离<see cref="Address"/>所标记的位点的距离
         ''' </summary>
         ''' <returns></returns>
         Property Distance As Integer
@@ -18,10 +18,10 @@ Namespace ComponentModel.Loci.Abstract
 
         <Extension>
         Public Iterator Function Groups(Of T As ITagSite)(source As IEnumerable(Of T), Optional offset As Integer = 10) As IEnumerable(Of GroupResult(Of T, String))
-            Dim Grouping = (From x As T In source Select x Group x By x.tag Into Group)  ' 首先按照位点的tag标记进行分组
+            Dim Grouping = (From x As T In source Select x Group x By x.Address Into Group)  ' 首先按照位点的tag标记进行分组
             Dim locis As GroupResult(Of T, String)() = (From x
                                                         In Grouping'.AsParallel
-                                                        Select x.Group.__innerGroup(offset, tag:=x.tag)).MatrixToVector
+                                                        Select x.Group.__innerGroup(offset, tag:=x.Address)).MatrixToVector
             For Each x As GroupResult(Of T, String) In locis
                 Yield x
             Next

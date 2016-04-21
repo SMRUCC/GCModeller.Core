@@ -203,10 +203,10 @@ Namespace Assembly.NCBI.COG
                 {COGCategories.Unclassified, New String() {}}
             }
             Dim LQuery = (From x In (From gene As T In source.AsParallel
-                                     Let categories As COGCategories() = GetCategories(gene.COG)
+                                     Let categories As COGCategories() = GetCategories(gene.Address)
                                      Select (From cat As COGCategories In categories
                                              Select geneId = gene.Identifier,
-                                                 category = GetCategory(gene.COG)).ToArray).MatrixToList
+                                                 category = GetCategory(gene.Address)).ToArray).MatrixToList
                           Select geneid = x.geneId,
                               category = x.category
                           Group By category Into Group).ToArray

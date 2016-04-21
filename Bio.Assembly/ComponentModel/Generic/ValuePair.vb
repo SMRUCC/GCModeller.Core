@@ -33,7 +33,7 @@ Namespace ComponentModel
             Me.Value = value
         End Sub
 
-        Public Shared Function Format_Prints(data As Generic.IEnumerable(Of KeyValuePair)) As String
+        Public Shared Function Format_Prints(data As IEnumerable(Of KeyValuePair)) As String
             If data.IsNullOrEmpty Then
                 Return ""
             End If

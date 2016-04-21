@@ -11,7 +11,7 @@ Namespace ComponentModel.DBLinkBuilder
 
     Public Interface IDBLink
         Property locusId As String
-        Property Entry As String
+        Property Address As String
         ''' <summary>
         ''' 将对象模型转换为含有格式的字符串的值用以写入文件之中
         ''' </summary>

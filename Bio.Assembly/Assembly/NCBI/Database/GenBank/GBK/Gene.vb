@@ -17,7 +17,7 @@ Namespace Assembly.NCBI.GenBank.GBFF
         Public Property LocusTag As String Implements sIdEnumerable.Identifier, IKeyValuePairObject(Of String, Feature()).Identifier,
             ITripleKeyValuesPair(Of String, String, Feature()).Identifier
         Public Property Features As Feature() Implements IKeyValuePairObject(Of String, Feature()).Value,
-            ITripleKeyValuesPair(Of String, String, Feature()).Value3
+            ITripleKeyValuesPair(Of String, String, Feature()).Address
 
         Public Overrides Function ToString() As String
             Return LocusTag

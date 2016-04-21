@@ -9,7 +9,7 @@ Namespace ComponentModel.DBLinkBuilder
         Implements sIdEnumerable
 
         Public Property DBName As String Implements IKeyValuePairObject(Of String, String).Identifier, sIdEnumerable.Identifier, IDBLink.locusId
-        Public Property Entry As String Implements IKeyValuePairObject(Of String, String).Value, IDBLink.Entry
+        Public Property Entry As String Implements IKeyValuePairObject(Of String, String).Value, IDBLink.Address
 
         Public Overrides Function ToString() As String
             Return ToString(Me)

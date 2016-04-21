@@ -22,7 +22,7 @@ Namespace ComponentModel
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Property COG As String
+        Property Address As String
         ''' <summary>
         ''' The protein function annotation data of the gene coding product.(所编码的蛋白质产物的功能注释)
         ''' </summary>

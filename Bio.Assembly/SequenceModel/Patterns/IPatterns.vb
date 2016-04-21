@@ -32,11 +32,11 @@ Namespace SequenceModel.Patterns
             End Get
         End Property
 
-        Public Property AddrHwnd As Long Implements IAddressHandle.AddrHwnd
+        Public Property Address As Integer Implements IAddressHandle.Address
 
         Sub New(f As Dictionary(Of Char, Double), i As Integer)
             Alphabets = f
-            AddrHwnd = i
+            Address = i
         End Sub
 
         Public Overrides Function ToString() As String

@@ -46,7 +46,7 @@ Namespace ComponentModel.Loci
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        <XmlAttribute> Public Property Right As Long Implements ILocationComponent.Right, IKeyValuePairObject(Of Long, Long).Value
+        <XmlAttribute> Public Property Right As Long Implements ILocationComponent.Address, IKeyValuePairObject(Of Long, Long).Value
 
         Sub New()
         End Sub

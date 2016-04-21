@@ -30,7 +30,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat.ComponentModels
         ''' <remarks></remarks>
         <XmlAttribute> Public Property Gene As String
         <XmlAttribute> Public Property Code As String
-        <XmlAttribute> Public Property COG As String Implements I_GeneBrief.COG
+        <XmlAttribute> Public Property COG As String Implements I_GeneBrief.Address
         ''' <summary>
         ''' 基因的蛋白质产物的功能的描述
         ''' </summary>
@@ -63,7 +63,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 
         Public Function getCOGEntry(Of T_Entry As I_COGEntry)() As T_Entry
             Dim obj As T_Entry = Activator.CreateInstance(Of T_Entry)()
-            obj.COG = COG
+            obj.Address = COG
             obj.Length = Length
             obj.Product = Product
             obj.Identifier = Synonym
@@ -92,7 +92,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 
         Public Shared Function CreateObject(obj As I_GeneBrief) As GeneBrief
             Return New GeneBrief With {
-                .COG = obj.COG,
+                .COG = obj.Address,
                 .Length = obj.Length,
                 .Location = obj.Location,
                 .Product = obj.Product,

@@ -37,7 +37,7 @@ Namespace Assembly.NCBI.COG
             Dim locus = source.ToArray(
                 Function(x) New With {
                     x.Identifier,
-                     .COG = Strings.UCase([Function].__trimCOGs(x.COG))})
+                     .COG = Strings.UCase([Function].__trimCOGs(x.Address))})
 
             hash.Add("-", New With {.fun = __notAssigned(), .count = New List(Of String)})
             For Each x In locus
