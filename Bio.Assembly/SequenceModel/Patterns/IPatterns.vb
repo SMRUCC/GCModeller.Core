@@ -9,11 +9,15 @@ Imports Microsoft.VisualBasic.Linq
 Namespace SequenceModel.Patterns
 
     Public Interface IPatternProvider
+        Default ReadOnly Property Site(i As Integer) As IPatternSite
         Function PWM() As IEnumerable(Of IPatternSite)
     End Interface
 
     Public Interface IPatternSite
         Default ReadOnly Property Probability(c As Char) As Double
+
+        Function EnumerateKeys() As IEnumerable(Of Char)
+        Function EnumerateValues() As IEnumerable(Of Double)
     End Interface
 
     Public Structure SimpleSite
@@ -27,14 +31,36 @@ Namespace SequenceModel.Patterns
             End Get
         End Property
 
+        Sub New(f As Dictionary(Of Char, Double))
+            Alphabets = f
+        End Sub
+
         Public Overrides Function ToString() As String
             Return Alphabets.GetJson
+        End Function
+
+        Public Function EnumerateKeys() As IEnumerable(Of Char) Implements IPatternSite.EnumerateKeys
+            Return Alphabets.Keys
+        End Function
+
+        Public Function EnumerateValues() As IEnumerable(Of Double) Implements IPatternSite.EnumerateValues
+            Return Alphabets.Values
         End Function
     End Structure
 
     Public Structure PatternModel : Implements IPatternProvider
 
-        Public ReadOnly Residues As SimpleSite()
+        Public ReadOnly Property Residues As SimpleSite()
+
+        Default Public ReadOnly Property Site(i As Integer) As IPatternSite Implements IPatternProvider.Site
+            Get
+                Return Residues(i)
+            End Get
+        End Property
+
+        Sub New(rs As IEnumerable(Of SimpleSite))
+            Residues = rs
+        End Sub
 
         Public Iterator Function PWM() As IEnumerable(Of IPatternSite) Implements IPatternProvider.PWM
             For Each x As SimpleSite In Residues
@@ -56,10 +82,10 @@ Namespace SequenceModel.Patterns
         ''' 
         <ExportAPI("NT.Frequency")>
         Public Sub Frequency(<Parameter("Path.Fasta")> Fasta As String, Optional offset As Integer = 0)
-            Dim data = Frequency(FastaFile.Read(Fasta))
+            Dim data As PatternModel = Frequency(FastaFile.Read(Fasta))
             Dim doc As New StringBuilder(NameOf(Frequency) & ",")
-            Call doc.AppendLine(String.Join(",", data.First.Value.Keys.ToArray(Function(c) CStr(c))))
-            Call doc.AppendLine(String.Join(vbCrLf, data.ToArray(Function(obj) $"{obj.Key + offset },{String.Join(",", obj.Value.ToArray(Of String)(Function(oo) CStr(oo.Value)))}")))
+            Call doc.AppendLine(String.Join(",", DirectCast(data.PWM.First, SimpleSite).Alphabets.Keys.ToArray(Function(c) CStr(c))))
+            Call doc.AppendLine(String.Join(vbCrLf, data.PWM.ToArray(Function(obj, i) $"{i + offset },{String.Join(",", obj.EnumerateValues.ToArray(Of String)(Function(oo) CStr(oo)))}")))
 
             Call doc.ToString.SaveTo(Fasta & ".csv")
         End Sub
@@ -70,7 +96,7 @@ Namespace SequenceModel.Patterns
         ''' <param name="Fasta"></param>
         ''' <returns></returns>
         <ExportAPI("NT.Frequency")>
-        Public Function Frequency(Fasta As FastaFile) As Dictionary(Of Integer, Dictionary(Of Char, Double))
+        Public Function Frequency(Fasta As FastaFile) As PatternModel
             Return Frequency(source:=Fasta)
         End Function
 
@@ -80,21 +106,22 @@ Namespace SequenceModel.Patterns
         ''' <param name="source"></param>
         ''' <returns></returns>
         <ExportAPI("NT.Frequency")>
-        Public Function Frequency(source As IEnumerable(Of FastaToken)) As Dictionary(Of Integer, Dictionary(Of Char, Double))
+        Public Function Frequency(source As IEnumerable(Of FastaToken)) As PatternModel
             Dim Len As Integer = source.First.Length
             Dim Counts = source.Count
             Dim Chars As Char() = If(source.First.IsProtSource, Polypeptides.ToChar.Values.ToArray, New Char() {"A"c, "T"c, "G"c, "C"c})
 
             ' 转换为大写
-            Dim fa = New FastaFile(source.ToArray(Function(x) New FastaToken(x.Attributes, x.SequenceData.ToUpper)))
+            Dim fa As New FastaFile(source.ToArray(Function(x) New FastaToken(x.Attributes, x.SequenceData.ToUpper)))
             Dim LQuery = (From pos As Integer
                           In Len.Sequence.AsParallel
                           Select pos, row = (From c As Char In Chars Select c, f = __frequency(fa, pos, c, Counts)).ToArray
                           Order By pos Ascending).ToArray
-            Return LQuery.ToDictionary(Of Integer, Dictionary(Of Char, Double))(
-                Function(obj) obj.pos,
-                Function(obj) obj.row.ToDictionary(Function(o0) o0.c,
-                                                   Function(o0) o0.f))
+            Dim Model As IEnumerable(Of SimpleSite) =
+                From x In LQuery
+                Select New SimpleSite(x.row.ToDictionary(Function(o0) o0.c, Function(o0) o0.f))
+
+            Return New PatternModel(Model)
         End Function
 
         ''' <summary>
@@ -123,19 +150,19 @@ Namespace SequenceModel.Patterns
                                                 "The fasta object parameter should be the output of mega multiple alignment result. All of the sequence in this parameter should be in the same length.")>
                                      Fasta As FASTA.FastaFile,
                                      Optional cutoff As Double = 0.75) As Double()
-            Dim frq = Frequency(Fasta)
+            Dim frq As PatternModel = Frequency(Fasta)
             Dim refSeq As String = ref.SequenceData.ToUpper
             Dim var As Double() = refSeq.ToArray(Function(ch, pos) __variation(ch, pos, cutoff, frq))
             Return var
         End Function
 
-        Private Function __variation(ch As Char, index As Integer, cutoff As Double, fr As Dictionary(Of Integer, Dictionary(Of Char, Double))) As Double
+        Private Function __variation(ch As Char, index As Integer, cutoff As Double, fr As PatternModel) As Double
             If ch = "-"c Then
                 Return 1
             End If
 
-            Dim pos = fr(index)
-            If Not pos.ContainsKey(ch) Then
+            Dim pos As IPatternSite = fr(index)
+            If Array.IndexOf(pos.EnumerateKeys.ToArray, ch) = -1 Then
                 Return 1
             End If
 

@@ -1,8 +1,6 @@
-﻿Imports Path = System.String
-
-Imports System.Text
+﻿Imports System.Text
 Imports System.Text.RegularExpressions
-Imports Microsoft.VisualBasic.Linq.Extensions
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Scripting
 
@@ -40,10 +38,11 @@ Namespace SequenceModel.FASTA.Clustal
         ''' </summary>
         Private Sub __initCommon()
             _SRChains = SR.FromAlign(_innerList, levels:=_innerList.Count)
-            Dim variations = Patterns.Frequency(_innerList)
+            Dim variations As Patterns.PatternModel = Patterns.Frequency(_innerList)
             Dim dict As IReadOnlyDictionary(Of Integer, IReadOnlyDictionary(Of Char, Double)) =
-                variations.ToDictionary(Function(x) x.Key,
-                                        Function(y) DirectCast(y.Value, IReadOnlyDictionary(Of Char, Double))) _
+                variations.Residues.SeqIterator _
+               .ToDictionary(Function(x) x.Pos,
+                             Function(y) DirectCast(y.obj.Alphabets, IReadOnlyDictionary(Of Char, Double))) _
                                         .As(Of IReadOnlyDictionary(Of Integer, IReadOnlyDictionary(Of Char, Double)))
             _Frequency = dict
             _Conservation = dict.ToArray(Function(x) __getSite(x))
