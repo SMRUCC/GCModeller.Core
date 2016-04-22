@@ -26,6 +26,22 @@ Namespace SequenceModel.Patterns
 
         Public ReadOnly Property Alphabets As Dictionary(Of Char, Double)
 
+        ''' <summary>
+        ''' Is this residue conserved in this motif?
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property IsConserved As Boolean
+            Get
+                For Each x As Double In Alphabets.Values
+                    If x = 1.0R Then
+                        Return True
+                    End If
+                Next
+
+                Return False
+            End Get
+        End Property
+
         Default Public ReadOnly Property Probability(c As Char) As Double Implements IPatternSite.Probability
             Get
                 Return _Alphabets(c)

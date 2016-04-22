@@ -18,16 +18,26 @@ Namespace Assembly.KEGG.DBGET.bGetObject.Organism
     Public Module EntryAPI
 
         ReadOnly __cacheList As KEGGOrganism
+        ReadOnly __spHash As Dictionary(Of String, Organism)
 
         Sub New()
             Try
                 Dim res As New SoftwareToolkits.Resources(GetType(EntryAPI).Assembly)
-                __cacheList = __loadList(res.GetString("KEGG_Organisms__Complete_Genomes"))
+                __cacheList = __loadList(res.GetString("KEGG_Organism_Complete_Genomes"))
+                __spHash = __cacheList.ToArray.ToDictionary(Function(x) x.KEGGId)
             Catch ex As Exception
                 Call App.LogException(ex)
                 Call ex.PrintException
             End Try
         End Sub
+
+        Public Function GetValue(sp As String) As Organism
+            If __spHash.ContainsKey(sp) Then
+                Return __spHash(sp)
+            Else
+                Return Nothing
+            End If
+        End Function
 
         ''' <summary>
         ''' 通过本地资源从基因组全名之中得到KEGG之中的三字母的简写代码
@@ -63,33 +73,31 @@ Namespace Assembly.KEGG.DBGET.bGetObject.Organism
         Public Const DELIMITER As String = "</td>"
         Public Const CELL As String = "<tr .+?</tr>"
 
-        Private Function __loadList(PageContent As String) As KEGGOrganism
-            Dim Tokens As String() = (From m As Match
-                                      In Regex.Matches(PageContent, CELL, RegexOptions.Singleline)
-                                      Select m.Value).Skip(1).ToArray
-            Dim List As Organism() = New Organism(Tokens.Length - 1) {}
+        Private Function __loadList(html As String) As KEGGOrganism
+            Dim Tokens As String() = Regex.Matches(html, CELL, RegexICSng).ToArray.Skip(1).ToArray
+            Dim eulst As Organism() = New Organism(Tokens.Length - 1) {}
             Dim i As Integer
-            Dim List2 As Prokaryote() = New Prokaryote(Tokens.Length - i) {}
+            Dim prlst As Prokaryote() = New Prokaryote(Tokens.Length - i) {}
 
             For i = 0 To Tokens.Length - 1
-                List(i) = Organism.CreateObject(Tokens(i))
-                If List(i) Is Nothing Then
+                eulst(i) = Organism.CreateObject(Tokens(i))
+                If eulst(i) Is Nothing Then
                     Exit For
                 End If
             Next
 
             Dim j As Integer
             For i = i + 1 To Tokens.Length - 1
-                List2(j) = New Prokaryote(Tokens(i))
+                prlst(j) = New Prokaryote(Tokens(i))
                 j += 1
             Next
 
-            Dim LQuery = (From Handle As Integer In List.Sequence
-                          Let obj As Organism = List(Handle)
+            Dim LQuery = (From Handle As Integer In eulst.Sequence
+                          Let obj As Organism = eulst(Handle)
                           Where Not obj Is Nothing
                           Select obj.Trim).ToArray
-            Dim lstProk As Prokaryote() = (From handle As Integer In List2.Sequence
-                                           Let obj As Prokaryote = List2(handle)
+            Dim lstProk As Prokaryote() = (From handle As Integer In prlst.Sequence
+                                           Let obj As Prokaryote = prlst(handle)
                                            Where Not obj Is Nothing
                                            Select DirectCast(obj.Trim, Prokaryote)).ToArray
             Dim lstKEGGOrgsm As KEGGOrganism =
@@ -144,8 +152,8 @@ Namespace Assembly.KEGG.DBGET.bGetObject.Organism
         ''' <returns></returns>
         <ExportAPI("list.Get", Info:="Gets the latest KEGG organism list from query the KEGG database.")>
         Public Function GetOrganismList() As KEGGOrganism
-            Dim PageContent As String = WEB_URL.GET
-            Return __loadList(PageContent)
+            Dim html As String = WEB_URL.GET
+            Return __loadList(html)
         End Function
 
         Public Function FromResource(url As String) As KEGGOrganism
@@ -212,8 +220,16 @@ Namespace Assembly.KEGG.DBGET.bGetObject.Organism
         <XmlAttribute> Public Property Kingdom As String
         <XmlAttribute> Public Property Phylum As String
         <XmlAttribute> Public Property [Class] As String
+        ''' <summary>
+        ''' 物种全称
+        ''' </summary>
+        ''' <returns></returns>
         Public Property Species As String
 
+        ''' <summary>
+        ''' KEGG里面的物种的简称代码
+        ''' </summary>
+        ''' <returns></returns>
         <XmlAttribute> Public Property KEGGId As String Implements sIdEnumerable.Identifier
         ''' <summary>
         ''' FTP url on NCBI
