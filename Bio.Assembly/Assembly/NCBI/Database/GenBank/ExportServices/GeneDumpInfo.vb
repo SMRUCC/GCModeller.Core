@@ -51,7 +51,7 @@ Namespace Assembly.NCBI.GenBank.CsvExports
         Public Property Translation As String
         Public Property Transl_Table As String
 
-        Public Property COG As String Implements I_COGEntry.Address
+        Public Property COG As String Implements I_COGEntry.COG
         Public Property Length As Integer Implements I_COGEntry.Length
         Public Property Location As NucleotideLocation Implements I_GeneBrief.Location
             Get

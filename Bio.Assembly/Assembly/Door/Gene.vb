@@ -16,7 +16,7 @@ Namespace Assembly.DOOR
         Public Property GI As String
         Public Property Synonym As String
         Public Property Length As Integer Implements I_COGEntry.Length
-        Public Property COG_number As String Implements I_COGEntry.Address
+        Public Property COG_number As String Implements I_COGEntry.COG
         Public Property Product As String Implements I_COGEntry.Product
         Public Property Location As NucleotideLocation Implements IContig.Location
 
