@@ -154,7 +154,7 @@ Public Module BioAssemblyExtensions
     ''' <summary>
     ''' Convert the string value type nucleotide strand information description data into a strand enumerate data.
     ''' </summary>
-    ''' <param name="str">从文本文件之中所读取出来关于链方向的字符串描述数据</param>
+    ''' <param name="c">从文本文件之中所读取出来关于链方向的字符串描述数据</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
     <Extension> Public Function GetStrands(c As Char) As Strands
