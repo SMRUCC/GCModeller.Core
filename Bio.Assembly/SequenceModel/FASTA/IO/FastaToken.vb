@@ -179,6 +179,14 @@ Namespace SequenceModel.FASTA
             }
         End Function
 
+        Public Function ToUpper() As FastaToken
+            Return New FastaToken(Attributes, SequenceData.ToUpper)
+        End Function
+
+        Public Function ToLower() As FastaToken
+            Return New FastaToken(Attributes, SequenceData.ToLower)
+        End Function
+
         ''' <summary>
         ''' Load the fasta sequence file as a nucleotide sequence from a specific <paramref name="path"></paramref>, the function will returns 
         ''' a null value if the sequence contains some non-nucleotide character.

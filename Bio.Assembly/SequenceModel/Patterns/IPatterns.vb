@@ -124,25 +124,39 @@ Namespace SequenceModel.Patterns
         End Function
 
         ''' <summary>
-        ''' 返回来的数据之中的残基的字符是大写的
+        ''' Simple function for statics the alphabet frequency in the fasta source. 
+        ''' The returns matrix, alphabet key char is Upper case.
+        ''' (返回来的数据之中的残基的字符是大写的)
         ''' </summary>
-        ''' <param name="source"></param>
+        ''' <param name="source">
+        ''' Fasta sequence source, and all of the fasta sequence 
+        ''' in this source must in the same length.
+        ''' </param>
         ''' <returns></returns>
         <ExportAPI("NT.Frequency")>
         Public Function Frequency(source As IEnumerable(Of FastaToken)) As PatternModel
-            Dim Len As Integer = source.First.Length
-            Dim Counts = source.Count
-            Dim Chars As Char() = If(source.First.IsProtSource, Polypeptides.ToChar.Values.ToArray, New Char() {"A"c, "T"c, "G"c, "C"c})
+            Dim len As Integer = source.First.Length
+            Dim n As Integer = source.Count
+            Dim alphabets As Char() =
+                If(source.First.IsProtSource,
+                   Polypeptides.ToChar.Values.ToArray, New Char() {"A"c, "T"c, "G"c, "C"c})
 
-            ' 转换为大写
-            Dim fa As New FastaFile(source.ToArray(Function(x) New FastaToken(x.Attributes, x.SequenceData.ToUpper)))
+            ' Converts the alphabets in the sequence data to upper case.
+            Dim fasta As New FastaFile(source.ToArray(Function(x) x.ToUpper))
             Dim LQuery = (From pos As Integer
-                          In Len.Sequence.AsParallel
-                          Select pos, row = (From c As Char In Chars Select c, f = __frequency(fa, pos, c, Counts)).ToArray
+                          In len.Sequence.AsParallel
+                          Select pos,
+                              row = (From c As Char
+                                     In alphabets
+                                     Select c, ' Statics for the alphabet frequency at each column
+                                         f = __frequency(fasta, pos, c, n)).ToArray
                           Order By pos Ascending).ToArray
             Dim Model As IEnumerable(Of SimpleSite) =
-                From x In LQuery.SeqIterator
-                Select New SimpleSite(x.obj.row.ToDictionary(Function(o0) o0.c, Function(o0) o0.f), x.Pos)
+                From x
+                In LQuery.SeqIterator
+                Let freq As Dictionary(Of Char, Double) =
+                    x.obj.row.ToDictionary(Function(o0) o0.c, Function(o0) o0.f)
+                Select New SimpleSite(freq, x.Pos)
 
             Return New PatternModel(Model)
         End Function
@@ -200,15 +214,25 @@ Namespace SequenceModel.Patterns
         End Function
 
         ''' <summary>
-        ''' 因为是大小写敏感的，所以参数<see cref="Fasta"/>里面的所有的序列数据都必须是大写的
+        ''' Statics of the occurence frequency for the specific alphabet at specific 
+        ''' column in the fasta source.
+        ''' (因为是大小写敏感的，所以参数<see cref="Fasta"/>里面的所有的序列数据都必须是大写的)
         ''' </summary>
         ''' <param name="Fasta"></param>
-        ''' <param name="p"></param>
-        ''' <param name="C"></param>
-        ''' <param name="numOfFasta"></param>
+        ''' <param name="p">The column number.</param>
+        ''' <param name="C">Alphabet specific for the frequency statics</param>
+        ''' <param name="numOfFasta">The total number of the fasta sequence</param>
         ''' <returns></returns>
-        Private Function __frequency(Fasta As FASTA.FastaFile, p As Integer, C As Char, numOfFasta As Integer) As Double
-            Dim LQuery = (From nt In Fasta Let chr As Char = nt.SequenceData(p) Where C = chr Select 1).ToArray.Sum
+        Private Function __frequency(Fasta As IEnumerable(Of FastaToken),
+                                     p As Integer,
+                                     C As Char,
+                                     numOfFasta As Integer) As Double
+
+            Dim LQuery As Integer = (From nt As FastaToken
+                                     In Fasta
+                                     Let chr As Char = nt.SequenceData(p)
+                                     Where C = chr
+                                     Select 1).Sum
             Dim f As Double = LQuery / numOfFasta
             Return f
         End Function
