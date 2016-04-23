@@ -152,6 +152,16 @@ Public Module BioAssemblyExtensions
     End Function
 
     ''' <summary>
+    ''' Convert the string value type nucleotide strand information description data into a strand enumerate data.
+    ''' </summary>
+    ''' <param name="str">从文本文件之中所读取出来关于链方向的字符串描述数据</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    <Extension> Public Function GetStrands(c As Char) As Strands
+        Return CStr(c).GetStrand
+    End Function
+
+    ''' <summary>
     ''' 判断一段ORF核酸序列是否为反向的
     ''' </summary>
     ''' <param name="nt">请注意，这个只允许核酸序列</param>
