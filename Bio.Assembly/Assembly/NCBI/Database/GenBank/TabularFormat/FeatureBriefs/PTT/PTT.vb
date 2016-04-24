@@ -3,6 +3,7 @@ Imports System.Text
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -27,23 +28,27 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             Set(value As GeneBrief())
                 _innerList = value
 
-                Dim ID_Detected = (From item In value Select item.Synonym Distinct).ToArray
+                Dim isNullLocus As String() = (From g As GeneBrief
+                                               In value
+                                               Select g.Synonym
+                                               Distinct).ToArray
 
-                If ID_Detected.Length = 1 AndAlso String.Equals(ID_Detected.First, "-") Then
-                    For Each Gene As GeneBrief In value
-                        Gene.Synonym = Gene.Gene
+                If isNullLocus.Length = 1 AndAlso
+                    String.Equals(isNullLocus.First, "-") Then
+                    For Each g As GeneBrief In value
+                        g.Synonym = g.Gene
                     Next
                 End If
 
-                _innerDictionary = value.ToDictionary(Function(GeneObject) GeneObject.Synonym)
+                __innerHash = value.ToDictionary(Function(g) g.Synonym)
 
-                _ForwardsGenes = (From GeneObject In value Where GeneObject.Location.Strand = Strands.Forward Select GeneObject).ToArray
-                _ReversedGenes = (From GeneObject In value Where GeneObject.Location.Strand = Strands.Reverse Select GeneObject).ToArray
+                _forwards = (From gene As GeneBrief In value Where gene.Location.Strand = Strands.Forward Select gene).ToArray
+                _reversed = (From gene As GeneBrief In value Where gene.Location.Strand = Strands.Reverse Select gene).ToArray
             End Set
         End Property
 
-        Public ReadOnly Property ForwardsGenes As GeneBrief()
-        Public ReadOnly Property ReversedGenes As GeneBrief()
+        Public ReadOnly Property forwards As GeneBrief()
+        Public ReadOnly Property reversed As GeneBrief()
 
         ''' <summary>
         ''' 基因组的标题
@@ -64,18 +69,18 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <summary>
         ''' {<see cref="ComponentModels.GeneBrief.Synonym"/>, <see cref="ComponentModels.GeneBrief"/>}
         ''' </summary>
-        Dim _innerDictionary As Dictionary(Of String, GeneBrief)
+        Dim __innerHash As Dictionary(Of String, GeneBrief)
         Dim _innerList As GeneBrief()
 
         Public Function ToDictionary() As Dictionary(Of String, GeneBrief)
-            Return _innerDictionary
+            Return __innerHash
         End Function
 
         Public Function OrderByGeneID() As PTT
-            Me.GeneObjects = (From GeneObject As ComponentModels.GeneBrief
+            Me.GeneObjects = (From g As GeneBrief
                               In Me.GeneObjects
-                              Select GeneObject
-                              Order By GeneObject.Synonym Ascending).ToArray
+                              Select g
+                              Order By g.Synonym Ascending).ToArray
             Return Me
         End Function
 
@@ -88,19 +93,19 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function GetObject(site As Integer, ComplementStrand As Boolean) As GeneBrief()
-            Dim Data As GeneBrief()
+            Dim gs As GeneBrief()
 
             If ComplementStrand Then
-                Data = (From gene As GeneBrief In _innerList
-                        Where gene.Location.Strand = Strands.Reverse
-                        Select gene).ToArray
+                gs = (From gene As GeneBrief In _innerList
+                      Where gene.Location.Strand = Strands.Reverse
+                      Select gene).ToArray
             Else
-                Data = (From gene As GeneBrief In _innerList
-                        Where gene.Location.Strand = Strands.Forward
-                        Select gene).ToArray
+                gs = (From gene As GeneBrief In _innerList
+                      Where gene.Location.Strand = Strands.Forward
+                      Select gene).ToArray
             End If
 
-            Dim LQuery = (From item In Data Where item.Location.ContainSite(site) Select item).ToArray
+            Dim LQuery = (From g As GeneBrief In gs Where g.Location.ContainSite(site) Select g).ToArray
             Return LQuery
         End Function
 
@@ -142,21 +147,22 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         Sub New()
         End Sub
 
-        Sub New(GeneObjects As IEnumerable(Of ComponentModels.GeneBrief), Optional Title As String = "", Optional OsLen As Integer = 0)
-            Me.GeneObjects = GeneObjects.ToArray
-            Title = Title
-            Size = OsLen
+        Sub New(genes As IEnumerable(Of GeneBrief), Optional title As String = "", Optional ntLen As Integer = 0)
+            Me.GeneObjects = genes.ToArray
+            title = title
+            Size = ntLen
         End Sub
 
         Public Overloads Function Copy(lstId As String()) As PTT
-            Dim GeneObjects = (From Gene In Me._innerList.AsParallel
-                               Where Array.IndexOf(lstId, Gene.Synonym) > -1
-                               Select Gene).ToArray
             Return New PTT With {
-                .GeneObjects = GeneObjects,
                 .Size = Size,
                 .Title = Title,
-                .FilePath = FilePath
+                .FilePath = FilePath,
+                .GeneObjects =
+                    LinqAPI.Exec(Of GeneBrief) <= From g As GeneBrief
+                                                  In _innerList.AsParallel
+                                                  Where Array.IndexOf(lstId, g.Synonym) > -1
+                                                  Select g
             }
         End Function
 
@@ -279,7 +285,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
 #Region "Implements IReadOnlyDictionary(Of String, GeneBrief)"
 
         Public Iterator Function GetEnumerator2() As IEnumerator(Of KeyValuePair(Of String, GeneBrief)) Implements IEnumerable(Of KeyValuePair(Of String, GeneBrief)).GetEnumerator
-            For Each Item As KeyValuePair(Of String, GeneBrief) In _innerDictionary
+            For Each Item As KeyValuePair(Of String, GeneBrief) In __innerHash
                 Yield Item
             Next
         End Function
@@ -290,7 +296,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <param name="locusId"><see cref="ComponentModels.GeneBrief.Synonym"/></param>
         ''' <returns></returns>
         Public Function ContainsGene(locusId As String) As Boolean Implements IReadOnlyDictionary(Of String, GeneBrief).ContainsKey
-            Return _innerDictionary.ContainsKey(locusId)
+            Return __innerHash.ContainsKey(locusId)
         End Function
 
         ''' <summary>
@@ -300,8 +306,8 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <returns></returns>
         Default Public ReadOnly Property GeneObject(locusId As String) As GeneBrief Implements IReadOnlyDictionary(Of String, GeneBrief).Item
             Get
-                If _innerDictionary.ContainsKey(locusId) Then
-                    Return _innerDictionary(locusId)
+                If __innerHash.ContainsKey(locusId) Then
+                    Return __innerHash(locusId)
                 Else
                     Return Nothing
                 End If
@@ -316,7 +322,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <remarks></remarks>
         Public ReadOnly Property GeneIDList As IEnumerable(Of String) Implements IReadOnlyDictionary(Of String, GeneBrief).Keys
             Get
-                Return _innerDictionary.Keys
+                Return __innerHash.Keys
             End Get
         End Property
 
@@ -327,12 +333,12 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <param name="value"></param>
         ''' <returns></returns>
         Public Function TryGetGeneObjectValue(GeneID As String, ByRef value As GeneBrief) As Boolean Implements IReadOnlyDictionary(Of String, GeneBrief).TryGetValue
-            Return _innerDictionary.TryGetValue(GeneID, value)
+            Return __innerHash.TryGetValue(GeneID, value)
         End Function
 
         Public ReadOnly Property GetsGeneDatas As IEnumerable(Of GeneBrief) Implements IReadOnlyDictionary(Of String, GeneBrief).Values
             Get
-                Return _innerDictionary.Values
+                Return __innerHash.Values
             End Get
         End Property
 #End Region
@@ -345,27 +351,28 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <returns></returns>
         Public Function GetStrandGene(strand As Strands) As GeneBrief()
             If strand = Strands.Forward Then
-                Return ForwardsGenes
+                Return forwards
             Else
-                Return ReversedGenes
+                Return reversed
             End If
         End Function
 
         ''' <summary>
         ''' 由于GFF文件之中是按照GeneName来进行标识的，有些时候希望全部使用基因号进行标识，所以通过这个函数将基因名称统一转换为基因号
         ''' </summary>
-        ''' <param name="Tag">Tag data matches in fields:
+        ''' <param name="tag">Tag data matches in fields:
         ''' <see cref="ComponentModels.GeneBrief.Synonym"/>,
         ''' <see cref="ComponentModels.GeneBrief.Gene"/>,
         ''' <see cref="ComponentModels.GeneBrief.PID"/>
         ''' </param>
         ''' <returns></returns>
-        Public Function TryGetGenesId(Tag As String) As String
-            Dim LQuery = (From GeneObject As GeneBrief In Me.GeneObjects.AsParallel
-                          Where String.Equals(GeneObject.Synonym, Tag) OrElse
-                              String.Equals(GeneObject.Gene, Tag) OrElse
-                              String.Equals(GeneObject.PID, Tag)
-                          Select GeneObject).FirstOrDefault
+        Public Function TryGetGenesId(tag As String) As String
+            Dim LQuery = (From gene As GeneBrief
+                          In Me.GeneObjects.AsParallel
+                          Where String.Equals(gene.Synonym, tag) OrElse
+                              String.Equals(gene.Gene, tag) OrElse
+                              String.Equals(gene.PID, tag)
+                          Select gene).FirstOrDefault
             If LQuery Is Nothing Then
                 Return ""
             Else
@@ -388,7 +395,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
                                         Optional unstrand As Boolean = False,
                                         Optional ATGDist As Integer = 500) As Relationship(Of GeneBrief)()
             Dim source As GeneBrief() = If(unstrand, GeneObjects, GetStrandGene(loci.Strand))
-            Dim relates = ComponentModel.Loci.GetRelatedGenes(source, loci, ATGDist)
+            Dim relates As Relationship(Of GeneBrief)() = ComponentModel.Loci.GetRelatedGenes(source, loci, ATGDist)
             Return relates
         End Function
     End Class
