@@ -9,6 +9,7 @@ Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic
+Imports LANS.SystemsBiology.Assembly
 
 Public Module Installer
 
@@ -110,6 +111,10 @@ Public Class Genbank : Inherits ClassObject
         Return Nothing
     End Function
 
+    Public Function Query(source As KEGG.WebServices.QuerySource) As GenbankIndex
+        Return Query(source.genome, source.locusId)
+    End Function
+
     Public Function Exists(key As String) As Boolean Implements IRepositoryRead(Of String, GenbankIndex).Exists
         Return __indexHash.ContainsKey(key)
     End Function
@@ -166,6 +171,9 @@ Public Class GeneInfo
         locus_tag = g.Synonym
         [function] = g.Product
         accId = acc
+    End Sub
+
+    Sub New()
     End Sub
 
     Public Overrides Function ToString() As String
