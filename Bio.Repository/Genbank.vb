@@ -198,13 +198,22 @@ Public Class GenbankIndex : Implements IKeyedEntity(Of String), sIdEnumerable
 
     Public Function Gbk(DIR As String) As GBFF.File
         Dim path As String = $"{DIR}/{Me.DIR}/"
-        Dim files As IEnumerable(Of String) = ls - l - r - wildcards(AccId) <= path
+        Dim files As IEnumerable(Of String) = ls - l - r - wildcards("*.gb", "*.gbk") <= path
 
         If files.IsNullOrEmpty Then
             Return Nothing
         Else
-            path = files.First
-            Return GBFF.File.Load(path)
+            Dim LQuery As String = (From file As String
+                                    In files
+                                    Let name As String = file.BaseName
+                                    Where InStr(name, AccId, CompareMethod.Text) = 1
+                                    Select file).FirstOrDefault
+
+            If String.IsNullOrEmpty(LQuery) Then
+                Return Nothing
+            Else
+                Return GBFF.File.Load(path)
+            End If
         End If
     End Function
 
