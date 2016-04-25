@@ -1,4 +1,5 @@
 ﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank
+Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports LANS.SystemsBiology.Repository
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
@@ -6,6 +7,8 @@ Imports Microsoft.VisualBasic.DocumentFormat.Csv
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Serialization
+Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic
 
 Public Module Installer
 
@@ -14,14 +17,26 @@ Public Module Installer
     ''' </summary>
     ''' <param name="DIR">Extract location of file: all.gbk.tar.gz from NCBI FTP website.</param>
     ''' <returns></returns>
-    Public Function Install(DIR As String) As Boolean
-        Dim index As String = $"{DIR}/{Genbank.IndexJournal}"
+    Public Function Install(DIR As String, refresh As Boolean) As Boolean
+        Dim index As String = $"{DIR}/.genbank/{Genbank.IndexJournal}"
 
-        Call "".SaveTo(index)  ' 清除原始文件的所有数据，重新创建索引文件
+        If refresh Then
+            Call "".SaveTo(index)  ' 清除原始文件的所有数据，重新创建索引文件
+        End If
 
         Using DbWriter As New DocumentStream.Linq.WriteStream(Of GenbankIndex)(index)  ' 打开数据库的文件句柄
 
-            For Each table As String In ls - l - lsDIR - r <= DIR
+            For Each table As String In ls - l - lsDIR - r <= DIR   ' 一个物种的文件夹
+                Dim path As String = $"{DIR}/.genbank/meta/{table.BaseName}.csv"
+
+                If path.FileLength > 0 Then
+                    If Not refresh Then
+                        Continue For
+                    End If
+                End If
+
+                Dim genes As New List(Of GeneInfo)
+
                 For Each gbk As String In ls - l - r - wildcards("*.gbk", "*.gb") <= table
                     For Each gb As GBFF.File In GBFF.File.LoadDatabase(gbk)  ' 使用迭代器读取数据库文件
 
@@ -33,8 +48,11 @@ Public Module Installer
                         }
                         Call DbWriter.Flush(idx)   ' 将对象写入内存缓存，进入队列等待回写入文件系统
 
+                        genes += gb.GbffToORF_PTT.GeneObjects.ToArray(Function(g) New GeneInfo(g, idx.AccId))
                     Next
                 Next
+
+                Call genes.SaveTo(path)
             Next
         End Using
 
@@ -43,7 +61,7 @@ Public Module Installer
 End Module
 
 ''' <summary>
-''' NCBI genbank repository system
+''' NCBI genbank repository system.(请注意，这个对象里面的所有的Repository实体都是使用genbank编号来作为Key的)
 ''' </summary>
 Public Class Genbank : Inherits ClassObject
     Implements IRepository(Of String, GenbankIndex)
@@ -55,13 +73,42 @@ Public Class Genbank : Inherits ClassObject
     ReadOnly __indexHash As Dictionary(Of GenbankIndex)
 
     Sub New(DIR As String)
-        Dim index As String = $"{DIR}/{IndexJournal}"
+        Dim index As String = $"{DIR}/.genbank/{IndexJournal}"
 
         Me.DIR = DIR
         Me.__indexHash = index.LoadCsv(Of GenbankIndex).ToDictionary
     End Sub
 
 #Region "Implements IRepository(Of String, GenbankIndex)"
+
+    ''' <summary>
+    ''' 查询出gbk的文件路径，这个主要是为了RegPrecise查询使用的
+    ''' </summary>
+    ''' <param name="genome"></param>
+    ''' <param name="locus"></param>
+    ''' <returns></returns>
+    Public Function Query(genome As String, locus As IEnumerable(Of String)) As GenbankIndex
+        Dim LQuery = (From x As GenbankIndex
+                      In __indexHash.Values
+                      Let edits As DistResult = LevenshteinDistance.ComputeDistance(genome, x.genome)
+                      Where Not edits Is Nothing
+                      Select x,
+                          edits
+                      Order By edits.MatchSimilarity Descending)
+        For Each x In LQuery
+            Dim path As String = $"{DIR}/.genbank/meta/{x.x.DIR}.Csv"
+            Dim genes As IEnumerable(Of GeneInfo) = path.LoadCsv(Of GeneInfo)
+            Dim gHash = genes.ToDictionary
+
+            For Each sid As String In locus
+                If gHash.ContainsKey(sid) Then
+                    Return x.x
+                End If
+            Next
+        Next
+
+        Return Nothing
+    End Function
 
     Public Function Exists(key As String) As Boolean Implements IRepositoryRead(Of String, GenbankIndex).Exists
         Return __indexHash.ContainsKey(key)
@@ -104,6 +151,28 @@ Public Class Genbank : Inherits ClassObject
 #End Region
 End Class
 
+Public Class GeneInfo
+    Implements IKeyedEntity(Of String), sIdEnumerable
+
+    ''' <summary>
+    ''' 基因组的编号
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property accId As String
+    Public Property locus_tag As String Implements sIdEnumerable.Identifier, IKeyedEntity(Of String).Key
+    Public Property [function] As String
+
+    Sub New(g As GeneBrief, acc As String)
+        locus_tag = g.Synonym
+        [function] = g.Product
+        accId = acc
+    End Sub
+
+    Public Overrides Function ToString() As String
+        Return Me.GetJson
+    End Function
+End Class
+
 Public Class GenbankIndex : Implements IKeyedEntity(Of String), sIdEnumerable
 
     ''' <summary>
@@ -118,6 +187,18 @@ Public Class GenbankIndex : Implements IKeyedEntity(Of String), sIdEnumerable
     ''' <returns></returns>
     Public Property AccId As String Implements IKeyedEntity(Of String).Key, sIdEnumerable.Identifier
     Public Property definition As String
+
+    Public Function Gbk(DIR As String) As GBFF.File
+        Dim path As String = $"{DIR}/{Me.DIR}/"
+        Dim files As IEnumerable(Of String) = ls - l - r - wildcards(AccId) <= path
+
+        If files.IsNullOrEmpty Then
+            Return Nothing
+        Else
+            path = files.First
+            Return GBFF.File.Load(path)
+        End If
+    End Function
 
     Public Overrides Function ToString() As String
         Return Me.GetJson

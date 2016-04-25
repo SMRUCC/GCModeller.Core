@@ -130,12 +130,12 @@ Namespace Assembly.NCBI.GenBank
         ''' <returns></returns>
         ''' <remarks></remarks>
         <Extension> Public Function GbkffExportToPTT(Genbank As NCBI.GenBank.GBFF.File) As TabularFormat.PTT
-            Dim Genes As Feature() = (From Feature As Feature
-                                                                 In Genbank.Features._innerList
-                                      Where String.Equals(Feature.KeyName, "gene", StringComparison.OrdinalIgnoreCase) OrElse
-                                                                     InStr(Feature.KeyName, "RNA", CompareMethod.Text) > 0
-                                      Select Feature).ToArray
-            Return Genes.__toGenes(Genbank.Origin.SequenceData.Length, Genbank.Definition.Value)
+            Dim genes As Feature() = (From feature As Feature
+                                      In Genbank.Features._innerList
+                                      Where String.Equals(feature.KeyName, "gene", StringComparison.OrdinalIgnoreCase) OrElse
+                                          InStr(feature.KeyName, "RNA", CompareMethod.Text) > 0
+                                      Select feature).ToArray
+            Return genes.__toGenes(Genbank.Origin.SequenceData.Length, Genbank.Definition.Value)
         End Function
 
         <Extension> Private Function __toGenes(genes As Feature(), size As Integer, def As String) As TabularFormat.PTT
@@ -145,10 +145,10 @@ Namespace Assembly.NCBI.GenBank
                             Group Gene By Gene.Synonym Into Group).ToArray
             Dim LQuery = (From GeneGr In PTTGenes Where GeneGr.Group.Count > 1 Select GeneGr).ToArray
             For Each DulGeneObject In LQuery
-                Call $"""{DulGeneObject.Synonym}"" data was duplicated!".__DEBUG_ECHO
+                Call VBDebugger.Warning($"""{DulGeneObject.Synonym}"" data was duplicated!")
             Next
-            Return New NCBI.GenBank.TabularFormat.PTT With {
-                .GeneObjects = (From GeneObject In PTTGenes Select GeneObject.Group.First).ToArray,
+            Return New TabularFormat.PTT With {
+                .GeneObjects = (From gene In PTTGenes Select gene.Group.First).ToArray,
                 .Size = size,
                 .Title = def
             }
@@ -168,10 +168,16 @@ Namespace Assembly.NCBI.GenBank
         End Function
 
         Private Function __featureToPTT(featureSite As Feature) As TabularFormat.ComponentModels.GeneBrief
-            Dim loci As New ComponentModel.Loci.NucleotideLocation(
-                featureSite.Location.Locations.First.Left,
-                featureSite.Location.Locations.Last.Right,
-                featureSite.Location.Complement)
+            Dim loci As NucleotideLocation
+            If featureSite.Location.Locations.IsNullOrEmpty Then
+                loci = New NucleotideLocation
+            Else
+                loci = New NucleotideLocation(
+                    featureSite.Location.Locations.First.Left,
+                    featureSite.Location.Locations.Last.Right,
+                    featureSite.Location.Complement)
+            End If
+
             Dim locusId As String = featureSite.Query(FeatureQualifiers.locus_tag)
             Dim GB As New TabularFormat.ComponentModels.GeneBrief With {
                 .Synonym = locusId,
@@ -192,7 +198,7 @@ Namespace Assembly.NCBI.GenBank
             Return GB
         End Function
 
-        <Extension> Public Function InvokeExport(gbk As NCBI.GenBank.GBFF.File, ByRef GeneList As GeneDumpInfo()) As KeyValuePair(Of gbEntryBrief, String)
+        <Extension> Public Function InvokeExport(gbk As GBFF.File, ByRef GeneList As GeneDumpInfo()) As KeyValuePair(Of gbEntryBrief, String)
             Dim LQuery = (From FeatureData As Feature
                           In gbk.Features._innerList.AsParallel
                           Where String.Equals(FeatureData.KeyName, "CDS", StringComparison.OrdinalIgnoreCase)
