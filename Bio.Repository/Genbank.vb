@@ -90,17 +90,21 @@ Public Class Genbank : Inherits ClassObject
     ''' <returns></returns>
     Public Function Query(genome As String, locus As IEnumerable(Of String)) As GenbankIndex
         Dim LQuery = (From x As GenbankIndex
-                      In __indexHash.Values
+                      In __indexHash.Values.AsParallel
                       Let edits As DistResult = LevenshteinDistance.ComputeDistance(genome, x.genome)
                       Where Not edits Is Nothing
                       Select x,
                           edits
-                      Order By edits.MatchSimilarity Descending)
+                      Order By edits.MatchSimilarity Descending).Take(10)
         For Each x In LQuery
             Dim path As String = $"{DIR}/.genbank/meta/{x.x.DIR}.Csv"
             Dim genes As IEnumerable(Of GeneInfo) = path.LoadCsv(Of GeneInfo)
-            Dim gHash = genes.ToDictionary
-
+            Dim gHash As Dictionary(Of GeneInfo) = (From g As GeneInfo
+                                                    In genes
+                                                    Where String.Equals(g.accId, x.x.AccId, StringComparison.OrdinalIgnoreCase)
+                                                    Select g
+                                                    Group g By g.locus_tag Into Group) _
+                                                         .Select(Function(o) o.Group.First).ToDictionary
             For Each sid As String In locus
                 If gHash.ContainsKey(sid) Then
                     Return x.x
@@ -164,6 +168,10 @@ Public Class GeneInfo
     ''' </summary>
     ''' <returns></returns>
     Public Property accId As String
+    ''' <summary>
+    ''' 基因的编号
+    ''' </summary>
+    ''' <returns></returns>
     Public Property locus_tag As String Implements sIdEnumerable.Identifier, IKeyedEntity(Of String).Key
     Public Property [function] As String
 
