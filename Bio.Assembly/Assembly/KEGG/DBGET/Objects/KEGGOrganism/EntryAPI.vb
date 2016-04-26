@@ -17,7 +17,16 @@ Namespace Assembly.KEGG.DBGET.bGetObject.Organism
                       Description:="KEGG Organisms: Complete Genomes")>
     Public Module EntryAPI
 
+        Public ReadOnly Property Resources As KEGGOrganism
+            Get
+                Return __cacheList
+            End Get
+        End Property
+
         ReadOnly __cacheList As KEGGOrganism
+        ''' <summary>
+        ''' {brief_sp, <see cref="organism"/>}
+        ''' </summary>
         ReadOnly __spHash As Dictionary(Of String, Organism)
 
         Sub New()
@@ -31,6 +40,12 @@ Namespace Assembly.KEGG.DBGET.bGetObject.Organism
             End Try
         End Sub
 
+        ''' <summary>
+        ''' Gets the organism value from the KEGG database through the brief code, 
+        ''' if the data is not exists in the database, Nothing will be returns.
+        ''' </summary>
+        ''' <param name="sp">The organism brief code in the KEGG database</param>
+        ''' <returns></returns>
         Public Function GetValue(sp As String) As Organism
             If __spHash.ContainsKey(sp) Then
                 Return __spHash(sp)

@@ -51,7 +51,9 @@ Namespace SequenceModel.FASTA.Reflection
         <ExportAPI("Merge", Info:="Merge the fasta sequence file from a file list.")>
         <Extension>
         Public Function Merge(list As IEnumerable(Of String), Trim As Boolean) As FastaFile
-            Dim MergeFa = (From file As String In list.AsParallel Select FastaFile.Read(file)).MatrixToList
+            Dim MergeFa = (From file As String
+                           In list.AsParallel
+                           Select FastaFile.Read(file)).MatrixToList
 
             If Trim Then
                 MergeFa = (From fa As FastaToken
@@ -75,7 +77,7 @@ Namespace SequenceModel.FASTA.Reflection
         End Function
 
         ''' <summary>
-        ''' Only merge fasta files in the top level directory.
+        ''' Only merge fasta files in the top level directory.(这个函数不会返回空值)
         ''' </summary>
         ''' <param name="inDIR"></param>
         ''' <param name="trim"></param>

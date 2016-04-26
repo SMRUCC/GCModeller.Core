@@ -27,33 +27,46 @@ Namespace Assembly.KEGG.WebServices
         Public Property locusId As String()
 
         ''' <summary>
-        ''' 获取得到KEGG数据库里面的物种的简称
+        ''' Gets the brief code of the organism name in the KEGG database.
+        ''' (获取得到KEGG数据库里面的物种的简称)
         ''' </summary>
         ''' <returns></returns>
         Public Function QuerySpCode() As String
             Dim sp As Organism = GetKEGGSpeciesCode(genome)
 
-            If sp Is Nothing Then
-                Dim i As Integer
+            If Not sp Is Nothing Then Return sp.KEGGId
 
-                For Each locus As String In locusId
-                    Dim entry As QueryEntry = GetQueryEntry(locus)
+            Dim i As Integer
 
-                    If entry Is Nothing Then
+            For Each locus As String In locusId
+                Dim entry As QueryEntry = GetQueryEntry(locus)   ' 这里还需要进行验证，因为基因号可能会在物种之间有重复
 
-                    Else
-                        Return entry.SpeciesId
-                    End If
+                If entry Is Nothing Then
 
-                    If i > 5 Then
+                Else
+                    sp = EntryAPI.GetValue(entry.SpeciesId)
+
+                    If sp Is Nothing Then
                         Return ""
                     Else
-                        i += 1
+                        ' 可能菌株的编号不是一样的，在这里修正
+                        Dim lev As DistResult = LevenshteinDistance.ComputeDistance(sp.Species, genome)
+                        If lev Is Nothing OrElse lev.NumMatches < 2 Then
+                            Return ""
+                        Else
+                            Return entry.SpeciesId
+                        End If
                     End If
-                Next
-            End If
+                End If
 
-            Return sp.KEGGId
+                If i > 5 Then
+                    Return ""
+                Else
+                    i += 1
+                End If
+            Next
+
+            Return ""
         End Function
 
         Public Function GetDoc() As String
