@@ -31,14 +31,19 @@ Namespace Assembly.KEGG.WebServices
         ''' (获取得到KEGG数据库里面的物种的简称)
         ''' </summary>
         ''' <returns></returns>
-        Public Function QuerySpCode() As String
+        ''' <param name="offline">Work in offline mode?</param>
+        Public Function QuerySpCode(Optional offline As Boolean = False) As String
             Dim sp As Organism = GetKEGGSpeciesCode(genome)
 
             If Not sp Is Nothing Then Return sp.KEGGId
 
+            If offline Then
+                Return ""   ' 本地查找不到，并且是工作在离线模式之下的，则无法得到数据
+            End If
+
             Dim i As Integer
 
-            For Each locus As String In locusId
+            For Each locus As String In locusId   ' 假若本地数据库没有查询到数据的话，则会查询在线数据库
                 Dim entry As QueryEntry = GetQueryEntry(locus)   ' 这里还需要进行验证，因为基因号可能会在物种之间有重复
 
                 If entry Is Nothing Then
