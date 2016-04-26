@@ -162,6 +162,8 @@
     <Compile Include="Assembly\KEGG\Archives\Xml\Nodes\EC_Mapping.vb" />
     <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\ModuleClassAPI.vb" />
     <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\ModsBrite.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\Objects\KEGGOrganism\Defines.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\Objects\KEGGOrganism\EntryAPI.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\SSDB\ProtMotifs.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\SSDB\Ortholog.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\SSDB\SShit.vb" />
@@ -326,7 +328,7 @@
     <Compile Include="Assembly\NCBI\Database\CDD\Pn.vb" />
     <Compile Include="Assembly\NCBI\Database\CDD\DbFile.vb" />
     <Compile Include="Assembly\MiST2\DocArchive\Domain.vb" />
-    <Compile Include="Assembly\KEGG\DBGET\Objects\KEGGOrganism.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\Objects\KEGGOrganism\KEGGOrganism.vb" />
     <Compile Include="Assembly\KEGG\Archives\SequenceDump.vb" />
     <Compile Include="Assembly\KEGG\WebRequest.vb" />
     <Compile Include="Assembly\MetaCyc\Schemas\PathwayLink.vb" />
