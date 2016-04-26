@@ -2,6 +2,7 @@
 Imports System.Text
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic.Serialization
+Imports LANS.SystemsBiology.Assembly.KEGG.DBGET.bGetObject.Organism
 
 Namespace Assembly.KEGG.WebServices
 
@@ -30,8 +31,9 @@ Namespace Assembly.KEGG.WebServices
         ''' </summary>
         ''' <returns></returns>
         Public Function QuerySpCode() As String
-            Dim sp As String = DBGET.bGetObject.Organism.GetKEGGSpeciesCode(genome)
-            If String.IsNullOrEmpty(sp) Then
+            Dim sp As Organism = GetKEGGSpeciesCode(genome)
+
+            If sp Is Nothing Then
                 Dim i As Integer
 
                 For Each locus As String In locusId
@@ -40,8 +42,7 @@ Namespace Assembly.KEGG.WebServices
                     If entry Is Nothing Then
 
                     Else
-                        sp = entry.SpeciesId
-                        Exit For
+                        Return entry.SpeciesId
                     End If
 
                     If i > 5 Then
@@ -52,7 +53,7 @@ Namespace Assembly.KEGG.WebServices
                 Next
             End If
 
-            Return sp
+            Return sp.KEGGId
         End Function
 
         Public Function GetDoc() As String

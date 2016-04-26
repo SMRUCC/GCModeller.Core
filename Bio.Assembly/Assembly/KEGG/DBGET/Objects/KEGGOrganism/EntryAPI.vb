@@ -47,16 +47,19 @@ Namespace Assembly.KEGG.DBGET.bGetObject.Organism
         ''' 
         <ExportAPI("KEGG.spCode",
                    Info:="Convert the species genome full name into the KEGG 3 letters briefly code.")>
-        Public Function GetKEGGSpeciesCode(Name As String) As String
-            Dim LQuery As Organism = (From x As Organism
-                                      In __cacheList.ToArray.AsParallel ' Let lev As DistResult = StatementMatches.Match(Name, x.Species) Where Not lev Is Nothing AndAlso lev.NumMatches >= 2
-                                      Where String.Equals(Name, x.Species, StringComparison.OrdinalIgnoreCase)
-                                      Select x).FirstOrDefault
-            If LQuery Is Nothing Then
-                Call $"Could not found any entry for ""{Name}"" from KEGG...".__DEBUG_ECHO
-                Return ""
+        Public Function GetKEGGSpeciesCode(Name As String) As Organism
+            Dim LQuery = (From x As Organism
+                          In __cacheList.ToArray.AsParallel
+                          Let lev As DistResult = LevenshteinDistance.ComputeDistance(Name, x.Species) ' StatementMatches.Match(Name, x.Species)
+                          Where Not lev Is Nothing AndAlso lev.NumMatches >= 2
+                          Select x, lev
+                          Order By lev.MatchSimilarity Descending).ToArray
+            If LQuery.IsNullOrEmpty OrElse LQuery.First.lev.MatchSimilarity < 0.9 Then
+                Call VBDebugger.Warning($"Could not found any entry for ""{Name}"" from KEGG...")
+                Return Nothing
             Else
-                Return LQuery.KEGGId
+                Dim first = LQuery.First
+                Return first.x
             End If
         End Function
 
