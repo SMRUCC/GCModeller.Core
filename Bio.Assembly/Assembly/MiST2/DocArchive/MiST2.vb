@@ -110,7 +110,7 @@ Namespace Assembly.MiST2
 
         Public Function GetProfileImage() As System.Drawing.Image
             Dim FilePath As String = String.Format("{0}/{1}.png", Environment.GetFolderPath(Environment.SpecialFolder.InternetCache), Me.MiST2Code)
-            If ProfileImageUrl.DownloadFile(SavedPath:=FilePath) Then
+            If ProfileImageUrl.DownloadFile(save:=FilePath) Then
                 Return System.Drawing.Image.FromFile(FilePath)
             Else
                 Return Nothing
