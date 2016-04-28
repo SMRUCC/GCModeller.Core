@@ -60,11 +60,11 @@ Namespace SequenceModel.FASTA.Reflection
                            In MergeFa.AsParallel
                            Let attrs As String() = New String() {fa.Attributes.First.Split.First}
                            Select fa.InvokeSet(NameOf(fa.Attributes), attrs)).ToList
+                MergeFa = (From fa As FastaToken
+                           In MergeFa.AsParallel
+                           Select fa.FastaTrimCorrupt).ToList
             End If
 
-            MergeFa = (From fa As FastaToken
-                       In MergeFa.AsParallel
-                       Select fa.FastaTrimCorrupt).ToList
             MergeFa = (From fa As FastaToken
                        In MergeFa.AsParallel
                        Where Not String.IsNullOrEmpty(fa.SequenceData)
@@ -117,7 +117,7 @@ Namespace SequenceModel.FASTA.Reflection
         Const KEGG_LOCUS As String = "[a-z]{3,5}[:]" & LOCUS_ID
 
         ''' <summary>
-        ''' 第一个字符肯定是M
+        ''' 这个函数是为了修正早期的KEGG序列数据下载工具的一些html解析错误，第一个字符肯定是M
         ''' </summary>
         ''' <param name="fa"></param>
         ''' <returns></returns>
