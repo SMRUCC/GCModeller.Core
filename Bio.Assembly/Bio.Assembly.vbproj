@@ -105,6 +105,32 @@
     <DebugSymbols>true</DebugSymbols>
     <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>PARALLEL=1</DefineConstants>
+    <DocumentationFile>LANS.SystemsBiology.Assembly.Components_v2.0_33.0.0.0__89845dcd8080cc91.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <DocumentationFile>LANS.SystemsBiology.Assembly.Components_v2.0_33.0.0.0__89845dcd8080cc91.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -295,9 +321,9 @@
     <Compile Include="SequenceModel\FASTA\Abstract.vb" />
     <Compile Include="SequenceModel\FASTA\IO\StreamIterator.vb" />
     <Compile Include="SequenceModel\ISequenceModel.vb" />
-    <Compile Include="SequenceModel\FASTA\Clustal\SRChain.vb" />
-    <Compile Include="SequenceModel\FASTA\Clustal\Residue.vb" />
-    <Compile Include="SequenceModel\FASTA\Clustal\Clustal.vb" />
+    <Compile Include="SequenceModel\Patterns\Clustal\SRChain.vb" />
+    <Compile Include="SequenceModel\Patterns\Clustal\Residue.vb" />
+    <Compile Include="SequenceModel\Patterns\Clustal\Clustal.vb" />
     <Compile Include="SequenceModel\FASTA\Reflection\FastaTools.vb" />
     <Compile Include="SequenceModel\FASTA\IO\UltralargeSizeFastaReader.vb" />
     <Compile Include="SequenceModel\NucleicAcid\Contig.vb" />
@@ -311,6 +337,7 @@
     <Compile Include="SequenceModel\NucleicAcid\Parser\SegmentReader.vb" />
     <Compile Include="SequenceModel\NucleicAcid\NucleicAcidStaticsProperty.vb" />
     <Compile Include="SequenceModel\Patterns\IPatterns.vb" />
+    <Compile Include="SequenceModel\Patterns\PatternsAPI.vb" />
     <Compile Include="SequenceModel\Polypeptides\Chou-Fasman\ChouFasmanAPI.vb" />
     <Compile Include="SequenceModel\MWCalculator.vb" />
     <Compile Include="SequenceModel\Polypeptides\Chou-Fasman\Matrix.vb" />
