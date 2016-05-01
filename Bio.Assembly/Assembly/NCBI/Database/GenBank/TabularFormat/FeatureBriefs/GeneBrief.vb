@@ -4,23 +4,24 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports LANS.SystemsBiology.ComponentModel
 Imports LANS.SystemsBiology.ComponentModel.Loci.NucleotideLocation
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 
     ''' <summary>
-    ''' The gene brief information data in a ptt document.(Ptt文件之中的一行，即一个基因的对象摘要信息)
+    ''' The gene brief information data in a ncbi PTT document.(PTT文件之中的一行，即一个基因的对象摘要信息)
     ''' </summary>
     ''' <remarks></remarks>
     Public Class GeneBrief : Implements sIdEnumerable
         Implements I_GeneBrief
 
         ''' <summary>
-        ''' 包含有Ptt文件之中的Location, Strand和Length列
+        ''' The location of this ORF gene on the genome sequence.(包含有PTT文件之中的Location, Strand和Length列)
         ''' </summary>
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Property Location As ComponentModel.Loci.NucleotideLocation Implements I_GeneBrief.Location
+        Public Property Location As NucleotideLocation Implements I_GeneBrief.Location
         <XmlAttribute> Public Property PID As String
         ''' <summary>
         ''' 基因号，这个应该是GI编号，而非平常比较熟悉的字符串编号
@@ -32,7 +33,8 @@ Namespace Assembly.NCBI.GenBank.TabularFormat.ComponentModels
         <XmlAttribute> Public Property Code As String
         <XmlAttribute> Public Property COG As String Implements I_GeneBrief.COG
         ''' <summary>
-        ''' 基因的蛋白质产物的功能的描述
+        ''' Protein product functional description in the genome.
+        ''' (基因的蛋白质产物的功能的描述)
         ''' </summary>
         ''' <value></value>
         ''' <returns></returns>
@@ -44,7 +46,8 @@ Namespace Assembly.NCBI.GenBank.TabularFormat.ComponentModels
         ''' <returns></returns>
         <XmlAttribute> Public Property Length As Integer Implements I_GeneBrief.Length
         ''' <summary>
-        ''' 我们所正常熟知的基因编号，<see cref="PTT"/>对象主要是使用这个属性值来生成字典对象的
+        ''' The gene's locus_tag data.
+        ''' (我们所正常熟知的基因编号，<see cref="PTT"/>对象主要是使用这个属性值来生成字典对象的)
         ''' </summary>
         ''' <value></value>
         ''' <returns></returns>
@@ -90,20 +93,21 @@ Namespace Assembly.NCBI.GenBank.TabularFormat.ComponentModels
             End Get
         End Property
 
-        Public Shared Function CreateObject(obj As I_GeneBrief) As GeneBrief
+        Public Shared Function CreateObject(g As I_GeneBrief) As GeneBrief
             Return New GeneBrief With {
-                .COG = obj.COG,
-                .Length = obj.Length,
-                .Location = obj.Location,
-                .Product = obj.Product,
-                .Synonym = obj.Identifier
+                .COG = g.COG,
+                .Length = g.Length,
+                .Location = g.Location,
+                .Product = g.Product,
+                .Synonym = g.Identifier
             }
         End Function
 
-        Public Shared Function CreateObject(data As Generic.IEnumerable(Of I_GeneBrief)) As GeneBrief()
-            Dim LQuery As GeneBrief() = (From gene As I_GeneBrief
-                                         In data.AsParallel
-                                         Select CreateObject(obj:=gene)).ToArray
+        Public Shared Function CreateObject(data As IEnumerable(Of I_GeneBrief)) As GeneBrief()
+            Dim LQuery As GeneBrief() =
+                LinqAPI.Exec(Of GeneBrief) <= From gene As I_GeneBrief
+                                              In data.AsParallel
+                                              Select CreateObject(g:=gene)
             Return LQuery
         End Function
 
