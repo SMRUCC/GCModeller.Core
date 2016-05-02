@@ -130,13 +130,13 @@ Namespace SequenceModel.FASTA
         ''' <summary>
         ''' 
         ''' </summary>
-        ''' <param name="FilePath">File path of a fasta sequence.</param>
+        ''' <param name="path">File path of a fasta sequence.</param>
         ''' <remarks></remarks>
-        Sub New(FilePath As String)
-            Dim Fasta = FastaToken.Load(FilePath)
+        Sub New(path As String)
+            Dim fa As FastaToken = FastaToken.Load(path)
 
-            Attributes = Fasta.Attributes
-            SequenceData = Fasta.SequenceData
+            Attributes = fa.Attributes
+            SequenceData = fa.SequenceData
         End Sub
 
         Sub New(LDM As FASTA.I_FastaToken)
@@ -252,7 +252,7 @@ Namespace SequenceModel.FASTA
         ''' <remarks></remarks>
         ''' 
         <ExportAPI("FastaToken.From.Stream")>
-        Public Shared Function ParseFromStream(stream As Generic.IEnumerable(Of String)) As FastaToken
+        Public Shared Function ParseFromStream(stream As IEnumerable(Of String)) As FastaToken
             If stream.IsNullOrEmpty Then Return Nothing
 
             Dim lines As String() = stream.ToArray

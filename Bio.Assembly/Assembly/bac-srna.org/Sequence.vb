@@ -53,6 +53,10 @@ Namespace Assembly.Bac_sRNA.org
             Return __raw.GetJson
         End Function
 
+        Public Function ToFasta() As FastaToken
+            Return New FastaToken(__raw.Attributes, __raw.SequenceData)
+        End Function
+
         Protected Overrides Function __getMappingLoci() As NucleotideLocation
             Return New NucleotideLocation With {
                 .Left = __raw.Attributes(3),
