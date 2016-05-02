@@ -4,7 +4,7 @@ Imports System.Data.Linq.Mapping
 
 Namespace Assembly.Bac_sRNA.org
 
-    Public Class Interaction
+    Public Structure Interaction
 
         <Column(Name:="sRNAid")> <XmlAttribute>
         Public Property sRNAid As String
@@ -33,5 +33,5 @@ Namespace Assembly.Bac_sRNA.org
         Public Overrides Function ToString() As String
             Return sRNAid
         End Function
-    End Class
+    End Structure
 End Namespace

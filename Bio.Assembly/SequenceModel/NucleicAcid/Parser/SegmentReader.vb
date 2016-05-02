@@ -62,7 +62,7 @@ Namespace SequenceModel.NucleotideModels
         ''' </summary>
         ''' <param name="NucleicAcid"></param>
         ''' <param name="LinearMolecule">本DNA分子是否为线状的分子</param>
-        Sub New(NucleicAcid As LANS.SystemsBiology.SequenceModel.FASTA.FastaToken, Optional LinearMolecule As Boolean = True)
+        Sub New(NucleicAcid As FASTA.FastaToken, Optional LinearMolecule As Boolean = True)
             _innerNTsource = New NucleicAcid(NucleicAcid)
             _isCircularMolecular = Not LinearMolecule
             _reader = New InternalReader(Me)
@@ -83,7 +83,7 @@ Namespace SequenceModel.NucleotideModels
         ''' <param name="Location"></param>
         ''' <param name="LinearMolecule">是否为环状的DNA分子，默认为线状的DNA分子</param>
         ''' <remarks></remarks>
-        Sub New(SequenceData As NucleicAcid, Location As ComponentModel.Loci.NucleotideLocation, Optional LinearMolecule As Boolean = True)
+        Sub New(SequenceData As NucleicAcid, Location As NucleotideLocation, Optional LinearMolecule As Boolean = True)
             _innerNTsource = SequenceData
             _isCircularMolecular = Not LinearMolecule
             _reader = New InternalReader(Me)
@@ -152,8 +152,10 @@ Namespace SequenceModel.NucleotideModels
             Return Seq1 & Seq2
         End Function
 
-        Public Function ReadJoinLocation(ParamArray JoinedLoci As LANS.SystemsBiology.ComponentModel.Loci.Location()) As String
-            Dim LQuery = (From Loci In JoinedLoci Select TryParse(Loci.Left, SegLength:=Loci.FragmentSize)).ToArray
+        Public Function ReadJoinLocation(ParamArray JoinedLoci As Location()) As String
+            Dim LQuery As String() = (From Loci As Location
+                                      In JoinedLoci
+                                      Select TryParse(Loci.Left, SegLength:=Loci.FragmentSize)).ToArray
             Return String.Join("", LQuery)
         End Function
 
@@ -163,7 +165,7 @@ Namespace SequenceModel.NucleotideModels
         ''' <param name="Location">位点的位置，由于一般情况之下右边的位置的值是大于左边的位置的值的</param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Function TryParse(Location As LANS.SystemsBiology.ComponentModel.Loci.NucleotideLocation) As SegmentObject
+        Public Function TryParse(Location As NucleotideLocation) As SegmentObject
             Dim Sequence As String = TryParse(Location.Normalization.Left,
                                               Location.FragmentSize,
                                               Location.Strand,
@@ -173,9 +175,15 @@ Namespace SequenceModel.NucleotideModels
 
         Public Function TryParse(Left As Long,
                                  Length As Integer,
-                                 Strand As LANS.SystemsBiology.ComponentModel.Loci.Strands,
-                                 Optional JoinEnds As Integer = 0, Optional WARN As Boolean = True) As String
-            Dim Sequence As String = If(Left < 0, ReadJoinLocation(Me._innerNTsource.Length + Left, JoinEnds), TryParse(Left, Length, directionDownstream:=True, WARN:=WARN))
+                                 Strand As Strands,
+                                 Optional JoinEnds As Integer = 0,
+                                 Optional WARN As Boolean = True) As String
+            Dim Sequence As String = If(Left < 0,
+                ReadJoinLocation(Me._innerNTsource.Length + Left, JoinEnds),
+                TryParse(Left,
+                         Length,
+                         directionDownstream:=True,
+                         WARN:=WARN))
 
             If Strand = Strands.Reverse Then  '在反向链之上，则会进行互补反向
                 Sequence = New String(NucleicAcid.Complement(Sequence).Reverse.ToArray)
@@ -186,8 +194,10 @@ Namespace SequenceModel.NucleotideModels
 
         Public Function TryParse(Left As Long,
                                  Right As Long,
-                                 Strand As LANS.SystemsBiology.ComponentModel.Loci.Strands, Optional WARN As Boolean = True) As String
-            Dim Sequence As String = TryParse(Left, Right - Left, directionDownstream:=True, WARN:=WARN)
+                                 Strand As Strands,
+                                 Optional WARN As Boolean = True) As String
+            Dim Sequence As String =
+                TryParse(Left, Right - Left, directionDownstream:=True, WARN:=WARN)
 
             If Strand = Strands.Reverse Then  '在反向链之上，则会进行互补反向
                 Sequence = New String(NucleicAcid.Complement(Sequence).Reverse.ToArray)
@@ -251,7 +261,7 @@ Namespace SequenceModel.NucleotideModels
             Return Me
         End Function
 
-        Public Overloads Shared Function CreateObject(Fasta As SequenceModel.FASTA.FastaToken) As SegmentReader
+        Public Overloads Shared Function CreateObject(Fasta As FASTA.FastaToken) As SegmentReader
             If Fasta Is Nothing Then
                 Return Nothing
             End If

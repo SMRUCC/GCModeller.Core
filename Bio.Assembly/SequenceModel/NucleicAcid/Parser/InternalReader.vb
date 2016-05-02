@@ -2,18 +2,19 @@
 
         Protected Class InternalReader
 
-            Const READER_WARNING_MESSAGE As String = "[WARNNING] SequenceModel.NucleicAcid -> GetSegment() Molecular length is not enough for the target seqeucne segment!{0}Molecular Length:={1}{2}Start Position:={3}{4}Segment Length:={5}"
+            Const READER_WARNING_MESSAGE As String =
+                "[WARNNING] SequenceModel.NucleicAcid -> GetSegment() Molecular length is not enough for the target seqeucne segment!{0}Molecular Length:={1}{2}Start Position:={3}{4}Segment Length:={5}"
 
-            Dim InternalReader As SegmentReader
+            Dim _innerReader As SegmentReader
 
             Private ReadOnly Property SequenceData As String
                 Get
-                    Return InternalReader._innerNTsource.SequenceData
+                    Return _innerReader._innerNTsource.SequenceData
                 End Get
             End Property
 
-            Sub New(SegmentObject As SequenceModel.NucleotideModels.SegmentReader)
-                InternalReader = SegmentObject
+            Sub New(SegmentObject As SegmentReader)
+                _innerReader = SegmentObject
             End Sub
 
 #Region "Segment Parser"
@@ -26,11 +27,14 @@
             ''' <param name="DirectionDownstream">可选参数，向Start位点的上游取片段还是向Start位点的下游取片段，默认取下游片段</param>
             ''' <returns></returns>
             ''' <remarks></remarks>
-            Public Function GetSegmentSequenceValue(Start As Long, Length As Long, WARN_MSG As Boolean, Optional DirectionDownstream As Boolean = True) As String
+            Public Function GetSegmentSequenceValue(Start As Long,
+                                                    Length As Long,
+                                                    WARN_MSG As Boolean,
+                                                    Optional DirectionDownstream As Boolean = True) As String
                 If True = DirectionDownstream Then
                     Return ReadDownStream(Start, Length, WARN_MSG)
                 Else
-                    Return __Get_DirectionUpStream(Start, Length, WARN_MSG)
+                    Return __getDirectionUpStream(Start, Length, WARN_MSG)
                 End If
             End Function
 
@@ -41,10 +45,10 @@
             ''' <param name="Length"></param>
             ''' <returns></returns>
             Public Function ReadDownStream(Start As Long, Length As Long, WARN_MSG As Boolean) As String
-                If Length > Len(Me.InternalReader._innerNTsource.SequenceData) - Start Then '假设需要截取的长度大于剩余的长度，则假若为环状的分子的话
+                If Length > Len(Me._innerReader._innerNTsource.SequenceData) - Start Then '假设需要截取的长度大于剩余的长度，则假若为环状的分子的话
 
-                    If Me.InternalReader._isCircularMolecular Then '长度不足的部分截取自开头起始部分
-                        Return InternalReadSpanningCircularDNA(Start, Length)
+                    If Me._innerReader._isCircularMolecular Then '长度不足的部分截取自开头起始部分
+                        Return __readSpanningCircularDNA(Start, Length)
                     Else
                         If WARN_MSG Then
                             Call Console.WriteLine(READER_WARNING_MESSAGE, vbCrLf, Len(SequenceData), vbCrLf, Start, vbCrLf, Length)
@@ -65,16 +69,16 @@
             ''' </summary>
             ''' <returns></returns>
             ''' <remarks></remarks>
-            Private Function InternalReadSpanningCircularDNA(Start As Integer, Length As Integer) As String
-                Dim Sequence As String = Mid$(Me.InternalReader._innerNTsource.SequenceData, Start, Length)
+            Private Function __readSpanningCircularDNA(Start As Integer, Length As Integer) As String
+                Dim Sequence As String = Mid$(Me._innerReader._innerNTsource.SequenceData, Start, Length)
 
                 Length -= Len(Sequence)
-                Sequence &= Mid(Me.InternalReader._innerNTsource.SequenceData, 1, Length)
+                Sequence &= Mid(Me._innerReader._innerNTsource.SequenceData, 1, Length)
 
                 Return Sequence
             End Function
 
-            Private Function InternalReadUpStreamSpanningCircularDNA(Length As Integer, Start As Integer) As String
+            Private Function __readUpStreamSpanningCircularDNA(Length As Integer, Start As Integer) As String
                 Dim Current_Length As Integer = Length + Start
                 Dim Sequence As String = Mid(Me.SequenceData, 1, Current_Length)
 
@@ -84,12 +88,12 @@
                 Return Sequence
             End Function
 
-            Private Function __Get_DirectionUpStream(Starts As Long, Length As Long, WARNING As Boolean) As String
+            Private Function __getDirectionUpStream(Starts As Long, Length As Long, WARNING As Boolean) As String
                 Starts -= Length
 
                 If Starts < 0 Then '上游部分的序列长度不足，则
-                    If Me.InternalReader._isCircularMolecular Then
-                        Return InternalReadUpStreamSpanningCircularDNA(Length, Starts)
+                    If Me._innerReader._isCircularMolecular Then
+                        Return __readUpStreamSpanningCircularDNA(Length, Starts)
                     Else '截取剩余部分并给出警告
                         If Starts < 1 Then Length += Starts
                         If Starts < 0 Then
