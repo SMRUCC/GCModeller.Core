@@ -68,7 +68,9 @@ Namespace SequenceModel
         ''' <returns></returns>
         <ExportAPI("MW.NT")>
         Public Function CalcMW_Nucleotides(SequenceData As ISequenceModel) As Double
-            Dim LQuery = (From ch As Char In SequenceData.SequenceData.ToUpper Select NucleicAcidsMolecularWeights(ch)).Sum
+            Dim LQuery As Double = (From ch As Char
+                                    In SequenceData.SequenceData.ToUpper
+                                    Select NucleicAcidsMolecularWeights(ch)).Sum
             Return LQuery
         End Function
     End Module
