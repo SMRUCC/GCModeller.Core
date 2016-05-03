@@ -27,6 +27,14 @@ Namespace Assembly.Bac_sRNA.org
         Sub New()
         End Sub
 
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="sid"></param>
+        ''' <param name="org"></param>
+        ''' <param name="name"></param>
+        ''' <param name="seq">The fasta sequence data</param>
+        ''' <param name="loci"></param>
         Sub New(sid As String, org As String, name As String, seq As String, loci As NucleotideLocation)
             _UniqueId = sid
             _Specie = org
@@ -38,6 +46,15 @@ Namespace Assembly.Bac_sRNA.org
                                    loci.Left,
                                    loci.Right,
                                    loci.Strand.ToString}, seq)
+        End Sub
+
+        Sub New(atts As String())
+            Call Me.New(atts(Scan0),
+                        atts(1),
+                        atts(2), "",
+                        New NucleotideLocation(Scripting.CTypeDynamic(Of Integer)(atts(3)),
+                                               Scripting.CTypeDynamic(Of Integer)(atts(4)),
+                                               atts(5).GetStrand))
         End Sub
 
         Public Shared Function [CType](fa As FastaToken) As Sequence
