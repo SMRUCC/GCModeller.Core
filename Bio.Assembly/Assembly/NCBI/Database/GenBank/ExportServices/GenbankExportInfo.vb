@@ -4,8 +4,8 @@
 
 #Region "Csv data storage region."
 
-        Dim _entryInfo As LazyLoader(Of T(), String)
-        Dim _ORFInfo As LazyLoader(Of GenBank.CsvExports.GeneDumpInfo(), String)
+        Dim _entryInfo As Microsoft.VisualBasic.ComponentModel.LazyLoader(Of T(), String)
+        Dim _ORFInfo As Microsoft.VisualBasic.ComponentModel.LazyLoader(Of GeneDumpInfo(), String)
 
         Public Property EntryInfo As T()
             Get
@@ -16,11 +16,11 @@
             End Set
         End Property
 
-        Public Property ORFInfo As GenBank.CsvExports.GeneDumpInfo()
+        Public Property ORFInfo As GeneDumpInfo()
             Get
                 Return _ORFInfo.Value
             End Get
-            Set(value As GenBank.CsvExports.GeneDumpInfo())
+            Set(value As GeneDumpInfo())
                 _ORFInfo.Value = value
             End Set
         End Property
@@ -63,8 +63,8 @@
         ''' <remarks></remarks>
         Sub New(Root As String, GenbankEntryInfoLoad As GenbankEntryInfoLoadMethod, ORFInfoLoad As ORFInfoLoadMethod)
             _root = Root
-            _entryInfo = New LazyLoader(Of T(), String)(Root & "/genbank.info.csv", Function(Path As String) GenbankEntryInfoLoad(Path))
-            _ORFInfo = New LazyLoader(Of GeneDumpInfo(), String)(Root & "/genbank.orf.csv", Function(Path As String) ORFInfoLoad(Path))
+            _entryInfo = New Microsoft.VisualBasic.ComponentModel.LazyLoader(Of T(), String)(Root & "/genbank.info.csv", Function(path) GenbankEntryInfoLoad(path))
+            _ORFInfo = New Microsoft.VisualBasic.ComponentModel.LazyLoader(Of GeneDumpInfo(), String)(Root & "/genbank.orf.csv", Function(path) ORFInfoLoad(path))
         End Sub
 
         Public ReadOnly Property ORFSource As Dictionary(Of String, String)

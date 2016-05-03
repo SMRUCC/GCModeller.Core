@@ -2,6 +2,7 @@
 Imports LANS.SystemsBiology.SequenceModel.ISequenceModel
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Language
 
 Namespace SequenceModel.NucleotideModels
 
@@ -75,7 +76,7 @@ Namespace SequenceModel.NucleotideModels
         ''' <summary>
         ''' 这个延时加载的设计好像并没有什么卵用
         ''' </summary>
-        Dim _innerSeqModel As Lazy(Of List(Of Deoxyribonucleotides))
+        Dim _innerSeqModel As Microsoft.VisualBasic.ComponentModel.Lazy(Of List(Of Deoxyribonucleotides))
 
         ''' <summary>
         ''' Cache data for maintaining the high performance on sequence operation.
@@ -104,13 +105,32 @@ Namespace SequenceModel.NucleotideModels
                 Return _innerSeqCache
             End Get
             Set(value As String)
-                Me._innerSeqModel = New Lazy(Of List(Of Deoxyribonucleotides))(
-                    Function() (From ch As Char In value
-                                Let __getNA = If(NucleotideConvert.ContainsKey(ch), NucleotideConvert(ch), Deoxyribonucleotides.NA)
-                                Select __getNA).ToList)
+                Dim helper As New __cacheHelper(value)
+                Me._innerSeqModel =
+                    New Microsoft.VisualBasic.ComponentModel.Lazy(Of
+                    List(Of Deoxyribonucleotides))(AddressOf helper.__getList)
                 Call __generateSeqCache()
             End Set
         End Property
+
+        Private Structure __cacheHelper
+            Dim value As String
+
+            Sub New(value As String)
+                Me.value = value
+            End Sub
+
+            Public Function __getList() As List(Of Deoxyribonucleotides)
+                Return LinqAPI.MakeList(Of Deoxyribonucleotides) <=
+                    From ch As Char
+                    In value
+                    Let __getNA =
+                        If(NucleotideConvert.ContainsKey(ch),
+                        NucleotideConvert(ch),
+                        Deoxyribonucleotides.NA)
+                    Select __getNA
+            End Function
+        End Structure
 
         ''' <summary>
         ''' The melting temperature of P1 is Tm(P1), which is a reference temperature for a primer to perform annealing and known as the Wallace formula
@@ -132,8 +152,8 @@ Namespace SequenceModel.NucleotideModels
             End Get
         End Property
 
-        Sub New(Sequence As Generic.IEnumerable(Of LANS.SystemsBiology.SequenceModel.NucleotideModels.NucleicAcid.Deoxyribonucleotides))
-            Me._innerSeqModel = New Microsoft.VisualBasic.Lazy(Of List(Of Deoxyribonucleotides))(Sequence.ToList)
+        Sub New(Sequence As IEnumerable(Of Deoxyribonucleotides))
+            Me._innerSeqModel = New Microsoft.VisualBasic.ComponentModel.Lazy(Of List(Of Deoxyribonucleotides))(Sequence.ToList)
             Call __convertSequence(ToString(Sequence))
         End Sub
 
@@ -205,7 +225,7 @@ Namespace SequenceModel.NucleotideModels
         ''' <remarks></remarks>
         Private Sub __generateSeqCache()
             _innerSeqCache = New String((From ntBase As Deoxyribonucleotides
-                                                     In Me._innerSeqModel.Value
+                                         In Me._innerSeqModel.Value
                                          Select __nucleotideAsChar(ntBase)).ToArray)
             MyBase.SequenceData = _innerSeqCache
         End Sub
@@ -222,12 +242,15 @@ Namespace SequenceModel.NucleotideModels
 
             For i As Integer = 1 To Me.Length Step SegmentLength + 1
                 Dim strSegmentData As String = Mid(Me.SequenceData, i, SegmentLength)
-                Dim sgData = New SegmentObject With {.SequenceData = strSegmentData, .Left = i, .Right = i + Len(strSegmentData)}
 
-                Call SegmentList.Add(sgData)
+                SegmentList += New SegmentObject With {
+                    .SequenceData = strSegmentData,
+                    .Left = i,
+                    .Right = i + Len(strSegmentData)
+                }
             Next
 
-            Return SegmentList.ToArray
+            Return SegmentList
         End Function
 
         Public Overrides ReadOnly Property Length As Integer
@@ -246,7 +269,9 @@ Namespace SequenceModel.NucleotideModels
         Public Function GetSegment(Start As Long, [End] As Long) As NucleicAcid
             Start += 1
             [End] += 1
-            Return New NucleicAcid With {.SequenceData = Mid(Me.SequenceData, Start, [End] - Start)}
+            Return New NucleicAcid With {
+                .SequenceData = Mid(Me.SequenceData, Start, [End] - Start)
+            }
         End Function
 
         ''' <summary>
@@ -261,18 +286,22 @@ Namespace SequenceModel.NucleotideModels
         End Function
 
         Public Function Complement() As NucleicAcid
-            Return New NucleicAcid With {.SequenceData = Complement(Me.SequenceData)}
+            Return New NucleicAcid With {
+                .SequenceData = Complement(Me.SequenceData)
+            }
         End Function
 
         Public Function Reverse() As NucleicAcid
-            Return New NucleicAcid With {.SequenceData = Me.SequenceData.Reverse.ToArray}
+            Return New NucleicAcid With {
+                .SequenceData = Me.SequenceData.Reverse.ToArray
+            }
         End Function
 
         Public Shared Function CreateObject(strSeq As String) As NucleicAcid
             Return New NucleicAcid With {.SequenceData = strSeq}
         End Function
 
-        Public Function CreateReader() As SequenceModel.NucleotideModels.SegmentReader
+        Public Function CreateReader() As SegmentReader
             Return New SegmentReader(Me)
         End Function
 
@@ -302,7 +331,7 @@ Namespace SequenceModel.NucleotideModels
             Return String.Format("({0}bp) {1}...", Len(SequenceData), Mid(Me.SequenceData, 1, 25))
         End Function
 
-        Public Overloads Shared Function ToString(nn As SequenceModel.NucleotideModels.NucleicAcid.Deoxyribonucleotides) As String
+        Public Overloads Shared Function ToString(nn As Deoxyribonucleotides) As String
             Return __nucleotideAsChar(nn).ToString
         End Function
 
@@ -330,9 +359,9 @@ Namespace SequenceModel.NucleotideModels
             }
         End Operator
 
-        Public Shared Widening Operator CType(FastaObject As SequenceModel.FASTA.FastaToken) As NucleicAcid
+        Public Shared Widening Operator CType(fasta As FASTA.FastaToken) As NucleicAcid
             Return New NucleicAcid With {
-                .SequenceData = FastaObject.SequenceData
+                .SequenceData = fasta.SequenceData
             }
         End Operator
 
