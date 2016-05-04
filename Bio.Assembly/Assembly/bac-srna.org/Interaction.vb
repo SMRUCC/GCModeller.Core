@@ -4,6 +4,9 @@ Imports System.Data.Linq.Mapping
 
 Namespace Assembly.Bac_sRNA.org
 
+    ''' <summary>
+    ''' <see cref="Interaction.sRNAid"/> --> <see cref="Interaction.TargetName"/>
+    ''' </summary>
     Public Structure Interaction
 
         <Column(Name:="sRNAid")> <XmlAttribute>

@@ -105,8 +105,30 @@ Public Module Installer
         Return gHash
     End Function
 
+    ''' <summary>
+    ''' Query target nt sequence
+    ''' </summary>
+    ''' <param name="siRNAtarget">
+    ''' 这个应该是通过对<see cref="Bac_sRNA.org.Interaction.Organism"/>Group之后所得到的数据
+    ''' </param>
+    ''' <param name="repo"></param>
+    ''' <returns></returns>
     Public Function GetsiRNATargetSeqs(siRNAtarget As IEnumerable(Of Bac_sRNA.org.Interaction), repo As Genbank) As IEnumerable(Of FASTA.FastaToken)
+        Dim index As GenbankIndex = repo.Query(siRNAtarget.ToArray.ShadowCopy(siRNAtarget))
 
+        If index Is Nothing Then
+            Return Nothing
+        Else
+            Dim gbkk As GBFF.File = index.Gbk(repo.DIR)
+            Dim genes As FASTA.FastaFile = gbkk.ExportGeneNtFasta(geneName:=True)
+            Dim hash As Dictionary(Of String, FASTA.FastaToken) =
+                genes.ToDictionary(Function(x) x.Attributes.First)
+
+            Return From itr As Bac_sRNA.org.Interaction
+                   In siRNAtarget
+                   Where hash.ContainsKey(itr.TargetName)
+                   Select hash(itr.TargetName)
+        End If
     End Function
 End Module
 
@@ -116,8 +138,15 @@ End Module
 Public Class Genbank : Inherits ClassObject
     Implements IRepository(Of String, GenbankIndex)
 
+    ''' <summary>
+    ''' The index database file..
+    ''' </summary>
     Public Const IndexJournal As String = "ncbi_genbank.csv"
 
+    ''' <summary>
+    ''' The genbank repository root directory.
+    ''' </summary>
+    ''' <returns></returns>
     Public ReadOnly Property DIR As String
 
     ReadOnly __indexHash As Dictionary(Of GenbankIndex)

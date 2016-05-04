@@ -10,7 +10,8 @@ Namespace Assembly.NCBI.GenBank.CsvExports
     ''' (从GBK文件之中所导出来的一个基因对象的简要信息)
     ''' </summary>
     ''' <remarks></remarks>
-    Public Class GeneDumpInfo : Implements sIdEnumerable
+    Public Class GeneDumpInfo
+        Implements sIdEnumerable
         Implements I_GeneBrief
 
         ''' <summary>

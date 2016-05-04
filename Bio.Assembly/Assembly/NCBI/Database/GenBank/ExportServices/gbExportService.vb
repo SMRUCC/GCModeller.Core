@@ -289,12 +289,12 @@ Namespace Assembly.NCBI.GenBank
             Return ExportList.Count
         End Function
 
-        <Extension> Public Function ExportGeneAnno(gbk As LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.File) As GeneDumpInfo()
-            Dim GenesTempChunk As GeneDumpInfo() = (From FeatureData As Feature
-                                                    In gbk.Features._innerList.AsParallel
-                                                    Where String.Equals(FeatureData.KeyName, "CDS", StringComparison.OrdinalIgnoreCase)
-                                                    Select GeneDumpInfo.DumpEXPORT(New CDS(FeatureData))).ToArray
-            Return GenesTempChunk
+        <Extension> Public Function ExportGeneAnno(gbk As GBFF.File) As GeneDumpInfo()
+            Dim dumps As GeneDumpInfo() = (From FeatureData As Feature
+                                           In gbk.Features._innerList.AsParallel
+                                           Where String.Equals(FeatureData.KeyName, "CDS", StringComparison.OrdinalIgnoreCase)
+                                           Select GeneDumpInfo.DumpEXPORT(New CDS(FeatureData))).ToArray
+            Return dumps
         End Function
 
         <Extension> Public Function ExportPTTAsDump(PTT As NCBI.GenBank.TabularFormat.PTT) As GeneDumpInfo()
@@ -336,21 +336,28 @@ Namespace Assembly.NCBI.GenBank
         ''' <param name="FastaWithAnnotation">是否将序列的注释信息一同导出来，<see cref="vbTrue"></see>会将功能注释信息和菌株信息一同导出，<see cref="vbFalse"></see>则仅仅会导出基因号，假若没有基因号，则会导出蛋白质编号</param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Function BatchExportPlasmid(list As Generic.IEnumerable(Of NCBI.GenBank.GBFF.File), ByRef GeneList As GeneDumpInfo(), ByRef GBK As Plasmid(), FastaExport As String, Optional FastaWithAnnotation As Boolean = False) As Integer
-            Dim ExportList As Dictionary(Of Plasmid, String) = New Dictionary(Of Plasmid, String)
-            Dim GeneChunkList As List(Of GeneDumpInfo) = New List(Of GeneDumpInfo)
-            Dim FastaFile As LANS.SystemsBiology.SequenceModel.FASTA.FastaFile = New SequenceModel.FASTA.FastaFile
-            Dim PlasmidList As LANS.SystemsBiology.SequenceModel.FASTA.FastaFile = New SequenceModel.FASTA.FastaFile
-            Dim GeneSequenceList As LANS.SystemsBiology.SequenceModel.FASTA.FastaFile = New SequenceModel.FASTA.FastaFile
+        Public Function BatchExportPlasmid(list As IEnumerable(Of NCBI.GenBank.GBFF.File),
+                                           ByRef GeneList As GeneDumpInfo(),
+                                           ByRef GBK As Plasmid(),
+                                           FastaExport As String,
+                                           Optional FastaWithAnnotation As Boolean = False) As Integer
+            Dim ExportList As New Dictionary(Of Plasmid, String)
+            Dim buf As New List(Of GeneDumpInfo)
+            Dim FastaFile As New FASTA.FastaFile
+            Dim PlasmidList As New FASTA.FastaFile
+            Dim GeneSequenceList As New FASTA.FastaFile
 
-            Dim Source = (From item In list.AsParallel Where item.IsPlasmidSource Select item).ToArray
+            Dim Source As GBFF.File() = (From gb As GBFF.File
+                                         In list.AsParallel
+                                         Where gb.IsPlasmidSource
+                                         Select gb).ToArray
 
-            Call Console.WriteLine("[DEBUG] Flushed memory....")
+            Call "Flushed memory....".__DEBUG_ECHO
             list = Nothing
             Call FlushMemory()
-            Call Console.WriteLine("[DEBUG] There is ""{0}"" plasmid source will be export...", Source.Count)
+            Call $"There is ""{Source.Length}"" plasmid source will be export...".__DEBUG_ECHO
 
-            For Each GBKFF As LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.File In Source
+            For Each GBKFF As GBFF.File In Source
                 Dim GenesTempChunk As GeneDumpInfo() = (From FeatureData As Feature
                                                         In GBKFF.Features._innerList.AsParallel
                                                         Where String.Equals(FeatureData.KeyName, "CDS", StringComparison.OrdinalIgnoreCase)
@@ -358,7 +365,7 @@ Namespace Assembly.NCBI.GenBank
                 Dim Entry = NCBI.GenBank.CsvExports.Plasmid.Build(GBKFF)
 
                 Call ExportList.Add(Entry, GBKFF.Origin.SequenceData)
-                Call GeneChunkList.AddRange(GenesTempChunk)
+                Call buf.AddRange(GenesTempChunk)
 
                 '导出Fasta序列
                 Dim FastaDump As LANS.SystemsBiology.SequenceModel.FASTA.FastaFile =
@@ -395,7 +402,7 @@ Namespace Assembly.NCBI.GenBank
                 End If
             Next
 
-            GeneList = GeneChunkList.ToArray
+            GeneList = buf.ToArray
             GBK = (From item In ExportList Select item.Key).ToArray
 
             Try
@@ -409,25 +416,28 @@ Namespace Assembly.NCBI.GenBank
             Return ExportList.Count
         End Function
 
-        Private Function __exportNoAnnotation(data As GeneDumpInfo()) As LANS.SystemsBiology.SequenceModel.FASTA.FastaFile
-            Dim LQuery = (From GeneObject As GeneDumpInfo
-                          In data.AsParallel
-                          Let fa = New LANS.SystemsBiology.SequenceModel.FASTA.FastaToken With {
-                              .Attributes = New String() {GeneObject.LocusID},
-                              .SequenceData = GeneObject.Translation
-                          }
-                          Select fa).ToArray
-            Return CType(LQuery, SequenceModel.FASTA.FastaFile)
+        Private Function __exportNoAnnotation(data As GeneDumpInfo()) As FASTA.FastaFile
+            Dim LQuery As IEnumerable(Of FASTA.FastaToken) =
+                From gene As GeneDumpInfo
+                In data.AsParallel
+                Let fa As FASTA.FastaToken =
+                    New FASTA.FastaToken With {
+                        .Attributes = New String() {gene.LocusID},
+                        .SequenceData = gene.Translation
+                    }
+                Select fa
+            Return New FASTA.FastaFile(LQuery)
         End Function
 
-        Private Function __exportWithAnnotation(data As GeneDumpInfo()) As LANS.SystemsBiology.SequenceModel.FASTA.FastaFile
-            Dim LQuery = (From GeneObject As GeneDumpInfo In data.AsParallel
-                          Let attrs As String() = New String() {GeneObject.LocusID, GeneObject.GeneName, GeneObject.GI, GeneObject.CommonName, GeneObject.Function, GeneObject.Species}
-                          Select New LANS.SystemsBiology.SequenceModel.FASTA.FastaToken With {
-                              .Attributes = attrs,
-                              .SequenceData = GeneObject.Translation
-                          }).ToArray
-            Return CType(LQuery, SequenceModel.FASTA.FastaFile)
+        Private Function __exportWithAnnotation(data As GeneDumpInfo()) As FASTA.FastaFile
+            Dim LQuery = From gene As GeneDumpInfo
+                         In data.AsParallel
+                         Let attrs As String() = {gene.LocusID, gene.GeneName, gene.GI, gene.CommonName, gene.Function, gene.Species}
+                         Select New FASTA.FastaToken With {
+                             .Attributes = attrs,
+                             .SequenceData = gene.Translation
+                         }
+            Return New FASTA.FastaFile(LQuery)
         End Function
 
         <Extension> Public Function TryParseGBKID(path As String) As String
@@ -436,8 +446,14 @@ Namespace Assembly.NCBI.GenBank
             Return Name.ToUpper
         End Function
 
+        ''' <summary>
+        ''' {locus_tag, gene.Location.ToString, products.SafeGetValue(locus_tag)?.Function}.
+        ''' (导出每一个基因的核酸序列)
+        ''' </summary>
+        ''' <param name="gb">Genbank数据库文件</param>
+        ''' <returns></returns>
         <Extension>
-        Public Function GeneNtFasta(gb As GBFF.File) As FASTA.FastaFile
+        Public Function ExportGeneNtFasta(gb As GBFF.File, Optional geneName As Boolean = False) As FASTA.FastaFile
             Dim Reader As New NucleotideModels.SegmentReader(gb.Origin.SequenceData, False)
             Dim list As New List(Of FASTA.FastaToken)
             Dim loc As NucleotideLocation = Nothing
@@ -451,7 +467,16 @@ Namespace Assembly.NCBI.GenBank
                                              Where String.Equals(x.KeyName, "gene", StringComparison.OrdinalIgnoreCase)
                                              Select x)
 
-                    Dim locus_tag As String = gene.Query("locus_tag")
+                    Dim locus_tag As String
+
+                    If geneName Then
+                        locus_tag = gene.Query("gene")
+                        If String.IsNullOrEmpty(locus_tag) OrElse String.Equals(locus_tag, "-") Then
+                            locus_tag = gene.Query("locus_tag")
+                        End If
+                    Else
+                        locus_tag = gene.Query("locus_tag")
+                    End If
 
                     loc = gene.Location.ContiguousRegion
                     attrs = {locus_tag, gene.Location.ToString, products.SafeGetValue(locus_tag)?.Function}
