@@ -66,6 +66,11 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Nodes
             Return LQuery
         End Function
 
+        ''' <summary>
+        ''' Get feature describ value string by key
+        ''' </summary>
+        ''' <param name="Key"></param>
+        ''' <returns></returns>
         Public Function Query(Key As FeatureQualifiers) As String
             Dim sKey As String = Key.ToString
             Return Query(sKey)

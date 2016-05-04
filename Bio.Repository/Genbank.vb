@@ -1,6 +1,8 @@
-﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank
+﻿Imports System.Runtime.CompilerServices
+Imports LANS.SystemsBiology.Assembly.NCBI.GenBank
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports LANS.SystemsBiology.Repository
+Imports LANS.SystemsBiology.Assembly
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.DocumentFormat.Csv
@@ -9,7 +11,7 @@ Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic
-Imports LANS.SystemsBiology.Assembly
+Imports LANS.SystemsBiology.SequenceModel
 
 Public Module Installer
 
@@ -49,7 +51,8 @@ Public Module Installer
                         }
                         Call DbWriter.Flush(idx)   ' 将对象写入内存缓存，进入队列等待回写入文件系统
 
-                        genes += gb.GbffToORF_PTT.GeneObjects.ToArray(Function(g) New GeneInfo(g, idx.AccId))
+                        genes += gb.GbffToORF_PTT.GeneObjects.ToArray(
+                            Function(g) New GeneInfo(g, idx.AccId))
                     Next
                 Next
 
@@ -58,6 +61,52 @@ Public Module Installer
         End Using
 
         Return True
+    End Function
+
+    ''' <summary>
+    ''' key: <see cref="GeneInfo.name"/>, <see cref="GeneInfo.locus_tag"/>
+    ''' </summary>
+    ''' <param name="source"></param>
+    ''' <param name="x"></param>
+    ''' <returns></returns>
+    <Extension>
+    Public Function BuildNameHash(source As IEnumerable(Of GeneInfo), x As GenbankIndex) As IReadOnlyDictionary(Of String, GeneInfo)
+        Dim hash As New Dictionary(Of String, GeneInfo)
+
+        For Each gene As GeneInfo In source
+            If Not String.Equals(gene.accId, x.AccId, StringComparison.OrdinalIgnoreCase) Then
+                Continue For
+            End If
+            Dim key As String = gene.name
+            If String.IsNullOrEmpty(key) OrElse String.Equals(key, "-") Then
+                key = gene.locus_tag
+            End If
+            Call hash.Add(key, gene)
+        Next
+
+        Return hash
+    End Function
+
+    ''' <summary>
+    ''' key: <see cref="GeneInfo.locus_tag"/>
+    ''' </summary>
+    ''' <param name="source"></param>
+    ''' <param name="x"></param>
+    ''' <returns></returns>
+    <Extension>
+    Public Function BuildLocusHash(source As IEnumerable(Of GeneInfo), x As GenbankIndex) As IReadOnlyDictionary(Of String, GeneInfo)
+        Dim gHash As Dictionary(Of GeneInfo) =
+            (From g As GeneInfo
+             In source
+             Where String.Equals(g.accId, x.AccId, StringComparison.OrdinalIgnoreCase)
+             Select g
+             Group g By g.locus_tag Into Group) _
+                  .Select(Function(o) o.Group.First).ToDictionary
+        Return gHash
+    End Function
+
+    Public Function GetsiRNATargetSeqs(siRNAtarget As IEnumerable(Of Bac_sRNA.org.Interaction), repo As Genbank) As IEnumerable(Of FASTA.FastaToken)
+
     End Function
 End Module
 
@@ -89,30 +138,51 @@ Public Class Genbank : Inherits ClassObject
     ''' <param name="locus"></param>
     ''' <returns></returns>
     Public Function Query(genome As String, locus As IEnumerable(Of String)) As GenbankIndex
-        Dim LQuery = (From x As GenbankIndex
-                      In __indexHash.Values.AsParallel
-                      Let edits As DistResult = LevenshteinDistance.ComputeDistance(genome, x.genome)
-                      Where Not edits Is Nothing
-                      Select x,
-                          edits
-                      Order By edits.MatchSimilarity Descending).Take(10)
-        For Each x In LQuery
-            Dim path As String = $"{DIR}/.genbank/meta/{x.x.DIR}.Csv"
+        Return __query(genome, locus, AddressOf BuildLocusHash)
+    End Function
+
+    Private Function __query(genome As String,
+                             locus As IEnumerable(Of String),
+                             hash As Func(Of
+                             IEnumerable(Of GeneInfo),
+                             GenbankIndex,
+                             IReadOnlyDictionary(Of String, GeneInfo))) As GenbankIndex
+        For Each x As GenbankIndex In __entryQuery(genome)
+            Dim path As String = $"{DIR}/.genbank/meta/{x.DIR}.Csv"
             Dim genes As IEnumerable(Of GeneInfo) = path.LoadCsv(Of GeneInfo)
-            Dim gHash As Dictionary(Of GeneInfo) = (From g As GeneInfo
-                                                    In genes
-                                                    Where String.Equals(g.accId, x.x.AccId, StringComparison.OrdinalIgnoreCase)
-                                                    Select g
-                                                    Group g By g.locus_tag Into Group) _
-                                                         .Select(Function(o) o.Group.First).ToDictionary
+            Dim ghash As IReadOnlyDictionary(Of String, GeneInfo) = hash(genes, x)
+
             For Each sid As String In locus
-                If gHash.ContainsKey(sid) Then
-                    Return x.x
+                If ghash.ContainsKey(sid) Then
+                    Return x
                 End If
             Next
         Next
 
         Return Nothing
+    End Function
+
+    Private Function __entryQuery(genomeName As String) As IEnumerable(Of GenbankIndex)
+        Dim LQuery = (From x As GenbankIndex
+                      In __indexHash.Values.AsParallel
+                      Let edits As DistResult = LevenshteinDistance.ComputeDistance(genomeName, x.genome)
+                      Where Not edits Is Nothing
+                      Select x,
+                          edits
+                      Order By edits.MatchSimilarity Descending).Take(10)
+        Return LQuery.Select(Function(x) x.x)
+    End Function
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="siRNAtarget">
+    ''' 这个应该是通过对<see cref="Bac_sRNA.org.Interaction.Organism"/>Group之后所得到的数据
+    ''' </param>
+    ''' <returns></returns>
+    Public Function Query(siRNAtarget As IEnumerable(Of Bac_sRNA.org.Interaction)) As GenbankIndex
+        Dim names As IEnumerable(Of String) = siRNAtarget.Select(Function(x) x.TargetName)
+        Return __query(siRNAtarget.First.Organism, names, AddressOf BuildNameHash)
     End Function
 
     Public Function Query(source As KEGG.WebServices.QuerySource) As GenbankIndex
@@ -173,16 +243,27 @@ Public Class GeneInfo
     ''' </summary>
     ''' <returns></returns>
     Public Property locus_tag As String Implements sIdEnumerable.Identifier, IKeyedEntity(Of String).Key
+    ''' <summary>
+    ''' /gene="基因名"
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property name As String
     Public Property [function] As String
 
     Sub New(g As GeneBrief, acc As String)
         locus_tag = g.Synonym
         [function] = g.Product
         accId = acc
+        name = g.Gene
     End Sub
 
     Sub New()
     End Sub
+
+    Public Function NameEquals(name As String) As Boolean
+        Return String.Equals(name, Me.name, StringComparison.OrdinalIgnoreCase) OrElse
+            String.Equals(name, locus_tag, StringComparison.OrdinalIgnoreCase)
+    End Function
 
     Public Overrides Function ToString() As String
         Return Me.GetJson
@@ -206,7 +287,8 @@ Public Class GenbankIndex : Implements IKeyedEntity(Of String), sIdEnumerable
 
     Public Function Gbk(DIR As String) As GBFF.File
         Dim path As String = $"{DIR}/{Me.DIR}/"
-        Dim files As IEnumerable(Of String) = ls - l - r - wildcards("*.gb", "*.gbk") <= path
+        Dim files As IEnumerable(Of String) =
+            ls - l - r - wildcards("*.gb", "*.gbk") <= path
 
         If files.IsNullOrEmpty Then
             Return Nothing

@@ -24,7 +24,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat.ComponentModels
         Public Property Location As NucleotideLocation Implements I_GeneBrief.Location
         <XmlAttribute> Public Property PID As String
         ''' <summary>
-        ''' 基因号，这个应该是GI编号，而非平常比较熟悉的字符串编号
+        ''' 基因名，在genbank文件里面是/gene=，基因号，这个应该是GI编号，而非平常比较熟悉的字符串编号
         ''' </summary>
         ''' <value></value>
         ''' <returns></returns>

@@ -8,6 +8,11 @@ Namespace Assembly.Bac_sRNA.org
 
         <Column(Name:="sRNAid")> <XmlAttribute>
         Public Property sRNAid As String
+
+        ''' <summary>
+        ''' The bacterial organism species name.
+        ''' </summary>
+        ''' <returns></returns>
         <Column(Name:="organism")> <XmlElement>
         Public Property Organism As String
         ''' <summary>
@@ -18,6 +23,11 @@ Namespace Assembly.Bac_sRNA.org
         Public Property Name As String
         <Column(Name:="regulation")> <XmlElement>
         Public Property Regulation As String
+
+        ''' <summary>
+        ''' siRNA所作用的目标基因的基因名或者基因号，这个属性总是不会空的
+        ''' </summary>
+        ''' <returns></returns>
         <Column(Name:="target_name")> <XmlElement>
         Public Property TargetName As String
 
