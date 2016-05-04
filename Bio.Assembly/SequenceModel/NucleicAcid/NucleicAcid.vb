@@ -1,4 +1,5 @@
 ﻿Imports System.Text
+Imports System.ComponentModel
 Imports LANS.SystemsBiology.SequenceModel.ISequenceModel
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic
@@ -7,76 +8,76 @@ Imports Microsoft.VisualBasic.Language
 Namespace SequenceModel.NucleotideModels
 
     ''' <summary>
+    ''' Deoxyribonucleotides NT base which consist of the DNA sequence.(枚举所有的脱氧核糖核苷酸)
+    ''' </summary>
+    ''' <remarks></remarks>
+    <Description("Deoxyribonucleotides")> Public Enum DNA As SByte
+        ''' <summary>
+        ''' Gaps/Rare bases(空格或者其他的稀有碱基)
+        ''' </summary>
+        ''' <remarks></remarks>
+        NA = -1
+        ''' <summary>
+        ''' Adenine, paired with <see cref="DNA.dTMP"/>(A, 腺嘌呤)
+        ''' </summary>
+        dAMP = 0
+        ''' <summary>
+        ''' Guanine, paired with <see cref="DNA.dCMP"/>(G, 鸟嘌呤)
+        ''' </summary>
+        dGMP = 1
+        ''' <summary>
+        ''' Cytosine, paired with <see cref="DNA.dGMP"/>(C, 胞嘧啶)
+        ''' </summary>
+        dCMP = 2
+        ''' <summary>
+        ''' Thymine, paired with <see cref="DNA.dAMP"/>(T, 胸腺嘧啶)
+        ''' </summary>
+        dTMP = 3
+    End Enum
+
+    ''' <summary>
     ''' The nucleotide sequence object.(核酸序列对象)
     ''' </summary>
     ''' <remarks></remarks>
-    Public Class NucleicAcid : Inherits SequenceModel.ISequenceModel
-
-        ''' <summary>
-        ''' Deoxyribonucleotides NT base which consist of the DNA sequence.(枚举所有的脱氧核糖核苷酸)
-        ''' </summary>
-        ''' <remarks></remarks>
-        Public Enum Deoxyribonucleotides As SByte
-            ''' <summary>
-            ''' Gaps/Rare bases(空格或者其他的稀有碱基)
-            ''' </summary>
-            ''' <remarks></remarks>
-            NA = -1
-            ''' <summary>
-            ''' Adenine, paired with <see cref="Deoxyribonucleotides.dTMP"/>(A, 腺嘌呤)
-            ''' </summary>
-            dAMP = 0
-            ''' <summary>
-            ''' Guanine, paired with <see cref="Deoxyribonucleotides.dCMP"/>(G, 鸟嘌呤)
-            ''' </summary>
-            dGMP = 1
-            ''' <summary>
-            ''' Cytosine, paired with <see cref="Deoxyribonucleotides.dGMP"/>(C, 胞嘧啶)
-            ''' </summary>
-            dCMP = 2
-            ''' <summary>
-            ''' Thymine, paired with <see cref="Deoxyribonucleotides.dAMP"/>(T, 胸腺嘧啶)
-            ''' </summary>
-            dTMP = 3
-        End Enum
+    Public Class NucleicAcid : Inherits ISequenceModel
 
         ''' <summary>
         ''' 大小写不敏感
         ''' </summary>
-        Protected Friend Shared ReadOnly Property NucleotideConvert As Dictionary(Of Char, Deoxyribonucleotides) =
-            New Dictionary(Of Char, Deoxyribonucleotides) From {
+        Protected Friend Shared ReadOnly Property NucleotideConvert As Dictionary(Of Char, DNA) =
+            New Dictionary(Of Char, DNA) From {
  _
-                {"A"c, Deoxyribonucleotides.dAMP},
-                {"T"c, Deoxyribonucleotides.dTMP},
-                {"G"c, Deoxyribonucleotides.dGMP},
-                {"C"c, Deoxyribonucleotides.dCMP},
-                {"a"c, Deoxyribonucleotides.dAMP},
-                {"t"c, Deoxyribonucleotides.dTMP},
-                {"g"c, Deoxyribonucleotides.dGMP},
-                {"c"c, Deoxyribonucleotides.dCMP}
+                {"A"c, DNA.dAMP},
+                {"T"c, DNA.dTMP},
+                {"G"c, DNA.dGMP},
+                {"C"c, DNA.dCMP},
+                {"a"c, DNA.dAMP},
+                {"t"c, DNA.dTMP},
+                {"g"c, DNA.dGMP},
+                {"c"c, DNA.dCMP}
         }
 
         ''' <summary>
         '''
         ''' </summary>
-        Protected Friend Shared ReadOnly __nucleotideAsChar As Dictionary(Of Deoxyribonucleotides, Char) =
-            New Dictionary(Of Deoxyribonucleotides, Char) From {
+        Protected Friend Shared ReadOnly __nucleotideAsChar As Dictionary(Of DNA, Char) =
+            New Dictionary(Of DNA, Char) From {
  _
-                {Deoxyribonucleotides.dAMP, "A"c},
-                {Deoxyribonucleotides.dCMP, "C"c},
-                {Deoxyribonucleotides.dGMP, "G"c},
-                {Deoxyribonucleotides.dTMP, "T"c},
-                {Deoxyribonucleotides.NA, "-"c}
+                {DNA.dAMP, "A"c},
+                {DNA.dCMP, "C"c},
+                {DNA.dGMP, "G"c},
+                {DNA.dTMP, "T"c},
+                {DNA.NA, "-"c}
         }
 
-        Public Shared Function ToChar(base As Deoxyribonucleotides) As Char
+        Public Shared Function ToChar(base As DNA) As Char
             Return __nucleotideAsChar(base)
         End Function
 
         ''' <summary>
         ''' 这个延时加载的设计好像并没有什么卵用
         ''' </summary>
-        Dim _innerSeqModel As Microsoft.VisualBasic.ComponentModel.Lazy(Of List(Of Deoxyribonucleotides))
+        Dim _innerSeqModel As Microsoft.VisualBasic.ComponentModel.Lazy(Of List(Of DNA))
 
         ''' <summary>
         ''' Cache data for maintaining the high performance on sequence operation.
@@ -84,7 +85,7 @@ Namespace SequenceModel.NucleotideModels
         ''' <remarks></remarks>
         Dim _innerSeqCache As String
 
-        Public Function ToArray() As Deoxyribonucleotides()
+        Public Function ToArray() As DNA()
             Return _innerSeqModel.Value.ToArray
         End Function
 
@@ -108,7 +109,7 @@ Namespace SequenceModel.NucleotideModels
                 Dim helper As New __cacheHelper(value)
                 Me._innerSeqModel =
                     New Microsoft.VisualBasic.ComponentModel.Lazy(Of
-                    List(Of Deoxyribonucleotides))(AddressOf helper.__getList)
+                    List(Of DNA))(AddressOf helper.__getList)
                 Call __generateSeqCache()
             End Set
         End Property
@@ -120,14 +121,14 @@ Namespace SequenceModel.NucleotideModels
                 Me.value = value
             End Sub
 
-            Public Function __getList() As List(Of Deoxyribonucleotides)
-                Return LinqAPI.MakeList(Of Deoxyribonucleotides) <=
+            Public Function __getList() As List(Of DNA)
+                Return LinqAPI.MakeList(Of DNA) <=
                     From ch As Char
                     In value
                     Let __getNA =
                         If(NucleotideConvert.ContainsKey(ch),
                         NucleotideConvert(ch),
-                        Deoxyribonucleotides.NA)
+                        DNA.NA)
                     Select __getNA
             End Function
         End Structure
@@ -152,8 +153,8 @@ Namespace SequenceModel.NucleotideModels
             End Get
         End Property
 
-        Sub New(Sequence As IEnumerable(Of Deoxyribonucleotides))
-            Me._innerSeqModel = New Microsoft.VisualBasic.ComponentModel.Lazy(Of List(Of Deoxyribonucleotides))(Sequence.ToList)
+        Sub New(Sequence As IEnumerable(Of DNA))
+            Me._innerSeqModel = New Microsoft.VisualBasic.ComponentModel.Lazy(Of List(Of DNA))(Sequence.ToList)
             Call __convertSequence(ToString(Sequence))
         End Sub
 
@@ -224,7 +225,7 @@ Namespace SequenceModel.NucleotideModels
         ''' </summary>
         ''' <remarks></remarks>
         Private Sub __generateSeqCache()
-            _innerSeqCache = New String((From ntBase As Deoxyribonucleotides
+            _innerSeqCache = New String((From ntBase As DNA
                                          In Me._innerSeqModel.Value
                                          Select __nucleotideAsChar(ntBase)).ToArray)
             MyBase.SequenceData = _innerSeqCache
@@ -312,30 +313,30 @@ Namespace SequenceModel.NucleotideModels
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Shared Function Complement(DNAseq As String) As String
-            Dim sBuilder As StringBuilder = New StringBuilder(DNAseq)
+            Dim sb As StringBuilder = New StringBuilder(DNAseq)
 
-            Call sBuilder.Replace("A"c, "1"c)
-            Call sBuilder.Replace("T"c, "2"c)
-            Call sBuilder.Replace("G"c, "3"c)
-            Call sBuilder.Replace("C"c, "4"c)
+            Call sb.Replace("A"c, "1"c)
+            Call sb.Replace("T"c, "2"c)
+            Call sb.Replace("G"c, "3"c)
+            Call sb.Replace("C"c, "4"c)
 
-            Call sBuilder.Replace("1"c, "T"c)
-            Call sBuilder.Replace("2"c, "A"c)
-            Call sBuilder.Replace("3"c, "C"c)
-            Call sBuilder.Replace("4"c, "G"c)
+            Call sb.Replace("1"c, "T"c)
+            Call sb.Replace("2"c, "A"c)
+            Call sb.Replace("3"c, "C"c)
+            Call sb.Replace("4"c, "G"c)
 
-            Return sBuilder.ToString
+            Return sb.ToString
         End Function
 
         Public Overrides Function ToString() As String
             Return String.Format("({0}bp) {1}...", Len(SequenceData), Mid(Me.SequenceData, 1, 25))
         End Function
 
-        Public Overloads Shared Function ToString(nn As Deoxyribonucleotides) As String
+        Public Overloads Shared Function ToString(nn As DNA) As String
             Return __nucleotideAsChar(nn).ToString
         End Function
 
-        Public Overloads Shared Function ToString(nt As Generic.IEnumerable(Of Deoxyribonucleotides)) As String
+        Public Overloads Shared Function ToString(nt As Generic.IEnumerable(Of DNA)) As String
             Dim array As Char() = nt.ToArray(Function(x) __nucleotideAsChar(x))
             Return New String(array)
         End Function

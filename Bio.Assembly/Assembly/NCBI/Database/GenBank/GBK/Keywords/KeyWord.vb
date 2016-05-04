@@ -2,7 +2,7 @@
 
 Namespace Assembly.NCBI.GenBank.GBFF.Keywords
 
-    Public MustInherit Class KeyWord : Inherits NCBI.GenBank.GBFF.I_GBKComponent
+    Public MustInherit Class KeyWord : Inherits NCBI.GenBank.GBFF.IgbComponent
 
         Public Const GBK_FIELD_KEY_REFERENCE As String = "REFERENCE"
         Public Const GBK_FIELD_KEY_COMMENT As String = "COMMENT"

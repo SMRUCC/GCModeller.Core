@@ -33,7 +33,7 @@
             Call db_xref.TryGetValue("UniProtKB/TrEMBL", TempChunk) : If Not TempChunk.IsNullOrEmpty Then db_xref_UniprotKBTrEMBL = TempChunk.First
             Call db_xref.TryGetValue("InterPro", db_xref_InterPro)
 
-            Me.GBKEntry = CDS_Feature.GBKEntry
+            Me.gbRaw = CDS_Feature.gbRaw
         End Sub
     End Class
 End Namespace

@@ -4,6 +4,8 @@ Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ConsoleDevice
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Language
+Imports LANS.SystemsBiology.SequenceModel.NucleotideModels
 
 Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Nodes
 
@@ -11,7 +13,7 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Nodes
     ''' A sequence feature site on the genome DNA sequence.(基因组序列上面的特性区域片段)
     ''' </summary>
     ''' <remarks></remarks>
-    Public Class Feature : Inherits I_GBKComponent
+    Public Class Feature : Inherits IgbComponent
         Implements IDictionary(Of String, String)
 
         ''' <summary>
@@ -33,13 +35,15 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Nodes
         ''' <remarks></remarks>
         Public ReadOnly Property SequenceData As String
             Get
-                If Location.JoinLocation Is Nothing Then
-                    Return Me.GBKEntry.Origin.GetFeatureSegment(Me)
+                Dim jLoci = Location.JoinLocation
+
+                If jLoci Is Nothing Then
+                    Return Me.gbRaw.Origin.GetFeatureSegment(Me)
                 Else
-                    Dim part1 As String = Me.GBKEntry.Origin.GetFeatureSegment(Me)
-                    Dim part2 As String = Me.GBKEntry.Origin.SequenceParser.TryParse(Me.Location.JoinLocation.Left, Me.Location.JoinLocation.RegionLength)
+                    Dim part1 As String = Me.gbRaw.Origin.GetFeatureSegment(Me)
+                    Dim part2 As String = Me.gbRaw.Origin.SequenceParser.TryParse(jLoci.Left, jLoci.RegionLength)
                     If Me.Location.Complement Then
-                        part2 = LANS.SystemsBiology.SequenceModel.NucleotideModels.NucleicAcid.Complement(part2)
+                        part2 = NucleicAcid.Complement(part2)
                     End If
                     Return part1 & part2
                 End If
@@ -80,7 +84,7 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Nodes
             Dim gff As New TabularFormat.Feature
 
             gff.Strand = Me.Location.ContiguousRegion.Strand
-            gff.seqname = GBKEntry.Accession.AccessionId
+            gff.seqname = gbRaw.Accession.AccessionId
             gff.Right = Me.Location.Location.Right
             gff.Left = Me.Location.Location.Left
             gff.Feature = Me.KeyName
@@ -95,29 +99,30 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Nodes
         ''' <summary>
         ''' Some key would be duplicated 
         ''' </summary>
-        ''' <param name="Key"></param>
+        ''' <param name="key"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Function QueryDuplicated(Key As String) As String()
-            Dim LQuery As Generic.IEnumerable(Of String) = From pairedObj As KeyValuePairObject(Of String, String)
-                                                           In __innerList
-                                                           Where String.Equals(pairedObj.Key, Key)
-                                                           Select pairedObj.Value '
-            Return LQuery.ToArray
+        Public Function QueryDuplicated(key As String) As String()
+            Dim LQuery As String() = LinqAPI.Exec(Of String) <=
+                From pairedObj As KeyValuePairObject(Of String, String)
+                In __innerList
+                Where String.Equals(pairedObj.Key, key)
+                Select pairedObj.Value '
+            Return LQuery
         End Function
 
         Public Overrides Function ToString() As String
-            Dim sBuilder As StringBuilder = New StringBuilder
+            Dim sb As StringBuilder = New StringBuilder(1024)
 
-            Call sBuilder.AppendFormat("KeyName:='{0}'{1}", KeyName, vbCrLf)
-            Call sBuilder.AppendFormat("Located:='{0}'{1}", Location.ToString, vbCrLf)
-            Call sBuilder.AppendLine("{")
+            Call sb.AppendFormat("KeyName:='{0}'{1}", KeyName, vbCrLf)
+            Call sb.AppendFormat("Located:='{0}'{1}", Location.ToString, vbCrLf)
+            Call sb.AppendLine("{")
             For Each Line As KeyValuePairObject(Of String, String) In __innerList
-                Call sBuilder.AppendFormat("  {0}{1}", Line.ToString, vbCrLf)
+                Call sb.AppendFormat("  {0}{1}", Line.ToString, vbCrLf)
             Next
-            Call sBuilder.AppendLine("}")
+            Call sb.AppendLine("}")
 
-            Return sBuilder.ToString
+            Return sb.ToString
         End Function
 
         Public Shared Widening Operator CType(strData As String()) As Feature
@@ -134,20 +139,18 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Nodes
             Return Feature
         End Operator
 
-        Protected Shared Function ReadingQualifiers(Data As String()) As KeyValuePairObject(Of String, String)()
-            Dim LQuery As Generic.IEnumerable(Of KeyValuePairObject(Of String, String)) =
-                From str As String
-                In Data
-                Select __parser(Mid(str, 2)) '
-
-            Return LQuery.ToArray
+        Protected Shared Iterator Function ReadingQualifiers(Data As String()) As IEnumerable(Of KeyValuePairObject(Of String, String))
+            For Each str As String In Data
+                Yield __parser(Mid(str, 2))
+            Next
         End Function
 
-        Private Shared Function __parser(Str As String) As KeyValuePairObject(Of String, String)
-            Dim Name As String = Str.Split(CChar("=")).First
-            Dim Value As String = Mid(Str, Len(Name) + 2)
+        Private Shared Function __parser(s As String) As KeyValuePairObject(Of String, String)
+            Dim Name As String = s.Split(CChar("=")).First
+            Dim Value As String = Mid(s, Len(Name) + 2)
 
-            If (Not String.IsNullOrEmpty(Value)) AndAlso (Value.First = QUOT_CHAR AndAlso Value.Last = QUOT_CHAR) Then
+            If (Not String.IsNullOrEmpty(Value)) AndAlso
+                (Value.First = QUOT_CHAR AndAlso Value.Last = QUOT_CHAR) Then
                 Value = Mid(Value, 2, Len(Value) - 2)
             End If
 

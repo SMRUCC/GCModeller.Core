@@ -11,8 +11,12 @@ Namespace SequenceModel.NucleotideModels
     Public Module NucleicAcidStaticsProperty
 
         <ExportAPI("GC%", Info:="Calculate the GC content of the target sequence data.")>
-        <Extension> Public Function GC_Content(Sequence As Generic.IEnumerable(Of SequenceModel.NucleotideModels.NucleicAcid.Deoxyribonucleotides)) As Double
-            Dim LQuery = (From nn In Sequence Where nn = NucleicAcid.Deoxyribonucleotides.dGMP OrElse nn = NucleicAcid.Deoxyribonucleotides.dCMP Select 1).ToArray
+        <Extension> Public Function GC_Content(Sequence As IEnumerable(Of DNA)) As Double
+            Dim LQuery = (From nn As DNA
+                          In Sequence
+                          Where nn = DNA.dGMP OrElse
+                              nn = DNA.dCMP
+                          Select 1).ToArray
             Return LQuery.Length / Sequence.Count
         End Function
 

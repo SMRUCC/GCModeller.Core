@@ -4,6 +4,7 @@ Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Nodes
 Imports LANS.SystemsBiology.SequenceModel
 Imports LANS.SystemsBiology.SequenceModel.FASTA
 Imports LANS.SystemsBiology.SequenceModel.NucleotideModels
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.NCBI.GenBank.GBFF.Keywords
 
@@ -80,8 +81,8 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords
         ''' <remarks></remarks>
         Public ReadOnly Property GCSkew As Double
             Get
-                Dim G As Integer = (From ch In Me.SequenceData Where ch = "G"c OrElse ch = "g"c Select 1).ToArray.Length
-                Dim C As Integer = (From ch In Me.SequenceData Where ch = "C"c OrElse ch = "c"c Select 1).ToArray.Length
+                Dim G As Integer = (From ch In Me.SequenceData Where ch = "G"c OrElse ch = "g"c Select 1).Count
+                Dim C As Integer = (From ch In Me.SequenceData Where ch = "C"c OrElse ch = "c"c Select 1).Count
                 Return (G + C) / (G - C)
             End Get
         End Property
@@ -93,13 +94,13 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords
                 sBuilder.Append(Mid$(line, 10))
             Next
 
-            Dim TQuery As Generic.IEnumerable(Of Char) =
-                From b As Char In sBuilder.ToString
-                Where b <> " "c
-                Select b
+            Dim trimChars As Char() =
+                LinqAPI.Exec(Of Char) <= From b As Char In sBuilder.ToString
+                                         Where b <> " "c
+                                         Select b
 
             Return New ORIGIN With {
-                .SequenceData = TQuery.ToArray
+                .SequenceData = New String(trimChars)
             }
         End Operator
 
@@ -107,7 +108,7 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords
             Return ori.SequenceData
         End Operator
 
-        Public Shared Narrowing Operator CType(obj As ORIGIN) As LANS.SystemsBiology.SequenceModel.FASTA.FastaToken
+        Public Shared Narrowing Operator CType(obj As ORIGIN) As FastaToken
             Return obj.ToFasta
         End Operator
 
@@ -122,7 +123,7 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords
             Return New FastaToken(attrs, SequenceData)
         End Function
 
-        Public ReadOnly Property Title As String Implements SequenceModel.FASTA.I_FastaToken.Title
+        Public ReadOnly Property Title As String Implements I_FastaToken.Title
             Get
                 Return "GBK_ORIGIN"
             End Get

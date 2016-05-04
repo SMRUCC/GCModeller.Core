@@ -41,9 +41,9 @@ Namespace SequenceModel.NucleotideModels.Translation
         Public ReadOnly Property CodenTable As TranslTable = Translation.TranslTable.CreateFrom(My.Resources.transl_table_1)
 
 #Region "终止密码子的哈希值枚举"
-        Public Const UAA As Integer = Deoxyribonucleotides.dTMP * 1000 + Deoxyribonucleotides.dAMP * 100 + Deoxyribonucleotides.dAMP * 10000
-        Public Const UAG As Integer = Deoxyribonucleotides.dTMP * 1000 + Deoxyribonucleotides.dAMP * 100 + Deoxyribonucleotides.dGMP * 10000
-        Public Const UGA As Integer = Deoxyribonucleotides.dTMP * 1000 + Deoxyribonucleotides.dGMP * 100 + Deoxyribonucleotides.dAMP * 10000
+        Public Const UAA As Integer = DNA.dTMP * 1000 + DNA.dAMP * 100 + DNA.dAMP * 10000
+        Public Const UAG As Integer = DNA.dTMP * 1000 + DNA.dAMP * 100 + DNA.dGMP * 10000
+        Public Const UGA As Integer = DNA.dTMP * 1000 + DNA.dGMP * 100 + DNA.dAMP * 10000
 #End Region
 
         ''' <summary>

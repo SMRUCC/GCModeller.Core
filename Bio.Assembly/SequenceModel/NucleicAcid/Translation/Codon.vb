@@ -1,5 +1,7 @@
-﻿Imports Microsoft.VisualBasic.Linq.Extensions
-Imports System.Xml.Serialization
+﻿Imports System.Xml.Serialization
+Imports Microsoft.VisualBasic.Linq.Extensions
+Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Language
 
 Namespace SequenceModel.NucleotideModels.Translation
 
@@ -12,24 +14,22 @@ Namespace SequenceModel.NucleotideModels.Translation
         ''' 密码子中的第一个碱基
         ''' </summary>
         ''' <returns></returns>
-        <XmlAttribute> Public Property X As NucleicAcid.Deoxyribonucleotides
+        <XmlAttribute> Public Property X As DNA
         ''' <summary>
         ''' 密码子中的第二个碱基
         ''' </summary>
         ''' <returns></returns>
-        <XmlAttribute> Public Property Y As NucleicAcid.Deoxyribonucleotides
+        <XmlAttribute> Public Property Y As DNA
         ''' <summary>
         ''' 密码子中的第三个碱基
         ''' </summary>
         ''' <returns></returns>
-        <XmlAttribute> Public Property Z As NucleicAcid.Deoxyribonucleotides
+        <XmlAttribute> Public Property Z As DNA
 
         '''' <param name="X">密码子中的第一个碱基</param>
         '''' <param name="Y">密码子中的第二个碱基</param>
         '''' <param name="Z">密码子中的第三个碱基</param>
-        Public Shared Function CalTranslHash(X As NucleicAcid.Deoxyribonucleotides,
-                                             Y As NucleicAcid.Deoxyribonucleotides,
-                                             Z As NucleicAcid.Deoxyribonucleotides) As Integer
+        Public Shared Function CalTranslHash(X As DNA, Y As DNA, Z As DNA) As Integer
             Return X * 1000 + Y * 100 + Z * 10000
         End Function
 
@@ -114,24 +114,17 @@ Namespace SequenceModel.NucleotideModels.Translation
         ''' </summary>
         ''' <returns></returns>
         Public Shared Function CreateHashTable() As Codon()
-            Dim NNCols As NucleicAcid.Deoxyribonucleotides() = {
-                SequenceModel.NucleotideModels.NucleicAcid.Deoxyribonucleotides.dAMP,
-                SequenceModel.NucleotideModels.NucleicAcid.Deoxyribonucleotides.dCMP,
-                SequenceModel.NucleotideModels.NucleicAcid.Deoxyribonucleotides.dGMP,
-                SequenceModel.NucleotideModels.NucleicAcid.Deoxyribonucleotides.dTMP
-            }
-            Dim Combos = Microsoft.VisualBasic.ComponentModel.Comb.CreateCombos(NNCols, NNCols)
-            Dim TripleCombos = Microsoft.VisualBasic.ComponentModel.Comb.CreateCombos(Combos, NNCols)
-            Dim Codens = (From coden As KeyValuePair(Of
-                              KeyValuePair(Of
-                              NucleicAcid.Deoxyribonucleotides,
-                              NucleicAcid.Deoxyribonucleotides),
-                              NucleicAcid.Deoxyribonucleotides)
-                          In TripleCombos
-                          Select New Codon With {
-                              .X = coden.Key.Key,
-                              .Y = coden.Key.Value,
-                              .Z = coden.Value}).ToArray
+            Dim NNCols As DNA() = {DNA.dAMP, DNA.dCMP, DNA.dGMP, DNA.dTMP}
+            Dim Combos = Comb.CreateCombos(NNCols, NNCols)
+            Dim TripleCombos = Comb.CreateCombos(Combos, NNCols)
+            Dim Codens As Codon() =
+                LinqAPI.Exec(Of Codon) <= From coden As KeyValuePair(Of KeyValuePair(Of DNA, DNA), DNA)
+                                          In TripleCombos
+                                          Select New Codon With {
+                                              .X = coden.Key.Key,
+                                              .Y = coden.Key.Value,
+                                              .Z = coden.Value
+                                          }
             Return Codens
         End Function
     End Class

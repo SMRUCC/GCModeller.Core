@@ -188,7 +188,7 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
 
         Protected Friend Sub LinkEntry()
             For Each Feature In Me._innerList
-                Feature.GBKEntry = Me.GBKEntry
+                Feature.gbRaw = Me.gbRaw
             Next
         End Sub
 

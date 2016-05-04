@@ -1,10 +1,11 @@
-﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords
-Imports System.Text.RegularExpressions
+﻿Imports System.Text.RegularExpressions
 Imports System.Text
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Linq.Extensions
+Imports Microsoft.VisualBasic.ComponentModel
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Nodes
+Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords
 
 Namespace Assembly.NCBI.GenBank.GBFF
 
@@ -12,13 +13,13 @@ Namespace Assembly.NCBI.GenBank.GBFF
     ''' Genbank数据库文件的构件
     ''' </summary>
     ''' <remarks></remarks>
-    Public MustInherit Class I_GBKComponent
+    Public MustInherit Class IgbComponent
 
         ''' <summary>
         ''' 这个构件对象所处在的Genbank数据库对象
         ''' </summary>
         ''' <remarks></remarks>
-        Protected Friend GBKEntry As NCBI.GenBank.GBFF.File
+        Protected Friend gbRaw As File
     End Class
 
     ''' <summary>
@@ -27,7 +28,7 @@ Namespace Assembly.NCBI.GenBank.GBFF
     ''' <remarks></remarks>
     '''
     <PackageNamespace("NCBI.Genbank.GBFF")>
-    Public Class File : Inherits Microsoft.VisualBasic.ComponentModel.ITextFile
+    Public Class File : Inherits ITextFile
 
         Public Property Comment As Keywords.COMMENT
         Public Property Origin As Keywords.ORIGIN
@@ -241,22 +242,22 @@ Namespace Assembly.NCBI.GenBank.GBFF
             gb.Keywords = GBFF.Keywords.KEYWORDS.__innerParser(Internal_readBlock(KeyWord.GBK_FIELD_KEY_KEYWORDS, gb))
             gb.DbLink = GBFF.Keywords.DBLINK.Parser(Internal_readBlock(KeyWord.GBK_FIELD_KEY_DBLINK, gb))
 
-            gb.Accession.GBKEntry = gb
-            gb.Comment.GBKEntry = gb
-            gb.Definition.GBKEntry = gb
-            gb.Features.GBKEntry = gb
-            gb.Keywords.GBKEntry = gb
-            gb.Locus.GBKEntry = gb
-            gb.Reference.GBKEntry = gb
-            gb.Source.GBKEntry = gb
-            gb.Version.GBKEntry = gb
-            gb.DbLink.GBKEntry = gb
+            gb.Accession.gbRaw = gb
+            gb.Comment.gbRaw = gb
+            gb.Definition.gbRaw = gb
+            gb.Features.gbRaw = gb
+            gb.Keywords.gbRaw = gb
+            gb.Locus.gbRaw = gb
+            gb.Reference.gbRaw = gb
+            gb.Source.gbRaw = gb
+            gb.Version.gbRaw = gb
+            gb.DbLink.gbRaw = gb
 
             Call gb.Features.LinkEntry()
             Call ReadThread.EndInvoke(ReadThreadResult)
             Call $"({gb.Accession.AccessionId})""{gb.Definition.Value}"" data load done!  {FileIO.FileSystem.GetFileInfo(Path).Length}bytes {Sw.ElapsedMilliseconds}ms...".__DEBUG_ECHO
 
-            gb.Origin.GBKEntry = gb  '由于使用线程进行读取的，所以不能保证在赋值的时候是否初始化基因组序列完成
+            gb.Origin.gbRaw = gb  '由于使用线程进行读取的，所以不能保证在赋值的时候是否初始化基因组序列完成
             gb.__innerBuffer = Nothing
 
             Return gb
