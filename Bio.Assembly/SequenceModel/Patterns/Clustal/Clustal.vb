@@ -43,7 +43,7 @@ Namespace SequenceModel.Patterns.Clustal
             Dim variations As Patterns.PatternModel = Patterns.Frequency(_innerList)
             Dim dict As IReadOnlyDictionary(Of Integer, IReadOnlyDictionary(Of Char, Double)) =
                 variations.Residues.SeqIterator _
-               .ToDictionary(Function(x) x.Pos,
+               .ToDictionary(Function(x) x.i,
                              Function(y) DirectCast(y.obj.Alphabets, IReadOnlyDictionary(Of Char, Double))) _
                                         .As(Of IReadOnlyDictionary(Of Integer, IReadOnlyDictionary(Of Char, Double)))
             _Frequency = dict

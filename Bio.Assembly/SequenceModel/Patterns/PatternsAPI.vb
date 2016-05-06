@@ -67,7 +67,7 @@ Namespace SequenceModel.Patterns
                 In LQuery.SeqIterator
                 Let freq As Dictionary(Of Char, Double) =
                     x.obj.row.ToDictionary(Function(o0) o0.c, Function(o0) o0.f)
-                Select New SimpleSite(freq, x.Pos)
+                Select New SimpleSite(freq, x.i)
 
             Return New PatternModel(Model)
         End Function

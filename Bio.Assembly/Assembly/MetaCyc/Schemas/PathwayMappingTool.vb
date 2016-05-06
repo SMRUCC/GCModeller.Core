@@ -49,14 +49,14 @@ Namespace Assembly.MetaCyc.Schema.Metabolism
                     Dim Err As String = String.Format("[FASTA_OBJECT_NOT_DOWNLOAD] {0}", Protein.Identifier)
                     NotDownloads += 1
                     Call Console.WriteLine(Err)
-                    Call FileIO.FileSystem.WriteAllText(App.CurrentWork & "/Err.log", Err & vbCrLf, append:=True)
+                    Call FileIO.FileSystem.WriteAllText(App.CurrentDirectory & "/Err.log", Err & vbCrLf, append:=True)
                 Else
                     Dim fasta As SequenceModel.FASTA.FastaToken = Uniprot.Web.DownloadProtein(UniprotId:=Id)
                     If Len(fasta.SequenceData) = 0 Then
                         Dim Err As String = String.Format("[FASTA_OBJECT_NOT_DOWNLOAD] {0}", Protein.Identifier)
                         NotDownloads += 1
                         Call Console.WriteLine(Err)
-                        Call FileIO.FileSystem.WriteAllText(App.CurrentWork & "/Err.log", Err & vbCrLf, append:=True)
+                        Call FileIO.FileSystem.WriteAllText(App.CurrentDirectory & "/Err.log", Err & vbCrLf, append:=True)
                     Else
                         fasta.Attributes = {"gnl", Id, String.Format("{0} {1} 0..0 Unknown", Protein.Identifier, Regex.Match(fasta.Attributes.Last, "GN=\S+").Value.Split(CChar("=")).Last)}
                         Call FileIO.FileSystem.WriteAllText(SavedFile, fasta.GenerateDocument(LineBreak:=60), append:=True, encoding:=System.Text.Encoding.ASCII)
