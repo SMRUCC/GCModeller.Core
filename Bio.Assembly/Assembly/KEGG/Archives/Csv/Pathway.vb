@@ -2,6 +2,9 @@
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Language.UnixBash
+Imports Microsoft.VisualBasic.Linq
+Imports LANS.SystemsBiology.Assembly.KEGG.DBGET
 
 Namespace Assembly.KEGG.Archives.Csv
 
@@ -61,7 +64,7 @@ Namespace Assembly.KEGG.Archives.Csv
             End Get
         End Property
 
-        Public Shared Function GenerateObject(XmlModel As KEGG.DBGET.bGetObject.Pathway) As Pathway
+        Public Shared Function GenerateObject(XmlModel As bGetObject.Pathway) As Pathway
             Return New Pathway With {
                 .EntryId = XmlModel.EntryId,
                 .Description = XmlModel.Description,
@@ -72,34 +75,37 @@ Namespace Assembly.KEGG.Archives.Csv
         ''' <summary>
         ''' 将所下载的代谢途径数据转换为CSV文档保存
         ''' </summary>
-        ''' <param name="Dir"></param>
+        ''' <param name="DIR"></param>
         ''' <param name="spCode">物种名称的三字母简写，例如xcb</param>
         ''' <returns></returns>
-        Public Shared Function LoadData(Dir As String, spCode As String) As Pathway()
-            Dim XMLFiles As KEGG.DBGET.bGetObject.Pathway() = (From File As String
-                                                               In FileIO.FileSystem.GetFiles(Dir, FileIO.SearchOption.SearchAllSubDirectories, "*.xml")
-                                                               Select File.LoadXml(Of KEGG.DBGET.bGetObject.Pathway)()).ToArray
+        Public Shared Function LoadData(DIR As String, spCode As String) As Pathway()
+            Dim XMLFiles As KEGG.DBGET.bGetObject.Pathway() =
+                (ls - l - r - wildcards("*.xml") <= DIR) _
+                .ToArray(AddressOf SafeLoadXml(Of bGetObject.Pathway))
             Return CreateObjects(XMLFiles, spCode)
         End Function
 
-        Public Shared Function CreateObjects(Data As KEGG.DBGET.bGetObject.Pathway(), spCode As String) As Pathway()
+        Public Shared Function CreateObjects(source As KEGG.DBGET.bGetObject.Pathway(), spCode As String) As Pathway()
             Dim ClassDictionary As SortedDictionary(Of String, KEGG.DBGET.BriteHEntry.Pathway) =
                 New SortedDictionary(Of String, DBGET.BriteHEntry.Pathway)
-            For Each item In KEGG.DBGET.BriteHEntry.Pathway.LoadFromResource
-                Call ClassDictionary.Add($"{spCode}{item.Entry.Key}", item)
+            For Each pwyData In KEGG.DBGET.BriteHEntry.Pathway.LoadFromResource
+                Call ClassDictionary.Add($"{spCode}{pwyData.Entry.Key}", pwyData)
             Next
 
-            Dim PathwayList As List(Of Pathway) = New List(Of Pathway)
-            For Each item In Data
-                Dim PathwayObject = Pathway.GenerateObject(item)
-                Dim BriteEntry = ClassDictionary(PathwayObject.EntryId)
+            Dim PathwayList As New List(Of Pathway)
+
+            For Each pwyData As bGetObject.Pathway In source
+                Dim PathwayObject = Pathway.GenerateObject(pwyData)
+                Dim BriteEntry As BriteHEntry.Pathway =
+                    ClassDictionary(PathwayObject.EntryId)
 
                 PathwayObject.Class = BriteEntry.Class
                 PathwayObject.Category = BriteEntry.Category
-                Call PathwayList.Add(PathwayObject)
+
+                PathwayList += PathwayObject
             Next
 
-            Return PathwayList.ToArray
+            Return PathwayList
         End Function
 
         Public Shared Function CreateObjects(Model As KEGG.Archives.Xml.XmlModel) As Pathway()

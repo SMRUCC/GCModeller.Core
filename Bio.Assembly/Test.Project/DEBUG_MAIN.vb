@@ -1,12 +1,17 @@
 ﻿Imports LANS.SystemsBiology.Assembly.KEGG.Archives.Xml
 Imports LANS.SystemsBiology.Assembly.KEGG.DBGET
 Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
+Imports Microsoft.VisualBasic.DocumentFormat.Csv
 Imports Microsoft.VisualBasic.Linq
 
 Module DEBUG_MAIN
 
     Sub Main()
 
+
+        Dim ddddd = LANS.SystemsBiology.Assembly.KEGG.Archives.Csv.Pathway.LoadData("F:\GCModeller.Core\Downloads\Xanthomonas_campestris_8004_uid15", "xcb")
+
+        Call ddddd.SaveTo("F:\GCModeller.Core\Downloads\Xanthomonas_campestris_8004_uid15/xcb.Csv")
 
         Dim alllll = LANS.SystemsBiology.Assembly.KEGG.DBGET.LinkDB.Pathways.AllEntries("xcb").ToArray
         Dim pwys = LANS.SystemsBiology.Assembly.KEGG.DBGET.LinkDB.Pathways.Downloads("xcb", "F:\GCModeller.Core\Downloads\Xanthomonas_campestris_8004_uid15").ToArray
