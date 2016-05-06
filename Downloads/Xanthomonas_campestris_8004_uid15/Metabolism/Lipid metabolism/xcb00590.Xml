@@ -81,9 +81,9 @@
   </Compound>
   <PathwayMap Key="xcb00590" Value="Arachidonic acid metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2818" Value="phospholipase; K01058 phospholipase A1 [EC:3.1.1.32 3.1.1.4] [KO:K01058] [EC:3.1.1.4 3.1.1.32]" />
-    <DictionaryEntry Key="XC_2825" Value="glutathione peroxidase; K00432 glutathione peroxidase [EC:1.11.1.9] [KO:K00432] [EC:1.11.1.9]" />
-    <DictionaryEntry Key="XC_2735" Value="ABC transporter vitamin B12 uptake permease; K00432 glutathione peroxidase [EC:1.11.1.9] [KO:K00432] [EC:1.11.1.9]" />
-    <DictionaryEntry Key="XC_4302" Value="glutathione peroxidase; K00432 glutathione peroxidase [EC:1.11.1.9] [KO:K00432] [EC:1.11.1.9]" />
+    <DictionaryEntry Key="xcb:XC_2735" Value="ABC transporter vitamin B12 uptake permease; K00432 glutathione peroxidase [EC:1.11.1.9]" />
+    <DictionaryEntry Key="xcb:XC_2818" Value="phospholipase; K01058 phospholipase A1 [EC:3.1.1.32 3.1.1.4]" />
+    <DictionaryEntry Key="xcb:XC_2825" Value="glutathione peroxidase; K00432 glutathione peroxidase [EC:1.11.1.9]" />
+    <DictionaryEntry Key="xcb:XC_4302" Value="glutathione peroxidase; K00432 glutathione peroxidase [EC:1.11.1.9]" />
   </Genes>
 </KEGG.PathwayBrief>

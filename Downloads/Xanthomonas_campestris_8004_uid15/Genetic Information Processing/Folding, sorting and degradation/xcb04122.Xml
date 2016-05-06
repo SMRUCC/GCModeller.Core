@@ -16,12 +16,12 @@
   </Compound>
   <PathwayMap Key="xcb04122" Value="Sulfur relay system&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2697" Value="thiosulfate sulfurtransferase; K01011 thiosulfate/3-mercaptopyruvate sulfurtransferase [EC:2.8.1.1 2.8.1.2] [KO:K01011] [EC:2.8.1.2 2.8.1.1]" />
-    <DictionaryEntry Key="XC_2221" Value="mnmA; tRNA-specific 2-thiouridylase MnmA [KO:K00566] [EC:2.8.1.-]" />
-    <DictionaryEntry Key="XC_3245" Value="molybdopterin-converting factor chain 2; K03635 molybdopterin synthase catalytic subunit [EC:2.8.1.12] [KO:K03635] [EC:2.8.1.12]" />
-    <DictionaryEntry Key="XC_3249" Value="moaA; molybdenum cofactor biosynthesis protein A [KO:K03639] [EC:4.1.99.18]" />
-    <DictionaryEntry Key="XC_3246" Value="molybdopterin-converting factor chain 1; K03636 molybdopterin synthase sulfur carrier subunit [KO:K03636]" />
-    <DictionaryEntry Key="XC_3247" Value="moaC; molybdenum cofactor biosynthesis protein MoaC [KO:K03637] [EC:4.1.99.18]" />
-    <DictionaryEntry Key="XC_1016" Value="sulfur carrier protein ThiS; K03154 sulfur carrier protein [KO:K03154]" />
+    <DictionaryEntry Key="xcb:XC_1016" Value="sulfur carrier protein ThiS; K03154 sulfur carrier protein" />
+    <DictionaryEntry Key="xcb:XC_2221" Value="mnmA; tRNA-specific 2-thiouridylase MnmA (EC:2.1.1.61); K00566 tRNA-specific 2-thiouridylase [EC:2.8" />
+    <DictionaryEntry Key="xcb:XC_2697" Value="thiosulfate sulfurtransferase; K01011 thiosulfate/3-mercaptopyruvate sulfurtransferase [EC:2.8.1.1 2" />
+    <DictionaryEntry Key="xcb:XC_3245" Value="molybdopterin-converting factor chain 2; K03635 molybdopterin synthase catalytic subunit [EC:2.8.1.1" />
+    <DictionaryEntry Key="xcb:XC_3246" Value="molybdopterin-converting factor chain 1; K03636 molybdopterin synthase sulfur carrier subunit" />
+    <DictionaryEntry Key="xcb:XC_3247" Value="moaC; molybdenum cofactor biosynthesis protein MoaC; K03637 cyclic pyranopterin phosphate synthase [" />
+    <DictionaryEntry Key="xcb:XC_3249" Value="moaA; molybdenum cofactor biosynthesis protein A; K03639 cyclic pyranopterin phosphate synthase [EC:" />
   </Genes>
 </KEGG.PathwayBrief>

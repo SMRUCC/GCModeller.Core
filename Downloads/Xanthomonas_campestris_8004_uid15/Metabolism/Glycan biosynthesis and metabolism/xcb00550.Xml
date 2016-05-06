@@ -33,27 +33,27 @@
   </Compound>
   <PathwayMap Key="xcb00550" Value="Peptidoglycan biosynthesis&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_1318" Value="UDP-N-acetylglucosamine 1-carboxyvinyltransferase; K00790 UDP-N-acetylglucosamine 1-carboxyvinyltransferase [EC:2.5.1.7] [KO:K00790] [EC:2.5.1.7]" />
-    <DictionaryEntry Key="XC_2449" Value="murB; UDP-N-acetylenolpyruvoylglucosamine reductase [KO:K00075] [EC:1.3.1.98]" />
-    <DictionaryEntry Key="XC_3509" Value="murC; UDP-N-acetylmuramate--L-alanine ligase [KO:K01924] [EC:6.3.2.8]" />
-    <DictionaryEntry Key="XC_1375" Value="murD; UDP-N-acetylmuramoyl-L-alanyl-D-glutamate synthetase [KO:K01925] [EC:6.3.2.9]" />
-    <DictionaryEntry Key="XC_3514" Value="murE; UDP-N-acetylmuramoylalanyl-D-glutamate--2,6-diaminopimelate ligase [KO:K01928] [EC:6.3.2.13]" />
-    <DictionaryEntry Key="XC_3508" Value="ddl; D-alanine--D-alanine ligase [KO:K01921] [EC:6.3.2.4]" />
-    <DictionaryEntry Key="XC_0232" Value="ddl; D-alanyl-alanine synthetase A [KO:K01921] [EC:6.3.2.4]" />
-    <DictionaryEntry Key="XC_3513" Value="UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine ligase; K01929 UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine ligase [EC:6.3.2.10] [KO:K01929] [EC:6.3.2.10]" />
-    <DictionaryEntry Key="XC_0193" Value="uppP; undecaprenyl pyrophosphate phosphatase [KO:K06153] [EC:3.6.1.27]" />
-    <DictionaryEntry Key="XC_2454" Value="phosphatidylglycerophosphatase B; K19302 undecaprenyl-diphosphatase [EC:3.6.1.27] [KO:K19302] [EC:3.6.1.27]" />
-    <DictionaryEntry Key="XC_3277" Value="hypothetical protein; K19302 undecaprenyl-diphosphatase [EC:3.6.1.27] [KO:K19302] [EC:3.6.1.27]" />
-    <DictionaryEntry Key="XC_3512" Value="mraY; phospho-N-acetylmuramoyl-pentapeptide-transferase [KO:K01000] [EC:2.7.8.13]" />
-    <DictionaryEntry Key="XC_3510" Value="murG; undecaprenyldiphospho-muramoylpentapeptide beta-N-acetylglucosaminyltransferase [KO:K02563] [EC:2.4.1.227]" />
-    <DictionaryEntry Key="XC_3089" Value="virulence factor; K03980 putative peptidoglycan lipid II flippase [KO:K03980]" />
-    <DictionaryEntry Key="XC_1244" Value="mtgA; monofunctional biosynthetic peptidoglycan transglycosylase [KO:K03814] [EC:2.4.1.-]" />
-    <DictionaryEntry Key="XC_3202" Value="penicillin-binding protein 1C; K05367 penicillin-binding protein 1C [EC:2.4.1.-] [KO:K05367] [EC:2.4.1.-]" />
-    <DictionaryEntry Key="XC_0942" Value="penicillin-binding protein 1A; K05366 penicillin-binding protein 1A [EC:2.4.1.- 3.4.-.-] [KO:K05366] [EC:3.4.-.- 2.4.1.-]" />
-    <DictionaryEntry Key="XC_1176" Value="penicillin-binding protein 1B; K05365 penicillin-binding protein 1B [EC:2.4.1.129 3.4.-.-] [KO:K05365] [EC:3.4.-.- 2.4.1.129]" />
-    <DictionaryEntry Key="XC_0694" Value="penicillin-binding protein 2; K05515 penicillin-binding protein 2 [KO:K05515]" />
-    <DictionaryEntry Key="XC_3515" Value="penicillin-binding protein 3; K03587 cell division protein FtsI (penicillin-binding protein 3) [KO:K03587]" />
-    <DictionaryEntry Key="XC_0708" Value="penicillin-binding protein 6; K07258 D-alanyl-D-alanine carboxypeptidase (penicillin-binding protein 5/6) [EC:3.4.16.4] [KO:K07258] [EC:3.4.16.4]" />
-    <DictionaryEntry Key="XC_3111" Value="hypothetical protein; K07260 D-alanyl-D-alanine carboxypeptidase [EC:3.4.16.4] [KO:K07260] [EC:3.4.16.4]" />
+    <DictionaryEntry Key="xcb:XC_0193" Value="uppP; undecaprenyl pyrophosphate phosphatase (EC:3.6.1.27); K06153 undecaprenyl-diphosphatase [EC:3." />
+    <DictionaryEntry Key="xcb:XC_0232" Value="ddl; D-alanyl-alanine synthetase A (EC:6.3.2.4); K01921 D-alanine-D-alanine ligase [EC:6.3.2.4]" />
+    <DictionaryEntry Key="xcb:XC_0694" Value="penicillin-binding protein 2; K05515 penicillin-binding protein 2" />
+    <DictionaryEntry Key="xcb:XC_0708" Value="penicillin-binding protein 6; K07258 D-alanyl-D-alanine carboxypeptidase (penicillin-binding protein" />
+    <DictionaryEntry Key="xcb:XC_0942" Value="penicillin-binding protein 1A; K05366 penicillin-binding protein 1A [EC:2.4.1.- 3.4.-.-]" />
+    <DictionaryEntry Key="xcb:XC_1176" Value="penicillin-binding protein 1B; K05365 penicillin-binding protein 1B [EC:2.4.1.129 3.4.-.-]" />
+    <DictionaryEntry Key="xcb:XC_1244" Value="mtgA; monofunctional biosynthetic peptidoglycan transglycosylase; K03814 monofunctional biosynthetic" />
+    <DictionaryEntry Key="xcb:XC_1318" Value="UDP-N-acetylglucosamine 1-carboxyvinyltransferase (EC:2.5.1.7); K00790 UDP-N-acetylglucosamine 1-car" />
+    <DictionaryEntry Key="xcb:XC_1375" Value="murD; UDP-N-acetylmuramoyl-L-alanyl-D-glutamate synthetase (EC:6.3.2.9); K01925 UDP-N-acetylmuramoyl" />
+    <DictionaryEntry Key="xcb:XC_2449" Value="murB; UDP-N-acetylenolpyruvoylglucosamine reductase (EC:1.1.1.158); K00075 UDP-N-acetylmuramate dehy" />
+    <DictionaryEntry Key="xcb:XC_2454" Value="phosphatidylglycerophosphatase B; K19302 undecaprenyl-diphosphatase [EC:3.6.1.27]" />
+    <DictionaryEntry Key="xcb:XC_3089" Value="virulence factor; K03980 putative peptidoglycan lipid II flippase" />
+    <DictionaryEntry Key="xcb:XC_3111" Value="hypothetical protein; K07260 D-alanyl-D-alanine carboxypeptidase [EC:3.4.16.4]" />
+    <DictionaryEntry Key="xcb:XC_3202" Value="penicillin-binding protein 1C; K05367 penicillin-binding protein 1C [EC:2.4.1.-]" />
+    <DictionaryEntry Key="xcb:XC_3277" Value="hypothetical protein; K19302 undecaprenyl-diphosphatase [EC:3.6.1.27]" />
+    <DictionaryEntry Key="xcb:XC_3508" Value="ddl; D-alanine--D-alanine ligase (EC:6.3.2.4); K01921 D-alanine-D-alanine ligase [EC:6.3.2.4]" />
+    <DictionaryEntry Key="xcb:XC_3509" Value="murC; UDP-N-acetylmuramate--L-alanine ligase (EC:6.3.2.8); K01924 UDP-N-acetylmuramate--alanine liga" />
+    <DictionaryEntry Key="xcb:XC_3510" Value="murG; undecaprenyldiphospho-muramoylpentapeptide beta-N-acetylglucosaminyltransferase (EC:2.4.1.227)" />
+    <DictionaryEntry Key="xcb:XC_3512" Value="mraY; phospho-N-acetylmuramoyl-pentapeptide-transferase (EC:2.7.8.13); K01000 phospho-N-acetylmuramo" />
+    <DictionaryEntry Key="xcb:XC_3513" Value="UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine ligase; K01929 UDP-N-acetylmuramoyl-tripeptide--" />
+    <DictionaryEntry Key="xcb:XC_3514" Value="murE; UDP-N-acetylmuramoylalanyl-D-glutamate--2,6-diaminopimelate ligase (EC:6.3.2.13); K01928 UDP-N" />
+    <DictionaryEntry Key="xcb:XC_3515" Value="penicillin-binding protein 3; K03587 cell division protein FtsI (penicillin-binding protein 3)" />
   </Genes>
 </KEGG.PathwayBrief>

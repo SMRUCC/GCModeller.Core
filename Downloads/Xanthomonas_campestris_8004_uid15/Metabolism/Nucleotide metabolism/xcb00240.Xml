@@ -77,45 +77,45 @@
   </Compound>
   <PathwayMap Key="xcb00240" Value="Pyrimidine metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2346" Value="carB; carbamoyl phosphate synthase large subunit [KO:K01955] [EC:6.3.5.5]" />
-    <DictionaryEntry Key="XC_2348" Value="carbamoyl phosphate synthase small subunit; K01956 carbamoyl-phosphate synthase small subunit [EC:6.3.5.5] [KO:K01956] [EC:6.3.5.5]" />
-    <DictionaryEntry Key="XC_1367" Value="pyrB; aspartate carbamoyltransferase [KO:K00609] [EC:2.1.3.2]" />
-    <DictionaryEntry Key="XC_1858" Value="dihydroorotase; K01465 dihydroorotase [EC:3.5.2.3] [KO:K01465] [EC:3.5.2.3]" />
-    <DictionaryEntry Key="XC_2448" Value="dihydroorotate dehydrogenase 2; K00254 dihydroorotate dehydrogenase [EC:1.3.5.2] [KO:K00254] [EC:1.3.5.2]" />
-    <DictionaryEntry Key="XC_3931" Value="pyrE; orotate phosphoribosyltransferase [KO:K00762] [EC:2.4.2.10]" />
-    <DictionaryEntry Key="XC_4226" Value="orotidine 5'-phosphate decarboxylase; K01591 orotidine-5'-phosphate decarboxylase [EC:4.1.1.23] [KO:K01591] [EC:4.1.1.23]" />
-    <DictionaryEntry Key="XC_1923" Value="cmk; cytidylate kinase [KO:K00945] [EC:2.7.4.14]" />
-    <DictionaryEntry Key="XC_2867" Value="pyrH; uridylate kinase [KO:K09903] [EC:2.7.4.22]" />
-    <DictionaryEntry Key="XC_2203" Value="ndk; nucleoside diphosphate kinase [KO:K00940] [EC:2.7.4.6]" />
-    <DictionaryEntry Key="XC_1609" Value="polynucleotide phosphorylase; K00962 polyribonucleotide nucleotidyltransferase [EC:2.7.7.8] [KO:K00962] [EC:2.7.7.8]" />
-    <DictionaryEntry Key="XC_2534" Value="pyrG; CTP synthetase [KO:K01937] [EC:6.3.4.2]" />
-    <DictionaryEntry Key="XC_3316" Value="DNA-directed RNA polymerase subunit alpha; K03040 DNA-directed RNA polymerase subunit alpha [EC:2.7.7.6] [KO:K03040] [EC:2.7.7.6]" />
-    <DictionaryEntry Key="XC_3347" Value="rpoB; DNA-directed RNA polymerase subunit beta [KO:K03043] [EC:2.7.7.6]" />
-    <DictionaryEntry Key="XC_3346" Value="DNA-directed RNA polymerase subunit beta'; K03046 DNA-directed RNA polymerase subunit beta' [EC:2.7.7.6] [KO:K03046] [EC:2.7.7.6]" />
-    <DictionaryEntry Key="XC_0957" Value="DNA-directed RNA polymerase subunit omega; K03060 DNA-directed RNA polymerase subunit omega [EC:2.7.7.6] [KO:K03060] [EC:2.7.7.6]" />
-    <DictionaryEntry Key="XC_4109" Value="DNA polymerase I; K02335 DNA polymerase I [EC:2.7.7.7] [KO:K02335] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_2880" Value="dnaE; DNA polymerase III subunit alpha [KO:K02337] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_0002" Value="DNA polymerase III subunit beta; K02338 DNA polymerase III subunit beta [EC:2.7.7.7] [KO:K02338] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_3244" Value="DNA polymerase III subunits gamma and tau; K02343 DNA polymerase III subunit gamma/tau [EC:2.7.7.7] [KO:K02343] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_1499" Value="holA; DNA polymerase III subunit delta [KO:K02340] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_3222" Value="DNA polymerase III subunit delta'; K02341 DNA polymerase III subunit delta' [EC:2.7.7.7] [KO:K02341] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_3255" Value="DNA polymerase III subunit epsilon; K02342 DNA polymerase III subunit epsilon [EC:2.7.7.7] [KO:K02342] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_3586" Value="DNA polymerase III subunit chi; K02339 DNA polymerase III subunit chi [EC:2.7.7.7] [KO:K02339] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_1548" Value="dcd; deoxycytidine triphosphate deaminase [KO:K01494] [EC:3.5.4.13]" />
-    <DictionaryEntry Key="XC_2687" Value="5'-nucleotidase; K01081 5'-nucleotidase [EC:3.1.3.5] [KO:K01081] [EC:3.1.3.5]" />
-    <DictionaryEntry Key="XC_2525" Value="surE; stationary phase survival protein SurE [KO:K03787] [EC:3.1.3.5]" />
-    <DictionaryEntry Key="XC_1728" Value="upp; uracil phosphoribosyltransferase [KO:K00761] [EC:2.4.2.9]" />
-    <DictionaryEntry Key="XC_0568" Value="hypothetical protein; K09019 3-hydroxypropanoate dehydrogenase [EC:1.1.1.-] [KO:K09019] [EC:1.1.1.-]" />
-    <DictionaryEntry Key="XC_0670" Value="cytosine deaminase; K01485 cytosine deaminase [EC:3.5.4.1] [KO:K01485] [EC:3.5.4.1]" />
-    <DictionaryEntry Key="XC_1228" Value="mazG; nucleoside triphosphate pyrophosphohydrolase [KO:K04765] [EC:3.6.1.8]" />
-    <DictionaryEntry Key="XC_3165" Value="thioredoxin reductase; K00384 thioredoxin reductase (NADPH) [EC:1.8.1.9] [KO:K00384] [EC:1.8.1.9]" />
-    <DictionaryEntry Key="XC_2214" Value="thioredoxin reductase; K00384 thioredoxin reductase (NADPH) [EC:1.8.1.9] [KO:K00384] [EC:1.8.1.9]" />
-    <DictionaryEntry Key="XC_4076" Value="ribonucleotide-diphosphate reductase subunit alpha; K00525 ribonucleoside-diphosphate reductase alpha chain [EC:1.17.4.1] [KO:K00525] [EC:1.17.4.1]" />
-    <DictionaryEntry Key="XC_4075" Value="nrdF; ribonucleotide-diphosphate reductase subunit beta [KO:K00526] [EC:1.17.4.1]" />
-    <DictionaryEntry Key="XC_3942" Value="dut; deoxyuridine 5'-triphosphate nucleotidohydrolase [KO:K01520] [EC:3.6.1.23]" />
-    <DictionaryEntry Key="XC_3444" Value="thyA; thymidylate synthase [KO:K00560] [EC:2.1.1.45]" />
-    <DictionaryEntry Key="XC_0132" Value="deoxycytidylate deaminase; K01493 dCMP deaminase [EC:3.5.4.12] [KO:K01493] [EC:3.5.4.12]" />
-    <DictionaryEntry Key="XC_4235" Value="thymidine kinase; K00857 thymidine kinase [EC:2.7.1.21] [KO:K00857] [EC:2.7.1.21]" />
-    <DictionaryEntry Key="XC_4020" Value="tmk; thymidylate kinase [KO:K00943] [EC:2.7.4.9]" />
+    <DictionaryEntry Key="xcb:XC_0002" Value="DNA polymerase III subunit beta (EC:2.7.7.7); K02338 DNA polymerase III subunit beta [EC:2.7.7.7]" />
+    <DictionaryEntry Key="xcb:XC_0132" Value="deoxycytidylate deaminase; K01493 dCMP deaminase [EC:3.5.4.12]" />
+    <DictionaryEntry Key="xcb:XC_0568" Value="hypothetical protein; K09019 3-hydroxypropanoate dehydrogenase [EC:1.1.1.-]" />
+    <DictionaryEntry Key="xcb:XC_0670" Value="cytosine deaminase; K01485 cytosine deaminase [EC:3.5.4.1]" />
+    <DictionaryEntry Key="xcb:XC_0957" Value="DNA-directed RNA polymerase subunit omega (EC:2.7.7.6); K03060 DNA-directed RNA polymerase subunit o" />
+    <DictionaryEntry Key="xcb:XC_1228" Value="mazG; nucleoside triphosphate pyrophosphohydrolase (EC:3.6.1.19); K04765 ATP diphosphatase [EC:3.6.1" />
+    <DictionaryEntry Key="xcb:XC_1367" Value="pyrB; aspartate carbamoyltransferase (EC:2.1.3.2); K00609 aspartate carbamoyltransferase catalytic s" />
+    <DictionaryEntry Key="xcb:XC_1499" Value="holA; DNA polymerase III subunit delta; K02340 DNA polymerase III subunit delta [EC:2.7.7.7]" />
+    <DictionaryEntry Key="xcb:XC_1548" Value="dcd; deoxycytidine triphosphate deaminase (EC:3.5.4.13); K01494 dCTP deaminase [EC:3.5.4.13]" />
+    <DictionaryEntry Key="xcb:XC_1609" Value="polynucleotide phosphorylase; K00962 polyribonucleotide nucleotidyltransferase [EC:2.7.7.8]" />
+    <DictionaryEntry Key="xcb:XC_1728" Value="upp; uracil phosphoribosyltransferase (EC:2.4.2.9); K00761 uracil phosphoribosyltransferase [EC:2.4." />
+    <DictionaryEntry Key="xcb:XC_1858" Value="dihydroorotase (EC:3.5.2.3); K01465 dihydroorotase [EC:3.5.2.3]" />
+    <DictionaryEntry Key="xcb:XC_1923" Value="cmk; cytidylate kinase (EC:2.7.4.14); K00945 cytidylate kinase [EC:2.7.4.14]" />
+    <DictionaryEntry Key="xcb:XC_2203" Value="ndk; nucleoside diphosphate kinase (EC:2.7.4.6); K00940 nucleoside-diphosphate kinase [EC:2.7.4.6]" />
+    <DictionaryEntry Key="xcb:XC_2214" Value="thioredoxin reductase; K00384 thioredoxin reductase (NADPH) [EC:1.8.1.9]" />
+    <DictionaryEntry Key="xcb:XC_2346" Value="carB; carbamoyl phosphate synthase large subunit (EC:6.3.5.5); K01955 carbamoyl-phosphate synthase l" />
+    <DictionaryEntry Key="xcb:XC_2348" Value="carbamoyl phosphate synthase small subunit (EC:6.3.5.5); K01956 carbamoyl-phosphate synthase small s" />
+    <DictionaryEntry Key="xcb:XC_2448" Value="dihydroorotate dehydrogenase 2 (EC:1.3.3.1); K00254 dihydroorotate dehydrogenase [EC:1.3.5.2]" />
+    <DictionaryEntry Key="xcb:XC_2525" Value="surE; stationary phase survival protein SurE (EC:3.1.3.2); K03787 5&amp;#39;-nucleotidase [EC:3.1.3.5]" />
+    <DictionaryEntry Key="xcb:XC_2534" Value="pyrG; CTP synthetase (EC:6.3.4.2); K01937 CTP synthase [EC:6.3.4.2]" />
+    <DictionaryEntry Key="xcb:XC_2687" Value="5&amp;#39;-nucleotidase; K01081 5&amp;#39;-nucleotidase [EC:3.1.3.5]" />
+    <DictionaryEntry Key="xcb:XC_2867" Value="pyrH; uridylate kinase; K09903 uridylate kinase [EC:2.7.4.22]" />
+    <DictionaryEntry Key="xcb:XC_2880" Value="dnaE; DNA polymerase III subunit alpha (EC:2.7.7.7); K02337 DNA polymerase III subunit alpha [EC:2.7" />
+    <DictionaryEntry Key="xcb:XC_3165" Value="thioredoxin reductase; K00384 thioredoxin reductase (NADPH) [EC:1.8.1.9]" />
+    <DictionaryEntry Key="xcb:XC_3222" Value="DNA polymerase III subunit delta&amp;#39; (EC:2.7.7.7); K02341 DNA polymerase III subunit delta&amp;#39; [EC:2.7.7.7" />
+    <DictionaryEntry Key="xcb:XC_3244" Value="DNA polymerase III subunits gamma and tau (EC:2.7.7.7); K02343 DNA polymerase III subunit gamma/tau" />
+    <DictionaryEntry Key="xcb:XC_3255" Value="DNA polymerase III subunit epsilon; K02342 DNA polymerase III subunit epsilon [EC:2.7.7.7]" />
+    <DictionaryEntry Key="xcb:XC_3316" Value="DNA-directed RNA polymerase subunit alpha (EC:2.7.7.6); K03040 DNA-directed RNA polymerase subunit a" />
+    <DictionaryEntry Key="xcb:XC_3346" Value="DNA-directed RNA polymerase subunit beta&amp;#39; (EC:2.7.7.6); K03046 DNA-directed RNA polymerase subunit b" />
+    <DictionaryEntry Key="xcb:XC_3347" Value="rpoB; DNA-directed RNA polymerase subunit beta (EC:2.7.7.6); K03043 DNA-directed RNA polymerase subu" />
+    <DictionaryEntry Key="xcb:XC_3444" Value="thyA; thymidylate synthase (EC:2.1.1.45); K00560 thymidylate synthase [EC:2.1.1.45]" />
+    <DictionaryEntry Key="xcb:XC_3586" Value="DNA polymerase III subunit chi; K02339 DNA polymerase III subunit chi [EC:2.7.7.7]" />
+    <DictionaryEntry Key="xcb:XC_3931" Value="pyrE; orotate phosphoribosyltransferase (EC:2.4.2.10); K00762 orotate phosphoribosyltransferase [EC:" />
+    <DictionaryEntry Key="xcb:XC_3942" Value="dut; deoxyuridine 5&amp;#39;-triphosphate nucleotidohydrolase (EC:3.6.1.23); K01520 dUTP pyrophosphatase [EC" />
+    <DictionaryEntry Key="xcb:XC_4020" Value="tmk; thymidylate kinase (EC:2.7.4.9); K00943 dTMP kinase [EC:2.7.4.9]" />
+    <DictionaryEntry Key="xcb:XC_4075" Value="nrdF; ribonucleotide-diphosphate reductase subunit beta (EC:1.17.4.1); K00526 ribonucleoside-diphosp" />
+    <DictionaryEntry Key="xcb:XC_4076" Value="ribonucleotide-diphosphate reductase subunit alpha (EC:1.17.4.1); K00525 ribonucleoside-diphosphate" />
+    <DictionaryEntry Key="xcb:XC_4109" Value="DNA polymerase I; K02335 DNA polymerase I [EC:2.7.7.7]" />
+    <DictionaryEntry Key="xcb:XC_4226" Value="orotidine 5&amp;#39;-phosphate decarboxylase (EC:4.1.1.23); K01591 orotidine-5&amp;#39;-phosphate decarboxylase [EC:" />
+    <DictionaryEntry Key="xcb:XC_4235" Value="thymidine kinase (EC:2.7.1.21); K00857 thymidine kinase [EC:2.7.1.21]" />
   </Genes>
 </KEGG.PathwayBrief>

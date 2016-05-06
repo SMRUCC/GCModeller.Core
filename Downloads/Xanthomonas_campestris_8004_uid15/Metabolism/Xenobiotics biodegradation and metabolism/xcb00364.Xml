@@ -38,8 +38,8 @@
   </Compound>
   <PathwayMap Key="xcb00364" Value="Fluorobenzoate degradation&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_1552" Value="carboxymethylenebutenolidase; K01061 carboxymethylenebutenolidase [EC:3.1.1.45] [KO:K01061] [EC:3.1.1.45]" />
-    <DictionaryEntry Key="XC_0539" Value="hypothetical protein; K01061 carboxymethylenebutenolidase [EC:3.1.1.45] [KO:K01061] [EC:3.1.1.45]" />
-    <DictionaryEntry Key="XC_0540" Value="hypothetical protein; K01061 carboxymethylenebutenolidase [EC:3.1.1.45] [KO:K01061] [EC:3.1.1.45]" />
+    <DictionaryEntry Key="xcb:XC_0539" Value="hypothetical protein; K01061 carboxymethylenebutenolidase [EC:3.1.1.45]" />
+    <DictionaryEntry Key="xcb:XC_0540" Value="hypothetical protein; K01061 carboxymethylenebutenolidase [EC:3.1.1.45]" />
+    <DictionaryEntry Key="xcb:XC_1552" Value="carboxymethylenebutenolidase; K01061 carboxymethylenebutenolidase [EC:3.1.1.45]" />
   </Genes>
 </KEGG.PathwayBrief>

@@ -62,27 +62,27 @@
   </Compound>
   <PathwayMap Key="xcb00051" Value="Fructose and mannose metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2458" Value="mannan endo-1; K01218 mannan endo-1,4-beta-mannosidase [EC:3.2.1.78] [KO:K01218] [EC:3.2.1.78]" />
-    <DictionaryEntry Key="XC_2727" Value="fructokinase; K00847 fructokinase [EC:2.7.1.4] [KO:K00847] [EC:2.7.1.4]" />
-    <DictionaryEntry Key="XC_3609" Value="phosphomannose isomerase/GDP-mannose pyrophosphorylase; K16011 mannose-1-phosphate guanylyltransferase / mannose-6-phosphate isomerase [EC:2.7.7.13 5.3.1.8] [KO:K16011] [EC:5.3.1.8 2.7.7.13]" />
-    <DictionaryEntry Key="XC_3608" Value="phosphoglucomutase; phosphomannomutase [KO:K15778] [EC:5.4.2.2 5.4.2.8]" />
-    <DictionaryEntry Key="XC_3941" Value="phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5.4.2.2] [KO:K15778] [EC:5.4.2.2 5.4.2.8]" />
-    <DictionaryEntry Key="XC_3627" Value="GDP-mannose 4; K01711 GDPmannose 4,6-dehydratase [EC:4.2.1.47] [KO:K01711] [EC:4.2.1.47]" />
-    <DictionaryEntry Key="XC_4155" Value="oxidoreductase; K00064 D-threo-aldose 1-dehydrogenase [EC:1.1.1.122] [KO:K00064] [EC:1.1.1.122]" />
-    <DictionaryEntry Key="XC_0150" Value="L-fucose dehydrogenase; K00064 D-threo-aldose 1-dehydrogenase [EC:1.1.1.122] [KO:K00064] [EC:1.1.1.122]" />
-    <DictionaryEntry Key="XC_4156" Value="hypothetical protein; K07046 L-fuconolactonase [EC:3.1.1.-] [KO:K07046] [EC:3.1.1.-]" />
-    <DictionaryEntry Key="XC_4159" Value="RTS beta protein; K18334 L-fuconate dehydratase [EC:4.2.1.68] [KO:K18334] [EC:4.2.1.68]" />
-    <DictionaryEntry Key="XC_4157" Value="oxidoreductase; K18335 2-keto-3-deoxy-L-fuconate dehydrogenase [EC:1.1.1.-] [KO:K18335] [EC:1.1.1.-]" />
-    <DictionaryEntry Key="XC_4158" Value="2-hydroxyhepta-2; K18336 2,4-diketo-3-deoxy-L-fuconate hydrolase [EC:3.7.1.-] [KO:K18336] [EC:3.7.1.-]" />
-    <DictionaryEntry Key="XC_0872" Value="6-phosphofructokinase; K00850 6-phosphofructokinase 1 [EC:2.7.1.11] [KO:K00850] [EC:2.7.1.11]" />
-    <DictionaryEntry Key="XC_0098" Value="fructose-1; K03841 fructose-1,6-bisphosphatase I [EC:3.1.3.11] [KO:K03841] [EC:3.1.3.11]" />
-    <DictionaryEntry Key="XC_1743" Value="1-phosphofructokinase; K00882 1-phosphofructokinase [EC:2.7.1.56] [KO:K00882] [EC:2.7.1.56]" />
-    <DictionaryEntry Key="XC_2477" Value="xylose isomerase; K01805 xylose isomerase [EC:5.3.1.5] [KO:K01805] [EC:5.3.1.5]" />
-    <DictionaryEntry Key="XC_4191" Value="xylose isomerase; K01805 xylose isomerase [EC:5.3.1.5] [KO:K01805] [EC:5.3.1.5]" />
-    <DictionaryEntry Key="XC_0979" Value="fructose-bisphosphate aldolase; K01623 fructose-bisphosphate aldolase, class I [EC:4.1.2.13] [KO:K01623] [EC:4.1.2.13]" />
-    <DictionaryEntry Key="XC_1587" Value="tpiA; triosephosphate isomerase [KO:K01803] [EC:5.3.1.1]" />
-    <DictionaryEntry Key="XC_0162" Value="hypothetical protein; K01808 ribose 5-phosphate isomerase B [EC:5.3.1.6] [KO:K01808] [EC:5.3.1.6]" />
-    <DictionaryEntry Key="XC_1744" Value="multiphosphoryl transfer protein; K02768 PTS system, fructose-specific IIA component [EC:2.7.1.202] K08483 phosphotransferase system, enzyme I, PtsI [EC:2.7.3.9] K11183 phosphocarrier protein FPr [KO:K02768 K08483 K11183] [EC:2.7.1.202 2.7.3.9]" />
-    <DictionaryEntry Key="XC_1742" Value="PTS system fructose-specific II BC component; K02769 PTS system, fructose-specific IIB component [EC:2.7.1.202] K02770 PTS system, fructose-specific IIC component [KO:K02769 K02770] [EC:2.7.1.202]" />
+    <DictionaryEntry Key="xcb:XC_0098" Value="fructose-1,6-bisphosphatase (EC:3.1.3.11); K03841 fructose-1,6-bisphosphatase I [EC:3.1.3.11]" />
+    <DictionaryEntry Key="xcb:XC_0150" Value="L-fucose dehydrogenase; K00064 D-threo-aldose 1-dehydrogenase [EC:1.1.1.122]" />
+    <DictionaryEntry Key="xcb:XC_0162" Value="hypothetical protein; K01808 ribose 5-phosphate isomerase B [EC:5.3.1.6]" />
+    <DictionaryEntry Key="xcb:XC_0872" Value="6-phosphofructokinase (EC:2.7.1.11); K00850 6-phosphofructokinase 1 [EC:2.7.1.11]" />
+    <DictionaryEntry Key="xcb:XC_0979" Value="fructose-bisphosphate aldolase; K01623 fructose-bisphosphate aldolase, class I [EC:4.1.2.13]" />
+    <DictionaryEntry Key="xcb:XC_1587" Value="tpiA; triosephosphate isomerase (EC:5.3.1.1); K01803 triosephosphate isomerase (TIM) [EC:5.3.1.1]" />
+    <DictionaryEntry Key="xcb:XC_1742" Value="PTS system fructose-specific II BC component; K02769 PTS system, fructose-specific IIB component [EC" />
+    <DictionaryEntry Key="xcb:XC_1743" Value="1-phosphofructokinase; K00882 1-phosphofructokinase [EC:2.7.1.56]" />
+    <DictionaryEntry Key="xcb:XC_1744" Value="multiphosphoryl transfer protein; K02768 PTS system, fructose-specific IIA component [EC:2.7.1.202]" />
+    <DictionaryEntry Key="xcb:XC_2458" Value="mannan endo-1,4-beta-mannosidase; K01218 mannan endo-1,4-beta-mannosidase [EC:3.2.1.78]" />
+    <DictionaryEntry Key="xcb:XC_2477" Value="xylose isomerase (EC:5.3.1.5); K01805 xylose isomerase [EC:5.3.1.5]" />
+    <DictionaryEntry Key="xcb:XC_2727" Value="fructokinase; K00847 fructokinase [EC:2.7.1.4]" />
+    <DictionaryEntry Key="xcb:XC_3608" Value="phosphoglucomutase; phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5" />
+    <DictionaryEntry Key="xcb:XC_3609" Value="phosphomannose isomerase/GDP-mannose pyrophosphorylase; K16011 mannose-1-phosphate guanylyltransfera" />
+    <DictionaryEntry Key="xcb:XC_3627" Value="GDP-mannose 4,6-dehydratase; K01711 GDPmannose 4,6-dehydratase [EC:4.2.1.47]" />
+    <DictionaryEntry Key="xcb:XC_3941" Value="phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5.4.2.2]" />
+    <DictionaryEntry Key="xcb:XC_4155" Value="oxidoreductase; K00064 D-threo-aldose 1-dehydrogenase [EC:1.1.1.122]" />
+    <DictionaryEntry Key="xcb:XC_4156" Value="hypothetical protein; K07046 L-fuconolactonase [EC:3.1.1.-]" />
+    <DictionaryEntry Key="xcb:XC_4157" Value="oxidoreductase; K18335 2-keto-3-deoxy-L-fuconate dehydrogenase [EC:1.1.1.-]" />
+    <DictionaryEntry Key="xcb:XC_4158" Value="2-hydroxyhepta-2,4-diene-1,7-dioate isomerase; K18336 2,4-diketo-3-deoxy-L-fuconate hydrolase [EC:3." />
+    <DictionaryEntry Key="xcb:XC_4159" Value="RTS beta protein; K18334 L-fuconate dehydratase [EC:4.2.1.68]" />
+    <DictionaryEntry Key="xcb:XC_4191" Value="xylose isomerase (EC:5.3.1.5); K01805 xylose isomerase [EC:5.3.1.5]" />
   </Genes>
 </KEGG.PathwayBrief>

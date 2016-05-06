@@ -45,13 +45,13 @@
   </Compound>
   <PathwayMap Key="xcb00261" Value="Monobactam biosynthesis&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0994" Value="bifunctional sulfate adenylyltransferase subunit 1/adenylylsulfate kinase; K00955 bifunctional enzyme CysN/CysC [EC:2.7.7.4 2.7.1.25] [KO:K00955] [EC:2.7.1.25 2.7.7.4]" />
-    <DictionaryEntry Key="XC_0993" Value="sulfate adenylyltransferase subunit 2; K00957 sulfate adenylyltransferase subunit 2 [EC:2.7.7.4] [KO:K00957] [EC:2.7.7.4]" />
-    <DictionaryEntry Key="XC_2389" Value="thrA; bifunctional aspartokinase I/homoserine dehydrogenase I [KO:K12524] [EC:1.1.1.3 2.7.2.4]" />
-    <DictionaryEntry Key="XC_1372" Value="bifunctional aspartate kinase/diaminopimelate decarboxylase protein; K12526 bifunctional diaminopimelate decarboxylase / aspartate kinase [EC:4.1.1.20 2.7.2.4] [KO:K12526] [EC:2.7.2.4 4.1.1.20]" />
-    <DictionaryEntry Key="XC_1569" Value="aspartate-semialdehyde dehydrogenase; K00133 aspartate-semialdehyde dehydrogenase [EC:1.2.1.11] [KO:K00133] [EC:1.2.1.11]" />
-    <DictionaryEntry Key="XC_1701" Value="dihydrodipicolinate synthetase; K01714 4-hydroxy-tetrahydrodipicolinate synthase [EC:4.3.3.7] [KO:K01714] [EC:4.3.3.7]" />
-    <DictionaryEntry Key="XC_2493" Value="dapA; dihydrodipicolinate synthase [KO:K01714] [EC:4.3.3.7]" />
-    <DictionaryEntry Key="XC_2349" Value="dihydrodipicolinate reductase; K00215 4-hydroxy-tetrahydrodipicolinate reductase [EC:1.17.1.8] [KO:K00215] [EC:1.17.1.8]" />
+    <DictionaryEntry Key="xcb:XC_0993" Value="sulfate adenylyltransferase subunit 2 (EC:2.7.7.4); K00957 sulfate adenylyltransferase subunit 2 [EC" />
+    <DictionaryEntry Key="xcb:XC_0994" Value="bifunctional sulfate adenylyltransferase subunit 1/adenylylsulfate kinase (EC:2.7.1.25 2.7.7.4); K00" />
+    <DictionaryEntry Key="xcb:XC_1372" Value="bifunctional aspartate kinase/diaminopimelate decarboxylase protein (EC:2.7.2.4 4.1.1.20); K12526 bi" />
+    <DictionaryEntry Key="xcb:XC_1569" Value="aspartate-semialdehyde dehydrogenase (EC:1.2.1.11); K00133 aspartate-semialdehyde dehydrogenase [EC:" />
+    <DictionaryEntry Key="xcb:XC_1701" Value="dihydrodipicolinate synthetase; K01714 4-hydroxy-tetrahydrodipicolinate synthase [EC:4.3.3.7]" />
+    <DictionaryEntry Key="xcb:XC_2349" Value="dihydrodipicolinate reductase (EC:1.3.1.26); K00215 4-hydroxy-tetrahydrodipicolinate reductase [EC:1" />
+    <DictionaryEntry Key="xcb:XC_2389" Value="thrA; bifunctional aspartokinase I/homoserine dehydrogenase I; K12524 bifunctional aspartokinase / h" />
+    <DictionaryEntry Key="xcb:XC_2493" Value="dapA; dihydrodipicolinate synthase (EC:4.2.1.52); K01714 4-hydroxy-tetrahydrodipicolinate synthase [" />
   </Genes>
 </KEGG.PathwayBrief>

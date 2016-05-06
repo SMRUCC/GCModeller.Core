@@ -133,35 +133,35 @@
   </Compound>
   <PathwayMap Key="xcb00860" Value="Porphyrin and chlorophyll metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_1429" Value="gltX; glutamyl-tRNA synthetase [KO:K01885] [EC:6.1.1.17]" />
-    <DictionaryEntry Key="XC_3362" Value="hemA; glutamyl-tRNA reductase [KO:K02492] [EC:1.2.1.70]" />
-    <DictionaryEntry Key="XC_0892" Value="glutamate-1-semialdehyde aminotransferase; K01845 glutamate-1-semialdehyde 2,1-aminomutase [EC:5.4.3.8] [KO:K01845] [EC:5.4.3.8]" />
-    <DictionaryEntry Key="XC_4045" Value="delta-aminolevulinic acid dehydratase; K01698 porphobilinogen synthase [EC:4.2.1.24] [KO:K01698] [EC:4.2.1.24]" />
-    <DictionaryEntry Key="XC_0649" Value="hemC; porphobilinogen deaminase [KO:K01749] [EC:2.5.1.61]" />
-    <DictionaryEntry Key="XC_0208" Value="uroporphyrinogen-III synthase; K01719 uroporphyrinogen-III synthase [EC:4.2.1.75] [KO:K01719] [EC:4.2.1.75]" />
-    <DictionaryEntry Key="XC_0207" Value="hypothetical protein; K02496 uroporphyrin-III C-methyltransferase [EC:2.1.1.107] [KO:K02496] [EC:2.1.1.107]" />
-    <DictionaryEntry Key="XC_0983" Value="siroheme synthase; K02302 uroporphyrin-III C-methyltransferase / precorrin-2 dehydrogenase / sirohydrochlorin ferrochelatase [EC:2.1.1.107 1.3.1.76 4.99.1.4] [KO:K02302] [EC:4.99.1.4 1.3.1.76 2.1.1.107]" />
-    <DictionaryEntry Key="XC_2174" Value="uroporphyrin-III C-methyltransferase; K02303 uroporphyrin-III C-methyltransferase [EC:2.1.1.107] [KO:K02303] [EC:2.1.1.107]" />
-    <DictionaryEntry Key="XC_2181" Value="siroheme synthase; K02304 precorrin-2 dehydrogenase / sirohydrochlorin ferrochelatase [EC:1.3.1.76 4.99.1.4] [KO:K02304] [EC:4.99.1.4 1.3.1.76]" />
-    <DictionaryEntry Key="XC_1265" Value="hemE; uroporphyrinogen decarboxylase [KO:K01599] [EC:4.1.1.37]" />
-    <DictionaryEntry Key="XC_4108" Value="coproporphyrinogen III oxidase; K00228 coproporphyrinogen III oxidase [EC:1.3.3.3] [KO:K00228] [EC:1.3.3.3]" />
-    <DictionaryEntry Key="XC_0963" Value="coproporphyrinogen III oxidase; K02495 oxygen-independent coproporphyrinogen III oxidase [EC:1.3.99.22] [KO:K02495] [EC:1.3.99.22]" />
-    <DictionaryEntry Key="XC_2090" Value="coproporphyrinogen III oxidase; K02495 oxygen-independent coproporphyrinogen III oxidase [EC:1.3.99.22] [KO:K02495] [EC:1.3.99.22]" />
-    <DictionaryEntry Key="XC_4186" Value="hemH; ferrochelatase [KO:K01772] [EC:4.99.1.1]" />
-    <DictionaryEntry Key="XC_3896" Value="protoheme IX farnesyltransferase; K02301 protoheme IX farnesyltransferase [EC:2.5.1.-] [KO:K02301] [EC:2.5.1.-]" />
-    <DictionaryEntry Key="XC_3897" Value="hypothetical protein; K02259 cytochrome c oxidase assembly protein subunit 15 [KO:K02259]" />
-    <DictionaryEntry Key="XC_1095" Value="cobyrinic acid a; K02224 cobyrinic acid a,c-diamide synthase [EC:6.3.5.9 6.3.5.11] [KO:K02224] [EC:6.3.5.11 6.3.5.9]" />
-    <DictionaryEntry Key="XC_3435" Value="hypothetical protein; K00798 cob(I)alamin adenosyltransferase [EC:2.5.1.17] [KO:K00798] [EC:2.5.1.17]" />
-    <DictionaryEntry Key="XC_1094" Value="cob(I)alamin adenolsyltransferase; K19221 cob(I)alamin adenosyltransferase [EC:2.5.1.17] [KO:K19221] [EC:2.5.1.17]" />
-    <DictionaryEntry Key="XC_1097" Value="cobyric acid synthase; K02232 adenosylcobyric acid synthase [EC:6.3.5.10] [KO:K02232] [EC:6.3.5.10]" />
-    <DictionaryEntry Key="XC_1096" Value="cobD; cobalamin biosynthesis protein [KO:K02227] [EC:6.3.1.10]" />
-    <DictionaryEntry Key="XC_1098" Value="cobU; adenosylcobinamide kinase [KO:K02231] [EC:2.7.7.62 2.7.1.156]" />
-    <DictionaryEntry Key="XC_1101" Value="cobS; cobalamin synthase [KO:K02233] [EC:2.7.8.26]" />
-    <DictionaryEntry Key="XC_1099" Value="cobT; nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase [KO:K00768] [EC:2.4.2.21]" />
-    <DictionaryEntry Key="XC_1100" Value="hypothetical protein; K02226 alpha-ribazole phosphatase [EC:3.1.3.73] [KO:K02226] [EC:3.1.3.73]" />
-    <DictionaryEntry Key="XC_2549" Value="Mg-protoporphyrin IX monomethyl ester oxidative cyclase; K04034 anaerobic magnesium-protoporphyrin IX monomethyl ester cyclase [EC:4.-.-.-] [KO:K04034] [EC:4.-.-.-]" />
-    <DictionaryEntry Key="XC_0494" Value="bacterioferritin; K03594 bacterioferritin [EC:1.16.3.1] [KO:K03594] [EC:1.16.3.1]" />
-    <DictionaryEntry Key="XC_2844" Value="bacterioferritin; K03594 bacterioferritin [EC:1.16.3.1] [KO:K03594] [EC:1.16.3.1]" />
-    <DictionaryEntry Key="XC_3201" Value="bacterioferritin; K03594 bacterioferritin [EC:1.16.3.1] [KO:K03594] [EC:1.16.3.1]" />
+    <DictionaryEntry Key="xcb:XC_0207" Value="hypothetical protein; K02496 uroporphyrin-III C-methyltransferase [EC:2.1.1.107]" />
+    <DictionaryEntry Key="xcb:XC_0208" Value="uroporphyrinogen-III synthase (EC:4.2.1.75); K01719 uroporphyrinogen-III synthase [EC:4.2.1.75]" />
+    <DictionaryEntry Key="xcb:XC_0494" Value="bacterioferritin; K03594 bacterioferritin [EC:1.16.3.1]" />
+    <DictionaryEntry Key="xcb:XC_0649" Value="hemC; porphobilinogen deaminase (EC:2.5.1.61); K01749 hydroxymethylbilane synthase [EC:2.5.1.61]" />
+    <DictionaryEntry Key="xcb:XC_0892" Value="glutamate-1-semialdehyde aminotransferase (EC:5.4.3.8); K01845 glutamate-1-semialdehyde 2,1-aminomut" />
+    <DictionaryEntry Key="xcb:XC_0963" Value="coproporphyrinogen III oxidase; K02495 oxygen-independent coproporphyrinogen III oxidase [EC:1.3.99." />
+    <DictionaryEntry Key="xcb:XC_0983" Value="siroheme synthase; K02302 uroporphyrin-III C-methyltransferase / precorrin-2 dehydrogenase / sirohyd" />
+    <DictionaryEntry Key="xcb:XC_1094" Value="cob(I)alamin adenolsyltransferase; K19221 cob(I)alamin adenosyltransferase [EC:2.5.1.17]" />
+    <DictionaryEntry Key="xcb:XC_1095" Value="cobyrinic acid a,c-diamide synthase; K02224 cobyrinic acid a,c-diamide synthase [EC:6.3.5.9 6.3.5.11" />
+    <DictionaryEntry Key="xcb:XC_1096" Value="cobD; cobalamin biosynthesis protein; K02227 adenosylcobinamide-phosphate synthase [EC:6.3.1.10]" />
+    <DictionaryEntry Key="xcb:XC_1097" Value="cobyric acid synthase; K02232 adenosylcobyric acid synthase [EC:6.3.5.10]" />
+    <DictionaryEntry Key="xcb:XC_1098" Value="cobU; adenosylcobinamide kinase (EC:2.7.1.156 2.7.7.62); K02231 adenosylcobinamide kinase / adenosyl" />
+    <DictionaryEntry Key="xcb:XC_1099" Value="cobT; nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase (EC:2.4.2.21); K00768 n" />
+    <DictionaryEntry Key="xcb:XC_1100" Value="hypothetical protein; K02226 alpha-ribazole phosphatase [EC:3.1.3.73]" />
+    <DictionaryEntry Key="xcb:XC_1101" Value="cobS; cobalamin synthase; K02233 adenosylcobinamide-GDP ribazoletransferase [EC:2.7.8.26]" />
+    <DictionaryEntry Key="xcb:XC_1265" Value="hemE; uroporphyrinogen decarboxylase (EC:4.1.1.37); K01599 uroporphyrinogen decarboxylase [EC:4.1.1." />
+    <DictionaryEntry Key="xcb:XC_1429" Value="gltX; glutamyl-tRNA synthetase (EC:6.1.1.17); K01885 glutamyl-tRNA synthetase [EC:6.1.1.17]" />
+    <DictionaryEntry Key="xcb:XC_2090" Value="coproporphyrinogen III oxidase; K02495 oxygen-independent coproporphyrinogen III oxidase [EC:1.3.99." />
+    <DictionaryEntry Key="xcb:XC_2174" Value="uroporphyrin-III C-methyltransferase; K02303 uroporphyrin-III C-methyltransferase [EC:2.1.1.107]" />
+    <DictionaryEntry Key="xcb:XC_2181" Value="siroheme synthase; K02304 precorrin-2 dehydrogenase / sirohydrochlorin ferrochelatase [EC:1.3.1.76 4" />
+    <DictionaryEntry Key="xcb:XC_2549" Value="Mg-protoporphyrin IX monomethyl ester oxidative cyclase; K04034 anaerobic magnesium-protoporphyrin I" />
+    <DictionaryEntry Key="xcb:XC_2844" Value="bacterioferritin; K03594 bacterioferritin [EC:1.16.3.1]" />
+    <DictionaryEntry Key="xcb:XC_3201" Value="bacterioferritin; K03594 bacterioferritin [EC:1.16.3.1]" />
+    <DictionaryEntry Key="xcb:XC_3362" Value="hemA; glutamyl-tRNA reductase; K02492 glutamyl-tRNA reductase [EC:1.2.1.70]" />
+    <DictionaryEntry Key="xcb:XC_3435" Value="hypothetical protein; K00798 cob(I)alamin adenosyltransferase [EC:2.5.1.17]" />
+    <DictionaryEntry Key="xcb:XC_3896" Value="protoheme IX farnesyltransferase; K02301 protoheme IX farnesyltransferase [EC:2.5.1.-]" />
+    <DictionaryEntry Key="xcb:XC_3897" Value="hypothetical protein; K02259 cytochrome c oxidase assembly protein subunit 15" />
+    <DictionaryEntry Key="xcb:XC_4045" Value="delta-aminolevulinic acid dehydratase (EC:4.2.1.24); K01698 porphobilinogen synthase [EC:4.2.1.24]" />
+    <DictionaryEntry Key="xcb:XC_4108" Value="coproporphyrinogen III oxidase (EC:1.3.3.3); K00228 coproporphyrinogen III oxidase [EC:1.3.3.3]" />
+    <DictionaryEntry Key="xcb:XC_4186" Value="hemH; ferrochelatase (EC:4.99.1.1); K01772 ferrochelatase [EC:4.99.1.1]" />
   </Genes>
 </KEGG.PathwayBrief>

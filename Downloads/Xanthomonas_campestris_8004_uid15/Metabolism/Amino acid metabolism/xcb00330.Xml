@@ -85,24 +85,24 @@
   </Compound>
   <PathwayMap Key="xcb00330" Value="Arginine and proline metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0670" Value="cytosine deaminase; K01485 cytosine deaminase [EC:3.5.4.1] [KO:K01485] [EC:3.5.4.1]" />
-    <DictionaryEntry Key="XC_3953" Value="arginine decarboxylase; K01585 arginine decarboxylase [EC:4.1.1.19] [KO:K01585] [EC:4.1.1.19]" />
-    <DictionaryEntry Key="XC_1919" Value="beta-alanine synthetase; K12251 N-carbamoylputrescine amidase [EC:3.5.1.53] [KO:K12251] [EC:3.5.1.53]" />
-    <DictionaryEntry Key="XC_3954" Value="spermidine synthase; K00797 spermidine synthase [EC:2.5.1.16] [KO:K00797] [EC:2.5.1.16]" />
-    <DictionaryEntry Key="XC_0487" Value="S-adenosylmethionine decarboxylase; K01611 S-adenosylmethionine decarboxylase [EC:4.1.1.50] [KO:K01611] [EC:4.1.1.50]" />
-    <DictionaryEntry Key="XC_1771" Value="aminotransferase; K12256 putrescine aminotransferase [EC:2.6.1.-] [KO:K12256] [EC:2.6.1.-]" />
-    <DictionaryEntry Key="XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
-    <DictionaryEntry Key="XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
-    <DictionaryEntry Key="XC_0886" Value="flavin monoamine oxidase-like protein; K00274 monoamine oxidase [EC:1.4.3.4] [KO:K00274] [EC:1.4.3.4]" />
-    <DictionaryEntry Key="XC_3311" Value="amidase; K01426 amidase [EC:3.5.1.4] [KO:K01426] [EC:3.5.1.4]" />
-    <DictionaryEntry Key="XC_1767" Value="hypothetical protein; K09471 gamma-glutamylputrescine oxidase [EC:1.4.3.-] [KO:K09471] [EC:1.4.3.-]" />
-    <DictionaryEntry Key="XC_4015" Value="arginase; K01476 arginase [EC:3.5.3.1] [KO:K01476] [EC:3.5.3.1]" />
-    <DictionaryEntry Key="XC_1356" Value="pyrroline-5-carboxylate reductase; K00286 pyrroline-5-carboxylate reductase [EC:1.5.1.2] [KO:K00286] [EC:1.5.1.2]" />
-    <DictionaryEntry Key="XC_3907" Value="bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase; K13821 RHH-type transcriptional regulator, proline utilization regulon repressor / proline dehydrogenase / delta 1-pyrroline-5-carboxylate dehydrogenase [EC:1.5.5.2 1.2.1.88] [KO:K13821] [EC:1.2.1.88 1.5.5.2]" />
-    <DictionaryEntry Key="XC_1879" Value="gamma-glutamyl kinase; K00931 glutamate 5-kinase [EC:2.7.2.11] [KO:K00931] [EC:2.7.2.11]" />
-    <DictionaryEntry Key="XC_1880" Value="proA; gamma-glutamyl phosphate reductase [KO:K00147] [EC:1.2.1.41]" />
-    <DictionaryEntry Key="XC_3394" Value="proline iminopeptidase chain A; K01259 proline iminopeptidase [EC:3.4.11.5] [KO:K01259] [EC:3.4.11.5]" />
-    <DictionaryEntry Key="XC_0735" Value="hypothetical protein; K00472 prolyl 4-hydroxylase [EC:1.14.11.2] [KO:K00472] [EC:1.14.11.2]" />
-    <DictionaryEntry Key="XC_1697" Value="hypothetical protein; K01777 proline racemase [EC:5.1.1.4] [KO:K01777] [EC:5.1.1.4]" />
+    <DictionaryEntry Key="xcb:XC_0487" Value="S-adenosylmethionine decarboxylase (EC:4.1.1.50); K01611 S-adenosylmethionine decarboxylase [EC:4.1." />
+    <DictionaryEntry Key="xcb:XC_0670" Value="cytosine deaminase; K01485 cytosine deaminase [EC:3.5.4.1]" />
+    <DictionaryEntry Key="xcb:XC_0735" Value="hypothetical protein; K00472 prolyl 4-hydroxylase [EC:1.14.11.2]" />
+    <DictionaryEntry Key="xcb:XC_0886" Value="flavin monoamine oxidase-like protein; K00274 monoamine oxidase [EC:1.4.3.4]" />
+    <DictionaryEntry Key="xcb:XC_1356" Value="pyrroline-5-carboxylate reductase (EC:1.5.1.2); K00286 pyrroline-5-carboxylate reductase [EC:1.5.1.2" />
+    <DictionaryEntry Key="xcb:XC_1697" Value="hypothetical protein; K01777 proline racemase [EC:5.1.1.4]" />
+    <DictionaryEntry Key="xcb:XC_1767" Value="hypothetical protein; K09471 gamma-glutamylputrescine oxidase [EC:1.4.3.-]" />
+    <DictionaryEntry Key="xcb:XC_1771" Value="aminotransferase; K12256 putrescine aminotransferase [EC:2.6.1.-]" />
+    <DictionaryEntry Key="xcb:XC_1879" Value="gamma-glutamyl kinase (EC:2.7.2.11); K00931 glutamate 5-kinase [EC:2.7.2.11]" />
+    <DictionaryEntry Key="xcb:XC_1880" Value="proA; gamma-glutamyl phosphate reductase; K00147 glutamate-5-semialdehyde dehydrogenase [EC:1.2.1.41" />
+    <DictionaryEntry Key="xcb:XC_1919" Value="beta-alanine synthetase; K12251 N-carbamoylputrescine amidase [EC:3.5.1.53]" />
+    <DictionaryEntry Key="xcb:XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xcb:XC_3311" Value="amidase (EC:3.5.1.4); K01426 amidase [EC:3.5.1.4]" />
+    <DictionaryEntry Key="xcb:XC_3394" Value="proline iminopeptidase chain A; K01259 proline iminopeptidase [EC:3.4.11.5]" />
+    <DictionaryEntry Key="xcb:XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xcb:XC_3907" Value="bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase (EC:1.5.1.12 1.5.99.8); K13" />
+    <DictionaryEntry Key="xcb:XC_3953" Value="arginine decarboxylase (EC:4.1.1.19); K01585 arginine decarboxylase [EC:4.1.1.19]" />
+    <DictionaryEntry Key="xcb:XC_3954" Value="spermidine synthase (EC:2.5.1.16); K00797 spermidine synthase [EC:2.5.1.16]" />
+    <DictionaryEntry Key="xcb:XC_4015" Value="arginase; K01476 arginase [EC:3.5.3.1]" />
   </Genes>
 </KEGG.PathwayBrief>

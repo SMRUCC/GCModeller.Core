@@ -8,21 +8,21 @@
   <Compound />
   <PathwayMap Key="xcb03018" Value="RNA degradation&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0492" Value="dinucleoside polyphosphate hydrolase; K08311 putative (di)nucleoside polyphosphate hydrolase [EC:3.6.1.-] [KO:K08311] [EC:3.6.1.-]" />
-    <DictionaryEntry Key="XC_2098" Value="ribonuclease E; K08300 ribonuclease E [EC:3.1.26.12] [KO:K08300] [EC:3.1.26.12]" />
-    <DictionaryEntry Key="XC_3848" Value="ATP-dependent RNA helicase RhlB; K03732 ATP-dependent RNA helicase RhlB [EC:3.6.4.13] [KO:K03732] [EC:3.6.4.13]" />
-    <DictionaryEntry Key="XC_2531" Value="eno; phosphopyruvate hydratase [KO:K01689] [EC:4.2.1.11]" />
-    <DictionaryEntry Key="XC_1609" Value="polynucleotide phosphorylase; K00962 polyribonucleotide nucleotidyltransferase [EC:2.7.7.8] [KO:K00962] [EC:2.7.7.8]" />
-    <DictionaryEntry Key="XC_3643" Value="ATP-dependent RNA helicase; K11927 ATP-dependent RNA helicase RhlE [EC:3.6.4.13] [KO:K11927] [EC:3.6.4.13]" />
-    <DictionaryEntry Key="XC_2718" Value="RNase R; K12573 ribonuclease R [EC:3.1.-.-] [KO:K12573] [EC:3.1.-.-]" />
-    <DictionaryEntry Key="XC_1475" Value="ATP-dependent RNA helicase; K05592 ATP-dependent RNA helicase DeaD [EC:3.6.4.13] [KO:K05592] [EC:3.6.4.13]" />
-    <DictionaryEntry Key="XC_1162" Value="DNA helicase; K03654 ATP-dependent DNA helicase RecQ [EC:3.6.4.12] [KO:K03654] [EC:3.6.4.12]" />
-    <DictionaryEntry Key="XC_3850" Value="rho; transcription termination factor Rho [KO:K03628]" />
-    <DictionaryEntry Key="XC_0872" Value="6-phosphofructokinase; K00850 6-phosphofructokinase 1 [EC:2.7.1.11] [KO:K00850] [EC:2.7.1.11]" />
-    <DictionaryEntry Key="XC_2763" Value="dnaK; molecular chaperone DnaK [KO:K04043]" />
-    <DictionaryEntry Key="XC_0535" Value="groEL; molecular chaperone GroEL [KO:K04077]" />
-    <DictionaryEntry Key="XC_2515" Value="hfq; RNA-binding protein Hfq [KO:K03666]" />
-    <DictionaryEntry Key="XC_3274" Value="polyphosphate kinase; K00937 polyphosphate kinase [EC:2.7.4.1] [KO:K00937] [EC:2.7.4.1]" />
-    <DictionaryEntry Key="XC_2470" Value="polynucleotide adenylyltransferase; K00970 poly(A) polymerase [EC:2.7.7.19] [KO:K00970] [EC:2.7.7.19]" />
+    <DictionaryEntry Key="xcb:XC_0492" Value="dinucleoside polyphosphate hydrolase; K08311 putative (di)nucleoside polyphosphate hydrolase [EC:3.6" />
+    <DictionaryEntry Key="xcb:XC_0535" Value="groEL; molecular chaperone GroEL; K04077 chaperonin GroEL" />
+    <DictionaryEntry Key="xcb:XC_0872" Value="6-phosphofructokinase (EC:2.7.1.11); K00850 6-phosphofructokinase 1 [EC:2.7.1.11]" />
+    <DictionaryEntry Key="xcb:XC_1162" Value="DNA helicase; K03654 ATP-dependent DNA helicase RecQ [EC:3.6.4.12]" />
+    <DictionaryEntry Key="xcb:XC_1475" Value="ATP-dependent RNA helicase; K05592 ATP-dependent RNA helicase DeaD [EC:3.6.4.13]" />
+    <DictionaryEntry Key="xcb:XC_1609" Value="polynucleotide phosphorylase; K00962 polyribonucleotide nucleotidyltransferase [EC:2.7.7.8]" />
+    <DictionaryEntry Key="xcb:XC_2098" Value="ribonuclease E; K08300 ribonuclease E [EC:3.1.26.12]" />
+    <DictionaryEntry Key="xcb:XC_2470" Value="polynucleotide adenylyltransferase; K00970 poly(A) polymerase [EC:2.7.7.19]" />
+    <DictionaryEntry Key="xcb:XC_2515" Value="hfq; RNA-binding protein Hfq; K03666 host factor-I protein" />
+    <DictionaryEntry Key="xcb:XC_2531" Value="eno; phosphopyruvate hydratase (EC:4.2.1.11); K01689 enolase [EC:4.2.1.11]" />
+    <DictionaryEntry Key="xcb:XC_2718" Value="RNase R; K12573 ribonuclease R [EC:3.1.-.-]" />
+    <DictionaryEntry Key="xcb:XC_2763" Value="dnaK; molecular chaperone DnaK; K04043 molecular chaperone DnaK" />
+    <DictionaryEntry Key="xcb:XC_3274" Value="polyphosphate kinase (EC:2.7.4.1); K00937 polyphosphate kinase [EC:2.7.4.1]" />
+    <DictionaryEntry Key="xcb:XC_3643" Value="ATP-dependent RNA helicase; K11927 ATP-dependent RNA helicase RhlE [EC:3.6.4.13]" />
+    <DictionaryEntry Key="xcb:XC_3848" Value="ATP-dependent RNA helicase RhlB; K03732 ATP-dependent RNA helicase RhlB [EC:3.6.4.13]" />
+    <DictionaryEntry Key="xcb:XC_3850" Value="rho; transcription termination factor Rho; K03628 transcription termination factor Rho" />
   </Genes>
 </KEGG.PathwayBrief>

@@ -42,37 +42,37 @@
   </Compound>
   <PathwayMap Key="xcb00010" Value="Glycolysis / Gluconeogenesis&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_1976" Value="glk; glucokinase [KO:K00845] [EC:2.7.1.2]" />
-    <DictionaryEntry Key="XC_1166" Value="glucokinase; K00845 glucokinase [EC:2.7.1.2] [KO:K00845] [EC:2.7.1.2]" />
-    <DictionaryEntry Key="XC_1223" Value="glucokinase; K00845 glucokinase [EC:2.7.1.2] [KO:K00845] [EC:2.7.1.2]" />
-    <DictionaryEntry Key="XC_2465" Value="pgi; glucose-6-phosphate isomerase [KO:K01810] [EC:5.3.1.9]" />
-    <DictionaryEntry Key="XC_0872" Value="6-phosphofructokinase; K00850 6-phosphofructokinase 1 [EC:2.7.1.11] [KO:K00850] [EC:2.7.1.11]" />
-    <DictionaryEntry Key="XC_0098" Value="fructose-1; K03841 fructose-1,6-bisphosphatase I [EC:3.1.3.11] [KO:K03841] [EC:3.1.3.11]" />
-    <DictionaryEntry Key="XC_0979" Value="fructose-bisphosphate aldolase; K01623 fructose-bisphosphate aldolase, class I [EC:4.1.2.13] [KO:K01623] [EC:4.1.2.13]" />
-    <DictionaryEntry Key="XC_1587" Value="tpiA; triosephosphate isomerase [KO:K01803] [EC:5.3.1.1]" />
-    <DictionaryEntry Key="XC_0972" Value="glyceraldehyde-3-phosphate dehydrogenase; K00134 glyceraldehyde 3-phosphate dehydrogenase [EC:1.2.1.12] [KO:K00134] [EC:1.2.1.12]" />
-    <DictionaryEntry Key="XC_0976" Value="pgk; phosphoglycerate kinase [KO:K00927] [EC:2.7.2.3]" />
-    <DictionaryEntry Key="XC_1404" Value="gpmA; phosphoglyceromutase [KO:K01834] [EC:5.4.2.11]" />
-    <DictionaryEntry Key="XC_3488" Value="phosphoglycerate mutase; K01834 2,3-bisphosphoglycerate-dependent phosphoglycerate mutase [EC:5.4.2.11] [KO:K01834] [EC:5.4.2.11]" />
-    <DictionaryEntry Key="XC_3287" Value="phosphoglycerate mutase; K15634 probable phosphoglycerate mutase [EC:5.4.2.12] [KO:K15634] [EC:5.4.2.12]" />
-    <DictionaryEntry Key="XC_2531" Value="eno; phosphopyruvate hydratase [KO:K01689] [EC:4.2.1.11]" />
-    <DictionaryEntry Key="XC_0978" Value="pyruvate kinase; K00873 pyruvate kinase [EC:2.7.1.40] [KO:K00873] [EC:2.7.1.40]" />
-    <DictionaryEntry Key="XC_0588" Value="aceE; pyruvate dehydrogenase subunit E1 [KO:K00163] [EC:1.2.4.1]" />
-    <DictionaryEntry Key="XC_0444" Value="pyruvate dehydrogenase E1 alpha subunit; K00161 pyruvate dehydrogenase E1 component alpha subunit [EC:1.2.4.1] [KO:K00161] [EC:1.2.4.1]" />
-    <DictionaryEntry Key="XC_0443" Value="pyruvate dehydrogenase E1 beta subunit; K00162 pyruvate dehydrogenase E1 component beta subunit [EC:1.2.4.1] [KO:K00162] [EC:1.2.4.1]" />
-    <DictionaryEntry Key="XC_0441" Value="branched-chain alpha-keto acid dehydrogenase subunit E2; K00627 pyruvate dehydrogenase E2 component (dihydrolipoamide acetyltransferase) [EC:2.3.1.12] [KO:K00627] [EC:2.3.1.12]" />
-    <DictionaryEntry Key="XC_3691" Value="dihydrolipoamide acetyltransferase; K00627 pyruvate dehydrogenase E2 component (dihydrolipoamide acetyltransferase) [EC:2.3.1.12] [KO:K00627] [EC:2.3.1.12]" />
-    <DictionaryEntry Key="XC_2751" Value="dihydrolipoamide dehydrogenase; K00382 dihydrolipoamide dehydrogenase [EC:1.8.1.4] [KO:K00382] [EC:1.8.1.4]" />
-    <DictionaryEntry Key="XC_3689" Value="dihydrolipoamide dehydrogenase; K00382 dihydrolipoamide dehydrogenase [EC:1.8.1.4] [KO:K00382] [EC:1.8.1.4]" />
-    <DictionaryEntry Key="XC_0775" Value="alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC:1.1.1.284 1.1.1.1] [KO:K00121] [EC:1.1.1.1 1.1.1.284]" />
-    <DictionaryEntry Key="XC_0686" Value="alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC:1.1.1.284 1.1.1.1] [KO:K00121] [EC:1.1.1.1 1.1.1.284]" />
-    <DictionaryEntry Key="XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
-    <DictionaryEntry Key="XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
-    <DictionaryEntry Key="XC_0104" Value="chloroacetaldehyde dehydrogenase; K00138 aldehyde dehydrogenase [EC:1.2.1.-] [KO:K00138] [EC:1.2.1.-]" />
-    <DictionaryEntry Key="XC_4149" Value="acetyl-CoA synthetase; K01895 acetyl-CoA synthetase [EC:6.2.1.1] [KO:K01895] [EC:6.2.1.1]" />
-    <DictionaryEntry Key="XC_3050" Value="aldose 1-epimerase; K01785 aldose 1-epimerase [EC:5.1.3.3] [KO:K01785] [EC:5.1.3.3]" />
-    <DictionaryEntry Key="XC_3608" Value="phosphoglucomutase; phosphomannomutase [KO:K15778] [EC:5.4.2.2 5.4.2.8]" />
-    <DictionaryEntry Key="XC_3941" Value="phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5.4.2.2] [KO:K15778] [EC:5.4.2.2 5.4.2.8]" />
-    <DictionaryEntry Key="XC_4244" Value="transglycosylase; K01792 glucose-6-phosphate 1-epimerase [EC:5.1.3.15] [KO:K01792] [EC:5.1.3.15]" />
+    <DictionaryEntry Key="xcb:XC_0098" Value="fructose-1,6-bisphosphatase (EC:3.1.3.11); K03841 fructose-1,6-bisphosphatase I [EC:3.1.3.11]" />
+    <DictionaryEntry Key="xcb:XC_0104" Value="chloroacetaldehyde dehydrogenase; K00138 aldehyde dehydrogenase [EC:1.2.1.-]" />
+    <DictionaryEntry Key="xcb:XC_0441" Value="branched-chain alpha-keto acid dehydrogenase subunit E2; K00627 pyruvate dehydrogenase E2 component" />
+    <DictionaryEntry Key="xcb:XC_0443" Value="pyruvate dehydrogenase E1 beta subunit; K00162 pyruvate dehydrogenase E1 component beta subunit [EC:" />
+    <DictionaryEntry Key="xcb:XC_0444" Value="pyruvate dehydrogenase E1 alpha subunit; K00161 pyruvate dehydrogenase E1 component alpha subunit [E" />
+    <DictionaryEntry Key="xcb:XC_0588" Value="aceE; pyruvate dehydrogenase subunit E1; K00163 pyruvate dehydrogenase E1 component [EC:1.2.4.1]" />
+    <DictionaryEntry Key="xcb:XC_0686" Value="alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC" />
+    <DictionaryEntry Key="xcb:XC_0775" Value="alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC" />
+    <DictionaryEntry Key="xcb:XC_0872" Value="6-phosphofructokinase (EC:2.7.1.11); K00850 6-phosphofructokinase 1 [EC:2.7.1.11]" />
+    <DictionaryEntry Key="xcb:XC_0972" Value="glyceraldehyde-3-phosphate dehydrogenase; K00134 glyceraldehyde 3-phosphate dehydrogenase [EC:1.2.1." />
+    <DictionaryEntry Key="xcb:XC_0976" Value="pgk; phosphoglycerate kinase (EC:2.7.2.3); K00927 phosphoglycerate kinase [EC:2.7.2.3]" />
+    <DictionaryEntry Key="xcb:XC_0978" Value="pyruvate kinase (EC:2.7.1.40); K00873 pyruvate kinase [EC:2.7.1.40]" />
+    <DictionaryEntry Key="xcb:XC_0979" Value="fructose-bisphosphate aldolase; K01623 fructose-bisphosphate aldolase, class I [EC:4.1.2.13]" />
+    <DictionaryEntry Key="xcb:XC_1166" Value="glucokinase (EC:2.7.1.2); K00845 glucokinase [EC:2.7.1.2]" />
+    <DictionaryEntry Key="xcb:XC_1223" Value="glucokinase (EC:2.7.1.2); K00845 glucokinase [EC:2.7.1.2]" />
+    <DictionaryEntry Key="xcb:XC_1404" Value="gpmA; phosphoglyceromutase; K01834 2,3-bisphosphoglycerate-dependent phosphoglycerate mutase [EC:5.4" />
+    <DictionaryEntry Key="xcb:XC_1587" Value="tpiA; triosephosphate isomerase (EC:5.3.1.1); K01803 triosephosphate isomerase (TIM) [EC:5.3.1.1]" />
+    <DictionaryEntry Key="xcb:XC_1976" Value="glk; glucokinase (EC:2.7.1.2); K00845 glucokinase [EC:2.7.1.2]" />
+    <DictionaryEntry Key="xcb:XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xcb:XC_2465" Value="pgi; glucose-6-phosphate isomerase (EC:5.3.1.9); K01810 glucose-6-phosphate isomerase [EC:5.3.1.9]" />
+    <DictionaryEntry Key="xcb:XC_2531" Value="eno; phosphopyruvate hydratase (EC:4.2.1.11); K01689 enolase [EC:4.2.1.11]" />
+    <DictionaryEntry Key="xcb:XC_2751" Value="dihydrolipoamide dehydrogenase (EC:1.8.1.4); K00382 dihydrolipoamide dehydrogenase [EC:1.8.1.4]" />
+    <DictionaryEntry Key="xcb:XC_3050" Value="aldose 1-epimerase; K01785 aldose 1-epimerase [EC:5.1.3.3]" />
+    <DictionaryEntry Key="xcb:XC_3287" Value="phosphoglycerate mutase; K15634 probable phosphoglycerate mutase [EC:5.4.2.12]" />
+    <DictionaryEntry Key="xcb:XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xcb:XC_3488" Value="phosphoglycerate mutase; K01834 2,3-bisphosphoglycerate-dependent phosphoglycerate mutase [EC:5.4.2." />
+    <DictionaryEntry Key="xcb:XC_3608" Value="phosphoglucomutase; phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5" />
+    <DictionaryEntry Key="xcb:XC_3689" Value="dihydrolipoamide dehydrogenase; K00382 dihydrolipoamide dehydrogenase [EC:1.8.1.4]" />
+    <DictionaryEntry Key="xcb:XC_3691" Value="dihydrolipoamide acetyltransferase; K00627 pyruvate dehydrogenase E2 component (dihydrolipoamide ace" />
+    <DictionaryEntry Key="xcb:XC_3941" Value="phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5.4.2.2]" />
+    <DictionaryEntry Key="xcb:XC_4149" Value="acetyl-CoA synthetase (EC:6.2.1.1); K01895 acetyl-CoA synthetase [EC:6.2.1.1]" />
+    <DictionaryEntry Key="xcb:XC_4244" Value="transglycosylase; K01792 glucose-6-phosphate 1-epimerase [EC:5.1.3.15]" />
   </Genes>
 </KEGG.PathwayBrief>

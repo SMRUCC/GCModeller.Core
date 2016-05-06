@@ -83,18 +83,18 @@
   </Compound>
   <PathwayMap Key="xcb00350" Value="Tyrosine metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0889" Value="aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9] [KO:K00817] [EC:2.6.1.9]" />
-    <DictionaryEntry Key="XC_2379" Value="histidinol-phosphate aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9] [KO:K00817] [EC:2.6.1.9]" />
-    <DictionaryEntry Key="XC_2665" Value="aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9] [KO:K00817] [EC:2.6.1.9]" />
-    <DictionaryEntry Key="XC_0100" Value="aromatic amino acid aminotransferase; K00832 aromatic-amino-acid transaminase [EC:2.6.1.57] [KO:K00832] [EC:2.6.1.57]" />
-    <DictionaryEntry Key="XC_0450" Value="4-hydroxyphenylpyruvate dioxygenase; K00457 4-hydroxyphenylpyruvate dioxygenase [EC:1.13.11.27] [KO:K00457] [EC:1.13.11.27]" />
-    <DictionaryEntry Key="XC_0452" Value="homogentisate 1; K00451 homogentisate 1,2-dioxygenase [EC:1.13.11.5] [KO:K00451] [EC:1.13.11.5]" />
-    <DictionaryEntry Key="XC_3641" Value="maleylacetoacetate isomerase; K01800 maleylacetoacetate isomerase [EC:5.2.1.2] [KO:K01800] [EC:5.2.1.2]" />
-    <DictionaryEntry Key="XC_3642" Value="fumarylacetoacetate hydrolase; K16171 fumarylacetoacetate (FAA) hydrolase [EC:3.7.1.2] [KO:K16171] [EC:3.7.1.2]" />
-    <DictionaryEntry Key="XC_0886" Value="flavin monoamine oxidase-like protein; K00274 monoamine oxidase [EC:1.4.3.4] [KO:K00274] [EC:1.4.3.4]" />
-    <DictionaryEntry Key="XC_0775" Value="alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC:1.1.1.284 1.1.1.1] [KO:K00121] [EC:1.1.1.1 1.1.1.284]" />
-    <DictionaryEntry Key="XC_0686" Value="alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC:1.1.1.284 1.1.1.1] [KO:K00121] [EC:1.1.1.1 1.1.1.284]" />
-    <DictionaryEntry Key="XC_1109" Value="4-hydroxy-2-oxovalerate aldolase; K02510 4-hydroxy-2-oxoheptanedioate aldolase [EC:4.1.2.52] [KO:K02510] [EC:4.1.2.52]" />
-    <DictionaryEntry Key="XC_1780" Value="succinate-semialdehyde dehydrogenase; K00135 succinate-semialdehyde dehydrogenase / glutarate-semialdehyde dehydrogenase [EC:1.2.1.16 1.2.1.79 1.2.1.20] [KO:K00135] [EC:1.2.1.20 1.2.1.79 1.2.1.16]" />
+    <DictionaryEntry Key="xcb:XC_0100" Value="aromatic amino acid aminotransferase (EC:2.6.1.57); K00832 aromatic-amino-acid transaminase [EC:2.6." />
+    <DictionaryEntry Key="xcb:XC_0450" Value="4-hydroxyphenylpyruvate dioxygenase; K00457 4-hydroxyphenylpyruvate dioxygenase [EC:1.13.11.27]" />
+    <DictionaryEntry Key="xcb:XC_0452" Value="homogentisate 1,2-dioxygenase (EC:1.13.11.5); K00451 homogentisate 1,2-dioxygenase [EC:1.13.11.5]" />
+    <DictionaryEntry Key="xcb:XC_0686" Value="alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC" />
+    <DictionaryEntry Key="xcb:XC_0775" Value="alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC" />
+    <DictionaryEntry Key="xcb:XC_0886" Value="flavin monoamine oxidase-like protein; K00274 monoamine oxidase [EC:1.4.3.4]" />
+    <DictionaryEntry Key="xcb:XC_0889" Value="aminotransferase (EC:2.6.1.9); K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9]" />
+    <DictionaryEntry Key="xcb:XC_1109" Value="4-hydroxy-2-oxovalerate aldolase; K02510 4-hydroxy-2-oxoheptanedioate aldolase [EC:4.1.2.52]" />
+    <DictionaryEntry Key="xcb:XC_1780" Value="succinate-semialdehyde dehydrogenase; K00135 succinate-semialdehyde dehydrogenase / glutarate-semial" />
+    <DictionaryEntry Key="xcb:XC_2379" Value="histidinol-phosphate aminotransferase (EC:2.6.1.9); K00817 histidinol-phosphate aminotransferase [EC" />
+    <DictionaryEntry Key="xcb:XC_2665" Value="aminotransferase (EC:2.6.1.9); K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9]" />
+    <DictionaryEntry Key="xcb:XC_3641" Value="maleylacetoacetate isomerase; K01800 maleylacetoacetate isomerase [EC:5.2.1.2]" />
+    <DictionaryEntry Key="xcb:XC_3642" Value="fumarylacetoacetate hydrolase; K16171 fumarylacetoacetate (FAA) hydrolase [EC:3.7.1.2]" />
   </Genes>
 </KEGG.PathwayBrief>

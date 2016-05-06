@@ -55,17 +55,17 @@
   </Compound>
   <PathwayMap Key="xcb00760" Value="Nicotinate and nicotinamide metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_1611" Value="nicotinate-nucleotide pyrophosphorylase; K00767 nicotinate-nucleotide pyrophosphorylase (carboxylating) [EC:2.4.2.19] [KO:K00767] [EC:2.4.2.19]" />
-    <DictionaryEntry Key="XC_3552" Value="nicotinate phosphoribosyltransferase; K00763 nicotinate phosphoribosyltransferase [EC:6.3.4.21] [KO:K00763] [EC:6.3.4.21]" />
-    <DictionaryEntry Key="XC_2687" Value="5'-nucleotidase; K01081 5'-nucleotidase [EC:3.1.3.5] [KO:K01081] [EC:3.1.3.5]" />
-    <DictionaryEntry Key="XC_2525" Value="surE; stationary phase survival protein SurE [KO:K03787] [EC:3.1.3.5]" />
-    <DictionaryEntry Key="XC_0718" Value="bifunctional nicotinamide mononucleotide adenylyltransferase/ADP-ribose pyrophosphatase; K13522 bifunctional NMN adenylyltransferase/nudix hydrolase [EC:2.7.7.1 3.6.1.-] [KO:K13522] [EC:3.6.1.- 2.7.7.1]" />
-    <DictionaryEntry Key="XC_1500" Value="nadD; nicotinic acid mononucleotide adenylyltransferase [KO:K00969] [EC:2.7.7.18]" />
-    <DictionaryEntry Key="XC_0501" Value="NADH pyrophosphatase; K03426 NAD+ diphosphatase [EC:3.6.1.22] [KO:K03426] [EC:3.6.1.22]" />
-    <DictionaryEntry Key="XC_1067" Value="nadE; NAD synthetase [KO:K01916] [EC:6.3.1.5]" />
-    <DictionaryEntry Key="XC_2513" Value="hypothetical protein; K03743 nicotinamide-nucleotide amidase [EC:3.5.1.42] [KO:K03743] [EC:3.5.1.42]" />
-    <DictionaryEntry Key="XC_0946" Value="inosine-uridine preferring nucleoside hydrolase; K01239 purine nucleosidase [EC:3.2.2.1] [KO:K01239] [EC:3.2.2.1]" />
-    <DictionaryEntry Key="XC_0719" Value="nicotinate phosphoribosyltransferase; K03462 nicotinamide phosphoribosyltransferase [EC:2.4.2.12] [KO:K03462] [EC:2.4.2.12]" />
-    <DictionaryEntry Key="XC_2688" Value="ppnK; inorganic polyphosphate/ATP-NAD kinase [KO:K00858] [EC:2.7.1.23]" />
+    <DictionaryEntry Key="xcb:XC_0501" Value="NADH pyrophosphatase; K03426 NAD+ diphosphatase [EC:3.6.1.22]" />
+    <DictionaryEntry Key="xcb:XC_0718" Value="bifunctional nicotinamide mononucleotide adenylyltransferase/ADP-ribose pyrophosphatase (EC:2.7.7.1)" />
+    <DictionaryEntry Key="xcb:XC_0719" Value="nicotinate phosphoribosyltransferase; K03462 nicotinamide phosphoribosyltransferase [EC:2.4.2.12]" />
+    <DictionaryEntry Key="xcb:XC_0946" Value="inosine-uridine preferring nucleoside hydrolase; K01239 purine nucleosidase [EC:3.2.2.1]" />
+    <DictionaryEntry Key="xcb:XC_1067" Value="nadE; NAD synthetase (EC:6.3.1.5); K01916 NAD+ synthase [EC:6.3.1.5]" />
+    <DictionaryEntry Key="xcb:XC_1500" Value="nadD; nicotinic acid mononucleotide adenylyltransferase (EC:2.7.7.18); K00969 nicotinate-nucleotide" />
+    <DictionaryEntry Key="xcb:XC_1611" Value="nicotinate-nucleotide pyrophosphorylase; K00767 nicotinate-nucleotide pyrophosphorylase (carboxylati" />
+    <DictionaryEntry Key="xcb:XC_2513" Value="hypothetical protein; K03743 nicotinamide-nucleotide amidase [EC:3.5.1.42]" />
+    <DictionaryEntry Key="xcb:XC_2525" Value="surE; stationary phase survival protein SurE (EC:3.1.3.2); K03787 5&amp;#39;-nucleotidase [EC:3.1.3.5]" />
+    <DictionaryEntry Key="xcb:XC_2687" Value="5&amp;#39;-nucleotidase; K01081 5&amp;#39;-nucleotidase [EC:3.1.3.5]" />
+    <DictionaryEntry Key="xcb:XC_2688" Value="ppnK; inorganic polyphosphate/ATP-NAD kinase (EC:2.7.1.23); K00858 NAD+ kinase [EC:2.7.1.23]" />
+    <DictionaryEntry Key="xcb:XC_3552" Value="nicotinate phosphoribosyltransferase (EC:2.4.2.11); K00763 nicotinate phosphoribosyltransferase [EC:" />
   </Genes>
 </KEGG.PathwayBrief>

@@ -5,8 +5,8 @@
   <Compound />
   <PathwayMap Key="xcb03450" Value="Non-homologous end-joining&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0108" Value="hypothetical protein; K10979 DNA end-binding protein Ku [KO:K10979]" />
-    <DictionaryEntry Key="XC_1808" Value="ATP-dependent DNA ligase; K01971 bifunctional non-homologous end joining protein LigD [EC:6.5.1.1] [KO:K01971] [EC:6.5.1.1]" />
-    <DictionaryEntry Key="XC_0109" Value="ATP-dependent DNA ligase; K01971 bifunctional non-homologous end joining protein LigD [EC:6.5.1.1] [KO:K01971] [EC:6.5.1.1]" />
+    <DictionaryEntry Key="xcb:XC_0108" Value="hypothetical protein; K10979 DNA end-binding protein Ku" />
+    <DictionaryEntry Key="xcb:XC_0109" Value="ATP-dependent DNA ligase; K01971 bifunctional non-homologous end joining protein LigD [EC:6.5.1.1]" />
+    <DictionaryEntry Key="xcb:XC_1808" Value="ATP-dependent DNA ligase; K01971 bifunctional non-homologous end joining protein LigD [EC:6.5.1.1]" />
   </Genes>
 </KEGG.PathwayBrief>

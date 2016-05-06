@@ -87,23 +87,23 @@
   </Compound>
   <PathwayMap Key="xcb00380" Value="Tryptophan metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0446" Value="tryptophan 2; K00453 tryptophan 2,3-dioxygenase [EC:1.13.11.11] [KO:K00453] [EC:1.13.11.11]" />
-    <DictionaryEntry Key="XC_3032" Value="tryptophan 2; K00453 tryptophan 2,3-dioxygenase [EC:1.13.11.11] [KO:K00453] [EC:1.13.11.11]" />
-    <DictionaryEntry Key="XC_2682" Value="kynurenine 3-monooxygenase; K00486 kynurenine 3-monooxygenase [EC:1.14.13.9] [KO:K00486] [EC:1.14.13.9]" />
-    <DictionaryEntry Key="XC_2681" Value="kynureninase; K01556 kynureninase [EC:3.7.1.3] [KO:K01556] [EC:3.7.1.3]" />
-    <DictionaryEntry Key="XC_2679" Value="3-hydroxyanthranilate 3; K00452 3-hydroxyanthranilate 3,4-dioxygenase [EC:1.13.11.6] [KO:K00452] [EC:1.13.11.6]" />
-    <DictionaryEntry Key="XC_2749" Value="sucA; 2-oxoglutarate dehydrogenase E1 [KO:K00164] [EC:1.2.4.2]" />
-    <DictionaryEntry Key="XC_2809" Value="glutaryl-CoA dehydrogenase; K00252 glutaryl-CoA dehydrogenase [EC:1.3.8.6] [KO:K00252] [EC:1.3.8.6]" />
-    <DictionaryEntry Key="XC_2975" Value="3-hydroxyacyl-CoA dehydrogenase; K01782 3-hydroxyacyl-CoA dehydrogenase / enoyl-CoA hydratase / 3-hydroxybutyryl-CoA epimerase [EC:1.1.1.35 4.2.1.17 5.1.2.3] [KO:K01782] [EC:5.1.2.3 4.2.1.17 1.1.1.35]" />
-    <DictionaryEntry Key="XC_2943" Value="acetoacetyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9] [KO:K00626] [EC:2.3.1.9]" />
-    <DictionaryEntry Key="XC_0204" Value="acetyl-CoA acetyltransferase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9] [KO:K00626] [EC:2.3.1.9]" />
-    <DictionaryEntry Key="XC_0886" Value="flavin monoamine oxidase-like protein; K00274 monoamine oxidase [EC:1.4.3.4] [KO:K00274] [EC:1.4.3.4]" />
-    <DictionaryEntry Key="XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
-    <DictionaryEntry Key="XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
-    <DictionaryEntry Key="XC_3311" Value="amidase; K01426 amidase [EC:3.5.1.4] [KO:K01426] [EC:3.5.1.4]" />
-    <DictionaryEntry Key="XC_3139" Value="catalase; K03781 catalase [EC:1.11.1.6] [KO:K03781] [EC:1.11.1.6]" />
-    <DictionaryEntry Key="XC_4037" Value="catalase; K03781 catalase [EC:1.11.1.6] [KO:K03781] [EC:1.11.1.6]" />
-    <DictionaryEntry Key="XC_3993" Value="catalase; K03781 catalase [EC:1.11.1.6] [KO:K03781] [EC:1.11.1.6]" />
-    <DictionaryEntry Key="XC_3037" Value="catalase/peroxidase; K03782 catalase-peroxidase [EC:1.11.1.21] [KO:K03782] [EC:1.11.1.21]" />
+    <DictionaryEntry Key="xcb:XC_0204" Value="acetyl-CoA acetyltransferase (EC:2.3.1.9); K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9]" />
+    <DictionaryEntry Key="xcb:XC_0446" Value="tryptophan 2,3-dioxygenase; K00453 tryptophan 2,3-dioxygenase [EC:1.13.11.11]" />
+    <DictionaryEntry Key="xcb:XC_0886" Value="flavin monoamine oxidase-like protein; K00274 monoamine oxidase [EC:1.4.3.4]" />
+    <DictionaryEntry Key="xcb:XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xcb:XC_2679" Value="3-hydroxyanthranilate 3,4-dioxygenase (EC:1.13.11.6); K00452 3-hydroxyanthranilate 3,4-dioxygenase [" />
+    <DictionaryEntry Key="xcb:XC_2681" Value="kynureninase; K01556 kynureninase [EC:3.7.1.3]" />
+    <DictionaryEntry Key="xcb:XC_2682" Value="kynurenine 3-monooxygenase; K00486 kynurenine 3-monooxygenase [EC:1.14.13.9]" />
+    <DictionaryEntry Key="xcb:XC_2749" Value="sucA; 2-oxoglutarate dehydrogenase E1 (EC:1.2.4.2); K00164 2-oxoglutarate dehydrogenase E1 component" />
+    <DictionaryEntry Key="xcb:XC_2809" Value="glutaryl-CoA dehydrogenase; K00252 glutaryl-CoA dehydrogenase [EC:1.3.8.6]" />
+    <DictionaryEntry Key="xcb:XC_2943" Value="acetoacetyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9]" />
+    <DictionaryEntry Key="xcb:XC_2975" Value="3-hydroxyacyl-CoA dehydrogenase; K01782 3-hydroxyacyl-CoA dehydrogenase / enoyl-CoA hydratase / 3-hy" />
+    <DictionaryEntry Key="xcb:XC_3032" Value="tryptophan 2,3-dioxygenase; K00453 tryptophan 2,3-dioxygenase [EC:1.13.11.11]" />
+    <DictionaryEntry Key="xcb:XC_3037" Value="catalase/peroxidase; K03782 catalase-peroxidase [EC:1.11.1.21]" />
+    <DictionaryEntry Key="xcb:XC_3139" Value="catalase; K03781 catalase [EC:1.11.1.6]" />
+    <DictionaryEntry Key="xcb:XC_3311" Value="amidase (EC:3.5.1.4); K01426 amidase [EC:3.5.1.4]" />
+    <DictionaryEntry Key="xcb:XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xcb:XC_3993" Value="catalase; K03781 catalase [EC:1.11.1.6]" />
+    <DictionaryEntry Key="xcb:XC_4037" Value="catalase; K03781 catalase [EC:1.11.1.6]" />
   </Genes>
 </KEGG.PathwayBrief>

@@ -46,10 +46,10 @@
   </Compound>
   <PathwayMap Key="xcb00625" Value="Chloroalkane and chloroalkene degradation&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0226" Value="haloalkane dehalogenase; K01563 haloalkane dehalogenase [EC:3.8.1.5] [KO:K01563] [EC:3.8.1.5]" />
-    <DictionaryEntry Key="XC_0775" Value="alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC:1.1.1.284 1.1.1.1] [KO:K00121] [EC:1.1.1.1 1.1.1.284]" />
-    <DictionaryEntry Key="XC_0686" Value="alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC:1.1.1.284 1.1.1.1] [KO:K00121] [EC:1.1.1.1 1.1.1.284]" />
-    <DictionaryEntry Key="XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
-    <DictionaryEntry Key="XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xcb:XC_0226" Value="haloalkane dehalogenase; K01563 haloalkane dehalogenase [EC:3.8.1.5]" />
+    <DictionaryEntry Key="xcb:XC_0686" Value="alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC" />
+    <DictionaryEntry Key="xcb:XC_0775" Value="alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC" />
+    <DictionaryEntry Key="xcb:XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xcb:XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
   </Genes>
 </KEGG.PathwayBrief>

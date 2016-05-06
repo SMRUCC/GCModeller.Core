@@ -24,8 +24,8 @@
   </Compound>
   <PathwayMap Key="xcb00311" Value="Penicillin and cephalosporin biosynthesis&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_3030" Value="isopenicillin N epimerase; K04127 isopenicillin-N epimerase [EC:5.1.1.17] [KO:K04127] [EC:5.1.1.17]" />
-    <DictionaryEntry Key="XC_2845" Value="penicillin acylase II; K01434 penicillin amidase [EC:3.5.1.11] [KO:K01434] [EC:3.5.1.11]" />
-    <DictionaryEntry Key="XC_1119" Value="beta lactamase; K17836 beta-lactamase class A [EC:3.5.2.6] [KO:K17836] [EC:3.5.2.6]" />
+    <DictionaryEntry Key="xcb:XC_1119" Value="beta lactamase; K17836 beta-lactamase class A [EC:3.5.2.6]" />
+    <DictionaryEntry Key="xcb:XC_2845" Value="penicillin acylase II; K01434 penicillin amidase [EC:3.5.1.11]" />
+    <DictionaryEntry Key="xcb:XC_3030" Value="isopenicillin N epimerase; K04127 isopenicillin-N epimerase [EC:5.1.1.17]" />
   </Genes>
 </KEGG.PathwayBrief>

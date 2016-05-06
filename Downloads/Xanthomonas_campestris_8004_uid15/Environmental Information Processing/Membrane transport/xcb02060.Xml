@@ -65,10 +65,10 @@
   </Compound>
   <PathwayMap Key="xcb02060" Value="Phosphotransferase system (PTS)&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_1304" Value="phosphotransferase system enzyme I; K08483 phosphotransferase system, enzyme I, PtsI [EC:2.7.3.9] [KO:K08483] [EC:2.7.3.9]" />
-    <DictionaryEntry Key="XC_1744" Value="multiphosphoryl transfer protein; K02768 PTS system, fructose-specific IIA component [EC:2.7.1.202] K08483 phosphotransferase system, enzyme I, PtsI [EC:2.7.3.9] K11183 phosphocarrier protein FPr [KO:K02768 K08483 K11183] [EC:2.7.1.202 2.7.3.9]" />
-    <DictionaryEntry Key="XC_1306" Value="hypothetical protein; K02821 PTS system, ascorbate-specific IIA component [EC:2.7.1.194] [KO:K02821] [EC:2.7.1.194]" />
-    <DictionaryEntry Key="XC_1742" Value="PTS system fructose-specific II BC component; K02769 PTS system, fructose-specific IIB component [EC:2.7.1.202] K02770 PTS system, fructose-specific IIC component [KO:K02769 K02770] [EC:2.7.1.202]" />
-    <DictionaryEntry Key="XC_1309" Value="nitrogen regulatory IIA protein; K02806 PTS system, nitrogen regulatory IIA component [EC:2.7.1.-] [KO:K02806] [EC:2.7.1.-]" />
+    <DictionaryEntry Key="xcb:XC_1304" Value="phosphotransferase system enzyme I; K08483 phosphotransferase system, enzyme I, PtsI [EC:2.7.3.9]" />
+    <DictionaryEntry Key="xcb:XC_1306" Value="hypothetical protein; K02821 PTS system, ascorbate-specific IIA component [EC:2.7.1.194]" />
+    <DictionaryEntry Key="xcb:XC_1309" Value="nitrogen regulatory IIA protein; K02806 PTS system, nitrogen regulatory IIA component [EC:2.7.1.-]" />
+    <DictionaryEntry Key="xcb:XC_1742" Value="PTS system fructose-specific II BC component; K02769 PTS system, fructose-specific IIB component [EC" />
+    <DictionaryEntry Key="xcb:XC_1744" Value="multiphosphoryl transfer protein; K02768 PTS system, fructose-specific IIA component [EC:2.7.1.202]" />
   </Genes>
 </KEGG.PathwayBrief>

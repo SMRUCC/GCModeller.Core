@@ -38,19 +38,19 @@
   </Compound>
   <PathwayMap Key="xcb00770" Value="Pantothenate and CoA biosynthesis&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0840" Value="acetolactate synthase 2 catalytic subunit; K01652 acetolactate synthase I/II/III large subunit [EC:2.2.1.6] [KO:K01652] [EC:2.2.1.6]" />
-    <DictionaryEntry Key="XC_0839" Value="acetolactate synthase isozyme II small subunit; K11258 acetolactate synthase II small subunit [EC:2.2.1.6] [KO:K11258] [EC:2.2.1.6]" />
-    <DictionaryEntry Key="XC_0841" Value="ketol-acid reductoisomerase; K00053 ketol-acid reductoisomerase [EC:1.1.1.86] [KO:K00053] [EC:1.1.1.86]" />
-    <DictionaryEntry Key="XC_0356" Value="dihydroxy-acid dehydratase; K01687 dihydroxy-acid dehydratase [EC:4.2.1.9] [KO:K01687] [EC:4.2.1.9]" />
-    <DictionaryEntry Key="XC_2468" Value="panB; 3-methyl-2-oxobutanoate hydroxymethyltransferase [KO:K00606] [EC:2.1.2.11]" />
-    <DictionaryEntry Key="XC_4070" Value="2-dehydropantoate 2-reductase; K00077 2-dehydropantoate 2-reductase [EC:1.1.1.169] [KO:K00077] [EC:1.1.1.169]" />
-    <DictionaryEntry Key="XC_2467" Value="panC; pantoate--beta-alanine ligase [KO:K01918] [EC:6.3.2.1]" />
-    <DictionaryEntry Key="XC_4025" Value="pantothenate kinase; K03525 type III pantothenate kinase [EC:2.7.1.33] [KO:K03525] [EC:2.7.1.33]" />
-    <DictionaryEntry Key="XC_3943" Value="bifunctional phosphopantothenoylcysteine decarboxylase/phosphopantothenate synthase; K13038 phosphopantothenoylcysteine decarboxylase / phosphopantothenate--cysteine ligase [EC:4.1.1.36 6.3.2.5] [KO:K13038] [EC:6.3.2.5 4.1.1.36]" />
-    <DictionaryEntry Key="XC_1723" Value="coaD; phosphopantetheine adenylyltransferase [KO:K00954] [EC:2.7.7.3]" />
-    <DictionaryEntry Key="XC_1055" Value="coaE; dephospho-CoA kinase [KO:K00859] [EC:2.7.1.24]" />
-    <DictionaryEntry Key="XC_4132" Value="hetI protein; K06133 4'-phosphopantetheinyl transferase [EC:2.7.8.-] [KO:K06133] [EC:2.7.8.-]" />
-    <DictionaryEntry Key="XC_3380" Value="branched-chain amino acid aminotransferase; K00826 branched-chain amino acid aminotransferase [EC:2.6.1.42] [KO:K00826] [EC:2.6.1.42]" />
-    <DictionaryEntry Key="XC_2466" Value="aspartate alpha-decarboxylase; K01579 aspartate 1-decarboxylase [EC:4.1.1.11] [KO:K01579] [EC:4.1.1.11]" />
+    <DictionaryEntry Key="xcb:XC_0356" Value="dihydroxy-acid dehydratase (EC:4.2.1.9); K01687 dihydroxy-acid dehydratase [EC:4.2.1.9]" />
+    <DictionaryEntry Key="xcb:XC_0839" Value="acetolactate synthase isozyme II small subunit; K11258 acetolactate synthase II small subunit [EC:2." />
+    <DictionaryEntry Key="xcb:XC_0840" Value="acetolactate synthase 2 catalytic subunit (EC:2.2.1.6); K01652 acetolactate synthase I/II/III large" />
+    <DictionaryEntry Key="xcb:XC_0841" Value="ketol-acid reductoisomerase (EC:1.1.1.86); K00053 ketol-acid reductoisomerase [EC:1.1.1.86]" />
+    <DictionaryEntry Key="xcb:XC_1055" Value="coaE; dephospho-CoA kinase (EC:2.7.1.24); K00859 dephospho-CoA kinase [EC:2.7.1.24]" />
+    <DictionaryEntry Key="xcb:XC_1723" Value="coaD; phosphopantetheine adenylyltransferase (EC:2.7.7.3); K00954 pantetheine-phosphate adenylyltran" />
+    <DictionaryEntry Key="xcb:XC_2466" Value="aspartate alpha-decarboxylase (EC:4.1.1.11); K01579 aspartate 1-decarboxylase [EC:4.1.1.11]" />
+    <DictionaryEntry Key="xcb:XC_2467" Value="panC; pantoate--beta-alanine ligase (EC:6.3.2.1); K01918 pantoate--beta-alanine ligase [EC:6.3.2.1]" />
+    <DictionaryEntry Key="xcb:XC_2468" Value="panB; 3-methyl-2-oxobutanoate hydroxymethyltransferase (EC:2.1.2.11); K00606 3-methyl-2-oxobutanoate" />
+    <DictionaryEntry Key="xcb:XC_3380" Value="branched-chain amino acid aminotransferase (EC:2.6.1.42); K00826 branched-chain amino acid aminotran" />
+    <DictionaryEntry Key="xcb:XC_3943" Value="bifunctional phosphopantothenoylcysteine decarboxylase/phosphopantothenate synthase (EC:4.1.1.36 6.3" />
+    <DictionaryEntry Key="xcb:XC_4025" Value="pantothenate kinase (EC:2.7.1.33); K03525 type III pantothenate kinase [EC:2.7.1.33]" />
+    <DictionaryEntry Key="xcb:XC_4070" Value="2-dehydropantoate 2-reductase (EC:1.1.1.169); K00077 2-dehydropantoate 2-reductase [EC:1.1.1.169]" />
+    <DictionaryEntry Key="xcb:XC_4132" Value="hetI protein; K06133 4&amp;#39;-phosphopantetheinyl transferase [EC:2.7.8.-]" />
   </Genes>
 </KEGG.PathwayBrief>

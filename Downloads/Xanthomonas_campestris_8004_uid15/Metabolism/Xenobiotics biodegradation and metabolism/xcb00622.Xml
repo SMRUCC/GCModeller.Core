@@ -44,7 +44,7 @@
   </Compound>
   <PathwayMap Key="xcb00622" Value="Xylene degradation&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0366" Value="benzaldehyde dehydrogenase II; K00141 benzaldehyde dehydrogenase (NAD) [EC:1.2.1.28] [KO:K00141] [EC:1.2.1.28]" />
-    <DictionaryEntry Key="XC_0154" Value="2-keto-4-pentenoate hydratase; K02554 2-keto-4-pentenoate hydratase [EC:4.2.1.80] [KO:K02554] [EC:4.2.1.80]" />
+    <DictionaryEntry Key="xcb:XC_0154" Value="2-keto-4-pentenoate hydratase; K02554 2-keto-4-pentenoate hydratase [EC:4.2.1.80]" />
+    <DictionaryEntry Key="xcb:XC_0366" Value="benzaldehyde dehydrogenase II; K00141 benzaldehyde dehydrogenase (NAD) [EC:1.2.1.28]" />
   </Genes>
 </KEGG.PathwayBrief>

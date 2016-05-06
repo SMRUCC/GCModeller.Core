@@ -72,24 +72,24 @@
   </Compound>
   <PathwayMap Key="xcb00362" Value="Benzoate degradation&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0382" Value="b-ketoadipate enol-lactone hydrolase; K01055 3-oxoadipate enol-lactonase [EC:3.1.1.24] [KO:K01055] [EC:3.1.1.24]" />
-    <DictionaryEntry Key="XC_2206" Value="acetyl-CoA acetyltransferase; K00632 acetyl-CoA acyltransferase [EC:2.3.1.16] [KO:K00632] [EC:2.3.1.16]" />
-    <DictionaryEntry Key="XC_0378" Value="beta-ketoadipyl CoA thiolase; K07823 3-oxoadipyl-CoA thiolase [EC:2.3.1.174] [KO:K07823] [EC:2.3.1.174]" />
-    <DictionaryEntry Key="XC_0154" Value="2-keto-4-pentenoate hydratase; K02554 2-keto-4-pentenoate hydratase [EC:4.2.1.80] [KO:K02554] [EC:4.2.1.80]" />
-    <DictionaryEntry Key="XC_0380" Value="protocatechuate 3; K00448 protocatechuate 3,4-dioxygenase, alpha subunit [EC:1.13.11.3] [KO:K00448] [EC:1.13.11.3]" />
-    <DictionaryEntry Key="XC_0379" Value="protocatechuate 3; K00449 protocatechuate 3,4-dioxygenase, beta subunit [EC:1.13.11.3] [KO:K00449] [EC:1.13.11.3]" />
-    <DictionaryEntry Key="XC_0381" Value="3-carboxy-cis; K01857 3-carboxy-cis,cis-muconate cycloisomerase [EC:5.5.1.2] [KO:K01857] [EC:5.5.1.2]" />
-    <DictionaryEntry Key="XC_0383" Value="4-carboxymuconolactone decarboxylase; K01607 4-carboxymuconolactone decarboxylase [EC:4.1.1.44] [KO:K01607] [EC:4.1.1.44]" />
-    <DictionaryEntry Key="XC_3426" Value="protocatechuate 4; K04100 protocatechuate 4,5-dioxygenase, alpha chain [EC:1.13.11.8] [KO:K04100] [EC:1.13.11.8]" />
-    <DictionaryEntry Key="XC_3427" Value="protocatechuate 4; K04101 protocatechuate 4,5-dioxygenase, beta chain [EC:1.13.11.8] [KO:K04101] [EC:1.13.11.8]" />
-    <DictionaryEntry Key="XC_4120" Value="FldA protein; K16514 4-oxalomesaconate tautomerase [EC:5.3.2.8] [KO:K16514] [EC:5.3.2.8]" />
-    <DictionaryEntry Key="XC_4121" Value="4-oxalomesaconate hydratase; K10220 4-oxalmesaconate hydratase [EC:4.2.1.83] [KO:K10220] [EC:4.2.1.83]" />
-    <DictionaryEntry Key="XC_4119" Value="hypothetical protein; K10218 4-hydroxy-4-methyl-2-oxoglutarate aldolase [EC:4.1.3.17] [KO:K10218] [EC:4.1.3.17]" />
-    <DictionaryEntry Key="XC_0368" Value="4-hydroxybenzoate 3-monooxygenase; K00481 p-hydroxybenzoate 3-monooxygenase [EC:1.14.13.2] [KO:K00481] [EC:1.14.13.2]" />
-    <DictionaryEntry Key="XC_2975" Value="3-hydroxyacyl-CoA dehydrogenase; K01782 3-hydroxyacyl-CoA dehydrogenase / enoyl-CoA hydratase / 3-hydroxybutyryl-CoA epimerase [EC:1.1.1.35 4.2.1.17 5.1.2.3] [KO:K01782] [EC:5.1.2.3 4.2.1.17 1.1.1.35]" />
-    <DictionaryEntry Key="XC_2205" Value="3-hydroxyacyl-CoA dehydrogenase; K07516 3-hydroxyacyl-CoA dehydrogenase [EC:1.1.1.35] [KO:K07516] [EC:1.1.1.35]" />
-    <DictionaryEntry Key="XC_2809" Value="glutaryl-CoA dehydrogenase; K00252 glutaryl-CoA dehydrogenase [EC:1.3.8.6] [KO:K00252] [EC:1.3.8.6]" />
-    <DictionaryEntry Key="XC_2943" Value="acetoacetyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9] [KO:K00626] [EC:2.3.1.9]" />
-    <DictionaryEntry Key="XC_0204" Value="acetyl-CoA acetyltransferase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9] [KO:K00626] [EC:2.3.1.9]" />
+    <DictionaryEntry Key="xcb:XC_0154" Value="2-keto-4-pentenoate hydratase; K02554 2-keto-4-pentenoate hydratase [EC:4.2.1.80]" />
+    <DictionaryEntry Key="xcb:XC_0204" Value="acetyl-CoA acetyltransferase (EC:2.3.1.9); K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9]" />
+    <DictionaryEntry Key="xcb:XC_0368" Value="4-hydroxybenzoate 3-monooxygenase (EC:1.14.13.2); K00481 p-hydroxybenzoate 3-monooxygenase [EC:1.14." />
+    <DictionaryEntry Key="xcb:XC_0378" Value="beta-ketoadipyl CoA thiolase; K07823 3-oxoadipyl-CoA thiolase [EC:2.3.1.174]" />
+    <DictionaryEntry Key="xcb:XC_0379" Value="protocatechuate 3,4-dioxygenase subunit beta; K00449 protocatechuate 3,4-dioxygenase, beta subunit [" />
+    <DictionaryEntry Key="xcb:XC_0380" Value="protocatechuate 3,4-dioxygenase alpha chain; K00448 protocatechuate 3,4-dioxygenase, alpha subunit [" />
+    <DictionaryEntry Key="xcb:XC_0381" Value="3-carboxy-cis,cis-muconate cycloisomerase (EC:5.5.1.2); K01857 3-carboxy-cis,cis-muconate cycloisome" />
+    <DictionaryEntry Key="xcb:XC_0382" Value="b-ketoadipate enol-lactone hydrolase; K01055 3-oxoadipate enol-lactonase [EC:3.1.1.24]" />
+    <DictionaryEntry Key="xcb:XC_0383" Value="4-carboxymuconolactone decarboxylase; K01607 4-carboxymuconolactone decarboxylase [EC:4.1.1.44]" />
+    <DictionaryEntry Key="xcb:XC_2205" Value="3-hydroxyacyl-CoA dehydrogenase; K07516 3-hydroxyacyl-CoA dehydrogenase [EC:1.1.1.35]" />
+    <DictionaryEntry Key="xcb:XC_2206" Value="acetyl-CoA acetyltransferase (EC:2.3.1.9); K00632 acetyl-CoA acyltransferase [EC:2.3.1.16]" />
+    <DictionaryEntry Key="xcb:XC_2809" Value="glutaryl-CoA dehydrogenase; K00252 glutaryl-CoA dehydrogenase [EC:1.3.8.6]" />
+    <DictionaryEntry Key="xcb:XC_2943" Value="acetoacetyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9]" />
+    <DictionaryEntry Key="xcb:XC_2975" Value="3-hydroxyacyl-CoA dehydrogenase; K01782 3-hydroxyacyl-CoA dehydrogenase / enoyl-CoA hydratase / 3-hy" />
+    <DictionaryEntry Key="xcb:XC_3426" Value="protocatechuate 4,5-dioxygenase subunit alpha; K04100 protocatechuate 4,5-dioxygenase, alpha chain [" />
+    <DictionaryEntry Key="xcb:XC_3427" Value="protocatechuate 4,5-dioxygenase subunit beta; K04101 protocatechuate 4,5-dioxygenase, beta chain [EC" />
+    <DictionaryEntry Key="xcb:XC_4119" Value="hypothetical protein; K10218 4-hydroxy-4-methyl-2-oxoglutarate aldolase [EC:4.1.3.17]" />
+    <DictionaryEntry Key="xcb:XC_4120" Value="FldA protein; K16514 4-oxalomesaconate tautomerase [EC:5.3.2.8]" />
+    <DictionaryEntry Key="xcb:XC_4121" Value="4-oxalomesaconate hydratase; K10220 4-oxalmesaconate hydratase [EC:4.2.1.83]" />
   </Genes>
 </KEGG.PathwayBrief>

@@ -51,18 +51,18 @@
   </Compound>
   <PathwayMap Key="xcb00900" Value="Terpenoid backbone biosynthesis&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_1678" Value="1-deoxy-D-xylulose-5-phosphate synthase; K01662 1-deoxy-D-xylulose-5-phosphate synthase [EC:2.2.1.7] [KO:K01662] [EC:2.2.1.7]" />
-    <DictionaryEntry Key="XC_2871" Value="1-deoxy-D-xylulose 5-phosphate reductoisomerase; K00099 1-deoxy-D-xylulose-5-phosphate reductoisomerase [EC:1.1.1.267] [KO:K00099] [EC:1.1.1.267]" />
-    <DictionaryEntry Key="XC_2529" Value="ispD; 2-C-methyl-D-erythritol 4-phosphate cytidylyltransferase [KO:K00991] [EC:2.7.7.60]" />
-    <DictionaryEntry Key="XC_3359" Value="ipk; 4-diphosphocytidyl-2-C-methyl-D-erythritol kinase [KO:K00919] [EC:2.7.1.148]" />
-    <DictionaryEntry Key="XC_2528" Value="ispF; 2-C-methyl-D-erythritol 2,4-cyclodiphosphate synthase [KO:K01770] [EC:4.6.1.12]" />
-    <DictionaryEntry Key="XC_2455" Value="ispG; 4-hydroxy-3-methylbut-2-en-1-yl diphosphate synthase [KO:K03526] [EC:1.17.7.3 1.17.7.1]" />
-    <DictionaryEntry Key="XC_3085" Value="ispH; 4-hydroxy-3-methylbut-2-enyl diphosphate reductase [KO:K03527] [EC:1.17.7.4]" />
-    <DictionaryEntry Key="XC_2943" Value="acetoacetyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9] [KO:K00626] [EC:2.3.1.9]" />
-    <DictionaryEntry Key="XC_0204" Value="acetyl-CoA acetyltransferase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9] [KO:K00626] [EC:2.3.1.9]" />
-    <DictionaryEntry Key="XC_1516" Value="geranyltranstransferase; K00795 farnesyl diphosphate synthase [EC:2.5.1.1 2.5.1.10] [KO:K00795] [EC:2.5.1.10 2.5.1.1]" />
-    <DictionaryEntry Key="XC_1377" Value="octaprenyl-diphosphate synthase; K02523 octaprenyl-diphosphate synthase [EC:2.5.1.90] [KO:K02523] [EC:2.5.1.90]" />
-    <DictionaryEntry Key="XC_2869" Value="undecaprenyl pyrophosphate synthase; K00806 undecaprenyl diphosphate synthase [EC:2.5.1.31] [KO:K00806] [EC:2.5.1.31]" />
-    <DictionaryEntry Key="XC_0112" Value="hypothetical protein; K00587 protein-S-isoprenylcysteine O-methyltransferase [EC:2.1.1.100] [KO:K00587] [EC:2.1.1.100]" />
+    <DictionaryEntry Key="xcb:XC_0112" Value="hypothetical protein; K00587 protein-S-isoprenylcysteine O-methyltransferase [EC:2.1.1.100]" />
+    <DictionaryEntry Key="xcb:XC_0204" Value="acetyl-CoA acetyltransferase (EC:2.3.1.9); K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9]" />
+    <DictionaryEntry Key="xcb:XC_1377" Value="octaprenyl-diphosphate synthase; K02523 octaprenyl-diphosphate synthase [EC:2.5.1.90]" />
+    <DictionaryEntry Key="xcb:XC_1516" Value="geranyltranstransferase; K00795 farnesyl diphosphate synthase [EC:2.5.1.1 2.5.1.10]" />
+    <DictionaryEntry Key="xcb:XC_1678" Value="1-deoxy-D-xylulose-5-phosphate synthase (EC:2.2.1.7); K01662 1-deoxy-D-xylulose-5-phosphate synthase" />
+    <DictionaryEntry Key="xcb:XC_2455" Value="ispG; 4-hydroxy-3-methylbut-2-en-1-yl diphosphate synthase (EC:1.17.7.1); K03526 (E)-4-hydroxy-3-met" />
+    <DictionaryEntry Key="xcb:XC_2528" Value="ispF; 2-C-methyl-D-erythritol 2,4-cyclodiphosphate synthase (EC:4.6.1.12); K01770 2-C-methyl-D-eryth" />
+    <DictionaryEntry Key="xcb:XC_2529" Value="ispD; 2-C-methyl-D-erythritol 4-phosphate cytidylyltransferase (EC:2.7.7.60); K00991 2-C-methyl-D-er" />
+    <DictionaryEntry Key="xcb:XC_2869" Value="undecaprenyl pyrophosphate synthase; K00806 undecaprenyl diphosphate synthase [EC:2.5.1.31]" />
+    <DictionaryEntry Key="xcb:XC_2871" Value="1-deoxy-D-xylulose 5-phosphate reductoisomerase (EC:1.1.1.267); K00099 1-deoxy-D-xylulose-5-phosphat" />
+    <DictionaryEntry Key="xcb:XC_2943" Value="acetoacetyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9]" />
+    <DictionaryEntry Key="xcb:XC_3085" Value="ispH; 4-hydroxy-3-methylbut-2-enyl diphosphate reductase (EC:1.17.1.2); K03527 4-hydroxy-3-methylbut" />
+    <DictionaryEntry Key="xcb:XC_3359" Value="ipk; 4-diphosphocytidyl-2-C-methyl-D-erythritol kinase (EC:2.7.1.148); K00919 4-diphosphocytidyl-2-C" />
   </Genes>
 </KEGG.PathwayBrief>

@@ -44,23 +44,23 @@
   </Compound>
   <PathwayMap Key="xcb00790" Value="Folate biosynthesis&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_4253" Value="folE; GTP cyclohydrolase I [KO:K01495] [EC:3.5.4.16]" />
-    <DictionaryEntry Key="XC_2471" Value="GTP cyclohydrolase; K09007 GTP cyclohydrolase I [EC:3.5.4.16] [KO:K09007] [EC:3.5.4.16]" />
-    <DictionaryEntry Key="XC_1519" Value="alkaline phosphatase; K01077 alkaline phosphatase [EC:3.1.3.1] [KO:K01077] [EC:3.1.3.1]" />
-    <DictionaryEntry Key="XC_4131" Value="hypothetical protein; K01113 alkaline phosphatase D [EC:3.1.3.1] [KO:K01113] [EC:3.1.3.1]" />
-    <DictionaryEntry Key="XC_3887" Value="dihydroneopterin aldolase; K01633 dihydroneopterin aldolase / 7,8-dihydroneopterin epimerase [EC:4.1.2.25 5.1.99.8] [KO:K01633] [EC:5.1.99.8 4.1.2.25]" />
-    <DictionaryEntry Key="XC_2469" Value="2-amino-4-hydroxy-6-hydroxymethyldihydropteridine pyrophosphokinase; K00950 2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase [EC:2.7.6.3] [KO:K00950] [EC:2.7.6.3]" />
-    <DictionaryEntry Key="XC_0731" Value="2-amino-4-hydroxy-6-hydroxymethyldihydropteridine pyrophosphokinase; K00950 2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase [EC:2.7.6.3] [KO:K00950] [EC:2.7.6.3]" />
-    <DictionaryEntry Key="XC_2517" Value="dihydropteroate synthase; K00796 dihydropteroate synthase [EC:2.5.1.15] [KO:K00796] [EC:2.5.1.15]" />
-    <DictionaryEntry Key="XC_3443" Value="dihydrofolate reductase type III; K00287 dihydrofolate reductase [EC:1.5.1.3] [KO:K00287] [EC:1.5.1.3]" />
-    <DictionaryEntry Key="XC_3285" Value="bifunctional folylpolyglutamate synthase/dihydrofolate synthase; K11754 dihydrofolate synthase / folylpolyglutamate synthase [EC:6.3.2.12 6.3.2.17] [KO:K11754] [EC:6.3.2.17 6.3.2.12]" />
-    <DictionaryEntry Key="XC_3644" Value="6-pyruvoyl tetrahydrobiopterin synthase; K01737 6-pyruvoyltetrahydropterin/6-carboxytetrahydropterin synthase [EC:4.2.3.12 4.1.2.50] [KO:K01737] [EC:4.1.2.50 4.2.3.12]" />
-    <DictionaryEntry Key="XC_1144" Value="radical activating enzyme; K10026 7-carboxy-7-deazaguanine synthase [EC:4.3.99.3] [KO:K10026] [EC:4.3.99.3]" />
-    <DictionaryEntry Key="XC_1145" Value="transcriptional regulator; K06920 7-cyano-7-deazaguanine synthase [EC:6.3.4.20] [KO:K06920] [EC:6.3.4.20]" />
-    <DictionaryEntry Key="XC_3857" Value="queF; 7-cyano-7-deazaguanine reductase [KO:K06879] [EC:1.7.1.13]" />
-    <DictionaryEntry Key="XC_3249" Value="moaA; molybdenum cofactor biosynthesis protein A [KO:K03639] [EC:4.1.99.18]" />
-    <DictionaryEntry Key="XC_3247" Value="moaC; molybdenum cofactor biosynthesis protein MoaC [KO:K03637] [EC:4.1.99.18]" />
-    <DictionaryEntry Key="XC_3245" Value="molybdopterin-converting factor chain 2; K03635 molybdopterin synthase catalytic subunit [EC:2.8.1.12] [KO:K03635] [EC:2.8.1.12]" />
-    <DictionaryEntry Key="XC_3246" Value="molybdopterin-converting factor chain 1; K03636 molybdopterin synthase sulfur carrier subunit [KO:K03636]" />
+    <DictionaryEntry Key="xcb:XC_0731" Value="2-amino-4-hydroxy-6-hydroxymethyldihydropteridine pyrophosphokinase; K00950 2-amino-4-hydroxy-6-hydr" />
+    <DictionaryEntry Key="xcb:XC_1144" Value="radical activating enzyme; K10026 7-carboxy-7-deazaguanine synthase [EC:4.3.99.3]" />
+    <DictionaryEntry Key="xcb:XC_1145" Value="transcriptional regulator; K06920 7-cyano-7-deazaguanine synthase [EC:6.3.4.20]" />
+    <DictionaryEntry Key="xcb:XC_1519" Value="alkaline phosphatase; K01077 alkaline phosphatase [EC:3.1.3.1]" />
+    <DictionaryEntry Key="xcb:XC_2469" Value="2-amino-4-hydroxy-6-hydroxymethyldihydropteridine pyrophosphokinase; K00950 2-amino-4-hydroxy-6-hydr" />
+    <DictionaryEntry Key="xcb:XC_2471" Value="GTP cyclohydrolase; K09007 GTP cyclohydrolase I [EC:3.5.4.16]" />
+    <DictionaryEntry Key="xcb:XC_2517" Value="dihydropteroate synthase; K00796 dihydropteroate synthase [EC:2.5.1.15]" />
+    <DictionaryEntry Key="xcb:XC_3245" Value="molybdopterin-converting factor chain 2; K03635 molybdopterin synthase catalytic subunit [EC:2.8.1.1" />
+    <DictionaryEntry Key="xcb:XC_3246" Value="molybdopterin-converting factor chain 1; K03636 molybdopterin synthase sulfur carrier subunit" />
+    <DictionaryEntry Key="xcb:XC_3247" Value="moaC; molybdenum cofactor biosynthesis protein MoaC; K03637 cyclic pyranopterin phosphate synthase [" />
+    <DictionaryEntry Key="xcb:XC_3249" Value="moaA; molybdenum cofactor biosynthesis protein A; K03639 cyclic pyranopterin phosphate synthase [EC:" />
+    <DictionaryEntry Key="xcb:XC_3285" Value="bifunctional folylpolyglutamate synthase/dihydrofolate synthase; K11754 dihydrofolate synthase / fol" />
+    <DictionaryEntry Key="xcb:XC_3443" Value="dihydrofolate reductase type III; K00287 dihydrofolate reductase [EC:1.5.1.3]" />
+    <DictionaryEntry Key="xcb:XC_3644" Value="6-pyruvoyl tetrahydrobiopterin synthase; K01737 6-pyruvoyltetrahydropterin/6-carboxytetrahydropterin" />
+    <DictionaryEntry Key="xcb:XC_3857" Value="queF; 7-cyano-7-deazaguanine reductase; K06879 7-cyano-7-deazaguanine reductase [EC:1.7.1.13]" />
+    <DictionaryEntry Key="xcb:XC_3887" Value="dihydroneopterin aldolase; K01633 dihydroneopterin aldolase / 7,8-dihydroneopterin epimerase [EC:4.1" />
+    <DictionaryEntry Key="xcb:XC_4131" Value="hypothetical protein; K01113 alkaline phosphatase D [EC:3.1.3.1]" />
+    <DictionaryEntry Key="xcb:XC_4253" Value="folE; GTP cyclohydrolase I (EC:3.5.4.16); K01495 GTP cyclohydrolase I [EC:3.5.4.16]" />
   </Genes>
 </KEGG.PathwayBrief>

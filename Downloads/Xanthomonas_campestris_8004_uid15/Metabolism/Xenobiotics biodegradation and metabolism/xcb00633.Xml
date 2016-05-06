@@ -33,6 +33,6 @@
   </Compound>
   <PathwayMap Key="xcb00633" Value="Nitrotoluene degradation&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2924" Value="GTN reductase; K10680 N-ethylmaleimide reductase [EC:1.-.-.-] [KO:K10680] [EC:1.-.-.-]" />
+    <DictionaryEntry Key="xcb:XC_2924" Value="GTN reductase; K10680 N-ethylmaleimide reductase [EC:1.-.-.-]" />
   </Genes>
 </KEGG.PathwayBrief>

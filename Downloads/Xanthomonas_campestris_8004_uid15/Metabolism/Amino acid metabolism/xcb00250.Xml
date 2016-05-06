@@ -34,28 +34,28 @@
   </Compound>
   <PathwayMap Key="xcb00250" Value="Alanine, aspartate and glutamate metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2451" Value="resistance protein; K01779 aspartate racemase [EC:5.1.1.13] [KO:K01779] [EC:5.1.1.13]" />
-    <DictionaryEntry Key="XC_3374" Value="asparaginase; K01424 L-asparaginase [EC:3.5.1.1] [KO:K01424] [EC:3.5.1.1]" />
-    <DictionaryEntry Key="XC_2806" Value="asparagine synthase; K01953 asparagine synthase (glutamine-hydrolysing) [EC:6.3.5.4] [KO:K01953] [EC:6.3.5.4]" />
-    <DictionaryEntry Key="XC_2848" Value="asnB; asparagine synthetase B [KO:K01953] [EC:6.3.5.4]" />
-    <DictionaryEntry Key="XC_0800" Value="aminotransferase; K14260 alanine-synthesizing transaminase [EC:2.6.1.66 2.6.1.2] [KO:K14260] [EC:2.6.1.2 2.6.1.66]" />
-    <DictionaryEntry Key="XC_1871" Value="argininosuccinate synthase; K01940 argininosuccinate synthase [EC:6.3.4.5] [KO:K01940] [EC:6.3.4.5]" />
-    <DictionaryEntry Key="XC_1876" Value="argininosuccinate lyase; K01755 argininosuccinate lyase [EC:4.3.2.1] [KO:K01755] [EC:4.3.2.1]" />
-    <DictionaryEntry Key="XC_3193" Value="adenylosuccinate synthetase; K01939 adenylosuccinate synthase [EC:6.3.4.4] [KO:K01939] [EC:6.3.4.4]" />
-    <DictionaryEntry Key="XC_2744" Value="adenylosuccinate lyase; K01756 adenylosuccinate lyase [EC:4.3.2.2] [KO:K01756] [EC:4.3.2.2]" />
-    <DictionaryEntry Key="XC_1367" Value="pyrB; aspartate carbamoyltransferase [KO:K00609] [EC:2.1.3.2]" />
-    <DictionaryEntry Key="XC_1780" Value="succinate-semialdehyde dehydrogenase; K00135 succinate-semialdehyde dehydrogenase / glutarate-semialdehyde dehydrogenase [EC:1.2.1.16 1.2.1.79 1.2.1.20] [KO:K00135] [EC:1.2.1.20 1.2.1.79 1.2.1.16]" />
-    <DictionaryEntry Key="XC_0032" Value="gltB; glutamate synthase subunit alpha [KO:K00265] [EC:1.4.1.14 1.4.1.13]" />
-    <DictionaryEntry Key="XC_0031" Value="gltD; glutamate synthase subunit beta [KO:K00266] [EC:1.4.1.14 1.4.1.13]" />
-    <DictionaryEntry Key="XC_1751" Value="hypothetical protein; K15371 glutamate dehydrogenase [EC:1.4.1.2] [KO:K15371] [EC:1.4.1.2]" />
-    <DictionaryEntry Key="XC_3907" Value="bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase; K13821 RHH-type transcriptional regulator, proline utilization regulon repressor / proline dehydrogenase / delta 1-pyrroline-5-carboxylate dehydrogenase [EC:1.5.5.2 1.2.1.88] [KO:K13821] [EC:1.2.1.88 1.5.5.2]" />
-    <DictionaryEntry Key="XC_1768" Value="glutamine synthase; K01915 glutamine synthetase [EC:6.3.1.2] [KO:K01915] [EC:6.3.1.2]" />
-    <DictionaryEntry Key="XC_1770" Value="glutamine synthetase; K01915 glutamine synthetase [EC:6.3.1.2] [KO:K01915] [EC:6.3.1.2]" />
-    <DictionaryEntry Key="XC_0194" Value="glutamine synthetase; K01915 glutamine synthetase [EC:6.3.1.2] [KO:K01915] [EC:6.3.1.2]" />
-    <DictionaryEntry Key="XC_2346" Value="carB; carbamoyl phosphate synthase large subunit [KO:K01955] [EC:6.3.5.5]" />
-    <DictionaryEntry Key="XC_2348" Value="carbamoyl phosphate synthase small subunit; K01956 carbamoyl-phosphate synthase small subunit [EC:6.3.5.5] [KO:K01956] [EC:6.3.5.5]" />
-    <DictionaryEntry Key="XC_3663" Value="glucosamine--fructose-6-phosphate aminotransferase; K00820 glucosamine--fructose-6-phosphate aminotransferase (isomerizing) [EC:2.6.1.16] [KO:K00820] [EC:2.6.1.16]" />
-    <DictionaryEntry Key="XC_0753" Value="glucosamine-fructose-6-phosphate aminotransferase; K00820 glucosamine--fructose-6-phosphate aminotransferase (isomerizing) [EC:2.6.1.16] [KO:K00820] [EC:2.6.1.16]" />
-    <DictionaryEntry Key="XC_3282" Value="amidophosphoribosyltransferase; K00764 amidophosphoribosyltransferase [EC:2.4.2.14] [KO:K00764] [EC:2.4.2.14]" />
+    <DictionaryEntry Key="xcb:XC_0031" Value="gltD; glutamate synthase subunit beta (EC:1.4.1.13); K00266 glutamate synthase (NADPH/NADH) small ch" />
+    <DictionaryEntry Key="xcb:XC_0032" Value="gltB; glutamate synthase subunit alpha (EC:1.4.1.13); K00265 glutamate synthase (NADPH/NADH) large c" />
+    <DictionaryEntry Key="xcb:XC_0194" Value="glutamine synthetase; K01915 glutamine synthetase [EC:6.3.1.2]" />
+    <DictionaryEntry Key="xcb:XC_0753" Value="glucosamine-fructose-6-phosphate aminotransferase; K00820 glucosamine--fructose-6-phosphate aminotra" />
+    <DictionaryEntry Key="xcb:XC_0800" Value="aminotransferase (EC:2.6.1.2); K14260 alanine-synthesizing transaminase [EC:2.6.1.66 2.6.1.2]" />
+    <DictionaryEntry Key="xcb:XC_1367" Value="pyrB; aspartate carbamoyltransferase (EC:2.1.3.2); K00609 aspartate carbamoyltransferase catalytic s" />
+    <DictionaryEntry Key="xcb:XC_1751" Value="hypothetical protein; K15371 glutamate dehydrogenase [EC:1.4.1.2]" />
+    <DictionaryEntry Key="xcb:XC_1768" Value="glutamine synthase; K01915 glutamine synthetase [EC:6.3.1.2]" />
+    <DictionaryEntry Key="xcb:XC_1770" Value="glutamine synthetase; K01915 glutamine synthetase [EC:6.3.1.2]" />
+    <DictionaryEntry Key="xcb:XC_1780" Value="succinate-semialdehyde dehydrogenase; K00135 succinate-semialdehyde dehydrogenase / glutarate-semial" />
+    <DictionaryEntry Key="xcb:XC_1871" Value="argininosuccinate synthase (EC:6.3.4.5); K01940 argininosuccinate synthase [EC:6.3.4.5]" />
+    <DictionaryEntry Key="xcb:XC_1876" Value="argininosuccinate lyase (EC:4.3.2.1); K01755 argininosuccinate lyase [EC:4.3.2.1]" />
+    <DictionaryEntry Key="xcb:XC_2346" Value="carB; carbamoyl phosphate synthase large subunit (EC:6.3.5.5); K01955 carbamoyl-phosphate synthase l" />
+    <DictionaryEntry Key="xcb:XC_2348" Value="carbamoyl phosphate synthase small subunit (EC:6.3.5.5); K01956 carbamoyl-phosphate synthase small s" />
+    <DictionaryEntry Key="xcb:XC_2451" Value="resistance protein; K01779 aspartate racemase [EC:5.1.1.13]" />
+    <DictionaryEntry Key="xcb:XC_2744" Value="adenylosuccinate lyase (EC:4.3.2.2); K01756 adenylosuccinate lyase [EC:4.3.2.2]" />
+    <DictionaryEntry Key="xcb:XC_2806" Value="asparagine synthase; K01953 asparagine synthase (glutamine-hydrolysing) [EC:6.3.5.4]" />
+    <DictionaryEntry Key="xcb:XC_2848" Value="asnB; asparagine synthetase B; K01953 asparagine synthase (glutamine-hydrolysing) [EC:6.3.5.4]" />
+    <DictionaryEntry Key="xcb:XC_3193" Value="adenylosuccinate synthetase (EC:6.3.4.4); K01939 adenylosuccinate synthase [EC:6.3.4.4]" />
+    <DictionaryEntry Key="xcb:XC_3282" Value="amidophosphoribosyltransferase (EC:2.4.2.14); K00764 amidophosphoribosyltransferase [EC:2.4.2.14]" />
+    <DictionaryEntry Key="xcb:XC_3374" Value="asparaginase; K01424 L-asparaginase [EC:3.5.1.1]" />
+    <DictionaryEntry Key="xcb:XC_3663" Value="glucosamine--fructose-6-phosphate aminotransferase (EC:2.6.1.16); K00820 glucosamine--fructose-6-pho" />
+    <DictionaryEntry Key="xcb:XC_3907" Value="bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase (EC:1.5.1.12 1.5.99.8); K13" />
   </Genes>
 </KEGG.PathwayBrief>

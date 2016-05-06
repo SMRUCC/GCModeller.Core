@@ -33,12 +33,12 @@
   </Compound>
   <PathwayMap Key="xcb00740" Value="Riboflavin metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_3810" Value="GTP cyclohydrolase; K01497 GTP cyclohydrolase II [EC:3.5.4.25] [KO:K01497] [EC:3.5.4.25]" />
-    <DictionaryEntry Key="XC_3538" Value="GTP cyclohydrolase II; K14652 3,4-dihydroxy 2-butanone 4-phosphate synthase / GTP cyclohydrolase II [EC:4.1.99.12 3.5.4.25] [KO:K14652] [EC:3.5.4.25 4.1.99.12]" />
-    <DictionaryEntry Key="XC_3541" Value="bifunctional riboflavin-specific deaminase/5-amino-6-uracil reductase; K11752 diaminohydroxyphosphoribosylaminopyrimidine deaminase / 5-amino-6-(5-phosphoribosylamino)uracil reductase [EC:3.5.4.26 1.1.1.193] [KO:K11752] [EC:1.1.1.193 3.5.4.26]" />
-    <DictionaryEntry Key="XC_3537" Value="ribH; 6,7-dimethyl-8-ribityllumazine synthase [KO:K00794] [EC:2.5.1.78]" />
-    <DictionaryEntry Key="XC_3539" Value="riboflavin synthase subunit alpha; K00793 riboflavin synthase [EC:2.5.1.9] [KO:K00793] [EC:2.5.1.9]" />
-    <DictionaryEntry Key="XC_3088" Value="ribC; bifunctional riboflavin kinase/FMN adenylyltransferase [KO:K11753] [EC:2.7.7.2 2.7.1.26]" />
-    <DictionaryEntry Key="XC_0328" Value="NADH-dependent FMN reductase; K00299 FMN reductase [EC:1.5.1.38] [KO:K00299] [EC:1.5.1.38]" />
+    <DictionaryEntry Key="xcb:XC_0328" Value="NADH-dependent FMN reductase; K00299 FMN reductase [EC:1.5.1.38]" />
+    <DictionaryEntry Key="xcb:XC_3088" Value="ribC, ribF; bifunctional riboflavin kinase/FMN adenylyltransferase (EC:2.7.1.26 2.7.7.2); K11753 rib" />
+    <DictionaryEntry Key="xcb:XC_3537" Value="ribH; 6,7-dimethyl-8-ribityllumazine synthase; K00794 6,7-dimethyl-8-ribityllumazine synthase [EC:2." />
+    <DictionaryEntry Key="xcb:XC_3538" Value="GTP cyclohydrolase II; K14652 3,4-dihydroxy 2-butanone 4-phosphate synthase / GTP cyclohydrolase II" />
+    <DictionaryEntry Key="xcb:XC_3539" Value="riboflavin synthase subunit alpha (EC:2.5.1.9); K00793 riboflavin synthase [EC:2.5.1.9]" />
+    <DictionaryEntry Key="xcb:XC_3541" Value="bifunctional riboflavin-specific deaminase/5-amino-6-uracil reductase; K11752 diaminohydroxyphosphor" />
+    <DictionaryEntry Key="xcb:XC_3810" Value="GTP cyclohydrolase (EC:3.5.4.25); K01497 GTP cyclohydrolase II [EC:3.5.4.25]" />
   </Genes>
 </KEGG.PathwayBrief>

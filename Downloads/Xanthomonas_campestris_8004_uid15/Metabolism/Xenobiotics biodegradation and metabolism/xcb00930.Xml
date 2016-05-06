@@ -32,10 +32,10 @@
   </Compound>
   <PathwayMap Key="xcb00930" Value="Caprolactam degradation&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0553" Value="gluconolactonase; K01053 gluconolactonase [EC:3.1.1.17] [KO:K01053] [EC:3.1.1.17]" />
-    <DictionaryEntry Key="XC_4205" Value="gluconolactonase; K01053 gluconolactonase [EC:3.1.1.17] [KO:K01053] [EC:3.1.1.17]" />
-    <DictionaryEntry Key="XC_1702" Value="ketoglutarate semialdehyde dehydrogenase; K14519 NADP-dependent aldehyde dehydrogenase [EC:1.2.1.4] [KO:K14519] [EC:1.2.1.4]" />
-    <DictionaryEntry Key="XC_0953" Value="ketoglutarate semialdehyde dehydrogenase; K14519 NADP-dependent aldehyde dehydrogenase [EC:1.2.1.4] [KO:K14519] [EC:1.2.1.4]" />
-    <DictionaryEntry Key="XC_2975" Value="3-hydroxyacyl-CoA dehydrogenase; K01782 3-hydroxyacyl-CoA dehydrogenase / enoyl-CoA hydratase / 3-hydroxybutyryl-CoA epimerase [EC:1.1.1.35 4.2.1.17 5.1.2.3] [KO:K01782] [EC:5.1.2.3 4.2.1.17 1.1.1.35]" />
+    <DictionaryEntry Key="xcb:XC_0553" Value="gluconolactonase; K01053 gluconolactonase [EC:3.1.1.17]" />
+    <DictionaryEntry Key="xcb:XC_0953" Value="ketoglutarate semialdehyde dehydrogenase; K14519 NADP-dependent aldehyde dehydrogenase [EC:1.2.1.4]" />
+    <DictionaryEntry Key="xcb:XC_1702" Value="ketoglutarate semialdehyde dehydrogenase; K14519 NADP-dependent aldehyde dehydrogenase [EC:1.2.1.4]" />
+    <DictionaryEntry Key="xcb:XC_2975" Value="3-hydroxyacyl-CoA dehydrogenase; K01782 3-hydroxyacyl-CoA dehydrogenase / enoyl-CoA hydratase / 3-hy" />
+    <DictionaryEntry Key="xcb:XC_4205" Value="gluconolactonase; K01053 gluconolactonase [EC:3.1.1.17]" />
   </Genes>
 </KEGG.PathwayBrief>

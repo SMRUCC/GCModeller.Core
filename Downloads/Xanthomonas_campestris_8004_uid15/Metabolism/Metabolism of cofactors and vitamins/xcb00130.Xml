@@ -96,16 +96,16 @@
   </Compound>
   <PathwayMap Key="xcb00130" Value="Ubiquinone and other terpenoid-quinone biosynthesis&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_4103" Value="pteridine-dependent deoxygenase like protein; K18240 chorismate lyase / 3-hydroxybenzoate synthase [EC:4.1.3.40 4.1.3.45] [KO:K18240] [EC:4.1.3.45 4.1.3.40]" />
-    <DictionaryEntry Key="XC_0402" Value="ubiA; 4-hydroxybenzoate octaprenyltransferase [KO:K03179] [EC:2.5.1.39]" />
-    <DictionaryEntry Key="XC_1846" Value="3-demethylubiquinone-9 3-methyltransferase; K00568 2-polyprenyl-6-hydroxyphenyl methylase / 3-demethylubiquinone-9 3-methyltransferase [EC:2.1.1.222 2.1.1.64] [KO:K00568] [EC:2.1.1.64 2.1.1.222]" />
-    <DictionaryEntry Key="XC_3433" Value="2-octaprenyl-6-methoxyphenyl hydroxylase; K03185 2-octaprenyl-6-methoxyphenol hydroxylase [EC:1.14.13.-] [KO:K03185] [EC:1.14.13.-]" />
-    <DictionaryEntry Key="XC_0673" Value="ubiE; ubiquinone/menaquinone biosynthesis methyltransferase [KO:K03183] [EC:2.1.1.201 2.1.1.163]" />
-    <DictionaryEntry Key="XC_3432" Value="2-octaprenyl-3-methyl-6-methoxy-1; K03184 2-octaprenyl-3-methyl-6-methoxy-1,4-benzoquinol hydroxylase [EC:1.14.13.-] [KO:K03184] [EC:1.14.13.-]" />
-    <DictionaryEntry Key="XC_0489" Value="ubiquinone biosynthesis protein; K06134 ubiquinone biosynthesis monooxygenase Coq7 [EC:1.14.13.-] [KO:K06134] [EC:1.14.13.-]" />
-    <DictionaryEntry Key="XC_0060" Value="NAD(P)H oxidoreductase; K00355 NAD(P)H dehydrogenase (quinone) [EC:1.6.5.2] [KO:K00355] [EC:1.6.5.2]" />
-    <DictionaryEntry Key="XC_3371" Value="tryptophan repressor binding protein; K03809 NAD(P)H dehydrogenase (quinone) [EC:1.6.5.2] [KO:K03809] [EC:1.6.5.2]" />
-    <DictionaryEntry Key="XC_0333" Value="oxidoreductase; K19267 NAD(P)H dehydrogenase (quinone) [EC:1.6.5.2] [KO:K19267] [EC:1.6.5.2]" />
-    <DictionaryEntry Key="XC_0450" Value="4-hydroxyphenylpyruvate dioxygenase; K00457 4-hydroxyphenylpyruvate dioxygenase [EC:1.13.11.27] [KO:K00457] [EC:1.13.11.27]" />
+    <DictionaryEntry Key="xcb:XC_0060" Value="NAD(P)H oxidoreductase; K00355 NAD(P)H dehydrogenase (quinone) [EC:1.6.5.2]" />
+    <DictionaryEntry Key="xcb:XC_0333" Value="oxidoreductase; K19267 NAD(P)H dehydrogenase (quinone) [EC:1.6.5.2]" />
+    <DictionaryEntry Key="xcb:XC_0402" Value="ubiA; 4-hydroxybenzoate octaprenyltransferase; K03179 4-hydroxybenzoate polyprenyltransferase [EC:2." />
+    <DictionaryEntry Key="xcb:XC_0450" Value="4-hydroxyphenylpyruvate dioxygenase; K00457 4-hydroxyphenylpyruvate dioxygenase [EC:1.13.11.27]" />
+    <DictionaryEntry Key="xcb:XC_0489" Value="ubiquinone biosynthesis protein; K06134 ubiquinone biosynthesis monooxygenase Coq7 [EC:1.14.13.-]" />
+    <DictionaryEntry Key="xcb:XC_0673" Value="ubiE; ubiquinone/menaquinone biosynthesis methyltransferase; K03183 demethylmenaquinone methyltransf" />
+    <DictionaryEntry Key="xcb:XC_1846" Value="3-demethylubiquinone-9 3-methyltransferase (EC:2.1.1.64); K00568 2-polyprenyl-6-hydroxyphenyl methyl" />
+    <DictionaryEntry Key="xcb:XC_3371" Value="tryptophan repressor binding protein; K03809 NAD(P)H dehydrogenase (quinone) [EC:1.6.5.2]" />
+    <DictionaryEntry Key="xcb:XC_3432" Value="2-octaprenyl-3-methyl-6-methoxy-1,4-benzoquinol hydroxylase; K03184 2-octaprenyl-3-methyl-6-methoxy-" />
+    <DictionaryEntry Key="xcb:XC_3433" Value="2-octaprenyl-6-methoxyphenyl hydroxylase; K03185 2-octaprenyl-6-methoxyphenol hydroxylase [EC:1.14.1" />
+    <DictionaryEntry Key="xcb:XC_4103" Value="pteridine-dependent deoxygenase like protein; K18240 chorismate lyase / 3-hydroxybenzoate synthase [" />
   </Genes>
 </KEGG.PathwayBrief>

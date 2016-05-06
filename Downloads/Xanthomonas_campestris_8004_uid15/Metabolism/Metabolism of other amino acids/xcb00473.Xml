@@ -12,8 +12,8 @@
   </Compound>
   <PathwayMap Key="xcb00473" Value="D-Alanine metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_3718" Value="alr; alanine racemase [KO:K01775] [EC:5.1.1.1]" />
-    <DictionaryEntry Key="XC_3508" Value="ddl; D-alanine--D-alanine ligase [KO:K01921] [EC:6.3.2.4]" />
-    <DictionaryEntry Key="XC_0232" Value="ddl; D-alanyl-alanine synthetase A [KO:K01921] [EC:6.3.2.4]" />
+    <DictionaryEntry Key="xcb:XC_0232" Value="ddl; D-alanyl-alanine synthetase A (EC:6.3.2.4); K01921 D-alanine-D-alanine ligase [EC:6.3.2.4]" />
+    <DictionaryEntry Key="xcb:XC_3508" Value="ddl; D-alanine--D-alanine ligase (EC:6.3.2.4); K01921 D-alanine-D-alanine ligase [EC:6.3.2.4]" />
+    <DictionaryEntry Key="xcb:XC_3718" Value="alr; alanine racemase (EC:5.1.1.1); K01775 alanine racemase [EC:5.1.1.1]" />
   </Genes>
 </KEGG.PathwayBrief>

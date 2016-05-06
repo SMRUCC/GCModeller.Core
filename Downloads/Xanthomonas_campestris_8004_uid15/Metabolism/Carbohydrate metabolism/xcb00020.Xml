@@ -32,30 +32,30 @@
   </Compound>
   <PathwayMap Key="xcb00020" Value="Citrate cycle (TCA cycle)&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0944" Value="gltA; type II citrate synthase [KO:K01647] [EC:2.3.3.1]" />
-    <DictionaryEntry Key="XC_3213" Value="acnA; aconitate hydratase [KO:K01681] [EC:4.2.1.3]" />
-    <DictionaryEntry Key="XC_2329" Value="aconitate hydratase; K01681 aconitate hydratase [EC:4.2.1.3] [KO:K01681] [EC:4.2.1.3]" />
-    <DictionaryEntry Key="XC_2326" Value="bifunctional aconitate hydratase 2/2-methylisocitrate dehydratase; K01682 aconitate hydratase 2 / 2-methylisocitrate dehydratase [EC:4.2.1.3 4.2.1.99] [KO:K01682] [EC:4.2.1.99 4.2.1.3]" />
-    <DictionaryEntry Key="XC_3854" Value="isocitrate dehydrogenase; K00031 isocitrate dehydrogenase [EC:1.1.1.42] [KO:K00031] [EC:1.1.1.42]" />
-    <DictionaryEntry Key="XC_3268" Value="isocitrate dehydrogenase; K00030 isocitrate dehydrogenase (NAD+) [EC:1.1.1.41] [KO:K00030] [EC:1.1.1.41]" />
-    <DictionaryEntry Key="XC_2749" Value="sucA; 2-oxoglutarate dehydrogenase E1 [KO:K00164] [EC:1.2.4.2]" />
-    <DictionaryEntry Key="XC_2750" Value="dihydrolipoamide succinyltransferase; K00658 2-oxoglutarate dehydrogenase E2 component (dihydrolipoamide succinyltransferase) [EC:2.3.1.61] [KO:K00658] [EC:2.3.1.61]" />
-    <DictionaryEntry Key="XC_2751" Value="dihydrolipoamide dehydrogenase; K00382 dihydrolipoamide dehydrogenase [EC:1.8.1.4] [KO:K00382] [EC:1.8.1.4]" />
-    <DictionaryEntry Key="XC_3689" Value="dihydrolipoamide dehydrogenase; K00382 dihydrolipoamide dehydrogenase [EC:1.8.1.4] [KO:K00382] [EC:1.8.1.4]" />
-    <DictionaryEntry Key="XC_1064" Value="succinyl-CoA synthetase subunit alpha; K01902 succinyl-CoA synthetase alpha subunit [EC:6.2.1.5] [KO:K01902] [EC:6.2.1.5]" />
-    <DictionaryEntry Key="XC_1063" Value="sucC; succinyl-CoA synthetase subunit beta [KO:K01903] [EC:6.2.1.5]" />
-    <DictionaryEntry Key="XC_0550" Value="CoA transferase; K18118 succinyl-CoA:acetate CoA-transferase [EC:2.8.3.18] [KO:K18118] [EC:2.8.3.18]" />
-    <DictionaryEntry Key="XC_1983" Value="sdhA; succinate dehydrogenase flavoprotein subunit [KO:K00239] [EC:1.3.5.4 1.3.5.1]" />
-    <DictionaryEntry Key="XC_1985" Value="sdhB; succinate dehydrogenase iron-sulfur subunit [KO:K00240] [EC:1.3.5.4 1.3.5.1]" />
-    <DictionaryEntry Key="XC_1981" Value="succinate dehydrogenase membrane anchor subunit; K00241 succinate dehydrogenase / fumarate reductase, cytochrome b subunit [KO:K00241]" />
-    <DictionaryEntry Key="XC_1982" Value="succinate dehydrogenase membrane anchor subunit; K00242 succinate dehydrogenase / fumarate reductase, membrane anchor subunit [KO:K00242]" />
-    <DictionaryEntry Key="XC_2822" Value="fumarate hydratase; K01676 fumarate hydratase, class I [EC:4.2.1.2] [KO:K01676] [EC:4.2.1.2]" />
-    <DictionaryEntry Key="XC_2742" Value="fumC; fumarate hydratase [KO:K01679] [EC:4.2.1.2]" />
-    <DictionaryEntry Key="XC_3307" Value="malate dehydrogenase; K00024 malate dehydrogenase [EC:1.1.1.37] [KO:K00024] [EC:1.1.1.37]" />
-    <DictionaryEntry Key="XC_0588" Value="aceE; pyruvate dehydrogenase subunit E1 [KO:K00163] [EC:1.2.4.1]" />
-    <DictionaryEntry Key="XC_0444" Value="pyruvate dehydrogenase E1 alpha subunit; K00161 pyruvate dehydrogenase E1 component alpha subunit [EC:1.2.4.1] [KO:K00161] [EC:1.2.4.1]" />
-    <DictionaryEntry Key="XC_0443" Value="pyruvate dehydrogenase E1 beta subunit; K00162 pyruvate dehydrogenase E1 component beta subunit [EC:1.2.4.1] [KO:K00162] [EC:1.2.4.1]" />
-    <DictionaryEntry Key="XC_0441" Value="branched-chain alpha-keto acid dehydrogenase subunit E2; K00627 pyruvate dehydrogenase E2 component (dihydrolipoamide acetyltransferase) [EC:2.3.1.12] [KO:K00627] [EC:2.3.1.12]" />
-    <DictionaryEntry Key="XC_3691" Value="dihydrolipoamide acetyltransferase; K00627 pyruvate dehydrogenase E2 component (dihydrolipoamide acetyltransferase) [EC:2.3.1.12] [KO:K00627] [EC:2.3.1.12]" />
+    <DictionaryEntry Key="xcb:XC_0441" Value="branched-chain alpha-keto acid dehydrogenase subunit E2; K00627 pyruvate dehydrogenase E2 component" />
+    <DictionaryEntry Key="xcb:XC_0443" Value="pyruvate dehydrogenase E1 beta subunit; K00162 pyruvate dehydrogenase E1 component beta subunit [EC:" />
+    <DictionaryEntry Key="xcb:XC_0444" Value="pyruvate dehydrogenase E1 alpha subunit; K00161 pyruvate dehydrogenase E1 component alpha subunit [E" />
+    <DictionaryEntry Key="xcb:XC_0550" Value="CoA transferase; K18118 succinyl-CoA:acetate CoA-transferase [EC:2.8.3.18]" />
+    <DictionaryEntry Key="xcb:XC_0588" Value="aceE; pyruvate dehydrogenase subunit E1; K00163 pyruvate dehydrogenase E1 component [EC:1.2.4.1]" />
+    <DictionaryEntry Key="xcb:XC_0944" Value="gltA; type II citrate synthase (EC:2.3.3.1); K01647 citrate synthase [EC:2.3.3.1]" />
+    <DictionaryEntry Key="xcb:XC_1063" Value="sucC; succinyl-CoA synthetase subunit beta (EC:6.2.1.5); K01903 succinyl-CoA synthetase beta subunit" />
+    <DictionaryEntry Key="xcb:XC_1064" Value="succinyl-CoA synthetase subunit alpha (EC:6.2.1.5); K01902 succinyl-CoA synthetase alpha subunit [EC" />
+    <DictionaryEntry Key="xcb:XC_1981" Value="succinate dehydrogenase membrane anchor subunit; K00241 succinate dehydrogenase / fumarate reductase" />
+    <DictionaryEntry Key="xcb:XC_1982" Value="succinate dehydrogenase membrane anchor subunit; K00242 succinate dehydrogenase / fumarate reductase" />
+    <DictionaryEntry Key="xcb:XC_1983" Value="sdhA; succinate dehydrogenase flavoprotein subunit (EC:1.3.5.1); K00239 succinate dehydrogenase / fu" />
+    <DictionaryEntry Key="xcb:XC_1985" Value="sdhB; succinate dehydrogenase iron-sulfur subunit (EC:1.3.99.1); K00240 succinate dehydrogenase / fu" />
+    <DictionaryEntry Key="xcb:XC_2326" Value="bifunctional aconitate hydratase 2/2-methylisocitrate dehydratase (EC:4.2.1.3); K01682 aconitate hyd" />
+    <DictionaryEntry Key="xcb:XC_2329" Value="aconitate hydratase (EC:4.2.1.3); K01681 aconitate hydratase [EC:4.2.1.3]" />
+    <DictionaryEntry Key="xcb:XC_2742" Value="fumC; fumarate hydratase (EC:4.2.1.2); K01679 fumarate hydratase, class II [EC:4.2.1.2]" />
+    <DictionaryEntry Key="xcb:XC_2749" Value="sucA; 2-oxoglutarate dehydrogenase E1 (EC:1.2.4.2); K00164 2-oxoglutarate dehydrogenase E1 component" />
+    <DictionaryEntry Key="xcb:XC_2750" Value="dihydrolipoamide succinyltransferase (EC:2.3.1.61); K00658 2-oxoglutarate dehydrogenase E2 component" />
+    <DictionaryEntry Key="xcb:XC_2751" Value="dihydrolipoamide dehydrogenase (EC:1.8.1.4); K00382 dihydrolipoamide dehydrogenase [EC:1.8.1.4]" />
+    <DictionaryEntry Key="xcb:XC_2822" Value="fumarate hydratase; K01676 fumarate hydratase, class I [EC:4.2.1.2]" />
+    <DictionaryEntry Key="xcb:XC_3213" Value="acnA; aconitate hydratase (EC:4.2.1.3); K01681 aconitate hydratase [EC:4.2.1.3]" />
+    <DictionaryEntry Key="xcb:XC_3268" Value="isocitrate dehydrogenase (EC:1.1.1.41); K00030 isocitrate dehydrogenase (NAD+) [EC:1.1.1.41]" />
+    <DictionaryEntry Key="xcb:XC_3307" Value="malate dehydrogenase (EC:1.1.1.37); K00024 malate dehydrogenase [EC:1.1.1.37]" />
+    <DictionaryEntry Key="xcb:XC_3689" Value="dihydrolipoamide dehydrogenase; K00382 dihydrolipoamide dehydrogenase [EC:1.8.1.4]" />
+    <DictionaryEntry Key="xcb:XC_3691" Value="dihydrolipoamide acetyltransferase; K00627 pyruvate dehydrogenase E2 component (dihydrolipoamide ace" />
+    <DictionaryEntry Key="xcb:XC_3854" Value="isocitrate dehydrogenase; K00031 isocitrate dehydrogenase [EC:1.1.1.42]" />
   </Genes>
 </KEGG.PathwayBrief>

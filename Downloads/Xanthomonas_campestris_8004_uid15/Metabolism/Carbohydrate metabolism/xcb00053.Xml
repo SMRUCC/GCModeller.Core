@@ -53,16 +53,16 @@
   </Compound>
   <PathwayMap Key="xcb00053" Value="Ascorbate and aldarate metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2733" Value="UDP-glucose dehydrogenase; K00012 UDPglucose 6-dehydrogenase [EC:1.1.1.22] [KO:K00012] [EC:1.1.1.22]" />
-    <DictionaryEntry Key="XC_0553" Value="gluconolactonase; K01053 gluconolactonase [EC:3.1.1.17] [KO:K01053] [EC:3.1.1.17]" />
-    <DictionaryEntry Key="XC_4205" Value="gluconolactonase; K01053 gluconolactonase [EC:3.1.1.17] [KO:K01053] [EC:3.1.1.17]" />
-    <DictionaryEntry Key="XC_4155" Value="oxidoreductase; K00064 D-threo-aldose 1-dehydrogenase [EC:1.1.1.122] [KO:K00064] [EC:1.1.1.122]" />
-    <DictionaryEntry Key="XC_0150" Value="L-fucose dehydrogenase; K00064 D-threo-aldose 1-dehydrogenase [EC:1.1.1.122] [KO:K00064] [EC:1.1.1.122]" />
-    <DictionaryEntry Key="XC_1306" Value="hypothetical protein; K02821 PTS system, ascorbate-specific IIA component [EC:2.7.1.194] [KO:K02821] [EC:2.7.1.194]" />
-    <DictionaryEntry Key="XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
-    <DictionaryEntry Key="XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
-    <DictionaryEntry Key="XC_0951" Value="glucarate hydratase; K01706 glucarate dehydratase [EC:4.2.1.40] [KO:K01706] [EC:4.2.1.40]" />
-    <DictionaryEntry Key="XC_0954" Value="5-dehydro-4-deoxyglucarate dehydratase; K01707 5-dehydro-4-deoxyglucarate dehydratase [EC:4.2.1.41] [KO:K01707] [EC:4.2.1.41]" />
-    <DictionaryEntry Key="XC_0949" Value="D-galactarate dehydratase; K01708 galactarate dehydratase [EC:4.2.1.42] [KO:K01708] [EC:4.2.1.42]" />
+    <DictionaryEntry Key="xcb:XC_0150" Value="L-fucose dehydrogenase; K00064 D-threo-aldose 1-dehydrogenase [EC:1.1.1.122]" />
+    <DictionaryEntry Key="xcb:XC_0553" Value="gluconolactonase; K01053 gluconolactonase [EC:3.1.1.17]" />
+    <DictionaryEntry Key="xcb:XC_0949" Value="D-galactarate dehydratase; K01708 galactarate dehydratase [EC:4.2.1.42]" />
+    <DictionaryEntry Key="xcb:XC_0951" Value="glucarate hydratase; K01706 glucarate dehydratase [EC:4.2.1.40]" />
+    <DictionaryEntry Key="xcb:XC_0954" Value="5-dehydro-4-deoxyglucarate dehydratase (EC:4.2.1.41); K01707 5-dehydro-4-deoxyglucarate dehydratase" />
+    <DictionaryEntry Key="xcb:XC_1306" Value="hypothetical protein; K02821 PTS system, ascorbate-specific IIA component [EC:2.7.1.194]" />
+    <DictionaryEntry Key="xcb:XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xcb:XC_2733" Value="UDP-glucose dehydrogenase; K00012 UDPglucose 6-dehydrogenase [EC:1.1.1.22]" />
+    <DictionaryEntry Key="xcb:XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xcb:XC_4155" Value="oxidoreductase; K00064 D-threo-aldose 1-dehydrogenase [EC:1.1.1.122]" />
+    <DictionaryEntry Key="xcb:XC_4205" Value="gluconolactonase; K01053 gluconolactonase [EC:3.1.1.17]" />
   </Genes>
 </KEGG.PathwayBrief>

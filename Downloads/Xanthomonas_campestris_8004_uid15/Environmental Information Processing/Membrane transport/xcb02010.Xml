@@ -148,61 +148,61 @@
   </Compound>
   <PathwayMap Key="xcb02010" Value="ABC transporters&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_3295" Value="sulfate ABC transporter substrate-binding protein; K02048 sulfate transport system substrate-binding protein [KO:K02048]" />
-    <DictionaryEntry Key="XC_3294" Value="sulfate ABC transporter permease; K02046 sulfate transport system permease protein [KO:K02046]" />
-    <DictionaryEntry Key="XC_3293" Value="sulfate ABC transporter permease; K02047 sulfate transport system permease protein [KO:K02047]" />
-    <DictionaryEntry Key="XC_3292" Value="sulfate ABC transporter ATP-binding protein; K02045 sulfate transport system ATP-binding protein [EC:3.6.3.25] [KO:K02045] [EC:3.6.3.25]" />
-    <DictionaryEntry Key="XC_2179" Value="nitrate transport ATP-binding protein; K15576 nitrate/nitrite transport system substrate-binding protein [KO:K15576]" />
-    <DictionaryEntry Key="XC_0910" Value="molybdate-binding periplasmic protein; K02020 molybdate transport system substrate-binding protein [KO:K02020]" />
-    <DictionaryEntry Key="XC_0911" Value="modB; molybdate ABC transporter permease [KO:K02018]" />
-    <DictionaryEntry Key="XC_0912" Value="molybdate ABC transporter ATP-binding protein; K02017 molybdate transport system ATP-binding protein [EC:3.6.3.29] [KO:K02017] [EC:3.6.3.29]" />
-    <DictionaryEntry Key="XC_0814" Value="periplasmic iron-binding protein; K02012 iron(III) transport system substrate-binding protein [KO:K02012]" />
-    <DictionaryEntry Key="XC_1772" Value="periplasmic putrescine-binding protein; permease [KO:K11073]" />
-    <DictionaryEntry Key="XC_1778" Value="putrescine transport protein; permease [KO:K11074]" />
-    <DictionaryEntry Key="XC_1777" Value="polyamine transport protein; K11075 putrescine transport system permease protein [KO:K11075]" />
-    <DictionaryEntry Key="XC_1776" Value="putrescine ABC transporter ATP-binding protein; K11076 putrescine transport system ATP-binding protein [KO:K11076]" />
-    <DictionaryEntry Key="XC_0174" Value="ABC transporter amino acid permease; K05845 osmoprotectant transport system substrate-binding protein K05846 osmoprotectant transport system permease protein [KO:K05845 K05846]" />
-    <DictionaryEntry Key="XC_0173" Value="ABC transporter ATP-binding protein; K05847 osmoprotectant transport system ATP-binding protein [KO:K05847]" />
-    <DictionaryEntry Key="XC_1978" Value="sugar ABC transporter ATP-binding protein; K10112 multiple sugar transport system ATP-binding protein [KO:K10112]" />
-    <DictionaryEntry Key="XC_4299" Value="toluene tolerance protein; K07323 phospholipid transport system substrate-binding protein [KO:K07323]" />
-    <DictionaryEntry Key="XC_4298" Value="toluene tolerance protein; K02067 phospholipid/cholesterol/gamma-HCH transport system substrate-binding protein [KO:K02067]" />
-    <DictionaryEntry Key="XC_3601" Value="hypothetical protein; K02067 phospholipid/cholesterol/gamma-HCH transport system substrate-binding protein [KO:K02067]" />
-    <DictionaryEntry Key="XC_4297" Value="toluene tolerance protein; K02066 phospholipid/cholesterol/gamma-HCH transport system permease protein [KO:K02066]" />
-    <DictionaryEntry Key="XC_3599" Value="ABC transporter permease; K02066 phospholipid/cholesterol/gamma-HCH transport system permease protein [KO:K02066]" />
-    <DictionaryEntry Key="XC_4300" Value="hypothetical protein; K07122 phospholipid transport system transporter-binding protein [KO:K07122]" />
-    <DictionaryEntry Key="XC_4296" Value="toluene tolerance protein; K02065 phospholipid/cholesterol/gamma-HCH transport system ATP-binding protein [KO:K02065]" />
-    <DictionaryEntry Key="XC_3600" Value="ABC transporter ATP-binding protein; K02065 phospholipid/cholesterol/gamma-HCH transport system ATP-binding protein [KO:K02065]" />
-    <DictionaryEntry Key="XC_2707" Value="phosphate binding protein; K02040 phosphate transport system substrate-binding protein [KO:K02040]" />
-    <DictionaryEntry Key="XC_2708" Value="phosphate ABC transporter substrate-binding protein; K02040 phosphate transport system substrate-binding protein [KO:K02040]" />
-    <DictionaryEntry Key="XC_2709" Value="ABC transporter phosphate permease; K02037 phosphate transport system permease protein [KO:K02037]" />
-    <DictionaryEntry Key="XC_2710" Value="ABC transporter phosphate permease; K02038 phosphate transport system permease protein [KO:K02038]" />
-    <DictionaryEntry Key="XC_2711" Value="pstB; phosphate transporter ATP-binding protein [KO:K02036] [EC:3.6.3.27]" />
-    <DictionaryEntry Key="XC_1840" Value="phosphate-binding protein; K02044 phosphonate transport system substrate-binding protein [KO:K02044]" />
-    <DictionaryEntry Key="XC_3699" Value="hypothetical protein; K02073 D-methionine transport system substrate-binding protein [KO:K02073]" />
-    <DictionaryEntry Key="XC_3700" Value="ABC transporter permease; K02072 D-methionine transport system permease protein [KO:K02072]" />
-    <DictionaryEntry Key="XC_3701" Value="metN; DL-methionine transporter ATP-binding subunit [KO:K02071]" />
-    <DictionaryEntry Key="XC_0170" Value="ABC transporter ATP-binding protein; K02013 iron complex transport system ATP-binding protein [EC:3.6.3.34] [KO:K02013] [EC:3.6.3.34]" />
-    <DictionaryEntry Key="XC_3633" Value="membrane subunit of LPS efflux transporter; K09690 lipopolysaccharide transport system permease protein [KO:K09690]" />
-    <DictionaryEntry Key="XC_3632" Value="ABC transporter ATP binding protein; K09691 lipopolysaccharide transport system ATP-binding protein [KO:K09691]" />
-    <DictionaryEntry Key="XC_4058" Value="ABC transporter sodium permease; K09696 sodium transport system permease protein [KO:K09696]" />
-    <DictionaryEntry Key="XC_4059" Value="sodium ABC transporter ATP-binding protein; K09697 sodium transport system ATP-binding protein [EC:3.6.3.7] [KO:K09697] [EC:3.6.3.7]" />
-    <DictionaryEntry Key="XC_1988" Value="lipoprotein releasing system transmembrane protein; K09808 lipoprotein-releasing system permease protein [KO:K09808]" />
-    <DictionaryEntry Key="XC_1989" Value="ABC transporter ATP-binding protein; K09810 lipoprotein-releasing system ATP-binding protein [EC:3.6.3.-] [KO:K09810] [EC:3.6.3.-]" />
-    <DictionaryEntry Key="XC_2570" Value="hypothetical protein; K02196 heme exporter protein D [KO:K02196]" />
-    <DictionaryEntry Key="XC_1895" Value="hypothetical protein; K02196 heme exporter protein D [KO:K02196]" />
-    <DictionaryEntry Key="XC_1896" Value="ABC transporter heme permease; K02195 heme exporter protein C [KO:K02195]" />
-    <DictionaryEntry Key="XC_2569" Value="heme exporter protein C/cytochrome C-type biogenesis protein; K02195 heme exporter protein C [KO:K02195]" />
-    <DictionaryEntry Key="XC_1897" Value="ABC transporter heme permease; K02194 heme exporter protein B [KO:K02194]" />
-    <DictionaryEntry Key="XC_1898" Value="cytochrome c biogenesis protein CcmA; K02193 heme exporter protein A [EC:3.6.3.41] [KO:K02193] [EC:3.6.3.41]" />
-    <DictionaryEntry Key="XC_3584" Value="hypothetical protein; K07091 lipopolysaccharide export system permease protein [KO:K07091]" />
-    <DictionaryEntry Key="XC_3583" Value="hypothetical protein; K11720 lipopolysaccharide export system permease protein [KO:K11720]" />
-    <DictionaryEntry Key="XC_1312" Value="ABC transporter ATP-binding protein; K06861 lipopolysaccharide export system ATP-binding protein [EC:3.6.3.-] [KO:K06861] [EC:3.6.3.-]" />
-    <DictionaryEntry Key="XC_3846" Value="cell division protein; K09811 cell division transport system permease protein [KO:K09811]" />
-    <DictionaryEntry Key="XC_3847" Value="ABC transporter ATP-binding protein; K09812 cell division transport system ATP-binding protein [KO:K09812]" />
-    <DictionaryEntry Key="XC_1995" Value="ABC transporter ATP-binding protein; K11085 ATP-binding cassette, subfamily B, bacterial MsbA [EC:3.6.3.-] [KO:K11085] [EC:3.6.3.-]" />
-    <DictionaryEntry Key="XC_2409" Value="hypothetical protein; K13409 ATP-binding cassette, subfamily B, bacterial RaxB [KO:K13409]" />
-    <DictionaryEntry Key="XC_2547" Value="ABC transporter ATP-binding protein; K06148 ATP-binding cassette, subfamily C, bacterial [KO:K06148]" />
-    <DictionaryEntry Key="XC_1887" Value="ABC transporter ATP-binding protein; K16012 ATP-binding cassette, subfamily C, bacterial CydC [KO:K16012]" />
-    <DictionaryEntry Key="XC_1886" Value="transporter; K16013 ATP-binding cassette, subfamily C, bacterial CydD [KO:K16013]" />
+    <DictionaryEntry Key="xcb:XC_0170" Value="ABC transporter ATP-binding protein; K02013 iron complex transport system ATP-binding protein [EC:3." />
+    <DictionaryEntry Key="xcb:XC_0173" Value="ABC transporter ATP-binding protein; K05847 osmoprotectant transport system ATP-binding protein" />
+    <DictionaryEntry Key="xcb:XC_0174" Value="ABC transporter amino acid permease; K05845 osmoprotectant transport system substrate-binding protei" />
+    <DictionaryEntry Key="xcb:XC_0814" Value="periplasmic iron-binding protein; K02012 iron(III) transport system substrate-binding protein" />
+    <DictionaryEntry Key="xcb:XC_0910" Value="molybdate-binding periplasmic protein; K02020 molybdate transport system substrate-binding protein" />
+    <DictionaryEntry Key="xcb:XC_0911" Value="modB; molybdate ABC transporter permease; K02018 molybdate transport system permease protein" />
+    <DictionaryEntry Key="xcb:XC_0912" Value="molybdate ABC transporter ATP-binding protein; K02017 molybdate transport system ATP-binding protein" />
+    <DictionaryEntry Key="xcb:XC_1312" Value="ABC transporter ATP-binding protein; K06861 lipopolysaccharide export system ATP-binding protein [EC" />
+    <DictionaryEntry Key="xcb:XC_1772" Value="periplasmic putrescine-binding protein; permease; K11073 putrescine transport system substrate-bindi" />
+    <DictionaryEntry Key="xcb:XC_1776" Value="putrescine ABC transporter ATP-binding protein; K11076 putrescine transport system ATP-binding prote" />
+    <DictionaryEntry Key="xcb:XC_1777" Value="polyamine transport protein; K11075 putrescine transport system permease protein" />
+    <DictionaryEntry Key="xcb:XC_1778" Value="putrescine transport protein; permease; K11074 putrescine transport system permease protein" />
+    <DictionaryEntry Key="xcb:XC_1840" Value="phosphate-binding protein; K02044 phosphonate transport system substrate-binding protein" />
+    <DictionaryEntry Key="xcb:XC_1886" Value="transporter; K16013 ATP-binding cassette, subfamily C, bacterial CydD" />
+    <DictionaryEntry Key="xcb:XC_1887" Value="ABC transporter ATP-binding protein; K16012 ATP-binding cassette, subfamily C, bacterial CydC" />
+    <DictionaryEntry Key="xcb:XC_1895" Value="hypothetical protein; K02196 heme exporter protein D" />
+    <DictionaryEntry Key="xcb:XC_1896" Value="ABC transporter heme permease; K02195 heme exporter protein C" />
+    <DictionaryEntry Key="xcb:XC_1897" Value="ABC transporter heme permease; K02194 heme exporter protein B" />
+    <DictionaryEntry Key="xcb:XC_1898" Value="cytochrome c biogenesis protein CcmA; K02193 heme exporter protein A [EC:3.6.3.41]" />
+    <DictionaryEntry Key="xcb:XC_1978" Value="sugar ABC transporter ATP-binding protein; K10112 multiple sugar transport system ATP-binding protei" />
+    <DictionaryEntry Key="xcb:XC_1988" Value="lipoprotein releasing system transmembrane protein; K09808 lipoprotein-releasing system permease pro" />
+    <DictionaryEntry Key="xcb:XC_1989" Value="ABC transporter ATP-binding protein; K09810 lipoprotein-releasing system ATP-binding protein [EC:3.6" />
+    <DictionaryEntry Key="xcb:XC_1995" Value="ABC transporter ATP-binding protein; K11085 ATP-binding cassette, subfamily B, bacterial MsbA [EC:3." />
+    <DictionaryEntry Key="xcb:XC_2179" Value="nitrate transport ATP-binding protein; K15576 nitrate/nitrite transport system substrate-binding pro" />
+    <DictionaryEntry Key="xcb:XC_2409" Value="hypothetical protein; K13409 ATP-binding cassette, subfamily B, bacterial RaxB" />
+    <DictionaryEntry Key="xcb:XC_2547" Value="ABC transporter ATP-binding protein; K06148 ATP-binding cassette, subfamily C, bacterial" />
+    <DictionaryEntry Key="xcb:XC_2569" Value="heme exporter protein C/cytochrome C-type biogenesis protein; K02195 heme exporter protein C" />
+    <DictionaryEntry Key="xcb:XC_2570" Value="hypothetical protein; K02196 heme exporter protein D" />
+    <DictionaryEntry Key="xcb:XC_2707" Value="phosphate binding protein; K02040 phosphate transport system substrate-binding protein" />
+    <DictionaryEntry Key="xcb:XC_2708" Value="phosphate ABC transporter substrate-binding protein; K02040 phosphate transport system substrate-bin" />
+    <DictionaryEntry Key="xcb:XC_2709" Value="ABC transporter phosphate permease; K02037 phosphate transport system permease protein" />
+    <DictionaryEntry Key="xcb:XC_2710" Value="ABC transporter phosphate permease; K02038 phosphate transport system permease protein" />
+    <DictionaryEntry Key="xcb:XC_2711" Value="pstB; phosphate transporter ATP-binding protein; K02036 phosphate transport system ATP-binding prote" />
+    <DictionaryEntry Key="xcb:XC_3292" Value="sulfate ABC transporter ATP-binding protein; K02045 sulfate transport system ATP-binding protein [EC" />
+    <DictionaryEntry Key="xcb:XC_3293" Value="sulfate ABC transporter permease; K02047 sulfate transport system permease protein" />
+    <DictionaryEntry Key="xcb:XC_3294" Value="sulfate ABC transporter permease; K02046 sulfate transport system permease protein" />
+    <DictionaryEntry Key="xcb:XC_3295" Value="sulfate ABC transporter substrate-binding protein; K02048 sulfate transport system substrate-binding" />
+    <DictionaryEntry Key="xcb:XC_3583" Value="hypothetical protein; K11720 lipopolysaccharide export system permease protein" />
+    <DictionaryEntry Key="xcb:XC_3584" Value="hypothetical protein; K07091 lipopolysaccharide export system permease protein" />
+    <DictionaryEntry Key="xcb:XC_3599" Value="ABC transporter permease; K02066 phospholipid/cholesterol/gamma-HCH transport system permease protei" />
+    <DictionaryEntry Key="xcb:XC_3600" Value="ABC transporter ATP-binding protein; K02065 phospholipid/cholesterol/gamma-HCH transport system ATP-" />
+    <DictionaryEntry Key="xcb:XC_3601" Value="hypothetical protein; K02067 phospholipid/cholesterol/gamma-HCH transport system substrate-binding p" />
+    <DictionaryEntry Key="xcb:XC_3632" Value="ABC transporter ATP binding protein; K09691 lipopolysaccharide transport system ATP-binding protein" />
+    <DictionaryEntry Key="xcb:XC_3633" Value="membrane subunit of LPS efflux transporter; K09690 lipopolysaccharide transport system permease prot" />
+    <DictionaryEntry Key="xcb:XC_3699" Value="hypothetical protein; K02073 D-methionine transport system substrate-binding protein" />
+    <DictionaryEntry Key="xcb:XC_3700" Value="ABC transporter permease; K02072 D-methionine transport system permease protein" />
+    <DictionaryEntry Key="xcb:XC_3701" Value="metN; DL-methionine transporter ATP-binding subunit; K02071 D-methionine transport system ATP-bindin" />
+    <DictionaryEntry Key="xcb:XC_3846" Value="cell division protein; K09811 cell division transport system permease protein" />
+    <DictionaryEntry Key="xcb:XC_3847" Value="ABC transporter ATP-binding protein; K09812 cell division transport system ATP-binding protein" />
+    <DictionaryEntry Key="xcb:XC_4058" Value="ABC transporter sodium permease; K09696 sodium transport system permease protein" />
+    <DictionaryEntry Key="xcb:XC_4059" Value="sodium ABC transporter ATP-binding protein; K09697 sodium transport system ATP-binding protein [EC:3" />
+    <DictionaryEntry Key="xcb:XC_4296" Value="toluene tolerance protein; K02065 phospholipid/cholesterol/gamma-HCH transport system ATP-binding pr" />
+    <DictionaryEntry Key="xcb:XC_4297" Value="toluene tolerance protein; K02066 phospholipid/cholesterol/gamma-HCH transport system permease prote" />
+    <DictionaryEntry Key="xcb:XC_4298" Value="toluene tolerance protein; K02067 phospholipid/cholesterol/gamma-HCH transport system substrate-bind" />
+    <DictionaryEntry Key="xcb:XC_4299" Value="toluene tolerance protein; K07323 phospholipid transport system substrate-binding protein" />
+    <DictionaryEntry Key="xcb:XC_4300" Value="hypothetical protein; K07122 phospholipid transport system transporter-binding protein" />
   </Genes>
 </KEGG.PathwayBrief>

@@ -78,19 +78,19 @@
   </Compound>
   <PathwayMap Key="xcb00360" Value="Phenylalanine metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0165" Value="phhA; phenylalanine 4-monooxygenase [KO:K00500] [EC:1.14.16.1]" />
-    <DictionaryEntry Key="XC_0886" Value="flavin monoamine oxidase-like protein; K00274 monoamine oxidase [EC:1.4.3.4] [KO:K00274] [EC:1.4.3.4]" />
-    <DictionaryEntry Key="XC_0889" Value="aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9] [KO:K00817] [EC:2.6.1.9]" />
-    <DictionaryEntry Key="XC_2379" Value="histidinol-phosphate aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9] [KO:K00817] [EC:2.6.1.9]" />
-    <DictionaryEntry Key="XC_2665" Value="aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9] [KO:K00817] [EC:2.6.1.9]" />
-    <DictionaryEntry Key="XC_0100" Value="aromatic amino acid aminotransferase; K00832 aromatic-amino-acid transaminase [EC:2.6.1.57] [KO:K00832] [EC:2.6.1.57]" />
-    <DictionaryEntry Key="XC_0450" Value="4-hydroxyphenylpyruvate dioxygenase; K00457 4-hydroxyphenylpyruvate dioxygenase [EC:1.13.11.27] [KO:K00457] [EC:1.13.11.27]" />
-    <DictionaryEntry Key="XC_1538" Value="D-amino acid dehydrogenase subunit; K00285 D-amino-acid dehydrogenase [EC:1.4.5.1] [KO:K00285] [EC:1.4.5.1]" />
-    <DictionaryEntry Key="XC_3719" Value="D-amino acid dehydrogenase small subunit; K00285 D-amino-acid dehydrogenase [EC:1.4.5.1] [KO:K00285] [EC:1.4.5.1]" />
-    <DictionaryEntry Key="XC_3037" Value="catalase/peroxidase; K03782 catalase-peroxidase [EC:1.11.1.21] [KO:K03782] [EC:1.11.1.21]" />
-    <DictionaryEntry Key="XC_3311" Value="amidase; K01426 amidase [EC:3.5.1.4] [KO:K01426] [EC:3.5.1.4]" />
-    <DictionaryEntry Key="XC_1342" Value="benzene 1; K05710 3-phenylpropionate/trans-cinnamate dioxygenase ferredoxin component [KO:K05710]" />
-    <DictionaryEntry Key="XC_0154" Value="2-keto-4-pentenoate hydratase; K02554 2-keto-4-pentenoate hydratase [EC:4.2.1.80] [KO:K02554] [EC:4.2.1.80]" />
-    <DictionaryEntry Key="XC_3420" Value="p-hydroxycinnamoyl CoA hydratase/lyase; K18383 trans-feruloyl-CoA hydratase / vanillin synthase [EC:4.2.1.101 4.1.2.41] [KO:K18383] [EC:4.1.2.41 4.2.1.101]" />
+    <DictionaryEntry Key="xcb:XC_0100" Value="aromatic amino acid aminotransferase (EC:2.6.1.57); K00832 aromatic-amino-acid transaminase [EC:2.6." />
+    <DictionaryEntry Key="xcb:XC_0154" Value="2-keto-4-pentenoate hydratase; K02554 2-keto-4-pentenoate hydratase [EC:4.2.1.80]" />
+    <DictionaryEntry Key="xcb:XC_0165" Value="phhA; phenylalanine 4-monooxygenase (EC:1.14.16.1); K00500 phenylalanine-4-hydroxylase [EC:1.14.16.1" />
+    <DictionaryEntry Key="xcb:XC_0450" Value="4-hydroxyphenylpyruvate dioxygenase; K00457 4-hydroxyphenylpyruvate dioxygenase [EC:1.13.11.27]" />
+    <DictionaryEntry Key="xcb:XC_0886" Value="flavin monoamine oxidase-like protein; K00274 monoamine oxidase [EC:1.4.3.4]" />
+    <DictionaryEntry Key="xcb:XC_0889" Value="aminotransferase (EC:2.6.1.9); K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9]" />
+    <DictionaryEntry Key="xcb:XC_1342" Value="benzene 1,2-dioxygenase, ferredoxin protein; K05710 3-phenylpropionate/trans-cinnamate dioxygenase f" />
+    <DictionaryEntry Key="xcb:XC_1538" Value="D-amino acid dehydrogenase subunit; K00285 D-amino-acid dehydrogenase [EC:1.4.5.1]" />
+    <DictionaryEntry Key="xcb:XC_2379" Value="histidinol-phosphate aminotransferase (EC:2.6.1.9); K00817 histidinol-phosphate aminotransferase [EC" />
+    <DictionaryEntry Key="xcb:XC_2665" Value="aminotransferase (EC:2.6.1.9); K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9]" />
+    <DictionaryEntry Key="xcb:XC_3037" Value="catalase/peroxidase; K03782 catalase-peroxidase [EC:1.11.1.21]" />
+    <DictionaryEntry Key="xcb:XC_3311" Value="amidase (EC:3.5.1.4); K01426 amidase [EC:3.5.1.4]" />
+    <DictionaryEntry Key="xcb:XC_3420" Value="p-hydroxycinnamoyl CoA hydratase/lyase (EC:4.2.1.17); K18383 trans-feruloyl-CoA hydratase / vanillin" />
+    <DictionaryEntry Key="xcb:XC_3719" Value="D-amino acid dehydrogenase small subunit (EC:1.4.99.1); K00285 D-amino-acid dehydrogenase [EC:1.4.5." />
   </Genes>
 </KEGG.PathwayBrief>

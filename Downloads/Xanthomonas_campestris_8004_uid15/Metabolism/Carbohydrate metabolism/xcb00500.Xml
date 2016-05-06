@@ -57,55 +57,55 @@
   </Compound>
   <PathwayMap Key="xcb00500" Value="Starch and sucrose metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0805" Value="amylosucrase or alpha amylase; K05341 amylosucrase [EC:2.4.1.4] [KO:K05341] [EC:2.4.1.4]" />
-    <DictionaryEntry Key="XC_1642" Value="alpha-glucosidase; K01187 alpha-glucosidase [EC:3.2.1.20] [KO:K01187] [EC:3.2.1.20]" />
-    <DictionaryEntry Key="XC_1645" Value="alpha-glucosidase; K01187 alpha-glucosidase [EC:3.2.1.20] [KO:K01187] [EC:3.2.1.20]" />
-    <DictionaryEntry Key="XC_1002" Value="alpha-glucosidase; K01187 alpha-glucosidase [EC:3.2.1.20] [KO:K01187] [EC:3.2.1.20]" />
-    <DictionaryEntry Key="XC_2834" Value="beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
-    <DictionaryEntry Key="XC_3159" Value="beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
-    <DictionaryEntry Key="XC_3886" Value="beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
-    <DictionaryEntry Key="XC_1217" Value="glucan 1; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
-    <DictionaryEntry Key="XC_4197" Value="glucan 1; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
-    <DictionaryEntry Key="XC_2461" Value="glucan 1; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
-    <DictionaryEntry Key="XC_1076" Value="trehalose-6-phosphate synthase; K00697 trehalose 6-phosphate synthase [EC:2.4.1.15] [KO:K00697] [EC:2.4.1.15]" />
-    <DictionaryEntry Key="XC_1078" Value="trehalose-6-phosphate phosphatase; K01087 trehalose 6-phosphate phosphatase [EC:3.1.3.12] [KO:K01087] [EC:3.1.3.12]" />
-    <DictionaryEntry Key="XC_0631" Value="treA; trehalase [KO:K01194] [EC:3.2.1.28]" />
-    <DictionaryEntry Key="XC_0142" Value="trehalose synthase; K05343 maltose alpha-D-glucosyltransferase/ alpha-amylase [EC:5.4.99.16 3.2.1.1] [KO:K05343] [EC:3.2.1.1 5.4.99.16]" />
-    <DictionaryEntry Key="XC_0141" Value="alpha-amylase; K16147 starch synthase (maltosyl-transferring) [EC:2.4.99.16] [KO:K16147] [EC:2.4.99.16]" />
-    <DictionaryEntry Key="XC_1047" Value="glycogen debranching protein; K02438 glycogen operon protein [EC:3.2.1.-] [KO:K02438] [EC:3.2.1.-]" />
-    <DictionaryEntry Key="XC_0427" Value="glycogen debranching protein; K02438 glycogen operon protein [EC:3.2.1.-] [KO:K02438] [EC:3.2.1.-]" />
-    <DictionaryEntry Key="XC_0425" Value="malto-oligosyltrehalose synthase; K06044 (1-&gt;4)-alpha-D-glucan 1-alpha-D-glucosylmutase [EC:5.4.99.15] [KO:K06044] [EC:5.4.99.15]" />
-    <DictionaryEntry Key="XC_0423" Value="malto-oligosyltrehalose trehalohydrolase; K01236 maltooligosyltrehalose trehalohydrolase [EC:3.2.1.141] [KO:K01236] [EC:3.2.1.141]" />
-    <DictionaryEntry Key="XC_2733" Value="UDP-glucose dehydrogenase; K00012 UDPglucose 6-dehydrogenase [EC:1.1.1.22] [KO:K00012] [EC:1.1.1.22]" />
-    <DictionaryEntry Key="XC_4065" Value="beta-xylosidase; K01198 xylan 1,4-beta-xylosidase [EC:3.2.1.37] [KO:K01198] [EC:3.2.1.37]" />
-    <DictionaryEntry Key="XC_4196" Value="xylosidase/arabinosidase; K01198 xylan 1,4-beta-xylosidase [EC:3.2.1.37] K01209 alpha-N-arabinofuranosidase [EC:3.2.1.55] [KO:K01198 K01209] [EC:3.2.1.37 3.2.1.55]" />
-    <DictionaryEntry Key="XC_3064" Value="xylosidase/arabinosidase; K01198 xylan 1,4-beta-xylosidase [EC:3.2.1.37] K01209 alpha-N-arabinofuranosidase [EC:3.2.1.55] [KO:K01198 K01209] [EC:3.2.1.37 3.2.1.55]" />
-    <DictionaryEntry Key="XC_4154" Value="xylosidase; K01198 xylan 1,4-beta-xylosidase [EC:3.2.1.37] [KO:K01198] [EC:3.2.1.37]" />
-    <DictionaryEntry Key="XC_3937" Value="nucleotide sugar epimerase; K08679 UDP-glucuronate 4-epimerase [EC:5.1.3.6] [KO:K08679] [EC:5.1.3.6]" />
-    <DictionaryEntry Key="XC_1850" Value="pectinesterase; K01051 pectinesterase [EC:3.1.1.11] [KO:K01051] [EC:3.1.1.11]" />
-    <DictionaryEntry Key="XC_0125" Value="pectin methylesterase-like protein; K01051 pectinesterase [EC:3.1.1.11] [KO:K01051] [EC:3.1.1.11]" />
-    <DictionaryEntry Key="XC_1849" Value="polygalacturonase; K01184 polygalacturonase [EC:3.2.1.15] [KO:K01184] [EC:3.2.1.15]" />
-    <DictionaryEntry Key="XC_0705" Value="endopolygalacturonase; K01184 polygalacturonase [EC:3.2.1.15] [KO:K01184] [EC:3.2.1.15]" />
-    <DictionaryEntry Key="XC_1930" Value="UTP-glucose-1-phosphate uridylyltransferase; K00963 UTP--glucose-1-phosphate uridylyltransferase [EC:2.7.7.9] [KO:K00963] [EC:2.7.7.9]" />
-    <DictionaryEntry Key="XC_3608" Value="phosphoglucomutase; phosphomannomutase [KO:K15778] [EC:5.4.2.2 5.4.2.8]" />
-    <DictionaryEntry Key="XC_3941" Value="phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5.4.2.2] [KO:K15778] [EC:5.4.2.2 5.4.2.8]" />
-    <DictionaryEntry Key="XC_1976" Value="glk; glucokinase [KO:K00845] [EC:2.7.1.2]" />
-    <DictionaryEntry Key="XC_1166" Value="glucokinase; K00845 glucokinase [EC:2.7.1.2] [KO:K00845] [EC:2.7.1.2]" />
-    <DictionaryEntry Key="XC_1223" Value="glucokinase; K00845 glucokinase [EC:2.7.1.2] [KO:K00845] [EC:2.7.1.2]" />
-    <DictionaryEntry Key="XC_2465" Value="pgi; glucose-6-phosphate isomerase [KO:K01810] [EC:5.3.1.9]" />
-    <DictionaryEntry Key="XC_2727" Value="fructokinase; K00847 fructokinase [EC:2.7.1.4] [KO:K00847] [EC:2.7.1.4]" />
-    <DictionaryEntry Key="XC_0421" Value="glgA; glycogen synthase [KO:K00703] [EC:2.4.1.21]" />
-    <DictionaryEntry Key="XC_0422" Value="glycogen branching protein; K00700 1,4-alpha-glucan branching enzyme [EC:2.4.1.18] [KO:K00700] [EC:2.4.1.18]" />
-    <DictionaryEntry Key="XC_0143" Value="glycogen branching protein; K00700 1,4-alpha-glucan branching enzyme [EC:2.4.1.18] [KO:K00700] [EC:2.4.1.18]" />
-    <DictionaryEntry Key="XC_3487" Value="alpha-amylase; K01176 alpha-amylase [EC:3.2.1.1] [KO:K01176] [EC:3.2.1.1]" />
-    <DictionaryEntry Key="XC_0424" Value="4-alpha-glucanotransferase; K00705 4-alpha-glucanotransferase [EC:2.4.1.25] [KO:K00705] [EC:2.4.1.25]" />
-    <DictionaryEntry Key="XC_2169" Value="glucose-1-phosphate cytidylyltransferase; K00978 glucose-1-phosphate cytidylyltransferase [EC:2.7.7.33] [KO:K00978] [EC:2.7.7.33]" />
-    <DictionaryEntry Key="XC_0639" Value="cellulase; K01179 endoglucanase [EC:3.2.1.4] [KO:K01179] [EC:3.2.1.4]" />
-    <DictionaryEntry Key="XC_1727" Value="cellulase; K01179 endoglucanase [EC:3.2.1.4] [KO:K01179] [EC:3.2.1.4]" />
-    <DictionaryEntry Key="XC_0026" Value="cellulase; K01179 endoglucanase [EC:3.2.1.4] [KO:K01179] [EC:3.2.1.4]" />
-    <DictionaryEntry Key="XC_0027" Value="cellulase; K01179 endoglucanase [EC:3.2.1.4] [KO:K01179] [EC:3.2.1.4]" />
-    <DictionaryEntry Key="XC_0028" Value="cellulase; K01179 endoglucanase [EC:3.2.1.4] [KO:K01179] [EC:3.2.1.4]" />
-    <DictionaryEntry Key="XC_0626" Value="1; K19668 cellulose 1,4-beta-cellobiosidase [EC:3.2.1.91] [KO:K19668] [EC:3.2.1.91]" />
-    <DictionaryEntry Key="XC_1005" Value="1; K19668 cellulose 1,4-beta-cellobiosidase [EC:3.2.1.91] [KO:K19668] [EC:3.2.1.91]" />
+    <DictionaryEntry Key="xcb:XC_0026" Value="cellulase; K01179 endoglucanase [EC:3.2.1.4]" />
+    <DictionaryEntry Key="xcb:XC_0027" Value="cellulase; K01179 endoglucanase [EC:3.2.1.4]" />
+    <DictionaryEntry Key="xcb:XC_0028" Value="cellulase; K01179 endoglucanase [EC:3.2.1.4]" />
+    <DictionaryEntry Key="xcb:XC_0125" Value="pectin methylesterase-like protein; K01051 pectinesterase [EC:3.1.1.11]" />
+    <DictionaryEntry Key="xcb:XC_0141" Value="alpha-amylase; K16147 starch synthase (maltosyl-transferring) [EC:2.4.99.16]" />
+    <DictionaryEntry Key="xcb:XC_0142" Value="trehalose synthase; K05343 maltose alpha-D-glucosyltransferase/ alpha-amylase [EC:5.4.99.16 3.2.1.1]" />
+    <DictionaryEntry Key="xcb:XC_0143" Value="glycogen branching protein (EC:2.4.1.18); K00700 1,4-alpha-glucan branching enzyme [EC:2.4.1.18]" />
+    <DictionaryEntry Key="xcb:XC_0421" Value="glgA; glycogen synthase (EC:2.4.1.21); K00703 starch synthase [EC:2.4.1.21]" />
+    <DictionaryEntry Key="xcb:XC_0422" Value="glycogen branching protein (EC:2.4.1.18); K00700 1,4-alpha-glucan branching enzyme [EC:2.4.1.18]" />
+    <DictionaryEntry Key="xcb:XC_0423" Value="malto-oligosyltrehalose trehalohydrolase; K01236 maltooligosyltrehalose trehalohydrolase [EC:3.2.1.1" />
+    <DictionaryEntry Key="xcb:XC_0424" Value="4-alpha-glucanotransferase; K00705 4-alpha-glucanotransferase [EC:2.4.1.25]" />
+    <DictionaryEntry Key="xcb:XC_0425" Value="malto-oligosyltrehalose synthase; K06044 (1-&amp;gt;4)-alpha-D-glucan 1-alpha-D-glucosylmutase [EC:5.4.99.1" />
+    <DictionaryEntry Key="xcb:XC_0427" Value="glycogen debranching protein; K02438 glycogen operon protein [EC:3.2.1.-]" />
+    <DictionaryEntry Key="xcb:XC_0626" Value="1,4-beta-cellobiosidase; K19668 cellulose 1,4-beta-cellobiosidase [EC:3.2.1.91]" />
+    <DictionaryEntry Key="xcb:XC_0631" Value="treA; trehalase (EC:3.2.1.28); K01194 alpha,alpha-trehalase [EC:3.2.1.28]" />
+    <DictionaryEntry Key="xcb:XC_0639" Value="cellulase; K01179 endoglucanase [EC:3.2.1.4]" />
+    <DictionaryEntry Key="xcb:XC_0705" Value="endopolygalacturonase; K01184 polygalacturonase [EC:3.2.1.15]" />
+    <DictionaryEntry Key="xcb:XC_0805" Value="amylosucrase or alpha amylase; K05341 amylosucrase [EC:2.4.1.4]" />
+    <DictionaryEntry Key="xcb:XC_1002" Value="alpha-glucosidase; K01187 alpha-glucosidase [EC:3.2.1.20]" />
+    <DictionaryEntry Key="xcb:XC_1005" Value="1,4-beta-cellobiosidase; K19668 cellulose 1,4-beta-cellobiosidase [EC:3.2.1.91]" />
+    <DictionaryEntry Key="xcb:XC_1047" Value="glycogen debranching protein; K02438 glycogen operon protein [EC:3.2.1.-]" />
+    <DictionaryEntry Key="xcb:XC_1076" Value="trehalose-6-phosphate synthase; K00697 trehalose 6-phosphate synthase [EC:2.4.1.15]" />
+    <DictionaryEntry Key="xcb:XC_1078" Value="trehalose-6-phosphate phosphatase; K01087 trehalose 6-phosphate phosphatase [EC:3.1.3.12]" />
+    <DictionaryEntry Key="xcb:XC_1166" Value="glucokinase (EC:2.7.1.2); K00845 glucokinase [EC:2.7.1.2]" />
+    <DictionaryEntry Key="xcb:XC_1217" Value="glucan 1,4-beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21]" />
+    <DictionaryEntry Key="xcb:XC_1223" Value="glucokinase (EC:2.7.1.2); K00845 glucokinase [EC:2.7.1.2]" />
+    <DictionaryEntry Key="xcb:XC_1642" Value="alpha-glucosidase; K01187 alpha-glucosidase [EC:3.2.1.20]" />
+    <DictionaryEntry Key="xcb:XC_1645" Value="alpha-glucosidase; K01187 alpha-glucosidase [EC:3.2.1.20]" />
+    <DictionaryEntry Key="xcb:XC_1727" Value="cellulase; K01179 endoglucanase [EC:3.2.1.4]" />
+    <DictionaryEntry Key="xcb:XC_1849" Value="polygalacturonase; K01184 polygalacturonase [EC:3.2.1.15]" />
+    <DictionaryEntry Key="xcb:XC_1850" Value="pectinesterase; K01051 pectinesterase [EC:3.1.1.11]" />
+    <DictionaryEntry Key="xcb:XC_1930" Value="UTP-glucose-1-phosphate uridylyltransferase; K00963 UTP--glucose-1-phosphate uridylyltransferase [EC" />
+    <DictionaryEntry Key="xcb:XC_1976" Value="glk; glucokinase (EC:2.7.1.2); K00845 glucokinase [EC:2.7.1.2]" />
+    <DictionaryEntry Key="xcb:XC_2169" Value="glucose-1-phosphate cytidylyltransferase; K00978 glucose-1-phosphate cytidylyltransferase [EC:2.7.7." />
+    <DictionaryEntry Key="xcb:XC_2461" Value="glucan 1,4-beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21]" />
+    <DictionaryEntry Key="xcb:XC_2465" Value="pgi; glucose-6-phosphate isomerase (EC:5.3.1.9); K01810 glucose-6-phosphate isomerase [EC:5.3.1.9]" />
+    <DictionaryEntry Key="xcb:XC_2727" Value="fructokinase; K00847 fructokinase [EC:2.7.1.4]" />
+    <DictionaryEntry Key="xcb:XC_2733" Value="UDP-glucose dehydrogenase; K00012 UDPglucose 6-dehydrogenase [EC:1.1.1.22]" />
+    <DictionaryEntry Key="xcb:XC_2834" Value="beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21]" />
+    <DictionaryEntry Key="xcb:XC_3064" Value="xylosidase/arabinosidase; K01198 xylan 1,4-beta-xylosidase [EC:3.2.1.37] K01209 alpha-N-arabinofuran" />
+    <DictionaryEntry Key="xcb:XC_3159" Value="beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21]" />
+    <DictionaryEntry Key="xcb:XC_3487" Value="alpha-amylase; K01176 alpha-amylase [EC:3.2.1.1]" />
+    <DictionaryEntry Key="xcb:XC_3608" Value="phosphoglucomutase; phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5" />
+    <DictionaryEntry Key="xcb:XC_3886" Value="beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21]" />
+    <DictionaryEntry Key="xcb:XC_3937" Value="nucleotide sugar epimerase; K08679 UDP-glucuronate 4-epimerase [EC:5.1.3.6]" />
+    <DictionaryEntry Key="xcb:XC_3941" Value="phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5.4.2.2]" />
+    <DictionaryEntry Key="xcb:XC_4065" Value="beta-xylosidase; K01198 xylan 1,4-beta-xylosidase [EC:3.2.1.37]" />
+    <DictionaryEntry Key="xcb:XC_4154" Value="xylosidase; K01198 xylan 1,4-beta-xylosidase [EC:3.2.1.37]" />
+    <DictionaryEntry Key="xcb:XC_4196" Value="xylosidase/arabinosidase; K01198 xylan 1,4-beta-xylosidase [EC:3.2.1.37] K01209 alpha-N-arabinofuran" />
+    <DictionaryEntry Key="xcb:XC_4197" Value="glucan 1,4-beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21]" />
   </Genes>
 </KEGG.PathwayBrief>

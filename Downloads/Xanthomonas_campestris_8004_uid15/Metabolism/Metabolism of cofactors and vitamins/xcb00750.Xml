@@ -34,12 +34,12 @@
   </Compound>
   <PathwayMap Key="xcb00750" Value="Vitamin B6 metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_1267" Value="pyridoxamine 5'-phosphate oxidase; K00275 pyridoxamine 5'-phosphate oxidase [EC:1.4.3.5] [KO:K00275] [EC:1.4.3.5]" />
-    <DictionaryEntry Key="XC_1270" Value="pyridoxamine 5'-phosphate oxidase; K00275 pyridoxamine 5'-phosphate oxidase [EC:1.4.3.5] [KO:K00275] [EC:1.4.3.5]" />
-    <DictionaryEntry Key="XC_2761" Value="pyridoxine kinase; K00868 pyridoxine kinase [EC:2.7.1.35] [KO:K00868] [EC:2.7.1.35]" />
-    <DictionaryEntry Key="XC_2645" Value="phosphoserine aminotransferase; K00831 phosphoserine aminotransferase [EC:2.6.1.52] [KO:K00831] [EC:2.6.1.52]" />
-    <DictionaryEntry Key="XC_3439" Value="pdxA; 4-hydroxythreonine-4-phosphate dehydrogenase [KO:K00097] [EC:1.1.1.262]" />
-    <DictionaryEntry Key="XC_0012" Value="pyridoxine 5'-phosphate synthase; K03474 pyridoxine 5-phosphate synthase [EC:2.6.99.2] [KO:K03474] [EC:2.6.99.2]" />
-    <DictionaryEntry Key="XC_2386" Value="threonine synthase; K01733 threonine synthase [EC:4.2.3.1] [KO:K01733] [EC:4.2.3.1]" />
+    <DictionaryEntry Key="xcb:XC_0012" Value="pyridoxine 5&amp;#39;-phosphate synthase; K03474 pyridoxine 5-phosphate synthase [EC:2.6.99.2]" />
+    <DictionaryEntry Key="xcb:XC_1267" Value="pyridoxamine 5&amp;#39;-phosphate oxidase; K00275 pyridoxamine 5&amp;#39;-phosphate oxidase [EC:1.4.3.5]" />
+    <DictionaryEntry Key="xcb:XC_1270" Value="pyridoxamine 5&amp;#39;-phosphate oxidase (EC:1.4.3.5); K00275 pyridoxamine 5&amp;#39;-phosphate oxidase [EC:1.4.3.5" />
+    <DictionaryEntry Key="xcb:XC_2386" Value="threonine synthase (EC:4.2.3.1); K01733 threonine synthase [EC:4.2.3.1]" />
+    <DictionaryEntry Key="xcb:XC_2645" Value="phosphoserine aminotransferase (EC:2.6.1.52); K00831 phosphoserine aminotransferase [EC:2.6.1.52]" />
+    <DictionaryEntry Key="xcb:XC_2761" Value="pyridoxine kinase; K00868 pyridoxine kinase [EC:2.7.1.35]" />
+    <DictionaryEntry Key="xcb:XC_3439" Value="pdxA; 4-hydroxythreonine-4-phosphate dehydrogenase (EC:1.1.1.262); K00097 4-hydroxythreonine-4-phosp" />
   </Genes>
 </KEGG.PathwayBrief>

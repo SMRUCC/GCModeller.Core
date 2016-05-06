@@ -47,30 +47,30 @@
   </Compound>
   <PathwayMap Key="xcb00480" Value="Glutathione metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0301" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2.2 3.4.19.13] [KO:K00681] [EC:3.4.19.13 2.3.2.2]" />
-    <DictionaryEntry Key="XC_0842" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2.2 3.4.19.13] [KO:K00681] [EC:3.4.19.13 2.3.2.2]" />
-    <DictionaryEntry Key="XC_1726" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2.2 3.4.19.13] [KO:K00681] [EC:3.4.19.13 2.3.2.2]" />
-    <DictionaryEntry Key="XC_0768" Value="glutamate--cysteine ligase; K01919 glutamate--cysteine ligase [EC:6.3.2.2] [KO:K01919] [EC:6.3.2.2]" />
-    <DictionaryEntry Key="XC_1182" Value="glutathione synthetase; K01920 glutathione synthase [EC:6.3.2.3] [KO:K01920] [EC:6.3.2.3]" />
-    <DictionaryEntry Key="XC_3992" Value="leucine aminopeptidase; K01255 leucyl aminopeptidase [EC:3.4.11.1] [KO:K01255] [EC:3.4.11.1]" />
-    <DictionaryEntry Key="XC_3585" Value="leucyl aminopeptidase; K01255 leucyl aminopeptidase [EC:3.4.11.1] [KO:K01255] [EC:3.4.11.1]" />
-    <DictionaryEntry Key="XC_3192" Value="aminopeptidase; K01256 aminopeptidase N [EC:3.4.11.2] [KO:K01256] [EC:3.4.11.2]" />
-    <DictionaryEntry Key="XC_2807" Value="glutathione S-transferase; K00799 glutathione S-transferase [EC:2.5.1.18] [KO:K00799] [EC:2.5.1.18]" />
-    <DictionaryEntry Key="XC_3306" Value="glutathione S-transferase; K00799 glutathione S-transferase [EC:2.5.1.18] [KO:K00799] [EC:2.5.1.18]" />
-    <DictionaryEntry Key="XC_1789" Value="glutathione S-transferase; K00799 glutathione S-transferase [EC:2.5.1.18] [KO:K00799] [EC:2.5.1.18]" />
-    <DictionaryEntry Key="XC_1829" Value="glutathione S-transferase; K00799 glutathione S-transferase [EC:2.5.1.18] [KO:K00799] [EC:2.5.1.18]" />
-    <DictionaryEntry Key="XC_2820" Value="glutathione S-transferase; K00799 glutathione S-transferase [EC:2.5.1.18] [KO:K00799] [EC:2.5.1.18]" />
-    <DictionaryEntry Key="XC_1085" Value="glutathione transferase; K00799 glutathione S-transferase [EC:2.5.1.18] [KO:K00799] [EC:2.5.1.18]" />
-    <DictionaryEntry Key="XC_3837" Value="glutathione S-transferase; K00799 glutathione S-transferase [EC:2.5.1.18] [KO:K00799] [EC:2.5.1.18]" />
-    <DictionaryEntry Key="XC_3408" Value="glutathione S-transferase; K00799 glutathione S-transferase [EC:2.5.1.18] [KO:K00799] [EC:2.5.1.18]" />
-    <DictionaryEntry Key="XC_1539" Value="reductase; K00383 glutathione reductase (NADPH) [EC:1.8.1.7] [KO:K00383] [EC:1.8.1.7]" />
-    <DictionaryEntry Key="XC_3854" Value="isocitrate dehydrogenase; K00031 isocitrate dehydrogenase [EC:1.1.1.42] [KO:K00031] [EC:1.1.1.42]" />
-    <DictionaryEntry Key="XC_0725" Value="6-phosphogluconate dehydrogenase; K00033 6-phosphogluconate dehydrogenase [EC:1.1.1.44 1.1.1.343] [KO:K00033] [EC:1.1.1.343 1.1.1.44]" />
-    <DictionaryEntry Key="XC_1977" Value="glucose-6-phosphate 1-dehydrogenase; K00036 glucose-6-phosphate 1-dehydrogenase [EC:1.1.1.49 1.1.1.363] [KO:K00036] [EC:1.1.1.363 1.1.1.49]" />
-    <DictionaryEntry Key="XC_4082" Value="glucose-6-phosphate 1-dehydrogenase; K00036 glucose-6-phosphate 1-dehydrogenase [EC:1.1.1.49 1.1.1.363] [KO:K00036] [EC:1.1.1.363 1.1.1.49]" />
-    <DictionaryEntry Key="XC_2825" Value="glutathione peroxidase; K00432 glutathione peroxidase [EC:1.11.1.9] [KO:K00432] [EC:1.11.1.9]" />
-    <DictionaryEntry Key="XC_2735" Value="ABC transporter vitamin B12 uptake permease; K00432 glutathione peroxidase [EC:1.11.1.9] [KO:K00432] [EC:1.11.1.9]" />
-    <DictionaryEntry Key="XC_4302" Value="glutathione peroxidase; K00432 glutathione peroxidase [EC:1.11.1.9] [KO:K00432] [EC:1.11.1.9]" />
-    <DictionaryEntry Key="XC_3954" Value="spermidine synthase; K00797 spermidine synthase [EC:2.5.1.16] [KO:K00797] [EC:2.5.1.16]" />
+    <DictionaryEntry Key="xcb:XC_0301" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2." />
+    <DictionaryEntry Key="xcb:XC_0725" Value="6-phosphogluconate dehydrogenase; K00033 6-phosphogluconate dehydrogenase [EC:1.1.1.44 1.1.1.343]" />
+    <DictionaryEntry Key="xcb:XC_0768" Value="glutamate--cysteine ligase; K01919 glutamate--cysteine ligase [EC:6.3.2.2]" />
+    <DictionaryEntry Key="xcb:XC_0842" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2." />
+    <DictionaryEntry Key="xcb:XC_1085" Value="glutathione transferase; K00799 glutathione S-transferase [EC:2.5.1.18]" />
+    <DictionaryEntry Key="xcb:XC_1182" Value="glutathione synthetase (EC:6.3.2.3); K01920 glutathione synthase [EC:6.3.2.3]" />
+    <DictionaryEntry Key="xcb:XC_1539" Value="reductase; K00383 glutathione reductase (NADPH) [EC:1.8.1.7]" />
+    <DictionaryEntry Key="xcb:XC_1726" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2." />
+    <DictionaryEntry Key="xcb:XC_1789" Value="glutathione S-transferase; K00799 glutathione S-transferase [EC:2.5.1.18]" />
+    <DictionaryEntry Key="xcb:XC_1829" Value="glutathione S-transferase; K00799 glutathione S-transferase [EC:2.5.1.18]" />
+    <DictionaryEntry Key="xcb:XC_1977" Value="glucose-6-phosphate 1-dehydrogenase (EC:1.1.1.49); K00036 glucose-6-phosphate 1-dehydrogenase [EC:1." />
+    <DictionaryEntry Key="xcb:XC_2735" Value="ABC transporter vitamin B12 uptake permease; K00432 glutathione peroxidase [EC:1.11.1.9]" />
+    <DictionaryEntry Key="xcb:XC_2807" Value="glutathione S-transferase; K00799 glutathione S-transferase [EC:2.5.1.18]" />
+    <DictionaryEntry Key="xcb:XC_2820" Value="glutathione S-transferase; K00799 glutathione S-transferase [EC:2.5.1.18]" />
+    <DictionaryEntry Key="xcb:XC_2825" Value="glutathione peroxidase; K00432 glutathione peroxidase [EC:1.11.1.9]" />
+    <DictionaryEntry Key="xcb:XC_3192" Value="aminopeptidase; K01256 aminopeptidase N [EC:3.4.11.2]" />
+    <DictionaryEntry Key="xcb:XC_3306" Value="glutathione S-transferase; K00799 glutathione S-transferase [EC:2.5.1.18]" />
+    <DictionaryEntry Key="xcb:XC_3408" Value="glutathione S-transferase; K00799 glutathione S-transferase [EC:2.5.1.18]" />
+    <DictionaryEntry Key="xcb:XC_3585" Value="leucyl aminopeptidase (EC:3.4.11.1); K01255 leucyl aminopeptidase [EC:3.4.11.1]" />
+    <DictionaryEntry Key="xcb:XC_3837" Value="glutathione S-transferase; K00799 glutathione S-transferase [EC:2.5.1.18]" />
+    <DictionaryEntry Key="xcb:XC_3854" Value="isocitrate dehydrogenase; K00031 isocitrate dehydrogenase [EC:1.1.1.42]" />
+    <DictionaryEntry Key="xcb:XC_3954" Value="spermidine synthase (EC:2.5.1.16); K00797 spermidine synthase [EC:2.5.1.16]" />
+    <DictionaryEntry Key="xcb:XC_3992" Value="leucine aminopeptidase; K01255 leucyl aminopeptidase [EC:3.4.11.1]" />
+    <DictionaryEntry Key="xcb:XC_4082" Value="glucose-6-phosphate 1-dehydrogenase; K00036 glucose-6-phosphate 1-dehydrogenase [EC:1.1.1.49 1.1.1.3" />
+    <DictionaryEntry Key="xcb:XC_4302" Value="glutathione peroxidase; K00432 glutathione peroxidase [EC:1.11.1.9]" />
   </Genes>
 </KEGG.PathwayBrief>

@@ -20,6 +20,6 @@
   </Compound>
   <PathwayMap Key="xcb01054" Value="Nonribosomal peptide structures&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2451" Value="resistance protein; K01779 aspartate racemase [EC:5.1.1.13] [KO:K01779] [EC:5.1.1.13]" />
+    <DictionaryEntry Key="xcb:XC_2451" Value="resistance protein; K01779 aspartate racemase [EC:5.1.1.13]" />
   </Genes>
 </KEGG.PathwayBrief>

@@ -4,5 +4,14 @@
   <Name>Vancomycin resistance - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
   <Compound />
   <PathwayMap Key="xcb01502" Value="Vancomycin resistance&lt;center&gt;" />
-  <Genes />
+  <Genes>
+    <DictionaryEntry Key="xcb:XC_0232" Value="ddl; D-alanyl-alanine synthetase A (EC:6.3.2.4); K01921 D-alanine-D-alanine ligase [EC:6.3.2.4]" />
+    <DictionaryEntry Key="xcb:XC_3111" Value="hypothetical protein; K07260 D-alanyl-D-alanine carboxypeptidase [EC:3.4.16.4]" />
+    <DictionaryEntry Key="xcb:XC_3508" Value="ddl; D-alanine--D-alanine ligase (EC:6.3.2.4); K01921 D-alanine-D-alanine ligase [EC:6.3.2.4]" />
+    <DictionaryEntry Key="xcb:XC_3510" Value="murG; undecaprenyldiphospho-muramoylpentapeptide beta-N-acetylglucosaminyltransferase (EC:2.4.1.227)" />
+    <DictionaryEntry Key="xcb:XC_3512" Value="mraY; phospho-N-acetylmuramoyl-pentapeptide-transferase (EC:2.7.8.13); K01000 phospho-N-acetylmuramo" />
+    <DictionaryEntry Key="xcb:XC_3513" Value="UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine ligase; K01929 UDP-N-acetylmuramoyl-tripeptide--" />
+    <DictionaryEntry Key="xcb:XC_3718" Value="alr; alanine racemase (EC:5.1.1.1); K01775 alanine racemase [EC:5.1.1.1]" />
+    <DictionaryEntry Key="xcb:XC_3873" Value="D-alanyl-D-alanine dipeptidase; K08641 D-alanyl-D-alanine dipeptidase [EC:3.4.13.22]" />
+  </Genes>
 </KEGG.PathwayBrief>

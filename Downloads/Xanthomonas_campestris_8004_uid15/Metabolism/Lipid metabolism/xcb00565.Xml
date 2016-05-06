@@ -31,8 +31,8 @@
   </Compound>
   <PathwayMap Key="xcb00565" Value="Ether lipid metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2818" Value="phospholipase; K01058 phospholipase A1 [EC:3.1.1.32 3.1.1.4] [KO:K01058] [EC:3.1.1.4 3.1.1.32]" />
-    <DictionaryEntry Key="XC_1121" Value="phospholipase C; K01114 phospholipase C [EC:3.1.4.3] [KO:K01114] [EC:3.1.4.3]" />
-    <DictionaryEntry Key="XC_3288" Value="non-hemolytic phospholipase C; K01114 phospholipase C [EC:3.1.4.3] [KO:K01114] [EC:3.1.4.3]" />
+    <DictionaryEntry Key="xcb:XC_1121" Value="phospholipase C; K01114 phospholipase C [EC:3.1.4.3]" />
+    <DictionaryEntry Key="xcb:XC_2818" Value="phospholipase; K01058 phospholipase A1 [EC:3.1.1.32 3.1.1.4]" />
+    <DictionaryEntry Key="xcb:XC_3288" Value="non-hemolytic phospholipase C; K01114 phospholipase C [EC:3.1.4.3]" />
   </Genes>
 </KEGG.PathwayBrief>

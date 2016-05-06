@@ -12,7 +12,7 @@
   </Compound>
   <PathwayMap Key="xcb00785" Value="Lipoic acid metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0713" Value="lipoyl synthase; K03644 lipoyl synthase [EC:2.8.1.8] [KO:K03644] [EC:2.8.1.8]" />
-    <DictionaryEntry Key="XC_0712" Value="lipB; lipoate-protein ligase B [KO:K03801] [EC:2.3.1.181]" />
+    <DictionaryEntry Key="xcb:XC_0712" Value="lipB; lipoate-protein ligase B; K03801 lipoyl(octanoyl) transferase [EC:2.3.1.181]" />
+    <DictionaryEntry Key="xcb:XC_0713" Value="lipoyl synthase; K03644 lipoyl synthase [EC:2.8.1.8]" />
   </Genes>
 </KEGG.PathwayBrief>

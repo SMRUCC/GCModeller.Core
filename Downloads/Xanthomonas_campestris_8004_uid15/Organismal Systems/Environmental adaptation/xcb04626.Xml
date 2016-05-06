@@ -14,16 +14,16 @@
   </Compound>
   <PathwayMap Key="xcb04626" Value="Plant-pathogen interaction&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2245" Value="flagellin; K02406 flagellin [KO:K02406]" />
-    <DictionaryEntry Key="XC_0370" Value="glpK; glycerol kinase [KO:K00864] [EC:2.7.1.30]" />
-    <DictionaryEntry Key="XC_2004" Value="avirulence protein; K13455 avirulence protein [KO:K13455]" />
-    <DictionaryEntry Key="XC_1721" Value="heat shock protein 90; K04079 molecular chaperone HtpG [KO:K04079]" />
-    <DictionaryEntry Key="XC_3075" Value="heat shock protein 90; K04079 molecular chaperone HtpG [KO:K04079]" />
-    <DictionaryEntry Key="XC_1213" Value="virulence protein; K18879 type III effector protein XopD [KO:K18879]" />
-    <DictionaryEntry Key="XC_2410" Value="hypothetical protein; K13408 membrane fusion protein [KO:K13408]" />
-    <DictionaryEntry Key="XC_2409" Value="hypothetical protein; K13409 ATP-binding cassette, subfamily B, bacterial RaxB [KO:K13409]" />
-    <DictionaryEntry Key="XC_0828" Value="TolC protein; K12340 outer membrane protein [KO:K12340]" />
-    <DictionaryEntry Key="XC_3342" Value="tuf; elongation factor Tu [KO:K02358]" />
-    <DictionaryEntry Key="XC_3354" Value="tuf; elongation factor Tu [KO:K02358]" />
+    <DictionaryEntry Key="xcb:XC_0370" Value="glpK; glycerol kinase (EC:2.7.1.30); K00864 glycerol kinase [EC:2.7.1.30]" />
+    <DictionaryEntry Key="xcb:XC_0828" Value="TolC protein; K12340 outer membrane protein" />
+    <DictionaryEntry Key="xcb:XC_1213" Value="virulence protein; K18879 type III effector protein XopD" />
+    <DictionaryEntry Key="xcb:XC_1721" Value="heat shock protein 90; K04079 molecular chaperone HtpG" />
+    <DictionaryEntry Key="xcb:XC_2004" Value="avirulence protein; K13455 avirulence protein" />
+    <DictionaryEntry Key="xcb:XC_2245" Value="flagellin; K02406 flagellin" />
+    <DictionaryEntry Key="xcb:XC_2409" Value="hypothetical protein; K13409 ATP-binding cassette, subfamily B, bacterial RaxB" />
+    <DictionaryEntry Key="xcb:XC_2410" Value="hypothetical protein; K13408 membrane fusion protein" />
+    <DictionaryEntry Key="xcb:XC_3075" Value="heat shock protein 90; K04079 molecular chaperone HtpG" />
+    <DictionaryEntry Key="xcb:XC_3342" Value="tuf; elongation factor Tu (EC:3.6.5.3); K02358 elongation factor Tu" />
+    <DictionaryEntry Key="xcb:XC_3354" Value="tuf; elongation factor Tu (EC:3.6.5.3); K02358 elongation factor Tu" />
   </Genes>
 </KEGG.PathwayBrief>

@@ -5,21 +5,21 @@
   <Compound />
   <PathwayMap Key="xcb03060" Value="Protein export&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_3320" Value="secY; preprotein translocase subunit SecY [KO:K03076]" />
-    <DictionaryEntry Key="XC_3353" Value="secE; preprotein translocase subunit SecE [KO:K03073]" />
-    <DictionaryEntry Key="XC_1588" Value="secG; preprotein translocase subunit SecG [KO:K03075]" />
-    <DictionaryEntry Key="XC_1738" Value="secD; preprotein translocase subunit SecD [KO:K03072]" />
-    <DictionaryEntry Key="XC_1739" Value="secF; preprotein translocase subunit SecF [KO:K03074]" />
-    <DictionaryEntry Key="XC_1737" Value="yajC; preprotein translocase subunit YajC [KO:K03210]" />
-    <DictionaryEntry Key="XC_4330" Value="inner membrane protein translocase component YidC; K03217 YidC/Oxa1 family membrane protein insertase [KO:K03217]" />
-    <DictionaryEntry Key="XC_3501" Value="azi; preprotein translocase subunit SecA [KO:K03070]" />
-    <DictionaryEntry Key="XC_0213" Value="preprotein translocase subunit SecB; K03071 preprotein translocase subunit SecB [KO:K03071]" />
-    <DictionaryEntry Key="XC_3048" Value="signal recognition particle protein; K03106 signal recognition particle subunit SRP54 [EC:3.6.5.4] [KO:K03106] [EC:3.6.5.4]" />
-    <DictionaryEntry Key="XC_1695" Value="cell division protein; K03110 fused signal recognition particle receptor [KO:K03110]" />
-    <DictionaryEntry Key="XC_4184" Value="tatA; twin-arginine translocation protein TatA [KO:K03116]" />
-    <DictionaryEntry Key="XC_4183" Value="sec-independent translocase; K03117 sec-independent protein translocase protein TatB [KO:K03117]" />
-    <DictionaryEntry Key="XC_4182" Value="sec-independent protein translocase; K03118 sec-independent protein translocase protein TatC [KO:K03118]" />
-    <DictionaryEntry Key="XC_2970" Value="signal peptidase I; K03100 signal peptidase I [EC:3.4.21.89] [KO:K03100] [EC:3.4.21.89]" />
-    <DictionaryEntry Key="XC_3086" Value="lspA; lipoprotein signal peptidase [KO:K03101] [EC:3.4.23.36]" />
+    <DictionaryEntry Key="xcb:XC_0213" Value="preprotein translocase subunit SecB; K03071 preprotein translocase subunit SecB" />
+    <DictionaryEntry Key="xcb:XC_1588" Value="secG; preprotein translocase subunit SecG; K03075 preprotein translocase subunit SecG" />
+    <DictionaryEntry Key="xcb:XC_1695" Value="cell division protein; K03110 fused signal recognition particle receptor" />
+    <DictionaryEntry Key="xcb:XC_1737" Value="yajC; preprotein translocase subunit YajC; K03210 preprotein translocase subunit YajC" />
+    <DictionaryEntry Key="xcb:XC_1738" Value="secD; preprotein translocase subunit SecD; K03072 preprotein translocase subunit SecD" />
+    <DictionaryEntry Key="xcb:XC_1739" Value="secF; preprotein translocase subunit SecF; K03074 preprotein translocase subunit SecF" />
+    <DictionaryEntry Key="xcb:XC_2970" Value="signal peptidase I; K03100 signal peptidase I [EC:3.4.21.89]" />
+    <DictionaryEntry Key="xcb:XC_3048" Value="signal recognition particle protein; K03106 signal recognition particle subunit SRP54 [EC:3.6.5.4]" />
+    <DictionaryEntry Key="xcb:XC_3086" Value="lspA; lipoprotein signal peptidase (EC:3.4.23.36); K03101 signal peptidase II [EC:3.4.23.36]" />
+    <DictionaryEntry Key="xcb:XC_3320" Value="secY; preprotein translocase subunit SecY; K03076 preprotein translocase subunit SecY" />
+    <DictionaryEntry Key="xcb:XC_3353" Value="secE; preprotein translocase subunit SecE; K03073 preprotein translocase subunit SecE" />
+    <DictionaryEntry Key="xcb:XC_3501" Value="azi, div; preprotein translocase subunit SecA; K03070 preprotein translocase subunit SecA" />
+    <DictionaryEntry Key="xcb:XC_4182" Value="sec-independent protein translocase; K03118 sec-independent protein translocase protein TatC" />
+    <DictionaryEntry Key="xcb:XC_4183" Value="sec-independent translocase; K03117 sec-independent protein translocase protein TatB" />
+    <DictionaryEntry Key="xcb:XC_4184" Value="tatA; twin-arginine translocation protein TatA; K03116 sec-independent protein translocase protein T" />
+    <DictionaryEntry Key="xcb:XC_4330" Value="inner membrane protein translocase component YidC; K03217 YidC/Oxa1 family membrane protein insertas" />
   </Genes>
 </KEGG.PathwayBrief>

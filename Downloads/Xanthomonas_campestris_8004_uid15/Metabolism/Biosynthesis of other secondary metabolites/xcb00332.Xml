@@ -38,7 +38,7 @@
   </Compound>
   <PathwayMap Key="xcb00332" Value="Carbapenem biosynthesis&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_1879" Value="gamma-glutamyl kinase; K00931 glutamate 5-kinase [EC:2.7.2.11] [KO:K00931] [EC:2.7.2.11]" />
-    <DictionaryEntry Key="XC_1880" Value="proA; gamma-glutamyl phosphate reductase [KO:K00147] [EC:1.2.1.41]" />
+    <DictionaryEntry Key="xcb:XC_1879" Value="gamma-glutamyl kinase (EC:2.7.2.11); K00931 glutamate 5-kinase [EC:2.7.2.11]" />
+    <DictionaryEntry Key="xcb:XC_1880" Value="proA; gamma-glutamyl phosphate reductase; K00147 glutamate-5-semialdehyde dehydrogenase [EC:1.2.1.41" />
   </Genes>
 </KEGG.PathwayBrief>

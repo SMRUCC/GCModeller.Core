@@ -61,32 +61,32 @@
   </Compound>
   <PathwayMap Key="xcb00564" Value="Glycerophospholipid metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0214" Value="gpsA; NAD(P)H-dependent glycerol-3-phosphate dehydrogenase [KO:K00057] [EC:1.1.1.94]" />
-    <DictionaryEntry Key="XC_0372" Value="glpD; glycerol-3-phosphate dehydrogenase [KO:K00111] [EC:1.1.5.3]" />
-    <DictionaryEntry Key="XC_4220" Value="glycerol-3-phosphate acyltransferase; K00631 glycerol-3-phosphate O-acyltransferase [EC:2.3.1.15] [KO:K00631] [EC:2.3.1.15]" />
-    <DictionaryEntry Key="XC_4099" Value="acyltransferase; K00655 1-acyl-sn-glycerol-3-phosphate acyltransferase [EC:2.3.1.51] [KO:K00655] [EC:2.3.1.51]" />
-    <DictionaryEntry Key="XC_0188" Value="acetyltransferase; K00655 1-acyl-sn-glycerol-3-phosphate acyltransferase [EC:2.3.1.51] [KO:K00655] [EC:2.3.1.51]" />
-    <DictionaryEntry Key="XC_3449" Value="diacylglycerol kinase; K00901 diacylglycerol kinase (ATP) [EC:2.7.1.107] [KO:K00901] [EC:2.7.1.107]" />
-    <DictionaryEntry Key="XC_1121" Value="phospholipase C; K01114 phospholipase C [EC:3.1.4.3] [KO:K01114] [EC:3.1.4.3]" />
-    <DictionaryEntry Key="XC_3288" Value="non-hemolytic phospholipase C; K01114 phospholipase C [EC:3.1.4.3] [KO:K01114] [EC:3.1.4.3]" />
-    <DictionaryEntry Key="XC_2818" Value="phospholipase; K01058 phospholipase A1 [EC:3.1.1.32 3.1.1.4] [KO:K01058] [EC:3.1.1.4 3.1.1.32]" />
-    <DictionaryEntry Key="XC_4324" Value="glycerophosphoryl diester phosphodiesterase; K01126 glycerophosphoryl diester phosphodiesterase [EC:3.1.4.46] [KO:K01126] [EC:3.1.4.46]" />
-    <DictionaryEntry Key="XC_3204" Value="glycerophosphodiester phosphodiesterase; K01126 glycerophosphoryl diester phosphodiesterase [EC:3.1.4.46] [KO:K01126] [EC:3.1.4.46]" />
-    <DictionaryEntry Key="XC_1855" Value="ethanolamine ammonia-lyase large subunit; K03735 ethanolamine ammonia-lyase large subunit [EC:4.3.1.7] [KO:K03735] [EC:4.3.1.7]" />
-    <DictionaryEntry Key="XC_1854" Value="ethanolamine ammonia-lyase small subunit; K03736 ethanolamine ammonia-lyase small subunit [EC:4.3.1.7] [KO:K03736] [EC:4.3.1.7]" />
-    <DictionaryEntry Key="XC_2537" Value="CDP-diacylglycerol pyrophosphatase; K01521 CDP-diacylglycerol pyrophosphatase [EC:3.6.1.26] [KO:K01521] [EC:3.6.1.26]" />
-    <DictionaryEntry Key="XC_0518" Value="phosphatidate cytidylyltransferase; K00981 phosphatidate cytidylyltransferase [EC:2.7.7.41] [KO:K00981] [EC:2.7.7.41]" />
-    <DictionaryEntry Key="XC_2870" Value="phosphatidate cytidylyltransferase; K00981 phosphatidate cytidylyltransferase [EC:2.7.7.41] [KO:K00981] [EC:2.7.7.41]" />
-    <DictionaryEntry Key="XC_1957" Value="CDP-diacylglycerol-serine o-phosphatidyltransferase; K17103 CDP-diacylglycerol---serine O-phosphatidyltransferase [EC:2.7.8.8] [KO:K17103] [EC:2.7.8.8]" />
-    <DictionaryEntry Key="XC_3594" Value="phosphatidylserine synthase; K17103 CDP-diacylglycerol---serine O-phosphatidyltransferase [EC:2.7.8.8] [KO:K17103] [EC:2.7.8.8]" />
-    <DictionaryEntry Key="XC_1563" Value="psd; phosphatidylserine decarboxylase [KO:K01613] [EC:4.1.1.65]" />
-    <DictionaryEntry Key="XC_2001" Value="CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidyltransferase; K00995 CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidyltransferase [EC:2.7.8.5] [KO:K00995] [EC:2.7.8.5]" />
-    <DictionaryEntry Key="XC_0511" Value="CDP-alcohol phosphatidyltransferase; K00995 CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidyltransferase [EC:2.7.8.5] [KO:K00995] [EC:2.7.8.5]" />
-    <DictionaryEntry Key="XC_0485" Value="hypothetical protein; K18697 phosphatidylglycerophosphatase C [EC:3.1.3.27] [KO:K18697] [EC:3.1.3.27]" />
-    <DictionaryEntry Key="XC_0014" Value="cardiolipin synthetase; K06131 cardiolipin synthase A/B [EC:2.7.8.-] [KO:K06131] [EC:2.7.8.-]" />
-    <DictionaryEntry Key="XC_4117" Value="cardiolipin synthase; K06131 cardiolipin synthase A/B [EC:2.7.8.-] [KO:K06131] [EC:2.7.8.-]" />
-    <DictionaryEntry Key="XC_4263" Value="cardiolipin synthetase; K06131 cardiolipin synthase A/B [EC:2.7.8.-] [KO:K06131] [EC:2.7.8.-]" />
-    <DictionaryEntry Key="XC_0300" Value="cardiolipin synthase 2; K06131 cardiolipin synthase A/B [EC:2.7.8.-] [KO:K06131] [EC:2.7.8.-]" />
-    <DictionaryEntry Key="XC_1408" Value="cardiolipin synthase; K06132 cardiolipin synthase C [EC:2.7.8.-] [KO:K06132] [EC:2.7.8.-]" />
+    <DictionaryEntry Key="xcb:XC_0014" Value="cardiolipin synthetase; K06131 cardiolipin synthase A/B [EC:2.7.8.-]" />
+    <DictionaryEntry Key="xcb:XC_0188" Value="acetyltransferase; K00655 1-acyl-sn-glycerol-3-phosphate acyltransferase [EC:2.3.1.51]" />
+    <DictionaryEntry Key="xcb:XC_0214" Value="gpsA; NAD(P)H-dependent glycerol-3-phosphate dehydrogenase (EC:1.1.1.94); K00057 glycerol-3-phosphat" />
+    <DictionaryEntry Key="xcb:XC_0300" Value="cardiolipin synthase 2; K06131 cardiolipin synthase A/B [EC:2.7.8.-]" />
+    <DictionaryEntry Key="xcb:XC_0372" Value="glpD; glycerol-3-phosphate dehydrogenase (EC:1.1.5.3); K00111 glycerol-3-phosphate dehydrogenase [EC" />
+    <DictionaryEntry Key="xcb:XC_0485" Value="hypothetical protein; K18697 phosphatidylglycerophosphatase C [EC:3.1.3.27]" />
+    <DictionaryEntry Key="xcb:XC_0511" Value="CDP-alcohol phosphatidyltransferase; K00995 CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidylt" />
+    <DictionaryEntry Key="xcb:XC_0518" Value="phosphatidate cytidylyltransferase; K00981 phosphatidate cytidylyltransferase [EC:2.7.7.41]" />
+    <DictionaryEntry Key="xcb:XC_1121" Value="phospholipase C; K01114 phospholipase C [EC:3.1.4.3]" />
+    <DictionaryEntry Key="xcb:XC_1408" Value="cardiolipin synthase; K06132 cardiolipin synthase C [EC:2.7.8.-]" />
+    <DictionaryEntry Key="xcb:XC_1563" Value="psd; phosphatidylserine decarboxylase (EC:4.1.1.65); K01613 phosphatidylserine decarboxylase [EC:4.1" />
+    <DictionaryEntry Key="xcb:XC_1854" Value="ethanolamine ammonia-lyase small subunit (EC:4.3.1.7); K03736 ethanolamine ammonia-lyase small subun" />
+    <DictionaryEntry Key="xcb:XC_1855" Value="ethanolamine ammonia-lyase large subunit; K03735 ethanolamine ammonia-lyase large subunit [EC:4.3.1." />
+    <DictionaryEntry Key="xcb:XC_1957" Value="CDP-diacylglycerol-serine o-phosphatidyltransferase; K17103 CDP-diacylglycerol---serine O-phosphatid" />
+    <DictionaryEntry Key="xcb:XC_2001" Value="CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidyltransferase; K00995 CDP-diacylglycerol--glyce" />
+    <DictionaryEntry Key="xcb:XC_2537" Value="CDP-diacylglycerol pyrophosphatase (EC:3.6.1.26); K01521 CDP-diacylglycerol pyrophosphatase [EC:3.6." />
+    <DictionaryEntry Key="xcb:XC_2818" Value="phospholipase; K01058 phospholipase A1 [EC:3.1.1.32 3.1.1.4]" />
+    <DictionaryEntry Key="xcb:XC_2870" Value="phosphatidate cytidylyltransferase; K00981 phosphatidate cytidylyltransferase [EC:2.7.7.41]" />
+    <DictionaryEntry Key="xcb:XC_3204" Value="glycerophosphodiester phosphodiesterase; K01126 glycerophosphoryl diester phosphodiesterase [EC:3.1." />
+    <DictionaryEntry Key="xcb:XC_3288" Value="non-hemolytic phospholipase C; K01114 phospholipase C [EC:3.1.4.3]" />
+    <DictionaryEntry Key="xcb:XC_3449" Value="diacylglycerol kinase; K00901 diacylglycerol kinase (ATP) [EC:2.7.1.107]" />
+    <DictionaryEntry Key="xcb:XC_3594" Value="phosphatidylserine synthase; K17103 CDP-diacylglycerol---serine O-phosphatidyltransferase [EC:2.7.8." />
+    <DictionaryEntry Key="xcb:XC_4099" Value="acyltransferase; K00655 1-acyl-sn-glycerol-3-phosphate acyltransferase [EC:2.3.1.51]" />
+    <DictionaryEntry Key="xcb:XC_4117" Value="cardiolipin synthase; K06131 cardiolipin synthase A/B [EC:2.7.8.-]" />
+    <DictionaryEntry Key="xcb:XC_4220" Value="glycerol-3-phosphate acyltransferase (EC:2.3.1.15); K00631 glycerol-3-phosphate O-acyltransferase [E" />
+    <DictionaryEntry Key="xcb:XC_4263" Value="cardiolipin synthetase; K06131 cardiolipin synthase A/B [EC:2.7.8.-]" />
+    <DictionaryEntry Key="xcb:XC_4324" Value="glycerophosphoryl diester phosphodiesterase; K01126 glycerophosphoryl diester phosphodiesterase [EC:" />
   </Genes>
 </KEGG.PathwayBrief>

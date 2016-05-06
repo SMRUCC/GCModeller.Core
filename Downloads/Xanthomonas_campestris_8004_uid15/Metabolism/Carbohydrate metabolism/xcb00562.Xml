@@ -50,12 +50,12 @@
   </Compound>
   <PathwayMap Key="xcb00562" Value="Inositol phosphate metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_1121" Value="phospholipase C; K01114 phospholipase C [EC:3.1.4.3] [KO:K01114] [EC:3.1.4.3]" />
-    <DictionaryEntry Key="XC_3288" Value="non-hemolytic phospholipase C; K01114 phospholipase C [EC:3.1.4.3] [KO:K01114] [EC:3.1.4.3]" />
-    <DictionaryEntry Key="XC_1838" Value="extragenic supressor protein; K01092 myo-inositol-1(or 4)-monophosphatase [EC:3.1.3.25] [KO:K01092] [EC:3.1.3.25]" />
-    <DictionaryEntry Key="XC_1730" Value="phytase; K01083 3-phytase [EC:3.1.3.8] [KO:K01083] [EC:3.1.3.8]" />
-    <DictionaryEntry Key="XC_3473" Value="phosphoanhydride phosphohydrolase; K01093 4-phytase / acid phosphatase [EC:3.1.3.26 3.1.3.2] [KO:K01093] [EC:3.1.3.2 3.1.3.26]" />
-    <DictionaryEntry Key="XC_2981" Value="methylmalonate-semialdehyde dehydrogenase; K00140 malonate-semialdehyde dehydrogenase (acetylating) / methylmalonate-semialdehyde dehydrogenase [EC:1.2.1.18 1.2.1.27] [KO:K00140] [EC:1.2.1.27 1.2.1.18]" />
-    <DictionaryEntry Key="XC_1587" Value="tpiA; triosephosphate isomerase [KO:K01803] [EC:5.3.1.1]" />
+    <DictionaryEntry Key="xcb:XC_1121" Value="phospholipase C; K01114 phospholipase C [EC:3.1.4.3]" />
+    <DictionaryEntry Key="xcb:XC_1587" Value="tpiA; triosephosphate isomerase (EC:5.3.1.1); K01803 triosephosphate isomerase (TIM) [EC:5.3.1.1]" />
+    <DictionaryEntry Key="xcb:XC_1730" Value="phytase; K01083 3-phytase [EC:3.1.3.8]" />
+    <DictionaryEntry Key="xcb:XC_1838" Value="extragenic supressor protein; K01092 myo-inositol-1(or 4)-monophosphatase [EC:3.1.3.25]" />
+    <DictionaryEntry Key="xcb:XC_2981" Value="methylmalonate-semialdehyde dehydrogenase; K00140 malonate-semialdehyde dehydrogenase (acetylating)" />
+    <DictionaryEntry Key="xcb:XC_3288" Value="non-hemolytic phospholipase C; K01114 phospholipase C [EC:3.1.4.3]" />
+    <DictionaryEntry Key="xcb:XC_3473" Value="phosphoanhydride phosphohydrolase; K01093 4-phytase / acid phosphatase [EC:3.1.3.26 3.1.3.2]" />
   </Genes>
 </KEGG.PathwayBrief>

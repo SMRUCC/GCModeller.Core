@@ -38,10 +38,10 @@
   </Compound>
   <PathwayMap Key="xcb00401" Value="Novobiocin biosynthesis&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2760" Value="prephenate dehydrogenase; K04517 prephenate dehydrogenase [EC:1.3.1.12] [KO:K04517] [EC:1.3.1.12]" />
-    <DictionaryEntry Key="XC_0889" Value="aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9] [KO:K00817] [EC:2.6.1.9]" />
-    <DictionaryEntry Key="XC_2379" Value="histidinol-phosphate aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9] [KO:K00817] [EC:2.6.1.9]" />
-    <DictionaryEntry Key="XC_2665" Value="aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9] [KO:K00817] [EC:2.6.1.9]" />
-    <DictionaryEntry Key="XC_0100" Value="aromatic amino acid aminotransferase; K00832 aromatic-amino-acid transaminase [EC:2.6.1.57] [KO:K00832] [EC:2.6.1.57]" />
+    <DictionaryEntry Key="xcb:XC_0100" Value="aromatic amino acid aminotransferase (EC:2.6.1.57); K00832 aromatic-amino-acid transaminase [EC:2.6." />
+    <DictionaryEntry Key="xcb:XC_0889" Value="aminotransferase (EC:2.6.1.9); K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9]" />
+    <DictionaryEntry Key="xcb:XC_2379" Value="histidinol-phosphate aminotransferase (EC:2.6.1.9); K00817 histidinol-phosphate aminotransferase [EC" />
+    <DictionaryEntry Key="xcb:XC_2665" Value="aminotransferase (EC:2.6.1.9); K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9]" />
+    <DictionaryEntry Key="xcb:XC_2760" Value="prephenate dehydrogenase (EC:1.3.1.12); K04517 prephenate dehydrogenase [EC:1.3.1.12]" />
   </Genes>
 </KEGG.PathwayBrief>

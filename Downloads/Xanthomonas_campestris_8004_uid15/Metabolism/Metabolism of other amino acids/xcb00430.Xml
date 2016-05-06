@@ -28,10 +28,10 @@
   </Compound>
   <PathwayMap Key="xcb00430" Value="Taurine and hypotaurine metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0301" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2.2 3.4.19.13] [KO:K00681] [EC:3.4.19.13 2.3.2.2]" />
-    <DictionaryEntry Key="XC_0842" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2.2 3.4.19.13] [KO:K00681] [EC:3.4.19.13 2.3.2.2]" />
-    <DictionaryEntry Key="XC_1726" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2.2 3.4.19.13] [KO:K00681] [EC:3.4.19.13 2.3.2.2]" />
-    <DictionaryEntry Key="XC_3456" Value="taurine dioxygenase; K03119 taurine dioxygenase [EC:1.14.11.17] [KO:K03119] [EC:1.14.11.17]" />
-    <DictionaryEntry Key="XC_1751" Value="hypothetical protein; K15371 glutamate dehydrogenase [EC:1.4.1.2] [KO:K15371] [EC:1.4.1.2]" />
+    <DictionaryEntry Key="xcb:XC_0301" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2." />
+    <DictionaryEntry Key="xcb:XC_0842" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2." />
+    <DictionaryEntry Key="xcb:XC_1726" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2." />
+    <DictionaryEntry Key="xcb:XC_1751" Value="hypothetical protein; K15371 glutamate dehydrogenase [EC:1.4.1.2]" />
+    <DictionaryEntry Key="xcb:XC_3456" Value="taurine dioxygenase; K03119 taurine dioxygenase [EC:1.14.11.17]" />
   </Genes>
 </KEGG.PathwayBrief>

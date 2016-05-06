@@ -8,65 +8,65 @@
   <Compound />
   <PathwayMap Key="xcb03010" Value="Ribosome&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_1924" Value="rpsA; 30S ribosomal protein S1 [KO:K02945]" />
-    <DictionaryEntry Key="XC_2863" Value="rpsB; 30S ribosomal protein S2 [KO:K02967]" />
-    <DictionaryEntry Key="XC_3334" Value="rpsC; 30S ribosomal protein S3 [KO:K02982]" />
-    <DictionaryEntry Key="XC_3317" Value="rpsD; 30S ribosomal protein S4 [KO:K02986]" />
-    <DictionaryEntry Key="XC_3323" Value="rpsE; 30S ribosomal protein S5 [KO:K02988]" />
-    <DictionaryEntry Key="XC_2671" Value="rpsF; 30S ribosomal protein S6 [KO:K02990]" />
-    <DictionaryEntry Key="XC_3344" Value="30S ribosomal protein S7; K02992 small subunit ribosomal protein S7 [KO:K02992]" />
-    <DictionaryEntry Key="XC_3326" Value="rpsH; 30S ribosomal protein S8 [KO:K02994]" />
-    <DictionaryEntry Key="XC_0491" Value="rpsI; 30S ribosomal protein S9 [KO:K02996]" />
-    <DictionaryEntry Key="XC_3341" Value="rpsJ; 30S ribosomal protein S10 [KO:K02946]" />
-    <DictionaryEntry Key="XC_3318" Value="30S ribosomal protein S11; K02948 small subunit ribosomal protein S11 [KO:K02948]" />
-    <DictionaryEntry Key="XC_3345" Value="rpsL; 30S ribosomal protein S12 [KO:K02950]" />
-    <DictionaryEntry Key="XC_3319" Value="rpsM; 30S ribosomal protein S13 [KO:K02952]" />
-    <DictionaryEntry Key="XC_3327" Value="rpsN; 30S ribosomal protein S14 [KO:K02954]" />
-    <DictionaryEntry Key="XC_1608" Value="rpsO; 30S ribosomal protein S15 [KO:K02956]" />
-    <DictionaryEntry Key="XC_3043" Value="rpsP; 30S ribosomal protein S16 [KO:K02959]" />
-    <DictionaryEntry Key="XC_3331" Value="rpsQ; 30S ribosomal protein S17 [KO:K02961]" />
-    <DictionaryEntry Key="XC_2670" Value="rpsR; 30S ribosomal protein S18 [KO:K02963]" />
-    <DictionaryEntry Key="XC_3336" Value="rpsS; 30S ribosomal protein S19 [KO:K02965]" />
-    <DictionaryEntry Key="XC_3090" Value="rpsT; 30S ribosomal protein S20 [KO:K02968]" />
-    <DictionaryEntry Key="XC_3889" Value="rpsU; 30S ribosomal protein S21 [KO:K02970]" />
-    <DictionaryEntry Key="XC_3350" Value="rplA; 50S ribosomal protein L1 [KO:K02863]" />
-    <DictionaryEntry Key="XC_3337" Value="rplB; 50S ribosomal protein L2 [KO:K02886]" />
-    <DictionaryEntry Key="XC_3340" Value="rplC; 50S ribosomal protein L3 [KO:K02906]" />
-    <DictionaryEntry Key="XC_3339" Value="rplD; 50S ribosomal protein L4 [KO:K02926]" />
-    <DictionaryEntry Key="XC_3328" Value="rplE; 50S ribosomal protein L5 [KO:K02931]" />
-    <DictionaryEntry Key="XC_3325" Value="rplF; 50S ribosomal protein L6 [KO:K02933]" />
-    <DictionaryEntry Key="XC_3348" Value="rplL; 50S ribosomal protein L7/L12 [KO:K02935]" />
-    <DictionaryEntry Key="XC_2669" Value="rplI; 50S ribosomal protein L9 [KO:K02939]" />
-    <DictionaryEntry Key="XC_3349" Value="rplJ; 50S ribosomal protein L10 [KO:K02864]" />
-    <DictionaryEntry Key="XC_3351" Value="rplK; 50S ribosomal protein L11 [KO:K02867]" />
-    <DictionaryEntry Key="XC_0490" Value="rplM; 50S ribosomal protein L13 [KO:K02871]" />
-    <DictionaryEntry Key="XC_3330" Value="rplN; 50S ribosomal protein L14 [KO:K02874]" />
-    <DictionaryEntry Key="XC_3321" Value="rplO; 50S ribosomal protein L15 [KO:K02876]" />
-    <DictionaryEntry Key="XC_3333" Value="rplP; 50S ribosomal protein L16 [KO:K02878]" />
-    <DictionaryEntry Key="XC_3315" Value="rplQ; 50S ribosomal protein L17 [KO:K02879]" />
-    <DictionaryEntry Key="XC_3324" Value="rplR; 50S ribosomal protein L18 [KO:K02881]" />
-    <DictionaryEntry Key="XC_3040" Value="rplS; 50S ribosomal protein L19 [KO:K02884]" />
-    <DictionaryEntry Key="XC_1653" Value="rplT; 50S ribosomal protein L20 [KO:K02887]" />
-    <DictionaryEntry Key="XC_3093" Value="rplU; 50S ribosomal protein L21 [KO:K02888]" />
-    <DictionaryEntry Key="XC_3335" Value="rplV; 50S ribosomal protein L22 [KO:K02890]" />
-    <DictionaryEntry Key="XC_3338" Value="rplW; 50S ribosomal protein L23 [KO:K02892]" />
-    <DictionaryEntry Key="XC_3329" Value="rplX; 50S ribosomal protein L24 [KO:K02895]" />
-    <DictionaryEntry Key="XC_3357" Value="50S ribosomal protein L25; K02897 large subunit ribosomal protein L25 [KO:K02897]" />
-    <DictionaryEntry Key="XC_3092" Value="rpmA; 50S ribosomal protein L27 [KO:K02899]" />
-    <DictionaryEntry Key="XC_4123" Value="rpmB; 50S ribosomal protein L28 [KO:K02902]" />
-    <DictionaryEntry Key="XC_3332" Value="rpmC; 50S ribosomal protein L29 [KO:K02904]" />
-    <DictionaryEntry Key="XC_3322" Value="rpmD; 50S ribosomal protein L30 [KO:K02907]" />
-    <DictionaryEntry Key="XC_0945" Value="rpmE2; 50S ribosomal protein L31 [KO:K02909]" />
-    <DictionaryEntry Key="XC_3230" Value="rpmF; 50S ribosomal protein L32 [KO:K02911]" />
-    <DictionaryEntry Key="XC_4122" Value="rpmG; 50S ribosomal protein L33 [KO:K02913]" />
-    <DictionaryEntry Key="XC_4332" Value="rpmH; 50S ribosomal protein L34 [KO:K02914]" />
-    <DictionaryEntry Key="XC_1652" Value="rpmI; 50S ribosomal protein L35 [KO:K02916]" />
-    <DictionaryEntry Key="XC_1922" Value="rpmJ; 50S ribosomal protein L36 [KO:K02919]" />
-    <DictionaryEntry Key="XC_4386" Value="16S ribosomal RNA; K01977 16S ribosomal RNA [KO:K01977]" />
-    <DictionaryEntry Key="XC_4393" Value="16S ribosomal RNA; K01977 16S ribosomal RNA [KO:K01977]" />
-    <DictionaryEntry Key="XC_4383" Value="23S ribosomal RNA; K01980 23S ribosomal RNA [KO:K01980]" />
-    <DictionaryEntry Key="XC_4390" Value="23S ribosomal RNA; K01980 23S ribosomal RNA [KO:K01980]" />
-    <DictionaryEntry Key="XC_4382" Value="5S ribosomal RNA; K01985 5S ribosomal RNA [KO:K01985]" />
-    <DictionaryEntry Key="XC_4389" Value="5S ribosomal RNA; K01985 5S ribosomal RNA [KO:K01985]" />
+    <DictionaryEntry Key="xcb:XC_0490" Value="rplM; 50S ribosomal protein L13; K02871 large subunit ribosomal protein L13" />
+    <DictionaryEntry Key="xcb:XC_0491" Value="rpsI; 30S ribosomal protein S9; K02996 small subunit ribosomal protein S9" />
+    <DictionaryEntry Key="xcb:XC_0945" Value="rpmE2; 50S ribosomal protein L31; K02909 large subunit ribosomal protein L31" />
+    <DictionaryEntry Key="xcb:XC_1608" Value="rpsO; 30S ribosomal protein S15; K02956 small subunit ribosomal protein S15" />
+    <DictionaryEntry Key="xcb:XC_1652" Value="rpmI; 50S ribosomal protein L35; K02916 large subunit ribosomal protein L35" />
+    <DictionaryEntry Key="xcb:XC_1653" Value="rplT; 50S ribosomal protein L20; K02887 large subunit ribosomal protein L20" />
+    <DictionaryEntry Key="xcb:XC_1922" Value="rpmJ; 50S ribosomal protein L36; K02919 large subunit ribosomal protein L36" />
+    <DictionaryEntry Key="xcb:XC_1924" Value="rpsA; 30S ribosomal protein S1; K02945 small subunit ribosomal protein S1" />
+    <DictionaryEntry Key="xcb:XC_2669" Value="rplI; 50S ribosomal protein L9; K02939 large subunit ribosomal protein L9" />
+    <DictionaryEntry Key="xcb:XC_2670" Value="rpsR; 30S ribosomal protein S18; K02963 small subunit ribosomal protein S18" />
+    <DictionaryEntry Key="xcb:XC_2671" Value="rpsF; 30S ribosomal protein S6; K02990 small subunit ribosomal protein S6" />
+    <DictionaryEntry Key="xcb:XC_2863" Value="rpsB; 30S ribosomal protein S2; K02967 small subunit ribosomal protein S2" />
+    <DictionaryEntry Key="xcb:XC_3040" Value="rplS; 50S ribosomal protein L19; K02884 large subunit ribosomal protein L19" />
+    <DictionaryEntry Key="xcb:XC_3043" Value="rpsP; 30S ribosomal protein S16; K02959 small subunit ribosomal protein S16" />
+    <DictionaryEntry Key="xcb:XC_3090" Value="rpsT; 30S ribosomal protein S20; K02968 small subunit ribosomal protein S20" />
+    <DictionaryEntry Key="xcb:XC_3092" Value="rpmA; 50S ribosomal protein L27; K02899 large subunit ribosomal protein L27" />
+    <DictionaryEntry Key="xcb:XC_3093" Value="rplU; 50S ribosomal protein L21; K02888 large subunit ribosomal protein L21" />
+    <DictionaryEntry Key="xcb:XC_3230" Value="rpmF; 50S ribosomal protein L32; K02911 large subunit ribosomal protein L32" />
+    <DictionaryEntry Key="xcb:XC_3315" Value="rplQ; 50S ribosomal protein L17; K02879 large subunit ribosomal protein L17" />
+    <DictionaryEntry Key="xcb:XC_3317" Value="rpsD; 30S ribosomal protein S4; K02986 small subunit ribosomal protein S4" />
+    <DictionaryEntry Key="xcb:XC_3318" Value="30S ribosomal protein S11; K02948 small subunit ribosomal protein S11" />
+    <DictionaryEntry Key="xcb:XC_3319" Value="rpsM; 30S ribosomal protein S13; K02952 small subunit ribosomal protein S13" />
+    <DictionaryEntry Key="xcb:XC_3321" Value="rplO; 50S ribosomal protein L15; K02876 large subunit ribosomal protein L15" />
+    <DictionaryEntry Key="xcb:XC_3322" Value="rpmD; 50S ribosomal protein L30; K02907 large subunit ribosomal protein L30" />
+    <DictionaryEntry Key="xcb:XC_3323" Value="rpsE; 30S ribosomal protein S5; K02988 small subunit ribosomal protein S5" />
+    <DictionaryEntry Key="xcb:XC_3324" Value="rplR; 50S ribosomal protein L18; K02881 large subunit ribosomal protein L18" />
+    <DictionaryEntry Key="xcb:XC_3325" Value="rplF; 50S ribosomal protein L6; K02933 large subunit ribosomal protein L6" />
+    <DictionaryEntry Key="xcb:XC_3326" Value="rpsH; 30S ribosomal protein S8; K02994 small subunit ribosomal protein S8" />
+    <DictionaryEntry Key="xcb:XC_3327" Value="rpsN; 30S ribosomal protein S14; K02954 small subunit ribosomal protein S14" />
+    <DictionaryEntry Key="xcb:XC_3328" Value="rplE; 50S ribosomal protein L5; K02931 large subunit ribosomal protein L5" />
+    <DictionaryEntry Key="xcb:XC_3329" Value="rplX; 50S ribosomal protein L24; K02895 large subunit ribosomal protein L24" />
+    <DictionaryEntry Key="xcb:XC_3330" Value="rplN; 50S ribosomal protein L14; K02874 large subunit ribosomal protein L14" />
+    <DictionaryEntry Key="xcb:XC_3331" Value="rpsQ; 30S ribosomal protein S17; K02961 small subunit ribosomal protein S17" />
+    <DictionaryEntry Key="xcb:XC_3332" Value="rpmC; 50S ribosomal protein L29; K02904 large subunit ribosomal protein L29" />
+    <DictionaryEntry Key="xcb:XC_3333" Value="rplP; 50S ribosomal protein L16; K02878 large subunit ribosomal protein L16" />
+    <DictionaryEntry Key="xcb:XC_3334" Value="rpsC; 30S ribosomal protein S3; K02982 small subunit ribosomal protein S3" />
+    <DictionaryEntry Key="xcb:XC_3335" Value="rplV; 50S ribosomal protein L22; K02890 large subunit ribosomal protein L22" />
+    <DictionaryEntry Key="xcb:XC_3336" Value="rpsS; 30S ribosomal protein S19; K02965 small subunit ribosomal protein S19" />
+    <DictionaryEntry Key="xcb:XC_3337" Value="rplB; 50S ribosomal protein L2; K02886 large subunit ribosomal protein L2" />
+    <DictionaryEntry Key="xcb:XC_3338" Value="rplW; 50S ribosomal protein L23; K02892 large subunit ribosomal protein L23" />
+    <DictionaryEntry Key="xcb:XC_3339" Value="rplD; 50S ribosomal protein L4; K02926 large subunit ribosomal protein L4" />
+    <DictionaryEntry Key="xcb:XC_3340" Value="rplC; 50S ribosomal protein L3; K02906 large subunit ribosomal protein L3" />
+    <DictionaryEntry Key="xcb:XC_3341" Value="rpsJ; 30S ribosomal protein S10; K02946 small subunit ribosomal protein S10" />
+    <DictionaryEntry Key="xcb:XC_3344" Value="30S ribosomal protein S7; K02992 small subunit ribosomal protein S7" />
+    <DictionaryEntry Key="xcb:XC_3345" Value="rpsL; 30S ribosomal protein S12; K02950 small subunit ribosomal protein S12" />
+    <DictionaryEntry Key="xcb:XC_3348" Value="rplL; 50S ribosomal protein L7/L12; K02935 large subunit ribosomal protein L7/L12" />
+    <DictionaryEntry Key="xcb:XC_3349" Value="rplJ; 50S ribosomal protein L10; K02864 large subunit ribosomal protein L10" />
+    <DictionaryEntry Key="xcb:XC_3350" Value="rplA; 50S ribosomal protein L1; K02863 large subunit ribosomal protein L1" />
+    <DictionaryEntry Key="xcb:XC_3351" Value="rplK; 50S ribosomal protein L11; K02867 large subunit ribosomal protein L11" />
+    <DictionaryEntry Key="xcb:XC_3357" Value="50S ribosomal protein L25; K02897 large subunit ribosomal protein L25" />
+    <DictionaryEntry Key="xcb:XC_3889" Value="rpsU; 30S ribosomal protein S21; K02970 small subunit ribosomal protein S21" />
+    <DictionaryEntry Key="xcb:XC_4122" Value="rpmG; 50S ribosomal protein L33; K02913 large subunit ribosomal protein L33" />
+    <DictionaryEntry Key="xcb:XC_4123" Value="rpmB; 50S ribosomal protein L28; K02902 large subunit ribosomal protein L28" />
+    <DictionaryEntry Key="xcb:XC_4332" Value="rpmH; 50S ribosomal protein L34; K02914 large subunit ribosomal protein L34" />
+    <DictionaryEntry Key="xcb:XC_4382" Value="5S ribosomal RNA; K01985 5S ribosomal RNA" />
+    <DictionaryEntry Key="xcb:XC_4383" Value="23S ribosomal RNA; K01980 23S ribosomal RNA" />
+    <DictionaryEntry Key="xcb:XC_4386" Value="16S ribosomal RNA; K01977 16S ribosomal RNA" />
+    <DictionaryEntry Key="xcb:XC_4389" Value="5S ribosomal RNA; K01985 5S ribosomal RNA" />
+    <DictionaryEntry Key="xcb:XC_4390" Value="23S ribosomal RNA; K01980 23S ribosomal RNA" />
+    <DictionaryEntry Key="xcb:XC_4393" Value="16S ribosomal RNA; K01977 16S ribosomal RNA" />
   </Genes>
 </KEGG.PathwayBrief>

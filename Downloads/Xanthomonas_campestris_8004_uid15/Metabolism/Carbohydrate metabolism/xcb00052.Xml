@@ -54,25 +54,25 @@
   </Compound>
   <PathwayMap Key="xcb00052" Value="Galactose metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_3050" Value="aldose 1-epimerase; K01785 aldose 1-epimerase [EC:5.1.3.3] [KO:K01785] [EC:5.1.3.3]" />
-    <DictionaryEntry Key="XC_3767" Value="UDP-glucose 4-epimerase; K01784 UDP-glucose 4-epimerase [EC:5.1.3.2] [KO:K01784] [EC:5.1.3.2]" />
-    <DictionaryEntry Key="XC_1930" Value="UTP-glucose-1-phosphate uridylyltransferase; K00963 UTP--glucose-1-phosphate uridylyltransferase [EC:2.7.7.9] [KO:K00963] [EC:2.7.7.9]" />
-    <DictionaryEntry Key="XC_3608" Value="phosphoglucomutase; phosphomannomutase [KO:K15778] [EC:5.4.2.2 5.4.2.8]" />
-    <DictionaryEntry Key="XC_3941" Value="phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5.4.2.2] [KO:K15778] [EC:5.4.2.2 5.4.2.8]" />
-    <DictionaryEntry Key="XC_1976" Value="glk; glucokinase [KO:K00845] [EC:2.7.1.2]" />
-    <DictionaryEntry Key="XC_1166" Value="glucokinase; K00845 glucokinase [EC:2.7.1.2] [KO:K00845] [EC:2.7.1.2]" />
-    <DictionaryEntry Key="XC_1223" Value="glucokinase; K00845 glucokinase [EC:2.7.1.2] [KO:K00845] [EC:2.7.1.2]" />
-    <DictionaryEntry Key="XC_2985" Value="beta-galactosidase; K01190 beta-galactosidase [EC:3.2.1.23] [KO:K01190] [EC:3.2.1.23]" />
-    <DictionaryEntry Key="XC_4208" Value="beta-galactosidase; K01190 beta-galactosidase [EC:3.2.1.23] [KO:K01190] [EC:3.2.1.23]" />
-    <DictionaryEntry Key="XC_1214" Value="beta-galactosidase; K12308 beta-galactosidase [EC:3.2.1.23] [KO:K12308] [EC:3.2.1.23]" />
-    <DictionaryEntry Key="XC_3769" Value="UDP-galactopyranose mutase; K01854 UDP-galactopyranose mutase [EC:5.4.99.9] [KO:K01854] [EC:5.4.99.9]" />
-    <DictionaryEntry Key="XC_0872" Value="6-phosphofructokinase; K00850 6-phosphofructokinase 1 [EC:2.7.1.11] [KO:K00850] [EC:2.7.1.11]" />
-    <DictionaryEntry Key="XC_3491" Value="D-galactose 1-dehydrogenase; K00035 D-galactose 1-dehydrogenase [EC:1.1.1.48] [KO:K00035] [EC:1.1.1.48]" />
-    <DictionaryEntry Key="XC_2488" Value="galactonate dehydratase; K01684 galactonate dehydratase [EC:4.2.1.6] [KO:K01684] [EC:4.2.1.6]" />
-    <DictionaryEntry Key="XC_2490" Value="2-oxo-3-deoxygalactonate kinase; K00883 2-dehydro-3-deoxygalactonokinase [EC:2.7.1.58] [KO:K00883] [EC:2.7.1.58]" />
-    <DictionaryEntry Key="XC_2487" Value="2-dehydro-3-deoxy-6-phosphogalactonate aldolase; K01631 2-dehydro-3-deoxyphosphogalactonate aldolase [EC:4.1.2.21] [KO:K01631] [EC:4.1.2.21]" />
-    <DictionaryEntry Key="XC_1642" Value="alpha-glucosidase; K01187 alpha-glucosidase [EC:3.2.1.20] [KO:K01187] [EC:3.2.1.20]" />
-    <DictionaryEntry Key="XC_1645" Value="alpha-glucosidase; K01187 alpha-glucosidase [EC:3.2.1.20] [KO:K01187] [EC:3.2.1.20]" />
-    <DictionaryEntry Key="XC_1002" Value="alpha-glucosidase; K01187 alpha-glucosidase [EC:3.2.1.20] [KO:K01187] [EC:3.2.1.20]" />
+    <DictionaryEntry Key="xcb:XC_0872" Value="6-phosphofructokinase (EC:2.7.1.11); K00850 6-phosphofructokinase 1 [EC:2.7.1.11]" />
+    <DictionaryEntry Key="xcb:XC_1002" Value="alpha-glucosidase; K01187 alpha-glucosidase [EC:3.2.1.20]" />
+    <DictionaryEntry Key="xcb:XC_1166" Value="glucokinase (EC:2.7.1.2); K00845 glucokinase [EC:2.7.1.2]" />
+    <DictionaryEntry Key="xcb:XC_1214" Value="beta-galactosidase; K12308 beta-galactosidase [EC:3.2.1.23]" />
+    <DictionaryEntry Key="xcb:XC_1223" Value="glucokinase (EC:2.7.1.2); K00845 glucokinase [EC:2.7.1.2]" />
+    <DictionaryEntry Key="xcb:XC_1642" Value="alpha-glucosidase; K01187 alpha-glucosidase [EC:3.2.1.20]" />
+    <DictionaryEntry Key="xcb:XC_1645" Value="alpha-glucosidase; K01187 alpha-glucosidase [EC:3.2.1.20]" />
+    <DictionaryEntry Key="xcb:XC_1930" Value="UTP-glucose-1-phosphate uridylyltransferase; K00963 UTP--glucose-1-phosphate uridylyltransferase [EC" />
+    <DictionaryEntry Key="xcb:XC_1976" Value="glk; glucokinase (EC:2.7.1.2); K00845 glucokinase [EC:2.7.1.2]" />
+    <DictionaryEntry Key="xcb:XC_2487" Value="2-dehydro-3-deoxy-6-phosphogalactonate aldolase (EC:4.1.2.21); K01631 2-dehydro-3-deoxyphosphogalact" />
+    <DictionaryEntry Key="xcb:XC_2488" Value="galactonate dehydratase; K01684 galactonate dehydratase [EC:4.2.1.6]" />
+    <DictionaryEntry Key="xcb:XC_2490" Value="2-oxo-3-deoxygalactonate kinase; K00883 2-dehydro-3-deoxygalactonokinase [EC:2.7.1.58]" />
+    <DictionaryEntry Key="xcb:XC_2985" Value="beta-galactosidase; K01190 beta-galactosidase [EC:3.2.1.23]" />
+    <DictionaryEntry Key="xcb:XC_3050" Value="aldose 1-epimerase; K01785 aldose 1-epimerase [EC:5.1.3.3]" />
+    <DictionaryEntry Key="xcb:XC_3491" Value="D-galactose 1-dehydrogenase; K00035 D-galactose 1-dehydrogenase [EC:1.1.1.48]" />
+    <DictionaryEntry Key="xcb:XC_3608" Value="phosphoglucomutase; phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5" />
+    <DictionaryEntry Key="xcb:XC_3767" Value="UDP-glucose 4-epimerase; K01784 UDP-glucose 4-epimerase [EC:5.1.3.2]" />
+    <DictionaryEntry Key="xcb:XC_3769" Value="UDP-galactopyranose mutase; K01854 UDP-galactopyranose mutase [EC:5.4.99.9]" />
+    <DictionaryEntry Key="xcb:XC_3941" Value="phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5.4.2.2]" />
+    <DictionaryEntry Key="xcb:XC_4208" Value="beta-galactosidase; K01190 beta-galactosidase [EC:3.2.1.23]" />
   </Genes>
 </KEGG.PathwayBrief>

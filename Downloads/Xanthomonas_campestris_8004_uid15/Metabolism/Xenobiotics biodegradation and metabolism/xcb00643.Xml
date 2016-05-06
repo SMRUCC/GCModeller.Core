@@ -30,11 +30,11 @@
   </Compound>
   <PathwayMap Key="xcb00643" Value="Styrene degradation&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0452" Value="homogentisate 1; K00451 homogentisate 1,2-dioxygenase [EC:1.13.11.5] [KO:K00451] [EC:1.13.11.5]" />
-    <DictionaryEntry Key="XC_3641" Value="maleylacetoacetate isomerase; K01800 maleylacetoacetate isomerase [EC:5.2.1.2] [KO:K01800] [EC:5.2.1.2]" />
-    <DictionaryEntry Key="XC_3642" Value="fumarylacetoacetate hydrolase; K16171 fumarylacetoacetate (FAA) hydrolase [EC:3.7.1.2] [KO:K16171] [EC:3.7.1.2]" />
-    <DictionaryEntry Key="XC_3311" Value="amidase; K01426 amidase [EC:3.5.1.4] [KO:K01426] [EC:3.5.1.4]" />
-    <DictionaryEntry Key="XC_0376" Value="glutaconate CoA transferase subunit A; K01039 glutaconate CoA-transferase, subunit A [EC:2.8.3.12] [KO:K01039] [EC:2.8.3.12]" />
-    <DictionaryEntry Key="XC_0377" Value="glutaconate CoA transferase subunit B; K01040 glutaconate CoA-transferase, subunit B [EC:2.8.3.12] [KO:K01040] [EC:2.8.3.12]" />
+    <DictionaryEntry Key="xcb:XC_0376" Value="glutaconate CoA transferase subunit A; K01039 glutaconate CoA-transferase, subunit A [EC:2.8.3.12]" />
+    <DictionaryEntry Key="xcb:XC_0377" Value="glutaconate CoA transferase subunit B; K01040 glutaconate CoA-transferase, subunit B [EC:2.8.3.12]" />
+    <DictionaryEntry Key="xcb:XC_0452" Value="homogentisate 1,2-dioxygenase (EC:1.13.11.5); K00451 homogentisate 1,2-dioxygenase [EC:1.13.11.5]" />
+    <DictionaryEntry Key="xcb:XC_3311" Value="amidase (EC:3.5.1.4); K01426 amidase [EC:3.5.1.4]" />
+    <DictionaryEntry Key="xcb:XC_3641" Value="maleylacetoacetate isomerase; K01800 maleylacetoacetate isomerase [EC:5.2.1.2]" />
+    <DictionaryEntry Key="xcb:XC_3642" Value="fumarylacetoacetate hydrolase; K16171 fumarylacetoacetate (FAA) hydrolase [EC:3.7.1.2]" />
   </Genes>
 </KEGG.PathwayBrief>

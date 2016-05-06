@@ -38,13 +38,13 @@
   </Compound>
   <PathwayMap Key="xcb00410" Value="beta-Alanine metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2466" Value="aspartate alpha-decarboxylase; K01579 aspartate 1-decarboxylase [EC:4.1.1.11] [KO:K01579] [EC:4.1.1.11]" />
-    <DictionaryEntry Key="XC_3954" Value="spermidine synthase; K00797 spermidine synthase [EC:2.5.1.16] [KO:K00797] [EC:2.5.1.16]" />
-    <DictionaryEntry Key="XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
-    <DictionaryEntry Key="XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
-    <DictionaryEntry Key="XC_2467" Value="panC; pantoate--beta-alanine ligase [KO:K01918] [EC:6.3.2.1]" />
-    <DictionaryEntry Key="XC_1759" Value="beta alanine--pyruvate transaminase; K00822 beta-alanine--pyruvate transaminase [EC:2.6.1.18] [KO:K00822] [EC:2.6.1.18]" />
-    <DictionaryEntry Key="XC_2975" Value="3-hydroxyacyl-CoA dehydrogenase; K01782 3-hydroxyacyl-CoA dehydrogenase / enoyl-CoA hydratase / 3-hydroxybutyryl-CoA epimerase [EC:1.1.1.35 4.2.1.17 5.1.2.3] [KO:K01782] [EC:5.1.2.3 4.2.1.17 1.1.1.35]" />
-    <DictionaryEntry Key="XC_2981" Value="methylmalonate-semialdehyde dehydrogenase; K00140 malonate-semialdehyde dehydrogenase (acetylating) / methylmalonate-semialdehyde dehydrogenase [EC:1.2.1.18 1.2.1.27] [KO:K00140] [EC:1.2.1.27 1.2.1.18]" />
+    <DictionaryEntry Key="xcb:XC_1759" Value="beta alanine--pyruvate transaminase (EC:2.6.1.18); K00822 beta-alanine--pyruvate transaminase [EC:2." />
+    <DictionaryEntry Key="xcb:XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xcb:XC_2466" Value="aspartate alpha-decarboxylase (EC:4.1.1.11); K01579 aspartate 1-decarboxylase [EC:4.1.1.11]" />
+    <DictionaryEntry Key="xcb:XC_2467" Value="panC; pantoate--beta-alanine ligase (EC:6.3.2.1); K01918 pantoate--beta-alanine ligase [EC:6.3.2.1]" />
+    <DictionaryEntry Key="xcb:XC_2975" Value="3-hydroxyacyl-CoA dehydrogenase; K01782 3-hydroxyacyl-CoA dehydrogenase / enoyl-CoA hydratase / 3-hy" />
+    <DictionaryEntry Key="xcb:XC_2981" Value="methylmalonate-semialdehyde dehydrogenase; K00140 malonate-semialdehyde dehydrogenase (acetylating)" />
+    <DictionaryEntry Key="xcb:XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xcb:XC_3954" Value="spermidine synthase (EC:2.5.1.16); K00797 spermidine synthase [EC:2.5.1.16]" />
   </Genes>
 </KEGG.PathwayBrief>

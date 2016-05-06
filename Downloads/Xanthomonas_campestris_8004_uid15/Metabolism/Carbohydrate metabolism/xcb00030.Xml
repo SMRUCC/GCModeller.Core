@@ -49,31 +49,31 @@
   </Compound>
   <PathwayMap Key="xcb00030" Value="Pentose phosphate pathway&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2465" Value="pgi; glucose-6-phosphate isomerase [KO:K01810] [EC:5.3.1.9]" />
-    <DictionaryEntry Key="XC_1977" Value="glucose-6-phosphate 1-dehydrogenase; K00036 glucose-6-phosphate 1-dehydrogenase [EC:1.1.1.49 1.1.1.363] [KO:K00036] [EC:1.1.1.363 1.1.1.49]" />
-    <DictionaryEntry Key="XC_4082" Value="glucose-6-phosphate 1-dehydrogenase; K00036 glucose-6-phosphate 1-dehydrogenase [EC:1.1.1.49 1.1.1.363] [KO:K00036] [EC:1.1.1.363 1.1.1.49]" />
-    <DictionaryEntry Key="XC_1975" Value="6-phosphogluconolactonase; K01057 6-phosphogluconolactonase [EC:3.1.1.31] [KO:K01057] [EC:3.1.1.31]" />
-    <DictionaryEntry Key="XC_0725" Value="6-phosphogluconate dehydrogenase; K00033 6-phosphogluconate dehydrogenase [EC:1.1.1.44 1.1.1.343] [KO:K00033] [EC:1.1.1.343 1.1.1.44]" />
-    <DictionaryEntry Key="XC_0469" Value="ribulose-phosphate 3-epimerase; K01783 ribulose-phosphate 3-epimerase [EC:5.1.3.1] [KO:K01783] [EC:5.1.3.1]" />
-    <DictionaryEntry Key="XC_0929" Value="transketolase; K00615 transketolase [EC:2.2.1.1] [KO:K00615] [EC:2.2.1.1]" />
-    <DictionaryEntry Key="XC_3400" Value="transaldolase B; K00616 transaldolase [EC:2.2.1.2] [KO:K00616] [EC:2.2.1.2]" />
-    <DictionaryEntry Key="XC_0899" Value="ribose-5-phosphate isomerase A; K01807 ribose 5-phosphate isomerase A [EC:5.3.1.6] [KO:K01807] [EC:5.3.1.6]" />
-    <DictionaryEntry Key="XC_0162" Value="hypothetical protein; K01808 ribose 5-phosphate isomerase B [EC:5.3.1.6] [KO:K01808] [EC:5.3.1.6]" />
-    <DictionaryEntry Key="XC_3468" Value="ribokinase; K00852 ribokinase [EC:2.7.1.15] [KO:K00852] [EC:2.7.1.15]" />
-    <DictionaryEntry Key="XC_3608" Value="phosphoglucomutase; phosphomannomutase [KO:K15778] [EC:5.4.2.2 5.4.2.8]" />
-    <DictionaryEntry Key="XC_3941" Value="phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5.4.2.2] [KO:K15778] [EC:5.4.2.2 5.4.2.8]" />
-    <DictionaryEntry Key="XC_3358" Value="ribose-phosphate pyrophosphokinase; K00948 ribose-phosphate pyrophosphokinase [EC:2.7.6.1] [KO:K00948] [EC:2.7.6.1]" />
-    <DictionaryEntry Key="XC_1974" Value="phosphogluconate dehydratase; K01690 phosphogluconate dehydratase [EC:4.2.1.12] [KO:K01690] [EC:4.2.1.12]" />
-    <DictionaryEntry Key="XC_1973" Value="keto-hydroxyglutarate-aldolase/keto-deoxy-phosphogluconate aldolase; K01625 2-dehydro-3-deoxyphosphogluconate aldolase / (4S)-4-hydroxy-2-oxoglutarate aldolase [EC:4.1.2.14 4.1.3.42] [KO:K01625] [EC:4.1.3.42 4.1.2.14]" />
-    <DictionaryEntry Key="XC_1075" Value="glucose dehydrogenase; K00117 quinoprotein glucose dehydrogenase [EC:1.1.5.2] [KO:K00117] [EC:1.1.5.2]" />
-    <DictionaryEntry Key="XC_2659" Value="glucose dehydrogenase; K00117 quinoprotein glucose dehydrogenase [EC:1.1.5.2] [KO:K00117] [EC:1.1.5.2]" />
-    <DictionaryEntry Key="XC_0553" Value="gluconolactonase; K01053 gluconolactonase [EC:3.1.1.17] [KO:K01053] [EC:3.1.1.17]" />
-    <DictionaryEntry Key="XC_4205" Value="gluconolactonase; K01053 gluconolactonase [EC:3.1.1.17] [KO:K01053] [EC:3.1.1.17]" />
-    <DictionaryEntry Key="XC_1568" Value="2-hydroxyacid dehydrogenase; K00090 gluconate 2-dehydrogenase [EC:1.1.1.215] [KO:K00090] [EC:1.1.1.215]" />
-    <DictionaryEntry Key="XC_4170" Value="gluconokinase; K00851 gluconokinase [EC:2.7.1.12] [KO:K00851] [EC:2.7.1.12]" />
-    <DictionaryEntry Key="XC_0122" Value="2-keto-3-deoxygluconate kinase; K00874 2-dehydro-3-deoxygluconokinase [EC:2.7.1.45] [KO:K00874] [EC:2.7.1.45]" />
-    <DictionaryEntry Key="XC_0979" Value="fructose-bisphosphate aldolase; K01623 fructose-bisphosphate aldolase, class I [EC:4.1.2.13] [KO:K01623] [EC:4.1.2.13]" />
-    <DictionaryEntry Key="XC_0098" Value="fructose-1; K03841 fructose-1,6-bisphosphatase I [EC:3.1.3.11] [KO:K03841] [EC:3.1.3.11]" />
-    <DictionaryEntry Key="XC_0872" Value="6-phosphofructokinase; K00850 6-phosphofructokinase 1 [EC:2.7.1.11] [KO:K00850] [EC:2.7.1.11]" />
+    <DictionaryEntry Key="xcb:XC_0098" Value="fructose-1,6-bisphosphatase (EC:3.1.3.11); K03841 fructose-1,6-bisphosphatase I [EC:3.1.3.11]" />
+    <DictionaryEntry Key="xcb:XC_0122" Value="2-keto-3-deoxygluconate kinase; K00874 2-dehydro-3-deoxygluconokinase [EC:2.7.1.45]" />
+    <DictionaryEntry Key="xcb:XC_0162" Value="hypothetical protein; K01808 ribose 5-phosphate isomerase B [EC:5.3.1.6]" />
+    <DictionaryEntry Key="xcb:XC_0469" Value="ribulose-phosphate 3-epimerase (EC:5.1.3.1); K01783 ribulose-phosphate 3-epimerase [EC:5.1.3.1]" />
+    <DictionaryEntry Key="xcb:XC_0553" Value="gluconolactonase; K01053 gluconolactonase [EC:3.1.1.17]" />
+    <DictionaryEntry Key="xcb:XC_0725" Value="6-phosphogluconate dehydrogenase; K00033 6-phosphogluconate dehydrogenase [EC:1.1.1.44 1.1.1.343]" />
+    <DictionaryEntry Key="xcb:XC_0872" Value="6-phosphofructokinase (EC:2.7.1.11); K00850 6-phosphofructokinase 1 [EC:2.7.1.11]" />
+    <DictionaryEntry Key="xcb:XC_0899" Value="ribose-5-phosphate isomerase A (EC:5.3.1.6); K01807 ribose 5-phosphate isomerase A [EC:5.3.1.6]" />
+    <DictionaryEntry Key="xcb:XC_0929" Value="transketolase (EC:2.2.1.1); K00615 transketolase [EC:2.2.1.1]" />
+    <DictionaryEntry Key="xcb:XC_0979" Value="fructose-bisphosphate aldolase; K01623 fructose-bisphosphate aldolase, class I [EC:4.1.2.13]" />
+    <DictionaryEntry Key="xcb:XC_1075" Value="glucose dehydrogenase; K00117 quinoprotein glucose dehydrogenase [EC:1.1.5.2]" />
+    <DictionaryEntry Key="xcb:XC_1568" Value="2-hydroxyacid dehydrogenase; K00090 gluconate 2-dehydrogenase [EC:1.1.1.215]" />
+    <DictionaryEntry Key="xcb:XC_1973" Value="keto-hydroxyglutarate-aldolase/keto-deoxy-phosphogluconate aldolase (EC:4.1.2.14 4.1.3.16); K01625 2" />
+    <DictionaryEntry Key="xcb:XC_1974" Value="phosphogluconate dehydratase (EC:4.2.1.12); K01690 phosphogluconate dehydratase [EC:4.2.1.12]" />
+    <DictionaryEntry Key="xcb:XC_1975" Value="6-phosphogluconolactonase; K01057 6-phosphogluconolactonase [EC:3.1.1.31]" />
+    <DictionaryEntry Key="xcb:XC_1977" Value="glucose-6-phosphate 1-dehydrogenase (EC:1.1.1.49); K00036 glucose-6-phosphate 1-dehydrogenase [EC:1." />
+    <DictionaryEntry Key="xcb:XC_2465" Value="pgi; glucose-6-phosphate isomerase (EC:5.3.1.9); K01810 glucose-6-phosphate isomerase [EC:5.3.1.9]" />
+    <DictionaryEntry Key="xcb:XC_2659" Value="glucose dehydrogenase; K00117 quinoprotein glucose dehydrogenase [EC:1.1.5.2]" />
+    <DictionaryEntry Key="xcb:XC_3358" Value="ribose-phosphate pyrophosphokinase (EC:2.7.6.1); K00948 ribose-phosphate pyrophosphokinase [EC:2.7.6" />
+    <DictionaryEntry Key="xcb:XC_3400" Value="transaldolase B; K00616 transaldolase [EC:2.2.1.2]" />
+    <DictionaryEntry Key="xcb:XC_3468" Value="ribokinase; K00852 ribokinase [EC:2.7.1.15]" />
+    <DictionaryEntry Key="xcb:XC_3608" Value="phosphoglucomutase; phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5" />
+    <DictionaryEntry Key="xcb:XC_3941" Value="phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5.4.2.2]" />
+    <DictionaryEntry Key="xcb:XC_4082" Value="glucose-6-phosphate 1-dehydrogenase; K00036 glucose-6-phosphate 1-dehydrogenase [EC:1.1.1.49 1.1.1.3" />
+    <DictionaryEntry Key="xcb:XC_4170" Value="gluconokinase; K00851 gluconokinase [EC:2.7.1.12]" />
+    <DictionaryEntry Key="xcb:XC_4205" Value="gluconolactonase; K01053 gluconolactonase [EC:3.1.1.17]" />
   </Genes>
 </KEGG.PathwayBrief>

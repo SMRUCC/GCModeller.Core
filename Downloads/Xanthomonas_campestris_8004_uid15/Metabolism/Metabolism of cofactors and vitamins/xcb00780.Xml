@@ -37,21 +37,21 @@
   </Compound>
   <PathwayMap Key="xcb00780" Value="Biotin metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0395" Value="biotin synthesis protein; K02169 malonyl-CoA O-methyltransferase [EC:2.1.1.197] [KO:K02169] [EC:2.1.1.197]" />
-    <DictionaryEntry Key="XC_2553" Value="biotin synthesis protein; K02169 malonyl-CoA O-methyltransferase [EC:2.1.1.197] [KO:K02169] [EC:2.1.1.197]" />
-    <DictionaryEntry Key="XC_4087" Value="3-oxoacyl-ACP synthase; K00647 3-oxoacyl-[acyl-carrier-protein] synthase I [EC:2.3.1.41] [KO:K00647] [EC:2.3.1.41]" />
-    <DictionaryEntry Key="XC_3652" Value="beta-ketoacyl-[ACP] synthase I; K00647 3-oxoacyl-[acyl-carrier-protein] synthase I [EC:2.3.1.41] [KO:K00647] [EC:2.3.1.41]" />
-    <DictionaryEntry Key="XC_3225" Value="3-oxoacyl-ACP synthase; K09458 3-oxoacyl-[acyl-carrier-protein] synthase II [EC:2.3.1.179] [KO:K09458] [EC:2.3.1.179]" />
-    <DictionaryEntry Key="XC_0396" Value="oxidoreductase; K00059 3-oxoacyl-[acyl-carrier protein] reductase [EC:1.1.1.100] [KO:K00059] [EC:1.1.1.100]" />
-    <DictionaryEntry Key="XC_3227" Value="fabG; 3-ketoacyl-ACP reductase [KO:K00059] [EC:1.1.1.100]" />
-    <DictionaryEntry Key="XC_4092" Value="fabG; 3-ketoacyl-ACP reductase [KO:K00059] [EC:1.1.1.100]" />
-    <DictionaryEntry Key="XC_0429" Value="3-oxoacyl-ACP reductase; K00059 3-oxoacyl-[acyl-carrier protein] reductase [EC:1.1.1.100] [KO:K00059] [EC:1.1.1.100]" />
-    <DictionaryEntry Key="XC_2876" Value="fabZ; (3R)-hydroxymyristoyl-ACP dehydratase [KO:K02372] [EC:4.2.1.59]" />
-    <DictionaryEntry Key="XC_0397" Value="biotin biosynthesis protein; K02170 pimeloyl-[acyl-carrier protein] methyl ester esterase [EC:3.1.1.85] [KO:K02170] [EC:3.1.1.85]" />
-    <DictionaryEntry Key="XC_0399" Value="8-amino-7-oxononanoate synthase; K00652 8-amino-7-oxononanoate synthase [EC:2.3.1.47] [KO:K00652] [EC:2.3.1.47]" />
-    <DictionaryEntry Key="XC_1225" Value="adenosylmethionine-8-amino-7-oxononanoate aminotransferase; K00833 adenosylmethionine---8-amino-7-oxononanoate aminotransferase [EC:2.6.1.62] [KO:K00833] [EC:2.6.1.62]" />
-    <DictionaryEntry Key="XC_3646" Value="bioD; dithiobiotin synthetase [KO:K01935] [EC:6.3.3.3]" />
-    <DictionaryEntry Key="XC_0400" Value="biotin synthase; K01012 biotin synthase [EC:2.8.1.6] [KO:K01012] [EC:2.8.1.6]" />
-    <DictionaryEntry Key="XC_4026" Value="biotin--protein ligase; K03524 BirA family transcriptional regulator, biotin operon repressor / biotin-[acetyl-CoA-carboxylase] ligase [EC:6.3.4.15] [KO:K03524] [EC:6.3.4.15]" />
+    <DictionaryEntry Key="xcb:XC_0395" Value="biotin synthesis protein; K02169 malonyl-CoA O-methyltransferase [EC:2.1.1.197]" />
+    <DictionaryEntry Key="xcb:XC_0396" Value="oxidoreductase; K00059 3-oxoacyl-[acyl-carrier protein] reductase [EC:1.1.1.100]" />
+    <DictionaryEntry Key="xcb:XC_0397" Value="biotin biosynthesis protein; K02170 pimeloyl-[acyl-carrier protein] methyl ester esterase [EC:3.1.1." />
+    <DictionaryEntry Key="xcb:XC_0399" Value="8-amino-7-oxononanoate synthase (EC:2.3.1.47); K00652 8-amino-7-oxononanoate synthase [EC:2.3.1.47]" />
+    <DictionaryEntry Key="xcb:XC_0400" Value="biotin synthase; K01012 biotin synthase [EC:2.8.1.6]" />
+    <DictionaryEntry Key="xcb:XC_0429" Value="3-oxoacyl-ACP reductase; K00059 3-oxoacyl-[acyl-carrier protein] reductase [EC:1.1.1.100]" />
+    <DictionaryEntry Key="xcb:XC_1225" Value="adenosylmethionine-8-amino-7-oxononanoate aminotransferase (EC:2.6.1.62); K00833 adenosylmethionine-" />
+    <DictionaryEntry Key="xcb:XC_2553" Value="biotin synthesis protein; K02169 malonyl-CoA O-methyltransferase [EC:2.1.1.197]" />
+    <DictionaryEntry Key="xcb:XC_2876" Value="fabZ; (3R)-hydroxymyristoyl-ACP dehydratase; K02372 3-hydroxyacyl-[acyl-carrier-protein] dehydratase" />
+    <DictionaryEntry Key="xcb:XC_3225" Value="3-oxoacyl-ACP synthase (EC:2.3.1.41); K09458 3-oxoacyl-[acyl-carrier-protein] synthase II [EC:2.3.1." />
+    <DictionaryEntry Key="xcb:XC_3227" Value="fabG; 3-ketoacyl-ACP reductase (EC:1.1.1.100); K00059 3-oxoacyl-[acyl-carrier protein] reductase [EC" />
+    <DictionaryEntry Key="xcb:XC_3646" Value="bioD; dithiobiotin synthetase (EC:6.3.3.3); K01935 dethiobiotin synthetase [EC:6.3.3.3]" />
+    <DictionaryEntry Key="xcb:XC_3652" Value="beta-ketoacyl-[ACP] synthase I; K00647 3-oxoacyl-[acyl-carrier-protein] synthase I [EC:2.3.1.41]" />
+    <DictionaryEntry Key="xcb:XC_4026" Value="biotin--protein ligase (EC:6.3.4.15); K03524 BirA family transcriptional regulator, biotin operon re" />
+    <DictionaryEntry Key="xcb:XC_4087" Value="3-oxoacyl-ACP synthase (EC:2.3.1.41); K00647 3-oxoacyl-[acyl-carrier-protein] synthase I [EC:2.3.1.4" />
+    <DictionaryEntry Key="xcb:XC_4092" Value="fabG; 3-ketoacyl-ACP reductase; K00059 3-oxoacyl-[acyl-carrier protein] reductase [EC:1.1.1.100]" />
   </Genes>
 </KEGG.PathwayBrief>

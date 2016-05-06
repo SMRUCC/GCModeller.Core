@@ -51,16 +51,16 @@
   </Compound>
   <PathwayMap Key="xcb00460" Value="Cyanoamino acid metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2834" Value="beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
-    <DictionaryEntry Key="XC_3159" Value="beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
-    <DictionaryEntry Key="XC_3886" Value="beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
-    <DictionaryEntry Key="XC_1217" Value="glucan 1; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
-    <DictionaryEntry Key="XC_4197" Value="glucan 1; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
-    <DictionaryEntry Key="XC_2461" Value="glucan 1; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
-    <DictionaryEntry Key="XC_0301" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2.2 3.4.19.13] [KO:K00681] [EC:3.4.19.13 2.3.2.2]" />
-    <DictionaryEntry Key="XC_0842" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2.2 3.4.19.13] [KO:K00681] [EC:3.4.19.13 2.3.2.2]" />
-    <DictionaryEntry Key="XC_1726" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2.2 3.4.19.13] [KO:K00681] [EC:3.4.19.13 2.3.2.2]" />
-    <DictionaryEntry Key="XC_3374" Value="asparaginase; K01424 L-asparaginase [EC:3.5.1.1] [KO:K01424] [EC:3.5.1.1]" />
-    <DictionaryEntry Key="XC_3544" Value="glyA; serine hydroxymethyltransferase [KO:K00600] [EC:2.1.2.1]" />
+    <DictionaryEntry Key="xcb:XC_0301" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2." />
+    <DictionaryEntry Key="xcb:XC_0842" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2." />
+    <DictionaryEntry Key="xcb:XC_1217" Value="glucan 1,4-beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21]" />
+    <DictionaryEntry Key="xcb:XC_1726" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2." />
+    <DictionaryEntry Key="xcb:XC_2461" Value="glucan 1,4-beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21]" />
+    <DictionaryEntry Key="xcb:XC_2834" Value="beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21]" />
+    <DictionaryEntry Key="xcb:XC_3159" Value="beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21]" />
+    <DictionaryEntry Key="xcb:XC_3374" Value="asparaginase; K01424 L-asparaginase [EC:3.5.1.1]" />
+    <DictionaryEntry Key="xcb:XC_3544" Value="glyA; serine hydroxymethyltransferase (EC:2.1.2.1); K00600 glycine hydroxymethyltransferase [EC:2.1." />
+    <DictionaryEntry Key="xcb:XC_3886" Value="beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21]" />
+    <DictionaryEntry Key="xcb:XC_4197" Value="glucan 1,4-beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21]" />
   </Genes>
 </KEGG.PathwayBrief>

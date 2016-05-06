@@ -111,9 +111,9 @@
   </Compound>
   <PathwayMap Key="xcb00624" Value="Polycyclic aromatic hydrocarbon degradation&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_3426" Value="protocatechuate 4; K04100 protocatechuate 4,5-dioxygenase, alpha chain [EC:1.13.11.8] [KO:K04100] [EC:1.13.11.8]" />
-    <DictionaryEntry Key="XC_3427" Value="protocatechuate 4; K04101 protocatechuate 4,5-dioxygenase, beta chain [EC:1.13.11.8] [KO:K04101] [EC:1.13.11.8]" />
-    <DictionaryEntry Key="XC_0380" Value="protocatechuate 3; K00448 protocatechuate 3,4-dioxygenase, alpha subunit [EC:1.13.11.3] [KO:K00448] [EC:1.13.11.3]" />
-    <DictionaryEntry Key="XC_0379" Value="protocatechuate 3; K00449 protocatechuate 3,4-dioxygenase, beta subunit [EC:1.13.11.3] [KO:K00449] [EC:1.13.11.3]" />
+    <DictionaryEntry Key="xcb:XC_0379" Value="protocatechuate 3,4-dioxygenase subunit beta; K00449 protocatechuate 3,4-dioxygenase, beta subunit [" />
+    <DictionaryEntry Key="xcb:XC_0380" Value="protocatechuate 3,4-dioxygenase alpha chain; K00448 protocatechuate 3,4-dioxygenase, alpha subunit [" />
+    <DictionaryEntry Key="xcb:XC_3426" Value="protocatechuate 4,5-dioxygenase subunit alpha; K04100 protocatechuate 4,5-dioxygenase, alpha chain [" />
+    <DictionaryEntry Key="xcb:XC_3427" Value="protocatechuate 4,5-dioxygenase subunit beta; K04101 protocatechuate 4,5-dioxygenase, beta chain [EC" />
   </Genes>
 </KEGG.PathwayBrief>

@@ -14,68 +14,68 @@
   </Compound>
   <PathwayMap Key="xcb03070" Value="Bacterial secretion system&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_0828" Value="TolC protein; K12340 outer membrane protein [KO:K12340]" />
-    <DictionaryEntry Key="XC_3003" Value="HrcC protein; K03219 type III secretion protein C [KO:K03219]" />
-    <DictionaryEntry Key="XC_3009" Value="HrcJ protein; K03222 type III secretion protein J [KO:K03222]" />
-    <DictionaryEntry Key="XC_3016" Value="type III secretion system protein; K03226 type III secretion protein R [KO:K03226]" />
-    <DictionaryEntry Key="XC_3017" Value="HrcS protein; K03227 type III secretion protein S [KO:K03227]" />
-    <DictionaryEntry Key="XC_3004" Value="HrpB8 protein; K03228 type III secretion protein T [KO:K03228]" />
-    <DictionaryEntry Key="XC_3012" Value="type III secretion system protein HrcU; K03229 type III secretion protein U [KO:K03229]" />
-    <DictionaryEntry Key="XC_3013" Value="HrcV protein; K03230 type III secretion protein V [KO:K03230]" />
-    <DictionaryEntry Key="XC_3006" Value="type III secretion system ATPase; K03224 ATP synthase in type III secretion protein N [EC:3.6.3.14] [KO:K03224] [EC:3.6.3.14]" />
-    <DictionaryEntry Key="XC_3015" Value="HrcQ protein; K03225 type III secretion protein Q [KO:K03225]" />
-    <DictionaryEntry Key="XC_3007" Value="type III secretion system protein HrpB; K03223 type III secretion protein L [KO:K03223]" />
-    <DictionaryEntry Key="XC_0739" Value="type II secretion system protein D; K02453 general secretion pathway protein D [KO:K02453]" />
-    <DictionaryEntry Key="XC_3563" Value="general secretion pathway protein D; K02453 general secretion pathway protein D [KO:K02453]" />
-    <DictionaryEntry Key="XC_0738" Value="type II secretion system protein C; K02452 general secretion pathway protein C [KO:K02452]" />
-    <DictionaryEntry Key="XC_0741" Value="type II secretion system protein F; K02455 general secretion pathway protein F [KO:K02455]" />
-    <DictionaryEntry Key="XC_3572" Value="general secretion pathway protein F; K02455 general secretion pathway protein F [KO:K02455]" />
-    <DictionaryEntry Key="XC_0742" Value="type II secretion system protein G; K02456 general secretion pathway protein G [KO:K02456]" />
-    <DictionaryEntry Key="XC_3571" Value="general secretion pathway protein G; K02456 general secretion pathway protein G [KO:K02456]" />
-    <DictionaryEntry Key="XC_0743" Value="type II secretion system protein H; K02457 general secretion pathway protein H [KO:K02457]" />
-    <DictionaryEntry Key="XC_3570" Value="general secretion pathway protein H; K02457 general secretion pathway protein H [KO:K02457]" />
-    <DictionaryEntry Key="XC_0744" Value="type II secretion system protein I; K02458 general secretion pathway protein I [KO:K02458]" />
-    <DictionaryEntry Key="XC_3569" Value="general secretion pathway protein I; K02458 general secretion pathway protein I [KO:K02458]" />
-    <DictionaryEntry Key="XC_0745" Value="type II secretion system protein J; K02459 general secretion pathway protein J [KO:K02459]" />
-    <DictionaryEntry Key="XC_3568" Value="general secretion pathway protein J; K02459 general secretion pathway protein J [KO:K02459]" />
-    <DictionaryEntry Key="XC_0746" Value="type II secretion system protein K; K02460 general secretion pathway protein K [KO:K02460]" />
-    <DictionaryEntry Key="XC_3567" Value="general secretion pathway protein K; K02460 general secretion pathway protein K [KO:K02460]" />
-    <DictionaryEntry Key="XC_0747" Value="type II secretion system protein L; K02461 general secretion pathway protein L [KO:K02461]" />
-    <DictionaryEntry Key="XC_3566" Value="general secretion pathway protein L; K02461 general secretion pathway protein L [KO:K02461]" />
-    <DictionaryEntry Key="XC_0748" Value="type II secretion system protein M; K02462 general secretion pathway protein M [KO:K02462]" />
-    <DictionaryEntry Key="XC_3565" Value="general secretion pathway protein M; K02462 general secretion pathway protein M [KO:K02462]" />
-    <DictionaryEntry Key="XC_0740" Value="type II secretion system protein E; K02454 general secretion pathway protein E [KO:K02454]" />
-    <DictionaryEntry Key="XC_4179" Value="general secretory pathway related protein; K02454 general secretion pathway protein E [KO:K02454]" />
-    <DictionaryEntry Key="XC_3573" Value="general secretion pathway protein E; K02454 general secretion pathway protein E [KO:K02454]" />
-    <DictionaryEntry Key="XC_1738" Value="secD; preprotein translocase subunit SecD [KO:K03072]" />
-    <DictionaryEntry Key="XC_1739" Value="secF; preprotein translocase subunit SecF [KO:K03074]" />
-    <DictionaryEntry Key="XC_3353" Value="secE; preprotein translocase subunit SecE [KO:K03073]" />
-    <DictionaryEntry Key="XC_1588" Value="secG; preprotein translocase subunit SecG [KO:K03075]" />
-    <DictionaryEntry Key="XC_3320" Value="secY; preprotein translocase subunit SecY [KO:K03076]" />
-    <DictionaryEntry Key="XC_1737" Value="yajC; preprotein translocase subunit YajC [KO:K03210]" />
-    <DictionaryEntry Key="XC_4330" Value="inner membrane protein translocase component YidC; K03217 YidC/Oxa1 family membrane protein insertase [KO:K03217]" />
-    <DictionaryEntry Key="XC_3501" Value="azi; preprotein translocase subunit SecA [KO:K03070]" />
-    <DictionaryEntry Key="XC_1695" Value="cell division protein; K03110 fused signal recognition particle receptor [KO:K03110]" />
-    <DictionaryEntry Key="XC_0213" Value="preprotein translocase subunit SecB; K03071 preprotein translocase subunit SecB [KO:K03071]" />
-    <DictionaryEntry Key="XC_3048" Value="signal recognition particle protein; K03106 signal recognition particle subunit SRP54 [EC:3.6.5.4] [KO:K03106] [EC:3.6.5.4]" />
-    <DictionaryEntry Key="XC_4184" Value="tatA; twin-arginine translocation protein TatA [KO:K03116]" />
-    <DictionaryEntry Key="XC_4183" Value="sec-independent translocase; K03117 sec-independent protein translocase protein TatB [KO:K03117]" />
-    <DictionaryEntry Key="XC_4182" Value="sec-independent protein translocase; K03118 sec-independent protein translocase protein TatC [KO:K03118]" />
-    <DictionaryEntry Key="XC_1636" Value="VirB1 protein; K03194 type IV secretion system protein VirB1 [KO:K03194]" />
-    <DictionaryEntry Key="XC_1637" Value="VirB2 protein; K03197 type IV secretion system protein VirB2 [KO:K03197]" />
-    <DictionaryEntry Key="XC_1638" Value="VirB3 protein; K03198 type IV secretion system protein VirB3 [KO:K03198]" />
-    <DictionaryEntry Key="XC_0871" Value="hypothetical protein; K03200 type IV secretion system protein VirB5 [KO:K03200]" />
-    <DictionaryEntry Key="XC_0870" Value="hypothetical protein; K03200 type IV secretion system protein VirB5 [KO:K03200]" />
-    <DictionaryEntry Key="XC_1633" Value="VirB9 protein; K03204 type IV secretion system protein VirB9 [KO:K03204]" />
-    <DictionaryEntry Key="XC_1027" Value="VirB6 protein; K03201 type IV secretion system protein VirB6 [KO:K03201]" />
-    <DictionaryEntry Key="XC_0864" Value="VirB6 protein; K03201 type IV secretion system protein VirB6 [KO:K03201]" />
-    <DictionaryEntry Key="XC_0868" Value="VirB6 protein; K03201 type IV secretion system protein VirB6 [KO:K03201]" />
-    <DictionaryEntry Key="XC_2016" Value="VirB6 protein; K03201 type IV secretion system protein VirB6 [KO:K03201]" />
-    <DictionaryEntry Key="XC_1632" Value="VirB8 protein; K03203 type IV secretion system protein VirB8 [KO:K03203]" />
-    <DictionaryEntry Key="XC_1634" Value="VirB10 protein; K03195 type IV secretion system protein VirB10 [KO:K03195]" />
-    <DictionaryEntry Key="XC_1639" Value="VirB4 protein; K03199 type IV secretion system protein VirB4 [KO:K03199]" />
-    <DictionaryEntry Key="XC_1635" Value="VirB11 protein; K03196 type IV secretion system protein VirB11 [KO:K03196]" />
-    <DictionaryEntry Key="XC_1630" Value="VirD4 protein; K03205 type IV secretion system protein VirD4 [KO:K03205]" />
-    <DictionaryEntry Key="XC_2413" Value="NTPase VagA; K03205 type IV secretion system protein VirD4 [KO:K03205]" />
+    <DictionaryEntry Key="xcb:XC_0213" Value="preprotein translocase subunit SecB; K03071 preprotein translocase subunit SecB" />
+    <DictionaryEntry Key="xcb:XC_0738" Value="type II secretion system protein C; K02452 general secretion pathway protein C" />
+    <DictionaryEntry Key="xcb:XC_0739" Value="type II secretion system protein D; K02453 general secretion pathway protein D" />
+    <DictionaryEntry Key="xcb:XC_0740" Value="type II secretion system protein E; K02454 general secretion pathway protein E" />
+    <DictionaryEntry Key="xcb:XC_0741" Value="type II secretion system protein F; K02455 general secretion pathway protein F" />
+    <DictionaryEntry Key="xcb:XC_0742" Value="type II secretion system protein G; K02456 general secretion pathway protein G" />
+    <DictionaryEntry Key="xcb:XC_0743" Value="type II secretion system protein H; K02457 general secretion pathway protein H" />
+    <DictionaryEntry Key="xcb:XC_0744" Value="type II secretion system protein I; K02458 general secretion pathway protein I" />
+    <DictionaryEntry Key="xcb:XC_0745" Value="type II secretion system protein J; K02459 general secretion pathway protein J" />
+    <DictionaryEntry Key="xcb:XC_0746" Value="type II secretion system protein K; K02460 general secretion pathway protein K" />
+    <DictionaryEntry Key="xcb:XC_0747" Value="type II secretion system protein L; K02461 general secretion pathway protein L" />
+    <DictionaryEntry Key="xcb:XC_0748" Value="type II secretion system protein M; K02462 general secretion pathway protein M" />
+    <DictionaryEntry Key="xcb:XC_0828" Value="TolC protein; K12340 outer membrane protein" />
+    <DictionaryEntry Key="xcb:XC_0864" Value="VirB6 protein; K03201 type IV secretion system protein VirB6" />
+    <DictionaryEntry Key="xcb:XC_0868" Value="VirB6 protein; K03201 type IV secretion system protein VirB6" />
+    <DictionaryEntry Key="xcb:XC_0870" Value="hypothetical protein; K03200 type IV secretion system protein VirB5" />
+    <DictionaryEntry Key="xcb:XC_0871" Value="hypothetical protein; K03200 type IV secretion system protein VirB5" />
+    <DictionaryEntry Key="xcb:XC_1027" Value="VirB6 protein; K03201 type IV secretion system protein VirB6" />
+    <DictionaryEntry Key="xcb:XC_1588" Value="secG; preprotein translocase subunit SecG; K03075 preprotein translocase subunit SecG" />
+    <DictionaryEntry Key="xcb:XC_1630" Value="VirD4 protein; K03205 type IV secretion system protein VirD4" />
+    <DictionaryEntry Key="xcb:XC_1632" Value="VirB8 protein; K03203 type IV secretion system protein VirB8" />
+    <DictionaryEntry Key="xcb:XC_1633" Value="VirB9 protein; K03204 type IV secretion system protein VirB9" />
+    <DictionaryEntry Key="xcb:XC_1634" Value="VirB10 protein; K03195 type IV secretion system protein VirB10" />
+    <DictionaryEntry Key="xcb:XC_1635" Value="VirB11 protein; K03196 type IV secretion system protein VirB11" />
+    <DictionaryEntry Key="xcb:XC_1636" Value="VirB1 protein; K03194 type IV secretion system protein VirB1" />
+    <DictionaryEntry Key="xcb:XC_1637" Value="VirB2 protein; K03197 type IV secretion system protein VirB2" />
+    <DictionaryEntry Key="xcb:XC_1638" Value="VirB3 protein; K03198 type IV secretion system protein VirB3" />
+    <DictionaryEntry Key="xcb:XC_1639" Value="VirB4 protein; K03199 type IV secretion system protein VirB4" />
+    <DictionaryEntry Key="xcb:XC_1695" Value="cell division protein; K03110 fused signal recognition particle receptor" />
+    <DictionaryEntry Key="xcb:XC_1737" Value="yajC; preprotein translocase subunit YajC; K03210 preprotein translocase subunit YajC" />
+    <DictionaryEntry Key="xcb:XC_1738" Value="secD; preprotein translocase subunit SecD; K03072 preprotein translocase subunit SecD" />
+    <DictionaryEntry Key="xcb:XC_1739" Value="secF; preprotein translocase subunit SecF; K03074 preprotein translocase subunit SecF" />
+    <DictionaryEntry Key="xcb:XC_2016" Value="VirB6 protein; K03201 type IV secretion system protein VirB6" />
+    <DictionaryEntry Key="xcb:XC_2413" Value="NTPase VagA; K03205 type IV secretion system protein VirD4" />
+    <DictionaryEntry Key="xcb:XC_3003" Value="HrcC protein; K03219 type III secretion protein C" />
+    <DictionaryEntry Key="xcb:XC_3004" Value="HrpB8 protein; K03228 type III secretion protein T" />
+    <DictionaryEntry Key="xcb:XC_3006" Value="type III secretion system ATPase; K03224 ATP synthase in type III secretion protein N [EC:3.6.3.14]" />
+    <DictionaryEntry Key="xcb:XC_3007" Value="type III secretion system protein HrpB; K03223 type III secretion protein L" />
+    <DictionaryEntry Key="xcb:XC_3009" Value="HrcJ protein; K03222 type III secretion protein J" />
+    <DictionaryEntry Key="xcb:XC_3012" Value="type III secretion system protein HrcU; K03229 type III secretion protein U" />
+    <DictionaryEntry Key="xcb:XC_3013" Value="HrcV protein; K03230 type III secretion protein V" />
+    <DictionaryEntry Key="xcb:XC_3015" Value="HrcQ protein; K03225 type III secretion protein Q" />
+    <DictionaryEntry Key="xcb:XC_3016" Value="type III secretion system protein; K03226 type III secretion protein R" />
+    <DictionaryEntry Key="xcb:XC_3017" Value="HrcS protein; K03227 type III secretion protein S" />
+    <DictionaryEntry Key="xcb:XC_3048" Value="signal recognition particle protein; K03106 signal recognition particle subunit SRP54 [EC:3.6.5.4]" />
+    <DictionaryEntry Key="xcb:XC_3320" Value="secY; preprotein translocase subunit SecY; K03076 preprotein translocase subunit SecY" />
+    <DictionaryEntry Key="xcb:XC_3353" Value="secE; preprotein translocase subunit SecE; K03073 preprotein translocase subunit SecE" />
+    <DictionaryEntry Key="xcb:XC_3501" Value="azi, div; preprotein translocase subunit SecA; K03070 preprotein translocase subunit SecA" />
+    <DictionaryEntry Key="xcb:XC_3563" Value="general secretion pathway protein D; K02453 general secretion pathway protein D" />
+    <DictionaryEntry Key="xcb:XC_3565" Value="general secretion pathway protein M; K02462 general secretion pathway protein M" />
+    <DictionaryEntry Key="xcb:XC_3566" Value="general secretion pathway protein L; K02461 general secretion pathway protein L" />
+    <DictionaryEntry Key="xcb:XC_3567" Value="general secretion pathway protein K; K02460 general secretion pathway protein K" />
+    <DictionaryEntry Key="xcb:XC_3568" Value="general secretion pathway protein J; K02459 general secretion pathway protein J" />
+    <DictionaryEntry Key="xcb:XC_3569" Value="general secretion pathway protein I; K02458 general secretion pathway protein I" />
+    <DictionaryEntry Key="xcb:XC_3570" Value="general secretion pathway protein H; K02457 general secretion pathway protein H" />
+    <DictionaryEntry Key="xcb:XC_3571" Value="general secretion pathway protein G; K02456 general secretion pathway protein G" />
+    <DictionaryEntry Key="xcb:XC_3572" Value="general secretion pathway protein F; K02455 general secretion pathway protein F" />
+    <DictionaryEntry Key="xcb:XC_3573" Value="general secretion pathway protein E; K02454 general secretion pathway protein E" />
+    <DictionaryEntry Key="xcb:XC_4179" Value="general secretory pathway related protein; K02454 general secretion pathway protein E" />
+    <DictionaryEntry Key="xcb:XC_4182" Value="sec-independent protein translocase; K03118 sec-independent protein translocase protein TatC" />
+    <DictionaryEntry Key="xcb:XC_4183" Value="sec-independent translocase; K03117 sec-independent protein translocase protein TatB" />
+    <DictionaryEntry Key="xcb:XC_4184" Value="tatA; twin-arginine translocation protein TatA; K03116 sec-independent protein translocase protein T" />
+    <DictionaryEntry Key="xcb:XC_4330" Value="inner membrane protein translocase component YidC; K03217 YidC/Oxa1 family membrane protein insertas" />
   </Genes>
 </KEGG.PathwayBrief>

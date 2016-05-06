@@ -12,11 +12,11 @@
   </Compound>
   <PathwayMap Key="xcb00072" Value="Synthesis and degradation of ketone bodies&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2357" Value="hydroxymethylglutaryl-CoA lyase; K01640 hydroxymethylglutaryl-CoA lyase [EC:4.1.3.4] [KO:K01640] [EC:4.1.3.4]" />
-    <DictionaryEntry Key="XC_3607" Value="3-oxoadipate CoA-succinyl transferase subunit alpha; K01028 3-oxoacid CoA-transferase subunit A [EC:2.8.3.5] [KO:K01028] [EC:2.8.3.5]" />
-    <DictionaryEntry Key="XC_3606" Value="IpsJ protein; K01029 3-oxoacid CoA-transferase subunit B [EC:2.8.3.5] [KO:K01029] [EC:2.8.3.5]" />
-    <DictionaryEntry Key="XC_2943" Value="acetoacetyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9] [KO:K00626] [EC:2.3.1.9]" />
-    <DictionaryEntry Key="XC_0204" Value="acetyl-CoA acetyltransferase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9] [KO:K00626] [EC:2.3.1.9]" />
-    <DictionaryEntry Key="XC_1956" Value="D-beta-hydroxybutyrate dehydrogenase; K00019 3-hydroxybutyrate dehydrogenase [EC:1.1.1.30] [KO:K00019] [EC:1.1.1.30]" />
+    <DictionaryEntry Key="xcb:XC_0204" Value="acetyl-CoA acetyltransferase (EC:2.3.1.9); K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9]" />
+    <DictionaryEntry Key="xcb:XC_1956" Value="D-beta-hydroxybutyrate dehydrogenase; K00019 3-hydroxybutyrate dehydrogenase [EC:1.1.1.30]" />
+    <DictionaryEntry Key="xcb:XC_2357" Value="hydroxymethylglutaryl-CoA lyase; K01640 hydroxymethylglutaryl-CoA lyase [EC:4.1.3.4]" />
+    <DictionaryEntry Key="xcb:XC_2943" Value="acetoacetyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9]" />
+    <DictionaryEntry Key="xcb:XC_3606" Value="IpsJ protein; K01029 3-oxoacid CoA-transferase subunit B [EC:2.8.3.5]" />
+    <DictionaryEntry Key="xcb:XC_3607" Value="3-oxoadipate CoA-succinyl transferase subunit alpha; K01028 3-oxoacid CoA-transferase subunit A [EC:" />
   </Genes>
 </KEGG.PathwayBrief>

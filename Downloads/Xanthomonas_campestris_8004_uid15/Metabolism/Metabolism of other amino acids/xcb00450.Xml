@@ -33,16 +33,16 @@
   </Compound>
   <PathwayMap Key="xcb00450" Value="Selenocompound metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_1252" Value="cystathionine gamma-synthase; K01739 cystathionine gamma-synthase [EC:2.5.1.48] [KO:K01739] [EC:2.5.1.48]" />
-    <DictionaryEntry Key="XC_2724" Value="5-methyltetrahydrofolate--homocysteine methyltransferase; K00548 5-methyltetrahydrofolate--homocysteine methyltransferase [EC:2.1.1.13] [KO:K00548] [EC:2.1.1.13]" />
-    <DictionaryEntry Key="XC_2725" Value="5-methyltetrahydrofolate--homocysteine methyltransferase; K00548 5-methyltetrahydrofolate--homocysteine methyltransferase [EC:2.1.1.13] [KO:K00548] [EC:2.1.1.13]" />
-    <DictionaryEntry Key="XC_0330" Value="5-methyltetrahydropteroyltriglutamate--homocysteine S-methyltransferase; K00549 5-methyltetrahydropteroyltriglutamate--homocysteine methyltransferase [EC:2.1.1.14] [KO:K00549] [EC:2.1.1.14]" />
-    <DictionaryEntry Key="XC_3635" Value="cystathionine gamma-synthase; K01758 cystathionine gamma-lyase [EC:4.4.1.1] [KO:K01758] [EC:4.4.1.1]" />
-    <DictionaryEntry Key="XC_1344" Value="cysteine desulfurase; K11717 cysteine desulfurase / selenocysteine lyase [EC:2.8.1.7 4.4.1.16] [KO:K11717] [EC:4.4.1.16 2.8.1.7]" />
-    <DictionaryEntry Key="XC_3165" Value="thioredoxin reductase; K00384 thioredoxin reductase (NADPH) [EC:1.8.1.9] [KO:K00384] [EC:1.8.1.9]" />
-    <DictionaryEntry Key="XC_2214" Value="thioredoxin reductase; K00384 thioredoxin reductase (NADPH) [EC:1.8.1.9] [KO:K00384] [EC:1.8.1.9]" />
-    <DictionaryEntry Key="XC_0994" Value="bifunctional sulfate adenylyltransferase subunit 1/adenylylsulfate kinase; K00955 bifunctional enzyme CysN/CysC [EC:2.7.7.4 2.7.1.25] [KO:K00955] [EC:2.7.1.25 2.7.7.4]" />
-    <DictionaryEntry Key="XC_0993" Value="sulfate adenylyltransferase subunit 2; K00957 sulfate adenylyltransferase subunit 2 [EC:2.7.7.4] [KO:K00957] [EC:2.7.7.4]" />
-    <DictionaryEntry Key="XC_2900" Value="metG; methionyl-tRNA synthetase [KO:K01874] [EC:6.1.1.10]" />
+    <DictionaryEntry Key="xcb:XC_0330" Value="5-methyltetrahydropteroyltriglutamate--homocysteine S-methyltransferase (EC:2.1.1.14); K00549 5-meth" />
+    <DictionaryEntry Key="xcb:XC_0993" Value="sulfate adenylyltransferase subunit 2 (EC:2.7.7.4); K00957 sulfate adenylyltransferase subunit 2 [EC" />
+    <DictionaryEntry Key="xcb:XC_0994" Value="bifunctional sulfate adenylyltransferase subunit 1/adenylylsulfate kinase (EC:2.7.1.25 2.7.7.4); K00" />
+    <DictionaryEntry Key="xcb:XC_1252" Value="cystathionine gamma-synthase (EC:2.5.1.48); K01739 cystathionine gamma-synthase [EC:2.5.1.48]" />
+    <DictionaryEntry Key="xcb:XC_1344" Value="cysteine desulfurase; K11717 cysteine desulfurase / selenocysteine lyase [EC:2.8.1.7 4.4.1.16]" />
+    <DictionaryEntry Key="xcb:XC_2214" Value="thioredoxin reductase; K00384 thioredoxin reductase (NADPH) [EC:1.8.1.9]" />
+    <DictionaryEntry Key="xcb:XC_2724" Value="5-methyltetrahydrofolate--homocysteine methyltransferase; K00548 5-methyltetrahydrofolate--homocyste" />
+    <DictionaryEntry Key="xcb:XC_2725" Value="5-methyltetrahydrofolate--homocysteine methyltransferase; K00548 5-methyltetrahydrofolate--homocyste" />
+    <DictionaryEntry Key="xcb:XC_2900" Value="metG; methionyl-tRNA synthetase (EC:6.1.1.10); K01874 methionyl-tRNA synthetase [EC:6.1.1.10]" />
+    <DictionaryEntry Key="xcb:XC_3165" Value="thioredoxin reductase; K00384 thioredoxin reductase (NADPH) [EC:1.8.1.9]" />
+    <DictionaryEntry Key="xcb:XC_3635" Value="cystathionine gamma-synthase; K01758 cystathionine gamma-lyase [EC:4.4.1.1]" />
   </Genes>
 </KEGG.PathwayBrief>

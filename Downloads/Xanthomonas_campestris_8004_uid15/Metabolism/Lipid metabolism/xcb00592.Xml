@@ -48,7 +48,7 @@
   </Compound>
   <PathwayMap Key="xcb00592" Value="alpha-Linolenic acid metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2818" Value="phospholipase; K01058 phospholipase A1 [EC:3.1.1.32 3.1.1.4] [KO:K01058] [EC:3.1.1.4 3.1.1.32]" />
-    <DictionaryEntry Key="XC_2206" Value="acetyl-CoA acetyltransferase; K00632 acetyl-CoA acyltransferase [EC:2.3.1.16] [KO:K00632] [EC:2.3.1.16]" />
+    <DictionaryEntry Key="xcb:XC_2206" Value="acetyl-CoA acetyltransferase (EC:2.3.1.9); K00632 acetyl-CoA acyltransferase [EC:2.3.1.16]" />
+    <DictionaryEntry Key="xcb:XC_2818" Value="phospholipase; K01058 phospholipase A1 [EC:3.1.1.32 3.1.1.4]" />
   </Genes>
 </KEGG.PathwayBrief>

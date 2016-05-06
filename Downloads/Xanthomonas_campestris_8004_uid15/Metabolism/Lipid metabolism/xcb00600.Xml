@@ -31,9 +31,9 @@
   </Compound>
   <PathwayMap Key="xcb00600" Value="Sphingolipid metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_1675" Value="hypothetical protein; K00720 ceramide glucosyltransferase [EC:2.4.1.80] [KO:K00720] [EC:2.4.1.80]" />
-    <DictionaryEntry Key="XC_3172" Value="glycosyl hydrolase; K01201 glucosylceramidase [EC:3.2.1.45] [KO:K01201] [EC:3.2.1.45]" />
-    <DictionaryEntry Key="XC_2985" Value="beta-galactosidase; K01190 beta-galactosidase [EC:3.2.1.23] [KO:K01190] [EC:3.2.1.23]" />
-    <DictionaryEntry Key="XC_4208" Value="beta-galactosidase; K01190 beta-galactosidase [EC:3.2.1.23] [KO:K01190] [EC:3.2.1.23]" />
+    <DictionaryEntry Key="xcb:XC_1675" Value="hypothetical protein; K00720 ceramide glucosyltransferase [EC:2.4.1.80]" />
+    <DictionaryEntry Key="xcb:XC_2985" Value="beta-galactosidase; K01190 beta-galactosidase [EC:3.2.1.23]" />
+    <DictionaryEntry Key="xcb:XC_3172" Value="glycosyl hydrolase; K01201 glucosylceramidase [EC:3.2.1.45]" />
+    <DictionaryEntry Key="xcb:XC_4208" Value="beta-galactosidase; K01190 beta-galactosidase [EC:3.2.1.23]" />
   </Genes>
 </KEGG.PathwayBrief>

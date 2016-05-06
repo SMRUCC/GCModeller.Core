@@ -8,28 +8,28 @@
   <Compound />
   <PathwayMap Key="xcb03440" Value="Homologous recombination&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2343" Value="single stranded DNA exonuclease; K07462 single-stranded-DNA-specific exonuclease [EC:3.1.-.-] [KO:K07462] [EC:3.1.-.-]" />
-    <DictionaryEntry Key="XC_1378" Value="single-stranded DNA-binding protein; K03111 single-strand DNA-binding protein [KO:K03111]" />
-    <DictionaryEntry Key="XC_2065" Value="single-stranded DNA-binding protein; K03111 single-strand DNA-binding protein [KO:K03111]" />
-    <DictionaryEntry Key="XC_0003" Value="recF; recombination protein F [KO:K03629]" />
-    <DictionaryEntry Key="XC_2966" Value="recO; DNA repair protein RecO [KO:K03584]" />
-    <DictionaryEntry Key="XC_3242" Value="recR; recombination protein RecR [KO:K06187]" />
-    <DictionaryEntry Key="XC_2509" Value="recA; recombinase A [KO:K03553]" />
-    <DictionaryEntry Key="XC_4109" Value="DNA polymerase I; K02335 DNA polymerase I [EC:2.7.7.7] [KO:K02335] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_1133" Value="ruvA; Holliday junction DNA helicase RuvA [KO:K03550] [EC:3.6.4.12]" />
-    <DictionaryEntry Key="XC_1136" Value="ruvB; Holliday junction DNA helicase RuvB [KO:K03551] [EC:3.6.4.12]" />
-    <DictionaryEntry Key="XC_1132" Value="ruvC; Holliday junction resolvase [KO:K01159] [EC:3.1.22.4]" />
-    <DictionaryEntry Key="XC_0947" Value="ATP-dependent DNA helicase RecG; K03655 ATP-dependent DNA helicase RecG [EC:3.6.4.12] [KO:K03655] [EC:3.6.4.12]" />
-    <DictionaryEntry Key="XC_4288" Value="exodeoxyribonuclease V subunit beta; K03582 exodeoxyribonuclease V beta subunit [EC:3.1.11.5] [KO:K03582] [EC:3.1.11.5]" />
-    <DictionaryEntry Key="XC_4289" Value="exodeoxyribonuclease V subunit gamma; K03583 exodeoxyribonuclease V gamma subunit [EC:3.1.11.5] [KO:K03583] [EC:3.1.11.5]" />
-    <DictionaryEntry Key="XC_4287" Value="exodeoxyribonuclease V subunit alpha; K03581 exodeoxyribonuclease V alpha subunit [EC:3.1.11.5] [KO:K03581] [EC:3.1.11.5]" />
-    <DictionaryEntry Key="XC_2880" Value="dnaE; DNA polymerase III subunit alpha [KO:K02337] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_0002" Value="DNA polymerase III subunit beta; K02338 DNA polymerase III subunit beta [EC:2.7.7.7] [KO:K02338] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_3244" Value="DNA polymerase III subunits gamma and tau; K02343 DNA polymerase III subunit gamma/tau [EC:2.7.7.7] [KO:K02343] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_1499" Value="holA; DNA polymerase III subunit delta [KO:K02340] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_3222" Value="DNA polymerase III subunit delta'; K02341 DNA polymerase III subunit delta' [EC:2.7.7.7] [KO:K02341] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_3255" Value="DNA polymerase III subunit epsilon; K02342 DNA polymerase III subunit epsilon [EC:2.7.7.7] [KO:K02342] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_3586" Value="DNA polymerase III subunit chi; K02339 DNA polymerase III subunit chi [EC:2.7.7.7] [KO:K02339] [EC:2.7.7.7]" />
-    <DictionaryEntry Key="XC_3836" Value="primosome assembly protein PriA; K04066 primosomal protein N' (replication factor Y) (superfamily II helicase) [EC:3.6.4.-] [KO:K04066] [EC:3.6.4.-]" />
+    <DictionaryEntry Key="xcb:XC_0002" Value="DNA polymerase III subunit beta (EC:2.7.7.7); K02338 DNA polymerase III subunit beta [EC:2.7.7.7]" />
+    <DictionaryEntry Key="xcb:XC_0003" Value="recF; recombination protein F; K03629 DNA replication and repair protein RecF" />
+    <DictionaryEntry Key="xcb:XC_0947" Value="ATP-dependent DNA helicase RecG; K03655 ATP-dependent DNA helicase RecG [EC:3.6.4.12]" />
+    <DictionaryEntry Key="xcb:XC_1132" Value="ruvC; Holliday junction resolvase (EC:3.1.22.4); K01159 crossover junction endodeoxyribonuclease Ruv" />
+    <DictionaryEntry Key="xcb:XC_1133" Value="ruvA; Holliday junction DNA helicase RuvA; K03550 holliday junction DNA helicase RuvA [EC:3.6.4.12]" />
+    <DictionaryEntry Key="xcb:XC_1136" Value="ruvB; Holliday junction DNA helicase RuvB (EC:3.1.22.4); K03551 holliday junction DNA helicase RuvB" />
+    <DictionaryEntry Key="xcb:XC_1378" Value="single-stranded DNA-binding protein; K03111 single-strand DNA-binding protein" />
+    <DictionaryEntry Key="xcb:XC_1499" Value="holA; DNA polymerase III subunit delta; K02340 DNA polymerase III subunit delta [EC:2.7.7.7]" />
+    <DictionaryEntry Key="xcb:XC_2065" Value="single-stranded DNA-binding protein; K03111 single-strand DNA-binding protein" />
+    <DictionaryEntry Key="xcb:XC_2343" Value="single stranded DNA exonuclease; K07462 single-stranded-DNA-specific exonuclease [EC:3.1.-.-]" />
+    <DictionaryEntry Key="xcb:XC_2509" Value="recA; recombinase A; K03553 recombination protein RecA" />
+    <DictionaryEntry Key="xcb:XC_2880" Value="dnaE; DNA polymerase III subunit alpha (EC:2.7.7.7); K02337 DNA polymerase III subunit alpha [EC:2.7" />
+    <DictionaryEntry Key="xcb:XC_2966" Value="recO; DNA repair protein RecO; K03584 DNA repair protein RecO (recombination protein O)" />
+    <DictionaryEntry Key="xcb:XC_3222" Value="DNA polymerase III subunit delta&amp;#39; (EC:2.7.7.7); K02341 DNA polymerase III subunit delta&amp;#39; [EC:2.7.7.7" />
+    <DictionaryEntry Key="xcb:XC_3242" Value="recR; recombination protein RecR; K06187 recombination protein RecR" />
+    <DictionaryEntry Key="xcb:XC_3244" Value="DNA polymerase III subunits gamma and tau (EC:2.7.7.7); K02343 DNA polymerase III subunit gamma/tau" />
+    <DictionaryEntry Key="xcb:XC_3255" Value="DNA polymerase III subunit epsilon; K02342 DNA polymerase III subunit epsilon [EC:2.7.7.7]" />
+    <DictionaryEntry Key="xcb:XC_3586" Value="DNA polymerase III subunit chi; K02339 DNA polymerase III subunit chi [EC:2.7.7.7]" />
+    <DictionaryEntry Key="xcb:XC_3836" Value="primosome assembly protein PriA; K04066 primosomal protein N&amp;#39; (replication factor Y) (superfamily II" />
+    <DictionaryEntry Key="xcb:XC_4109" Value="DNA polymerase I; K02335 DNA polymerase I [EC:2.7.7.7]" />
+    <DictionaryEntry Key="xcb:XC_4287" Value="exodeoxyribonuclease V subunit alpha; K03581 exodeoxyribonuclease V alpha subunit [EC:3.1.11.5]" />
+    <DictionaryEntry Key="xcb:XC_4288" Value="exodeoxyribonuclease V subunit beta; K03582 exodeoxyribonuclease V beta subunit [EC:3.1.11.5]" />
+    <DictionaryEntry Key="xcb:XC_4289" Value="exodeoxyribonuclease V subunit gamma; K03583 exodeoxyribonuclease V gamma subunit [EC:3.1.11.5]" />
   </Genes>
 </KEGG.PathwayBrief>

@@ -4,5 +4,22 @@
   <Name>Cationic antimicrobial peptide (CAMP) resistance - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
   <Compound />
   <PathwayMap Key="xcb01503" Value="Cationic antimicrobial peptide (CAMP) resistance&lt;center&gt;" />
-  <Genes />
+  <Genes>
+    <DictionaryEntry Key="xcb:XC_0764" Value="thiol:disulfide interchange protein; K03673 thiol:disulfide interchange protein DsbA" />
+    <DictionaryEntry Key="xcb:XC_0765" Value="disulfide oxidoreductase; K03673 thiol:disulfide interchange protein DsbA" />
+    <DictionaryEntry Key="xcb:XC_0828" Value="TolC protein; K12340 outer membrane protein" />
+    <DictionaryEntry Key="xcb:XC_0995" Value="RND efflux membrane fusion protein; K03585 membrane fusion protein, multidrug efflux system" />
+    <DictionaryEntry Key="xcb:XC_0996" Value="acriflavin resistance protein; K18138 multidrug efflux pump" />
+    <DictionaryEntry Key="xcb:XC_1432" Value="multidrug resistance protein; K03585 membrane fusion protein, multidrug efflux system" />
+    <DictionaryEntry Key="xcb:XC_1747" Value="multidrug-efflux transporter acrB; K18138 multidrug efflux pump" />
+    <DictionaryEntry Key="xcb:XC_1748" Value="multidrug resistance protein; K03585 membrane fusion protein, multidrug efflux system" />
+    <DictionaryEntry Key="xcb:XC_1816" Value="N-acetylmuramoyl-L-alanine amidase; K01448 N-acetylmuramoyl-L-alanine amidase [EC:3.5.1.28]" />
+    <DictionaryEntry Key="xcb:XC_2472" Value="N-acetylmuramoyl-L-alanine amidase; K01448 N-acetylmuramoyl-L-alanine amidase [EC:3.5.1.28]" />
+    <DictionaryEntry Key="xcb:XC_2877" Value="UDP-N-acetylglucosamine acyltransferase (EC:2.3.1.129); K00677 UDP-N-acetylglucosamine acyltransfera" />
+    <DictionaryEntry Key="xcb:XC_2916" Value="hypothetical protein; K14205 phosphatidylglycerol lysyltransferase [EC:2.3.2.3]" />
+    <DictionaryEntry Key="xcb:XC_2972" Value="periplasmic protease; K04771 serine protease Do [EC:3.4.21.107]" />
+    <DictionaryEntry Key="xcb:XC_3129" Value="hypothetical protein; K03760 lipid A ethanolaminephosphotransferase [EC:2.7.8.-]" />
+    <DictionaryEntry Key="xcb:XC_4030" Value="two-component system sensor protein; K07637 two-component system, OmpR family, sensor histidine kina" />
+    <DictionaryEntry Key="xcb:XC_4031" Value="two-component system regulatory protein; K07660 two-component system, OmpR family, response regulato" />
+  </Genes>
 </KEGG.PathwayBrief>

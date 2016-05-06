@@ -34,7 +34,7 @@
   </Compound>
   <PathwayMap Key="xcb00591" Value="Linoleic acid metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_2818" Value="phospholipase; K01058 phospholipase A1 [EC:3.1.1.32 3.1.1.4] [KO:K01058] [EC:3.1.1.4 3.1.1.32]" />
-    <DictionaryEntry Key="XC_3964" Value="hypothetical protein; K00508 linoleoyl-CoA desaturase [EC:1.14.19.3] [KO:K00508] [EC:1.14.19.3]" />
+    <DictionaryEntry Key="xcb:XC_2818" Value="phospholipase; K01058 phospholipase A1 [EC:3.1.1.32 3.1.1.4]" />
+    <DictionaryEntry Key="xcb:XC_3964" Value="hypothetical protein; K00508 linoleoyl-CoA desaturase [EC:1.14.19.3]" />
   </Genes>
 </KEGG.PathwayBrief>

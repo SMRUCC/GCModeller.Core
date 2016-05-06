@@ -18,7 +18,7 @@
   </Compound>
   <PathwayMap Key="xcb00471" Value="D-Glutamine and D-glutamate metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="XC_1375" Value="murD; UDP-N-acetylmuramoyl-L-alanyl-D-glutamate synthetase [KO:K01925] [EC:6.3.2.9]" />
-    <DictionaryEntry Key="XC_3509" Value="murC; UDP-N-acetylmuramate--L-alanine ligase [KO:K01924] [EC:6.3.2.8]" />
+    <DictionaryEntry Key="xcb:XC_1375" Value="murD; UDP-N-acetylmuramoyl-L-alanyl-D-glutamate synthetase (EC:6.3.2.9); K01925 UDP-N-acetylmuramoyl" />
+    <DictionaryEntry Key="xcb:XC_3509" Value="murC; UDP-N-acetylmuramate--L-alanine ligase (EC:6.3.2.8); K01924 UDP-N-acetylmuramate--alanine liga" />
   </Genes>
 </KEGG.PathwayBrief>
