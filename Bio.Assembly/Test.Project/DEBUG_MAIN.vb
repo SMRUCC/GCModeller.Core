@@ -7,6 +7,10 @@ Module DEBUG_MAIN
 
     Sub Main()
 
+
+        Dim alllll = LANS.SystemsBiology.Assembly.KEGG.DBGET.LinkDB.Pathways.AllEntries("xcb").ToArray
+
+
         Dim s = LANS.SystemsBiology.Assembly.KEGG.DBGET.bGetObject.Organism.GetKEGGSpeciesCode("Agrobacterium tumefaciens str. C58 (Cereon)")
 
 

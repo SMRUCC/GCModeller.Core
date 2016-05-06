@@ -21,13 +21,19 @@ Namespace Assembly.KEGG.DBGET.LinkDB
 
         Public Iterator Function AllEntries(sp As String) As IEnumerable(Of ListEntry)
             Dim html As String = Strings.Split(URLProvider(sp).GET, modParser.SEPERATOR).Last
-            Dim Entries As String() = Regex.Matches(html, "<a href="".+?"">.+?</a>.+?$", RegexICSng).ToArray
+            Dim Entries As String() = Regex.Matches(html, "<a href="".+?"">.+?</a>.+?$", RegexOptions.IgnoreCase Or RegexOptions.Multiline).ToArray
 
-            For Each entry As String In Entries
-                Dim item As String = Regex.Match(entry, ">.+?</a>").Value
-                entry = Mid(entry, 2, Len(entry) - 5)
+            For Each entry As String In Entries.Take(Entries.Length - 1)
+                Dim key As String = Regex.Match(entry, ">.+?</a>").Value
+                key = Mid(key, 2, Len(key) - 5)
                 Dim Description As String = Strings.Split(entry, "</a>").Last.Trim
-                Dim Url As String = String.Format(Gene.URL_PATHWAY_GENES, entry)
+                Dim url As String = "http://www.genome.jp" & entry.Get_href
+
+                Yield New ListEntry With {
+                    .EntryID = key,
+                    .Description = Description,
+                    .Url = url
+                }
             Next
         End Function
 
