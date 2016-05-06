@@ -3,7 +3,8 @@ Imports System.Text.RegularExpressions
 Imports LANS.SystemsBiology.Assembly.KEGG.DBGET.bGetObject
 Imports LANS.SystemsBiology.Assembly.KEGG.WebServices
 Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
-Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+Imports Microsoft.VisualBasic.Serialization
+Imports Microsoft.VisualBasic
 
 Namespace Assembly.KEGG.DBGET.LinkDB
 
@@ -19,9 +20,12 @@ Namespace Assembly.KEGG.DBGET.LinkDB
             Return url
         End Function
 
+        Const LinkItem As String = "<a href="".+?"">.+?</a>.+?$"
+
         Public Iterator Function AllEntries(sp As String) As IEnumerable(Of ListEntry)
             Dim html As String = Strings.Split(URLProvider(sp).GET, modParser.SEPERATOR).Last
-            Dim Entries As String() = Regex.Matches(html, "<a href="".+?"">.+?</a>.+?$", RegexOptions.IgnoreCase Or RegexOptions.Multiline).ToArray
+            Dim Entries As String() =
+                Regex.Matches(html, LinkItem, RegexICMul).ToArray
 
             For Each entry As String In Entries.Take(Entries.Length - 1)
                 Dim key As String = Regex.Match(entry, ">.+?</a>").Value
@@ -37,22 +41,29 @@ Namespace Assembly.KEGG.DBGET.LinkDB
             Next
         End Function
 
-        Public Iterator Function Download2(speciesId As String) As IEnumerable(Of Pathway)
+        Public Iterator Function Download2(sp As String, Optional EXPORT As String = "./LinkDB-Pathways/") As IEnumerable(Of Pathway)
             Dim Downloader As New WebClient()
+            Dim entries As New List(Of ListEntry)
 
-            Call FileIO.FileSystem.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "/Pathways/")
+            For Each entry As ListEntry In AllEntries(sp)
+                Dim ImageUrl = String.Format("http://www.genome.jp/kegg/pathway/{0}/{1}.png", sp, entry.EntryID)
+                Dim pathwayPage = "http://www.genome.jp/dbget-bin/www_bget?pathway+" & entry.EntryID
+                Dim path As String = EXPORT & "/webpages/" & entry.EntryID & ".html"
+                Dim img As String = EXPORT & $"/{entry.EntryID}.png"
 
-            For Each entry As ListEntry In AllEntries(speciesId)
-                Dim Url As String = String.Format(Gene.URL_PATHWAY_GENES, entry.EntryID)
-                Dim ImageUrl = String.Format("http://www.genome.jp/kegg/pathway/{0}/{1}.png", speciesId, entry.EntryID)
-                Dim ObjUrl = "http://www.genome.jp/dbget-bin/www_bget?pathway+" & entry.EntryID
-                Dim path As String = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "/pathways/webpages/" & entry.EntryID & ".html"
+                Call pathwayPage.GET.SaveTo(path)
+                Call Downloader.DownloadFile(ImageUrl, img)
 
-                Call ObjUrl.GET.SaveTo(path)
-                Call Downloader.DownloadFile(ImageUrl, Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "/Pathways/" & entry.EntryID & ".png")
+                Dim data As Pathway = Pathway.DownloadPage(path)
 
-                Yield Pathway.DownloadPage(path)
+                Call data.SaveAsXml(EXPORT & $"/{entry.EntryID}.Xml")
+
+                entries += entry
+
+                Yield data
             Next
+
+            Call entries.GetJson.SaveTo(EXPORT & $"/{sp}.json")
         End Function
     End Module
 End Namespace
