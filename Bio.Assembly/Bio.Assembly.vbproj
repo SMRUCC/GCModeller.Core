@@ -202,7 +202,7 @@
     <Compile Include="Assembly\KEGG\DBGET\Objects\Gene.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\Pathway\Glycan.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\Pathway\Module\Module.vb" />
-    <Compile Include="Assembly\KEGG\DBGET\WebParser\Module.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\LinkDB\Module.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\Reference.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\SSDB\Orthology.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\ReferenceMap\Reaction.vb" />
@@ -307,7 +307,7 @@
     <Compile Include="Assembly\KEGG\DBGET\Objects\SSDB\OrthologREST.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\Pathway\Compound.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\Pathway\Reaction.vb" />
-    <Compile Include="Assembly\KEGG\DBGET\WebParser\Pathways.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\LinkDB\Pathways.vb" />
     <Compile Include="Assembly\MetaCyc\File\AttributeValue DataFile\DataFiles\Files\Species.vb" />
     <Compile Include="Assembly\MetaCyc\Schemas\ProteinQuery.vb" />
     <Compile Include="Assembly\MetaCyc\Schemas\PathwayMappingTool.vb" />

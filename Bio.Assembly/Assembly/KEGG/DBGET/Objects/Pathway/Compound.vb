@@ -159,11 +159,10 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         End Function
 
         Private Shared Function GetValues(str As String) As String()
-            Dim buf As String() = (From m As Match In Regex.Matches(str, "<a href="".+?"">.+?</a>") Select m.Value).ToArray
-            Dim LQuery As String() = (From s As String
-                                      In buf
-                                      Select WebServices.InternalWebFormParsers.WebForm.GetNodeValue(s)).ToArray
-            Return LQuery
+            Dim buf As String() =
+                Regex.Matches(str, "<a href="".+?"">.+?</a>") _
+               .ToArray(AddressOf WebServiceUtils.GetValue)
+            Return buf
         End Function
 
         Friend Shared Function GetReactionList(strData As String) As String()
@@ -171,12 +170,9 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 Return New String() {}
             End If
 
-            Dim buf As String() = (From m As Match
-                                   In Regex.Matches(strData, "<a href="".+?"">.+?</a>", RegexOptions.Singleline)
-                                   Select m.Value).ToArray
-            buf = (From s As String
-                   In buf
-                   Select KEGG.WebServices.InternalWebFormParsers.WebForm.GetNodeValue(s)).ToArray
+            Dim buf As String() =
+                Regex.Matches(strData, "<a href="".+?"">.+?</a>", RegexOptions.Singleline) _
+               .ToArray(AddressOf WebServiceUtils.GetValue)
             Return buf
         End Function
 

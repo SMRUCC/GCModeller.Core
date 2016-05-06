@@ -145,7 +145,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
 
             Dim SpeciesCode As String = WebForm.GetValue("Organism").FirstOrDefault
             Dim [Module] As [Module] = New [Module]
-            SpeciesCode = WebServices.InternalWebFormParsers.WebForm.GetNodeValue(Regex.Match(SpeciesCode, "\[GN:<a href="".+?"">.+?</a>]").Value)
+            SpeciesCode = Regex.Match(SpeciesCode, "\[GN:<a href="".+?"">.+?</a>]").Value.GetValue
 
             [Module].EntryId = Regex.Match(WebForm.GetValue("Entry").FirstOrDefault, "[a-z]+_M\d+").Value
             [Module].Name = WebForm.GetValue("Name").FirstOrDefault

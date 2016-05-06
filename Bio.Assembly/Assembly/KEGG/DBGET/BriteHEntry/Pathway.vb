@@ -84,20 +84,20 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                 strLine = Mid(strLine, 2).Trim
 
                 If Id = "A"c Then
-                    [Class] = BriteHText.NormalizePath(KEGG.WebServices.InternalWebFormParsers.WebForm.GetNodeValue(strLine))
+                    [Class] = BriteHText.NormalizePath(strLine.GetValue)
                 ElseIf Id = "B"c Then
                     Category = BriteHText.NormalizePath(strLine)
                 ElseIf Id = "C"c Then
                     Dim IdNum As String = Regex.Match(strLine, "\d{5}").Value
                     strLine = strLine.Replace(IdNum, "").Trim
-                    Call ItemList.Add(New Pathway With {
-                                      .Category = Category,
-                                      .Class = [Class],
-                                      .Entry = New ComponentModel.KeyValuePair With {
-                                            .Key = IdNum,
-                                            .Value = strLine
-                                      }
-                                 })
+                    ItemList += New Pathway With {
+                        .Category = Category,
+                        .Class = [Class],
+                        .Entry = New ComponentModel.KeyValuePair With {
+                            .Key = IdNum,
+                            .Value = strLine
+                        }
+                    }
                 End If
             Next
 

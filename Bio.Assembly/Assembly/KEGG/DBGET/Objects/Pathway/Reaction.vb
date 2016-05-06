@@ -169,7 +169,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
 
             Dim Links As KeyValuePair(Of String, String)() =
                 Regex.Matches(strData, "<a href="".+?"">.+?</a>").ToArray(
-                Function(m) New KeyValuePair(Of String, String)(m, InternalWebFormParsers.WebForm.GetNodeValue(m)))
+                Function(m) New KeyValuePair(Of String, String)(m, m.GetValue))
             Dim sBuilder As StringBuilder = New StringBuilder(strData)
             For Each item As KeyValuePair(Of String, String) In Links
                 Call sBuilder.Replace(item.Key, item.Value)
@@ -182,7 +182,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         Private Shared Function __parsingEquation(strData As String) As String
             Dim Links As KeyValuePair(Of String, String)() =
                 Regex.Matches(strData, "<a href="".+?"">.+?</a>").ToArray(
-                Function(m) New KeyValuePair(Of String, String)(m, InternalWebFormParsers.WebForm.GetNodeValue(m)))
+                Function(m) New KeyValuePair(Of String, String)(m, m.GetValue))
             Dim sBuilder As StringBuilder = New StringBuilder(strData)
             For Each item In Links
                 Call sBuilder.Replace(item.Key, item.Value)

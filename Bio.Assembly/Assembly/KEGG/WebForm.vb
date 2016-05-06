@@ -4,6 +4,7 @@ Imports System.Text
 Imports LANS.SystemsBiology.Assembly.KEGG.DBGET
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.HtmlParser
 
 Namespace Assembly.KEGG.WebServices.InternalWebFormParsers
 
@@ -30,14 +31,14 @@ Namespace Assembly.KEGG.WebServices.InternalWebFormParsers
                                          Let value As String = Regex.Match(strValue, "<nobr>.+?</nobr>.+", RegexOptions.Singleline).Value.Trim
                                          Where Not String.IsNullOrEmpty(value)
                                          Select value).ToArray
-            Me._WebPageTitle = GetNodeValue(Regex.Match(PageContent, PAGE_CONTENT_TITLE).Value)
+            Me._WebPageTitle = PageContent.HTMLtitle
             Me._url = Url
             Me._strData = New SortedDictionary(Of String, KeyValuePair(Of String, String)())
 
             Dim Fields = (From strValue As String In TempChunk
                           Let Key As String = Regex.Match(strValue, "<nobr>.+?</nobr>").Value
                           Let Value As String = RegexReplace(strValue.Replace(Key, ""), WebForm.HtmlFormatControl)
-                          Select New KeyValuePair(Of String, String())(GetNodeValue(Key), {Value.TrimA, strValue})).ToArray
+                          Select New KeyValuePair(Of String, String())(Key.GetValue, {Value.TrimA, strValue})).ToArray
 
             For Each Key As String In (From item In Fields Let KeyValue As String = item.Key Select KeyValue Distinct).ToArray
                 Call _strData.Add(Key, (From item In Fields
@@ -74,7 +75,7 @@ Namespace Assembly.KEGG.WebServices.InternalWebFormParsers
                 Dim ComponentEntry As String = Regex.Match(strTemp, SplitRegx).Value
                 Dim ComponentDescription As String = strTemp.Replace(ComponentEntry, "").Trim
 
-                ComponentEntry = WebForm.GetNodeValue(ComponentEntry)
+                ComponentEntry = ComponentEntry.GetValue
                 ComponentDescription = WebForm.RemoveHrefLink(ComponentDescription)
 
                 Call ComponentList.Add(New ComponentModel.KeyValuePair With {.Key = ComponentEntry, .Value = ComponentDescription})
@@ -85,7 +86,7 @@ Namespace Assembly.KEGG.WebServices.InternalWebFormParsers
             Dim LastEntry As ComponentModel.KeyValuePair = New ComponentModel.KeyValuePair
             LastEntry.Key = Regex.Match(strValue, SplitRegx).Value
             LastEntry.Value = WebForm.RemoveHrefLink(strValue.Replace(LastEntry.Key, "").Trim)
-            LastEntry.Key = WebForm.GetNodeValue(LastEntry.Key)
+            LastEntry.Key = LastEntry.Key.GetValue
 
             Call ComponentList.Add(LastEntry)
 
@@ -104,23 +105,6 @@ Namespace Assembly.KEGG.WebServices.InternalWebFormParsers
                 strData = Regex.Replace(strData, strItem, "")
             Next
             Return strData
-        End Function
-
-        ''' <summary>
-        ''' 假若目标字符串的格式为一个HTML节点格式的话，则可以使用本方法进行解析
-        ''' </summary>
-        ''' <param name="strData"></param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
-        Public Shared Function GetNodeValue(strData As String) As String
-            strData = Regex.Match(strData, ">.+?<").Value
-            If String.IsNullOrEmpty(strData) Then
-                Return ""
-            Else
-                strData = Mid(strData, 2)
-                strData = Mid(strData, 1, Len(strData) - 1)
-                Return strData
-            End If
         End Function
 
         ''' <summary>
@@ -159,7 +143,7 @@ Namespace Assembly.KEGG.WebServices.InternalWebFormParsers
             Dim Links = (From m As Match
                          In Regex.Matches(strValue, HREF)
                          Select Original = m.Value,
-                             Value = GetNodeValue(m.Value)).ToArray
+                             Value = m.Value.GetValue).ToArray
             Dim sBuilder As StringBuilder = New StringBuilder(strValue)
 
             For Each LinkItem In Links

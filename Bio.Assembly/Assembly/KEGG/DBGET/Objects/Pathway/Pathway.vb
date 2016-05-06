@@ -2,6 +2,7 @@
 Imports System.Xml.Serialization
 Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Linq
@@ -197,7 +198,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             Dim Pathway As Pathway = New Pathway
             Dim SpeciesCode As String = WebForm.GetValue("Organism").FirstOrDefault
 
-            SpeciesCode = WebServices.InternalWebFormParsers.WebForm.GetNodeValue(Regex.Match(SpeciesCode, "\[GN:<a href="".+?"">.+?</a>]").Value)
+            SpeciesCode = Regex.Match(SpeciesCode, "\[GN:<a href="".+?"">.+?</a>]").Value.GetValue
             Pathway.EntryId = Regex.Match(WebForm.GetValue("Entry").FirstOrDefault, "[a-z]+\d+", RegexOptions.IgnoreCase).Value
             Pathway.Name = WebForm.GetValue("Name").FirstOrDefault
             Pathway.Disease = __parseHTML_ModuleList(WebForm.GetValue("Disease").FirstOrDefault, LIST_TYPES.Disease)
@@ -291,7 +292,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 Dim ModuleEntry As String = Regex.Match(strTemp, SplitRegex).Value
                 Dim ModuleFunction As String = strTemp.Replace(ModuleEntry, "").Trim
 
-                ModuleEntry = WebForm.GetNodeValue(ModuleEntry)
+                ModuleEntry = ModuleEntry.GetValue
                 ModuleFunction = WebForm.RemoveHrefLink(ModuleFunction)
 
                 Call ModuleList.Add(New ComponentModel.KeyValuePair With {.Key = ModuleEntry, .Value = ModuleFunction})
@@ -302,7 +303,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             Dim LastEntry As ComponentModel.KeyValuePair = New ComponentModel.KeyValuePair
             LastEntry.Key = Regex.Match(s_Value, SplitRegex).Value
             LastEntry.Value = WebForm.RemoveHrefLink(s_Value.Replace(LastEntry.Key, "").Trim)
-            LastEntry.Key = WebForm.GetNodeValue(LastEntry.Key)
+            LastEntry.Key = LastEntry.Key.GetValue
 
             Call ModuleList.Add(LastEntry)
 
@@ -355,17 +356,17 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             Return LQuery
         End Function
 
-        Private Shared Function GenerateObject(strValue As String) As PathwayEntry
+        Private Shared Function GenerateObject(s As String) As PathwayEntry
             Dim EntryItem As PathwayEntry = New PathwayEntry
-            Dim ChunkBuffer As String() = Strings.Split(strValue, vbLf)
-            EntryItem.Entry = WebForm.GetNodeValue(ChunkBuffer.First)
-            EntryItem.Url = ChunkBuffer.First.Get_href
-            ChunkBuffer = ChunkBuffer.Skip(3).ToArray
-            Dim p As Integer = 0
-            EntryItem.Name = WebForm.GetNodeValue(ChunkBuffer(p.MoveNext))
-            EntryItem.Description = WebForm.GetNodeValue(ChunkBuffer(p.MoveNext))
-            EntryItem.Object = WebForm.GetNodeValue(ChunkBuffer(p.MoveNext))
-            EntryItem.Legend = WebForm.GetNodeValue(ChunkBuffer(p.MoveNext))
+            Dim sbuf As String() = Strings.Split(s, vbLf)
+            EntryItem.Entry = sbuf.First.GetValue
+            EntryItem.Url = sbuf.First.Get_href
+            sbuf = sbuf.Skip(3).ToArray
+            Dim p As New Pointer(0)
+            EntryItem.Name = sbuf(++p).GetValue
+            EntryItem.Description = sbuf(++p).GetValue
+            EntryItem.Object = sbuf(++p).GetValue
+            EntryItem.Legend = sbuf(++p).GetValue
 
             Return EntryItem
         End Function

@@ -1,5 +1,5 @@
 ﻿Imports System.Text.RegularExpressions
-Imports LANS.SystemsBiology.Assembly.KEGG.DBGET.WebParser
+Imports LANS.SystemsBiology.Assembly.KEGG.DBGET.LinkDB
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 
 Namespace Assembly.KEGG.DBGET.bGetObject

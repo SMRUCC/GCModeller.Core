@@ -78,7 +78,6 @@ Namespace Assembly.KEGG.WebServices
 
         Const KEGG_DBGET_QUERY_NT As String = "http://www.genome.jp/dbget-bin/www_bget?-f+-n+n+{0}:{1}"
         Const KEGG_DBGET_QUERY_PROTEIN As String = "http://www.genome.jp/dbget-bin/www_bget?-f+-n+a+{0}:{1}"
-        Const PAGE_CONTENT_TITLE As String = "<title>.+</title>"
         Const PAGE_CONTENT_FASTA_SEQUENCE As String = "[<]pre[>].+[<][/]pre[>]"
 
         ''' <summary>
