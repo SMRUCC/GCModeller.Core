@@ -53,7 +53,7 @@ Namespace Assembly.MetaCyc.Schema.PathwayBrief
             Return Collection
         End Function
 
-        Public Function GenerateReport(Pathways As Pathway(), Genes As Genes) As PathwayBrief()
+        Public Function GenerateReport(Pathways As Pathway(), Genes As File.DataFiles.Genes) As PathwayBrief()
             Dim LQuery = (From pwy In Pathways
                           Let item = New PathwayBrief With {
                               .EntryId = pwy.Identifier, .Description = pwy.MetaCycBaseType.CommonName,

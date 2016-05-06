@@ -23,7 +23,7 @@ Namespace Assembly.KEGG.DBGET.LinkDB
         Const LinkItem As String = "<a href="".+?"">.+?</a>.+?$"
 
         Public Iterator Function AllEntries(sp As String) As IEnumerable(Of ListEntry)
-            Dim html As String = Strings.Split(URLProvider(sp).GET, modParser.SEPERATOR).Last
+            Dim html As String = Strings.Split(URLProvider(sp).GET, Modules.SEPERATOR).Last
             Dim Entries As String() =
                 Regex.Matches(html, LinkItem, RegexICMul).ToArray
 
@@ -60,6 +60,7 @@ Namespace Assembly.KEGG.DBGET.LinkDB
                 Dim data As Pathway = Pathway.DownloadPage(path)
 
                 entries += entry
+                data.Genes = KEGGgenes.Download($"http://www.genome.jp/dbget-bin/get_linkdb?-t+genes+path:{entry.EntryID}").ToArray
 
                 path = BriteHEntry.Pathway.CombineDIR(briefHash(bCode), EXPORT)
                 path = path & $"/{entry.EntryID}.Xml"

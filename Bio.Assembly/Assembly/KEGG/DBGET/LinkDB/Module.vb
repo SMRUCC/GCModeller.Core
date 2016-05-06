@@ -3,10 +3,11 @@ Imports LANS.SystemsBiology.Assembly.KEGG.DBGET.bGetObject
 Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic
+Imports LANS.SystemsBiology.ComponentModel
 
 Namespace Assembly.KEGG.DBGET.LinkDB
 
-    Public Module modParser
+    Public Module Modules
 
         Public Const URL_KEGG_MODULES_ENTRY_PAGE As String = "http://www.genome.jp/dbget-bin/get_linkdb?-t+module+genome:{0}"
         Public Const SEPERATOR As String = "<pre>ID                   Definition"
@@ -31,8 +32,8 @@ Namespace Assembly.KEGG.DBGET.LinkDB
             Dim Entries As String() = (From Match As Match
                                        In Regex.Matches(pageContent, "<a href="".+?"">.+?</a>.+?$", RegexOptions.Multiline + RegexOptions.IgnoreCase)
                                        Select Match.Value).ToArray
-            Dim Genes As KeyValuePairObject(Of KeyValuePair(Of String, String), Gene())() =
-                New KeyValuePairObject(Of KeyValuePair(Of String, String), Gene())(Entries.Length - 2) {}
+            Dim Genes As KeyValuePairObject(Of KeyValuePair(Of String, String), KeyValuePair())() =
+                New KeyValuePairObject(Of KeyValuePair(Of String, String), KeyValuePair())(Entries.Length - 2) {}
             Dim Downloader As New System.Net.WebClient()
 
             Entries = Entries.Take(Entries.Length - 1).ToArray
@@ -50,7 +51,7 @@ Namespace Assembly.KEGG.DBGET.LinkDB
                 Dim Entry As String = Regex.Match(Item, ">.+?</a>").Value
                 Entry = Mid(Entry, 2, Len(Entry) - 5)
                 Dim Description As String = Strings.Split(Item, "</a>").Last.Trim
-                Dim Url As String = String.Format(Gene.URL_MODULE_GENES, Entry)
+                Dim Url As String = String.Format(KEGGgenes.URL_MODULE_GENES, Entry)
                 Dim ImageUrl = String.Format("http://www.genome.jp/tmp/pathway_thumbnail/{0}.png", Entry)
 
                 Try
@@ -65,31 +66,28 @@ Namespace Assembly.KEGG.DBGET.LinkDB
 
                 End Try
 
-                Genes(i) = New KeyValuePairObject(Of KeyValuePair(Of String, String), Gene()) With {
+                Genes(i) = New KeyValuePairObject(Of KeyValuePair(Of String, String), KeyValuePair()) With {
                     .Key = New KeyValuePair(Of String, String)(Entry, Description),
-                    .Value = Gene.Download(Url)
+                    .Value = KEGGgenes.Download(Url).ToArray
                 }
             Next
 
             Return __createBriefModuleData(Genes)
         End Function
 
-        Private Function __createBriefModuleData(Items As KeyValuePairObject(Of KeyValuePair(Of String, String), Gene())()) As [Module]()
+        Private Function __createBriefModuleData(Items As KeyValuePairObject(Of KeyValuePair(Of String, String), KeyValuePair())()) As [Module]()
             Dim LQuery = (From item In Items
                           Select New [Module] With {
                               .EntryId = item.Key.Key,
                               .Description = item.Key.Value,
-                              .PathwayGenes = (From GeneObject As Gene In item.Value
-                                               Select New ComponentModel.KeyValuePair With {
-                                                   .Key = GeneObject.Identifier,
-                                                   .Value = GeneObject.Description}).ToArray}).ToArray
+                              .PathwayGenes = item.Value}).ToArray
             Return LQuery
         End Function
 
         Const HREF As String = "href="".+?"""
 
         Public Function GetUrl(href As String) As String
-            href = Regex.Match(href, modParser.HREF).Value
+            href = Regex.Match(href, Modules.HREF).Value
             href = Mid(href, 7)
             href = Mid(href, 1, Len(href) - 1)
             Return href

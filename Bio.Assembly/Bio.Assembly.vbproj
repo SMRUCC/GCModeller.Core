@@ -199,7 +199,7 @@
     <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\Module.vb" />
     <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\EnzymaticReaction.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\bGetObject.vb" />
-    <Compile Include="Assembly\KEGG\DBGET\Objects\Gene.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\LinkDB\KEGGgenes.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\Pathway\Glycan.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\Pathway\Module\Module.vb" />
     <Compile Include="Assembly\KEGG\DBGET\LinkDB\Module.vb" />
