@@ -188,6 +188,11 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             Return DownloadPage(url:=String.Format(PATHWAY_DBGET, SpeciesCode, Entry))
         End Function
 
+        ''' <summary>
+        ''' 从某一个页面url或者文件路径所指向的网页文件之中解析出模型数据
+        ''' </summary>
+        ''' <param name="url"></param>
+        ''' <returns></returns>
         Public Shared Function DownloadPage(url As String) As Pathway
             Dim WebForm As New WebForm(url)
 
