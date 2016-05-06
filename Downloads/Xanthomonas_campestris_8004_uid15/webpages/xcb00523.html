@@ -1,0 +1,416 @@
+<!doctype html>
+<html><head>
+<title>KEGG PATHWAY: xcb00523</title>
+<link type="text/css" rel="stylesheet" href="/css/gn2.css">
+<link rel="stylesheet" href="/css/bget.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/bgetm.css" media="only screen and (max-width: 768px)">
+<style>.kcfd{display:none;}</style>
+<script>
+<!--
+var getElementsByClassName = document.getElementsByClassName ?
+  function (cl){
+    return document.getElementsByClassName(cl);
+  } :
+  function (cl){
+    var elms = [];
+    var objs = document.getElementsByTagName('*');
+    for(var i=0;i<objs.length;i++){
+      var obj = objs[i];
+      if(obj.className == cl){
+        elms.push(obj);
+      }
+    }
+    return elms;
+  };
+function toggleField(clk,cl,show,hide){
+  var objs = getElementsByClassName(cl);
+  for(var i=0;i<objs.length;i++){
+    var obj = objs[i];
+    if(!obj.style.display||obj.style.display == 'none'){
+      obj.style.display = 'block';
+      clk.innerHTML = '&nbsp;&laquo; '+hide;
+    }
+    else{
+      obj.style.display = 'none';
+      clk.innerHTML = '&nbsp;&raquo; '+show;
+    }
+  }
+}
+function toggleData(bobj,e){
+  var id = bobj.id.replace(/[^0-9]/g,'');
+  var dt = document.getElementById('kcfd'+id);
+  if(!dt.style.display||dt.style.display == 'none'){
+    bobj.name = 'hide_kcf';
+    bobj.alt = 'Hide';
+    bobj.src = '/Fig/bget/button_Hib.gif';
+    dt.style.display = 'block';
+  }
+  else{
+    bobj.name = 'show_kcf';
+    bobj.alt = 'Show';
+    bobj.src = '/Fig/bget/button_Sb.gif';
+    dt.style.display = 'none';
+  }
+}
+function btn(bobj,img) {
+  bobj.src = "/Fig/bget/button_" + img + ".gif";
+}
+function btn_e(e) {
+  e = e || event;
+  var obj = e.target;
+  var img = e.target.src;
+  var img_base = img.replace(/\\/g,'/').replace(/(b|bd|bh)\.gif$/,'');
+  if(e.type == 'mousedown'||e.type == 'touchstart'){
+    obj.src = img_base +'bd.gif';
+  }
+  else if(e.type == 'mouseover'){
+    obj.src = img_base +'bh.gif';
+  }
+  else if(e.type == 'mouseup'||e.type == 'touchend'){
+    obj.src = img_base +'b.gif';
+  }
+  else if(e.type == 'mouseout'){
+    obj.src = img_base +'b.gif';
+  }
+}
+function init(){
+  for(var i=1;i<=1;i++){
+    if(document.getElementById('kcfb'+i)){
+      document.getElementById('kcfb'+i).onclick = function(e){toggleData(this,e);};
+      document.getElementById('kcfb'+i).onmousedown = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseover = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseout = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseup = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchstart = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchend = function(e){btn_e(e);};
+    }
+  }
+}
+function Link_XtrctSeq2(form) {
+    var dna_from;
+    var dna_to;
+    var dna_len;
+    var plus_up   = Number(form.XtrctSeq_UP.value) ;
+    var plus_down = Number(form.XtrctSeq_DOWN.value);
+    var vector    = Number(form.VECTOR.value);
+    var org       = form.ORG.value;
+    var chr       = form.CHR.value;
+    var kid       = form.KEGGID.value;
+    var url;
+
+    if (plus_up == 0 && plus_down == 0) {
+	url = "/dbget-bin/www_bget?-f+-n+n+" + kid;
+    }
+    else {
+	if (vector == 1) {
+	    dna_from  = Number(form.FROM.value)  - plus_up;
+	    dna_to    = Number(form.TO.value) + plus_down;
+	} else {
+	    dna_from  = Number(form.FROM.value)  - plus_down;
+	    dna_to    = Number(form.TO.value) + plus_up;
+	}
+
+	url = "/dbget-bin/cut_sequence_genes.pl?FROM=" + dna_from + "&TO=" + dna_to +"&VECTOR=" + vector + "&ORG=" + org;
+	if (chr) url += "&CHR=" + chr;
+    }
+    //window.open( url, "_self" );
+    location.href = url;
+}
+function go_taxonomy(form,params){
+  for(var key in params){
+    if(form[key]){
+      form.setAttribute(key,params[key]);
+    }
+    else{
+      var obj = document.createElement('input');
+      obj.setAttribute('type','hidden');
+      obj.setAttribute('name',key);
+      obj.setAttribute('value',params[key]);
+      form.appendChild(obj);
+    }
+  }
+  form.submit();
+}
+window.onload=function(){window.focus();init();};
+//--->
+</script>
+
+</head>
+<body>
+<div>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="70"><a href="/kegg/kegg2.html"><img align="middle" alt="KEGG" border="0" src="/Fig/bget/kegg3.gif"></a></td><td>&nbsp;&nbsp;&nbsp;</td><td><a name="pathway:xcb00523"></a><font class="title3">PATHWAY: xcb00523</font></td><td align="right" valign="bottom"><a href="javascript:void(window.open('/kegg/document/help_bget_pathway.html','KEGG_Help','toolbar=no,location=no,directories=no,width=720,height=640,resizable=yes,scrollbars=yes'))"><img align="middle" alt="Help" border="0" name="help" onmousedown="btn(this,'Hbd')" onmouseout="btn(this,'Hb')" onmouseover="btn(this,'Hbh')" onmouseup="btn(this,'Hb')" ontouchend="btn(this,'Hb')" ontouchstart="btn(this,'Hbd')" src="/Fig/bget/button_Hb.gif"></a></td></tr></table>
+<form method="post" action="/dbget-bin/www_bget" enctype="application/x-www-form-urlencoded" name="form1"><table border=0 cellpadding=1 cellspacing=0>
+<tr>
+<td class="fr3">
+<table border=0 cellpadding=2 cellspacing=0 style="border-bottom:#000 1px solid">
+
+<tr><th class="th30" align="left" valign="middle" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Entry</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="left"><code><nobr>xcb00523&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pathway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</nobr></code></td> <td align="right"><br></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Name</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Polyketide sugar unit biosynthesis - Xanthomonas campestris pv. campestris 8004<br>
+</div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Class</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Metabolism; Metabolism of terpenoids and polyketides<br>
+<a href="/kegg-bin/get_htext?query=xcb00523&amp;htext=xcb00001.keg"><img align="middle" alt="BRITE hierarchy" border="0" name="BRH" onmousedown="btn(this,'BHbd')" onmouseout="btn(this,'BHb')" onmouseover="btn(this,'BHbh')" onmouseup="btn(this,'BHb')" ontouchend="btn(this,'BHb')" ontouchstart="btn(this,'BHbd')" src="/Fig/bget/button_BHb.gif"></a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Pathway&nbsp;map</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5.5em"><div><nobr><a href="/kegg-bin/show_pathway?xcb00523">xcb00523</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Polyketide sugar unit biosynthesis</div></td></tr></table><center><a href="/kegg-bin/show_pathway?xcb00523"><img src="/kegg/misc/thumbnail/map00523.gif" alt="xcb00523" style="border-style:none;"></a></center><br><a href="http://www.kegg.jp/kegg-bin/show_ot_map?map=00523"><img align="middle" alt="All organisms" border="0" name="AO" onmousedown="btn(this,'AObd')" onmouseout="btn(this,'AOb')" onmouseover="btn(this,'AObh')" onmouseup="btn(this,'AOb')" ontouchend="btn(this,'AOb')" ontouchstart="btn(this,'AObd')" src="/Fig/bget/button_AOb.gif"></a><a href="http://www.kegg.jp/kegg-bin/view_ortholog_table?map=00523"><img align="middle" alt="Ortholog table" border="0" name="OT" onmousedown="btn(this,'OTbd')" onmouseout="btn(this,'OTb')" onmouseover="btn(this,'OTbh')" onmouseup="btn(this,'OTb')" ontouchend="btn(this,'OTb')" ontouchstart="btn(this,'OTbd')" src="/Fig/bget/button_OTb.gif"></a></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Module</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:6.5em"><div><nobr><a href="/kegg-bin/show_module?xcb_M00793">xcb_M00793</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-L-rhamnose biosynthesis [PATH:<a href="/kegg-bin/show_pathway?xcb00523+M00793">xcb00523</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Organism</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Xanthomonas campestris pv. campestris 8004 [GN:<a href="/dbget-bin/www_bget?gn:xcb">xcb</a>]<br>
+</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Gene</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3612">XC_3612</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glucose-1-phosphate thymidylyltransferase; K00973 glucose-1-phosphate thymidylyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.24">2.7.7.24</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00973">K00973</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.24">2.7.7.24</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3613">XC_3613</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-glucose-4; K01710 dTDP-glucose 4,6-dehydratase [EC:<a href="/dbget-bin/www_bget?ec:4.2.1.46">4.2.1.46</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01710">K01710</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.2.1.46">4.2.1.46</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2171">XC_2171</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>strX protein; K01790 dTDP-4-dehydrorhamnose 3,5-epimerase [EC:<a href="/dbget-bin/www_bget?ec:5.1.3.13">5.1.3.13</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01790">K01790</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.1.3.13">5.1.3.13</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3611">XC_3611</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-4-dehydrorhamnose 3; K01790 dTDP-4-dehydrorhamnose 3,5-epimerase [EC:<a href="/dbget-bin/www_bget?ec:5.1.3.13">5.1.3.13</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01790">K01790</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.1.3.13">5.1.3.13</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3610">XC_3610</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-4-dehydrorhamnose reductase; K00067 dTDP-4-dehydrorhamnose reductase [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.133">1.1.1.133</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00067">K00067</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.133">1.1.1.133</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Compound</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00103">C00103</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Glucose 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00688">C00688</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-4-dehydro-beta-L-rhamnose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00842">C00842</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03187">C03187</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-6-deoxy-beta-L-talose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03319">C03319</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-L-rhamnose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04268">C04268</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-4-amino-4,6-dideoxy-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06620">C06620</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-3,4-dioxo-2,6-dideoxy-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C07277">C07277</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-D-fucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11460">C11460</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-4-oxo-5-C-methyl-L-rhamnose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11907">C11907</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-4-oxo-6-deoxy-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11908">C11908</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3,6-Dideoxy-3-oxo-dTDP-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11909">C11909</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-3-oxo-4,6-dideoxy-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11910">C11910</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-3-amino-3,4,6-trideoxy-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11911">C11911</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-D-desosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11912">C11912</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-6-deoxy-D-allose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11915">C11915</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-3-methyl-4-oxo-2,6-dideoxy-L-allose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11916">C11916</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-L-mycarose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11918">C11918</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Maltol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11919">C11919</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-L-megosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11920">C11920</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-L-olivose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11921">C11921</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-L-oleandrose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11922">C11922</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-4-oxo-2,6-dideoxy-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11925">C11925</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-3-amino-3,6-dideoxy-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11926">C11926</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-4-oxo-6-deoxy-D-allose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11927">C11927</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-4-oxo-2,6-dideoxy-L-mannose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11928">C11928</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-4-oxo-2,6-dideoxy-D-allose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11933">C11933</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-D-mycaminose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C12318">C12318</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-3-amino-2,3,6-trideoxy-4-keto-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C12481">C12481</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-5-dimethyl-L-lyxose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18029">C18029</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-3-oxo-2,6-dideoxy-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18030">C18030</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-2,6-dideoxy-D-kanosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18031">C18031</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-D-angolosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18032">C18032</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-4-oxo-2,3,6-trideoxy-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18033">C18033</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-4-amino-2,3,4,6-tetradeoxy-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18034">C18034</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-D-forosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18035">C18035</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-3-methyl-4-oxo-2,6-dideoxy-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C21071">C21071</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-3-O-methyl-4-oxo-2,6-dideoxy-L-mannose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C21073">C21073</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-3-N,N-dimethylamino-2,3,6-trideoxy-4-keto-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C21074">C21074</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dTDP-3-N,N-dimethylamino-4-oxo-2,3,6-trideoxy-L-allose</div></td></tr></table></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11336289">11336289</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Rawlings BJ.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Type I polyketide biosynthesis in bacteria (Part A--erythromycin biosynthesis).</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nat Prod Rep 18:190-227 (2001)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11476481">11476481</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Rawlings BJ.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Type I polyketide biosynthesis in bacteria (part B).</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nat Prod Rep 18:231-81 (2001)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11451669">11451669</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Wohlert S, Lomovskaya N, Kulowski K, Fonstein L, Occi JL, Gewain KM, MacNeil DJ, Hutchinson CR</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Insights about the biosynthesis of the avermectin deoxysugar L-oleandrose through heterologous expression of Streptomyces avermitilis deoxysugar genes in Streptomyces lividans.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Chem Biol 8:681-700 (2001)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10658660">10658660</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Bate N, Butler AR, Smith IP, Cundliffe E</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">The mycarose-biosynthetic genes of Streptomyces fradiae, producer of tylosin.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Microbiology 146 ( Pt 1):139-46 (2000)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11553351">11553351</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Amann S, Drager G, Rupprath C, Kirschning A, Elling L</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">(Chemo)enzymatic synthesis of dTDP-activated 2,6-dideoxysugars as building blocks of polyketide antibiotics.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Carbohydr Res 335:23-32 (2001)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/17460661">17460661</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Thibodeaux CJ, Melancon CE, Liu HW</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Unusual sugar biosynthesis and natural product glycodiversification.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nature 446:1008-16 (2007)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10972798">10972798</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Volchegursky Y, Hu Z, Katz L, McDaniel R</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Biosynthesis of the anti-parasitic agent megalomicin: transformation of erythromycin to megalomicin in Saccharopolyspora erythraea.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Mol Microbiol 37:752-62 (2000)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">(PMID:15609849 (Article in Russian))</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Mironov VA, Sergienko OV, Nastasiak IN, Danilenko VN.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Biogenesis and regulation of biosynthesis of erythromycins in Saccharopolyspora.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Applied Biochemistry and Microbiology 40(6): 531-541 (2004)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/16514445">16514445</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Tello M, Jakimowicz P, Errey JC, Freel Meyers CL, Walsh CT, Buttner MJ, Lawson DM, Field RA</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Characterisation of Streptomyces spheroides NovW and revision of its functional assignment to a dTDP-6-deoxy-D-xylo-4-hexulose 3-epimerase.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Chem Commun (Camb) 1079-81 (2006)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/15984840">15984840</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Takahashi H, Liu YN, Chen H, Liu HW</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Biosynthesis of TDP-l-mycarose: the specificity of a single enzyme governs the outcome of the pathway.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Am Chem Soc 127:9340-1 (2005)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10770761">10770761</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Aguirrezabalaga I, Olano C, Allende N, Rodriguez L, Brana AF, Mendez C, Salas JA</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Identification and expression of genes involved in biosynthesis of L-oleandrose and its intermediate L-olivose in the oleandomycin producer Streptomyces antibioticus.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Antimicrob Agents Chemother 44:1266-75 (2000)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11514520">11514520</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Rodriguez L, Rodriguez D, Olano C, Brana AF, Mendez C, Salas JA</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Functional analysis of OleY L-oleandrosyl 3-O-methyltransferase of the oleandomycin biosynthetic pathway in Streptomyces antibioticus.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 183:5358-63 (2001)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/20418422">20418422</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Useglio M, Peiru S, Rodriguez E, Labadie GR, Carney JR, Gramajo H</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">TDP-L-megosamine biosynthesis pathway elucidation and megalomicin a production in Escherichia coli.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Appl Environ Microbiol 76:3869-77 (2010)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>KO&nbsp;pathway</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?ko00523">ko00523</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>&nbsp;</div></td></tr></table></td></tr>
+
+</table></td></tr></table>
+<br></form></td><td valign="top"><div style="margin-top:46px;margin-left:1em;border:#ddd 1px solid"><div class="th30" style="font-weight:bold;line-height:1.5em">&nbsp;&nbsp;All links&nbsp;&nbsp;</div>
+<pre style="margin-left:1em">
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+2+path:xcb00523">Pathway (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+biosystems+path:xcb00523">BioSystems (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+7+path:xcb00523">Genome (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genome+path:xcb00523">KEGG GENOME (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+8+path:xcb00523">Gene (5)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genes+path:xcb00523">KEGG GENES (5)</a>   
+<a href="/dbget-bin/get_linkdb?-t+alldb+path:xcb00523">All databases (7)</a>   
+<br><a href="/dbget-bin/get_linkdb?-N+path:xcb00523">Download RDF</a>   
+</pre>
+</div>
+</td></tr></table>
+
+
+<a href="/dbget/">DBGET</a> integrated database retrieval system</div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00561" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Glycerolipid metabolism - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00029" Value="UDP-glucose" />
+    <DictionaryEntry Key="C00040" Value="Acyl-CoA" />
+    <DictionaryEntry Key="C00093" Value="sn-Glycerol 3-phosphate" />
+    <DictionaryEntry Key="C00111" Value="Glycerone phosphate" />
+    <DictionaryEntry Key="C00116" Value="Glycerol" />
+    <DictionaryEntry Key="C00162" Value="Fatty acid" />
+    <DictionaryEntry Key="C00184" Value="Glycerone" />
+    <DictionaryEntry Key="C00197" Value="3-Phospho-D-glycerate" />
+    <DictionaryEntry Key="C00258" Value="D-Glycerate" />
+    <DictionaryEntry Key="C00416" Value="Phosphatidate" />
+    <DictionaryEntry Key="C00422" Value="Triacylglycerol" />
+    <DictionaryEntry Key="C00577" Value="D-Glyceraldehyde" />
+    <DictionaryEntry Key="C00641" Value="1,2-Diacyl-sn-glycerol" />
+    <DictionaryEntry Key="C00681" Value="1-Acyl-sn-glycerol 3-phosphate" />
+    <DictionaryEntry Key="C00969" Value="3-Hydroxypropanal" />
+    <DictionaryEntry Key="C01885" Value="1-Acylglycerol" />
+    <DictionaryEntry Key="C02457" Value="Propane-1,3-diol" />
+    <DictionaryEntry Key="C03692" Value="1,2-Diacyl-3-beta-D-galactosyl-sn-glycerol" />
+    <DictionaryEntry Key="C04046" Value="3-D-Glucosyl-1,2-diacylglycerol" />
+    <DictionaryEntry Key="C04315" Value="2-Acyl-3-O-(beta-D-galactosyl)-sn-glycerol" />
+    <DictionaryEntry Key="C04872" Value="1,2-Diacyl-3-[3-(alpha-D-N-acetylneuraminyl)-beta-D-galactosyl]-sn-glycerol" />
+    <DictionaryEntry Key="C05401" Value="3-beta-D-Galactosyl-sn-glycerol" />
+    <DictionaryEntry Key="C06037" Value="Digalactosyl-diacylglycerol" />
+    <DictionaryEntry Key="C06038" Value="Acyl1-monogalactosyl-diacylglycerol" />
+    <DictionaryEntry Key="C06040" Value="Diglucosyldiacylglycerol" />
+    <DictionaryEntry Key="C06041" Value="Glycerophosphoglycoglycerolipid" />
+    <DictionaryEntry Key="C06042" Value="Lipoteichoic acid" />
+    <DictionaryEntry Key="C06364" Value="1,2-Diacyl-3-alpha-D-glucosyl-sn-glycerol" />
+    <DictionaryEntry Key="C06365" Value="alpha-Kojibiosyldiacylglycerol" />
+    <DictionaryEntry Key="C11521" Value="UDP-6-sulfoquinovose" />
+    <DictionaryEntry Key="C13508" Value="Sulfoquinovosyldiacylglycerol" />
+    <DictionaryEntry Key="C20897" Value="Glycerophosphoglycoglycerolipid" />
+    <DictionaryEntry Key="C20898" Value="Lipoteichoic acid" />
+    <DictionaryEntry Key="C20991" Value="1,2-Diacyl-3-O-[beta-D-galactosyl-(1-&gt;6)-beta-D-galactosyl]-sn-glycerol" />
+  </Compound>
+  <PathwayMap Key="xcb00561" Value="Glycerolipid metabolism&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_4315" Value="glycerate kinase; K00865 glycerate kinase [EC:2.7.1.31] [KO:K00865] [EC:2.7.1.31]" />
+    <DictionaryEntry Key="XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
+    <DictionaryEntry Key="XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
+    <DictionaryEntry Key="XC_0370" Value="glpK; glycerol kinase [KO:K00864] [EC:2.7.1.30]" />
+    <DictionaryEntry Key="XC_4220" Value="glycerol-3-phosphate acyltransferase; K00631 glycerol-3-phosphate O-acyltransferase [EC:2.3.1.15] [KO:K00631] [EC:2.3.1.15]" />
+    <DictionaryEntry Key="XC_4099" Value="acyltransferase; K00655 1-acyl-sn-glycerol-3-phosphate acyltransferase [EC:2.3.1.51] [KO:K00655] [EC:2.3.1.51]" />
+    <DictionaryEntry Key="XC_0188" Value="acetyltransferase; K00655 1-acyl-sn-glycerol-3-phosphate acyltransferase [EC:2.3.1.51] [KO:K00655] [EC:2.3.1.51]" />
+    <DictionaryEntry Key="XC_3449" Value="diacylglycerol kinase; K00901 diacylglycerol kinase (ATP) [EC:2.7.1.107] [KO:K00901] [EC:2.7.1.107]" />
+  </Genes>
+</KEGG.PathwayBrief>

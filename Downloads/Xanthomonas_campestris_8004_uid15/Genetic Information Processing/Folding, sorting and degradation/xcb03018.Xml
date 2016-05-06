@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb03018" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description>The correct processing, quality control and turnover of cellular RNA molecules are critical to many aspects in the expression of genetic information. In eukaryotes, two major pathways of mRNA decay exist and both pathways are initiated by poly(A) shortening of the mRNA. In the 5' to 3' pathway, this is followed by decapping which then permits the 5' to 3' exonucleolytic degradation of transcripts. In the 3' to 5' pathway, the exosome, a large multisubunit complex, plays a key role. The exosome exists in archaeal cells, too. In bacteria, endoribonuclease E, a key enzyme involved in RNA decay and processing, organizes a protein complex called degradosome. RNase E or R interacts with the phosphate-dependent exoribonuclease polynucleotide phosphorylase, DEAD-box helicases, and additional factors in the RNA-degrading complex.&lt;br&gt;</Description>
+  <Name>RNA degradation - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Modules>
+    <DictionaryEntry Key="xcb_M00394" Value="RNA degradosome [PATH:xcb03018]" />
+  </Modules>
+  <Compound />
+  <PathwayMap Key="xcb03018" Value="RNA degradation&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_0492" Value="dinucleoside polyphosphate hydrolase; K08311 putative (di)nucleoside polyphosphate hydrolase [EC:3.6.1.-] [KO:K08311] [EC:3.6.1.-]" />
+    <DictionaryEntry Key="XC_2098" Value="ribonuclease E; K08300 ribonuclease E [EC:3.1.26.12] [KO:K08300] [EC:3.1.26.12]" />
+    <DictionaryEntry Key="XC_3848" Value="ATP-dependent RNA helicase RhlB; K03732 ATP-dependent RNA helicase RhlB [EC:3.6.4.13] [KO:K03732] [EC:3.6.4.13]" />
+    <DictionaryEntry Key="XC_2531" Value="eno; phosphopyruvate hydratase [KO:K01689] [EC:4.2.1.11]" />
+    <DictionaryEntry Key="XC_1609" Value="polynucleotide phosphorylase; K00962 polyribonucleotide nucleotidyltransferase [EC:2.7.7.8] [KO:K00962] [EC:2.7.7.8]" />
+    <DictionaryEntry Key="XC_3643" Value="ATP-dependent RNA helicase; K11927 ATP-dependent RNA helicase RhlE [EC:3.6.4.13] [KO:K11927] [EC:3.6.4.13]" />
+    <DictionaryEntry Key="XC_2718" Value="RNase R; K12573 ribonuclease R [EC:3.1.-.-] [KO:K12573] [EC:3.1.-.-]" />
+    <DictionaryEntry Key="XC_1475" Value="ATP-dependent RNA helicase; K05592 ATP-dependent RNA helicase DeaD [EC:3.6.4.13] [KO:K05592] [EC:3.6.4.13]" />
+    <DictionaryEntry Key="XC_1162" Value="DNA helicase; K03654 ATP-dependent DNA helicase RecQ [EC:3.6.4.12] [KO:K03654] [EC:3.6.4.12]" />
+    <DictionaryEntry Key="XC_3850" Value="rho; transcription termination factor Rho [KO:K03628]" />
+    <DictionaryEntry Key="XC_0872" Value="6-phosphofructokinase; K00850 6-phosphofructokinase 1 [EC:2.7.1.11] [KO:K00850] [EC:2.7.1.11]" />
+    <DictionaryEntry Key="XC_2763" Value="dnaK; molecular chaperone DnaK [KO:K04043]" />
+    <DictionaryEntry Key="XC_0535" Value="groEL; molecular chaperone GroEL [KO:K04077]" />
+    <DictionaryEntry Key="XC_2515" Value="hfq; RNA-binding protein Hfq [KO:K03666]" />
+    <DictionaryEntry Key="XC_3274" Value="polyphosphate kinase; K00937 polyphosphate kinase [EC:2.7.4.1] [KO:K00937] [EC:2.7.4.1]" />
+    <DictionaryEntry Key="XC_2470" Value="polynucleotide adenylyltransferase; K00970 poly(A) polymerase [EC:2.7.7.19] [KO:K00970] [EC:2.7.7.19]" />
+  </Genes>
+</KEGG.PathwayBrief>

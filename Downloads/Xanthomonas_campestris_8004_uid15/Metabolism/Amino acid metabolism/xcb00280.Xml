@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00280" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Valine, leucine and isoleucine degradation - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00024" Value="Acetyl-CoA" />
+    <DictionaryEntry Key="C00068" Value="Thiamin diphosphate" />
+    <DictionaryEntry Key="C00091" Value="Succinyl-CoA" />
+    <DictionaryEntry Key="C00100" Value="Propanoyl-CoA" />
+    <DictionaryEntry Key="C00123" Value="L-Leucine" />
+    <DictionaryEntry Key="C00141" Value="3-Methyl-2-oxobutanoic acid" />
+    <DictionaryEntry Key="C00164" Value="Acetoacetate" />
+    <DictionaryEntry Key="C00183" Value="L-Valine" />
+    <DictionaryEntry Key="C00233" Value="4-Methyl-2-oxopentanoate" />
+    <DictionaryEntry Key="C00332" Value="Acetoacetyl-CoA" />
+    <DictionaryEntry Key="C00349" Value="2-Methyl-3-oxopropanoate" />
+    <DictionaryEntry Key="C00356" Value="(S)-3-Hydroxy-3-methylglutaryl-CoA" />
+    <DictionaryEntry Key="C00407" Value="L-Isoleucine" />
+    <DictionaryEntry Key="C00630" Value="2-Methylpropanoyl-CoA" />
+    <DictionaryEntry Key="C00671" Value="(S)-3-Methyl-2-oxopentanoic acid" />
+    <DictionaryEntry Key="C00683" Value="(S)-Methylmalonyl-CoA" />
+    <DictionaryEntry Key="C01205" Value="(R)-3-Amino-2-methylpropanoate" />
+    <DictionaryEntry Key="C01213" Value="(R)-Methylmalonyl-CoA" />
+    <DictionaryEntry Key="C02170" Value="Methylmalonate" />
+    <DictionaryEntry Key="C02939" Value="3-Methylbutanoyl-CoA" />
+    <DictionaryEntry Key="C03069" Value="3-Methylcrotonyl-CoA" />
+    <DictionaryEntry Key="C03231" Value="3-Methylglutaconyl-CoA" />
+    <DictionaryEntry Key="C03284" Value="L-3-Aminoisobutanoate" />
+    <DictionaryEntry Key="C03344" Value="2-Methylacetoacetyl-CoA" />
+    <DictionaryEntry Key="C03345" Value="2-Methylbut-2-enoyl-CoA" />
+    <DictionaryEntry Key="C03460" Value="2-Methylprop-2-enoyl-CoA" />
+    <DictionaryEntry Key="C04405" Value="(2S,3S)-3-Hydroxy-2-methylbutanoyl-CoA" />
+    <DictionaryEntry Key="C05996" Value="Branched chain fatty acid" />
+    <DictionaryEntry Key="C05998" Value="3-Hydroxyisovaleryl-CoA" />
+    <DictionaryEntry Key="C06000" Value="(S)-3-Hydroxyisobutyryl-CoA" />
+    <DictionaryEntry Key="C06001" Value="(S)-3-Hydroxyisobutyrate" />
+    <DictionaryEntry Key="C06002" Value="(S)-Methylmalonate semialdehyde" />
+    <DictionaryEntry Key="C15972" Value="Enzyme N6-(lipoyl)lysine" />
+    <DictionaryEntry Key="C15973" Value="Enzyme N6-(dihydrolipoyl)lysine" />
+    <DictionaryEntry Key="C15974" Value="3-Methyl-1-hydroxybutyl-ThPP" />
+    <DictionaryEntry Key="C15975" Value="[Dihydrolipoyllysine-residue (2-methylpropanoyl)transferase] S-(3-methylbutanoyl)dihydrolipoyllysine" />
+    <DictionaryEntry Key="C15976" Value="2-Methyl-1-hydroxypropyl-ThPP" />
+    <DictionaryEntry Key="C15977" Value="[Dihydrolipoyllysine-residue (2-methylpropanoyl)transferase] S-(2-methylpropanoyl)dihydrolipoyllysine" />
+    <DictionaryEntry Key="C15978" Value="2-Methyl-1-hydroxybutyl-ThPP" />
+    <DictionaryEntry Key="C15979" Value="[Dihydrolipoyllysine-residue (2-methylpropanoyl)transferase] S-(2-methylbutanoyl)dihydrolipoyllysine" />
+    <DictionaryEntry Key="C15980" Value="(S)-2-Methylbutanoyl-CoA" />
+    <DictionaryEntry Key="C20827" Value="3-Hydroxyisovalerate" />
+  </Compound>
+  <PathwayMap Key="xcb00280" Value="Valine, leucine and isoleucine degradation&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_3380" Value="branched-chain amino acid aminotransferase; K00826 branched-chain amino acid aminotransferase [EC:2.6.1.42] [KO:K00826] [EC:2.6.1.42]" />
+    <DictionaryEntry Key="XC_2941" Value="leucine dehydrogenase; K00263 leucine dehydrogenase [EC:1.4.1.9] [KO:K00263] [EC:1.4.1.9]" />
+    <DictionaryEntry Key="XC_2751" Value="dihydrolipoamide dehydrogenase; K00382 dihydrolipoamide dehydrogenase [EC:1.8.1.4] [KO:K00382] [EC:1.8.1.4]" />
+    <DictionaryEntry Key="XC_3689" Value="dihydrolipoamide dehydrogenase; K00382 dihydrolipoamide dehydrogenase [EC:1.8.1.4] [KO:K00382] [EC:1.8.1.4]" />
+    <DictionaryEntry Key="XC_0256" Value="acyl-CoA dehydrogenase; K00253 isovaleryl-CoA dehydrogenase [EC:1.3.8.4] [KO:K00253] [EC:1.3.8.4]" />
+    <DictionaryEntry Key="XC_2975" Value="3-hydroxyacyl-CoA dehydrogenase; K01782 3-hydroxyacyl-CoA dehydrogenase / enoyl-CoA hydratase / 3-hydroxybutyryl-CoA epimerase [EC:1.1.1.35 4.2.1.17 5.1.2.3] [KO:K01782] [EC:5.1.2.3 4.2.1.17 1.1.1.35]" />
+    <DictionaryEntry Key="XC_2206" Value="acetyl-CoA acetyltransferase; K00632 acetyl-CoA acyltransferase [EC:2.3.1.16] [KO:K00632] [EC:2.3.1.16]" />
+    <DictionaryEntry Key="XC_2977" Value="3-hydroxyisobutyrate dehydrogenase; K00020 3-hydroxyisobutyrate dehydrogenase [EC:1.1.1.31] [KO:K00020] [EC:1.1.1.31]" />
+    <DictionaryEntry Key="XC_2981" Value="methylmalonate-semialdehyde dehydrogenase; K00140 malonate-semialdehyde dehydrogenase (acetylating) / methylmalonate-semialdehyde dehydrogenase [EC:1.2.1.18 1.2.1.27] [KO:K00140] [EC:1.2.1.27 1.2.1.18]" />
+    <DictionaryEntry Key="XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
+    <DictionaryEntry Key="XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
+    <DictionaryEntry Key="XC_1759" Value="beta alanine--pyruvate transaminase; K00822 beta-alanine--pyruvate transaminase [EC:2.6.1.18] [KO:K00822] [EC:2.6.1.18]" />
+    <DictionaryEntry Key="XC_0254" Value="biotin carboxylase; K01968 3-methylcrotonyl-CoA carboxylase alpha subunit [EC:6.4.1.4] [KO:K01968] [EC:6.4.1.4]" />
+    <DictionaryEntry Key="XC_0255" Value="acyl-CoA carboxyltransferase subunit beta; K01969 3-methylcrotonyl-CoA carboxylase beta subunit [EC:6.4.1.4] [KO:K01969] [EC:6.4.1.4]" />
+    <DictionaryEntry Key="XC_2356" Value="enoyl-CoA hydratase; K13766 methylglutaconyl-CoA hydratase [EC:4.2.1.18] [KO:K13766] [EC:4.2.1.18]" />
+    <DictionaryEntry Key="XC_2357" Value="hydroxymethylglutaryl-CoA lyase; K01640 hydroxymethylglutaryl-CoA lyase [EC:4.1.3.4] [KO:K01640] [EC:4.1.3.4]" />
+    <DictionaryEntry Key="XC_3607" Value="3-oxoadipate CoA-succinyl transferase subunit alpha; K01028 3-oxoacid CoA-transferase subunit A [EC:2.8.3.5] [KO:K01028] [EC:2.8.3.5]" />
+    <DictionaryEntry Key="XC_3606" Value="IpsJ protein; K01029 3-oxoacid CoA-transferase subunit B [EC:2.8.3.5] [KO:K01029] [EC:2.8.3.5]" />
+    <DictionaryEntry Key="XC_2943" Value="acetoacetyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9] [KO:K00626] [EC:2.3.1.9]" />
+    <DictionaryEntry Key="XC_0204" Value="acetyl-CoA acetyltransferase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9] [KO:K00626] [EC:2.3.1.9]" />
+  </Genes>
+</KEGG.PathwayBrief>

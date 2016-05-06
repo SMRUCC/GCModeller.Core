@@ -1,0 +1,294 @@
+<!doctype html>
+<html><head>
+<title>KEGG PATHWAY: xcb03430</title>
+<link type="text/css" rel="stylesheet" href="/css/gn2.css">
+<link rel="stylesheet" href="/css/bget.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/bgetm.css" media="only screen and (max-width: 768px)">
+<style>.kcfd{display:none;}</style>
+<script>
+<!--
+var getElementsByClassName = document.getElementsByClassName ?
+  function (cl){
+    return document.getElementsByClassName(cl);
+  } :
+  function (cl){
+    var elms = [];
+    var objs = document.getElementsByTagName('*');
+    for(var i=0;i<objs.length;i++){
+      var obj = objs[i];
+      if(obj.className == cl){
+        elms.push(obj);
+      }
+    }
+    return elms;
+  };
+function toggleField(clk,cl,show,hide){
+  var objs = getElementsByClassName(cl);
+  for(var i=0;i<objs.length;i++){
+    var obj = objs[i];
+    if(!obj.style.display||obj.style.display == 'none'){
+      obj.style.display = 'block';
+      clk.innerHTML = '&nbsp;&laquo; '+hide;
+    }
+    else{
+      obj.style.display = 'none';
+      clk.innerHTML = '&nbsp;&raquo; '+show;
+    }
+  }
+}
+function toggleData(bobj,e){
+  var id = bobj.id.replace(/[^0-9]/g,'');
+  var dt = document.getElementById('kcfd'+id);
+  if(!dt.style.display||dt.style.display == 'none'){
+    bobj.name = 'hide_kcf';
+    bobj.alt = 'Hide';
+    bobj.src = '/Fig/bget/button_Hib.gif';
+    dt.style.display = 'block';
+  }
+  else{
+    bobj.name = 'show_kcf';
+    bobj.alt = 'Show';
+    bobj.src = '/Fig/bget/button_Sb.gif';
+    dt.style.display = 'none';
+  }
+}
+function btn(bobj,img) {
+  bobj.src = "/Fig/bget/button_" + img + ".gif";
+}
+function btn_e(e) {
+  e = e || event;
+  var obj = e.target;
+  var img = e.target.src;
+  var img_base = img.replace(/\\/g,'/').replace(/(b|bd|bh)\.gif$/,'');
+  if(e.type == 'mousedown'||e.type == 'touchstart'){
+    obj.src = img_base +'bd.gif';
+  }
+  else if(e.type == 'mouseover'){
+    obj.src = img_base +'bh.gif';
+  }
+  else if(e.type == 'mouseup'||e.type == 'touchend'){
+    obj.src = img_base +'b.gif';
+  }
+  else if(e.type == 'mouseout'){
+    obj.src = img_base +'b.gif';
+  }
+}
+function init(){
+  for(var i=1;i<=1;i++){
+    if(document.getElementById('kcfb'+i)){
+      document.getElementById('kcfb'+i).onclick = function(e){toggleData(this,e);};
+      document.getElementById('kcfb'+i).onmousedown = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseover = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseout = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseup = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchstart = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchend = function(e){btn_e(e);};
+    }
+  }
+}
+function Link_XtrctSeq2(form) {
+    var dna_from;
+    var dna_to;
+    var dna_len;
+    var plus_up   = Number(form.XtrctSeq_UP.value) ;
+    var plus_down = Number(form.XtrctSeq_DOWN.value);
+    var vector    = Number(form.VECTOR.value);
+    var org       = form.ORG.value;
+    var chr       = form.CHR.value;
+    var kid       = form.KEGGID.value;
+    var url;
+
+    if (plus_up == 0 && plus_down == 0) {
+	url = "/dbget-bin/www_bget?-f+-n+n+" + kid;
+    }
+    else {
+	if (vector == 1) {
+	    dna_from  = Number(form.FROM.value)  - plus_up;
+	    dna_to    = Number(form.TO.value) + plus_down;
+	} else {
+	    dna_from  = Number(form.FROM.value)  - plus_down;
+	    dna_to    = Number(form.TO.value) + plus_up;
+	}
+
+	url = "/dbget-bin/cut_sequence_genes.pl?FROM=" + dna_from + "&TO=" + dna_to +"&VECTOR=" + vector + "&ORG=" + org;
+	if (chr) url += "&CHR=" + chr;
+    }
+    //window.open( url, "_self" );
+    location.href = url;
+}
+function go_taxonomy(form,params){
+  for(var key in params){
+    if(form[key]){
+      form.setAttribute(key,params[key]);
+    }
+    else{
+      var obj = document.createElement('input');
+      obj.setAttribute('type','hidden');
+      obj.setAttribute('name',key);
+      obj.setAttribute('value',params[key]);
+      form.appendChild(obj);
+    }
+  }
+  form.submit();
+}
+window.onload=function(){window.focus();init();};
+//--->
+</script>
+
+</head>
+<body>
+<div>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="70"><a href="/kegg/kegg2.html"><img align="middle" alt="KEGG" border="0" src="/Fig/bget/kegg3.gif"></a></td><td>&nbsp;&nbsp;&nbsp;</td><td><a name="pathway:xcb03430"></a><font class="title3">PATHWAY: xcb03430</font></td><td align="right" valign="bottom"><a href="javascript:void(window.open('/kegg/document/help_bget_pathway.html','KEGG_Help','toolbar=no,location=no,directories=no,width=720,height=640,resizable=yes,scrollbars=yes'))"><img align="middle" alt="Help" border="0" name="help" onmousedown="btn(this,'Hbd')" onmouseout="btn(this,'Hb')" onmouseover="btn(this,'Hbh')" onmouseup="btn(this,'Hb')" ontouchend="btn(this,'Hb')" ontouchstart="btn(this,'Hbd')" src="/Fig/bget/button_Hb.gif"></a></td></tr></table>
+<form method="post" action="/dbget-bin/www_bget" enctype="application/x-www-form-urlencoded" name="form1"><table border=0 cellpadding=1 cellspacing=0>
+<tr>
+<td class="fr3">
+<table border=0 cellpadding=2 cellspacing=0 style="border-bottom:#000 1px solid">
+
+<tr><th class="th30" align="left" valign="middle" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Entry</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="left"><code><nobr>xcb03430&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pathway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</nobr></code></td> <td align="right"><br></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Name</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Mismatch repair - Xanthomonas campestris pv. campestris 8004<br>
+</div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Description</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">DNA mismatch repair (MMR) is a highly conserved biological pathway that plays a key role in maintaining genomic stability. MMR corrects DNA mismatches generated during DNA replication, thereby preventing mutations from becoming permanent in dividing cells. MMR also suppresses homologous recombination and was recently shown to play a role in DNA damage signaling. Defects in MMR are associated with genome-wide instability, predisposition to certain types of cancer including HNPCC, resistance to certain chemotherapeutic agents, and abnormalities in meiosis and sterility in mammalian systems.<br>
+The Escherichia coli MMR pathway has been extensively studied and is well characterized. In E. coli, the mismatch-activated MutS-MutL-ATP complex licenses MutH to incise the nearest unmethylated GATC sequence. UvrD and an exonuclease generate a gap. This gap is filled by pol III and DNA ligase. The GATC sites are then methylated by Dam. Several human MMR proteins have been identified based on their homology to E. coli MMR proteins. These include human homologs of MutS and MutL. Although E. coli MutS and MutL proteins are homodimers, human MutS and MutL homologs are heterodimers. The role of hemimethylated dGATC sites as a signal for strand discrimination is not conserved from E. coli to human. Human MMR is presumed to be nick-directed in vivo, and is thought to discriminate daughter and template strands using a strand-specific nick.<br>
+</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Class</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Genetic Information Processing; Replication and repair<br>
+<a href="/kegg-bin/get_htext?query=xcb03430&amp;htext=xcb00001.keg"><img align="middle" alt="BRITE hierarchy" border="0" name="BRH" onmousedown="btn(this,'BHbd')" onmouseout="btn(this,'BHb')" onmouseover="btn(this,'BHbh')" onmouseup="btn(this,'BHb')" ontouchend="btn(this,'BHb')" ontouchstart="btn(this,'BHbd')" src="/Fig/bget/button_BHb.gif"></a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Pathway&nbsp;map</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5.5em"><div><nobr><a href="/kegg-bin/show_pathway?xcb03430">xcb03430</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Mismatch repair</div></td></tr></table><center><a href="/kegg-bin/show_pathway?xcb03430"><img src="/kegg/misc/thumbnail/map03430.gif" alt="xcb03430" style="border-style:none;"></a></center><br><a href="http://www.kegg.jp/kegg-bin/show_ot_map?map=03430"><img align="middle" alt="All organisms" border="0" name="AO" onmousedown="btn(this,'AObd')" onmouseout="btn(this,'AOb')" onmouseover="btn(this,'AObh')" onmouseup="btn(this,'AOb')" ontouchend="btn(this,'AOb')" ontouchstart="btn(this,'AObd')" src="/Fig/bget/button_AOb.gif"></a><a href="http://www.kegg.jp/kegg-bin/view_ortholog_table?map=03430"><img align="middle" alt="Ortholog table" border="0" name="OT" onmousedown="btn(this,'OTbd')" onmouseout="btn(this,'OTb')" onmouseover="btn(this,'OTbh')" onmouseup="btn(this,'OTb')" ontouchend="btn(this,'OTb')" ontouchstart="btn(this,'OTbd')" src="/Fig/bget/button_OTb.gif"></a></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Module</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:6.5em"><div><nobr><a href="/kegg-bin/show_module?xcb_M00260">xcb_M00260</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>DNA polymerase III complex, bacteria [PATH:<a href="/kegg-bin/show_pathway?xcb03430+M00260">xcb03430</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Other DBs</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="float:left">BSID:&nbsp;</div><div style="margin-left:3.5em"><a href="http://www.ncbi.nlm.nih.gov/biosystems/24088">24088</a></div><div style="float:left">GO:&nbsp;</div><div style="margin-left:2.5em"><a href="http://amigo.geneontology.org/amigo/term/GO:0006298">0006298</a></div></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Organism</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Xanthomonas campestris pv. campestris 8004 [GN:<a href="/dbget-bin/www_bget?gn:xcb">xcb</a>]<br>
+</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Gene</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3035">XC_3035</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>DNA mismatch repair protein MutS; K03555 DNA mismatch repair protein MutS [KO:<a href="/dbget-bin/www_bget?ko:K03555">K03555</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1817">XC_1817</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>mutL; DNA mismatch repair protein [KO:<a href="/dbget-bin/www_bget?ko:K03572">K03572</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4115">XC_4115</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>uvrD; DNA-dependent helicase II [KO:<a href="/dbget-bin/www_bget?ko:K03657">K03657</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.6.4.12">3.6.4.12</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2683">XC_2683</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>sbcB; exonuclease I [KO:<a href="/dbget-bin/www_bget?ko:K01141">K01141</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.11.1">3.1.11.1</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1812">XC_1812</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>xseA; exodeoxyribonuclease VII large subunit [KO:<a href="/dbget-bin/www_bget?ko:K03601">K03601</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.11.6">3.1.11.6</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1517">XC_1517</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>exodeoxyribonuclease VII small subunit; K03602 exodeoxyribonuclease VII small subunit [EC:<a href="/dbget-bin/www_bget?ec:3.1.11.6">3.1.11.6</a>] [KO:<a href="/dbget-bin/www_bget?ko:K03602">K03602</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.11.6">3.1.11.6</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2343">XC_2343</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>single stranded DNA exonuclease; K07462 single-stranded-DNA-specific exonuclease [EC:3.1.-.-] [KO:<a href="/dbget-bin/www_bget?ko:K07462">K07462</a>] [EC:3.1.-.-]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1378">XC_1378</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>single-stranded DNA-binding protein; K03111 single-strand DNA-binding protein [KO:<a href="/dbget-bin/www_bget?ko:K03111">K03111</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2065">XC_2065</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>single-stranded DNA-binding protein; K03111 single-strand DNA-binding protein [KO:<a href="/dbget-bin/www_bget?ko:K03111">K03111</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2880">XC_2880</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dnaE; DNA polymerase III subunit alpha [KO:<a href="/dbget-bin/www_bget?ko:K02337">K02337</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.7">2.7.7.7</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0002">XC_0002</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>DNA polymerase III subunit beta; K02338 DNA polymerase III subunit beta [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.7">2.7.7.7</a>] [KO:<a href="/dbget-bin/www_bget?ko:K02338">K02338</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.7">2.7.7.7</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3244">XC_3244</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>DNA polymerase III subunits gamma and tau; K02343 DNA polymerase III subunit gamma/tau [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.7">2.7.7.7</a>] [KO:<a href="/dbget-bin/www_bget?ko:K02343">K02343</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.7">2.7.7.7</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1499">XC_1499</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>holA; DNA polymerase III subunit delta [KO:<a href="/dbget-bin/www_bget?ko:K02340">K02340</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.7">2.7.7.7</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3222">XC_3222</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>DNA polymerase III subunit delta'; K02341 DNA polymerase III subunit delta' [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.7">2.7.7.7</a>] [KO:<a href="/dbget-bin/www_bget?ko:K02341">K02341</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.7">2.7.7.7</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3255">XC_3255</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>DNA polymerase III subunit epsilon; K02342 DNA polymerase III subunit epsilon [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.7">2.7.7.7</a>] [KO:<a href="/dbget-bin/www_bget?ko:K02342">K02342</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.7">2.7.7.7</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3586">XC_3586</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>DNA polymerase III subunit chi; K02339 DNA polymerase III subunit chi [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.7">2.7.7.7</a>] [KO:<a href="/dbget-bin/www_bget?ko:K02339">K02339</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.7">2.7.7.7</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2664">XC_2664</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>ligA; NAD-dependent DNA ligase LigA [KO:<a href="/dbget-bin/www_bget?ko:K01972">K01972</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.5.1.2">6.5.1.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2951">XC_2951</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>ATP-dependent DNA ligase; K10747 DNA ligase 1 [EC:<a href="/dbget-bin/www_bget?ec:6.5.1.1">6.5.1.1</a> <a href="/dbget-bin/www_bget?ec:6.5.1.6">6.5.1.6</a> <a href="/dbget-bin/www_bget?ec:6.5.1.7">6.5.1.7</a>] [KO:<a href="/dbget-bin/www_bget?ko:K10747">K10747</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.5.1.7">6.5.1.7</a> <a href="/dbget-bin/www_bget?ec:6.5.1.6">6.5.1.6</a> <a href="/dbget-bin/www_bget?ec:6.5.1.1">6.5.1.1</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/16612326">16612326</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Jiricny J.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">The multifaceted mismatch-repair system.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nat Rev Mol Cell Biol 7:335-46 (2006)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/18157157">18157157</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Li GM.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Mechanisms and functions of DNA mismatch repair.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Cell Res 18:85-98 (2008)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11920679">11920679</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Marti TM, Kunz C, Fleck O.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">DNA mismatch repair and mutation avoidance pathways.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Cell Physiol 191:28-41 (2002)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11436301">11436301</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Ikejima M, Shimada T.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">[Molecular mechanism of mismatch repair] Japanese</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Tanpakushitsu Kakusan Koso 46:1124-9 (2001)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">(Japanese )</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Hanaoka F.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">[DNA Replication and Repair] (In Japanese)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Yodosha (2004)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>KO&nbsp;pathway</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?ko03430">ko03430</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>&nbsp;</div></td></tr></table></td></tr>
+
+</table></td></tr></table>
+<br></form></td><td valign="top"><div style="margin-top:46px;margin-left:1em;border:#ddd 1px solid"><div class="th30" style="font-weight:bold;line-height:1.5em">&nbsp;&nbsp;All links&nbsp;&nbsp;</div>
+<pre style="margin-left:1em">
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+2+path:xcb03430">Pathway (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+biosystems+path:xcb03430">BioSystems (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+7+path:xcb03430">Genome (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genome+path:xcb03430">KEGG GENOME (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+8+path:xcb03430">Gene (18)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genes+path:xcb03430">KEGG GENES (18)</a>   
+<a href="/dbget-bin/get_linkdb?-t+alldb+path:xcb03430">All databases (20)</a>   
+<br><a href="/dbget-bin/get_linkdb?-N+path:xcb03430">Download RDF</a>   
+</pre>
+</div>
+</td></tr></table>
+
+
+<a href="/dbget/">DBGET</a> integrated database retrieval system</div>
+
+</body>
+</html>

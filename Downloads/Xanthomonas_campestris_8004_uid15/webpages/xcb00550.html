@@ -1,0 +1,289 @@
+<!doctype html>
+<html><head>
+<title>KEGG PATHWAY: xcb00550</title>
+<link type="text/css" rel="stylesheet" href="/css/gn2.css">
+<link rel="stylesheet" href="/css/bget.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/bgetm.css" media="only screen and (max-width: 768px)">
+<style>.kcfd{display:none;}</style>
+<script>
+<!--
+var getElementsByClassName = document.getElementsByClassName ?
+  function (cl){
+    return document.getElementsByClassName(cl);
+  } :
+  function (cl){
+    var elms = [];
+    var objs = document.getElementsByTagName('*');
+    for(var i=0;i<objs.length;i++){
+      var obj = objs[i];
+      if(obj.className == cl){
+        elms.push(obj);
+      }
+    }
+    return elms;
+  };
+function toggleField(clk,cl,show,hide){
+  var objs = getElementsByClassName(cl);
+  for(var i=0;i<objs.length;i++){
+    var obj = objs[i];
+    if(!obj.style.display||obj.style.display == 'none'){
+      obj.style.display = 'block';
+      clk.innerHTML = '&nbsp;&laquo; '+hide;
+    }
+    else{
+      obj.style.display = 'none';
+      clk.innerHTML = '&nbsp;&raquo; '+show;
+    }
+  }
+}
+function toggleData(bobj,e){
+  var id = bobj.id.replace(/[^0-9]/g,'');
+  var dt = document.getElementById('kcfd'+id);
+  if(!dt.style.display||dt.style.display == 'none'){
+    bobj.name = 'hide_kcf';
+    bobj.alt = 'Hide';
+    bobj.src = '/Fig/bget/button_Hib.gif';
+    dt.style.display = 'block';
+  }
+  else{
+    bobj.name = 'show_kcf';
+    bobj.alt = 'Show';
+    bobj.src = '/Fig/bget/button_Sb.gif';
+    dt.style.display = 'none';
+  }
+}
+function btn(bobj,img) {
+  bobj.src = "/Fig/bget/button_" + img + ".gif";
+}
+function btn_e(e) {
+  e = e || event;
+  var obj = e.target;
+  var img = e.target.src;
+  var img_base = img.replace(/\\/g,'/').replace(/(b|bd|bh)\.gif$/,'');
+  if(e.type == 'mousedown'||e.type == 'touchstart'){
+    obj.src = img_base +'bd.gif';
+  }
+  else if(e.type == 'mouseover'){
+    obj.src = img_base +'bh.gif';
+  }
+  else if(e.type == 'mouseup'||e.type == 'touchend'){
+    obj.src = img_base +'b.gif';
+  }
+  else if(e.type == 'mouseout'){
+    obj.src = img_base +'b.gif';
+  }
+}
+function init(){
+  for(var i=1;i<=1;i++){
+    if(document.getElementById('kcfb'+i)){
+      document.getElementById('kcfb'+i).onclick = function(e){toggleData(this,e);};
+      document.getElementById('kcfb'+i).onmousedown = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseover = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseout = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseup = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchstart = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchend = function(e){btn_e(e);};
+    }
+  }
+}
+function Link_XtrctSeq2(form) {
+    var dna_from;
+    var dna_to;
+    var dna_len;
+    var plus_up   = Number(form.XtrctSeq_UP.value) ;
+    var plus_down = Number(form.XtrctSeq_DOWN.value);
+    var vector    = Number(form.VECTOR.value);
+    var org       = form.ORG.value;
+    var chr       = form.CHR.value;
+    var kid       = form.KEGGID.value;
+    var url;
+
+    if (plus_up == 0 && plus_down == 0) {
+	url = "/dbget-bin/www_bget?-f+-n+n+" + kid;
+    }
+    else {
+	if (vector == 1) {
+	    dna_from  = Number(form.FROM.value)  - plus_up;
+	    dna_to    = Number(form.TO.value) + plus_down;
+	} else {
+	    dna_from  = Number(form.FROM.value)  - plus_down;
+	    dna_to    = Number(form.TO.value) + plus_up;
+	}
+
+	url = "/dbget-bin/cut_sequence_genes.pl?FROM=" + dna_from + "&TO=" + dna_to +"&VECTOR=" + vector + "&ORG=" + org;
+	if (chr) url += "&CHR=" + chr;
+    }
+    //window.open( url, "_self" );
+    location.href = url;
+}
+function go_taxonomy(form,params){
+  for(var key in params){
+    if(form[key]){
+      form.setAttribute(key,params[key]);
+    }
+    else{
+      var obj = document.createElement('input');
+      obj.setAttribute('type','hidden');
+      obj.setAttribute('name',key);
+      obj.setAttribute('value',params[key]);
+      form.appendChild(obj);
+    }
+  }
+  form.submit();
+}
+window.onload=function(){window.focus();init();};
+//--->
+</script>
+
+</head>
+<body>
+<div>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="70"><a href="/kegg/kegg2.html"><img align="middle" alt="KEGG" border="0" src="/Fig/bget/kegg3.gif"></a></td><td>&nbsp;&nbsp;&nbsp;</td><td><a name="pathway:xcb00550"></a><font class="title3">PATHWAY: xcb00550</font></td><td align="right" valign="bottom"><a href="javascript:void(window.open('/kegg/document/help_bget_pathway.html','KEGG_Help','toolbar=no,location=no,directories=no,width=720,height=640,resizable=yes,scrollbars=yes'))"><img align="middle" alt="Help" border="0" name="help" onmousedown="btn(this,'Hbd')" onmouseout="btn(this,'Hb')" onmouseover="btn(this,'Hbh')" onmouseup="btn(this,'Hb')" ontouchend="btn(this,'Hb')" ontouchstart="btn(this,'Hbd')" src="/Fig/bget/button_Hb.gif"></a></td></tr></table>
+<form method="post" action="/dbget-bin/www_bget" enctype="application/x-www-form-urlencoded" name="form1"><table border=0 cellpadding=1 cellspacing=0>
+<tr>
+<td class="fr3">
+<table border=0 cellpadding=2 cellspacing=0 style="border-bottom:#000 1px solid">
+
+<tr><th class="th30" align="left" valign="middle" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Entry</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="left"><code><nobr>xcb00550&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pathway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</nobr></code></td> <td align="right"><br></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Name</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Peptidoglycan biosynthesis - Xanthomonas campestris pv. campestris 8004<br>
+</div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Description</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Peptidoglycan is a macromolecule made of long aminosugar strands cross-linked by short peptides. It forms the cell wall in bacteria surrounding the cytoplasmic membrane. The glycan strands are typically comprised of repeating N-acetylglucosamine (GlcNAc) and N-acetylmuramic acid (MurNAc) disaccharides. Each MurNAc is linked to a peptide of three to five amino acid residues. Disaccharide subunits are first assembled on the cytoplasmic side of the bacterial membrane on a polyisoprenoid anchor (lipid I and II). Polymerization of disaccharide subunits by transglycosylases and cross-linking of glycan strands by transpeptidases occur on the other side of the membrane. Bacterial cell wall biosynthesis inhibitors form a major class of antibiotics.<br>
+</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Class</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Metabolism; Glycan biosynthesis and metabolism<br>
+<a href="/kegg-bin/get_htext?query=xcb00550&amp;htext=xcb00001.keg"><img align="middle" alt="BRITE hierarchy" border="0" name="BRH" onmousedown="btn(this,'BHbd')" onmouseout="btn(this,'BHb')" onmouseover="btn(this,'BHbh')" onmouseup="btn(this,'BHb')" ontouchend="btn(this,'BHb')" ontouchstart="btn(this,'BHbd')" src="/Fig/bget/button_BHb.gif"></a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Pathway&nbsp;map</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5.5em"><div><nobr><a href="/kegg-bin/show_pathway?xcb00550">xcb00550</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Peptidoglycan biosynthesis</div></td></tr></table><center><a href="/kegg-bin/show_pathway?xcb00550"><img src="/kegg/misc/thumbnail/map00550.gif" alt="xcb00550" style="border-style:none;"></a></center><br><a href="http://www.kegg.jp/kegg-bin/show_ot_map?map=00550"><img align="middle" alt="All organisms" border="0" name="AO" onmousedown="btn(this,'AObd')" onmouseout="btn(this,'AOb')" onmouseover="btn(this,'AObh')" onmouseup="btn(this,'AOb')" ontouchend="btn(this,'AOb')" ontouchstart="btn(this,'AObd')" src="/Fig/bget/button_AOb.gif"></a><a href="http://www.kegg.jp/kegg-bin/view_ortholog_table?map=00550"><img align="middle" alt="Ortholog table" border="0" name="OT" onmousedown="btn(this,'OTbd')" onmouseout="btn(this,'OTb')" onmouseover="btn(this,'OTbh')" onmouseup="btn(this,'OTb')" ontouchend="btn(this,'OTb')" ontouchstart="btn(this,'OTbd')" src="/Fig/bget/button_OTb.gif"></a></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Organism</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Xanthomonas campestris pv. campestris 8004 [GN:<a href="/dbget-bin/www_bget?gn:xcb">xcb</a>]<br>
+</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Gene</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1318">XC_1318</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetylglucosamine 1-carboxyvinyltransferase; K00790 UDP-N-acetylglucosamine 1-carboxyvinyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.5.1.7">2.5.1.7</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00790">K00790</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.5.1.7">2.5.1.7</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2449">XC_2449</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>murB; UDP-N-acetylenolpyruvoylglucosamine reductase [KO:<a href="/dbget-bin/www_bget?ko:K00075">K00075</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.3.1.98">1.3.1.98</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3509">XC_3509</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>murC; UDP-N-acetylmuramate--L-alanine ligase [KO:<a href="/dbget-bin/www_bget?ko:K01924">K01924</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.3.2.8">6.3.2.8</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1375">XC_1375</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>murD; UDP-N-acetylmuramoyl-L-alanyl-D-glutamate synthetase [KO:<a href="/dbget-bin/www_bget?ko:K01925">K01925</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.3.2.9">6.3.2.9</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3514">XC_3514</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>murE; UDP-N-acetylmuramoylalanyl-D-glutamate--2,6-diaminopimelate ligase [KO:<a href="/dbget-bin/www_bget?ko:K01928">K01928</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.3.2.13">6.3.2.13</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3508">XC_3508</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>ddl; D-alanine--D-alanine ligase [KO:<a href="/dbget-bin/www_bget?ko:K01921">K01921</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.3.2.4">6.3.2.4</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0232">XC_0232</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>ddl; D-alanyl-alanine synthetase A [KO:<a href="/dbget-bin/www_bget?ko:K01921">K01921</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.3.2.4">6.3.2.4</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3513">XC_3513</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine ligase; K01929 UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine ligase [EC:<a href="/dbget-bin/www_bget?ec:6.3.2.10">6.3.2.10</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01929">K01929</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.3.2.10">6.3.2.10</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0193">XC_0193</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>uppP; undecaprenyl pyrophosphate phosphatase [KO:<a href="/dbget-bin/www_bget?ko:K06153">K06153</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.6.1.27">3.6.1.27</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2454">XC_2454</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>phosphatidylglycerophosphatase B; K19302 undecaprenyl-diphosphatase [EC:<a href="/dbget-bin/www_bget?ec:3.6.1.27">3.6.1.27</a>] [KO:<a href="/dbget-bin/www_bget?ko:K19302">K19302</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.6.1.27">3.6.1.27</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3277">XC_3277</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>hypothetical protein; K19302 undecaprenyl-diphosphatase [EC:<a href="/dbget-bin/www_bget?ec:3.6.1.27">3.6.1.27</a>] [KO:<a href="/dbget-bin/www_bget?ko:K19302">K19302</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.6.1.27">3.6.1.27</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3512">XC_3512</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>mraY; phospho-N-acetylmuramoyl-pentapeptide-transferase [KO:<a href="/dbget-bin/www_bget?ko:K01000">K01000</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.8.13">2.7.8.13</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3510">XC_3510</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>murG; undecaprenyldiphospho-muramoylpentapeptide beta-N-acetylglucosaminyltransferase [KO:<a href="/dbget-bin/www_bget?ko:K02563">K02563</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.4.1.227">2.4.1.227</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3089">XC_3089</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>virulence factor; K03980 putative peptidoglycan lipid II flippase [KO:<a href="/dbget-bin/www_bget?ko:K03980">K03980</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1244">XC_1244</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>mtgA; monofunctional biosynthetic peptidoglycan transglycosylase [KO:<a href="/dbget-bin/www_bget?ko:K03814">K03814</a>] [EC:2.4.1.-]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3202">XC_3202</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>penicillin-binding protein 1C; K05367 penicillin-binding protein 1C [EC:2.4.1.-] [KO:<a href="/dbget-bin/www_bget?ko:K05367">K05367</a>] [EC:2.4.1.-]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0942">XC_0942</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>penicillin-binding protein 1A; K05366 penicillin-binding protein 1A [EC:2.4.1.- 3.4.-.-] [KO:<a href="/dbget-bin/www_bget?ko:K05366">K05366</a>] [EC:3.4.-.- 2.4.1.-]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1176">XC_1176</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>penicillin-binding protein 1B; K05365 penicillin-binding protein 1B [EC:<a href="/dbget-bin/www_bget?ec:2.4.1.129">2.4.1.129</a> 3.4.-.-] [KO:<a href="/dbget-bin/www_bget?ko:K05365">K05365</a>] [EC:3.4.-.- <a href="/dbget-bin/www_bget?ec:2.4.1.129">2.4.1.129</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0694">XC_0694</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>penicillin-binding protein 2; K05515 penicillin-binding protein 2 [KO:<a href="/dbget-bin/www_bget?ko:K05515">K05515</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3515">XC_3515</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>penicillin-binding protein 3; K03587 cell division protein FtsI (penicillin-binding protein 3) [KO:<a href="/dbget-bin/www_bget?ko:K03587">K03587</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0708">XC_0708</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>penicillin-binding protein 6; K07258 D-alanyl-D-alanine carboxypeptidase (penicillin-binding protein 5/6) [EC:<a href="/dbget-bin/www_bget?ec:3.4.16.4">3.4.16.4</a>] [KO:<a href="/dbget-bin/www_bget?ko:K07258">K07258</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.4.16.4">3.4.16.4</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3111">XC_3111</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>hypothetical protein; K07260 D-alanyl-D-alanine carboxypeptidase [EC:<a href="/dbget-bin/www_bget?ec:3.4.16.4">3.4.16.4</a>] [KO:<a href="/dbget-bin/www_bget?ko:K07260">K07260</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.4.16.4">3.4.16.4</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Compound</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00009">C00009</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Orthophosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00043">C00043</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetyl-alpha-D-glucosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00105">C00105</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UMP</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00133">C00133</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Alanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00692">C00692</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetylmuramoyl-L-alanyl-D-glutamate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00993">C00993</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Alanyl-D-alanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01050">C01050</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetylmuramate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01212">C01212</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetylmuramoyl-L-alanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04574">C04574</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>di-trans,poly-cis-Undecaprenyl diphosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04631">C04631</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetyl-3-(1-carboxyvinyl)-D-glucosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04702">C04702</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDPMurNAc(oyl-L-Ala-D-gamma-Glu-L-Lys-D-Ala-D-Ala)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04851">C04851</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>MurAc(oyl-L-Ala-D-gamma-Glu-L-Lys-D-Ala-D-Ala)-diphospho-undecaprenol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04877">C04877</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetylmuramoyl-L-alanyl-gamma-D-glutamyl-meso-2,6-diaminopimelate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04882">C04882</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetylmuramoyl-L-alanyl-D-glutamyl-6-carboxy-L-lysyl-D-alanyl-D-alanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05892">C05892</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetylmuramoyl-L-alanyl-gamma-D-glutamyl-L-lysine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05893">C05893</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-alanyl-gamma-D-glutamyl-L-lysyl-D-alanyl-D-alanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05894">C05894</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-alanyl-D-isoglutaminyl-L-lysyl-D-alanyl-D-alanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05895">C05895</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-alanyl-D-isoglutaminyl-L-lysyl-(glycyl)5-D-alanyl-D-alanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05896">C05896</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Crosslinked peptideglycan</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05897">C05897</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Undecaprenyl-diphospho-N-acetylmuramoyl-L-alanyl-D-glutamyl-meso-2,6-diaminopimeloyl-D-alanyl-D-alanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05898">C05898</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-alanyl-D-glutamyl-meso-2,6-diaminopimeloyl-D-alanyl-D-alanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C17541">C17541</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-alanyl-D-isoglutaminyl-L-lysyl-(glycyl)-D-alanyl-D-alanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C17542">C17542</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-alanyl-D-isoglutaminyl-L-lysyl-(glycyl)3-D-alanyl-D-alanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C17549">C17549</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-alanyl-gamma-D-glutamyl-L-lysyl-(L-alanyl-L-alanyl)-D-alanyl-D-alanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C17550">C17550</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-alanyl-gamma-D-glutamyl-L-lysyl-(L-alanyl)-D-alanyl-D-alanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C17556">C17556</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>di-trans,poly-cis-Undecaprenyl phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C17558">C17558</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>di-trans,poly-cis-Undecaprenol</div></td></tr></table></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/18081839">18081839</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Bouhss A, Trunkfield AE, Bugg TD, Mengin-Lecreulx D</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">The biosynthesis of peptidoglycan lipid-linked intermediates.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">FEMS Microbiol Rev 32:208-33 (2008)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/18077448">18077448</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Lloyd AJ, Gilbey AM, Blewett AM, De Pascale G, El Zoeiby A, Levesque RC, Catherwood AC, Tomasz A, Bugg TD, Roper DI, Dowson CG</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Characterization of tRNA-dependent peptide bond formation by MurM in the synthesis of Streptococcus pneumoniae peptidoglycan.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Biol Chem 283:6402-17 (2008)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/18266853">18266853</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Barreteau H, Kovac A, Boniface A, Sova M, Gobec S, Blanot D</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Cytoplasmic steps of peptidoglycan biosynthesis.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">FEMS Microbiol Rev 32:168-207 (2008)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11699883">11699883</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">van Heijenoort J</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Recent advances in the formation of the bacterial peptidoglycan monomer unit.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nat Prod Rep 18:503-19 (2001)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11320055">11320055</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">van Heijenoort&nbsp;&nbsp;J</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Formation of the glycan chains in the synthesis of bacterial peptidoglycan.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Glycobiology 11:25R-36R (2001)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>KO&nbsp;pathway</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?ko00550">ko00550</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>&nbsp;</div></td></tr></table></td></tr>
+
+</table></td></tr></table>
+<br></form></td><td valign="top"><div style="margin-top:46px;margin-left:1em;border:#ddd 1px solid"><div class="th30" style="font-weight:bold;line-height:1.5em">&nbsp;&nbsp;All links&nbsp;&nbsp;</div>
+<pre style="margin-left:1em">
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+2+path:xcb00550">Pathway (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+biosystems+path:xcb00550">BioSystems (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+7+path:xcb00550">Genome (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genome+path:xcb00550">KEGG GENOME (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+8+path:xcb00550">Gene (22)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genes+path:xcb00550">KEGG GENES (22)</a>   
+<a href="/dbget-bin/get_linkdb?-t+alldb+path:xcb00550">All databases (24)</a>   
+<br><a href="/dbget-bin/get_linkdb?-N+path:xcb00550">Download RDF</a>   
+</pre>
+</div>
+</td></tr></table>
+
+
+<a href="/dbget/">DBGET</a> integrated database retrieval system</div>
+
+</body>
+</html>

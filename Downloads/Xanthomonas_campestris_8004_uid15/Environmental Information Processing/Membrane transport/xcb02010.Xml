@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb02010" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description>The ATP-binding cassette (ABC) transporters form one of the largest known protein families, and are widespread in bacteria, archaea, and eukaryotes. They couple ATP hydrolysis to active transport of a wide variety of substrates such as ions, sugars, lipids, sterols, peptides, proteins, and drugs. The structure of a prokaryotic ABC transporter usually consists of three components; typically two integral membrane proteins each having six transmembrane segments, two peripheral proteins that bind and hydrolyze ATP, and a periplasmic (or lipoprotein) substrate-binding protein. Many of the genes for the three components form operons as in fact observed in many bacterial and archaeal genomes. On the other hand, in a typical eukaryotic ABC transporter, the membrane spanning protein and the ATP-binding protein are fused, forming a multi-domain protein with the membrane-spanning domain (MSD) and the nucleotide-binding domain (NBD).&lt;br&gt;</Description>
+  <Name>ABC transporters - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Modules>
+    <DictionaryEntry Key="xcb_M00185" Value="Sulfate transport system [PATH:xcb02010]" />
+    <DictionaryEntry Key="xcb_M00189" Value="Molybdate transport system [PATH:xcb02010]" />
+    <DictionaryEntry Key="xcb_M00201" Value="alpha-Glucoside transport system [PATH:xcb02010]" />
+    <DictionaryEntry Key="xcb_M00209" Value="Osmoprotectant transport system [PATH:xcb02010]" />
+    <DictionaryEntry Key="xcb_M00210" Value="Phospholipid transport system [PATH:xcb02010]" />
+    <DictionaryEntry Key="xcb_M00222" Value="Phosphate transport system [PATH:xcb02010]" />
+    <DictionaryEntry Key="xcb_M00238" Value="D-Methionine transport system [PATH:xcb02010]" />
+    <DictionaryEntry Key="xcb_M00250" Value="Lipopolysaccharide transport system [PATH:xcb02010]" />
+    <DictionaryEntry Key="xcb_M00253" Value="Sodium transport system [PATH:xcb02010]" />
+    <DictionaryEntry Key="xcb_M00255" Value="Lipoprotein-releasing system [PATH:xcb02010]" />
+    <DictionaryEntry Key="xcb_M00256" Value="Cell division transport system [PATH:xcb02010]" />
+    <DictionaryEntry Key="xcb_M00259" Value="Heme transport system [PATH:xcb02010]" />
+    <DictionaryEntry Key="xcb_M00300" Value="Putrescine transport system [PATH:xcb02010]" />
+    <DictionaryEntry Key="xcb_M00320" Value="Lipopolysaccharide export system [PATH:xcb02010]" />
+  </Modules>
+  <Compound>
+    <DictionaryEntry Key="C00009" Value="Orthophosphate" />
+    <DictionaryEntry Key="C00025" Value="L-Glutamate" />
+    <DictionaryEntry Key="C00031" Value="D-Glucose" />
+    <DictionaryEntry Key="C00032" Value="Heme" />
+    <DictionaryEntry Key="C00034" Value="Manganese" />
+    <DictionaryEntry Key="C00037" Value="Glycine" />
+    <DictionaryEntry Key="C00038" Value="Zinc cation" />
+    <DictionaryEntry Key="C00041" Value="L-Alanine" />
+    <DictionaryEntry Key="C00045" Value="Amino acid" />
+    <DictionaryEntry Key="C00047" Value="L-Lysine" />
+    <DictionaryEntry Key="C00049" Value="L-Aspartate" />
+    <DictionaryEntry Key="C00051" Value="Glutathione" />
+    <DictionaryEntry Key="C00059" Value="Sulfate" />
+    <DictionaryEntry Key="C00062" Value="L-Arginine" />
+    <DictionaryEntry Key="C00064" Value="L-Glutamine" />
+    <DictionaryEntry Key="C00065" Value="L-Serine" />
+    <DictionaryEntry Key="C00070" Value="Copper" />
+    <DictionaryEntry Key="C00077" Value="L-Ornithine" />
+    <DictionaryEntry Key="C00079" Value="L-Phenylalanine" />
+    <DictionaryEntry Key="C00086" Value="Urea" />
+    <DictionaryEntry Key="C00088" Value="Nitrite" />
+    <DictionaryEntry Key="C00089" Value="Sucrose" />
+    <DictionaryEntry Key="C00093" Value="sn-Glycerol 3-phosphate" />
+    <DictionaryEntry Key="C00095" Value="D-Fructose" />
+    <DictionaryEntry Key="C00098" Value="Oligopeptide" />
+    <DictionaryEntry Key="C00107" Value="Dipeptide" />
+    <DictionaryEntry Key="C00114" Value="Choline" />
+    <DictionaryEntry Key="C00116" Value="Glycerol" />
+    <DictionaryEntry Key="C00120" Value="Biotin" />
+    <DictionaryEntry Key="C00121" Value="D-Ribose" />
+    <DictionaryEntry Key="C00123" Value="L-Leucine" />
+    <DictionaryEntry Key="C00134" Value="Putrescine" />
+    <DictionaryEntry Key="C00135" Value="L-Histidine" />
+    <DictionaryEntry Key="C00137" Value="myo-Inositol" />
+    <DictionaryEntry Key="C00140" Value="N-Acetyl-D-glucosamine" />
+    <DictionaryEntry Key="C00148" Value="L-Proline" />
+    <DictionaryEntry Key="C00151" Value="L-Amino acid" />
+    <DictionaryEntry Key="C00159" Value="D-Mannose" />
+    <DictionaryEntry Key="C00175" Value="Cobalt ion" />
+    <DictionaryEntry Key="C00181" Value="D-Xylose" />
+    <DictionaryEntry Key="C00183" Value="L-Valine" />
+    <DictionaryEntry Key="C00185" Value="Cellobiose" />
+    <DictionaryEntry Key="C00188" Value="L-Threonine" />
+    <DictionaryEntry Key="C00208" Value="Maltose" />
+    <DictionaryEntry Key="C00243" Value="Lactose" />
+    <DictionaryEntry Key="C00244" Value="Nitrate" />
+    <DictionaryEntry Key="C00245" Value="Taurine" />
+    <DictionaryEntry Key="C00259" Value="L-Arabinose" />
+    <DictionaryEntry Key="C00288" Value="HCO3-" />
+    <DictionaryEntry Key="C00291" Value="Nickel" />
+    <DictionaryEntry Key="C00315" Value="Spermidine" />
+    <DictionaryEntry Key="C00320" Value="Thiosulfate" />
+    <DictionaryEntry Key="C00333" Value="D-Galacturonate" />
+    <DictionaryEntry Key="C00338" Value="Lipopolysaccharide" />
+    <DictionaryEntry Key="C00378" Value="Thiamine" />
+    <DictionaryEntry Key="C00379" Value="Xylitol" />
+    <DictionaryEntry Key="C00392" Value="Mannitol" />
+    <DictionaryEntry Key="C00407" Value="L-Isoleucine" />
+    <DictionaryEntry Key="C00430" Value="5-Aminolevulinate" />
+    <DictionaryEntry Key="C00470" Value="Pectate" />
+    <DictionaryEntry Key="C00487" Value="Carnitine" />
+    <DictionaryEntry Key="C00491" Value="L-Cystine" />
+    <DictionaryEntry Key="C00492" Value="Raffinose" />
+    <DictionaryEntry Key="C00503" Value="Erythritol" />
+    <DictionaryEntry Key="C00719" Value="Betaine" />
+    <DictionaryEntry Key="C00753" Value="Tungsten" />
+    <DictionaryEntry Key="C00794" Value="D-Sorbitol" />
+    <DictionaryEntry Key="C00855" Value="D-Methionine" />
+    <DictionaryEntry Key="C00865" Value="Phospholipid" />
+    <DictionaryEntry Key="C00919" Value="Choline sulfate" />
+    <DictionaryEntry Key="C00973" Value="Cyclomaltodextrin" />
+    <DictionaryEntry Key="C01083" Value="alpha,alpha-Trehalose" />
+    <DictionaryEntry Key="C01153" Value="Orthophosphoric monoester" />
+    <DictionaryEntry Key="C01177" Value="Inositol 1-phosphate" />
+    <DictionaryEntry Key="C01181" Value="4-Trimethylammoniobutanoate" />
+    <DictionaryEntry Key="C01279" Value="4-Amino-5-hydroxymethyl-2-methylpyrimidine" />
+    <DictionaryEntry Key="C01330" Value="Sodium cation" />
+    <DictionaryEntry Key="C01417" Value="Cyanate" />
+    <DictionaryEntry Key="C01487" Value="D-Allose" />
+    <DictionaryEntry Key="C01606" Value="Phthalate" />
+    <DictionaryEntry Key="C01630" Value="Xylobiose" />
+    <DictionaryEntry Key="C01667" Value="Bacitracin" />
+    <DictionaryEntry Key="C01674" Value="Chitobiose" />
+    <DictionaryEntry Key="C01682" Value="Nopaline" />
+    <DictionaryEntry Key="C01684" Value="D-Rhamnose" />
+    <DictionaryEntry Key="C01834" Value="Lipoprotein" />
+    <DictionaryEntry Key="C01835" Value="Maltotriose" />
+    <DictionaryEntry Key="C01935" Value="Maltodextrin" />
+    <DictionaryEntry Key="C01946" Value="Oleandomycin" />
+    <DictionaryEntry Key="C02160" Value="Isomaltotriose" />
+    <DictionaryEntry Key="C02273" Value="Digalacturonate" />
+    <DictionaryEntry Key="C03557" Value="2-Aminoethylphosphonate" />
+    <DictionaryEntry Key="C03611" Value="Galactose oligosaccharide" />
+    <DictionaryEntry Key="C03619" Value="Methyl beta-D-galactoside" />
+    <DictionaryEntry Key="C04114" Value="(E)-4-(Trimethylammonio)but-2-enoate" />
+    <DictionaryEntry Key="C04137" Value="D-Octopine" />
+    <DictionaryEntry Key="C05349" Value="Ciprofloxacin" />
+    <DictionaryEntry Key="C05402" Value="Melibiose" />
+    <DictionaryEntry Key="C05776" Value="Vitamin B12" />
+    <DictionaryEntry Key="C06227" Value="Fe(III)hydroxamate" />
+    <DictionaryEntry Key="C06228" Value="Ferrichrome" />
+    <DictionaryEntry Key="C06229" Value="Fe(III)dicitrate" />
+    <DictionaryEntry Key="C06230" Value="Fe-enterobactin" />
+    <DictionaryEntry Key="C06232" Value="Molybdate" />
+    <DictionaryEntry Key="C06687" Value="Norfloxacin" />
+    <DictionaryEntry Key="C06704" Value="Iron chelate" />
+    <DictionaryEntry Key="C06705" Value="Capsular polysaccharide" />
+    <DictionaryEntry Key="C06706" Value="Lipo-oligosaccharide" />
+    <DictionaryEntry Key="C06707" Value="Teichoic acid" />
+    <DictionaryEntry Key="C06767" Value="Hemine" />
+    <DictionaryEntry Key="C07662" Value="Sparfloxacin" />
+    <DictionaryEntry Key="C07663" Value="Moxifloxacin" />
+    <DictionaryEntry Key="C11612" Value="Polymyxin B" />
+    <DictionaryEntry Key="C13768" Value="Colistin sulfate" />
+    <DictionaryEntry Key="C14818" Value="Fe2+" />
+    <DictionaryEntry Key="C14819" Value="Fe3+" />
+    <DictionaryEntry Key="C15521" Value="Alkanesulfonate" />
+    <DictionaryEntry Key="C16059" Value="Defensin beta-1" />
+    <DictionaryEntry Key="C16421" Value="AI-2" />
+    <DictionaryEntry Key="C16692" Value="Mannopine" />
+    <DictionaryEntry Key="C19609" Value="Nickel(2+)" />
+    <DictionaryEntry Key="C19872" Value="N-Formyl-4-amino-5-aminomethyl-2-methylpyrimidine" />
+    <DictionaryEntry Key="C20570" Value="alpha-1,5-L-Arabinobiose" />
+    <DictionaryEntry Key="C20571" Value="alpha-1,5-L-Arabinotriose" />
+    <DictionaryEntry Key="C20572" Value="alpha-1,5-L-Arabinotetraose" />
+    <DictionaryEntry Key="C20573" Value="Aldotetraouronic acidD02224 Protamine sulfate (JP17/USP/INN)G00457 Maltotetraose" />
+  </Compound>
+  <PathwayMap Key="xcb02010" Value="ABC transporters&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_3295" Value="sulfate ABC transporter substrate-binding protein; K02048 sulfate transport system substrate-binding protein [KO:K02048]" />
+    <DictionaryEntry Key="XC_3294" Value="sulfate ABC transporter permease; K02046 sulfate transport system permease protein [KO:K02046]" />
+    <DictionaryEntry Key="XC_3293" Value="sulfate ABC transporter permease; K02047 sulfate transport system permease protein [KO:K02047]" />
+    <DictionaryEntry Key="XC_3292" Value="sulfate ABC transporter ATP-binding protein; K02045 sulfate transport system ATP-binding protein [EC:3.6.3.25] [KO:K02045] [EC:3.6.3.25]" />
+    <DictionaryEntry Key="XC_2179" Value="nitrate transport ATP-binding protein; K15576 nitrate/nitrite transport system substrate-binding protein [KO:K15576]" />
+    <DictionaryEntry Key="XC_0910" Value="molybdate-binding periplasmic protein; K02020 molybdate transport system substrate-binding protein [KO:K02020]" />
+    <DictionaryEntry Key="XC_0911" Value="modB; molybdate ABC transporter permease [KO:K02018]" />
+    <DictionaryEntry Key="XC_0912" Value="molybdate ABC transporter ATP-binding protein; K02017 molybdate transport system ATP-binding protein [EC:3.6.3.29] [KO:K02017] [EC:3.6.3.29]" />
+    <DictionaryEntry Key="XC_0814" Value="periplasmic iron-binding protein; K02012 iron(III) transport system substrate-binding protein [KO:K02012]" />
+    <DictionaryEntry Key="XC_1772" Value="periplasmic putrescine-binding protein; permease [KO:K11073]" />
+    <DictionaryEntry Key="XC_1778" Value="putrescine transport protein; permease [KO:K11074]" />
+    <DictionaryEntry Key="XC_1777" Value="polyamine transport protein; K11075 putrescine transport system permease protein [KO:K11075]" />
+    <DictionaryEntry Key="XC_1776" Value="putrescine ABC transporter ATP-binding protein; K11076 putrescine transport system ATP-binding protein [KO:K11076]" />
+    <DictionaryEntry Key="XC_0174" Value="ABC transporter amino acid permease; K05845 osmoprotectant transport system substrate-binding protein K05846 osmoprotectant transport system permease protein [KO:K05845 K05846]" />
+    <DictionaryEntry Key="XC_0173" Value="ABC transporter ATP-binding protein; K05847 osmoprotectant transport system ATP-binding protein [KO:K05847]" />
+    <DictionaryEntry Key="XC_1978" Value="sugar ABC transporter ATP-binding protein; K10112 multiple sugar transport system ATP-binding protein [KO:K10112]" />
+    <DictionaryEntry Key="XC_4299" Value="toluene tolerance protein; K07323 phospholipid transport system substrate-binding protein [KO:K07323]" />
+    <DictionaryEntry Key="XC_4298" Value="toluene tolerance protein; K02067 phospholipid/cholesterol/gamma-HCH transport system substrate-binding protein [KO:K02067]" />
+    <DictionaryEntry Key="XC_3601" Value="hypothetical protein; K02067 phospholipid/cholesterol/gamma-HCH transport system substrate-binding protein [KO:K02067]" />
+    <DictionaryEntry Key="XC_4297" Value="toluene tolerance protein; K02066 phospholipid/cholesterol/gamma-HCH transport system permease protein [KO:K02066]" />
+    <DictionaryEntry Key="XC_3599" Value="ABC transporter permease; K02066 phospholipid/cholesterol/gamma-HCH transport system permease protein [KO:K02066]" />
+    <DictionaryEntry Key="XC_4300" Value="hypothetical protein; K07122 phospholipid transport system transporter-binding protein [KO:K07122]" />
+    <DictionaryEntry Key="XC_4296" Value="toluene tolerance protein; K02065 phospholipid/cholesterol/gamma-HCH transport system ATP-binding protein [KO:K02065]" />
+    <DictionaryEntry Key="XC_3600" Value="ABC transporter ATP-binding protein; K02065 phospholipid/cholesterol/gamma-HCH transport system ATP-binding protein [KO:K02065]" />
+    <DictionaryEntry Key="XC_2707" Value="phosphate binding protein; K02040 phosphate transport system substrate-binding protein [KO:K02040]" />
+    <DictionaryEntry Key="XC_2708" Value="phosphate ABC transporter substrate-binding protein; K02040 phosphate transport system substrate-binding protein [KO:K02040]" />
+    <DictionaryEntry Key="XC_2709" Value="ABC transporter phosphate permease; K02037 phosphate transport system permease protein [KO:K02037]" />
+    <DictionaryEntry Key="XC_2710" Value="ABC transporter phosphate permease; K02038 phosphate transport system permease protein [KO:K02038]" />
+    <DictionaryEntry Key="XC_2711" Value="pstB; phosphate transporter ATP-binding protein [KO:K02036] [EC:3.6.3.27]" />
+    <DictionaryEntry Key="XC_1840" Value="phosphate-binding protein; K02044 phosphonate transport system substrate-binding protein [KO:K02044]" />
+    <DictionaryEntry Key="XC_3699" Value="hypothetical protein; K02073 D-methionine transport system substrate-binding protein [KO:K02073]" />
+    <DictionaryEntry Key="XC_3700" Value="ABC transporter permease; K02072 D-methionine transport system permease protein [KO:K02072]" />
+    <DictionaryEntry Key="XC_3701" Value="metN; DL-methionine transporter ATP-binding subunit [KO:K02071]" />
+    <DictionaryEntry Key="XC_0170" Value="ABC transporter ATP-binding protein; K02013 iron complex transport system ATP-binding protein [EC:3.6.3.34] [KO:K02013] [EC:3.6.3.34]" />
+    <DictionaryEntry Key="XC_3633" Value="membrane subunit of LPS efflux transporter; K09690 lipopolysaccharide transport system permease protein [KO:K09690]" />
+    <DictionaryEntry Key="XC_3632" Value="ABC transporter ATP binding protein; K09691 lipopolysaccharide transport system ATP-binding protein [KO:K09691]" />
+    <DictionaryEntry Key="XC_4058" Value="ABC transporter sodium permease; K09696 sodium transport system permease protein [KO:K09696]" />
+    <DictionaryEntry Key="XC_4059" Value="sodium ABC transporter ATP-binding protein; K09697 sodium transport system ATP-binding protein [EC:3.6.3.7] [KO:K09697] [EC:3.6.3.7]" />
+    <DictionaryEntry Key="XC_1988" Value="lipoprotein releasing system transmembrane protein; K09808 lipoprotein-releasing system permease protein [KO:K09808]" />
+    <DictionaryEntry Key="XC_1989" Value="ABC transporter ATP-binding protein; K09810 lipoprotein-releasing system ATP-binding protein [EC:3.6.3.-] [KO:K09810] [EC:3.6.3.-]" />
+    <DictionaryEntry Key="XC_2570" Value="hypothetical protein; K02196 heme exporter protein D [KO:K02196]" />
+    <DictionaryEntry Key="XC_1895" Value="hypothetical protein; K02196 heme exporter protein D [KO:K02196]" />
+    <DictionaryEntry Key="XC_1896" Value="ABC transporter heme permease; K02195 heme exporter protein C [KO:K02195]" />
+    <DictionaryEntry Key="XC_2569" Value="heme exporter protein C/cytochrome C-type biogenesis protein; K02195 heme exporter protein C [KO:K02195]" />
+    <DictionaryEntry Key="XC_1897" Value="ABC transporter heme permease; K02194 heme exporter protein B [KO:K02194]" />
+    <DictionaryEntry Key="XC_1898" Value="cytochrome c biogenesis protein CcmA; K02193 heme exporter protein A [EC:3.6.3.41] [KO:K02193] [EC:3.6.3.41]" />
+    <DictionaryEntry Key="XC_3584" Value="hypothetical protein; K07091 lipopolysaccharide export system permease protein [KO:K07091]" />
+    <DictionaryEntry Key="XC_3583" Value="hypothetical protein; K11720 lipopolysaccharide export system permease protein [KO:K11720]" />
+    <DictionaryEntry Key="XC_1312" Value="ABC transporter ATP-binding protein; K06861 lipopolysaccharide export system ATP-binding protein [EC:3.6.3.-] [KO:K06861] [EC:3.6.3.-]" />
+    <DictionaryEntry Key="XC_3846" Value="cell division protein; K09811 cell division transport system permease protein [KO:K09811]" />
+    <DictionaryEntry Key="XC_3847" Value="ABC transporter ATP-binding protein; K09812 cell division transport system ATP-binding protein [KO:K09812]" />
+    <DictionaryEntry Key="XC_1995" Value="ABC transporter ATP-binding protein; K11085 ATP-binding cassette, subfamily B, bacterial MsbA [EC:3.6.3.-] [KO:K11085] [EC:3.6.3.-]" />
+    <DictionaryEntry Key="XC_2409" Value="hypothetical protein; K13409 ATP-binding cassette, subfamily B, bacterial RaxB [KO:K13409]" />
+    <DictionaryEntry Key="XC_2547" Value="ABC transporter ATP-binding protein; K06148 ATP-binding cassette, subfamily C, bacterial [KO:K06148]" />
+    <DictionaryEntry Key="XC_1887" Value="ABC transporter ATP-binding protein; K16012 ATP-binding cassette, subfamily C, bacterial CydC [KO:K16012]" />
+    <DictionaryEntry Key="XC_1886" Value="transporter; K16013 ATP-binding cassette, subfamily C, bacterial CydD [KO:K16013]" />
+  </Genes>
+</KEGG.PathwayBrief>

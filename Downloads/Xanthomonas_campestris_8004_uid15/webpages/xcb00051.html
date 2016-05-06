@@ -1,0 +1,212 @@
+<!doctype html>
+<html><head>
+<title>KEGG PATHWAY: xcb00051</title>
+<link type="text/css" rel="stylesheet" href="/css/gn2.css">
+<link rel="stylesheet" href="/css/bget.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/bgetm.css" media="only screen and (max-width: 768px)">
+<style>.kcfd{display:none;}</style>
+<script>
+<!--
+var getElementsByClassName = document.getElementsByClassName ?
+  function (cl){
+    return document.getElementsByClassName(cl);
+  } :
+  function (cl){
+    var elms = [];
+    var objs = document.getElementsByTagName('*');
+    for(var i=0;i<objs.length;i++){
+      var obj = objs[i];
+      if(obj.className == cl){
+        elms.push(obj);
+      }
+    }
+    return elms;
+  };
+function toggleField(clk,cl,show,hide){
+  var objs = getElementsByClassName(cl);
+  for(var i=0;i<objs.length;i++){
+    var obj = objs[i];
+    if(!obj.style.display||obj.style.display == 'none'){
+      obj.style.display = 'block';
+      clk.innerHTML = '&nbsp;&laquo; '+hide;
+    }
+    else{
+      obj.style.display = 'none';
+      clk.innerHTML = '&nbsp;&raquo; '+show;
+    }
+  }
+}
+function toggleData(bobj,e){
+  var id = bobj.id.replace(/[^0-9]/g,'');
+  var dt = document.getElementById('kcfd'+id);
+  if(!dt.style.display||dt.style.display == 'none'){
+    bobj.name = 'hide_kcf';
+    bobj.alt = 'Hide';
+    bobj.src = '/Fig/bget/button_Hib.gif';
+    dt.style.display = 'block';
+  }
+  else{
+    bobj.name = 'show_kcf';
+    bobj.alt = 'Show';
+    bobj.src = '/Fig/bget/button_Sb.gif';
+    dt.style.display = 'none';
+  }
+}
+function btn(bobj,img) {
+  bobj.src = "/Fig/bget/button_" + img + ".gif";
+}
+function btn_e(e) {
+  e = e || event;
+  var obj = e.target;
+  var img = e.target.src;
+  var img_base = img.replace(/\\/g,'/').replace(/(b|bd|bh)\.gif$/,'');
+  if(e.type == 'mousedown'||e.type == 'touchstart'){
+    obj.src = img_base +'bd.gif';
+  }
+  else if(e.type == 'mouseover'){
+    obj.src = img_base +'bh.gif';
+  }
+  else if(e.type == 'mouseup'||e.type == 'touchend'){
+    obj.src = img_base +'b.gif';
+  }
+  else if(e.type == 'mouseout'){
+    obj.src = img_base +'b.gif';
+  }
+}
+function init(){
+  for(var i=1;i<=1;i++){
+    if(document.getElementById('kcfb'+i)){
+      document.getElementById('kcfb'+i).onclick = function(e){toggleData(this,e);};
+      document.getElementById('kcfb'+i).onmousedown = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseover = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseout = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseup = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchstart = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchend = function(e){btn_e(e);};
+    }
+  }
+}
+function Link_XtrctSeq2(form) {
+    var dna_from;
+    var dna_to;
+    var dna_len;
+    var plus_up   = Number(form.XtrctSeq_UP.value) ;
+    var plus_down = Number(form.XtrctSeq_DOWN.value);
+    var vector    = Number(form.VECTOR.value);
+    var org       = form.ORG.value;
+    var chr       = form.CHR.value;
+    var kid       = form.KEGGID.value;
+    var url;
+
+    if (plus_up == 0 && plus_down == 0) {
+	url = "/dbget-bin/www_bget?-f+-n+n+" + kid;
+    }
+    else {
+	if (vector == 1) {
+	    dna_from  = Number(form.FROM.value)  - plus_up;
+	    dna_to    = Number(form.TO.value) + plus_down;
+	} else {
+	    dna_from  = Number(form.FROM.value)  - plus_down;
+	    dna_to    = Number(form.TO.value) + plus_up;
+	}
+
+	url = "/dbget-bin/cut_sequence_genes.pl?FROM=" + dna_from + "&TO=" + dna_to +"&VECTOR=" + vector + "&ORG=" + org;
+	if (chr) url += "&CHR=" + chr;
+    }
+    //window.open( url, "_self" );
+    location.href = url;
+}
+function go_taxonomy(form,params){
+  for(var key in params){
+    if(form[key]){
+      form.setAttribute(key,params[key]);
+    }
+    else{
+      var obj = document.createElement('input');
+      obj.setAttribute('type','hidden');
+      obj.setAttribute('name',key);
+      obj.setAttribute('value',params[key]);
+      form.appendChild(obj);
+    }
+  }
+  form.submit();
+}
+window.onload=function(){window.focus();init();};
+//--->
+</script>
+
+</head>
+<body>
+<div>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="70"><a href="/kegg/kegg2.html"><img align="middle" alt="KEGG" border="0" src="/Fig/bget/kegg3.gif"></a></td><td>&nbsp;&nbsp;&nbsp;</td><td><a name="pathway:xcb00051"></a><font class="title3">PATHWAY: xcb00051</font></td><td align="right" valign="bottom"><a href="javascript:void(window.open('/kegg/document/help_bget_pathway.html','KEGG_Help','toolbar=no,location=no,directories=no,width=720,height=640,resizable=yes,scrollbars=yes'))"><img align="middle" alt="Help" border="0" name="help" onmousedown="btn(this,'Hbd')" onmouseout="btn(this,'Hb')" onmouseover="btn(this,'Hbh')" onmouseup="btn(this,'Hb')" ontouchend="btn(this,'Hb')" ontouchstart="btn(this,'Hbd')" src="/Fig/bget/button_Hb.gif"></a></td></tr></table>
+<form method="post" action="/dbget-bin/www_bget" enctype="application/x-www-form-urlencoded" name="form1"><table border=0 cellpadding=1 cellspacing=0>
+<tr>
+<td class="fr3">
+<table border=0 cellpadding=2 cellspacing=0 style="border-bottom:#000 1px solid">
+
+<tr><th class="th30" align="left" valign="middle" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Entry</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="left"><code><nobr>xcb00051&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pathway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</nobr></code></td> <td align="right"><br></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Name</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Fructose and mannose metabolism - Xanthomonas campestris pv. campestris 8004<br>
+</div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Class</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Metabolism; Carbohydrate metabolism<br>
+<a href="/kegg-bin/get_htext?query=xcb00051&amp;htext=xcb00001.keg"><img align="middle" alt="BRITE hierarchy" border="0" name="BRH" onmousedown="btn(this,'BHbd')" onmouseout="btn(this,'BHb')" onmouseover="btn(this,'BHbh')" onmouseup="btn(this,'BHb')" ontouchend="btn(this,'BHb')" ontouchstart="btn(this,'BHbd')" src="/Fig/bget/button_BHb.gif"></a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Pathway&nbsp;map</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5.5em"><div><nobr><a href="/kegg-bin/show_pathway?xcb00051">xcb00051</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Fructose and mannose metabolism</div></td></tr></table><center><a href="/kegg-bin/show_pathway?xcb00051"><img src="/kegg/misc/thumbnail/map00051.gif" alt="xcb00051" style="border-style:none;"></a></center><br><a href="http://www.kegg.jp/kegg-bin/show_ot_map?map=00051"><img align="middle" alt="All organisms" border="0" name="AO" onmousedown="btn(this,'AObd')" onmouseout="btn(this,'AOb')" onmouseover="btn(this,'AObh')" onmouseup="btn(this,'AOb')" ontouchend="btn(this,'AOb')" ontouchstart="btn(this,'AObd')" src="/Fig/bget/button_AOb.gif"></a><a href="http://www.kegg.jp/kegg-bin/view_ortholog_table?map=00051"><img align="middle" alt="Ortholog table" border="0" name="OT" onmousedown="btn(this,'OTbd')" onmouseout="btn(this,'OTb')" onmouseover="btn(this,'OTbh')" onmouseup="btn(this,'OTb')" ontouchend="btn(this,'OTb')" ontouchstart="btn(this,'OTbd')" src="/Fig/bget/button_OTb.gif"></a></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Module</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:6.5em"><div><nobr><a href="/kegg-bin/show_module?xcb_M00273">xcb_M00273</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>PTS system, fructose-specific II component [PATH:<a href="/kegg-bin/show_pathway?xcb00051+M00273">xcb00051</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Other DBs</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="float:left">BSID:&nbsp;</div><div style="margin-left:3.5em"><a href="http://www.ncbi.nlm.nih.gov/biosystems/23969">23969</a></div><div style="float:left">GO:&nbsp;</div><div style="margin-left:2.5em"><a href="http://amigo.geneontology.org/amigo/term/GO:0006000">0006000</a> <a href="http://amigo.geneontology.org/amigo/term/GO:0006013">0006013</a></div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Organism</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Xanthomonas campestris pv. campestris 8004 [GN:<a href="/dbget-bin/www_bget?gn:xcb">xcb</a>]<br>
+</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Gene</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2458">XC_2458</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>mannan endo-1; K01218 mannan endo-1,4-beta-mannosidase [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.78">3.2.1.78</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01218">K01218</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.78">3.2.1.78</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2727">XC_2727</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>fructokinase; K00847 fructokinase [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.4">2.7.1.4</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00847">K00847</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.4">2.7.1.4</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3609">XC_3609</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>phosphomannose isomerase/GDP-mannose pyrophosphorylase; K16011 mannose-1-phosphate guanylyltransferase / mannose-6-phosphate isomerase [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.13">2.7.7.13</a> <a href="/dbget-bin/www_bget?ec:5.3.1.8">5.3.1.8</a>] [KO:<a href="/dbget-bin/www_bget?ko:K16011">K16011</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.8">5.3.1.8</a> <a href="/dbget-bin/www_bget?ec:2.7.7.13">2.7.7.13</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3608">XC_3608</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>phosphoglucomutase; phosphomannomutase [KO:<a href="/dbget-bin/www_bget?ko:K15778">K15778</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.4.2.2">5.4.2.2</a> <a href="/dbget-bin/www_bget?ec:5.4.2.8">5.4.2.8</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3941">XC_3941</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:<a href="/dbget-bin/www_bget?ec:5.4.2.8">5.4.2.8</a> <a href="/dbget-bin/www_bget?ec:5.4.2.2">5.4.2.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K15778">K15778</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.4.2.2">5.4.2.2</a> <a href="/dbget-bin/www_bget?ec:5.4.2.8">5.4.2.8</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3627">XC_3627</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-mannose 4; K01711 GDPmannose 4,6-dehydratase [EC:<a href="/dbget-bin/www_bget?ec:4.2.1.47">4.2.1.47</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01711">K01711</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.2.1.47">4.2.1.47</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4155">XC_4155</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>oxidoreductase; K00064 D-threo-aldose 1-dehydrogenase [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.122">1.1.1.122</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00064">K00064</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.122">1.1.1.122</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0150">XC_0150</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-fucose dehydrogenase; K00064 D-threo-aldose 1-dehydrogenase [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.122">1.1.1.122</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00064">K00064</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.122">1.1.1.122</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4156">XC_4156</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>hypothetical protein; K07046 L-fuconolactonase [EC:3.1.1.-] [KO:<a href="/dbget-bin/www_bget?ko:K07046">K07046</a>] [EC:3.1.1.-]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4159">XC_4159</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>RTS beta protein; K18334 L-fuconate dehydratase [EC:<a href="/dbget-bin/www_bget?ec:4.2.1.68">4.2.1.68</a>] [KO:<a href="/dbget-bin/www_bget?ko:K18334">K18334</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.2.1.68">4.2.1.68</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4157">XC_4157</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>oxidoreductase; K18335 2-keto-3-deoxy-L-fuconate dehydrogenase [EC:1.1.1.-] [KO:<a href="/dbget-bin/www_bget?ko:K18335">K18335</a>] [EC:1.1.1.-]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4158">XC_4158</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-hydroxyhepta-2; K18336 2,4-diketo-3-deoxy-L-fuconate hydrolase [EC:3.7.1.-] [KO:<a href="/dbget-bin/www_bget?ko:K18336">K18336</a>] [EC:3.7.1.-]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0872">XC_0872</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>6-phosphofructokinase; K00850 6-phosphofructokinase 1 [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.11">2.7.1.11</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00850">K00850</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.11">2.7.1.11</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0098">XC_0098</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>fructose-1; K03841 fructose-1,6-bisphosphatase I [EC:<a href="/dbget-bin/www_bget?ec:3.1.3.11">3.1.3.11</a>] [KO:<a href="/dbget-bin/www_bget?ko:K03841">K03841</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.3.11">3.1.3.11</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1743">XC_1743</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>1-phosphofructokinase; K00882 1-phosphofructokinase [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.56">2.7.1.56</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00882">K00882</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.56">2.7.1.56</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2477">XC_2477</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>xylose isomerase; K01805 xylose isomerase [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.5">5.3.1.5</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01805">K01805</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.5">5.3.1.5</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4191">XC_4191</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>xylose isomerase; K01805 xylose isomerase [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.5">5.3.1.5</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01805">K01805</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.5">5.3.1.5</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0979">XC_0979</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>fructose-bisphosphate aldolase; K01623 fructose-bisphosphate aldolase, class I [EC:<a href="/dbget-bin/www_bget?ec:4.1.2.13">4.1.2.13</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01623">K01623</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.1.2.13">4.1.2.13</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1587">XC_1587</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tpiA; triosephosphate isomerase [KO:<a href="/dbget-bin/www_bget?ko:K01803">K01803</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.1">5.3.1.1</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0162">XC_0162</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>hypothetical protein; K01808 ribose 5-phosphate isomerase B [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.6">5.3.1.6</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01808">K01808</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.6">5.3.1.6</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1744">XC_1744</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>multiphosphoryl transfer protein; K02768 PTS system, fructose-specific IIA component [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.202">2.7.1.202</a>] K08483 phosphotransferase system, enzyme I, PtsI [EC:<a href="/dbget-bin/www_bget?ec:2.7.3.9">2.7.3.9</a>] K11183 phosphocarrier protein FPr [KO:<a href="/dbget-bin/www_bget?ko:K02768">K02768</a> <a href="/dbget-bin/www_bget?ko:K08483">K08483</a> <a href="/dbget-bin/www_bget?ko:K11183">K11183</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.202">2.7.1.202</a> <a href="/dbget-bin/www_bget?ec:2.7.3.9">2.7.3.9</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1742">XC_1742</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>PTS system fructose-specific II BC component; K02769 PTS system, fructose-specific IIB component [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.202">2.7.1.202</a>] K02770 PTS system, fructose-specific IIC component [KO:<a href="/dbget-bin/www_bget?ko:K02769">K02769</a> <a href="/dbget-bin/www_bget?ko:K02770">K02770</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.202">2.7.1.202</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Compound</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00095">C00095</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Fructose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00096">C00096</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-mannose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00111">C00111</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Glycerone phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00118">C00118</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Glyceraldehyde 3-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00159">C00159</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Mannose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00186">C00186</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>(S)-Lactate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00247">C00247</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Sorbose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00267">C00267</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>alpha-D-Glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00275">C00275</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Mannose 6-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00325">C00325</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-L-fucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00392">C00392</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Mannitol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00424">C00424</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>(S)-Lactaldehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00464">C00464</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Mannan</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00507">C00507</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Rhamnose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00577">C00577</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Glyceraldehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00636">C00636</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Mannose 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00644">C00644</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Mannitol 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00665">C00665</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>beta-D-Fructose 2,6-bisphosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00794">C00794</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Sorbitol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00861">C00861</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Rhamnulose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00976">C00976</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-D-mannuronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01019">C01019</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>6-Deoxy-L-galactose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01094">C01094</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Fructose 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01096">C01096</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Sorbitol 6-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01099">C01099</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Fuculose 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01131">C01131</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Rhamnulose 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01222">C01222</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-4-dehydro-6-deoxy-D-mannose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01355">C01355</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Fructan</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01487">C01487</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Allose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01720">C01720</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Fuconate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01721">C01721</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Fuculose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01768">C01768</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>(Alginate)n</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01934">C01934</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Rhamnonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02431">C02431</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Rhamnofuranose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02492">C02492</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>1,4-beta-D-Mannan</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02888">C02888</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Sorbose 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02962">C02962</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Allose 6-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02977">C02977</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-6-deoxy-D-talose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02985">C02985</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Fucose 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02991">C02991</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Rhamnono-1,4-lactone</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03117">C03117</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-6-deoxy-D-mannose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03267">C03267</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>beta-D-Fructose 2-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03827">C03827</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Dehydro-3-deoxy-L-fuconate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03979">C03979</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Dehydro-3-deoxy-L-rhamnonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05345">C05345</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>beta-D-Fructose 6-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05378">C05378</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>beta-D-Fructose 1,6-bisphosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05392">C05392</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Oligouronide with 4-deoxy-alpha-L-erythro-hex-4-enopyranuronosyl group</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06192">C06192</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>ADP-mannose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11516">C11516</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-(alpha-D-Mannosyl)-3-phosphoglycerate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11544">C11544</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2(alpha-D-Mannosyl)-D-glycerate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18028">C18028</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Fucono-1,5-lactone</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18096">C18096</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Allulose 6-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20781">C20781</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2,4-Diketo-3-deoxy-L-fuconate</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>KO&nbsp;pathway</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?ko00051">ko00051</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>&nbsp;</div></td></tr></table></td></tr>
+
+</table></td></tr></table>
+<br></form></td><td valign="top"><div style="margin-top:46px;margin-left:1em;border:#ddd 1px solid"><div class="th30" style="font-weight:bold;line-height:1.5em">&nbsp;&nbsp;All links&nbsp;&nbsp;</div>
+<pre style="margin-left:1em">
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+2+path:xcb00051">Pathway (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+biosystems+path:xcb00051">BioSystems (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+7+path:xcb00051">Genome (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genome+path:xcb00051">KEGG GENOME (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+8+path:xcb00051">Gene (22)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genes+path:xcb00051">KEGG GENES (22)</a>   
+<a href="/dbget-bin/get_linkdb?-t+alldb+path:xcb00051">All databases (24)</a>   
+<br><a href="/dbget-bin/get_linkdb?-N+path:xcb00051">Download RDF</a>   
+</pre>
+</div>
+</td></tr></table>
+
+
+<a href="/dbget/">DBGET</a> integrated database retrieval system</div>
+
+</body>
+</html>

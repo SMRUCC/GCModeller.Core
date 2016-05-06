@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00290" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Valine, leucine and isoleucine biosynthesis - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Modules>
+    <DictionaryEntry Key="xcb_M00019" Value="Valine/isoleucine biosynthesis, pyruvate =&gt; valine / 2-oxobutanoate =&gt; isoleucine [PATH:xcb00290]" />
+    <DictionaryEntry Key="xcb_M00432" Value="Leucine biosynthesis, 2-oxoisovalerate =&gt; 2-oxoisocaproate [PATH:xcb00290]" />
+    <DictionaryEntry Key="xcb_M00570" Value="Isoleucine biosynthesis, threonine =&gt; 2-oxobutanoate =&gt; isoleucine [PATH:xcb00290]" />
+  </Modules>
+  <Compound>
+    <DictionaryEntry Key="C00022" Value="Pyruvate" />
+    <DictionaryEntry Key="C00024" Value="Acetyl-CoA" />
+    <DictionaryEntry Key="C00109" Value="2-Oxobutanoate" />
+    <DictionaryEntry Key="C00123" Value="L-Leucine" />
+    <DictionaryEntry Key="C00141" Value="3-Methyl-2-oxobutanoic acid" />
+    <DictionaryEntry Key="C00183" Value="L-Valine" />
+    <DictionaryEntry Key="C00188" Value="L-Threonine" />
+    <DictionaryEntry Key="C00233" Value="4-Methyl-2-oxopentanoate" />
+    <DictionaryEntry Key="C00407" Value="L-Isoleucine" />
+    <DictionaryEntry Key="C00671" Value="(S)-3-Methyl-2-oxopentanoic acid" />
+    <DictionaryEntry Key="C02226" Value="2-Methylmaleate" />
+    <DictionaryEntry Key="C02504" Value="alpha-Isopropylmalate" />
+    <DictionaryEntry Key="C02612" Value="(R)-2-Methylmalate" />
+    <DictionaryEntry Key="C02631" Value="2-Isopropylmaleate" />
+    <DictionaryEntry Key="C04181" Value="3-Hydroxy-3-methyl-2-oxobutanoic acid" />
+    <DictionaryEntry Key="C04236" Value="(2S)-2-Isopropyl-3-oxosuccinate" />
+    <DictionaryEntry Key="C04272" Value="(R)-2,3-Dihydroxy-3-methylbutanoate" />
+    <DictionaryEntry Key="C04411" Value="(2R,3S)-3-Isopropylmalate" />
+    <DictionaryEntry Key="C06006" Value="(S)-2-Aceto-2-hydroxybutanoate" />
+    <DictionaryEntry Key="C06007" Value="(R)-2,3-Dihydroxy-3-methylpentanoate" />
+    <DictionaryEntry Key="C06010" Value="(S)-2-Acetolactate" />
+    <DictionaryEntry Key="C06032" Value="D-erythro-3-Methylmalate" />
+    <DictionaryEntry Key="C14463" Value="(R)-3-Hydroxy-3-methyl-2-oxopentanoate" />
+  </Compound>
+  <PathwayMap Key="xcb00290" Value="Valine, leucine and isoleucine biosynthesis&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_0838" Value="threonine dehydratase; K01754 threonine dehydratase [EC:4.3.1.19] [KO:K01754] [EC:4.3.1.19]" />
+    <DictionaryEntry Key="XC_0391" Value="threonine dehydratase; K01754 threonine dehydratase [EC:4.3.1.19] [KO:K01754] [EC:4.3.1.19]" />
+    <DictionaryEntry Key="XC_0833" Value="isopropylmalate isomerase large subunit; K01703 3-isopropylmalate/(R)-2-methylmalate dehydratase large subunit [EC:4.2.1.33 4.2.1.35] [KO:K01703] [EC:4.2.1.35 4.2.1.33]" />
+    <DictionaryEntry Key="XC_0834" Value="leuD; isopropylmalate isomerase small subunit [KO:K01704] [EC:4.2.1.35 4.2.1.33]" />
+    <DictionaryEntry Key="XC_0836" Value="3-isopropylmalate dehydrogenase; K00052 3-isopropylmalate dehydrogenase [EC:1.1.1.85] [KO:K00052] [EC:1.1.1.85]" />
+    <DictionaryEntry Key="XC_0840" Value="acetolactate synthase 2 catalytic subunit; K01652 acetolactate synthase I/II/III large subunit [EC:2.2.1.6] [KO:K01652] [EC:2.2.1.6]" />
+    <DictionaryEntry Key="XC_0839" Value="acetolactate synthase isozyme II small subunit; K11258 acetolactate synthase II small subunit [EC:2.2.1.6] [KO:K11258] [EC:2.2.1.6]" />
+    <DictionaryEntry Key="XC_0841" Value="ketol-acid reductoisomerase; K00053 ketol-acid reductoisomerase [EC:1.1.1.86] [KO:K00053] [EC:1.1.1.86]" />
+    <DictionaryEntry Key="XC_0356" Value="dihydroxy-acid dehydratase; K01687 dihydroxy-acid dehydratase [EC:4.2.1.9] [KO:K01687] [EC:4.2.1.9]" />
+    <DictionaryEntry Key="XC_3380" Value="branched-chain amino acid aminotransferase; K00826 branched-chain amino acid aminotransferase [EC:2.6.1.42] [KO:K00826] [EC:2.6.1.42]" />
+    <DictionaryEntry Key="XC_2941" Value="leucine dehydrogenase; K00263 leucine dehydrogenase [EC:1.4.1.9] [KO:K00263] [EC:1.4.1.9]" />
+    <DictionaryEntry Key="XC_0800" Value="aminotransferase; K14260 alanine-synthesizing transaminase [EC:2.6.1.66 2.6.1.2] [KO:K14260] [EC:2.6.1.2 2.6.1.66]" />
+    <DictionaryEntry Key="XC_0837" Value="2-isopropylmalate synthase; K01649 2-isopropylmalate synthase [EC:2.3.3.13] [KO:K01649] [EC:2.3.3.13]" />
+  </Genes>
+</KEGG.PathwayBrief>

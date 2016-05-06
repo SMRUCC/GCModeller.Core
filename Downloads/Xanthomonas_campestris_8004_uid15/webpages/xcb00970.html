@@ -1,0 +1,240 @@
+<!doctype html>
+<html><head>
+<title>KEGG PATHWAY: xcb00970</title>
+<link type="text/css" rel="stylesheet" href="/css/gn2.css">
+<link rel="stylesheet" href="/css/bget.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/bgetm.css" media="only screen and (max-width: 768px)">
+<style>.kcfd{display:none;}</style>
+<script>
+<!--
+var getElementsByClassName = document.getElementsByClassName ?
+  function (cl){
+    return document.getElementsByClassName(cl);
+  } :
+  function (cl){
+    var elms = [];
+    var objs = document.getElementsByTagName('*');
+    for(var i=0;i<objs.length;i++){
+      var obj = objs[i];
+      if(obj.className == cl){
+        elms.push(obj);
+      }
+    }
+    return elms;
+  };
+function toggleField(clk,cl,show,hide){
+  var objs = getElementsByClassName(cl);
+  for(var i=0;i<objs.length;i++){
+    var obj = objs[i];
+    if(!obj.style.display||obj.style.display == 'none'){
+      obj.style.display = 'block';
+      clk.innerHTML = '&nbsp;&laquo; '+hide;
+    }
+    else{
+      obj.style.display = 'none';
+      clk.innerHTML = '&nbsp;&raquo; '+show;
+    }
+  }
+}
+function toggleData(bobj,e){
+  var id = bobj.id.replace(/[^0-9]/g,'');
+  var dt = document.getElementById('kcfd'+id);
+  if(!dt.style.display||dt.style.display == 'none'){
+    bobj.name = 'hide_kcf';
+    bobj.alt = 'Hide';
+    bobj.src = '/Fig/bget/button_Hib.gif';
+    dt.style.display = 'block';
+  }
+  else{
+    bobj.name = 'show_kcf';
+    bobj.alt = 'Show';
+    bobj.src = '/Fig/bget/button_Sb.gif';
+    dt.style.display = 'none';
+  }
+}
+function btn(bobj,img) {
+  bobj.src = "/Fig/bget/button_" + img + ".gif";
+}
+function btn_e(e) {
+  e = e || event;
+  var obj = e.target;
+  var img = e.target.src;
+  var img_base = img.replace(/\\/g,'/').replace(/(b|bd|bh)\.gif$/,'');
+  if(e.type == 'mousedown'||e.type == 'touchstart'){
+    obj.src = img_base +'bd.gif';
+  }
+  else if(e.type == 'mouseover'){
+    obj.src = img_base +'bh.gif';
+  }
+  else if(e.type == 'mouseup'||e.type == 'touchend'){
+    obj.src = img_base +'b.gif';
+  }
+  else if(e.type == 'mouseout'){
+    obj.src = img_base +'b.gif';
+  }
+}
+function init(){
+  for(var i=1;i<=1;i++){
+    if(document.getElementById('kcfb'+i)){
+      document.getElementById('kcfb'+i).onclick = function(e){toggleData(this,e);};
+      document.getElementById('kcfb'+i).onmousedown = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseover = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseout = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseup = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchstart = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchend = function(e){btn_e(e);};
+    }
+  }
+}
+function Link_XtrctSeq2(form) {
+    var dna_from;
+    var dna_to;
+    var dna_len;
+    var plus_up   = Number(form.XtrctSeq_UP.value) ;
+    var plus_down = Number(form.XtrctSeq_DOWN.value);
+    var vector    = Number(form.VECTOR.value);
+    var org       = form.ORG.value;
+    var chr       = form.CHR.value;
+    var kid       = form.KEGGID.value;
+    var url;
+
+    if (plus_up == 0 && plus_down == 0) {
+	url = "/dbget-bin/www_bget?-f+-n+n+" + kid;
+    }
+    else {
+	if (vector == 1) {
+	    dna_from  = Number(form.FROM.value)  - plus_up;
+	    dna_to    = Number(form.TO.value) + plus_down;
+	} else {
+	    dna_from  = Number(form.FROM.value)  - plus_down;
+	    dna_to    = Number(form.TO.value) + plus_up;
+	}
+
+	url = "/dbget-bin/cut_sequence_genes.pl?FROM=" + dna_from + "&TO=" + dna_to +"&VECTOR=" + vector + "&ORG=" + org;
+	if (chr) url += "&CHR=" + chr;
+    }
+    //window.open( url, "_self" );
+    location.href = url;
+}
+function go_taxonomy(form,params){
+  for(var key in params){
+    if(form[key]){
+      form.setAttribute(key,params[key]);
+    }
+    else{
+      var obj = document.createElement('input');
+      obj.setAttribute('type','hidden');
+      obj.setAttribute('name',key);
+      obj.setAttribute('value',params[key]);
+      form.appendChild(obj);
+    }
+  }
+  form.submit();
+}
+window.onload=function(){window.focus();init();};
+//--->
+</script>
+
+</head>
+<body>
+<div>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="70"><a href="/kegg/kegg2.html"><img align="middle" alt="KEGG" border="0" src="/Fig/bget/kegg3.gif"></a></td><td>&nbsp;&nbsp;&nbsp;</td><td><a name="pathway:xcb00970"></a><font class="title3">PATHWAY: xcb00970</font></td><td align="right" valign="bottom"><a href="javascript:void(window.open('/kegg/document/help_bget_pathway.html','KEGG_Help','toolbar=no,location=no,directories=no,width=720,height=640,resizable=yes,scrollbars=yes'))"><img align="middle" alt="Help" border="0" name="help" onmousedown="btn(this,'Hbd')" onmouseout="btn(this,'Hb')" onmouseover="btn(this,'Hbh')" onmouseup="btn(this,'Hb')" ontouchend="btn(this,'Hb')" ontouchstart="btn(this,'Hbd')" src="/Fig/bget/button_Hb.gif"></a></td></tr></table>
+<form method="post" action="/dbget-bin/www_bget" enctype="application/x-www-form-urlencoded" name="form1"><table border=0 cellpadding=1 cellspacing=0>
+<tr>
+<td class="fr3">
+<table border=0 cellpadding=2 cellspacing=0 style="border-bottom:#000 1px solid">
+
+<tr><th class="th30" align="left" valign="middle" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Entry</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="left"><code><nobr>xcb00970&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pathway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</nobr></code></td> <td align="right"><br></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Name</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Aminoacyl-tRNA biosynthesis - Xanthomonas campestris pv. campestris 8004<br>
+</div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Class</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Genetic Information Processing; Translation<br>
+<a href="/kegg-bin/get_htext?query=xcb00970&amp;htext=xcb00001.keg"><img align="middle" alt="BRITE hierarchy" border="0" name="BRH" onmousedown="btn(this,'BHbd')" onmouseout="btn(this,'BHb')" onmouseover="btn(this,'BHbh')" onmouseup="btn(this,'BHb')" ontouchend="btn(this,'BHb')" ontouchstart="btn(this,'BHbd')" src="/Fig/bget/button_BHb.gif"></a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Pathway&nbsp;map</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5.5em"><div><nobr><a href="/kegg-bin/show_pathway?xcb00970">xcb00970</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Aminoacyl-tRNA biosynthesis</div></td></tr></table><center><a href="/kegg-bin/show_pathway?xcb00970"><img src="/kegg/misc/thumbnail/map00970.gif" alt="xcb00970" style="border-style:none;"></a></center><br><a href="http://www.kegg.jp/kegg-bin/show_ot_map?map=00970"><img align="middle" alt="All organisms" border="0" name="AO" onmousedown="btn(this,'AObd')" onmouseout="btn(this,'AOb')" onmouseover="btn(this,'AObh')" onmouseup="btn(this,'AOb')" ontouchend="btn(this,'AOb')" ontouchstart="btn(this,'AObd')" src="/Fig/bget/button_AOb.gif"></a><a href="http://www.kegg.jp/kegg-bin/view_ortholog_table?map=00970"><img align="middle" alt="Ortholog table" border="0" name="OT" onmousedown="btn(this,'OTbd')" onmouseout="btn(this,'OTb')" onmouseover="btn(this,'OTbh')" onmouseup="btn(this,'OTb')" ontouchend="btn(this,'OTb')" ontouchstart="btn(this,'OTbd')" src="/Fig/bget/button_OTb.gif"></a></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Module</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:6.5em"><div><nobr><a href="/kegg-bin/show_module?xcb_M00360">xcb_M00360</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Aminoacyl-tRNA biosynthesis, prokaryotes [PATH:<a href="/kegg-bin/show_pathway?xcb00970+M00360">xcb00970</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Organism</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Xanthomonas campestris pv. campestris 8004 [GN:<a href="/dbget-bin/www_bget?gn:xcb">xcb</a>]<br>
+</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Gene</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4385">XC_4385</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Ala; K14218 tRNA Ala [KO:<a href="/dbget-bin/www_bget?ko:K14218">K14218</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4392">XC_4392</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Ala; K14218 tRNA Ala [KO:<a href="/dbget-bin/www_bget?ko:K14218">K14218</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4348">XC_4348</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Ala; K14218 tRNA Ala [KO:<a href="/dbget-bin/www_bget?ko:K14218">K14218</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4350">XC_4350</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Ala; K14218 tRNA Ala [KO:<a href="/dbget-bin/www_bget?ko:K14218">K14218</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4344">XC_4344</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Ala; K14218 tRNA Ala [KO:<a href="/dbget-bin/www_bget?ko:K14218">K14218</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4333">XC_4333</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Arg; K14219 tRNA Arg [KO:<a href="/dbget-bin/www_bget?ko:K14219">K14219</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4374">XC_4374</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Arg; K14219 tRNA Arg [KO:<a href="/dbget-bin/www_bget?ko:K14219">K14219</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4357">XC_4357</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Arg; K14219 tRNA Arg [KO:<a href="/dbget-bin/www_bget?ko:K14219">K14219</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4358">XC_4358</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Arg; K14219 tRNA Arg [KO:<a href="/dbget-bin/www_bget?ko:K14219">K14219</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4355">XC_4355</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Arg; K14219 tRNA Arg [KO:<a href="/dbget-bin/www_bget?ko:K14219">K14219</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4340">XC_4340</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Asn; K14220 tRNA Asn [KO:<a href="/dbget-bin/www_bget?ko:K14220">K14220</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4368">XC_4368</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Asp; K14221 tRNA Asp [KO:<a href="/dbget-bin/www_bget?ko:K14221">K14221</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4369">XC_4369</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Asp; K14221 tRNA Asp [KO:<a href="/dbget-bin/www_bget?ko:K14221">K14221</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4352">XC_4352</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Cys; K14222 tRNA Cys [KO:<a href="/dbget-bin/www_bget?ko:K14222">K14222</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4334">XC_4334</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Gln; K14223 tRNA Gln [KO:<a href="/dbget-bin/www_bget?ko:K14223">K14223</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4380">XC_4380</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Gln; K14223 tRNA Gln [KO:<a href="/dbget-bin/www_bget?ko:K14223">K14223</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4356">XC_4356</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Glu; K14224 tRNA Glu [KO:<a href="/dbget-bin/www_bget?ko:K14224">K14224</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4347">XC_4347</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Glu; K14224 tRNA Glu [KO:<a href="/dbget-bin/www_bget?ko:K14224">K14224</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4349">XC_4349</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Glu; K14224 tRNA Glu [KO:<a href="/dbget-bin/www_bget?ko:K14224">K14224</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4378">XC_4378</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Gly; K14225 tRNA Gly [KO:<a href="/dbget-bin/www_bget?ko:K14225">K14225</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4336">XC_4336</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Gly; K14225 tRNA Gly [KO:<a href="/dbget-bin/www_bget?ko:K14225">K14225</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4351">XC_4351</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Gly; K14225 tRNA Gly [KO:<a href="/dbget-bin/www_bget?ko:K14225">K14225</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4353">XC_4353</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Gly; K14225 tRNA Gly [KO:<a href="/dbget-bin/www_bget?ko:K14225">K14225</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4373">XC_4373</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-His; K14226 tRNA His [KO:<a href="/dbget-bin/www_bget?ko:K14226">K14226</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4384">XC_4384</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Ile; K14227 tRNA Ile [KO:<a href="/dbget-bin/www_bget?ko:K14227">K14227</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4391">XC_4391</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Ile; K14227 tRNA Ile [KO:<a href="/dbget-bin/www_bget?ko:K14227">K14227</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4338">XC_4338</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Leu; K14228 tRNA Leu [KO:<a href="/dbget-bin/www_bget?ko:K14228">K14228</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4354">XC_4354</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Leu; K14228 tRNA Leu [KO:<a href="/dbget-bin/www_bget?ko:K14228">K14228</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4371">XC_4371</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Leu; K14228 tRNA Leu [KO:<a href="/dbget-bin/www_bget?ko:K14228">K14228</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4346">XC_4346</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Leu; K14228 tRNA Leu [KO:<a href="/dbget-bin/www_bget?ko:K14228">K14228</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4361">XC_4361</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Leu; K14228 tRNA Leu [KO:<a href="/dbget-bin/www_bget?ko:K14228">K14228</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4363">XC_4363</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Leu; K14228 tRNA Leu [KO:<a href="/dbget-bin/www_bget?ko:K14228">K14228</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4372">XC_4372</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Lys; K14229 tRNA Lys [KO:<a href="/dbget-bin/www_bget?ko:K14229">K14229</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4337">XC_4337</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Lys; K14229 tRNA Lys [KO:<a href="/dbget-bin/www_bget?ko:K14229">K14229</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4335">XC_4335</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Met; K14230 tRNA Met [KO:<a href="/dbget-bin/www_bget?ko:K14230">K14230</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4381">XC_4381</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Met; K14230 tRNA Met [KO:<a href="/dbget-bin/www_bget?ko:K14230">K14230</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4339">XC_4339</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Met; K14230 tRNA Met [KO:<a href="/dbget-bin/www_bget?ko:K14230">K14230</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4343">XC_4343</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Phe; K14231 tRNA Phe [KO:<a href="/dbget-bin/www_bget?ko:K14231">K14231</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4375">XC_4375</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Pro; K14232 tRNA Pro [KO:<a href="/dbget-bin/www_bget?ko:K14232">K14232</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4342">XC_4342</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Pro; K14232 tRNA Pro [KO:<a href="/dbget-bin/www_bget?ko:K14232">K14232</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4345">XC_4345</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Pro; K14232 tRNA Pro [KO:<a href="/dbget-bin/www_bget?ko:K14232">K14232</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4359">XC_4359</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Ser; K14233 tRNA Ser [KO:<a href="/dbget-bin/www_bget?ko:K14233">K14233</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4360">XC_4360</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Ser; K14233 tRNA Ser [KO:<a href="/dbget-bin/www_bget?ko:K14233">K14233</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4366">XC_4366</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Ser; K14233 tRNA Ser [KO:<a href="/dbget-bin/www_bget?ko:K14233">K14233</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4377">XC_4377</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Thr; K14234 tRNA Thr [KO:<a href="/dbget-bin/www_bget?ko:K14234">K14234</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4364">XC_4364</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Thr; K14234 tRNA Thr [KO:<a href="/dbget-bin/www_bget?ko:K14234">K14234</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4388">XC_4388</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Thr; K14234 tRNA Thr [KO:<a href="/dbget-bin/www_bget?ko:K14234">K14234</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4376">XC_4376</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Trp; K14235 tRNA Trp [KO:<a href="/dbget-bin/www_bget?ko:K14235">K14235</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4379">XC_4379</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Tyr; K14236 tRNA Tyr [KO:<a href="/dbget-bin/www_bget?ko:K14236">K14236</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4341">XC_4341</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Val; K14237 tRNA Val [KO:<a href="/dbget-bin/www_bget?ko:K14237">K14237</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4365">XC_4365</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Val; K14237 tRNA Val [KO:<a href="/dbget-bin/www_bget?ko:K14237">K14237</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4370">XC_4370</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tRNA-Val; K14237 tRNA Val [KO:<a href="/dbget-bin/www_bget?ko:K14237">K14237</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1429">XC_1429</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>gltX; glutamyl-tRNA synthetase [KO:<a href="/dbget-bin/www_bget?ko:K01885">K01885</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.17">6.1.1.17</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0302">XC_0302</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>amidase; K02433 aspartyl-tRNA(Asn)/glutamyl-tRNA(Gln) amidotransferase subunit A [EC:<a href="/dbget-bin/www_bget?ec:6.3.5.6">6.3.5.6</a> <a href="/dbget-bin/www_bget?ec:6.3.5.7">6.3.5.7</a>] [KO:<a href="/dbget-bin/www_bget?ko:K02433">K02433</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.3.5.7">6.3.5.7</a> <a href="/dbget-bin/www_bget?ec:6.3.5.6">6.3.5.6</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3409">XC_3409</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glutaminyl-tRNA synthetase; K01886 glutaminyl-tRNA synthetase [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.18">6.1.1.18</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01886">K01886</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.18">6.1.1.18</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2507">XC_2507</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>alaS; alanyl-tRNA synthetase [KO:<a href="/dbget-bin/www_bget?ko:K01872">K01872</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.7">6.1.1.7</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1128">XC_1128</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>aspS; aspartyl-tRNA synthetase [KO:<a href="/dbget-bin/www_bget?ko:K01876">K01876</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.12">6.1.1.12</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2673">XC_2673</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>asnC; asparaginyl-tRNA synthetase [KO:<a href="/dbget-bin/www_bget?ko:K01893">K01893</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.22">6.1.1.22</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4178">XC_4178</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glyQ; glycyl-tRNA synthetase subunit alpha [KO:<a href="/dbget-bin/www_bget?ko:K01878">K01878</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.14">6.1.1.14</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4177">XC_4177</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glyS; glycyl-tRNA synthetase subunit beta [KO:<a href="/dbget-bin/www_bget?ko:K01879">K01879</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.14">6.1.1.14</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1650">XC_1650</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>thrS; threonyl-tRNA synthetase [KO:<a href="/dbget-bin/www_bget?ko:K01868">K01868</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.3">6.1.1.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2640">XC_2640</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>seryl-tRNA synthetase; K01875 seryl-tRNA synthetase [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.11">6.1.1.11</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01875">K01875</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.11">6.1.1.11</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1867">XC_1867</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>cysS; cysteinyl-tRNA synthetase [KO:<a href="/dbget-bin/www_bget?ko:K01883">K01883</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.16">6.1.1.16</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2900">XC_2900</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>metG; methionyl-tRNA synthetase [KO:<a href="/dbget-bin/www_bget?ko:K01874">K01874</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.10">6.1.1.10</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3818">XC_3818</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>fmt; methionyl-tRNA formyltransferase [KO:<a href="/dbget-bin/www_bget?ko:K00604">K00604</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.1.2.9">2.1.2.9</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3588">XC_3588</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>valS; valyl-tRNA synthetase [KO:<a href="/dbget-bin/www_bget?ko:K01873">K01873</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.9">6.1.1.9</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1497">XC_1497</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>leuS; leucyl-tRNA synthetase [KO:<a href="/dbget-bin/www_bget?ko:K01869">K01869</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.4">6.1.1.4</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3087">XC_3087</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>ileS; isoleucyl-tRNA synthetase [KO:<a href="/dbget-bin/www_bget?ko:K01870">K01870</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.5">6.1.1.5</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2336">XC_2336</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>lysS; lysyl-tRNA synthetase [KO:<a href="/dbget-bin/www_bget?ko:K04567">K04567</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.6">6.1.1.6</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3945">XC_3945</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>argS; arginyl-tRNA synthetase [KO:<a href="/dbget-bin/www_bget?ko:K01887">K01887</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.19">6.1.1.19</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3596">XC_3596</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>prolyl-tRNA synthetase; K01881 prolyl-tRNA synthetase [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.15">6.1.1.15</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01881">K01881</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.15">6.1.1.15</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2383">XC_2383</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>hisS; histidyl-tRNA synthetase [KO:<a href="/dbget-bin/www_bget?ko:K01892">K01892</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.21">6.1.1.21</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1654">XC_1654</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>pheS; phenylalanyl-tRNA synthetase subunit alpha [KO:<a href="/dbget-bin/www_bget?ko:K01889">K01889</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.20">6.1.1.20</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1655">XC_1655</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>pheT; phenylalanyl-tRNA synthetase subunit beta [KO:<a href="/dbget-bin/www_bget?ko:K01890">K01890</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.20">6.1.1.20</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3925">XC_3925</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tyrosyl-tRNA synthetase; K01866 tyrosyl-tRNA synthetase [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.1">6.1.1.1</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01866">K01866</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.1">6.1.1.1</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4011">XC_4011</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>tryptophanyl-tRNA synthetase; K01867 tryptophanyl-tRNA synthetase [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.2">6.1.1.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01867">K01867</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.1.1.2">6.1.1.2</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Compound</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00025">C00025</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Glutamate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00037">C00037</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Glycine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00041">C00041</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Alanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00047">C00047</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Lysine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00049">C00049</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Aspartate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00062">C00062</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Arginine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00064">C00064</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Glutamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00065">C00065</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Serine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00073">C00073</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Methionine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00078">C00078</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Tryptophan</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00079">C00079</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Phenylalanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00082">C00082</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Tyrosine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00097">C00097</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Cysteine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00101">C00101</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Tetrahydrofolate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00123">C00123</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Leucine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00135">C00135</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Histidine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00148">C00148</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Proline</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00152">C00152</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Asparagine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00183">C00183</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Valine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00188">C00188</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Threonine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00234">C00234</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>10-Formyltetrahydrofolate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00407">C00407</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Isoleucine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00886">C00886</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Alanyl-tRNA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01005">C01005</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>O-Phospho-L-serine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01931">C01931</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Lysyl-tRNA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02047">C02047</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Leucyl-tRNA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02163">C02163</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Arginyl-tRNA(Arg)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02282">C02282</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Glutaminyl-tRNA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02412">C02412</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Glycyl-tRNA(Gly)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02430">C02430</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Methionyl-tRNA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02553">C02553</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Seryl-tRNA(Ser)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02554">C02554</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Valyl-tRNA(Val)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02702">C02702</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Prolyl-tRNA(Pro)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02839">C02839</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Tyrosyl-tRNA(Tyr)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02984">C02984</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Aspartyl-tRNA(Asp)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02987">C02987</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Glutamyl-tRNA(Glu)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02988">C02988</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Histidyl-tRNA(His)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02992">C02992</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Threonyl-tRNA(Thr)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03125">C03125</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Cysteinyl-tRNA(Cys)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03127">C03127</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Isoleucyl-tRNA(Ile)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03294">C03294</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Formylmethionyl-tRNA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03402">C03402</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Asparaginyl-tRNA(Asn)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03511">C03511</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Phenylalanyl-tRNA(Phe)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03512">C03512</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Tryptophanyl-tRNA(Trp)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06112">C06112</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Glutamyl-tRNA(Gln)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06113">C06113</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Aspartyl-tRNA(Asn)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06481">C06481</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Seryl-tRNA(Sec)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06482">C06482</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Selenocysteinyl-tRNA(Sec)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C16138">C16138</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Pyrrolysine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C16638">C16638</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>O-Phosphoseryl-tRNA(Sec)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C17022">C17022</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>O-Phosphoseryl-tRNA(Cys)</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C17027">C17027</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Pyrrolysyl-tRNA(Pyl)</div></td></tr></table></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/18252769">18252769</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Sheppard K, Yuan J, Hohn MJ, Jester B, Devine KM, Soll D</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">From one amino acid to another: tRNA-dependent amino acid biosynthesis.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nucleic Acids Res 36:1813-25 (2008)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/15314242">15314242</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Polycarpo C, Ambrogelly A, Berube A, Winbush SM, McCloskey JA, Crain PF, Wood JL, Soll D</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">An aminoacyl-tRNA synthetase that specifically activates pyrrolysine.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Proc Natl Acad Sci U S A 101:12450-4 (2004)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>KO&nbsp;pathway</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?ko00970">ko00970</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>&nbsp;</div></td></tr></table></td></tr>
+
+</table></td></tr></table>
+<br></form></td><td valign="top"><div style="margin-top:46px;margin-left:1em;border:#ddd 1px solid"><div class="th30" style="font-weight:bold;line-height:1.5em">&nbsp;&nbsp;All links&nbsp;&nbsp;</div>
+<pre style="margin-left:1em">
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+2+path:xcb00970">Pathway (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+biosystems+path:xcb00970">BioSystems (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+7+path:xcb00970">Genome (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genome+path:xcb00970">KEGG GENOME (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+8+path:xcb00970">Gene (76)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genes+path:xcb00970">KEGG GENES (76)</a>   
+<a href="/dbget-bin/get_linkdb?-t+alldb+path:xcb00970">All databases (78)</a>   
+<br><a href="/dbget-bin/get_linkdb?-N+path:xcb00970">Download RDF</a>   
+</pre>
+</div>
+</td></tr></table>
+
+
+<a href="/dbget/">DBGET</a> integrated database retrieval system</div>
+
+</body>
+</html>

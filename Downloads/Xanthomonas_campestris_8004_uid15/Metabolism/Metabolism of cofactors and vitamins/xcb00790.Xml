@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00790" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Folate biosynthesis - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Modules>
+    <DictionaryEntry Key="xcb_M00126" Value="Tetrahydrofolate biosynthesis, GTP =&gt; THF [PATH:xcb00790]" />
+  </Modules>
+  <Compound>
+    <DictionaryEntry Key="C00044" Value="GTP" />
+    <DictionaryEntry Key="C00101" Value="Tetrahydrofolate" />
+    <DictionaryEntry Key="C00251" Value="Chorismate" />
+    <DictionaryEntry Key="C00266" Value="Glycolaldehyde" />
+    <DictionaryEntry Key="C00268" Value="Dihydrobiopterin" />
+    <DictionaryEntry Key="C00272" Value="Tetrahydrobiopterin" />
+    <DictionaryEntry Key="C00415" Value="Dihydrofolate" />
+    <DictionaryEntry Key="C00504" Value="Folate" />
+    <DictionaryEntry Key="C00568" Value="4-Aminobenzoate" />
+    <DictionaryEntry Key="C00921" Value="Dihydropteroate" />
+    <DictionaryEntry Key="C01217" Value="5,6,7,8-Tetrahydromethanopterin" />
+    <DictionaryEntry Key="C01300" Value="2-Amino-4-hydroxy-6-hydroxymethyl-7,8-dihydropteridine" />
+    <DictionaryEntry Key="C02587" Value="Pyrimidodiazepine" />
+    <DictionaryEntry Key="C03541" Value="THF-polyglutamate" />
+    <DictionaryEntry Key="C03684" Value="6-Pyruvoyltetrahydropterin" />
+    <DictionaryEntry Key="C04244" Value="6-Lactoyl-5,6,7,8-tetrahydropterin" />
+    <DictionaryEntry Key="C04807" Value="2-Amino-7,8-dihydro-4-hydroxy-6-(diphosphooxymethyl)pteridine" />
+    <DictionaryEntry Key="C04874" Value="2-Amino-4-hydroxy-6-(D-erythro-1,2,3-trihydroxypropyl)-7,8-dihydropteridine" />
+    <DictionaryEntry Key="C04895" Value="7,8-Dihydroneopterin 3'-triphosphate" />
+    <DictionaryEntry Key="C05922" Value="Formamidopyrimidine nucleoside triphosphate" />
+    <DictionaryEntry Key="C05923" Value="2,5-Diaminopyrimidine nucleoside triphosphate" />
+    <DictionaryEntry Key="C05924" Value="Molybdopterin" />
+    <DictionaryEntry Key="C05925" Value="Dihydroneopterin phosphate" />
+    <DictionaryEntry Key="C05926" Value="Neopterin" />
+    <DictionaryEntry Key="C05927" Value="7,8-Dihydromethanopterin" />
+    <DictionaryEntry Key="C06148" Value="2,5-Diamino-6-(5'-triphosphoryl-3',4'-trihydroxy-2'-oxopentyl)-amino-4-oxopyrimidine" />
+    <DictionaryEntry Key="C06149" Value="6-(3'-Triphosphoryl-1'-methylglyceryl)-7-methyl-7,8-dihydrobiopterin" />
+    <DictionaryEntry Key="C09332" Value="THF-L-glutamate" />
+    <DictionaryEntry Key="C11355" Value="4-Amino-4-deoxychorismate" />
+    <DictionaryEntry Key="C15996" Value="7-Cyano-7-carbaguanine" />
+    <DictionaryEntry Key="C16675" Value="7-Aminomethyl-7-carbaguanine" />
+    <DictionaryEntry Key="C18239" Value="Precursor Z" />
+    <DictionaryEntry Key="C18802" Value="Tetrahydrosarcinapterin" />
+    <DictionaryEntry Key="C20239" Value="6-Carboxy-5,6,7,8-tetrahydropterin" />
+    <DictionaryEntry Key="C20248" Value="7-Carboxy-7-carbaguanine" />
+  </Compound>
+  <PathwayMap Key="xcb00790" Value="Folate biosynthesis&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_4253" Value="folE; GTP cyclohydrolase I [KO:K01495] [EC:3.5.4.16]" />
+    <DictionaryEntry Key="XC_2471" Value="GTP cyclohydrolase; K09007 GTP cyclohydrolase I [EC:3.5.4.16] [KO:K09007] [EC:3.5.4.16]" />
+    <DictionaryEntry Key="XC_1519" Value="alkaline phosphatase; K01077 alkaline phosphatase [EC:3.1.3.1] [KO:K01077] [EC:3.1.3.1]" />
+    <DictionaryEntry Key="XC_4131" Value="hypothetical protein; K01113 alkaline phosphatase D [EC:3.1.3.1] [KO:K01113] [EC:3.1.3.1]" />
+    <DictionaryEntry Key="XC_3887" Value="dihydroneopterin aldolase; K01633 dihydroneopterin aldolase / 7,8-dihydroneopterin epimerase [EC:4.1.2.25 5.1.99.8] [KO:K01633] [EC:5.1.99.8 4.1.2.25]" />
+    <DictionaryEntry Key="XC_2469" Value="2-amino-4-hydroxy-6-hydroxymethyldihydropteridine pyrophosphokinase; K00950 2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase [EC:2.7.6.3] [KO:K00950] [EC:2.7.6.3]" />
+    <DictionaryEntry Key="XC_0731" Value="2-amino-4-hydroxy-6-hydroxymethyldihydropteridine pyrophosphokinase; K00950 2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase [EC:2.7.6.3] [KO:K00950] [EC:2.7.6.3]" />
+    <DictionaryEntry Key="XC_2517" Value="dihydropteroate synthase; K00796 dihydropteroate synthase [EC:2.5.1.15] [KO:K00796] [EC:2.5.1.15]" />
+    <DictionaryEntry Key="XC_3443" Value="dihydrofolate reductase type III; K00287 dihydrofolate reductase [EC:1.5.1.3] [KO:K00287] [EC:1.5.1.3]" />
+    <DictionaryEntry Key="XC_3285" Value="bifunctional folylpolyglutamate synthase/dihydrofolate synthase; K11754 dihydrofolate synthase / folylpolyglutamate synthase [EC:6.3.2.12 6.3.2.17] [KO:K11754] [EC:6.3.2.17 6.3.2.12]" />
+    <DictionaryEntry Key="XC_3644" Value="6-pyruvoyl tetrahydrobiopterin synthase; K01737 6-pyruvoyltetrahydropterin/6-carboxytetrahydropterin synthase [EC:4.2.3.12 4.1.2.50] [KO:K01737] [EC:4.1.2.50 4.2.3.12]" />
+    <DictionaryEntry Key="XC_1144" Value="radical activating enzyme; K10026 7-carboxy-7-deazaguanine synthase [EC:4.3.99.3] [KO:K10026] [EC:4.3.99.3]" />
+    <DictionaryEntry Key="XC_1145" Value="transcriptional regulator; K06920 7-cyano-7-deazaguanine synthase [EC:6.3.4.20] [KO:K06920] [EC:6.3.4.20]" />
+    <DictionaryEntry Key="XC_3857" Value="queF; 7-cyano-7-deazaguanine reductase [KO:K06879] [EC:1.7.1.13]" />
+    <DictionaryEntry Key="XC_3249" Value="moaA; molybdenum cofactor biosynthesis protein A [KO:K03639] [EC:4.1.99.18]" />
+    <DictionaryEntry Key="XC_3247" Value="moaC; molybdenum cofactor biosynthesis protein MoaC [KO:K03637] [EC:4.1.99.18]" />
+    <DictionaryEntry Key="XC_3245" Value="molybdopterin-converting factor chain 2; K03635 molybdopterin synthase catalytic subunit [EC:2.8.1.12] [KO:K03635] [EC:2.8.1.12]" />
+    <DictionaryEntry Key="XC_3246" Value="molybdopterin-converting factor chain 1; K03636 molybdopterin synthase sulfur carrier subunit [KO:K03636]" />
+  </Genes>
+</KEGG.PathwayBrief>

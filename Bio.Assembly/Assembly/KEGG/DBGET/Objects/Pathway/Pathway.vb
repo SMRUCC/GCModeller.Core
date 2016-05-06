@@ -211,7 +211,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             Pathway.Description = KEGG.WebServices.InternalWebFormParsers.WebForm.RemoveHrefLink(WebForm.GetValue("Description").FirstOrDefault)
             Pathway.Modules = __parseHTML_ModuleList(WebForm.GetValue("Module").FirstOrDefault, LIST_TYPES.Module)
             Pathway.Genes = KEGG.WebServices.InternalWebFormParsers.WebForm.parseList(WebForm.GetValue("Gene").FirstOrDefault, String.Format(GENE_SPLIT, SpeciesCode))
-            Pathway.Compound = KEGG.WebServices.InternalWebFormParsers.WebForm.parseList(WebForm.GetValue("Compound").FirstOrDefault, COMPOUND_SPLIT)
+            Pathway.Compound = WebForm.parseList(WebForm.GetValue("Compound").FirstOrDefault, COMPOUND_SPLIT)
 
             Return Pathway
         End Function
@@ -234,12 +234,12 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                                 Select met.Key
             Next
 
-            Return (From sId As String
-                    In CompoundList
-                    Where Not String.IsNullOrEmpty(sId)
-                    Select sId
-                    Distinct
-                    Order By sId Ascending).ToArray
+            Return LinqAPI.Exec(Of String) <= From sId As String
+                                              In CompoundList
+                                              Where Not String.IsNullOrEmpty(sId)
+                                              Select sId
+                                              Distinct
+                                              Order By sId Ascending
         End Function
 
         ''' <summary>
@@ -276,8 +276,8 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                     SplitRegex = PATHWAY_SPLIT
             End Select
 
-            Dim Chunkbuffer As String() = (From m As Match In Regex.Matches(s_Value, SplitRegex) Select m.Value).ToArray
-            Dim ModuleList As List(Of ComponentModel.KeyValuePair) = New List(Of ComponentModel.KeyValuePair)
+            Dim sbuf As String() = (From m As Match In Regex.Matches(s_Value, SplitRegex) Select m.Value).ToArray
+            Dim ModuleList As New List(Of ComponentModel.KeyValuePair)
 
             Select Case type
                 Case LIST_TYPES.Disease
@@ -288,9 +288,9 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                     SplitRegex = "<a href=""/kegg-bin/show_pathway.+?"">.+?</a>"
             End Select
 
-            For i As Integer = 0 To Chunkbuffer.Count - 2
-                Dim p1 As Integer = InStr(s_Value, Chunkbuffer(i))
-                Dim p2 As Integer = InStr(s_Value, Chunkbuffer(i + 1))
+            For i As Integer = 0 To sbuf.Count - 2
+                Dim p1 As Integer = InStr(s_Value, sbuf(i))
+                Dim p2 As Integer = InStr(s_Value, sbuf(i + 1))
                 Dim len As Integer = p2 - p1
                 Dim strTemp As String = Mid(s_Value, p1, len)
 
@@ -300,10 +300,13 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 ModuleEntry = ModuleEntry.GetValue
                 ModuleFunction = WebForm.RemoveHrefLink(ModuleFunction)
 
-                Call ModuleList.Add(New ComponentModel.KeyValuePair With {.Key = ModuleEntry, .Value = ModuleFunction})
+                ModuleList += New ComponentModel.KeyValuePair With {
+                    .Key = ModuleEntry,
+                    .Value = ModuleFunction
+                }
             Next
 
-            Dim p As Integer = InStr(s_Value, Chunkbuffer.Last)
+            Dim p As Integer = InStr(s_Value, sbuf.Last)
             s_Value = Mid(s_Value, p)
             Dim LastEntry As ComponentModel.KeyValuePair = New ComponentModel.KeyValuePair
             LastEntry.Key = Regex.Match(s_Value, SplitRegex).Value
@@ -354,19 +357,20 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         End Function
 
         Public Shared Function TryParseWebPage(url As String) As PathwayEntry()
-            Dim PageContent As String = url.GET
-            Dim ChunkBuffer As String() = (From m As Match In Regex.Matches(PageContent, ENTRY_ITEM, RegexOptions.Singleline) Select m.Value).ToArray
-            Dim LQuery = (From strLine As String In ChunkBuffer Select GenerateObject(strLine)).ToArray
+            Dim html As String = url.GET
+            Dim sbuf As String() = Regex.Matches(html, ENTRY_ITEM, RegexOptions.Singleline).ToArray
+            Dim result As PathwayEntry() = sbuf.ToArray(AddressOf __parserEntry)
 
-            Return LQuery
+            Return result
         End Function
 
-        Private Shared Function GenerateObject(s As String) As PathwayEntry
-            Dim EntryItem As PathwayEntry = New PathwayEntry
+        Private Shared Function __parserEntry(s As String) As PathwayEntry
+            Dim EntryItem As New PathwayEntry
             Dim sbuf As String() = Strings.Split(s, vbLf)
             EntryItem.Entry = sbuf.First.GetValue
             EntryItem.Url = sbuf.First.Get_href
             sbuf = sbuf.Skip(3).ToArray
+
             Dim p As New Pointer(0)
             EntryItem.Name = sbuf(++p).GetValue
             EntryItem.Description = sbuf(++p).GetValue

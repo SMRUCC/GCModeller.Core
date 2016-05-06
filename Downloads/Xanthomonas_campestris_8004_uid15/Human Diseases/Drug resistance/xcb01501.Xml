@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb01501" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description>The beta-lactam antibiotics are the most widely used group of antibiotics, which exert their effect by interfering with the structural crosslinking of peptidoglycans in bacterial cell walls. Over the past decades, a rapid increase in the number of beta-lactam-resistant clinical isolates is observed. Bacterial resistance to beta-lactam antibiotics can be achieved by any of the following strategies: producing inactivating enzymes called beta-lactamases, altering the beta-lactam targets of penicillin-binding proteins (PBPs), reducing transport of beta-lactams into the periplasmic space via changes in porins, and using the mechanisms for exclusion of beta-lactams by way of efflux pumps. Resistance may result from intrinsic properties of organisms, through gene mutations, and through plasmid- and transposon-specified genes.&lt;br&gt;</Description>
+  <Name>beta-Lactam resistance - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Modules>
+    <DictionaryEntry Key="xcb_M00628" Value="beta-Lactam resistance, AmpC system [PATH:xcb01501]" />
+  </Modules>
+  <Compound />
+  <PathwayMap Key="xcb01501" Value="beta-Lactam resistance&lt;center&gt;" />
+  <Genes />
+</KEGG.PathwayBrief>

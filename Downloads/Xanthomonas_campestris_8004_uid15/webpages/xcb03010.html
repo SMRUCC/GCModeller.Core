@@ -1,0 +1,316 @@
+<!doctype html>
+<html><head>
+<title>KEGG PATHWAY: xcb03010</title>
+<link type="text/css" rel="stylesheet" href="/css/gn2.css">
+<link rel="stylesheet" href="/css/bget.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/bgetm.css" media="only screen and (max-width: 768px)">
+<style>.kcfd{display:none;}</style>
+<script>
+<!--
+var getElementsByClassName = document.getElementsByClassName ?
+  function (cl){
+    return document.getElementsByClassName(cl);
+  } :
+  function (cl){
+    var elms = [];
+    var objs = document.getElementsByTagName('*');
+    for(var i=0;i<objs.length;i++){
+      var obj = objs[i];
+      if(obj.className == cl){
+        elms.push(obj);
+      }
+    }
+    return elms;
+  };
+function toggleField(clk,cl,show,hide){
+  var objs = getElementsByClassName(cl);
+  for(var i=0;i<objs.length;i++){
+    var obj = objs[i];
+    if(!obj.style.display||obj.style.display == 'none'){
+      obj.style.display = 'block';
+      clk.innerHTML = '&nbsp;&laquo; '+hide;
+    }
+    else{
+      obj.style.display = 'none';
+      clk.innerHTML = '&nbsp;&raquo; '+show;
+    }
+  }
+}
+function toggleData(bobj,e){
+  var id = bobj.id.replace(/[^0-9]/g,'');
+  var dt = document.getElementById('kcfd'+id);
+  if(!dt.style.display||dt.style.display == 'none'){
+    bobj.name = 'hide_kcf';
+    bobj.alt = 'Hide';
+    bobj.src = '/Fig/bget/button_Hib.gif';
+    dt.style.display = 'block';
+  }
+  else{
+    bobj.name = 'show_kcf';
+    bobj.alt = 'Show';
+    bobj.src = '/Fig/bget/button_Sb.gif';
+    dt.style.display = 'none';
+  }
+}
+function btn(bobj,img) {
+  bobj.src = "/Fig/bget/button_" + img + ".gif";
+}
+function btn_e(e) {
+  e = e || event;
+  var obj = e.target;
+  var img = e.target.src;
+  var img_base = img.replace(/\\/g,'/').replace(/(b|bd|bh)\.gif$/,'');
+  if(e.type == 'mousedown'||e.type == 'touchstart'){
+    obj.src = img_base +'bd.gif';
+  }
+  else if(e.type == 'mouseover'){
+    obj.src = img_base +'bh.gif';
+  }
+  else if(e.type == 'mouseup'||e.type == 'touchend'){
+    obj.src = img_base +'b.gif';
+  }
+  else if(e.type == 'mouseout'){
+    obj.src = img_base +'b.gif';
+  }
+}
+function init(){
+  for(var i=1;i<=1;i++){
+    if(document.getElementById('kcfb'+i)){
+      document.getElementById('kcfb'+i).onclick = function(e){toggleData(this,e);};
+      document.getElementById('kcfb'+i).onmousedown = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseover = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseout = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseup = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchstart = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchend = function(e){btn_e(e);};
+    }
+  }
+}
+function Link_XtrctSeq2(form) {
+    var dna_from;
+    var dna_to;
+    var dna_len;
+    var plus_up   = Number(form.XtrctSeq_UP.value) ;
+    var plus_down = Number(form.XtrctSeq_DOWN.value);
+    var vector    = Number(form.VECTOR.value);
+    var org       = form.ORG.value;
+    var chr       = form.CHR.value;
+    var kid       = form.KEGGID.value;
+    var url;
+
+    if (plus_up == 0 && plus_down == 0) {
+	url = "/dbget-bin/www_bget?-f+-n+n+" + kid;
+    }
+    else {
+	if (vector == 1) {
+	    dna_from  = Number(form.FROM.value)  - plus_up;
+	    dna_to    = Number(form.TO.value) + plus_down;
+	} else {
+	    dna_from  = Number(form.FROM.value)  - plus_down;
+	    dna_to    = Number(form.TO.value) + plus_up;
+	}
+
+	url = "/dbget-bin/cut_sequence_genes.pl?FROM=" + dna_from + "&TO=" + dna_to +"&VECTOR=" + vector + "&ORG=" + org;
+	if (chr) url += "&CHR=" + chr;
+    }
+    //window.open( url, "_self" );
+    location.href = url;
+}
+function go_taxonomy(form,params){
+  for(var key in params){
+    if(form[key]){
+      form.setAttribute(key,params[key]);
+    }
+    else{
+      var obj = document.createElement('input');
+      obj.setAttribute('type','hidden');
+      obj.setAttribute('name',key);
+      obj.setAttribute('value',params[key]);
+      form.appendChild(obj);
+    }
+  }
+  form.submit();
+}
+window.onload=function(){window.focus();init();};
+//--->
+</script>
+
+</head>
+<body>
+<div>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="70"><a href="/kegg/kegg2.html"><img align="middle" alt="KEGG" border="0" src="/Fig/bget/kegg3.gif"></a></td><td>&nbsp;&nbsp;&nbsp;</td><td><a name="pathway:xcb03010"></a><font class="title3">PATHWAY: xcb03010</font></td><td align="right" valign="bottom"><a href="javascript:void(window.open('/kegg/document/help_bget_pathway.html','KEGG_Help','toolbar=no,location=no,directories=no,width=720,height=640,resizable=yes,scrollbars=yes'))"><img align="middle" alt="Help" border="0" name="help" onmousedown="btn(this,'Hbd')" onmouseout="btn(this,'Hb')" onmouseover="btn(this,'Hbh')" onmouseup="btn(this,'Hb')" ontouchend="btn(this,'Hb')" ontouchstart="btn(this,'Hbd')" src="/Fig/bget/button_Hb.gif"></a></td></tr></table>
+<form method="post" action="/dbget-bin/www_bget" enctype="application/x-www-form-urlencoded" name="form1"><table border=0 cellpadding=1 cellspacing=0>
+<tr>
+<td class="fr3">
+<table border=0 cellpadding=2 cellspacing=0 style="border-bottom:#000 1px solid">
+
+<tr><th class="th30" align="left" valign="middle" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Entry</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="left"><code><nobr>xcb03010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pathway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</nobr></code></td> <td align="right"><br></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Name</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Ribosome - Xanthomonas campestris pv. campestris 8004<br>
+</div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Class</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Genetic Information Processing; Translation<br>
+<a href="/kegg-bin/get_htext?query=xcb03010&amp;htext=xcb00001.keg"><img align="middle" alt="BRITE hierarchy" border="0" name="BRH" onmousedown="btn(this,'BHbd')" onmouseout="btn(this,'BHb')" onmouseover="btn(this,'BHbh')" onmouseup="btn(this,'BHb')" ontouchend="btn(this,'BHb')" ontouchstart="btn(this,'BHbd')" src="/Fig/bget/button_BHb.gif"></a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Pathway&nbsp;map</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5.5em"><div><nobr><a href="/kegg-bin/show_pathway?xcb03010">xcb03010</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Ribosome</div></td></tr></table><center><a href="/kegg-bin/show_pathway?xcb03010"><img src="/kegg/misc/thumbnail/map03010.gif" alt="xcb03010" style="border-style:none;"></a></center><br><a href="http://www.kegg.jp/kegg-bin/show_ot_map?map=03010"><img align="middle" alt="All organisms" border="0" name="AO" onmousedown="btn(this,'AObd')" onmouseout="btn(this,'AOb')" onmouseover="btn(this,'AObh')" onmouseup="btn(this,'AOb')" ontouchend="btn(this,'AOb')" ontouchstart="btn(this,'AObd')" src="/Fig/bget/button_AOb.gif"></a><a href="http://www.kegg.jp/kegg-bin/view_ortholog_table?map=03010"><img align="middle" alt="Ortholog table" border="0" name="OT" onmousedown="btn(this,'OTbd')" onmouseout="btn(this,'OTb')" onmouseover="btn(this,'OTbh')" onmouseup="btn(this,'OTb')" ontouchend="btn(this,'OTb')" ontouchstart="btn(this,'OTbd')" src="/Fig/bget/button_OTb.gif"></a></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Module</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:6.5em"><div><nobr><a href="/kegg-bin/show_module?xcb_M00178">xcb_M00178</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Ribosome, bacteria [PATH:<a href="/kegg-bin/show_pathway?xcb03010+M00178">xcb03010</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Organism</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Xanthomonas campestris pv. campestris 8004 [GN:<a href="/dbget-bin/www_bget?gn:xcb">xcb</a>]<br>
+</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Gene</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1924">XC_1924</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsA; 30S ribosomal protein S1 [KO:<a href="/dbget-bin/www_bget?ko:K02945">K02945</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2863">XC_2863</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsB; 30S ribosomal protein S2 [KO:<a href="/dbget-bin/www_bget?ko:K02967">K02967</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3334">XC_3334</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsC; 30S ribosomal protein S3 [KO:<a href="/dbget-bin/www_bget?ko:K02982">K02982</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3317">XC_3317</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsD; 30S ribosomal protein S4 [KO:<a href="/dbget-bin/www_bget?ko:K02986">K02986</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3323">XC_3323</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsE; 30S ribosomal protein S5 [KO:<a href="/dbget-bin/www_bget?ko:K02988">K02988</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2671">XC_2671</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsF; 30S ribosomal protein S6 [KO:<a href="/dbget-bin/www_bget?ko:K02990">K02990</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3344">XC_3344</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>30S ribosomal protein S7; K02992 small subunit ribosomal protein S7 [KO:<a href="/dbget-bin/www_bget?ko:K02992">K02992</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3326">XC_3326</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsH; 30S ribosomal protein S8 [KO:<a href="/dbget-bin/www_bget?ko:K02994">K02994</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0491">XC_0491</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsI; 30S ribosomal protein S9 [KO:<a href="/dbget-bin/www_bget?ko:K02996">K02996</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3341">XC_3341</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsJ; 30S ribosomal protein S10 [KO:<a href="/dbget-bin/www_bget?ko:K02946">K02946</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3318">XC_3318</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>30S ribosomal protein S11; K02948 small subunit ribosomal protein S11 [KO:<a href="/dbget-bin/www_bget?ko:K02948">K02948</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3345">XC_3345</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsL; 30S ribosomal protein S12 [KO:<a href="/dbget-bin/www_bget?ko:K02950">K02950</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3319">XC_3319</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsM; 30S ribosomal protein S13 [KO:<a href="/dbget-bin/www_bget?ko:K02952">K02952</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3327">XC_3327</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsN; 30S ribosomal protein S14 [KO:<a href="/dbget-bin/www_bget?ko:K02954">K02954</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1608">XC_1608</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsO; 30S ribosomal protein S15 [KO:<a href="/dbget-bin/www_bget?ko:K02956">K02956</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3043">XC_3043</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsP; 30S ribosomal protein S16 [KO:<a href="/dbget-bin/www_bget?ko:K02959">K02959</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3331">XC_3331</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsQ; 30S ribosomal protein S17 [KO:<a href="/dbget-bin/www_bget?ko:K02961">K02961</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2670">XC_2670</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsR; 30S ribosomal protein S18 [KO:<a href="/dbget-bin/www_bget?ko:K02963">K02963</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3336">XC_3336</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsS; 30S ribosomal protein S19 [KO:<a href="/dbget-bin/www_bget?ko:K02965">K02965</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3090">XC_3090</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsT; 30S ribosomal protein S20 [KO:<a href="/dbget-bin/www_bget?ko:K02968">K02968</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3889">XC_3889</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpsU; 30S ribosomal protein S21 [KO:<a href="/dbget-bin/www_bget?ko:K02970">K02970</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3350">XC_3350</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplA; 50S ribosomal protein L1 [KO:<a href="/dbget-bin/www_bget?ko:K02863">K02863</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3337">XC_3337</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplB; 50S ribosomal protein L2 [KO:<a href="/dbget-bin/www_bget?ko:K02886">K02886</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3340">XC_3340</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplC; 50S ribosomal protein L3 [KO:<a href="/dbget-bin/www_bget?ko:K02906">K02906</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3339">XC_3339</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplD; 50S ribosomal protein L4 [KO:<a href="/dbget-bin/www_bget?ko:K02926">K02926</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3328">XC_3328</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplE; 50S ribosomal protein L5 [KO:<a href="/dbget-bin/www_bget?ko:K02931">K02931</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3325">XC_3325</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplF; 50S ribosomal protein L6 [KO:<a href="/dbget-bin/www_bget?ko:K02933">K02933</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3348">XC_3348</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplL; 50S ribosomal protein L7/L12 [KO:<a href="/dbget-bin/www_bget?ko:K02935">K02935</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2669">XC_2669</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplI; 50S ribosomal protein L9 [KO:<a href="/dbget-bin/www_bget?ko:K02939">K02939</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3349">XC_3349</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplJ; 50S ribosomal protein L10 [KO:<a href="/dbget-bin/www_bget?ko:K02864">K02864</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3351">XC_3351</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplK; 50S ribosomal protein L11 [KO:<a href="/dbget-bin/www_bget?ko:K02867">K02867</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0490">XC_0490</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplM; 50S ribosomal protein L13 [KO:<a href="/dbget-bin/www_bget?ko:K02871">K02871</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3330">XC_3330</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplN; 50S ribosomal protein L14 [KO:<a href="/dbget-bin/www_bget?ko:K02874">K02874</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3321">XC_3321</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplO; 50S ribosomal protein L15 [KO:<a href="/dbget-bin/www_bget?ko:K02876">K02876</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3333">XC_3333</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplP; 50S ribosomal protein L16 [KO:<a href="/dbget-bin/www_bget?ko:K02878">K02878</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3315">XC_3315</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplQ; 50S ribosomal protein L17 [KO:<a href="/dbget-bin/www_bget?ko:K02879">K02879</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3324">XC_3324</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplR; 50S ribosomal protein L18 [KO:<a href="/dbget-bin/www_bget?ko:K02881">K02881</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3040">XC_3040</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplS; 50S ribosomal protein L19 [KO:<a href="/dbget-bin/www_bget?ko:K02884">K02884</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1653">XC_1653</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplT; 50S ribosomal protein L20 [KO:<a href="/dbget-bin/www_bget?ko:K02887">K02887</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3093">XC_3093</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplU; 50S ribosomal protein L21 [KO:<a href="/dbget-bin/www_bget?ko:K02888">K02888</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3335">XC_3335</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplV; 50S ribosomal protein L22 [KO:<a href="/dbget-bin/www_bget?ko:K02890">K02890</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3338">XC_3338</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplW; 50S ribosomal protein L23 [KO:<a href="/dbget-bin/www_bget?ko:K02892">K02892</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3329">XC_3329</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rplX; 50S ribosomal protein L24 [KO:<a href="/dbget-bin/www_bget?ko:K02895">K02895</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3357">XC_3357</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>50S ribosomal protein L25; K02897 large subunit ribosomal protein L25 [KO:<a href="/dbget-bin/www_bget?ko:K02897">K02897</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3092">XC_3092</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpmA; 50S ribosomal protein L27 [KO:<a href="/dbget-bin/www_bget?ko:K02899">K02899</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4123">XC_4123</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpmB; 50S ribosomal protein L28 [KO:<a href="/dbget-bin/www_bget?ko:K02902">K02902</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3332">XC_3332</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpmC; 50S ribosomal protein L29 [KO:<a href="/dbget-bin/www_bget?ko:K02904">K02904</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3322">XC_3322</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpmD; 50S ribosomal protein L30 [KO:<a href="/dbget-bin/www_bget?ko:K02907">K02907</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0945">XC_0945</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpmE2; 50S ribosomal protein L31 [KO:<a href="/dbget-bin/www_bget?ko:K02909">K02909</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3230">XC_3230</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpmF; 50S ribosomal protein L32 [KO:<a href="/dbget-bin/www_bget?ko:K02911">K02911</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4122">XC_4122</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpmG; 50S ribosomal protein L33 [KO:<a href="/dbget-bin/www_bget?ko:K02913">K02913</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4332">XC_4332</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpmH; 50S ribosomal protein L34 [KO:<a href="/dbget-bin/www_bget?ko:K02914">K02914</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1652">XC_1652</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpmI; 50S ribosomal protein L35 [KO:<a href="/dbget-bin/www_bget?ko:K02916">K02916</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1922">XC_1922</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>rpmJ; 50S ribosomal protein L36 [KO:<a href="/dbget-bin/www_bget?ko:K02919">K02919</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4386">XC_4386</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>16S ribosomal RNA; K01977 16S ribosomal RNA [KO:<a href="/dbget-bin/www_bget?ko:K01977">K01977</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4393">XC_4393</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>16S ribosomal RNA; K01977 16S ribosomal RNA [KO:<a href="/dbget-bin/www_bget?ko:K01977">K01977</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4383">XC_4383</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>23S ribosomal RNA; K01980 23S ribosomal RNA [KO:<a href="/dbget-bin/www_bget?ko:K01980">K01980</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4390">XC_4390</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>23S ribosomal RNA; K01980 23S ribosomal RNA [KO:<a href="/dbget-bin/www_bget?ko:K01980">K01980</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4382">XC_4382</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5S ribosomal RNA; K01985 5S ribosomal RNA [KO:<a href="/dbget-bin/www_bget?ko:K01985">K01985</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4389">XC_4389</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5S ribosomal RNA; K01985 5S ribosomal RNA [KO:<a href="/dbget-bin/www_bget?ko:K01985">K01985</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10476961">10476961</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Ban N, Nissen P, Hansen J, Capel M, Moore PB, Steitz TA.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Placement of protein and RNA structures into a 5 A-resolution map of the 50S ribosomal subunit.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nature 400:841-847 (1999)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10476960">10476960</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Clemons WM Jr, May JL, Wimberly BT, McCutcheon JP, Capel MS, Ramakrishnan V.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Structure of a bacterial 30S ribosomal subunit at 5.5 A resolution.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nature 400:833-840 (1999)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10497122">10497122</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Cate JH, Yusupov MM, Yusupova GZ, Earnest TN, Noller HF.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">X-ray crystal structures of 70S ribosome functional complexes.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Science 285:2095-2104 (1999)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10937989">10937989</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Ban N, Nissen P, Hansen J, Moore PB, Steitz TA.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">The complete atomic structure of the large ribosomal subunit at 2.4 A resolution.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Science 289:905-920 (2000)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10937990">10937990</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nissen P, Hansen J, Ban N, Moore PB, Steitz TA.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">The structural basis of ribosome activity in peptide bond synthesis.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Science 289:920-930 (2000)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11014182">11014182</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Wimberly BT, Brodersen DE, Clemons WM Jr, Morgan-Warren RJ, Carter AP, Vonrhein C, Hartsch T, Ramakrishnan V.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Structure of the 30S ribosomal subunit.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nature 407:327-339 (2000)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11014183">11014183</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Carter AP, Clemons WM, Brodersen DE, Morgan-Warren RJ, Wimberly BT, Ramakrishnan V.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Functional insights from the structure of the 30S ribosomal subunit and its interactions with antibiotics.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nature 407:340-348 (2000)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>KO&nbsp;pathway</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?ko03010">ko03010</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>&nbsp;</div></td></tr></table></td></tr>
+
+</table></td></tr></table>
+<br></form></td><td valign="top"><div style="margin-top:46px;margin-left:1em;border:#ddd 1px solid"><div class="th30" style="font-weight:bold;line-height:1.5em">&nbsp;&nbsp;All links&nbsp;&nbsp;</div>
+<pre style="margin-left:1em">
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+2+path:xcb03010">Pathway (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+biosystems+path:xcb03010">BioSystems (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+7+path:xcb03010">Genome (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genome+path:xcb03010">KEGG GENOME (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+8+path:xcb03010">Gene (60)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genes+path:xcb03010">KEGG GENES (60)</a>   
+<a href="/dbget-bin/get_linkdb?-t+alldb+path:xcb03010">All databases (62)</a>   
+<br><a href="/dbget-bin/get_linkdb?-N+path:xcb03010">Download RDF</a>   
+</pre>
+</div>
+</td></tr></table>
+
+
+<a href="/dbget/">DBGET</a> integrated database retrieval system</div>
+
+</body>
+</html>

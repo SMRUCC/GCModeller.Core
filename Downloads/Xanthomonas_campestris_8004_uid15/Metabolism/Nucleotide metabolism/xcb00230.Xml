@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00230" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Purine metabolism - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Modules>
+    <DictionaryEntry Key="xcb_M00005" Value="PRPP biosynthesis, ribose 5P =&gt; PRPP [PATH:xcb00230]" />
+    <DictionaryEntry Key="xcb_M00048" Value="Inosine monophosphate biosynthesis, PRPP + glutamine =&gt; IMP [PATH:xcb00230]" />
+    <DictionaryEntry Key="xcb_M00049" Value="Adenine ribonucleotide biosynthesis, IMP =&gt; ADP,ATP [PATH:xcb00230]" />
+    <DictionaryEntry Key="xcb_M00050" Value="Guanine ribonucleotide biosynthesis IMP =&gt; GDP,GTP [PATH:xcb00230]" />
+  </Modules>
+  <Compound>
+    <DictionaryEntry Key="C00002" Value="ATP" />
+    <DictionaryEntry Key="C00008" Value="ADP" />
+    <DictionaryEntry Key="C00011" Value="CO2" />
+    <DictionaryEntry Key="C00014" Value="Ammonia" />
+    <DictionaryEntry Key="C00020" Value="AMP" />
+    <DictionaryEntry Key="C00035" Value="GDP" />
+    <DictionaryEntry Key="C00037" Value="Glycine" />
+    <DictionaryEntry Key="C00039" Value="DNA" />
+    <DictionaryEntry Key="C00044" Value="GTP" />
+    <DictionaryEntry Key="C00046" Value="RNA" />
+    <DictionaryEntry Key="C00048" Value="Glyoxylate" />
+    <DictionaryEntry Key="C00053" Value="3'-Phosphoadenylyl sulfate" />
+    <DictionaryEntry Key="C00054" Value="Adenosine 3',5'-bisphosphate" />
+    <DictionaryEntry Key="C00059" Value="Sulfate" />
+    <DictionaryEntry Key="C00064" Value="L-Glutamine" />
+    <DictionaryEntry Key="C00081" Value="ITP" />
+    <DictionaryEntry Key="C00086" Value="Urea" />
+    <DictionaryEntry Key="C00104" Value="IDP" />
+    <DictionaryEntry Key="C00117" Value="D-Ribose 5-phosphate" />
+    <DictionaryEntry Key="C00119" Value="5-Phospho-alpha-D-ribose 1-diphosphate" />
+    <DictionaryEntry Key="C00130" Value="IMP" />
+    <DictionaryEntry Key="C00131" Value="dATP" />
+    <DictionaryEntry Key="C00144" Value="GMP" />
+    <DictionaryEntry Key="C00147" Value="Adenine" />
+    <DictionaryEntry Key="C00169" Value="Carbamoyl phosphate" />
+    <DictionaryEntry Key="C00206" Value="dADP" />
+    <DictionaryEntry Key="C00212" Value="Adenosine" />
+    <DictionaryEntry Key="C00224" Value="Adenylyl sulfate" />
+    <DictionaryEntry Key="C00242" Value="Guanine" />
+    <DictionaryEntry Key="C00262" Value="Hypoxanthine" />
+    <DictionaryEntry Key="C00286" Value="dGTP" />
+    <DictionaryEntry Key="C00294" Value="Inosine" />
+    <DictionaryEntry Key="C00301" Value="ADP-ribose" />
+    <DictionaryEntry Key="C00330" Value="Deoxyguanosine" />
+    <DictionaryEntry Key="C00360" Value="dAMP" />
+    <DictionaryEntry Key="C00361" Value="dGDP" />
+    <DictionaryEntry Key="C00362" Value="dGMP" />
+    <DictionaryEntry Key="C00366" Value="Urate" />
+    <DictionaryEntry Key="C00385" Value="Xanthine" />
+    <DictionaryEntry Key="C00387" Value="Guanosine" />
+    <DictionaryEntry Key="C00499" Value="Allantoate" />
+    <DictionaryEntry Key="C00559" Value="Deoxyadenosine" />
+    <DictionaryEntry Key="C00575" Value="3',5'-Cyclic AMP" />
+    <DictionaryEntry Key="C00603" Value="(-)-Ureidoglycolate" />
+    <DictionaryEntry Key="C00620" Value="alpha-D-Ribose 1-phosphate" />
+    <DictionaryEntry Key="C00655" Value="Xanthosine 5'-phosphate" />
+    <DictionaryEntry Key="C00700" Value="XTP" />
+    <DictionaryEntry Key="C00802" Value="Oxalureate" />
+    <DictionaryEntry Key="C00942" Value="3',5'-Cyclic GMP" />
+    <DictionaryEntry Key="C01228" Value="Guanosine 3',5'-bis(diphosphate)" />
+    <DictionaryEntry Key="C01260" Value="P1,P4-Bis(5'-adenosyl)tetraphosphate" />
+    <DictionaryEntry Key="C01261" Value="P1,P4-Bis(5'-guanosyl) tetraphosphate" />
+    <DictionaryEntry Key="C01344" Value="dIDP" />
+    <DictionaryEntry Key="C01345" Value="dITP" />
+    <DictionaryEntry Key="C01367" Value="3'-AMP" />
+    <DictionaryEntry Key="C01762" Value="Xanthosine" />
+    <DictionaryEntry Key="C02091" Value="(S)-Ureidoglycine" />
+    <DictionaryEntry Key="C02348" Value="(R)(-)-Allantoin" />
+    <DictionaryEntry Key="C02350" Value="(S)-Allantoin" />
+    <DictionaryEntry Key="C02353" Value="2',3'-Cyclic AMP" />
+    <DictionaryEntry Key="C02718" Value="N-Formiminoglycine" />
+    <DictionaryEntry Key="C03090" Value="5-Phosphoribosylamine" />
+    <DictionaryEntry Key="C03373" Value="Aminoimidazole ribotide" />
+    <DictionaryEntry Key="C03483" Value="Adenosine tetraphosphate" />
+    <DictionaryEntry Key="C03614" Value="Inosine 5'-tetraphosphate" />
+    <DictionaryEntry Key="C03794" Value="N6-(1,2-Dicarboxyethyl)-AMP" />
+    <DictionaryEntry Key="C03838" Value="5'-Phosphoribosylglycinamide" />
+    <DictionaryEntry Key="C04051" Value="5-Amino-4-imidazolecarboxyamide" />
+    <DictionaryEntry Key="C04376" Value="5'-Phosphoribosyl-N-formylglycinamide" />
+    <DictionaryEntry Key="C04392" Value="P1,P4-Bis(5'-xanthosyl) tetraphosphate" />
+    <DictionaryEntry Key="C04494" Value="Guanosine 3'-diphosphate 5'-triphosphate" />
+    <DictionaryEntry Key="C04640" Value="2-(Formamido)-N1-(5'-phosphoribosyl)acetamidine" />
+    <DictionaryEntry Key="C04677" Value="1-(5'-Phosphoribosyl)-5-amino-4-imidazolecarboxamide" />
+    <DictionaryEntry Key="C04734" Value="1-(5'-Phosphoribosyl)-5-formamido-4-imidazolecarboxamide" />
+    <DictionaryEntry Key="C04751" Value="1-(5-Phospho-D-ribosyl)-5-amino-4-imidazolecarboxylate" />
+    <DictionaryEntry Key="C04823" Value="1-(5'-Phosphoribosyl)-5-amino-4-(N-succinocarboxamide)-imidazole" />
+    <DictionaryEntry Key="C05239" Value="5-Aminoimidazole" />
+    <DictionaryEntry Key="C05512" Value="Deoxyinosine" />
+    <DictionaryEntry Key="C05513" Value="Urate-3-ribonucleoside" />
+    <DictionaryEntry Key="C05515" Value="5-Ureido-4-imidazole carboxylate" />
+    <DictionaryEntry Key="C05516" Value="5-Amino-4-imidazole carboxylate" />
+    <DictionaryEntry Key="C05993" Value="Acetyl adenylate" />
+    <DictionaryEntry Key="C06193" Value="Guanosine 3'-phosphate" />
+    <DictionaryEntry Key="C06194" Value="2',3'-Cyclic GMP" />
+    <DictionaryEntry Key="C06195" Value="Imidazolone" />
+    <DictionaryEntry Key="C06196" Value="2'-Deoxyinosine 5'-phosphate" />
+    <DictionaryEntry Key="C06197" Value="P1,P3-Bis(5'-adenosyl) triphosphate" />
+    <DictionaryEntry Key="C06433" Value="5'-Benzoylphosphoadenosine" />
+    <DictionaryEntry Key="C06435" Value="5'-Butyrylphosphoinosine" />
+    <DictionaryEntry Key="C11821" Value="5-Hydroxyisourate" />
+    <DictionaryEntry Key="C12248" Value="5-Hydroxy-2-oxo-4-ureido-2,5-dihydro-1H-imidazole-5-carboxylate" />
+    <DictionaryEntry Key="C15667" Value="5-Carboxyamino-1-(5-phospho-D-ribosyl)imidazole" />
+  </Compound>
+  <PathwayMap Key="xcb00230" Value="Purine metabolism&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_3392" Value="MutT-like protein; K01515 ADP-ribose pyrophosphatase [EC:3.6.1.13] [KO:K01515] [EC:3.6.1.13]" />
+    <DictionaryEntry Key="XC_1226" Value="nudE; ADP-ribose diphosphatase NudE [KO:K08312] [EC:3.6.1.-]" />
+    <DictionaryEntry Key="XC_3608" Value="phosphoglucomutase; phosphomannomutase [KO:K15778] [EC:5.4.2.2 5.4.2.8]" />
+    <DictionaryEntry Key="XC_3941" Value="phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:5.4.2.8 5.4.2.2] [KO:K15778] [EC:5.4.2.2 5.4.2.8]" />
+    <DictionaryEntry Key="XC_3358" Value="ribose-phosphate pyrophosphokinase; K00948 ribose-phosphate pyrophosphokinase [EC:2.7.6.1] [KO:K00948] [EC:2.7.6.1]" />
+    <DictionaryEntry Key="XC_3282" Value="amidophosphoribosyltransferase; K00764 amidophosphoribosyltransferase [EC:2.4.2.14] [KO:K00764] [EC:2.4.2.14]" />
+    <DictionaryEntry Key="XC_0509" Value="phosphoribosylamine--glycine ligase; K01945 phosphoribosylamine--glycine ligase [EC:6.3.4.13] [KO:K01945] [EC:6.3.4.13]" />
+    <DictionaryEntry Key="XC_1322" Value="purN; phosphoribosylglycinamide formyltransferase [KO:K11175] [EC:2.1.2.2]" />
+    <DictionaryEntry Key="XC_3106" Value="purT; phosphoribosylglycinamide formyltransferase 2 [KO:K08289] [EC:2.1.2.2]" />
+    <DictionaryEntry Key="XC_3578" Value="phosphoribosylformylglycinamidine synthase; K01952 phosphoribosylformylglycinamidine synthase [EC:6.3.5.3] [KO:K01952] [EC:6.3.5.3]" />
+    <DictionaryEntry Key="XC_1324" Value="phosphoribosylaminoimidazole synthetase; K01933 phosphoribosylformylglycinamidine cyclo-ligase [EC:6.3.3.1] [KO:K01933] [EC:6.3.3.1]" />
+    <DictionaryEntry Key="XC_1614" Value="phosphoribosylaminoimidazole carboxylase ATPase subunit; K01589 5-(carboxyamino)imidazole ribonucleotide synthase [EC:6.3.4.18] [KO:K01589] [EC:6.3.4.18]" />
+    <DictionaryEntry Key="XC_1613" Value="phosphoribosylaminoimidazole carboxylase catalytic subunit; K01588 5-(carboxyamino)imidazole ribonucleotide mutase [EC:5.4.99.18] [KO:K01588] [EC:5.4.99.18]" />
+    <DictionaryEntry Key="XC_0467" Value="hemH; phosphoribosylaminoimidazole-succinocarboxamide synthase [KO:K01923] [EC:6.3.2.6]" />
+    <DictionaryEntry Key="XC_2744" Value="adenylosuccinate lyase; K01756 adenylosuccinate lyase [EC:4.3.2.2] [KO:K01756] [EC:4.3.2.2]" />
+    <DictionaryEntry Key="XC_0510" Value="purH; bifunctional phosphoribosylaminoimidazolecarboxamide formyltransferase/IMP cyclohydrolase [KO:K00602] [EC:3.5.4.10 2.1.2.3]" />
+    <DictionaryEntry Key="XC_1832" Value="adenine phosphoribosyltransferase; K00759 adenine phosphoribosyltransferase [EC:2.4.2.7] [KO:K00759] [EC:2.4.2.7]" />
+    <DictionaryEntry Key="XC_2687" Value="5'-nucleotidase; K01081 5'-nucleotidase [EC:3.1.3.5] [KO:K01081] [EC:3.1.3.5]" />
+    <DictionaryEntry Key="XC_2525" Value="surE; stationary phase survival protein SurE [KO:K03787] [EC:3.1.3.5]" />
+    <DictionaryEntry Key="XC_0946" Value="inosine-uridine preferring nucleoside hydrolase; K01239 purine nucleosidase [EC:3.2.2.1] [KO:K01239] [EC:3.2.2.1]" />
+    <DictionaryEntry Key="XC_2957" Value="hypoxanthine-guanine phosphoribosyltransferase; K00760 hypoxanthine phosphoribosyltransferase [EC:2.4.2.8] [KO:K00760] [EC:2.4.2.8]" />
+    <DictionaryEntry Key="XC_1934" Value="inosine 5'-monophosphate dehydrogenase; K00088 IMP dehydrogenase [EC:1.1.1.205] [KO:K00088] [EC:1.1.1.205]" />
+    <DictionaryEntry Key="XC_2203" Value="ndk; nucleoside diphosphate kinase [KO:K00940] [EC:2.7.4.6]" />
+    <DictionaryEntry Key="XC_0962" Value="deoxyribonucleotide triphosphate pyrophosphatase; K02428 XTP/dITP diphosphohydrolase [EC:3.6.1.66] [KO:K02428] [EC:3.6.1.66]" />
+    <DictionaryEntry Key="XC_1228" Value="mazG; nucleoside triphosphate pyrophosphohydrolase [KO:K04765] [EC:3.6.1.8]" />
+    <DictionaryEntry Key="XC_1387" Value="oxidoreductase; K11177 xanthine dehydrogenase YagR molybdenum-binding subunit [EC:1.17.1.4] [KO:K11177] [EC:1.17.1.4]" />
+    <DictionaryEntry Key="XC_3158" Value="hydroxylase large subunit; K11177 xanthine dehydrogenase YagR molybdenum-binding subunit [EC:1.17.1.4] [KO:K11177] [EC:1.17.1.4]" />
+    <DictionaryEntry Key="XC_3780" Value="oxidoreductase; K11177 xanthine dehydrogenase YagR molybdenum-binding subunit [EC:1.17.1.4] [KO:K11177] [EC:1.17.1.4]" />
+    <DictionaryEntry Key="XC_1386" Value="oxidoreductase; K11178 xanthine dehydrogenase YagS FAD-binding subunit [EC:1.17.1.4] [KO:K11178] [EC:1.17.1.4]" />
+    <DictionaryEntry Key="XC_3157" Value="hydroxylase molybdopterin-containing subunit; K11178 xanthine dehydrogenase YagS FAD-binding subunit [EC:1.17.1.4] [KO:K11178] [EC:1.17.1.4]" />
+    <DictionaryEntry Key="XC_3156" Value="ferredoxin; K13483 xanthine dehydrogenase YagT iron-sulfur-binding subunit [KO:K13483]" />
+    <DictionaryEntry Key="XC_1385" Value="xanthine dehydrogenase iron-sulfur-binding subunit; K13483 xanthine dehydrogenase YagT iron-sulfur-binding subunit [KO:K13483]" />
+    <DictionaryEntry Key="XC_1935" Value="guaA; GMP synthase [KO:K01951] [EC:6.3.5.2]" />
+    <DictionaryEntry Key="XC_4180" Value="glutamine amidotransferase; K01951 GMP synthase (glutamine-hydrolysing) [EC:6.3.5.2] [KO:K01951] [EC:6.3.5.2]" />
+    <DictionaryEntry Key="XC_0958" Value="gmk; guanylate kinase [KO:K00942] [EC:2.7.4.8]" />
+    <DictionaryEntry Key="XC_0978" Value="pyruvate kinase; K00873 pyruvate kinase [EC:2.7.1.40] [KO:K00873] [EC:2.7.1.40]" />
+    <DictionaryEntry Key="XC_4076" Value="ribonucleotide-diphosphate reductase subunit alpha; K00525 ribonucleoside-diphosphate reductase alpha chain [EC:1.17.4.1] [KO:K00525] [EC:1.17.4.1]" />
+    <DictionaryEntry Key="XC_4075" Value="nrdF; ribonucleotide-diphosphate reductase subunit beta [KO:K00526] [EC:1.17.4.1]" />
+    <DictionaryEntry Key="XC_3316" Value="DNA-directed RNA polymerase subunit alpha; K03040 DNA-directed RNA polymerase subunit alpha [EC:2.7.7.6] [KO:K03040] [EC:2.7.7.6]" />
+    <DictionaryEntry Key="XC_3347" Value="rpoB; DNA-directed RNA polymerase subunit beta [KO:K03043] [EC:2.7.7.6]" />
+    <DictionaryEntry Key="XC_3346" Value="DNA-directed RNA polymerase subunit beta'; K03046 DNA-directed RNA polymerase subunit beta' [EC:2.7.7.6] [KO:K03046] [EC:2.7.7.6]" />
+    <DictionaryEntry Key="XC_0957" Value="DNA-directed RNA polymerase subunit omega; K03060 DNA-directed RNA polymerase subunit omega [EC:2.7.7.6] [KO:K03060] [EC:2.7.7.6]" />
+    <DictionaryEntry Key="XC_4109" Value="DNA polymerase I; K02335 DNA polymerase I [EC:2.7.7.7] [KO:K02335] [EC:2.7.7.7]" />
+    <DictionaryEntry Key="XC_2880" Value="dnaE; DNA polymerase III subunit alpha [KO:K02337] [EC:2.7.7.7]" />
+    <DictionaryEntry Key="XC_0002" Value="DNA polymerase III subunit beta; K02338 DNA polymerase III subunit beta [EC:2.7.7.7] [KO:K02338] [EC:2.7.7.7]" />
+    <DictionaryEntry Key="XC_3244" Value="DNA polymerase III subunits gamma and tau; K02343 DNA polymerase III subunit gamma/tau [EC:2.7.7.7] [KO:K02343] [EC:2.7.7.7]" />
+    <DictionaryEntry Key="XC_1499" Value="holA; DNA polymerase III subunit delta [KO:K02340] [EC:2.7.7.7]" />
+    <DictionaryEntry Key="XC_3222" Value="DNA polymerase III subunit delta'; K02341 DNA polymerase III subunit delta' [EC:2.7.7.7] [KO:K02341] [EC:2.7.7.7]" />
+    <DictionaryEntry Key="XC_3255" Value="DNA polymerase III subunit epsilon; K02342 DNA polymerase III subunit epsilon [EC:2.7.7.7] [KO:K02342] [EC:2.7.7.7]" />
+    <DictionaryEntry Key="XC_3586" Value="DNA polymerase III subunit chi; K02339 DNA polymerase III subunit chi [EC:2.7.7.7] [KO:K02339] [EC:2.7.7.7]" />
+    <DictionaryEntry Key="XC_0956" Value="pentaphosphate guanosine-3'-pyrophosphohydrolase; K01139 guanosine-3',5'-bis(diphosphate) 3'-pyrophosphohydrolase [EC:3.1.7.2] [KO:K01139] [EC:3.1.7.2]" />
+    <DictionaryEntry Key="XC_3275" Value="exopolyphosphatase; K01524 exopolyphosphatase / guanosine-5'-triphosphate,3'-diphosphate pyrophosphatase [EC:3.6.1.11 3.6.1.40] [KO:K01524] [EC:3.6.1.40 3.6.1.11]" />
+    <DictionaryEntry Key="XC_1173" Value="ATP:GTP 3'-pyrophosphotransferase; K00951 GTP pyrophosphokinase [EC:2.7.6.5] [KO:K00951] [EC:2.7.6.5]" />
+    <DictionaryEntry Key="XC_2962" Value="hypothetical protein; K01768 adenylate cyclase [EC:4.6.1.1] [KO:K01768] [EC:4.6.1.1]" />
+    <DictionaryEntry Key="XC_3193" Value="adenylosuccinate synthetase; K01939 adenylosuccinate synthase [EC:6.3.4.4] [KO:K01939] [EC:6.3.4.4]" />
+    <DictionaryEntry Key="XC_0690" Value="sugar kinase; K00856 adenosine kinase [EC:2.7.1.20] [KO:K00856] [EC:2.7.1.20]" />
+    <DictionaryEntry Key="XC_0304" Value="adenosine deaminase; K01488 adenosine deaminase [EC:3.5.4.4] [KO:K01488] [EC:3.5.4.4]" />
+    <DictionaryEntry Key="XC_0873" Value="adk; adenylate kinase [KO:K00939] [EC:2.7.4.3]" />
+    <DictionaryEntry Key="XC_1609" Value="polynucleotide phosphorylase; K00962 polyribonucleotide nucleotidyltransferase [EC:2.7.7.8] [KO:K00962] [EC:2.7.7.8]" />
+    <DictionaryEntry Key="XC_3442" Value="apaH; diadenosine tetraphosphatase [KO:K01525] [EC:3.6.1.41]" />
+    <DictionaryEntry Key="XC_0994" Value="bifunctional sulfate adenylyltransferase subunit 1/adenylylsulfate kinase; K00955 bifunctional enzyme CysN/CysC [EC:2.7.7.4 2.7.1.25] [KO:K00955] [EC:2.7.1.25 2.7.7.4]" />
+    <DictionaryEntry Key="XC_0993" Value="sulfate adenylyltransferase subunit 2; K00957 sulfate adenylyltransferase subunit 2 [EC:2.7.7.4] [KO:K00957] [EC:2.7.7.4]" />
+    <DictionaryEntry Key="XC_0288" Value="hypothetical protein; K07127 5-hydroxyisourate hydrolase [EC:3.5.2.17] [KO:K07127] [EC:3.5.2.17]" />
+    <DictionaryEntry Key="XC_0290" Value="hypothetical protein; K13485 2-oxo-4-hydroxy-4-carboxy-5-ureidoimidazoline decarboxylase [EC:4.1.1.97] [KO:K13485] [EC:4.1.1.97]" />
+    <DictionaryEntry Key="XC_0294" Value="allantoate amidohydrolase; K02083 allantoate deiminase [EC:3.5.3.9] [KO:K02083] [EC:3.5.3.9]" />
+    <DictionaryEntry Key="XC_0293" Value="serine-pyruvate aminotransferase; K00839 (S)-ureidoglycine-glyoxylate aminotransferase [EC:2.6.1.-] [KO:K00839] [EC:2.6.1.-]" />
+  </Genes>
+</KEGG.PathwayBrief>

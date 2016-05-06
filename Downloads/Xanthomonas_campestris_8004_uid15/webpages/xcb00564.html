@@ -1,0 +1,340 @@
+<!doctype html>
+<html><head>
+<title>KEGG PATHWAY: xcb00564</title>
+<link type="text/css" rel="stylesheet" href="/css/gn2.css">
+<link rel="stylesheet" href="/css/bget.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/bgetm.css" media="only screen and (max-width: 768px)">
+<style>.kcfd{display:none;}</style>
+<script>
+<!--
+var getElementsByClassName = document.getElementsByClassName ?
+  function (cl){
+    return document.getElementsByClassName(cl);
+  } :
+  function (cl){
+    var elms = [];
+    var objs = document.getElementsByTagName('*');
+    for(var i=0;i<objs.length;i++){
+      var obj = objs[i];
+      if(obj.className == cl){
+        elms.push(obj);
+      }
+    }
+    return elms;
+  };
+function toggleField(clk,cl,show,hide){
+  var objs = getElementsByClassName(cl);
+  for(var i=0;i<objs.length;i++){
+    var obj = objs[i];
+    if(!obj.style.display||obj.style.display == 'none'){
+      obj.style.display = 'block';
+      clk.innerHTML = '&nbsp;&laquo; '+hide;
+    }
+    else{
+      obj.style.display = 'none';
+      clk.innerHTML = '&nbsp;&raquo; '+show;
+    }
+  }
+}
+function toggleData(bobj,e){
+  var id = bobj.id.replace(/[^0-9]/g,'');
+  var dt = document.getElementById('kcfd'+id);
+  if(!dt.style.display||dt.style.display == 'none'){
+    bobj.name = 'hide_kcf';
+    bobj.alt = 'Hide';
+    bobj.src = '/Fig/bget/button_Hib.gif';
+    dt.style.display = 'block';
+  }
+  else{
+    bobj.name = 'show_kcf';
+    bobj.alt = 'Show';
+    bobj.src = '/Fig/bget/button_Sb.gif';
+    dt.style.display = 'none';
+  }
+}
+function btn(bobj,img) {
+  bobj.src = "/Fig/bget/button_" + img + ".gif";
+}
+function btn_e(e) {
+  e = e || event;
+  var obj = e.target;
+  var img = e.target.src;
+  var img_base = img.replace(/\\/g,'/').replace(/(b|bd|bh)\.gif$/,'');
+  if(e.type == 'mousedown'||e.type == 'touchstart'){
+    obj.src = img_base +'bd.gif';
+  }
+  else if(e.type == 'mouseover'){
+    obj.src = img_base +'bh.gif';
+  }
+  else if(e.type == 'mouseup'||e.type == 'touchend'){
+    obj.src = img_base +'b.gif';
+  }
+  else if(e.type == 'mouseout'){
+    obj.src = img_base +'b.gif';
+  }
+}
+function init(){
+  for(var i=1;i<=1;i++){
+    if(document.getElementById('kcfb'+i)){
+      document.getElementById('kcfb'+i).onclick = function(e){toggleData(this,e);};
+      document.getElementById('kcfb'+i).onmousedown = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseover = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseout = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseup = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchstart = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchend = function(e){btn_e(e);};
+    }
+  }
+}
+function Link_XtrctSeq2(form) {
+    var dna_from;
+    var dna_to;
+    var dna_len;
+    var plus_up   = Number(form.XtrctSeq_UP.value) ;
+    var plus_down = Number(form.XtrctSeq_DOWN.value);
+    var vector    = Number(form.VECTOR.value);
+    var org       = form.ORG.value;
+    var chr       = form.CHR.value;
+    var kid       = form.KEGGID.value;
+    var url;
+
+    if (plus_up == 0 && plus_down == 0) {
+	url = "/dbget-bin/www_bget?-f+-n+n+" + kid;
+    }
+    else {
+	if (vector == 1) {
+	    dna_from  = Number(form.FROM.value)  - plus_up;
+	    dna_to    = Number(form.TO.value) + plus_down;
+	} else {
+	    dna_from  = Number(form.FROM.value)  - plus_down;
+	    dna_to    = Number(form.TO.value) + plus_up;
+	}
+
+	url = "/dbget-bin/cut_sequence_genes.pl?FROM=" + dna_from + "&TO=" + dna_to +"&VECTOR=" + vector + "&ORG=" + org;
+	if (chr) url += "&CHR=" + chr;
+    }
+    //window.open( url, "_self" );
+    location.href = url;
+}
+function go_taxonomy(form,params){
+  for(var key in params){
+    if(form[key]){
+      form.setAttribute(key,params[key]);
+    }
+    else{
+      var obj = document.createElement('input');
+      obj.setAttribute('type','hidden');
+      obj.setAttribute('name',key);
+      obj.setAttribute('value',params[key]);
+      form.appendChild(obj);
+    }
+  }
+  form.submit();
+}
+window.onload=function(){window.focus();init();};
+//--->
+</script>
+
+</head>
+<body>
+<div>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="70"><a href="/kegg/kegg2.html"><img align="middle" alt="KEGG" border="0" src="/Fig/bget/kegg3.gif"></a></td><td>&nbsp;&nbsp;&nbsp;</td><td><a name="pathway:xcb00564"></a><font class="title3">PATHWAY: xcb00564</font></td><td align="right" valign="bottom"><a href="javascript:void(window.open('/kegg/document/help_bget_pathway.html','KEGG_Help','toolbar=no,location=no,directories=no,width=720,height=640,resizable=yes,scrollbars=yes'))"><img align="middle" alt="Help" border="0" name="help" onmousedown="btn(this,'Hbd')" onmouseout="btn(this,'Hb')" onmouseover="btn(this,'Hbh')" onmouseup="btn(this,'Hb')" ontouchend="btn(this,'Hb')" ontouchstart="btn(this,'Hbd')" src="/Fig/bget/button_Hb.gif"></a></td></tr></table>
+<form method="post" action="/dbget-bin/www_bget" enctype="application/x-www-form-urlencoded" name="form1"><table border=0 cellpadding=1 cellspacing=0>
+<tr>
+<td class="fr3">
+<table border=0 cellpadding=2 cellspacing=0 style="border-bottom:#000 1px solid">
+
+<tr><th class="th30" align="left" valign="middle" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Entry</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="left"><code><nobr>xcb00564&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pathway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</nobr></code></td> <td align="right"><br></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Name</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Glycerophospholipid metabolism - Xanthomonas campestris pv. campestris 8004<br>
+</div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Class</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Metabolism; Lipid metabolism<br>
+<a href="/kegg-bin/get_htext?query=xcb00564&amp;htext=xcb00001.keg"><img align="middle" alt="BRITE hierarchy" border="0" name="BRH" onmousedown="btn(this,'BHbd')" onmouseout="btn(this,'BHb')" onmouseover="btn(this,'BHbh')" onmouseup="btn(this,'BHb')" ontouchend="btn(this,'BHb')" ontouchstart="btn(this,'BHbd')" src="/Fig/bget/button_BHb.gif"></a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Pathway&nbsp;map</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5.5em"><div><nobr><a href="/kegg-bin/show_pathway?xcb00564">xcb00564</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Glycerophospholipid metabolism</div></td></tr></table><center><a href="/kegg-bin/show_pathway?xcb00564"><img src="/kegg/misc/thumbnail/map00564.gif" alt="xcb00564" style="border-style:none;"></a></center><br><a href="http://www.kegg.jp/kegg-bin/show_ot_map?map=00564"><img align="middle" alt="All organisms" border="0" name="AO" onmousedown="btn(this,'AObd')" onmouseout="btn(this,'AOb')" onmouseover="btn(this,'AObh')" onmouseup="btn(this,'AOb')" ontouchend="btn(this,'AOb')" ontouchstart="btn(this,'AObd')" src="/Fig/bget/button_AOb.gif"></a><a href="http://www.kegg.jp/kegg-bin/view_ortholog_table?map=00564"><img align="middle" alt="Ortholog table" border="0" name="OT" onmousedown="btn(this,'OTbd')" onmouseout="btn(this,'OTb')" onmouseover="btn(this,'OTbh')" onmouseup="btn(this,'OTb')" ontouchend="btn(this,'OTb')" ontouchstart="btn(this,'OTbd')" src="/Fig/bget/button_OTb.gif"></a></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Module</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:6.5em"><div><nobr><a href="/kegg-bin/show_module?xcb_M00093">xcb_M00093</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Phosphatidylethanolamine (PE) biosynthesis, PA => PS => PE [PATH:<a href="/kegg-bin/show_pathway?xcb00564+M00093">xcb00564</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Other DBs</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="float:left">BSID:&nbsp;</div><div style="margin-left:3.5em"><a href="http://www.ncbi.nlm.nih.gov/biosystems/24025">24025</a></div><div style="float:left">GO:&nbsp;</div><div style="margin-left:2.5em"><a href="http://amigo.geneontology.org/amigo/term/GO:0006650">0006650</a> <a href="http://amigo.geneontology.org/amigo/term/GO:0046474">0046474</a> <a href="http://amigo.geneontology.org/amigo/term/GO:0046475">0046475</a></div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Organism</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Xanthomonas campestris pv. campestris 8004 [GN:<a href="/dbget-bin/www_bget?gn:xcb">xcb</a>]<br>
+</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Gene</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0214">XC_0214</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>gpsA; NAD(P)H-dependent glycerol-3-phosphate dehydrogenase [KO:<a href="/dbget-bin/www_bget?ko:K00057">K00057</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.94">1.1.1.94</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0372">XC_0372</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glpD; glycerol-3-phosphate dehydrogenase [KO:<a href="/dbget-bin/www_bget?ko:K00111">K00111</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.1.5.3">1.1.5.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4220">XC_4220</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glycerol-3-phosphate acyltransferase; K00631 glycerol-3-phosphate O-acyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.3.1.15">2.3.1.15</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00631">K00631</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.3.1.15">2.3.1.15</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4099">XC_4099</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>acyltransferase; K00655 1-acyl-sn-glycerol-3-phosphate acyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.3.1.51">2.3.1.51</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00655">K00655</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.3.1.51">2.3.1.51</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0188">XC_0188</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>acetyltransferase; K00655 1-acyl-sn-glycerol-3-phosphate acyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.3.1.51">2.3.1.51</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00655">K00655</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.3.1.51">2.3.1.51</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3449">XC_3449</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>diacylglycerol kinase; K00901 diacylglycerol kinase (ATP) [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.107">2.7.1.107</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00901">K00901</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.107">2.7.1.107</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1121">XC_1121</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>phospholipase C; K01114 phospholipase C [EC:<a href="/dbget-bin/www_bget?ec:3.1.4.3">3.1.4.3</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01114">K01114</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.4.3">3.1.4.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3288">XC_3288</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>non-hemolytic phospholipase C; K01114 phospholipase C [EC:<a href="/dbget-bin/www_bget?ec:3.1.4.3">3.1.4.3</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01114">K01114</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.4.3">3.1.4.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2818">XC_2818</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>phospholipase; K01058 phospholipase A1 [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.32">3.1.1.32</a> <a href="/dbget-bin/www_bget?ec:3.1.1.4">3.1.1.4</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01058">K01058</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.4">3.1.1.4</a> <a href="/dbget-bin/www_bget?ec:3.1.1.32">3.1.1.32</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4324">XC_4324</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glycerophosphoryl diester phosphodiesterase; K01126 glycerophosphoryl diester phosphodiesterase [EC:<a href="/dbget-bin/www_bget?ec:3.1.4.46">3.1.4.46</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01126">K01126</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.4.46">3.1.4.46</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3204">XC_3204</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glycerophosphodiester phosphodiesterase; K01126 glycerophosphoryl diester phosphodiesterase [EC:<a href="/dbget-bin/www_bget?ec:3.1.4.46">3.1.4.46</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01126">K01126</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.4.46">3.1.4.46</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1855">XC_1855</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>ethanolamine ammonia-lyase large subunit; K03735 ethanolamine ammonia-lyase large subunit [EC:<a href="/dbget-bin/www_bget?ec:4.3.1.7">4.3.1.7</a>] [KO:<a href="/dbget-bin/www_bget?ko:K03735">K03735</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.3.1.7">4.3.1.7</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1854">XC_1854</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>ethanolamine ammonia-lyase small subunit; K03736 ethanolamine ammonia-lyase small subunit [EC:<a href="/dbget-bin/www_bget?ec:4.3.1.7">4.3.1.7</a>] [KO:<a href="/dbget-bin/www_bget?ko:K03736">K03736</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.3.1.7">4.3.1.7</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2537">XC_2537</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-diacylglycerol pyrophosphatase; K01521 CDP-diacylglycerol pyrophosphatase [EC:<a href="/dbget-bin/www_bget?ec:3.6.1.26">3.6.1.26</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01521">K01521</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.6.1.26">3.6.1.26</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0518">XC_0518</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>phosphatidate cytidylyltransferase; K00981 phosphatidate cytidylyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.41">2.7.7.41</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00981">K00981</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.41">2.7.7.41</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2870">XC_2870</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>phosphatidate cytidylyltransferase; K00981 phosphatidate cytidylyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.41">2.7.7.41</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00981">K00981</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.41">2.7.7.41</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1957">XC_1957</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-diacylglycerol-serine o-phosphatidyltransferase; K17103 CDP-diacylglycerol---serine O-phosphatidyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.7.8.8">2.7.8.8</a>] [KO:<a href="/dbget-bin/www_bget?ko:K17103">K17103</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.8.8">2.7.8.8</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3594">XC_3594</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>phosphatidylserine synthase; K17103 CDP-diacylglycerol---serine O-phosphatidyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.7.8.8">2.7.8.8</a>] [KO:<a href="/dbget-bin/www_bget?ko:K17103">K17103</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.8.8">2.7.8.8</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1563">XC_1563</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>psd; phosphatidylserine decarboxylase [KO:<a href="/dbget-bin/www_bget?ko:K01613">K01613</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.1.1.65">4.1.1.65</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2001">XC_2001</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidyltransferase; K00995 CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.7.8.5">2.7.8.5</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00995">K00995</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.8.5">2.7.8.5</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0511">XC_0511</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-alcohol phosphatidyltransferase; K00995 CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.7.8.5">2.7.8.5</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00995">K00995</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.8.5">2.7.8.5</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0485">XC_0485</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>hypothetical protein; K18697 phosphatidylglycerophosphatase C [EC:<a href="/dbget-bin/www_bget?ec:3.1.3.27">3.1.3.27</a>] [KO:<a href="/dbget-bin/www_bget?ko:K18697">K18697</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.3.27">3.1.3.27</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0014">XC_0014</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>cardiolipin synthetase; K06131 cardiolipin synthase A/B [EC:2.7.8.-] [KO:<a href="/dbget-bin/www_bget?ko:K06131">K06131</a>] [EC:2.7.8.-]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4117">XC_4117</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>cardiolipin synthase; K06131 cardiolipin synthase A/B [EC:2.7.8.-] [KO:<a href="/dbget-bin/www_bget?ko:K06131">K06131</a>] [EC:2.7.8.-]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4263">XC_4263</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>cardiolipin synthetase; K06131 cardiolipin synthase A/B [EC:2.7.8.-] [KO:<a href="/dbget-bin/www_bget?ko:K06131">K06131</a>] [EC:2.7.8.-]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0300">XC_0300</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>cardiolipin synthase 2; K06131 cardiolipin synthase A/B [EC:2.7.8.-] [KO:<a href="/dbget-bin/www_bget?ko:K06131">K06131</a>] [EC:2.7.8.-]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1408">XC_1408</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>cardiolipin synthase; K06132 cardiolipin synthase C [EC:2.7.8.-] [KO:<a href="/dbget-bin/www_bget?ko:K06132">K06132</a>] [EC:2.7.8.-]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Compound</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00040">C00040</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Acyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00084">C00084</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Acetaldehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00093">C00093</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>sn-Glycerol 3-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00111">C00111</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Glycerone phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00114">C00114</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Choline</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00157">C00157</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Phosphatidylcholine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00189">C00189</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Ethanolamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00269">C00269</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-diacylglycerol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00307">C00307</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-choline</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00344">C00344</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Phosphatidylglycerol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00346">C00346</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Ethanolamine phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00350">C00350</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Phosphatidylethanolamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00416">C00416</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Phosphatidate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00513">C00513</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-glycerol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00570">C00570</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-ethanolamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00588">C00588</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Choline phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00623">C00623</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>sn-Glycerol 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00641">C00641</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>1,2-Diacyl-sn-glycerol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00670">C00670</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>sn-Glycero-3-phosphocholine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00681">C00681</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>1-Acyl-sn-glycerol 3-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01194">C01194</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>1-Phosphatidyl-D-myo-inositol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01210">C01210</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Methylethanolamine phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01233">C01233</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>sn-Glycero-3-phosphoethanolamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01241">C01241</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Phosphatidyl-N-methylethanolamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01996">C01996</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Acetylcholine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02737">C02737</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Phosphatidylserine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03372">C03372</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Acylglycerone phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03819">C03819</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>1-Acylglycerophosphoinositol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03872">C03872</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Serine-phosphoethanolamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03892">C03892</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Phosphatidylglycerophosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03974">C03974</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Acyl-sn-glycerol 3-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04230">C04230</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>1-Acyl-sn-glycero-3-phosphocholine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04233">C04233</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Acyl-sn-glycero-3-phosphocholine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04308">C04308</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Phosphatidyl-N-dimethylethanolamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04438">C04438</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>1-Acyl-sn-glycero-3-phosphoethanolamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04590">C04590</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-(O-Geranylgeranyl)-sn-glycerol 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04638">C04638</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2,3-Bis-O-(geranylgeranyl)glycerol 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05973">C05973</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Acyl-sn-glycero-3-phosphoethanolamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05974">C05974</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Acyl-sn-glycero-3-phosphoserine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05976">C05976</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Aminoacyl-phosphatidylglycerol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05980">C05980</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Cardiolipin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06771">C06771</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Triethanolamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06772">C06772</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Diethanolamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C13482">C13482</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Phosphodimethylethanolamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18059">C18059</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-2,3-bis-O-(geranylgeranyl)-sn-glycerol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18125">C18125</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>1-Acyl-sn-glycero-3-phosphoserine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18126">C18126</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>1-Acyl-sn-glycero-3-phosphoglycerol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18129">C18129</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Monolysocardiolipin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18168">C18168</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Diacylglycerylhomoserine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18169">C18169</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Diacylglyceryl-N,N,N-trimethylhomoserine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20466">C20466</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2,3-Bis-O-(geranylgeranyl)-sn-glycero-1-phospho-L-serine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20518">C20518</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2,3-Bis-(O-phytanyl)-sn-glycerol 1-phosphate</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/1512203">1512203</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Racenis PV, Lai JL, Das AK, Mullick PC, Hajra AK, Greenberg ML.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">The acyl dihydroxyacetone phosphate pathway enzymes for glycerolipid biosynthesis are present in the yeast Saccharomyces cerevisiae.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 174:5702-10 (1992)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10092508">10092508</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Taniyama Y, Shibata S, Kita S, Horikoshi K, Fuse H, Shirafuji H, Sumino Y, Fujino M.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Cloning and expression of a novel lysophospholipase which structurally resembles lecithin cholesterol acyltransferase.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Biochem Biophys Res Commun 257:50-6 (1999)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10542045">10542045</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Athenstaedt K, Daum G.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Phosphatidic acid, a key intermediate in lipid metabolism.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Eur J Biochem 266:1-16 (1999)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/12431977">12431977</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Shields DJ, Lehner R, Agellon LB, Vance DE.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Membrane topography of human phosphatidylethanolamine N-methyltransferase.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Biol Chem 278:2956-62 (2003)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/14663079">14663079</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Martinez-Morales F, Schobert M, Lopez-Lara IM, Geiger O.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Pathways for phosphatidylcholine biosynthesis in bacteria.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Microbiology 149:3461-71 (2003)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/15522832">15522832</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Burgermeister M, Birner-Grunberger R, Nebauer R, Daum G.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Contribution of different pathways to the supply of phosphatidylethanolamine and phosphatidylcholine to mitochondrial membranes of the yeast Saccharomyces cerevisiae.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Biochim Biophys Acta 1686:161-8 (2004)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/1649829">1649829</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Hsu L, Jackowski S, Rock CO</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Isolation and characterization of Escherichia coli K-12 mutants lacking both 2-acyl-glycerophosphoethanolamine acyltransferase and acyl-acyl carrier protein synthetase activity.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Biol Chem 266:13783-8 (1991)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10938271">10938271</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Stone SJ, Vance JE.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Phosphatidylserine synthase-1 and -2 are localized to mitochondria-associated membranes.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Biol Chem 275:34534-40 (2000)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>KO&nbsp;pathway</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?ko00564">ko00564</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>&nbsp;</div></td></tr></table></td></tr>
+
+</table></td></tr></table>
+<br></form></td><td valign="top"><div style="margin-top:46px;margin-left:1em;border:#ddd 1px solid"><div class="th30" style="font-weight:bold;line-height:1.5em">&nbsp;&nbsp;All links&nbsp;&nbsp;</div>
+<pre style="margin-left:1em">
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+2+path:xcb00564">Pathway (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+biosystems+path:xcb00564">BioSystems (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+7+path:xcb00564">Genome (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genome+path:xcb00564">KEGG GENOME (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+8+path:xcb00564">Gene (27)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genes+path:xcb00564">KEGG GENES (27)</a>   
+<a href="/dbget-bin/get_linkdb?-t+alldb+path:xcb00564">All databases (29)</a>   
+<br><a href="/dbget-bin/get_linkdb?-N+path:xcb00564">Download RDF</a>   
+</pre>
+</div>
+</td></tr></table>
+
+
+<a href="/dbget/">DBGET</a> integrated database retrieval system</div>
+
+</body>
+</html>

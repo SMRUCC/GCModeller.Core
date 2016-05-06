@@ -1,0 +1,292 @@
+<!doctype html>
+<html><head>
+<title>KEGG PATHWAY: xcb00790</title>
+<link type="text/css" rel="stylesheet" href="/css/gn2.css">
+<link rel="stylesheet" href="/css/bget.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/bgetm.css" media="only screen and (max-width: 768px)">
+<style>.kcfd{display:none;}</style>
+<script>
+<!--
+var getElementsByClassName = document.getElementsByClassName ?
+  function (cl){
+    return document.getElementsByClassName(cl);
+  } :
+  function (cl){
+    var elms = [];
+    var objs = document.getElementsByTagName('*');
+    for(var i=0;i<objs.length;i++){
+      var obj = objs[i];
+      if(obj.className == cl){
+        elms.push(obj);
+      }
+    }
+    return elms;
+  };
+function toggleField(clk,cl,show,hide){
+  var objs = getElementsByClassName(cl);
+  for(var i=0;i<objs.length;i++){
+    var obj = objs[i];
+    if(!obj.style.display||obj.style.display == 'none'){
+      obj.style.display = 'block';
+      clk.innerHTML = '&nbsp;&laquo; '+hide;
+    }
+    else{
+      obj.style.display = 'none';
+      clk.innerHTML = '&nbsp;&raquo; '+show;
+    }
+  }
+}
+function toggleData(bobj,e){
+  var id = bobj.id.replace(/[^0-9]/g,'');
+  var dt = document.getElementById('kcfd'+id);
+  if(!dt.style.display||dt.style.display == 'none'){
+    bobj.name = 'hide_kcf';
+    bobj.alt = 'Hide';
+    bobj.src = '/Fig/bget/button_Hib.gif';
+    dt.style.display = 'block';
+  }
+  else{
+    bobj.name = 'show_kcf';
+    bobj.alt = 'Show';
+    bobj.src = '/Fig/bget/button_Sb.gif';
+    dt.style.display = 'none';
+  }
+}
+function btn(bobj,img) {
+  bobj.src = "/Fig/bget/button_" + img + ".gif";
+}
+function btn_e(e) {
+  e = e || event;
+  var obj = e.target;
+  var img = e.target.src;
+  var img_base = img.replace(/\\/g,'/').replace(/(b|bd|bh)\.gif$/,'');
+  if(e.type == 'mousedown'||e.type == 'touchstart'){
+    obj.src = img_base +'bd.gif';
+  }
+  else if(e.type == 'mouseover'){
+    obj.src = img_base +'bh.gif';
+  }
+  else if(e.type == 'mouseup'||e.type == 'touchend'){
+    obj.src = img_base +'b.gif';
+  }
+  else if(e.type == 'mouseout'){
+    obj.src = img_base +'b.gif';
+  }
+}
+function init(){
+  for(var i=1;i<=1;i++){
+    if(document.getElementById('kcfb'+i)){
+      document.getElementById('kcfb'+i).onclick = function(e){toggleData(this,e);};
+      document.getElementById('kcfb'+i).onmousedown = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseover = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseout = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseup = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchstart = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchend = function(e){btn_e(e);};
+    }
+  }
+}
+function Link_XtrctSeq2(form) {
+    var dna_from;
+    var dna_to;
+    var dna_len;
+    var plus_up   = Number(form.XtrctSeq_UP.value) ;
+    var plus_down = Number(form.XtrctSeq_DOWN.value);
+    var vector    = Number(form.VECTOR.value);
+    var org       = form.ORG.value;
+    var chr       = form.CHR.value;
+    var kid       = form.KEGGID.value;
+    var url;
+
+    if (plus_up == 0 && plus_down == 0) {
+	url = "/dbget-bin/www_bget?-f+-n+n+" + kid;
+    }
+    else {
+	if (vector == 1) {
+	    dna_from  = Number(form.FROM.value)  - plus_up;
+	    dna_to    = Number(form.TO.value) + plus_down;
+	} else {
+	    dna_from  = Number(form.FROM.value)  - plus_down;
+	    dna_to    = Number(form.TO.value) + plus_up;
+	}
+
+	url = "/dbget-bin/cut_sequence_genes.pl?FROM=" + dna_from + "&TO=" + dna_to +"&VECTOR=" + vector + "&ORG=" + org;
+	if (chr) url += "&CHR=" + chr;
+    }
+    //window.open( url, "_self" );
+    location.href = url;
+}
+function go_taxonomy(form,params){
+  for(var key in params){
+    if(form[key]){
+      form.setAttribute(key,params[key]);
+    }
+    else{
+      var obj = document.createElement('input');
+      obj.setAttribute('type','hidden');
+      obj.setAttribute('name',key);
+      obj.setAttribute('value',params[key]);
+      form.appendChild(obj);
+    }
+  }
+  form.submit();
+}
+window.onload=function(){window.focus();init();};
+//--->
+</script>
+
+</head>
+<body>
+<div>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="70"><a href="/kegg/kegg2.html"><img align="middle" alt="KEGG" border="0" src="/Fig/bget/kegg3.gif"></a></td><td>&nbsp;&nbsp;&nbsp;</td><td><a name="pathway:xcb00790"></a><font class="title3">PATHWAY: xcb00790</font></td><td align="right" valign="bottom"><a href="javascript:void(window.open('/kegg/document/help_bget_pathway.html','KEGG_Help','toolbar=no,location=no,directories=no,width=720,height=640,resizable=yes,scrollbars=yes'))"><img align="middle" alt="Help" border="0" name="help" onmousedown="btn(this,'Hbd')" onmouseout="btn(this,'Hb')" onmouseover="btn(this,'Hbh')" onmouseup="btn(this,'Hb')" ontouchend="btn(this,'Hb')" ontouchstart="btn(this,'Hbd')" src="/Fig/bget/button_Hb.gif"></a></td></tr></table>
+<form method="post" action="/dbget-bin/www_bget" enctype="application/x-www-form-urlencoded" name="form1"><table border=0 cellpadding=1 cellspacing=0>
+<tr>
+<td class="fr3">
+<table border=0 cellpadding=2 cellspacing=0 style="border-bottom:#000 1px solid">
+
+<tr><th class="th30" align="left" valign="middle" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Entry</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="left"><code><nobr>xcb00790&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pathway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</nobr></code></td> <td align="right"><br></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Name</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Folate biosynthesis - Xanthomonas campestris pv. campestris 8004<br>
+</div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Class</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Metabolism; Metabolism of cofactors and vitamins<br>
+<a href="/kegg-bin/get_htext?query=xcb00790&amp;htext=xcb00001.keg"><img align="middle" alt="BRITE hierarchy" border="0" name="BRH" onmousedown="btn(this,'BHbd')" onmouseout="btn(this,'BHb')" onmouseover="btn(this,'BHbh')" onmouseup="btn(this,'BHb')" ontouchend="btn(this,'BHb')" ontouchstart="btn(this,'BHbd')" src="/Fig/bget/button_BHb.gif"></a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Pathway&nbsp;map</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5.5em"><div><nobr><a href="/kegg-bin/show_pathway?xcb00790">xcb00790</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Folate biosynthesis</div></td></tr></table><center><a href="/kegg-bin/show_pathway?xcb00790"><img src="/kegg/misc/thumbnail/map00790.gif" alt="xcb00790" style="border-style:none;"></a></center><br><a href="http://www.kegg.jp/kegg-bin/show_ot_map?map=00790"><img align="middle" alt="All organisms" border="0" name="AO" onmousedown="btn(this,'AObd')" onmouseout="btn(this,'AOb')" onmouseover="btn(this,'AObh')" onmouseup="btn(this,'AOb')" ontouchend="btn(this,'AOb')" ontouchstart="btn(this,'AObd')" src="/Fig/bget/button_AOb.gif"></a><a href="http://www.kegg.jp/kegg-bin/view_ortholog_table?map=00790"><img align="middle" alt="Ortholog table" border="0" name="OT" onmousedown="btn(this,'OTbd')" onmouseout="btn(this,'OTb')" onmouseover="btn(this,'OTbh')" onmouseup="btn(this,'OTb')" ontouchend="btn(this,'OTb')" ontouchstart="btn(this,'OTbd')" src="/Fig/bget/button_OTb.gif"></a></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Module</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:6.5em"><div><nobr><a href="/kegg-bin/show_module?xcb_M00126">xcb_M00126</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Tetrahydrofolate biosynthesis, GTP => THF [PATH:<a href="/kegg-bin/show_pathway?xcb00790+M00126">xcb00790</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Other DBs</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="float:left">BSID:&nbsp;</div><div style="margin-left:3.5em"><a href="http://www.ncbi.nlm.nih.gov/biosystems/24059">24059</a></div><div style="float:left">GO:&nbsp;</div><div style="margin-left:2.5em"><a href="http://amigo.geneontology.org/amigo/term/GO:0046656">0046656</a></div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Organism</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Xanthomonas campestris pv. campestris 8004 [GN:<a href="/dbget-bin/www_bget?gn:xcb">xcb</a>]<br>
+</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Gene</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4253">XC_4253</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>folE; GTP cyclohydrolase I [KO:<a href="/dbget-bin/www_bget?ko:K01495">K01495</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.5.4.16">3.5.4.16</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2471">XC_2471</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GTP cyclohydrolase; K09007 GTP cyclohydrolase I [EC:<a href="/dbget-bin/www_bget?ec:3.5.4.16">3.5.4.16</a>] [KO:<a href="/dbget-bin/www_bget?ko:K09007">K09007</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.5.4.16">3.5.4.16</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1519">XC_1519</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>alkaline phosphatase; K01077 alkaline phosphatase [EC:<a href="/dbget-bin/www_bget?ec:3.1.3.1">3.1.3.1</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01077">K01077</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.3.1">3.1.3.1</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4131">XC_4131</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>hypothetical protein; K01113 alkaline phosphatase D [EC:<a href="/dbget-bin/www_bget?ec:3.1.3.1">3.1.3.1</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01113">K01113</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.3.1">3.1.3.1</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3887">XC_3887</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dihydroneopterin aldolase; K01633 dihydroneopterin aldolase / 7,8-dihydroneopterin epimerase [EC:<a href="/dbget-bin/www_bget?ec:4.1.2.25">4.1.2.25</a> <a href="/dbget-bin/www_bget?ec:5.1.99.8">5.1.99.8</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01633">K01633</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.1.99.8">5.1.99.8</a> <a href="/dbget-bin/www_bget?ec:4.1.2.25">4.1.2.25</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2469">XC_2469</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-amino-4-hydroxy-6-hydroxymethyldihydropteridine pyrophosphokinase; K00950 2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase [EC:<a href="/dbget-bin/www_bget?ec:2.7.6.3">2.7.6.3</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00950">K00950</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.6.3">2.7.6.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0731">XC_0731</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-amino-4-hydroxy-6-hydroxymethyldihydropteridine pyrophosphokinase; K00950 2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase [EC:<a href="/dbget-bin/www_bget?ec:2.7.6.3">2.7.6.3</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00950">K00950</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.6.3">2.7.6.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2517">XC_2517</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dihydropteroate synthase; K00796 dihydropteroate synthase [EC:<a href="/dbget-bin/www_bget?ec:2.5.1.15">2.5.1.15</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00796">K00796</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.5.1.15">2.5.1.15</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3443">XC_3443</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dihydrofolate reductase type III; K00287 dihydrofolate reductase [EC:<a href="/dbget-bin/www_bget?ec:1.5.1.3">1.5.1.3</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00287">K00287</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.5.1.3">1.5.1.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3285">XC_3285</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>bifunctional folylpolyglutamate synthase/dihydrofolate synthase; K11754 dihydrofolate synthase / folylpolyglutamate synthase [EC:<a href="/dbget-bin/www_bget?ec:6.3.2.12">6.3.2.12</a> <a href="/dbget-bin/www_bget?ec:6.3.2.17">6.3.2.17</a>] [KO:<a href="/dbget-bin/www_bget?ko:K11754">K11754</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.3.2.17">6.3.2.17</a> <a href="/dbget-bin/www_bget?ec:6.3.2.12">6.3.2.12</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3644">XC_3644</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>6-pyruvoyl tetrahydrobiopterin synthase; K01737 6-pyruvoyltetrahydropterin/6-carboxytetrahydropterin synthase [EC:<a href="/dbget-bin/www_bget?ec:4.2.3.12">4.2.3.12</a> <a href="/dbget-bin/www_bget?ec:4.1.2.50">4.1.2.50</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01737">K01737</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.1.2.50">4.1.2.50</a> <a href="/dbget-bin/www_bget?ec:4.2.3.12">4.2.3.12</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1144">XC_1144</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>radical activating enzyme; K10026 7-carboxy-7-deazaguanine synthase [EC:<a href="/dbget-bin/www_bget?ec:4.3.99.3">4.3.99.3</a>] [KO:<a href="/dbget-bin/www_bget?ko:K10026">K10026</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.3.99.3">4.3.99.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1145">XC_1145</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>transcriptional regulator; K06920 7-cyano-7-deazaguanine synthase [EC:<a href="/dbget-bin/www_bget?ec:6.3.4.20">6.3.4.20</a>] [KO:<a href="/dbget-bin/www_bget?ko:K06920">K06920</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.3.4.20">6.3.4.20</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3857">XC_3857</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>queF; 7-cyano-7-deazaguanine reductase [KO:<a href="/dbget-bin/www_bget?ko:K06879">K06879</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.7.1.13">1.7.1.13</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3249">XC_3249</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>moaA; molybdenum cofactor biosynthesis protein A [KO:<a href="/dbget-bin/www_bget?ko:K03639">K03639</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.1.99.18">4.1.99.18</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3247">XC_3247</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>moaC; molybdenum cofactor biosynthesis protein MoaC [KO:<a href="/dbget-bin/www_bget?ko:K03637">K03637</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.1.99.18">4.1.99.18</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3245">XC_3245</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>molybdopterin-converting factor chain 2; K03635 molybdopterin synthase catalytic subunit [EC:<a href="/dbget-bin/www_bget?ec:2.8.1.12">2.8.1.12</a>] [KO:<a href="/dbget-bin/www_bget?ko:K03635">K03635</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.8.1.12">2.8.1.12</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3246">XC_3246</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>molybdopterin-converting factor chain 1; K03636 molybdopterin synthase sulfur carrier subunit [KO:<a href="/dbget-bin/www_bget?ko:K03636">K03636</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Compound</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00044">C00044</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GTP</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00101">C00101</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Tetrahydrofolate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00251">C00251</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Chorismate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00266">C00266</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Glycolaldehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00268">C00268</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Dihydrobiopterin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00272">C00272</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Tetrahydrobiopterin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00415">C00415</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Dihydrofolate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00504">C00504</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Folate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00568">C00568</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Aminobenzoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00921">C00921</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Dihydropteroate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01217">C01217</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5,6,7,8-Tetrahydromethanopterin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01300">C01300</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Amino-4-hydroxy-6-hydroxymethyl-7,8-dihydropteridine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02587">C02587</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Pyrimidodiazepine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03541">C03541</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>THF-polyglutamate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03684">C03684</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>6-Pyruvoyltetrahydropterin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04244">C04244</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>6-Lactoyl-5,6,7,8-tetrahydropterin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04807">C04807</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Amino-7,8-dihydro-4-hydroxy-6-(diphosphooxymethyl)pteridine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04874">C04874</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Amino-4-hydroxy-6-(D-erythro-1,2,3-trihydroxypropyl)-7,8-dihydropteridine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04895">C04895</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>7,8-Dihydroneopterin 3'-triphosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05922">C05922</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Formamidopyrimidine nucleoside triphosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05923">C05923</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2,5-Diaminopyrimidine nucleoside triphosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05924">C05924</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Molybdopterin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05925">C05925</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Dihydroneopterin phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05926">C05926</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Neopterin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05927">C05927</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>7,8-Dihydromethanopterin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06148">C06148</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2,5-Diamino-6-(5'-triphosphoryl-3',4'-trihydroxy-2'-oxopentyl)-amino-4-oxopyrimidine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06149">C06149</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>6-(3'-Triphosphoryl-1'-methylglyceryl)-7-methyl-7,8-dihydrobiopterin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C09332">C09332</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>THF-L-glutamate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11355">C11355</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Amino-4-deoxychorismate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C15996">C15996</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>7-Cyano-7-carbaguanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C16675">C16675</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>7-Aminomethyl-7-carbaguanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18239">C18239</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Precursor Z</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18802">C18802</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Tetrahydrosarcinapterin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20239">C20239</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>6-Carboxy-5,6,7,8-tetrahydropterin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20248">C20248</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>7-Carboxy-7-carbaguanine</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nishizuka Y, Seyama Y, Ikai A, Ishimura Y, Kawaguchi A (eds).</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">[Cellular Functions and Metabolic Maps] (In Japanese)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Tokyo Kagaku Dojin (1997)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/19675644">19675644</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Schwarz G, Mendel RR, Ribbe MW</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Molybdenum cofactors, enzymes and pathways.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nature 460:839-47 (2009)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/16632608">16632608</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Hanzelmann P, Schindelin H</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Binding of 5'-GTP to the C-terminal FeS cluster of the radical S-adenosylmethionine enzyme MoaA provides insights into its mechanism.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Proc Natl Acad Sci U S A 103:6829-34 (2006)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/18092812">18092812</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Daniels JN, Wuebbens MM, Rajagopalan KV, Schindelin H</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Crystal structure of a molybdopterin synthase-precursor Z complex: insight into its sulfur transfer mechanism and its role in molybdenum cofactor deficiency.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Biochemistry 47:615-26 (2008)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/12571226">12571226</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Wuebbens MM, Rajagopalan KV</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Mechanistic and mutational studies of Escherichia coli molybdopterin synthase clarify the final step of molybdopterin biosynthesis.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Biol Chem 278:14523-32 (2003)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>KO&nbsp;pathway</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?ko00790">ko00790</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>&nbsp;</div></td></tr></table></td></tr>
+
+</table></td></tr></table>
+<br></form></td><td valign="top"><div style="margin-top:46px;margin-left:1em;border:#ddd 1px solid"><div class="th30" style="font-weight:bold;line-height:1.5em">&nbsp;&nbsp;All links&nbsp;&nbsp;</div>
+<pre style="margin-left:1em">
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+2+path:xcb00790">Pathway (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+biosystems+path:xcb00790">BioSystems (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+7+path:xcb00790">Genome (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genome+path:xcb00790">KEGG GENOME (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+8+path:xcb00790">Gene (18)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genes+path:xcb00790">KEGG GENES (18)</a>   
+<a href="/dbget-bin/get_linkdb?-t+alldb+path:xcb00790">All databases (20)</a>   
+<br><a href="/dbget-bin/get_linkdb?-N+path:xcb00790">Download RDF</a>   
+</pre>
+</div>
+</td></tr></table>
+
+
+<a href="/dbget/">DBGET</a> integrated database retrieval system</div>
+
+</body>
+</html>

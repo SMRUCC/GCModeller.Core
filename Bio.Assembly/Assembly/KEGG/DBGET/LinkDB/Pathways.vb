@@ -41,24 +41,30 @@ Namespace Assembly.KEGG.DBGET.LinkDB
             Next
         End Function
 
-        Public Iterator Function Download2(sp As String, Optional EXPORT As String = "./LinkDB-Pathways/") As IEnumerable(Of Pathway)
-            Dim Downloader As New WebClient()
+        Public Iterator Function Downloads(sp As String, Optional EXPORT As String = "./LinkDB-Pathways/") As IEnumerable(Of Pathway)
             Dim entries As New List(Of ListEntry)
+            Dim briefHash As Dictionary(Of String, BriteHEntry.Pathway) =
+                BriteHEntry.Pathway.LoadDictionary
+            Dim Downloader As New WebClient()
 
             For Each entry As ListEntry In AllEntries(sp)
                 Dim ImageUrl = String.Format("http://www.genome.jp/kegg/pathway/{0}/{1}.png", sp, entry.EntryID)
                 Dim pathwayPage = "http://www.genome.jp/dbget-bin/www_bget?pathway+" & entry.EntryID
                 Dim path As String = EXPORT & "/webpages/" & entry.EntryID & ".html"
                 Dim img As String = EXPORT & $"/{entry.EntryID}.png"
+                Dim bCode As String = Regex.Match(entry.EntryID, "\d+").Value
 
                 Call pathwayPage.GET.SaveTo(path)
                 Call Downloader.DownloadFile(ImageUrl, img)
 
                 Dim data As Pathway = Pathway.DownloadPage(path)
 
-                Call data.SaveAsXml(EXPORT & $"/{entry.EntryID}.Xml")
-
                 entries += entry
+
+                path = BriteHEntry.Pathway.CombineDIR(briefHash(bCode), EXPORT)
+                path = path & $"/{entry.EntryID}.Xml"
+
+                Call data.SaveAsXml(path)
 
                 Yield data
             Next

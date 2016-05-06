@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb02030" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description>Chemotaxis is the process by which cells sense chemical gradients in their environment and then move towards more favorable conditions. In chemotaxis, events at the receptors control autophosphorylation of the CheA histidine kinase, and the phosphohistidine is the substrate for the response regulator CheY, which catalyzes the transfer of the phosphoryl group to a conserved aspartate. The resulting CheY-P can interact with the switch mechanism in the motor. This interaction causes a change in behavior, such as in direction or speed of rotation of flagella.&lt;br&gt;</Description>
+  <Name>Bacterial chemotaxis - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Modules>
+    <DictionaryEntry Key="xcb_M00506" Value="CheA-CheYBV (chemotaxis) two-component regulatory system [PATH:xcb02030]" />
+  </Modules>
+  <Compound>
+    <DictionaryEntry Key="C00049" Value="L-Aspartate" />
+    <DictionaryEntry Key="C00107" Value="Dipeptide" />
+    <DictionaryEntry Key="C00121" Value="D-Ribose" />
+    <DictionaryEntry Key="C00124" Value="D-Galactose" />
+    <DictionaryEntry Key="C00208" Value="Maltose" />
+    <DictionaryEntry Key="C00716" Value="Serine" />
+  </Compound>
+  <PathwayMap Key="xcb02030" Value="Bacterial chemotaxis&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_1074" Value="chemotaxis protein; K03406 methyl-accepting chemotaxis protein [KO:K03406]" />
+    <DictionaryEntry Key="XC_2504" Value="chemotaxis protein; K03406 methyl-accepting chemotaxis protein [KO:K03406]" />
+    <DictionaryEntry Key="XC_2223" Value="chemotaxis protein; K03406 methyl-accepting chemotaxis protein [KO:K03406]" />
+    <DictionaryEntry Key="XC_1801" Value="chemotaxis protein; K03406 methyl-accepting chemotaxis protein [KO:K03406]" />
+    <DictionaryEntry Key="XC_1413" Value="chemotaxis protein; K03406 methyl-accepting chemotaxis protein [KO:K03406]" />
+    <DictionaryEntry Key="XC_1937" Value="methyl-accepting chemotaxis protein; K03406 methyl-accepting chemotaxis protein [KO:K03406]" />
+    <DictionaryEntry Key="XC_2315" Value="methyl-accepting chemotaxis protein; K03406 methyl-accepting chemotaxis protein [KO:K03406]" />
+    <DictionaryEntry Key="XC_0286" Value="chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:K05874]" />
+    <DictionaryEntry Key="XC_0336" Value="chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:K05874]" />
+    <DictionaryEntry Key="XC_0638" Value="chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:K05874]" />
+    <DictionaryEntry Key="XC_2304" Value="chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:K05874]" />
+    <DictionaryEntry Key="XC_2307" Value="chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:K05874]" />
+    <DictionaryEntry Key="XC_2308" Value="chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:K05874]" />
+    <DictionaryEntry Key="XC_2309" Value="chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:K05874]" />
+    <DictionaryEntry Key="XC_2311" Value="chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:K05874]" />
+    <DictionaryEntry Key="XC_2313" Value="chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:K05874]" />
+    <DictionaryEntry Key="XC_2314" Value="chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:K05874]" />
+    <DictionaryEntry Key="XC_2316" Value="chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:K05874]" />
+    <DictionaryEntry Key="XC_2320" Value="chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:K05874]" />
+    <DictionaryEntry Key="XC_2136" Value="chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:K05874]" />
+    <DictionaryEntry Key="XC_0843" Value="chemotaxis protein; K05875 methyl-accepting chemotaxis protein II, aspartate sensor receptor [KO:K05875]" />
+    <DictionaryEntry Key="XC_2284" Value="chemotaxis related protein; K03407 two-component system, chemotaxis family, sensor kinase CheA [EC:2.7.13.3] [KO:K03407] [EC:2.7.13.3]" />
+    <DictionaryEntry Key="XC_2303" Value="chemotaxis protein; K03407 two-component system, chemotaxis family, sensor kinase CheA [EC:2.7.13.3] [KO:K03407] [EC:2.7.13.3]" />
+    <DictionaryEntry Key="XC_1414" Value="chemotaxis histidine protein kinase; K03407 two-component system, chemotaxis family, sensor kinase CheA [EC:2.7.13.3] [KO:K03407] [EC:2.7.13.3]" />
+    <DictionaryEntry Key="XC_2300" Value="chemotaxis protein; K03408 purine-binding chemotaxis protein CheW [KO:K03408]" />
+    <DictionaryEntry Key="XC_2318" Value="chemotaxis protein; K03408 purine-binding chemotaxis protein CheW [KO:K03408]" />
+    <DictionaryEntry Key="XC_1802" Value="chemotaxis protein; K03408 purine-binding chemotaxis protein CheW [KO:K03408]" />
+    <DictionaryEntry Key="XC_1412" Value="chemotaxis protein; K03408 purine-binding chemotaxis protein CheW [KO:K03408]" />
+    <DictionaryEntry Key="XC_2282" Value="chemotaxis protein; K03413 two-component system, chemotaxis family, response regulator CheY [KO:K03413]" />
+    <DictionaryEntry Key="XC_2302" Value="chemotaxis response regulator; K03413 two-component system, chemotaxis family, response regulator CheY [KO:K03413]" />
+    <DictionaryEntry Key="XC_2130" Value="response regulator; K03413 two-component system, chemotaxis family, response regulator CheY [KO:K03413]" />
+    <DictionaryEntry Key="XC_2283" Value="chemotaxis related protein; K03414 chemotaxis protein CheZ [KO:K03414]" />
+    <DictionaryEntry Key="XC_3059" Value="protein-glutamate methylesterase; K03412 two-component system, chemotaxis family, response regulator CheB [EC:3.1.1.61] [KO:K03412] [EC:3.1.1.61]" />
+    <DictionaryEntry Key="XC_2323" Value="chemotaxis-specific methylesterase; K03412 two-component system, chemotaxis family, response regulator CheB [EC:3.1.1.61] [KO:K03412] [EC:3.1.1.61]" />
+    <DictionaryEntry Key="XC_2163" Value="protein-glutamate methylesterase; K03412 two-component system, chemotaxis family, response regulator CheB [EC:3.1.1.61] [KO:K03412] [EC:3.1.1.61]" />
+    <DictionaryEntry Key="XC_1409" Value="chemotaxis-specific methylesterase; K03412 two-component system, chemotaxis family, response regulator CheB [EC:3.1.1.61] [KO:K03412] [EC:3.1.1.61]" />
+    <DictionaryEntry Key="XC_1290" Value="protein-glutamate methylesterase (CheB); K03412 two-component system, chemotaxis family, response regulator CheB [EC:3.1.1.61] [KO:K03412] [EC:3.1.1.61]" />
+    <DictionaryEntry Key="XC_3757" Value="methyltransferase; K13924 two-component system, chemotaxis family, CheB/CheR fusion protein [EC:2.1.1.80 3.1.1.61] [KO:K13924] [EC:3.1.1.61 2.1.1.80]" />
+    <DictionaryEntry Key="XC_2233" Value="chemotaxis protein; K03415 two-component system, chemotaxis family, response regulator CheV [KO:K03415]" />
+    <DictionaryEntry Key="XC_2322" Value="chemoreceptor glutamine deamidase CheD; K03411 chemotaxis protein CheD [EC:3.5.1.44] [KO:K03411] [EC:3.5.1.44]" />
+    <DictionaryEntry Key="XC_3058" Value="chemotaxis protein; K00575 chemotaxis protein methyltransferase CheR [EC:2.1.1.80] [KO:K00575] [EC:2.1.1.80]" />
+    <DictionaryEntry Key="XC_2321" Value="chemotaxis protein methyltransferase; K00575 chemotaxis protein methyltransferase CheR [EC:2.1.1.80] [KO:K00575] [EC:2.1.1.80]" />
+    <DictionaryEntry Key="XC_1410" Value="response regulator for chemotaxis; K00575 chemotaxis protein methyltransferase CheR [EC:2.1.1.80] [KO:K00575] [EC:2.1.1.80]" />
+    <DictionaryEntry Key="XC_2261" Value="flagellar protein; K02410 flagellar motor switch protein FliG [KO:K02410]" />
+    <DictionaryEntry Key="XC_2267" Value="fliM; flagellar motor switch protein FliM [KO:K02416]" />
+    <DictionaryEntry Key="XC_2268" Value="flagellar protein; K02417 flagellar motor switch protein FliN/FliY [KO:K02417]" />
+    <DictionaryEntry Key="XC_2297" Value="motC; flagellar motor protein [KO:K02556]" />
+    <DictionaryEntry Key="XC_3724" Value="flagellar motor protein MotA; K02556 chemotaxis protein MotA [KO:K02556]" />
+    <DictionaryEntry Key="XC_2298" Value="flagellar motor protein MotD; K02557 chemotaxis protein MotB [KO:K02557]" />
+    <DictionaryEntry Key="XC_3725" Value="motB; flagellar motor protein MotB [KO:K02557]" />
+  </Genes>
+</KEGG.PathwayBrief>

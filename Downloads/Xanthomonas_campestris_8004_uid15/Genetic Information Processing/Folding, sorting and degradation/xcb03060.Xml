@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb03060" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description>The protein export is the active transport of proteins from the cytoplasm to the exterior of the cell, or to the periplasmic compartment in Gram-negative bacteria. The sec dependent pathway is the general protein export system that transports newly synthesized proteins into or across the cell membrane. The translocation channel is formed from a conserved trimeric membrane protein complex, called the Sec61/SecY complex. The twin-arginine translocation (Tat) pathway is another protein transport system that transports folded proteins in bacteria, archaea, and chloroplasts. Many Tat systems comprise three functionally different membrane proteins, TatA, TatB, and TatC, but TatA and TatE seem to have overlapping functions, with TatA having by far the more important role.&lt;br&gt;</Description>
+  <Name>Protein export - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound />
+  <PathwayMap Key="xcb03060" Value="Protein export&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_3320" Value="secY; preprotein translocase subunit SecY [KO:K03076]" />
+    <DictionaryEntry Key="XC_3353" Value="secE; preprotein translocase subunit SecE [KO:K03073]" />
+    <DictionaryEntry Key="XC_1588" Value="secG; preprotein translocase subunit SecG [KO:K03075]" />
+    <DictionaryEntry Key="XC_1738" Value="secD; preprotein translocase subunit SecD [KO:K03072]" />
+    <DictionaryEntry Key="XC_1739" Value="secF; preprotein translocase subunit SecF [KO:K03074]" />
+    <DictionaryEntry Key="XC_1737" Value="yajC; preprotein translocase subunit YajC [KO:K03210]" />
+    <DictionaryEntry Key="XC_4330" Value="inner membrane protein translocase component YidC; K03217 YidC/Oxa1 family membrane protein insertase [KO:K03217]" />
+    <DictionaryEntry Key="XC_3501" Value="azi; preprotein translocase subunit SecA [KO:K03070]" />
+    <DictionaryEntry Key="XC_0213" Value="preprotein translocase subunit SecB; K03071 preprotein translocase subunit SecB [KO:K03071]" />
+    <DictionaryEntry Key="XC_3048" Value="signal recognition particle protein; K03106 signal recognition particle subunit SRP54 [EC:3.6.5.4] [KO:K03106] [EC:3.6.5.4]" />
+    <DictionaryEntry Key="XC_1695" Value="cell division protein; K03110 fused signal recognition particle receptor [KO:K03110]" />
+    <DictionaryEntry Key="XC_4184" Value="tatA; twin-arginine translocation protein TatA [KO:K03116]" />
+    <DictionaryEntry Key="XC_4183" Value="sec-independent translocase; K03117 sec-independent protein translocase protein TatB [KO:K03117]" />
+    <DictionaryEntry Key="XC_4182" Value="sec-independent protein translocase; K03118 sec-independent protein translocase protein TatC [KO:K03118]" />
+    <DictionaryEntry Key="XC_2970" Value="signal peptidase I; K03100 signal peptidase I [EC:3.4.21.89] [KO:K03100] [EC:3.4.21.89]" />
+    <DictionaryEntry Key="XC_3086" Value="lspA; lipoprotein signal peptidase [KO:K03101] [EC:3.4.23.36]" />
+  </Genes>
+</KEGG.PathwayBrief>

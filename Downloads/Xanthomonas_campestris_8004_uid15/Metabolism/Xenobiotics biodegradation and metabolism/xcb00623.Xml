@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00623" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Toluene degradation - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00091" Value="Succinyl-CoA" />
+    <DictionaryEntry Key="C00156" Value="4-Hydroxybenzoate" />
+    <DictionaryEntry Key="C00180" Value="Benzoate" />
+    <DictionaryEntry Key="C00230" Value="3,4-Dihydroxybenzoate" />
+    <DictionaryEntry Key="C00261" Value="Benzaldehyde" />
+    <DictionaryEntry Key="C00512" Value="S-Benzoate coenzyme A" />
+    <DictionaryEntry Key="C00556" Value="Benzyl alcohol" />
+    <DictionaryEntry Key="C00587" Value="3-Hydroxybenzoate" />
+    <DictionaryEntry Key="C00633" Value="4-Hydroxybenzaldehyde" />
+    <DictionaryEntry Key="C01455" Value="Toluene" />
+    <DictionaryEntry Key="C01467" Value="3-Cresol" />
+    <DictionaryEntry Key="C01468" Value="4-Cresol" />
+    <DictionaryEntry Key="C01542" Value="o-Cresol" />
+    <DictionaryEntry Key="C02236" Value="4-Sulfobenzoate" />
+    <DictionaryEntry Key="C02923" Value="2,3-Dihydroxytoluene" />
+    <DictionaryEntry Key="C03067" Value="3-Hydroxybenzaldehyde" />
+    <DictionaryEntry Key="C03351" Value="3-Hydroxybenzyl alcohol" />
+    <DictionaryEntry Key="C04112" Value="3-Methyl-cis,cis-hexadienedioate" />
+    <DictionaryEntry Key="C04558" Value="3-Methylmuconolactone" />
+    <DictionaryEntry Key="C04559" Value="4-Methylmuconolactone" />
+    <DictionaryEntry Key="C04592" Value="Toluene-cis-dihydrodiol" />
+    <DictionaryEntry Key="C06677" Value="Toluene-4-sulfonate" />
+    <DictionaryEntry Key="C06678" Value="4-Sulfobenzyl alcohol" />
+    <DictionaryEntry Key="C06679" Value="4-Sulfobenzaldehyde" />
+    <DictionaryEntry Key="C06730" Value="4-Methylcatechol" />
+    <DictionaryEntry Key="C09816" Value="Benzylsuccinate" />
+    <DictionaryEntry Key="C09817" Value="Benzylsuccinyl-CoA" />
+    <DictionaryEntry Key="C09818" Value="E-Phenylitaconyl-CoA" />
+    <DictionaryEntry Key="C09819" Value="(Hydroxymethylphenyl)succinyl-CoA" />
+    <DictionaryEntry Key="C09820" Value="Benzoylsuccinyl-CoA" />
+    <DictionaryEntry Key="C18300" Value="2,4-Dichlorotoluene" />
+    <DictionaryEntry Key="C18301" Value="4,6-Dichloro-3-methyl-cis-1,2-dihydroxycyclohexa-3,5-diene" />
+    <DictionaryEntry Key="C18302" Value="4,6-Dichloro-3-methylcatechol" />
+    <DictionaryEntry Key="C18303" Value="3,5-Dichloro-2-methylmuconate" />
+    <DictionaryEntry Key="C18304" Value="2-Chloro-5-methyl-cis-dienelactone" />
+    <DictionaryEntry Key="C18305" Value="2-Chloro-5-methylmaleylacetate" />
+    <DictionaryEntry Key="C18306" Value="5-Methylmaleylacetate" />
+    <DictionaryEntry Key="C18307" Value="2-Methyl-3-oxoadipate" />
+    <DictionaryEntry Key="C18308" Value="3,5-Dichloro-2-methylmuconolactone" />
+    <DictionaryEntry Key="C18309" Value="3-Chloro-2-methyldienelactone" />
+    <DictionaryEntry Key="C18310" Value="3-Chloro-2-methylmaleylacetate" />
+    <DictionaryEntry Key="C18311" Value="4-Methyl-3-oxoadipate-enol-lactone" />
+    <DictionaryEntry Key="C18312" Value="4-Methyl-3-oxoadipate" />
+  </Compound>
+  <PathwayMap Key="xcb00623" Value="Toluene degradation&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_0366" Value="benzaldehyde dehydrogenase II; K00141 benzaldehyde dehydrogenase (NAD) [EC:1.2.1.28] [KO:K00141] [EC:1.2.1.28]" />
+    <DictionaryEntry Key="XC_1552" Value="carboxymethylenebutenolidase; K01061 carboxymethylenebutenolidase [EC:3.1.1.45] [KO:K01061] [EC:3.1.1.45]" />
+    <DictionaryEntry Key="XC_0539" Value="hypothetical protein; K01061 carboxymethylenebutenolidase [EC:3.1.1.45] [KO:K01061] [EC:3.1.1.45]" />
+    <DictionaryEntry Key="XC_0540" Value="hypothetical protein; K01061 carboxymethylenebutenolidase [EC:3.1.1.45] [KO:K01061] [EC:3.1.1.45]" />
+  </Genes>
+</KEGG.PathwayBrief>

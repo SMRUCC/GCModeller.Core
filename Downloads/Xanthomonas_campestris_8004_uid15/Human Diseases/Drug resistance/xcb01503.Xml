@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb01503" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description>Cationic antimicrobial peptides (CAMPs) play an important role in host defense against microbial infection and are key components of the innate immune response. These are found among all classes of life ranging from prokaryotes to humans. In addition to the natural peptides, thousands of synthetic variants have been produced. CAMPs weaken the integrity of the bacterial inner and outer membranes and subsequently kill bacterial cells. On the other hand, bacteria have developed a number of mechanisms against CAMPs. These resistance mechanisms include decreased affinity to CAMPs by substitution of anionic cell surface constituents with cationic molecules; biosynthesis and crosslinking of cell envelope components; external trapping mechanisms that bind or neutralize the CAMPs by direct secretion of proteins, or the release of CAMPs binding molecules from the host cell surface; membrane efflux pumps; and production of peptidases.&lt;br&gt;</Description>
+  <Name>Cationic antimicrobial peptide (CAMP) resistance - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound />
+  <PathwayMap Key="xcb01503" Value="Cationic antimicrobial peptide (CAMP) resistance&lt;center&gt;" />
+  <Genes />
+</KEGG.PathwayBrief>

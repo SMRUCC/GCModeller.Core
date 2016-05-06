@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00600" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Sphingolipid metabolism - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00065" Value="L-Serine" />
+    <DictionaryEntry Key="C00154" Value="Palmitoyl-CoA" />
+    <DictionaryEntry Key="C00195" Value="N-Acylsphingosine" />
+    <DictionaryEntry Key="C00319" Value="Sphingosine" />
+    <DictionaryEntry Key="C00346" Value="Ethanolamine phosphate" />
+    <DictionaryEntry Key="C00550" Value="Sphingomyelin" />
+    <DictionaryEntry Key="C00836" Value="Sphinganine" />
+    <DictionaryEntry Key="C01120" Value="Sphinganine 1-phosphate" />
+    <DictionaryEntry Key="C01190" Value="beta-D-Glucosyl-(1&lt;-&gt;1)-ceramide" />
+    <DictionaryEntry Key="C01290" Value="beta-D-Galactosyl-(1-&gt;4)-beta-D-glucosyl-(1&lt;-&gt;1)-ceramide" />
+    <DictionaryEntry Key="C01747" Value="Psychosine" />
+    <DictionaryEntry Key="C02686" Value="Galactosylceramide" />
+    <DictionaryEntry Key="C02934" Value="3-Dehydrosphinganine" />
+    <DictionaryEntry Key="C02960" Value="Ceramide 1-phosphate" />
+    <DictionaryEntry Key="C03640" Value="Sphingosyl-phosphocholine" />
+    <DictionaryEntry Key="C05681" Value="Ceramide 2-aminoethylphosphonate" />
+    <DictionaryEntry Key="C06062" Value="Ceramide phosphoethanolamine" />
+    <DictionaryEntry Key="C06124" Value="Sphingosine 1-phosphate" />
+    <DictionaryEntry Key="C06125" Value="Sulfatide" />
+    <DictionaryEntry Key="C06126" Value="Digalactosylceramide" />
+    <DictionaryEntry Key="C06127" Value="Digalactosylceramide sulfate" />
+    <DictionaryEntry Key="C06128" Value="GM4" />
+    <DictionaryEntry Key="C12126" Value="Dihydroceramide" />
+    <DictionaryEntry Key="C12144" Value="Phytosphingosine" />
+    <DictionaryEntry Key="C12145" Value="Phytoceramide" />
+  </Compound>
+  <PathwayMap Key="xcb00600" Value="Sphingolipid metabolism&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_1675" Value="hypothetical protein; K00720 ceramide glucosyltransferase [EC:2.4.1.80] [KO:K00720] [EC:2.4.1.80]" />
+    <DictionaryEntry Key="XC_3172" Value="glycosyl hydrolase; K01201 glucosylceramidase [EC:3.2.1.45] [KO:K01201] [EC:3.2.1.45]" />
+    <DictionaryEntry Key="XC_2985" Value="beta-galactosidase; K01190 beta-galactosidase [EC:3.2.1.23] [KO:K01190] [EC:3.2.1.23]" />
+    <DictionaryEntry Key="XC_4208" Value="beta-galactosidase; K01190 beta-galactosidase [EC:3.2.1.23] [KO:K01190] [EC:3.2.1.23]" />
+  </Genes>
+</KEGG.PathwayBrief>

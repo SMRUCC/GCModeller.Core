@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00900" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description>Terpenoids, also known as isoprenoids, are a large class of natural products consisting of isoprene (C5) units. There are two biosynthetic pathways, the mevalonate pathway [MD:M00095] and the non-mevalonate pathway or the MEP/DOXP pathway [MD:M00096], for the terpenoid building blocks: isopentenyl diphosphate (IPP) and dimethylallyl diphosphate (DMAPP). The action of prenyltransferases then generates higher-order building blocks: geranyl diphosphate (GPP), farsenyl diphosphate (FPP), and geranylgeranyl diphosphate (GGPP), which are the precursors of monoterpenoids (C10), sesquiterpenoids (C15), and diterpenoids (C20), respectively. Condensation of these building blocks gives rise to the precursors of sterols (C30) and carotenoids (C40). The MEP/DOXP pathway is absent in higher animals and fungi, but in green plants the MEP/DOXP and mevalonate pathways co-exist in separate cellular compartments. The MEP/DOXP pathway, operating in the plastids, is responsible for the formation of essential oil monoterpenes and linalyl acetate, some sesquiterpenes, diterpenes, and carotenoids and phytol. The mevalonate pathway, operating in the cytosol, gives rise to triterpenes, sterols, and most sesquiterpenes.&lt;br&gt;</Description>
+  <Name>Terpenoid backbone biosynthesis - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00022" Value="Pyruvate" />
+    <DictionaryEntry Key="C00024" Value="Acetyl-CoA" />
+    <DictionaryEntry Key="C00118" Value="D-Glyceraldehyde 3-phosphate" />
+    <DictionaryEntry Key="C00129" Value="Isopentenyl diphosphate" />
+    <DictionaryEntry Key="C00235" Value="Dimethylallyl diphosphate" />
+    <DictionaryEntry Key="C00332" Value="Acetoacetyl-CoA" />
+    <DictionaryEntry Key="C00341" Value="Geranyl diphosphate" />
+    <DictionaryEntry Key="C00353" Value="Geranylgeranyl diphosphate" />
+    <DictionaryEntry Key="C00356" Value="(S)-3-Hydroxy-3-methylglutaryl-CoA" />
+    <DictionaryEntry Key="C00418" Value="(R)-Mevalonate" />
+    <DictionaryEntry Key="C00448" Value="trans,trans-Farnesyl diphosphate" />
+    <DictionaryEntry Key="C00621" Value="Dolichyl diphosphate" />
+    <DictionaryEntry Key="C01107" Value="(R)-5-Phosphomevalonate" />
+    <DictionaryEntry Key="C01126" Value="(2E,6E)-Farnesol" />
+    <DictionaryEntry Key="C01143" Value="(R)-5-Diphosphomevalonate" />
+    <DictionaryEntry Key="C01230" Value="all-trans-Hexaprenyl diphosphate" />
+    <DictionaryEntry Key="C02321" Value="Rubber particle" />
+    <DictionaryEntry Key="C03461" Value="2-trans,6-trans-Farnesal" />
+    <DictionaryEntry Key="C04145" Value="all-trans-Nonaprenyl diphosphate" />
+    <DictionaryEntry Key="C04146" Value="all-trans-Octaprenyl diphosphate" />
+    <DictionaryEntry Key="C04216" Value="all-trans-Heptaprenyl diphosphate" />
+    <DictionaryEntry Key="C04506" Value="Protein C-terminal S-farnesyl-L-cysteine" />
+    <DictionaryEntry Key="C04574" Value="di-trans,poly-cis-Undecaprenyl diphosphate" />
+    <DictionaryEntry Key="C04748" Value="Protein C-terminal S-farnesyl-L-cysteine methyl ester" />
+    <DictionaryEntry Key="C05427" Value="Phytyl diphosphate" />
+    <DictionaryEntry Key="C05859" Value="Dehydrodolichol diphosphate" />
+    <DictionaryEntry Key="C11434" Value="2-C-Methyl-D-erythritol 4-phosphate" />
+    <DictionaryEntry Key="C11435" Value="4-(Cytidine 5'-diphospho)-2-C-methyl-D-erythritol" />
+    <DictionaryEntry Key="C11436" Value="2-Phospho-4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol" />
+    <DictionaryEntry Key="C11437" Value="1-Deoxy-D-xylulose 5-phosphate" />
+    <DictionaryEntry Key="C11453" Value="2-C-Methyl-D-erythritol 2,4-cyclodiphosphate" />
+    <DictionaryEntry Key="C11811" Value="1-Hydroxy-2-methyl-2-butenyl 4-diphosphate" />
+    <DictionaryEntry Key="C16521" Value="Isoprene" />
+    <DictionaryEntry Key="C16826" Value="2-cis,6-trans-Farnesyl diphosphate" />
+    <DictionaryEntry Key="C17432" Value="all-trans-Decaprenyl diphosphate" />
+    <DictionaryEntry Key="C18321" Value="(2Z,6Z,10Z,14Z,18Z,22Z,26Z,30Z,34E)-Decaprenyl diphosphate" />
+    <DictionaryEntry Key="C19691" Value="Farnesylcysteine" />
+    <DictionaryEntry Key="C19760" Value="(2Z,6Z)-Farnesyl diphosphate" />
+    <DictionaryEntry Key="C19852" Value="tritrans,heptacis-Undecaprenyl diphosphate" />
+    <DictionaryEntry Key="C19853" Value="trans,polycis-Polyprenyl diphosphate" />
+    <DictionaryEntry Key="C20120" Value="S-Farnesyl protein" />
+    <DictionaryEntry Key="C20121" Value="trans,trans-Farnesyl phosphate" />
+    <DictionaryEntry Key="C20345" Value="Isopentenyl phosphate" />
+    <DictionaryEntry Key="C20847" Value="(R)-Mevalonate 3-phosphate" />
+    <DictionaryEntry Key="C20848" Value="(R)-Mevalonate 3,5-bisphosphate" />
+  </Compound>
+  <PathwayMap Key="xcb00900" Value="Terpenoid backbone biosynthesis&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_1678" Value="1-deoxy-D-xylulose-5-phosphate synthase; K01662 1-deoxy-D-xylulose-5-phosphate synthase [EC:2.2.1.7] [KO:K01662] [EC:2.2.1.7]" />
+    <DictionaryEntry Key="XC_2871" Value="1-deoxy-D-xylulose 5-phosphate reductoisomerase; K00099 1-deoxy-D-xylulose-5-phosphate reductoisomerase [EC:1.1.1.267] [KO:K00099] [EC:1.1.1.267]" />
+    <DictionaryEntry Key="XC_2529" Value="ispD; 2-C-methyl-D-erythritol 4-phosphate cytidylyltransferase [KO:K00991] [EC:2.7.7.60]" />
+    <DictionaryEntry Key="XC_3359" Value="ipk; 4-diphosphocytidyl-2-C-methyl-D-erythritol kinase [KO:K00919] [EC:2.7.1.148]" />
+    <DictionaryEntry Key="XC_2528" Value="ispF; 2-C-methyl-D-erythritol 2,4-cyclodiphosphate synthase [KO:K01770] [EC:4.6.1.12]" />
+    <DictionaryEntry Key="XC_2455" Value="ispG; 4-hydroxy-3-methylbut-2-en-1-yl diphosphate synthase [KO:K03526] [EC:1.17.7.3 1.17.7.1]" />
+    <DictionaryEntry Key="XC_3085" Value="ispH; 4-hydroxy-3-methylbut-2-enyl diphosphate reductase [KO:K03527] [EC:1.17.7.4]" />
+    <DictionaryEntry Key="XC_2943" Value="acetoacetyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9] [KO:K00626] [EC:2.3.1.9]" />
+    <DictionaryEntry Key="XC_0204" Value="acetyl-CoA acetyltransferase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9] [KO:K00626] [EC:2.3.1.9]" />
+    <DictionaryEntry Key="XC_1516" Value="geranyltranstransferase; K00795 farnesyl diphosphate synthase [EC:2.5.1.1 2.5.1.10] [KO:K00795] [EC:2.5.1.10 2.5.1.1]" />
+    <DictionaryEntry Key="XC_1377" Value="octaprenyl-diphosphate synthase; K02523 octaprenyl-diphosphate synthase [EC:2.5.1.90] [KO:K02523] [EC:2.5.1.90]" />
+    <DictionaryEntry Key="XC_2869" Value="undecaprenyl pyrophosphate synthase; K00806 undecaprenyl diphosphate synthase [EC:2.5.1.31] [KO:K00806] [EC:2.5.1.31]" />
+    <DictionaryEntry Key="XC_0112" Value="hypothetical protein; K00587 protein-S-isoprenylcysteine O-methyltransferase [EC:2.1.1.100] [KO:K00587] [EC:2.1.1.100]" />
+  </Genes>
+</KEGG.PathwayBrief>

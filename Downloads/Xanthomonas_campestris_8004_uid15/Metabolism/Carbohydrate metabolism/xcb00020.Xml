@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00020" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description>The citrate cycle (TCA cycle, Krebs cycle) is an important aerobic pathway for the final steps of the oxidation of carbohydrates and fatty acids. The cycle starts with acetyl-CoA, the activated form of acetate, derived from glycolysis and pyruvate oxidation for carbohydrates and from beta oxidation of fatty acids. The two-carbon acetyl group in acetyl-CoA is transferred to the four-carbon compound of oxaloacetate to form the six-carbon compound of citrate. In a series of reactions two carbons in citrate are oxidized to CO2 and the reaction pathway supplies NADH for use in the oxidative phosphorylation and other metabolic processes. The pathway also supplies important precursor metabolites including 2-oxoglutarate. At the end of the cycle the remaining four-carbon part is transformed back to oxaloacetate. According to the genome sequence data, many organisms seem to lack genes for the full cycle [MD:M00009], but contain genes for specific segments [MD:M00010 M00011].&lt;br&gt;</Description>
+  <Name>Citrate cycle (TCA cycle) - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Modules>
+    <DictionaryEntry Key="xcb_M00009" Value="Citrate cycle (TCA cycle, Krebs cycle) [PATH:xcb00020]" />
+    <DictionaryEntry Key="xcb_M00010" Value="Citrate cycle, first carbon oxidation, oxaloacetate =&gt; 2-oxoglutarate [PATH:xcb00020]" />
+    <DictionaryEntry Key="xcb_M00011" Value="Citrate cycle, second carbon oxidation, 2-oxoglutarate =&gt; oxaloacetate [PATH:xcb00020]" />
+    <DictionaryEntry Key="xcb_M00307" Value="Pyruvate oxidation, pyruvate =&gt; acetyl-CoA [PATH:xcb00020]" />
+  </Modules>
+  <Compound>
+    <DictionaryEntry Key="C00022" Value="Pyruvate" />
+    <DictionaryEntry Key="C00024" Value="Acetyl-CoA" />
+    <DictionaryEntry Key="C00026" Value="2-Oxoglutarate" />
+    <DictionaryEntry Key="C00036" Value="Oxaloacetate" />
+    <DictionaryEntry Key="C00042" Value="Succinate" />
+    <DictionaryEntry Key="C00068" Value="Thiamin diphosphate" />
+    <DictionaryEntry Key="C00074" Value="Phosphoenolpyruvate" />
+    <DictionaryEntry Key="C00091" Value="Succinyl-CoA" />
+    <DictionaryEntry Key="C00122" Value="Fumarate" />
+    <DictionaryEntry Key="C00149" Value="(S)-Malate" />
+    <DictionaryEntry Key="C00158" Value="Citrate" />
+    <DictionaryEntry Key="C00311" Value="Isocitrate" />
+    <DictionaryEntry Key="C00417" Value="cis-Aconitate" />
+    <DictionaryEntry Key="C05125" Value="2-(alpha-Hydroxyethyl)thiamine diphosphate" />
+    <DictionaryEntry Key="C05379" Value="Oxalosuccinate" />
+    <DictionaryEntry Key="C05381" Value="3-Carboxy-1-hydroxypropyl-ThPP" />
+    <DictionaryEntry Key="C15972" Value="Enzyme N6-(lipoyl)lysine" />
+    <DictionaryEntry Key="C15973" Value="Enzyme N6-(dihydrolipoyl)lysine" />
+    <DictionaryEntry Key="C16254" Value="[Dihydrolipoyllysine-residue succinyltransferase] S-succinyldihydrolipoyllysine" />
+    <DictionaryEntry Key="C16255" Value="[Dihydrolipoyllysine-residue acetyltransferase] S-acetyldihydrolipoyllysine" />
+  </Compound>
+  <PathwayMap Key="xcb00020" Value="Citrate cycle (TCA cycle)&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_0944" Value="gltA; type II citrate synthase [KO:K01647] [EC:2.3.3.1]" />
+    <DictionaryEntry Key="XC_3213" Value="acnA; aconitate hydratase [KO:K01681] [EC:4.2.1.3]" />
+    <DictionaryEntry Key="XC_2329" Value="aconitate hydratase; K01681 aconitate hydratase [EC:4.2.1.3] [KO:K01681] [EC:4.2.1.3]" />
+    <DictionaryEntry Key="XC_2326" Value="bifunctional aconitate hydratase 2/2-methylisocitrate dehydratase; K01682 aconitate hydratase 2 / 2-methylisocitrate dehydratase [EC:4.2.1.3 4.2.1.99] [KO:K01682] [EC:4.2.1.99 4.2.1.3]" />
+    <DictionaryEntry Key="XC_3854" Value="isocitrate dehydrogenase; K00031 isocitrate dehydrogenase [EC:1.1.1.42] [KO:K00031] [EC:1.1.1.42]" />
+    <DictionaryEntry Key="XC_3268" Value="isocitrate dehydrogenase; K00030 isocitrate dehydrogenase (NAD+) [EC:1.1.1.41] [KO:K00030] [EC:1.1.1.41]" />
+    <DictionaryEntry Key="XC_2749" Value="sucA; 2-oxoglutarate dehydrogenase E1 [KO:K00164] [EC:1.2.4.2]" />
+    <DictionaryEntry Key="XC_2750" Value="dihydrolipoamide succinyltransferase; K00658 2-oxoglutarate dehydrogenase E2 component (dihydrolipoamide succinyltransferase) [EC:2.3.1.61] [KO:K00658] [EC:2.3.1.61]" />
+    <DictionaryEntry Key="XC_2751" Value="dihydrolipoamide dehydrogenase; K00382 dihydrolipoamide dehydrogenase [EC:1.8.1.4] [KO:K00382] [EC:1.8.1.4]" />
+    <DictionaryEntry Key="XC_3689" Value="dihydrolipoamide dehydrogenase; K00382 dihydrolipoamide dehydrogenase [EC:1.8.1.4] [KO:K00382] [EC:1.8.1.4]" />
+    <DictionaryEntry Key="XC_1064" Value="succinyl-CoA synthetase subunit alpha; K01902 succinyl-CoA synthetase alpha subunit [EC:6.2.1.5] [KO:K01902] [EC:6.2.1.5]" />
+    <DictionaryEntry Key="XC_1063" Value="sucC; succinyl-CoA synthetase subunit beta [KO:K01903] [EC:6.2.1.5]" />
+    <DictionaryEntry Key="XC_0550" Value="CoA transferase; K18118 succinyl-CoA:acetate CoA-transferase [EC:2.8.3.18] [KO:K18118] [EC:2.8.3.18]" />
+    <DictionaryEntry Key="XC_1983" Value="sdhA; succinate dehydrogenase flavoprotein subunit [KO:K00239] [EC:1.3.5.4 1.3.5.1]" />
+    <DictionaryEntry Key="XC_1985" Value="sdhB; succinate dehydrogenase iron-sulfur subunit [KO:K00240] [EC:1.3.5.4 1.3.5.1]" />
+    <DictionaryEntry Key="XC_1981" Value="succinate dehydrogenase membrane anchor subunit; K00241 succinate dehydrogenase / fumarate reductase, cytochrome b subunit [KO:K00241]" />
+    <DictionaryEntry Key="XC_1982" Value="succinate dehydrogenase membrane anchor subunit; K00242 succinate dehydrogenase / fumarate reductase, membrane anchor subunit [KO:K00242]" />
+    <DictionaryEntry Key="XC_2822" Value="fumarate hydratase; K01676 fumarate hydratase, class I [EC:4.2.1.2] [KO:K01676] [EC:4.2.1.2]" />
+    <DictionaryEntry Key="XC_2742" Value="fumC; fumarate hydratase [KO:K01679] [EC:4.2.1.2]" />
+    <DictionaryEntry Key="XC_3307" Value="malate dehydrogenase; K00024 malate dehydrogenase [EC:1.1.1.37] [KO:K00024] [EC:1.1.1.37]" />
+    <DictionaryEntry Key="XC_0588" Value="aceE; pyruvate dehydrogenase subunit E1 [KO:K00163] [EC:1.2.4.1]" />
+    <DictionaryEntry Key="XC_0444" Value="pyruvate dehydrogenase E1 alpha subunit; K00161 pyruvate dehydrogenase E1 component alpha subunit [EC:1.2.4.1] [KO:K00161] [EC:1.2.4.1]" />
+    <DictionaryEntry Key="XC_0443" Value="pyruvate dehydrogenase E1 beta subunit; K00162 pyruvate dehydrogenase E1 component beta subunit [EC:1.2.4.1] [KO:K00162] [EC:1.2.4.1]" />
+    <DictionaryEntry Key="XC_0441" Value="branched-chain alpha-keto acid dehydrogenase subunit E2; K00627 pyruvate dehydrogenase E2 component (dihydrolipoamide acetyltransferase) [EC:2.3.1.12] [KO:K00627] [EC:2.3.1.12]" />
+    <DictionaryEntry Key="XC_3691" Value="dihydrolipoamide acetyltransferase; K00627 pyruvate dehydrogenase E2 component (dihydrolipoamide acetyltransferase) [EC:2.3.1.12] [KO:K00627] [EC:2.3.1.12]" />
+  </Genes>
+</KEGG.PathwayBrief>

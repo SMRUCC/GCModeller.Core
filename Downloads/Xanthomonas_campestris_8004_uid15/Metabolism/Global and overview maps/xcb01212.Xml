@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb01212" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Fatty acid metabolism - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Modules>
+    <DictionaryEntry Key="xcb_M00082" Value="Fatty acid biosynthesis, initiation [PATH:xcb01212]" />
+    <DictionaryEntry Key="xcb_M00083" Value="Fatty acid biosynthesis, elongation [PATH:xcb01212]" />
+    <DictionaryEntry Key="xcb_M00086" Value="beta-Oxidation, acyl-CoA synthesis [PATH:xcb01212]" />
+    <DictionaryEntry Key="xcb_M00087" Value="beta-Oxidation [PATH:xcb01212]" />
+  </Modules>
+  <Compound />
+  <PathwayMap Key="xcb01212" Value="Fatty acid metabolism&lt;center&gt;" />
+  <Genes />
+</KEGG.PathwayBrief>

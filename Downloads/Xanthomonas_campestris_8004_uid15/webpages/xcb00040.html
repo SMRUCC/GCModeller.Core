@@ -1,0 +1,288 @@
+<!doctype html>
+<html><head>
+<title>KEGG PATHWAY: xcb00040</title>
+<link type="text/css" rel="stylesheet" href="/css/gn2.css">
+<link rel="stylesheet" href="/css/bget.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/bgetm.css" media="only screen and (max-width: 768px)">
+<style>.kcfd{display:none;}</style>
+<script>
+<!--
+var getElementsByClassName = document.getElementsByClassName ?
+  function (cl){
+    return document.getElementsByClassName(cl);
+  } :
+  function (cl){
+    var elms = [];
+    var objs = document.getElementsByTagName('*');
+    for(var i=0;i<objs.length;i++){
+      var obj = objs[i];
+      if(obj.className == cl){
+        elms.push(obj);
+      }
+    }
+    return elms;
+  };
+function toggleField(clk,cl,show,hide){
+  var objs = getElementsByClassName(cl);
+  for(var i=0;i<objs.length;i++){
+    var obj = objs[i];
+    if(!obj.style.display||obj.style.display == 'none'){
+      obj.style.display = 'block';
+      clk.innerHTML = '&nbsp;&laquo; '+hide;
+    }
+    else{
+      obj.style.display = 'none';
+      clk.innerHTML = '&nbsp;&raquo; '+show;
+    }
+  }
+}
+function toggleData(bobj,e){
+  var id = bobj.id.replace(/[^0-9]/g,'');
+  var dt = document.getElementById('kcfd'+id);
+  if(!dt.style.display||dt.style.display == 'none'){
+    bobj.name = 'hide_kcf';
+    bobj.alt = 'Hide';
+    bobj.src = '/Fig/bget/button_Hib.gif';
+    dt.style.display = 'block';
+  }
+  else{
+    bobj.name = 'show_kcf';
+    bobj.alt = 'Show';
+    bobj.src = '/Fig/bget/button_Sb.gif';
+    dt.style.display = 'none';
+  }
+}
+function btn(bobj,img) {
+  bobj.src = "/Fig/bget/button_" + img + ".gif";
+}
+function btn_e(e) {
+  e = e || event;
+  var obj = e.target;
+  var img = e.target.src;
+  var img_base = img.replace(/\\/g,'/').replace(/(b|bd|bh)\.gif$/,'');
+  if(e.type == 'mousedown'||e.type == 'touchstart'){
+    obj.src = img_base +'bd.gif';
+  }
+  else if(e.type == 'mouseover'){
+    obj.src = img_base +'bh.gif';
+  }
+  else if(e.type == 'mouseup'||e.type == 'touchend'){
+    obj.src = img_base +'b.gif';
+  }
+  else if(e.type == 'mouseout'){
+    obj.src = img_base +'b.gif';
+  }
+}
+function init(){
+  for(var i=1;i<=1;i++){
+    if(document.getElementById('kcfb'+i)){
+      document.getElementById('kcfb'+i).onclick = function(e){toggleData(this,e);};
+      document.getElementById('kcfb'+i).onmousedown = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseover = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseout = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseup = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchstart = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchend = function(e){btn_e(e);};
+    }
+  }
+}
+function Link_XtrctSeq2(form) {
+    var dna_from;
+    var dna_to;
+    var dna_len;
+    var plus_up   = Number(form.XtrctSeq_UP.value) ;
+    var plus_down = Number(form.XtrctSeq_DOWN.value);
+    var vector    = Number(form.VECTOR.value);
+    var org       = form.ORG.value;
+    var chr       = form.CHR.value;
+    var kid       = form.KEGGID.value;
+    var url;
+
+    if (plus_up == 0 && plus_down == 0) {
+	url = "/dbget-bin/www_bget?-f+-n+n+" + kid;
+    }
+    else {
+	if (vector == 1) {
+	    dna_from  = Number(form.FROM.value)  - plus_up;
+	    dna_to    = Number(form.TO.value) + plus_down;
+	} else {
+	    dna_from  = Number(form.FROM.value)  - plus_down;
+	    dna_to    = Number(form.TO.value) + plus_up;
+	}
+
+	url = "/dbget-bin/cut_sequence_genes.pl?FROM=" + dna_from + "&TO=" + dna_to +"&VECTOR=" + vector + "&ORG=" + org;
+	if (chr) url += "&CHR=" + chr;
+    }
+    //window.open( url, "_self" );
+    location.href = url;
+}
+function go_taxonomy(form,params){
+  for(var key in params){
+    if(form[key]){
+      form.setAttribute(key,params[key]);
+    }
+    else{
+      var obj = document.createElement('input');
+      obj.setAttribute('type','hidden');
+      obj.setAttribute('name',key);
+      obj.setAttribute('value',params[key]);
+      form.appendChild(obj);
+    }
+  }
+  form.submit();
+}
+window.onload=function(){window.focus();init();};
+//--->
+</script>
+
+</head>
+<body>
+<div>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="70"><a href="/kegg/kegg2.html"><img align="middle" alt="KEGG" border="0" src="/Fig/bget/kegg3.gif"></a></td><td>&nbsp;&nbsp;&nbsp;</td><td><a name="pathway:xcb00040"></a><font class="title3">PATHWAY: xcb00040</font></td><td align="right" valign="bottom"><a href="javascript:void(window.open('/kegg/document/help_bget_pathway.html','KEGG_Help','toolbar=no,location=no,directories=no,width=720,height=640,resizable=yes,scrollbars=yes'))"><img align="middle" alt="Help" border="0" name="help" onmousedown="btn(this,'Hbd')" onmouseout="btn(this,'Hb')" onmouseover="btn(this,'Hbh')" onmouseup="btn(this,'Hb')" ontouchend="btn(this,'Hb')" ontouchstart="btn(this,'Hbd')" src="/Fig/bget/button_Hb.gif"></a></td></tr></table>
+<form method="post" action="/dbget-bin/www_bget" enctype="application/x-www-form-urlencoded" name="form1"><table border=0 cellpadding=1 cellspacing=0>
+<tr>
+<td class="fr3">
+<table border=0 cellpadding=2 cellspacing=0 style="border-bottom:#000 1px solid">
+
+<tr><th class="th30" align="left" valign="middle" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Entry</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="left"><code><nobr>xcb00040&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pathway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</nobr></code></td> <td align="right"><br></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Name</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Pentose and glucuronate interconversions - Xanthomonas campestris pv. campestris 8004<br>
+</div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Class</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Metabolism; Carbohydrate metabolism<br>
+<a href="/kegg-bin/get_htext?query=xcb00040&amp;htext=xcb00001.keg"><img align="middle" alt="BRITE hierarchy" border="0" name="BRH" onmousedown="btn(this,'BHbd')" onmouseout="btn(this,'BHb')" onmouseover="btn(this,'BHbh')" onmouseup="btn(this,'BHb')" ontouchend="btn(this,'BHb')" ontouchstart="btn(this,'BHbd')" src="/Fig/bget/button_BHb.gif"></a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Pathway&nbsp;map</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5.5em"><div><nobr><a href="/kegg-bin/show_pathway?xcb00040">xcb00040</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Pentose and glucuronate interconversions</div></td></tr></table><center><a href="/kegg-bin/show_pathway?xcb00040"><img src="/kegg/misc/thumbnail/map00040.gif" alt="xcb00040" style="border-style:none;"></a></center><br><a href="http://www.kegg.jp/kegg-bin/show_ot_map?map=00040"><img align="middle" alt="All organisms" border="0" name="AO" onmousedown="btn(this,'AObd')" onmouseout="btn(this,'AOb')" onmouseover="btn(this,'AObh')" onmouseup="btn(this,'AOb')" ontouchend="btn(this,'AOb')" ontouchstart="btn(this,'AObd')" src="/Fig/bget/button_AOb.gif"></a><a href="http://www.kegg.jp/kegg-bin/view_ortholog_table?map=00040"><img align="middle" alt="Ortholog table" border="0" name="OT" onmousedown="btn(this,'OTbd')" onmouseout="btn(this,'OTb')" onmouseover="btn(this,'OTbh')" onmouseup="btn(this,'OTb')" ontouchend="btn(this,'OTb')" ontouchstart="btn(this,'OTbd')" src="/Fig/bget/button_OTb.gif"></a></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Module</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:6.5em"><div><nobr><a href="/kegg-bin/show_module?xcb_M00061">xcb_M00061</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Glucuronate degradation, D-glucuronate => pyruvate + D-glyceraldehyde 3P [PATH:<a href="/kegg-bin/show_pathway?xcb00040+M00061">xcb00040</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Organism</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Xanthomonas campestris pv. campestris 8004 [GN:<a href="/dbget-bin/www_bget?gn:xcb">xcb</a>]<br>
+</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Gene</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1850">XC_1850</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>pectinesterase; K01051 pectinesterase [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.11">3.1.1.11</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01051">K01051</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.11">3.1.1.11</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0125">XC_0125</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>pectin methylesterase-like protein; K01051 pectinesterase [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.11">3.1.1.11</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01051">K01051</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.11">3.1.1.11</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3590">XC_3590</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>pectate lyase; K01728 pectate lyase [EC:<a href="/dbget-bin/www_bget?ec:4.2.2.2">4.2.2.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01728">K01728</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.2.2.2">4.2.2.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3591">XC_3591</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>pectate lyase; K01728 pectate lyase [EC:<a href="/dbget-bin/www_bget?ec:4.2.2.2">4.2.2.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01728">K01728</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.2.2.2">4.2.2.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1298">XC_1298</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>pectate lyase II; K01728 pectate lyase [EC:<a href="/dbget-bin/www_bget?ec:4.2.2.2">4.2.2.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01728">K01728</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.2.2.2">4.2.2.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0160">XC_0160</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5-keto-4-deoxyuronate isomerase; K01815 4-deoxy-L-threo-5-hexosulose-uronate ketol-isomerase [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.17">5.3.1.17</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01815">K01815</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.17">5.3.1.17</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0161">XC_0161</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>short chain dehydrogenase; K00065 2-deoxy-D-gluconate 3-dehydrogenase [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.125">1.1.1.125</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00065">K00065</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.125">1.1.1.125</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1849">XC_1849</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>polygalacturonase; K01184 polygalacturonase [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.15">3.2.1.15</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01184">K01184</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.15">3.2.1.15</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0705">XC_0705</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>endopolygalacturonase; K01184 polygalacturonase [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.15">3.2.1.15</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01184">K01184</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.15">3.2.1.15</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4209">XC_4209</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glucuronate isomerase; K01812 glucuronate isomerase [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.12">5.3.1.12</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01812">K01812</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.12">5.3.1.12</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4195">XC_4195</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>starvation sensing protein; K08323 mannonate dehydratase [EC:<a href="/dbget-bin/www_bget?ec:4.2.1.8">4.2.1.8</a>] [KO:<a href="/dbget-bin/www_bget?ko:K08323">K08323</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.2.1.8">4.2.1.8</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4198">XC_4198</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>mannitol dehydrogenase; K00040 fructuronate reductase [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.57">1.1.1.57</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00040">K00040</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.57">1.1.1.57</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2733">XC_2733</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-glucose dehydrogenase; K00012 UDPglucose 6-dehydrogenase [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.22">1.1.1.22</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00012">K00012</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.22">1.1.1.22</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1930">XC_1930</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UTP-glucose-1-phosphate uridylyltransferase; K00963 UTP--glucose-1-phosphate uridylyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.9">2.7.7.9</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00963">K00963</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.9">2.7.7.9</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0469">XC_0469</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>ribulose-phosphate 3-epimerase; K01783 ribulose-phosphate 3-epimerase [EC:<a href="/dbget-bin/www_bget?ec:5.1.3.1">5.1.3.1</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01783">K01783</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.1.3.1">5.1.3.1</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2478">XC_2478</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-xylulokinase; K00854 xylulokinase [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.17">2.7.1.17</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00854">K00854</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.17">2.7.1.17</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2477">XC_2477</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>xylose isomerase; K01805 xylose isomerase [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.5">5.3.1.5</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01805">K01805</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.5">5.3.1.5</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4191">XC_4191</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>xylose isomerase; K01805 xylose isomerase [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.5">5.3.1.5</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01805">K01805</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.5">5.3.1.5</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2445">XC_2445</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:<a href="/dbget-bin/www_bget?ec:1.2.1.3">1.2.1.3</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00128">K00128</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.2.1.3">1.2.1.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3421">XC_3421</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:<a href="/dbget-bin/www_bget?ec:1.2.1.3">1.2.1.3</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00128">K00128</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.2.1.3">1.2.1.3</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Compound</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00022">C00022</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Pyruvate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00026">C00026</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Oxoglutarate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00029">C00029</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00103">C00103</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Glucose 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00111">C00111</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Glycerone phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00116">C00116</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Glycerol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00167">C00167</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-glucuronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00181">C00181</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Xylose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00191">C00191</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Glucuronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00199">C00199</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Ribulose 5-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00204">C00204</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Dehydro-3-deoxy-D-gluconate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00231">C00231</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Xylulose 5-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00259">C00259</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Arabinose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00266">C00266</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Glycolaldehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00309">C00309</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Ribulose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00310">C00310</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Xylulose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00312">C00312</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Xylulose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00333">C00333</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Galacturonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00379">C00379</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Xylitol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00433">C00433</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2,5-Dioxopentanoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00470">C00470</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Pectate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00474">C00474</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Ribitol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00476">C00476</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Lyxose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00502">C00502</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Xylonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00508">C00508</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Ribulose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00514">C00514</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Mannonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00532">C00532</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Arabitol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00558">C00558</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Tagaturonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00618">C00618</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Dehydro-L-gulonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00714">C00714</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Pectin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00789">C00789</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-ribitol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00800">C00800</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Gulonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00817">C00817</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Altronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00905">C00905</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Fructuronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01068">C01068</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Ribitol 5-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01101">C01101</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Ribulose 5-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01508">C01508</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Lyxose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01904">C01904</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Arabitol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02266">C02266</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Xylonolactone</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02273">C02273</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Digalacturonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02426">C02426</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Glyceraldehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03033">C03033</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>beta-D-Glucuronoside</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03291">C03291</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Xylulose 5-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03826">C03826</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Dehydro-3-deoxy-D-xylonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04053">C04053</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5-Dehydro-4-deoxy-D-glucuronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04349">C04349</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>(4S)-4,6-Dihydroxy-2,5-dioxohexanoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04575">C04575</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>(4R,5S)-4,5,6-Trihydroxy-2,3-dioxohexanoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05385">C05385</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Glucuronate 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05411">C05411</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Xylonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05412">C05412</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Lyxonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06118">C06118</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-(4-Deoxy-alpha-D-gluc-4-enuronosyl)-D-galacturonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06441">C06441</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Xylulose 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C14899">C14899</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Dehydro-L-gulonate 6-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C15930">C15930</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Galactonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20680">C20680</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Dehydro-3-deoxy-L-galactonate</div></td></tr></table></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11741871">11741871</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Yew WS, Gerlt JA.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Utilization of L-ascorbate by Escherichia coli K-12: assignments of functions to products of the yjf-sga and yia-sgb operons.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 184:302-6 (2002)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/15697206">15697206</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Yew WS, Akana J, Wise EL, Rayment I, Gerlt JA</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Evolution of enzymatic activities in the orotidine 5'-monophosphate decarboxylase suprafamily: enhancing the promiscuous D-arabino-hex-3-ulose 6-phosphate synthase reaction catalyzed by 3-keto-L-gulonate 6-phosphate decarboxylase.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Biochemistry 44:1807-15 (2005)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10572115">10572115</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Yasueda H, Kawahara Y, Sugimoto S.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Bacillus subtilis yckG and yckF encode two key enzymes of the ribulose monophosphate pathway used by methylotrophs, and yckH is required for their expression.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 181:7154-60 (1999)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10913097">10913097</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Ibanez E, Gimenez R, Pedraza T, Baldoma L, Aguilar J, Badia J</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Role of the yiaR and yiaS genes of Escherichia coli in metabolism of endogenously formed L-xylulose.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 182:4625-7 (2000)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/15901685">15901685</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Orita I, Yurimoto H, Hirai R, Kawarabayasi Y, Sakai Y, Kato N</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">The archaeon Pyrococcus horikoshii possesses a bifunctional enzyme for formaldehyde fixation via the ribulose monophosphate pathway.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 187:3636-42 (2005)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>KO&nbsp;pathway</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?ko00040">ko00040</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>&nbsp;</div></td></tr></table></td></tr>
+
+</table></td></tr></table>
+<br></form></td><td valign="top"><div style="margin-top:46px;margin-left:1em;border:#ddd 1px solid"><div class="th30" style="font-weight:bold;line-height:1.5em">&nbsp;&nbsp;All links&nbsp;&nbsp;</div>
+<pre style="margin-left:1em">
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+2+path:xcb00040">Pathway (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+biosystems+path:xcb00040">BioSystems (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+7+path:xcb00040">Genome (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genome+path:xcb00040">KEGG GENOME (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+8+path:xcb00040">Gene (20)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genes+path:xcb00040">KEGG GENES (20)</a>   
+<a href="/dbget-bin/get_linkdb?-t+alldb+path:xcb00040">All databases (22)</a>   
+<br><a href="/dbget-bin/get_linkdb?-N+path:xcb00040">Download RDF</a>   
+</pre>
+</div>
+</td></tr></table>
+
+
+<a href="/dbget/">DBGET</a> integrated database retrieval system</div>
+
+</body>
+</html>

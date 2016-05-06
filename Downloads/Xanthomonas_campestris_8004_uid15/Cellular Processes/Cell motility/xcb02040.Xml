@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb02040" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Flagellar assembly - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound />
+  <PathwayMap Key="xcb02040" Value="Flagellar assembly&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_2278" Value="flhA; flagellar biosynthesis protein FlhA [KO:K02400]" />
+    <DictionaryEntry Key="XC_2277" Value="flhB; flagellar biosynthesis protein FlhB [KO:K02401]" />
+    <DictionaryEntry Key="XC_2273" Value="flagellar biosynthetic protein; K02421 flagellar biosynthetic protein FliR [KO:K02421]" />
+    <DictionaryEntry Key="XC_2272" Value="flagellar biosynthesis; K02420 flagellar biosynthetic protein FliQ [KO:K02420]" />
+    <DictionaryEntry Key="XC_2270" Value="fliP; flagellar biosynthesis protein FliP [KO:K02419]" />
+    <DictionaryEntry Key="XC_2269" Value="flagellar protein; K02418 flagellar protein FliO/FliZ [KO:K02418]" />
+    <DictionaryEntry Key="XC_2268" Value="flagellar protein; K02417 flagellar motor switch protein FliN/FliY [KO:K02417]" />
+    <DictionaryEntry Key="XC_2267" Value="fliM; flagellar motor switch protein FliM [KO:K02416]" />
+    <DictionaryEntry Key="XC_2298" Value="flagellar motor protein MotD; K02557 chemotaxis protein MotB [KO:K02557]" />
+    <DictionaryEntry Key="XC_3725" Value="motB; flagellar motor protein MotB [KO:K02557]" />
+    <DictionaryEntry Key="XC_2297" Value="motC; flagellar motor protein [KO:K02556]" />
+    <DictionaryEntry Key="XC_3724" Value="flagellar motor protein MotA; K02556 chemotaxis protein MotA [KO:K02556]" />
+    <DictionaryEntry Key="XC_2237" Value="flgE; flagellar hook protein FlgE [KO:K02390]" />
+    <DictionaryEntry Key="XC_2236" Value="flgD; flagellar basal body rod modification protein [KO:K02389]" />
+    <DictionaryEntry Key="XC_2265" Value="flagellar protein; K02414 flagellar hook-length control protein FliK [KO:K02414]" />
+    <DictionaryEntry Key="XC_2264" Value="flagellar FliJ protein; K02413 flagellar FliJ protein [KO:K02413]" />
+    <DictionaryEntry Key="XC_2263" Value="flagellar protein; K02412 flagellum-specific ATP synthase [EC:3.6.3.14] [KO:K02412] [EC:3.6.3.14]" />
+    <DictionaryEntry Key="XC_2262" Value="flagellar protein; K02411 flagellar assembly protein FliH [KO:K02411]" />
+    <DictionaryEntry Key="XC_2261" Value="flagellar protein; K02410 flagellar motor switch protein FliG [KO:K02410]" />
+    <DictionaryEntry Key="XC_2260" Value="fliF; flagellar MS-ring protein [KO:K02409]" />
+    <DictionaryEntry Key="XC_2259" Value="flagellar protein; K02408 flagellar hook-basal body complex protein FliE [KO:K02408]" />
+    <DictionaryEntry Key="XC_2235" Value="flgC; flagellar basal body rod protein FlgC [KO:K02388]" />
+    <DictionaryEntry Key="XC_2234" Value="flgB; flagellar basal-body rod protein FlgB [KO:K02387]" />
+    <DictionaryEntry Key="XC_2232" Value="flgA; flagellar basal body P-ring biosynthesis protein FlgA [KO:K02386]" />
+    <DictionaryEntry Key="XC_2231" Value="flagellar protein; K02398 negative regulator of flagellin synthesis FlgM [KO:K02398]" />
+    <DictionaryEntry Key="XC_2238" Value="flgF; flagellar basal body rod protein FlgF [KO:K02391]" />
+    <DictionaryEntry Key="XC_2239" Value="flgG; flagellar basal body rod protein FlgG [KO:K02392]" />
+    <DictionaryEntry Key="XC_2240" Value="flgH; flagellar basal body L-ring protein [KO:K02393]" />
+    <DictionaryEntry Key="XC_2241" Value="flgI; flagellar basal body P-ring biosynthesis protein FlgA [KO:K02394]" />
+    <DictionaryEntry Key="XC_2243" Value="flgK; flagellar hook-associated protein FlgK [KO:K02396]" />
+    <DictionaryEntry Key="XC_2244" Value="flgL; flagellar hook-associated protein FlgL [KO:K02397]" />
+    <DictionaryEntry Key="XC_2245" Value="flagellin; K02406 flagellin [KO:K02406]" />
+    <DictionaryEntry Key="XC_2246" Value="flagellar protein; K02407 flagellar hook-associated protein 2 [KO:K02407]" />
+    <DictionaryEntry Key="XC_2247" Value="flagellar protein; K02422 flagellar protein FliS [KO:K02422]" />
+  </Genes>
+</KEGG.PathwayBrief>

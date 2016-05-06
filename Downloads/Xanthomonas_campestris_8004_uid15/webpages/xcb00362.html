@@ -1,0 +1,416 @@
+<!doctype html>
+<html><head>
+<title>KEGG PATHWAY: xcb00362</title>
+<link type="text/css" rel="stylesheet" href="/css/gn2.css">
+<link rel="stylesheet" href="/css/bget.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/bgetm.css" media="only screen and (max-width: 768px)">
+<style>.kcfd{display:none;}</style>
+<script>
+<!--
+var getElementsByClassName = document.getElementsByClassName ?
+  function (cl){
+    return document.getElementsByClassName(cl);
+  } :
+  function (cl){
+    var elms = [];
+    var objs = document.getElementsByTagName('*');
+    for(var i=0;i<objs.length;i++){
+      var obj = objs[i];
+      if(obj.className == cl){
+        elms.push(obj);
+      }
+    }
+    return elms;
+  };
+function toggleField(clk,cl,show,hide){
+  var objs = getElementsByClassName(cl);
+  for(var i=0;i<objs.length;i++){
+    var obj = objs[i];
+    if(!obj.style.display||obj.style.display == 'none'){
+      obj.style.display = 'block';
+      clk.innerHTML = '&nbsp;&laquo; '+hide;
+    }
+    else{
+      obj.style.display = 'none';
+      clk.innerHTML = '&nbsp;&raquo; '+show;
+    }
+  }
+}
+function toggleData(bobj,e){
+  var id = bobj.id.replace(/[^0-9]/g,'');
+  var dt = document.getElementById('kcfd'+id);
+  if(!dt.style.display||dt.style.display == 'none'){
+    bobj.name = 'hide_kcf';
+    bobj.alt = 'Hide';
+    bobj.src = '/Fig/bget/button_Hib.gif';
+    dt.style.display = 'block';
+  }
+  else{
+    bobj.name = 'show_kcf';
+    bobj.alt = 'Show';
+    bobj.src = '/Fig/bget/button_Sb.gif';
+    dt.style.display = 'none';
+  }
+}
+function btn(bobj,img) {
+  bobj.src = "/Fig/bget/button_" + img + ".gif";
+}
+function btn_e(e) {
+  e = e || event;
+  var obj = e.target;
+  var img = e.target.src;
+  var img_base = img.replace(/\\/g,'/').replace(/(b|bd|bh)\.gif$/,'');
+  if(e.type == 'mousedown'||e.type == 'touchstart'){
+    obj.src = img_base +'bd.gif';
+  }
+  else if(e.type == 'mouseover'){
+    obj.src = img_base +'bh.gif';
+  }
+  else if(e.type == 'mouseup'||e.type == 'touchend'){
+    obj.src = img_base +'b.gif';
+  }
+  else if(e.type == 'mouseout'){
+    obj.src = img_base +'b.gif';
+  }
+}
+function init(){
+  for(var i=1;i<=1;i++){
+    if(document.getElementById('kcfb'+i)){
+      document.getElementById('kcfb'+i).onclick = function(e){toggleData(this,e);};
+      document.getElementById('kcfb'+i).onmousedown = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseover = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseout = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseup = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchstart = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchend = function(e){btn_e(e);};
+    }
+  }
+}
+function Link_XtrctSeq2(form) {
+    var dna_from;
+    var dna_to;
+    var dna_len;
+    var plus_up   = Number(form.XtrctSeq_UP.value) ;
+    var plus_down = Number(form.XtrctSeq_DOWN.value);
+    var vector    = Number(form.VECTOR.value);
+    var org       = form.ORG.value;
+    var chr       = form.CHR.value;
+    var kid       = form.KEGGID.value;
+    var url;
+
+    if (plus_up == 0 && plus_down == 0) {
+	url = "/dbget-bin/www_bget?-f+-n+n+" + kid;
+    }
+    else {
+	if (vector == 1) {
+	    dna_from  = Number(form.FROM.value)  - plus_up;
+	    dna_to    = Number(form.TO.value) + plus_down;
+	} else {
+	    dna_from  = Number(form.FROM.value)  - plus_down;
+	    dna_to    = Number(form.TO.value) + plus_up;
+	}
+
+	url = "/dbget-bin/cut_sequence_genes.pl?FROM=" + dna_from + "&TO=" + dna_to +"&VECTOR=" + vector + "&ORG=" + org;
+	if (chr) url += "&CHR=" + chr;
+    }
+    //window.open( url, "_self" );
+    location.href = url;
+}
+function go_taxonomy(form,params){
+  for(var key in params){
+    if(form[key]){
+      form.setAttribute(key,params[key]);
+    }
+    else{
+      var obj = document.createElement('input');
+      obj.setAttribute('type','hidden');
+      obj.setAttribute('name',key);
+      obj.setAttribute('value',params[key]);
+      form.appendChild(obj);
+    }
+  }
+  form.submit();
+}
+window.onload=function(){window.focus();init();};
+//--->
+</script>
+
+</head>
+<body>
+<div>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="70"><a href="/kegg/kegg2.html"><img align="middle" alt="KEGG" border="0" src="/Fig/bget/kegg3.gif"></a></td><td>&nbsp;&nbsp;&nbsp;</td><td><a name="pathway:xcb00362"></a><font class="title3">PATHWAY: xcb00362</font></td><td align="right" valign="bottom"><a href="javascript:void(window.open('/kegg/document/help_bget_pathway.html','KEGG_Help','toolbar=no,location=no,directories=no,width=720,height=640,resizable=yes,scrollbars=yes'))"><img align="middle" alt="Help" border="0" name="help" onmousedown="btn(this,'Hbd')" onmouseout="btn(this,'Hb')" onmouseover="btn(this,'Hbh')" onmouseup="btn(this,'Hb')" ontouchend="btn(this,'Hb')" ontouchstart="btn(this,'Hbd')" src="/Fig/bget/button_Hb.gif"></a></td></tr></table>
+<form method="post" action="/dbget-bin/www_bget" enctype="application/x-www-form-urlencoded" name="form1"><table border=0 cellpadding=1 cellspacing=0>
+<tr>
+<td class="fr3">
+<table border=0 cellpadding=2 cellspacing=0 style="border-bottom:#000 1px solid">
+
+<tr><th class="th30" align="left" valign="middle" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Entry</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="left"><code><nobr>xcb00362&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pathway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</nobr></code></td> <td align="right"><br></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Name</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Benzoate degradation - Xanthomonas campestris pv. campestris 8004<br>
+</div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Class</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Metabolism; Xenobiotics biodegradation and metabolism<br>
+<a href="/kegg-bin/get_htext?query=xcb00362&amp;htext=xcb00001.keg"><img align="middle" alt="BRITE hierarchy" border="0" name="BRH" onmousedown="btn(this,'BHbd')" onmouseout="btn(this,'BHb')" onmouseover="btn(this,'BHbh')" onmouseup="btn(this,'BHb')" ontouchend="btn(this,'BHb')" ontouchstart="btn(this,'BHbd')" src="/Fig/bget/button_BHb.gif"></a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Pathway&nbsp;map</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5.5em"><div><nobr><a href="/kegg-bin/show_pathway?xcb00362">xcb00362</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Benzoate degradation</div></td></tr></table><center><a href="/kegg-bin/show_pathway?xcb00362"><img src="/kegg/misc/thumbnail/map00362.gif" alt="xcb00362" style="border-style:none;"></a></center><br><a href="http://www.kegg.jp/kegg-bin/show_ot_map?map=00362"><img align="middle" alt="All organisms" border="0" name="AO" onmousedown="btn(this,'AObd')" onmouseout="btn(this,'AOb')" onmouseover="btn(this,'AObh')" onmouseup="btn(this,'AOb')" ontouchend="btn(this,'AOb')" ontouchstart="btn(this,'AObd')" src="/Fig/bget/button_AOb.gif"></a><a href="http://www.kegg.jp/kegg-bin/view_ortholog_table?map=00362"><img align="middle" alt="Ortholog table" border="0" name="OT" onmousedown="btn(this,'OTbd')" onmouseout="btn(this,'OTb')" onmouseover="btn(this,'OTbh')" onmouseup="btn(this,'OTb')" ontouchend="btn(this,'OTb')" ontouchstart="btn(this,'OTbd')" src="/Fig/bget/button_OTb.gif"></a></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Other DBs</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="float:left">BSID:&nbsp;</div><div style="margin-left:3.5em"><a href="http://www.ncbi.nlm.nih.gov/biosystems/24002">24002</a></div><div style="float:left">UMBBD:&nbsp;</div><div style="margin-left:4em"><a href="http://umbbd.ethz.ch/benz2/benz2_map.html">benz2</a> <a href="http://umbbd.ethz.ch/benz/benz_map.html">benz</a> <a href="http://umbbd.ethz.ch/abs/abs_map.html">abs</a></div><div style="float:left">GO:&nbsp;</div><div style="margin-left:2.5em"><a href="http://amigo.geneontology.org/amigo/term/GO:0043639">0043639</a></div></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Organism</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Xanthomonas campestris pv. campestris 8004 [GN:<a href="/dbget-bin/www_bget?gn:xcb">xcb</a>]<br>
+</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Gene</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0382">XC_0382</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>b-ketoadipate enol-lactone hydrolase; K01055 3-oxoadipate enol-lactonase [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.24">3.1.1.24</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01055">K01055</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.24">3.1.1.24</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2206">XC_2206</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>acetyl-CoA acetyltransferase; K00632 acetyl-CoA acyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.3.1.16">2.3.1.16</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00632">K00632</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.3.1.16">2.3.1.16</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0378">XC_0378</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>beta-ketoadipyl CoA thiolase; K07823 3-oxoadipyl-CoA thiolase [EC:<a href="/dbget-bin/www_bget?ec:2.3.1.174">2.3.1.174</a>] [KO:<a href="/dbget-bin/www_bget?ko:K07823">K07823</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.3.1.174">2.3.1.174</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0154">XC_0154</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-keto-4-pentenoate hydratase; K02554 2-keto-4-pentenoate hydratase [EC:<a href="/dbget-bin/www_bget?ec:4.2.1.80">4.2.1.80</a>] [KO:<a href="/dbget-bin/www_bget?ko:K02554">K02554</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.2.1.80">4.2.1.80</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0380">XC_0380</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>protocatechuate 3; K00448 protocatechuate 3,4-dioxygenase, alpha subunit [EC:<a href="/dbget-bin/www_bget?ec:1.13.11.3">1.13.11.3</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00448">K00448</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.13.11.3">1.13.11.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0379">XC_0379</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>protocatechuate 3; K00449 protocatechuate 3,4-dioxygenase, beta subunit [EC:<a href="/dbget-bin/www_bget?ec:1.13.11.3">1.13.11.3</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00449">K00449</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.13.11.3">1.13.11.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0381">XC_0381</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-carboxy-cis; K01857 3-carboxy-cis,cis-muconate cycloisomerase [EC:<a href="/dbget-bin/www_bget?ec:5.5.1.2">5.5.1.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01857">K01857</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.5.1.2">5.5.1.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0383">XC_0383</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-carboxymuconolactone decarboxylase; K01607 4-carboxymuconolactone decarboxylase [EC:<a href="/dbget-bin/www_bget?ec:4.1.1.44">4.1.1.44</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01607">K01607</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.1.1.44">4.1.1.44</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3426">XC_3426</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>protocatechuate 4; K04100 protocatechuate 4,5-dioxygenase, alpha chain [EC:<a href="/dbget-bin/www_bget?ec:1.13.11.8">1.13.11.8</a>] [KO:<a href="/dbget-bin/www_bget?ko:K04100">K04100</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.13.11.8">1.13.11.8</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3427">XC_3427</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>protocatechuate 4; K04101 protocatechuate 4,5-dioxygenase, beta chain [EC:<a href="/dbget-bin/www_bget?ec:1.13.11.8">1.13.11.8</a>] [KO:<a href="/dbget-bin/www_bget?ko:K04101">K04101</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.13.11.8">1.13.11.8</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4120">XC_4120</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>FldA protein; K16514 4-oxalomesaconate tautomerase [EC:<a href="/dbget-bin/www_bget?ec:5.3.2.8">5.3.2.8</a>] [KO:<a href="/dbget-bin/www_bget?ko:K16514">K16514</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.3.2.8">5.3.2.8</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4121">XC_4121</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-oxalomesaconate hydratase; K10220 4-oxalmesaconate hydratase [EC:<a href="/dbget-bin/www_bget?ec:4.2.1.83">4.2.1.83</a>] [KO:<a href="/dbget-bin/www_bget?ko:K10220">K10220</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.2.1.83">4.2.1.83</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4119">XC_4119</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>hypothetical protein; K10218 4-hydroxy-4-methyl-2-oxoglutarate aldolase [EC:<a href="/dbget-bin/www_bget?ec:4.1.3.17">4.1.3.17</a>] [KO:<a href="/dbget-bin/www_bget?ko:K10218">K10218</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.1.3.17">4.1.3.17</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0368">XC_0368</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-hydroxybenzoate 3-monooxygenase; K00481 p-hydroxybenzoate 3-monooxygenase [EC:<a href="/dbget-bin/www_bget?ec:1.14.13.2">1.14.13.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00481">K00481</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.14.13.2">1.14.13.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2975">XC_2975</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-hydroxyacyl-CoA dehydrogenase; K01782 3-hydroxyacyl-CoA dehydrogenase / enoyl-CoA hydratase / 3-hydroxybutyryl-CoA epimerase [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.35">1.1.1.35</a> <a href="/dbget-bin/www_bget?ec:4.2.1.17">4.2.1.17</a> <a href="/dbget-bin/www_bget?ec:5.1.2.3">5.1.2.3</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01782">K01782</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.1.2.3">5.1.2.3</a> <a href="/dbget-bin/www_bget?ec:4.2.1.17">4.2.1.17</a> <a href="/dbget-bin/www_bget?ec:1.1.1.35">1.1.1.35</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2205">XC_2205</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-hydroxyacyl-CoA dehydrogenase; K07516 3-hydroxyacyl-CoA dehydrogenase [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.35">1.1.1.35</a>] [KO:<a href="/dbget-bin/www_bget?ko:K07516">K07516</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.35">1.1.1.35</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2809">XC_2809</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glutaryl-CoA dehydrogenase; K00252 glutaryl-CoA dehydrogenase [EC:<a href="/dbget-bin/www_bget?ec:1.3.8.6">1.3.8.6</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00252">K00252</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.3.8.6">1.3.8.6</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2943">XC_2943</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>acetoacetyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.3.1.9">2.3.1.9</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00626">K00626</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.3.1.9">2.3.1.9</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0204">XC_0204</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>acetyl-CoA acetyltransferase; K00626 acetyl-CoA C-acetyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.3.1.9">2.3.1.9</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00626">K00626</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.3.1.9">2.3.1.9</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Compound</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00022">C00022</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Pyruvate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00024">C00024</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Acetyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00036">C00036</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Oxaloacetate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00084">C00084</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Acetaldehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00090">C00090</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Catechol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00091">C00091</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Succinyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00146">C00146</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Phenol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00156">C00156</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Hydroxybenzoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00180">C00180</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Benzoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00196">C00196</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2,3-Dihydroxybenzoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00230">C00230</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3,4-Dihydroxybenzoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00332">C00332</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Acetoacetyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00512">C00512</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>S-Benzoate coenzyme A</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00527">C00527</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Glutaryl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00530">C00530</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Hydroquinone</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00587">C00587</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Hydroxybenzoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00596">C00596</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Hydroxy-2,4-pentadienoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00628">C00628</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2,5-Dihydroxybenzoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00682">C00682</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Hydroxymuconate semialdehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00846">C00846</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Oxoadipate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00877">C00877</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Crotonoyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01063">C01063</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>6-Carboxyhexanoyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01144">C01144</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>(S)-3-Hydroxybutanoyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01163">C01163</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Carboxy-cis,cis-muconate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01278">C01278</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Carboxy-2,5-dihydro-5-oxofuran-2-acetate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01407">C01407</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Benzene</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02222">C02222</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Maleylacetate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02232">C02232</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Oxoadipyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02411">C02411</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Glutaconyl-1-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02480">C02480</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>cis,cis-Muconate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02501">C02501</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Hydroxymuconate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02519">C02519</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Methoxybenzoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02814">C02814</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Benzene-1,2,4-triol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02949">C02949</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Hydroxybenzoyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03453">C03453</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>gamma-Oxalocrotonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03586">C03586</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Oxo-2,3-dihydrofuran-5-acetate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03589">C03589</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Hydroxy-2-oxopentanoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03671">C03671</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Pyrone-4,6-dicarboxylate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03676">C03676</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Hydroxy-cis,cis-muconate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04091">C04091</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>cis-1,2-Dihydrobenzene-1,2-diol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04115">C04115</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Carboxy-4-hydroxy-2-oxoadipate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04324">C04324</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>(1E,3E)-4-Hydroxybuta-1,3-diene-1,2,4-tricarboxylate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04434">C04434</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>(1E)-4-Oxobut-1-ene-1,2,4-tricarboxylate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04480">C04480</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Carboxy-2-hydroxymuconate semialdehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04484">C04484</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Carboxy-2-hydroxymuconate semialdehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04553">C04553</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Carboxy-2,5-dihydro-5-oxofuran-2-acetate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05375">C05375</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Hydroxy-2-hydropyrone-4,6-dicarboxylate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06033">C06033</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Parapyruvate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06035">C06035</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Methylene-2-oxoglutarate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06321">C06321</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>(1R,6S)-1,6-Dihydroxycyclohexa-2,4-diene-1-carboxylate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06322">C06322</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Cyclohexa-1,5-diene-1-carbonyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06333">C06333</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Aminobenzenesulfonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06336">C06336</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Sulfocatechol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06714">C06714</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Hydroxypimeloyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06715">C06715</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Oxopimeloyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06723">C06723</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>6-Carboxyhex-2-enoyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06749">C06749</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>6-Hydroxycyclohex-1-ene-1-carbonyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C09809">C09809</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Cyclohex-2,5-diene-1-carboxyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C09810">C09810</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Cyclohex-1,4-diene-1-carboxyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C09811">C09811</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Cyclohex-1-ene-1-carboxyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C09812">C09812</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Hydroxycyclohexane-1-carboxyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C09813">C09813</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Ketocyclohexane-1-carboxyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C09821">C09821</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>6-Oxocyclohex-1-ene-1-carbonyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C09822">C09822</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Cyclohexane-1-carboxylate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C09823">C09823</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Cyclohexane-1-carboxyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C14610">C14610</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>(S)-5-Oxo-2,5-dihydrofuran-2-acetate</div></td></tr></table></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/19258534">19258534</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Carmona M, Zamarro MT, Blazquez B, Durante-Rodriguez G, Juarez JF, Valderrama JA, Barragan MJ, Garcia JL, Diaz E</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Anaerobic catabolism of aromatic compounds: a genetic and genomic view.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Microbiol Mol Biol Rev 73:71-133 (2009)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/12486039">12486039</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Hara H, Masai E, Miyauchi K, Katayama Y, Fukuda M.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Characterization of the 4-carboxy-4-hydroxy-2-oxoadipate aldolase gene and operon structure of the protocatechuate 4,5-cleavage pathway genes in Sphingomonas paucimobilis SYK-6.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 185:41-50 (2003)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/15277747">15277747</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Maruyama K, Shibayama T, Ichikawa A, Sakou Y, Yamada S, Sugisaki H.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Cloning and characterization of the genes encoding enzymes for the protocatechuate meta-degradation pathway of Pseudomonas ochraceae NGJ1.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Biosci Biotechnol Biochem 68:1434-41 (2004)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10589735">10589735</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Mampel J, Ruff J, Junker F, Cook AM.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">The oxygenase component of the 2-aminobenzenesulfonate dioxygenase system from Alcaligenes sp. strain O-1.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Microbiology 145 ( Pt 11):3255-64 (1999)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/8002948">8002948</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Junker F, Field JA, Bangerter F, Ramsteiner K, Kohler HP, Joannou CL, Mason JR, Leisinger T, Cook AM.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Oxygenation and spontaneous deamination of 2-aminobenzenesulphonic acid in Alcaligenes sp. strain O-1 with subsequent meta ring cleavage and spontaneous desulphonation to 2-hydroxymuconic acid.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Biochem J 300 ( Pt 2):429-36 (1994)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/8990279">8990279</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Harwood CS, Gibson J.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Shedding light on anaerobic benzene ring degradation: a process unique to prokaryotes?</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 179:301-9 (1997)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/17122342">17122342</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Peters F, Shinoda Y, McInerney MJ, Boll M.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Cyclohexa-1,5-diene-1-carbonyl-coenzyme A (CoA) hydratases of Geobacter metallireducens and Syntrophus aciditrophicus: Evidence for a common benzoyl-CoA degradation pathway in facultative and strict anaerobes.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 189:1055-60 (2007)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11053377">11053377</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Cowles CE, Nichols NN, Harwood CS.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">BenR, a XylS homologue, regulates three different pathways of aromatic acid degradation in Pseudomonas putida.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 182:6339-46 (2000)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/12514037">12514037</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Smith MA, Weaver VB, Young DM, Ornston LN.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Genes for chlorogenate and hydroxycinnamate catabolism (hca) are linked to functionally related genes in the dca-pca-qui-pob-hca chromosomal cluster of Acinetobacter sp. strain ADP1.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Appl Environ Microbiol 69:524-32 (2003)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/18312395">18312395</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Kuntze K, Shinoda Y, Moutakki H, McInerney MJ, Vogt C, Richnow HH, Boll M</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">6-Oxocyclohex-1-ene-1-carbonyl-coenzyme A hydrolases from obligately anaerobic bacteria: characterization and identification of its gene as a functional marker&nbsp;&nbsp;for aromatic compounds degrading anaerobes.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Environ Microbiol 10:1547-56 (2008)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10781543">10781543</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Pelletier DA, Harwood CS</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">2-Hydroxycyclohexanecarboxyl coenzyme A dehydrogenase, an enzyme characteristic of the anaerobic benzoate degradation pathway used by Rhodopseudomonas palustris.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 182:2753-60 (2000)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11282627">11282627</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Elshahed MS, Bhupathiraju VK, Wofford NQ, Nanny MA, McInerney MJ</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Metabolism of benzoate, cyclohex-1-ene carboxylate, and cyclohexane carboxylate by "Syntrophus aciditrophicus" strain SB in syntrophic association with H(2)-using microorganisms.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Appl Environ Microbiol 67:1728-38 (2001)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/21219457">21219457</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nogales J, Canales A, Jimenez-Barbero J, Serra B, Pingarron JM, Garcia JL, Diaz E</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Unravelling the gallic acid degradation pathway in bacteria: the gal cluster from Pseudomonas putida.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Mol Microbiol 79:359-74 (2011)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>KO&nbsp;pathway</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?ko00362">ko00362</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>&nbsp;</div></td></tr></table></td></tr>
+
+</table></td></tr></table>
+<br></form></td><td valign="top"><div style="margin-top:46px;margin-left:1em;border:#ddd 1px solid"><div class="th30" style="font-weight:bold;line-height:1.5em">&nbsp;&nbsp;All links&nbsp;&nbsp;</div>
+<pre style="margin-left:1em">
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+2+path:xcb00362">Pathway (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+biosystems+path:xcb00362">BioSystems (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+7+path:xcb00362">Genome (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genome+path:xcb00362">KEGG GENOME (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+8+path:xcb00362">Gene (19)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genes+path:xcb00362">KEGG GENES (19)</a>   
+<a href="/dbget-bin/get_linkdb?-t+alldb+path:xcb00362">All databases (21)</a>   
+<br><a href="/dbget-bin/get_linkdb?-N+path:xcb00362">Download RDF</a>   
+</pre>
+</div>
+</td></tr></table>
+
+
+<a href="/dbget/">DBGET</a> integrated database retrieval system</div>
+
+</body>
+</html>

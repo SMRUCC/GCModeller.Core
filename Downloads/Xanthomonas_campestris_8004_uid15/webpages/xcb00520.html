@@ -1,0 +1,572 @@
+<!doctype html>
+<html><head>
+<title>KEGG PATHWAY: xcb00520</title>
+<link type="text/css" rel="stylesheet" href="/css/gn2.css">
+<link rel="stylesheet" href="/css/bget.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/bgetm.css" media="only screen and (max-width: 768px)">
+<style>.kcfd{display:none;}</style>
+<script>
+<!--
+var getElementsByClassName = document.getElementsByClassName ?
+  function (cl){
+    return document.getElementsByClassName(cl);
+  } :
+  function (cl){
+    var elms = [];
+    var objs = document.getElementsByTagName('*');
+    for(var i=0;i<objs.length;i++){
+      var obj = objs[i];
+      if(obj.className == cl){
+        elms.push(obj);
+      }
+    }
+    return elms;
+  };
+function toggleField(clk,cl,show,hide){
+  var objs = getElementsByClassName(cl);
+  for(var i=0;i<objs.length;i++){
+    var obj = objs[i];
+    if(!obj.style.display||obj.style.display == 'none'){
+      obj.style.display = 'block';
+      clk.innerHTML = '&nbsp;&laquo; '+hide;
+    }
+    else{
+      obj.style.display = 'none';
+      clk.innerHTML = '&nbsp;&raquo; '+show;
+    }
+  }
+}
+function toggleData(bobj,e){
+  var id = bobj.id.replace(/[^0-9]/g,'');
+  var dt = document.getElementById('kcfd'+id);
+  if(!dt.style.display||dt.style.display == 'none'){
+    bobj.name = 'hide_kcf';
+    bobj.alt = 'Hide';
+    bobj.src = '/Fig/bget/button_Hib.gif';
+    dt.style.display = 'block';
+  }
+  else{
+    bobj.name = 'show_kcf';
+    bobj.alt = 'Show';
+    bobj.src = '/Fig/bget/button_Sb.gif';
+    dt.style.display = 'none';
+  }
+}
+function btn(bobj,img) {
+  bobj.src = "/Fig/bget/button_" + img + ".gif";
+}
+function btn_e(e) {
+  e = e || event;
+  var obj = e.target;
+  var img = e.target.src;
+  var img_base = img.replace(/\\/g,'/').replace(/(b|bd|bh)\.gif$/,'');
+  if(e.type == 'mousedown'||e.type == 'touchstart'){
+    obj.src = img_base +'bd.gif';
+  }
+  else if(e.type == 'mouseover'){
+    obj.src = img_base +'bh.gif';
+  }
+  else if(e.type == 'mouseup'||e.type == 'touchend'){
+    obj.src = img_base +'b.gif';
+  }
+  else if(e.type == 'mouseout'){
+    obj.src = img_base +'b.gif';
+  }
+}
+function init(){
+  for(var i=1;i<=1;i++){
+    if(document.getElementById('kcfb'+i)){
+      document.getElementById('kcfb'+i).onclick = function(e){toggleData(this,e);};
+      document.getElementById('kcfb'+i).onmousedown = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseover = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseout = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseup = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchstart = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchend = function(e){btn_e(e);};
+    }
+  }
+}
+function Link_XtrctSeq2(form) {
+    var dna_from;
+    var dna_to;
+    var dna_len;
+    var plus_up   = Number(form.XtrctSeq_UP.value) ;
+    var plus_down = Number(form.XtrctSeq_DOWN.value);
+    var vector    = Number(form.VECTOR.value);
+    var org       = form.ORG.value;
+    var chr       = form.CHR.value;
+    var kid       = form.KEGGID.value;
+    var url;
+
+    if (plus_up == 0 && plus_down == 0) {
+	url = "/dbget-bin/www_bget?-f+-n+n+" + kid;
+    }
+    else {
+	if (vector == 1) {
+	    dna_from  = Number(form.FROM.value)  - plus_up;
+	    dna_to    = Number(form.TO.value) + plus_down;
+	} else {
+	    dna_from  = Number(form.FROM.value)  - plus_down;
+	    dna_to    = Number(form.TO.value) + plus_up;
+	}
+
+	url = "/dbget-bin/cut_sequence_genes.pl?FROM=" + dna_from + "&TO=" + dna_to +"&VECTOR=" + vector + "&ORG=" + org;
+	if (chr) url += "&CHR=" + chr;
+    }
+    //window.open( url, "_self" );
+    location.href = url;
+}
+function go_taxonomy(form,params){
+  for(var key in params){
+    if(form[key]){
+      form.setAttribute(key,params[key]);
+    }
+    else{
+      var obj = document.createElement('input');
+      obj.setAttribute('type','hidden');
+      obj.setAttribute('name',key);
+      obj.setAttribute('value',params[key]);
+      form.appendChild(obj);
+    }
+  }
+  form.submit();
+}
+window.onload=function(){window.focus();init();};
+//--->
+</script>
+
+</head>
+<body>
+<div>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="70"><a href="/kegg/kegg2.html"><img align="middle" alt="KEGG" border="0" src="/Fig/bget/kegg3.gif"></a></td><td>&nbsp;&nbsp;&nbsp;</td><td><a name="pathway:xcb00520"></a><font class="title3">PATHWAY: xcb00520</font></td><td align="right" valign="bottom"><a href="javascript:void(window.open('/kegg/document/help_bget_pathway.html','KEGG_Help','toolbar=no,location=no,directories=no,width=720,height=640,resizable=yes,scrollbars=yes'))"><img align="middle" alt="Help" border="0" name="help" onmousedown="btn(this,'Hbd')" onmouseout="btn(this,'Hb')" onmouseover="btn(this,'Hbh')" onmouseup="btn(this,'Hb')" ontouchend="btn(this,'Hb')" ontouchstart="btn(this,'Hbd')" src="/Fig/bget/button_Hb.gif"></a></td></tr></table>
+<form method="post" action="/dbget-bin/www_bget" enctype="application/x-www-form-urlencoded" name="form1"><table border=0 cellpadding=1 cellspacing=0>
+<tr>
+<td class="fr3">
+<table border=0 cellpadding=2 cellspacing=0 style="border-bottom:#000 1px solid">
+
+<tr><th class="th30" align="left" valign="middle" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Entry</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="left"><code><nobr>xcb00520&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pathway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</nobr></code></td> <td align="right"><br></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Name</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Amino sugar and nucleotide sugar metabolism - Xanthomonas campestris pv. campestris 8004<br>
+</div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Class</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Metabolism; Carbohydrate metabolism<br>
+<a href="/kegg-bin/get_htext?query=xcb00520&amp;htext=xcb00001.keg"><img align="middle" alt="BRITE hierarchy" border="0" name="BRH" onmousedown="btn(this,'BHbd')" onmouseout="btn(this,'BHb')" onmouseover="btn(this,'BHbh')" onmouseup="btn(this,'BHb')" ontouchend="btn(this,'BHb')" ontouchstart="btn(this,'BHbd')" src="/Fig/bget/button_BHb.gif"></a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Pathway&nbsp;map</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5.5em"><div><nobr><a href="/kegg-bin/show_pathway?xcb00520">xcb00520</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Amino sugar and nucleotide sugar metabolism</div></td></tr></table><center><a href="/kegg-bin/show_pathway?xcb00520"><img src="/kegg/misc/thumbnail/map00520.gif" alt="xcb00520" style="border-style:none;"></a></center><br><a href="http://www.kegg.jp/kegg-bin/show_ot_map?map=00520"><img align="middle" alt="All organisms" border="0" name="AO" onmousedown="btn(this,'AObd')" onmouseout="btn(this,'AOb')" onmouseover="btn(this,'AObh')" onmouseup="btn(this,'AOb')" ontouchend="btn(this,'AOb')" ontouchstart="btn(this,'AObd')" src="/Fig/bget/button_AOb.gif"></a><a href="http://www.kegg.jp/kegg-bin/view_ortholog_table?map=00520"><img align="middle" alt="Ortholog table" border="0" name="OT" onmousedown="btn(this,'OTbd')" onmouseout="btn(this,'OTb')" onmouseover="btn(this,'OTbh')" onmouseup="btn(this,'OTb')" ontouchend="btn(this,'OTb')" ontouchstart="btn(this,'OTbd')" src="/Fig/bget/button_OTb.gif"></a></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Organism</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Xanthomonas campestris pv. campestris 8004 [GN:<a href="/dbget-bin/www_bget?gn:xcb">xcb</a>]<br>
+</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Gene</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2958">XC_2958</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>beta-hexosaminidase; K01207 beta-N-acetylhexosaminidase [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.52">3.2.1.52</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01207">K01207</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.52">3.2.1.52</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1219">XC_1219</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>beta-hexosaminidase; K12373 hexosaminidase [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.52">3.2.1.52</a>] [KO:<a href="/dbget-bin/www_bget?ko:K12373">K12373</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.52">3.2.1.52</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1329">XC_1329</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>hypothetical protein; K07102 anomeric MurNAc/GlcNAc kinase [EC:2.7.1.-] [KO:<a href="/dbget-bin/www_bget?ko:K07102">K07102</a>] [EC:2.7.1.-]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1328">XC_1328</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>nucleotidyl transferase; K00992 MurNAc alpha-1-phosphate uridylyltransferase [EC:2.7.7.-] [KO:<a href="/dbget-bin/www_bget?ko:K00992">K00992</a>] [EC:2.7.7.-]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3674">XC_3674</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetylglucosamine pyrophosphorylase; K04042 bifunctional UDP-N-acetylglucosamine pyrophosphorylase / Glucosamine-1-phosphate N-acetyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.23">2.7.7.23</a> <a href="/dbget-bin/www_bget?ec:2.3.1.157">2.3.1.157</a>] [KO:<a href="/dbget-bin/www_bget?ko:K04042">K04042</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.3.1.157">2.3.1.157</a> <a href="/dbget-bin/www_bget?ec:2.7.7.23">2.7.7.23</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2091">XC_2091</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>polysaccharide biosynthetic protein; K02474 UDP-N-acetyl-D-galactosamine dehydrogenase [EC:1.1.1.-] [KO:<a href="/dbget-bin/www_bget?ko:K02474">K02474</a>] [EC:1.1.1.-]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1318">XC_1318</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetylglucosamine 1-carboxyvinyltransferase; K00790 UDP-N-acetylglucosamine 1-carboxyvinyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.5.1.7">2.5.1.7</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00790">K00790</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.5.1.7">2.5.1.7</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2449">XC_2449</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>murB; UDP-N-acetylenolpyruvoylglucosamine reductase [KO:<a href="/dbget-bin/www_bget?ko:K00075">K00075</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.3.1.98">1.3.1.98</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1579">XC_1579</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glmM; phosphoglucosamine mutase [KO:<a href="/dbget-bin/www_bget?ko:K03431">K03431</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.4.2.10">5.4.2.10</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0754">XC_0754</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-acetylglucosamine-6-phosphate deacetylase; K01443 N-acetylglucosamine-6-phosphate deacetylase [EC:<a href="/dbget-bin/www_bget?ec:3.5.1.25">3.5.1.25</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01443">K01443</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.5.1.25">3.5.1.25</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2727">XC_2727</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>fructokinase; K00847 fructokinase [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.4">2.7.1.4</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00847">K00847</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.4">2.7.1.4</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3663">XC_3663</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glucosamine--fructose-6-phosphate aminotransferase; K00820 glucosamine--fructose-6-phosphate aminotransferase (isomerizing) [EC:<a href="/dbget-bin/www_bget?ec:2.6.1.16">2.6.1.16</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00820">K00820</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.6.1.16">2.6.1.16</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0753">XC_0753</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glucosamine-fructose-6-phosphate aminotransferase; K00820 glucosamine--fructose-6-phosphate aminotransferase (isomerizing) [EC:<a href="/dbget-bin/www_bget?ec:2.6.1.16">2.6.1.16</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00820">K00820</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.6.1.16">2.6.1.16</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3051">XC_3051</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>alpha-L-arabinofuranosidase; K01209 alpha-N-arabinofuranosidase [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.55">3.2.1.55</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01209">K01209</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.55">3.2.1.55</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4196">XC_4196</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>xylosidase/arabinosidase; K01198 xylan 1,4-beta-xylosidase [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.37">3.2.1.37</a>] K01209 alpha-N-arabinofuranosidase [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.55">3.2.1.55</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01198">K01198</a> <a href="/dbget-bin/www_bget?ko:K01209">K01209</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.37">3.2.1.37</a> <a href="/dbget-bin/www_bget?ec:3.2.1.55">3.2.1.55</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3064">XC_3064</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>xylosidase/arabinosidase; K01198 xylan 1,4-beta-xylosidase [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.37">3.2.1.37</a>] K01209 alpha-N-arabinofuranosidase [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.55">3.2.1.55</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01198">K01198</a> <a href="/dbget-bin/www_bget?ko:K01209">K01209</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.37">3.2.1.37</a> <a href="/dbget-bin/www_bget?ec:3.2.1.55">3.2.1.55</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4065">XC_4065</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>beta-xylosidase; K01198 xylan 1,4-beta-xylosidase [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.37">3.2.1.37</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01198">K01198</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.37">3.2.1.37</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4154">XC_4154</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>xylosidase; K01198 xylan 1,4-beta-xylosidase [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.37">3.2.1.37</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01198">K01198</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.2.1.37">3.2.1.37</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1976">XC_1976</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glk; glucokinase [KO:<a href="/dbget-bin/www_bget?ko:K00845">K00845</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.2">2.7.1.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1166">XC_1166</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glucokinase; K00845 glucokinase [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.2">2.7.1.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00845">K00845</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.2">2.7.1.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1223">XC_1223</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glucokinase; K00845 glucokinase [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.2">2.7.1.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00845">K00845</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.1.2">2.7.1.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2465">XC_2465</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>pgi; glucose-6-phosphate isomerase [KO:<a href="/dbget-bin/www_bget?ko:K01810">K01810</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.9">5.3.1.9</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3608">XC_3608</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>phosphoglucomutase; phosphomannomutase [KO:<a href="/dbget-bin/www_bget?ko:K15778">K15778</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.4.2.2">5.4.2.2</a> <a href="/dbget-bin/www_bget?ec:5.4.2.8">5.4.2.8</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3941">XC_3941</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>phosphomannomutase; K15778 phosphomannomutase / phosphoglucomutase [EC:<a href="/dbget-bin/www_bget?ec:5.4.2.8">5.4.2.8</a> <a href="/dbget-bin/www_bget?ec:5.4.2.2">5.4.2.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K15778">K15778</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.4.2.2">5.4.2.2</a> <a href="/dbget-bin/www_bget?ec:5.4.2.8">5.4.2.8</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1930">XC_1930</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UTP-glucose-1-phosphate uridylyltransferase; K00963 UTP--glucose-1-phosphate uridylyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.9">2.7.7.9</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00963">K00963</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.9">2.7.7.9</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2733">XC_2733</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-glucose dehydrogenase; K00012 UDPglucose 6-dehydrogenase [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.22">1.1.1.22</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00012">K00012</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.22">1.1.1.22</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3767">XC_3767</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-glucose 4-epimerase; K01784 UDP-glucose 4-epimerase [EC:<a href="/dbget-bin/www_bget?ec:5.1.3.2">5.1.3.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01784">K01784</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.1.3.2">5.1.3.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3769">XC_3769</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-galactopyranose mutase; K01854 UDP-galactopyranose mutase [EC:<a href="/dbget-bin/www_bget?ec:5.4.99.9">5.4.99.9</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01854">K01854</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.4.99.9">5.4.99.9</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3937">XC_3937</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>nucleotide sugar epimerase; K08679 UDP-glucuronate 4-epimerase [EC:<a href="/dbget-bin/www_bget?ec:5.1.3.6">5.1.3.6</a>] [KO:<a href="/dbget-bin/www_bget?ko:K08679">K08679</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.1.3.6">5.1.3.6</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3609">XC_3609</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>phosphomannose isomerase/GDP-mannose pyrophosphorylase; K16011 mannose-1-phosphate guanylyltransferase / mannose-6-phosphate isomerase [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.13">2.7.7.13</a> <a href="/dbget-bin/www_bget?ec:5.3.1.8">5.3.1.8</a>] [KO:<a href="/dbget-bin/www_bget?ko:K16011">K16011</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.3.1.8">5.3.1.8</a> <a href="/dbget-bin/www_bget?ec:2.7.7.13">2.7.7.13</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3627">XC_3627</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-mannose 4; K01711 GDPmannose 4,6-dehydratase [EC:<a href="/dbget-bin/www_bget?ec:4.2.1.47">4.2.1.47</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01711">K01711</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.2.1.47">4.2.1.47</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2169">XC_2169</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glucose-1-phosphate cytidylyltransferase; K00978 glucose-1-phosphate cytidylyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.33">2.7.7.33</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00978">K00978</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.7.33">2.7.7.33</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Compound</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00029">C00029</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00031">C00031</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00043">C00043</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetyl-alpha-D-glucosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00052">C00052</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-alpha-D-galactose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00096">C00096</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-mannose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00103">C00103</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Glucose 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00128">C00128</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CMP-N-acetylneuraminate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00140">C00140</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Acetyl-D-glucosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00159">C00159</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Mannose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00167">C00167</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-glucuronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00181">C00181</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Xylose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00190">C00190</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-D-xylose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00191">C00191</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Glucuronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00203">C00203</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetyl-D-galactosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00259">C00259</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Arabinose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00267">C00267</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>alpha-D-Glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00270">C00270</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Acetylneuraminate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00275">C00275</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Mannose 6-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00325">C00325</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-L-fucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00329">C00329</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Glucosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00333">C00333</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Galacturonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00352">C00352</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Glucosamine 6-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00357">C00357</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Acetyl-D-glucosamine 6-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00394">C00394</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00446">C00446</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>alpha-D-Galactose 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00461">C00461</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Chitin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00498">C00498</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>ADP-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00501">C00501</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00617">C00617</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-D-galacturonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00636">C00636</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Mannose 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00645">C00645</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Acetyl-D-mannosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00668">C00668</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>alpha-D-Glucose 6-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00714">C00714</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Pectin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00734">C00734</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Chitosan</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00935">C00935</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-L-arabinose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00976">C00976</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-D-mannuronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00984">C00984</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>alpha-D-Galactose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00996">C00996</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Ferricytochrome b5</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00999">C00999</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Ferrocytochrome b5</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01019">C01019</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>6-Deoxy-L-galactose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01050">C01050</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetylmuramate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01170">C01170</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetyl-D-mannosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01219">C01219</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-4-dehydro-6-deoxy-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01222">C01222</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-4-dehydro-6-deoxy-D-mannose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01623">C01623</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-apiose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01674">C01674</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Chitobiose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01788">C01788</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-abequose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02199">C02199</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-L-rhamnose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02280">C02280</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-L-galactose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02330">C02330</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-L-iduronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02336">C02336</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>beta-D-Fructose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02352">C02352</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>1,4-beta-D-Xylan</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02474">C02474</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Arabinan</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02713">C02713</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Acetylmuramate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02977">C02977</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-6-deoxy-D-talose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02985">C02985</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Fucose 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03117">C03117</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-6-deoxy-D-mannose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03410">C03410</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Glycoloyl-neuraminate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03598">C03598</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-3,6-dideoxy-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03599">C03599</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-3,6-dideoxy-D-mannose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03691">C03691</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CMP-N-glycoloylneuraminate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03733">C03733</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-alpha-D-galactofuranose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03906">C03906</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>beta-L-Arabinose 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04037">C04037</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>1-Phospho-alpha-D-galacturonate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04089">C04089</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-4-dehydro-6-deoxy-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04257">C04257</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Acetyl-D-mannosamine 6-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04297">C04297</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-4-dehydro-3,6-dideoxy-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04501">C04501</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Acetyl-alpha-D-glucosamine 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04573">C04573</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetyl-2-amino-2-deoxy-D-glucuronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04613">C04613</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-2-acetamido-4-dehydro-2,6-dideoxyglucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04630">C04630</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-2-acetamido-4-amino-2,4,6-trideoxy-alpha-D-glucose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04631">C04631</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetyl-3-(1-carboxyvinyl)-D-glucosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05345">C05345</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>beta-D-Fructose 6-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05385">C05385</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Glucuronate 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06023">C06023</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Glucosaminide</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06156">C06156</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>alpha-D-Glucosamine 1-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06240">C06240</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetyl-D-mannosaminouronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06241">C06241</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Acetylneuraminate 9-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C11521">C11521</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-6-sulfoquinovose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C13952">C13952</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N-acetyl-D-galactosaminuronic acid</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C15925">C15925</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-L-gulose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C16153">C16153</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-L-Ara4N</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C16154">C16154</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-L-Ara4FN</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C16155">C16155</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-L-Ara4O</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C16156">C16156</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Undecaprenyl phosphate alpha-L-Ara4FN</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C16157">C16157</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Undecaprenyl phosphate alpha-L-Ara4N</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C16698">C16698</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Acetylmuramic acid 6-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C17326">C17326</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-4-dehydro-3,6-dideoxy-D-glucose epimer</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C17327">C17327</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CDP-ascarylose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C17328">C17328</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-4-keto-rhamnose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C18094">C18094</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-L-arabinofuranose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C19725">C19725</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-2,3-diacetamido-2,3-dideoxy-alpha-D-glucuronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C19745">C19745</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-2,3-diacetamido-2,3-dideoxy-alpha-D-mannuronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C19823">C19823</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-2-acetamido-2,6-dideoxy-beta-L-arabino-hexos-4-ulose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C19961">C19961</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-4-amino-4,6-dideoxy-N-acetyl-beta-L-altrosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C19971">C19971</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-2,4-bis(acetamido)-2,4,6-trideoxy-beta-L-altropyranose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C19972">C19972</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2,4-Bis(acetamido)-2,4,6-trideoxy-beta-L-altropyranose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20082">C20082</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Pseudaminic acid</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20083">C20083</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CMP-pseudaminic acid</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20357">C20357</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-N,N'-Diacetylbacillosamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20359">C20359</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-2-acetamido-3-amino-2,3-dideoxy-alpha-D-glucuronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20395">C20395</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>UDP-2-acetamido-2-deoxy-alpha-D-ribo-hex-3-uluronate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20418">C20418</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N,N'-Diacetyllegionaminate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20419">C20419</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CMP-N,N'-diacetyllegionaminate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20424">C20424</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2,4-Diacetamido-2,4,6-trideoxy-D-mannopyranose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20638">C20638</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-4-amino-4,6-dideoxy-alpha-D-mannose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20672">C20672</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>GDP-4-acetamido-4,6-dideoxy-alpha-D-mannose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C21027">C21027</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Acetylmuramic acid alpha-1-phosphate</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/2793832">2793832</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Wyk P, Reeves P</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Identification and sequence of the gene for abequose synthase, which confers antigenic specificity on group B salmonellae: homology with galactose epimerase.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 171:5687-93 (1989)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/8071227">8071227</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Thorson JS, Lo SF, Ploux O, He X, Liu HW</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Studies of the biosynthesis of 3,6-dideoxyhexoses: molecular cloning and characterization of the asc (ascarylose) region from Yersinia pseudotuberculosis serogroup VA.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 176:5483-93 (1994)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/8444803">8444803</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Kessler AC, Haase A, Reeves PR</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Molecular analysis of the 3,6-dideoxyhexose pathway genes of Yersinia pseudotuberculosis serogroup IIA.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 175:1412-22 (1993)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/9811644">9811644</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Danese PN, Oliver GR, Barr K, Bowman GD, Rick PD, Silhavy TJ</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Accumulation of the enterobacterial common antigen lipid II biosynthetic intermediate stimulates degP transcription in Escherichia coli.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 180:5875-84 (1998)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10931327">10931327</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Skurnik M, Peippo A, Ervela E</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Characterization of the O-antigen gene clusters of Yersinia pseudotuberculosis and the cryptic O-antigen gene cluster of Yersinia pestis shows that the plague bacillus is most closely related to and has evolved from Y. pseudotuberculosis serotype O:1b.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Mol Microbiol 37:316-30 (2000)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/10984043">10984043</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Stover CK, Pham XQ, Erwin AL, Mizoguchi SD, Warrener P, Hickey MJ, Brinkman FS, Hufnagle WO, Kowalik DJ, Lagrou M, Garber RL, Goltry L, Tolentino E, Westbrock-Wadman S, Yuan Y, Brody LL, Coulter SN, Folger KR, Kas A, Larbig K, Lim R, Smith K, Spencer D, Wong GK, Wu Z, Paulsen IT, Reizer J, Saier MH, Hancock RE, Lory S, Olson MV</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Complete genome sequence of Pseudomonas aeruginosa PAO1, an opportunistic pathogen.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nature 406:959-64 (2000)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11447132">11447132</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Ringenberg M, Lichtensteiger C, Vimr E</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Redirection of sialic acid metabolism in genetically engineered Escherichia coli.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Glycobiology 11:533-9 (2001)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/12562791">12562791</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">McCoy AJ, Sandlin RC, Maurelli AT</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">In vitro and in vivo functional activity of Chlamydia MurA, a UDP-N-acetylglucosamine enolpyruvyl transferase involved in peptidoglycan synthesis and fosfomycin resistance.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 185:1218-28 (2003)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/14450717">14450717</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">JACOBSON B, DAVIDSON EA</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Biosynthesis of uronic acids by skin enzymes. I. Uridine diphosphate-D-glucuronic acid-5-epimerase.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Biol Chem 237:638-42 (1962)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/15134748">15134748</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Seifert GJ</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Nucleotide sugar interconversions and cell wall biosynthesis: how to bring the inside to the outside.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Curr Opin Plant Biol 7:277-84 (2004)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/15489439">15489439</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Uehara T, Park JT</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">The N-acetyl-D-glucosamine kinase of Escherichia coli and its role in murein recycling.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 186:7273-9 (2004)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/15695810">15695810</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Breazeale SD, Ribeiro AA, McClerren AL, Raetz CR.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">A formyltransferase required for polymyxin resistance in Escherichia coli and the modification of lipid A with 4-Amino-4-deoxy-L-arabinose. Identification and function oF UDP-4-deoxy-4-formamido-L-arabinose.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Biol Chem 280:14154-67 (2005)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/15809294">15809294</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Williams GJ, Breazeale SD, Raetz CR, Naismith JH.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Structure and function of both domains of ArnA, a dual function decarboxylase and a formyltransferase, involved in 4-amino-4-deoxy-L-arabinose biosynthesis.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Biol Chem 280:23000-8 (2005)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/16237198">16237198</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Maliekal P, Vertommen D, Delpierre G, Van Schaftingen E</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Identification of the sequence encoding N-acetylneuraminate-9-phosphate phosphatase.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Glycobiology 16:165-72 (2006)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/16277754">16277754</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Campbell CT, Yarema KJ</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Large-scale approaches for glycobiology.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Genome Biol 6:236 (2005)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/16452451">16452451</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Uehara T, Suefuji K, Jaeger T, Mayer C, Park JT</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">MurQ Etherase is required by Escherichia coli in order to metabolize anhydro-N-acetylmuramic acid obtained either from the environment or from its own cell wall.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 188:1660-2 (2006)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/16995900">16995900</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Lanot A, Hodge D, Jackson RG, George GL, Elias L, Lim EK, Vaistij FE, Bowles DJ</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">The glucosyltransferase UGT72E2 is responsible for monolignol 4-O-glucoside production in Arabidopsis thaliana.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Plant J 48:286-95 (2006)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/17085508">17085508</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Muller R, Morant M, Jarmer H, Nilsson L, Nielsen TH</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Genome-wide analysis of the Arabidopsis leaf transcriptome reveals interaction of phosphate and sugar metabolism.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Plant Physiol 143:156-71 (2007)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/17190829">17190829</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Oka T, Nemoto T, Jigami Y</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Functional analysis of Arabidopsis thaliana RHM2/MUM4, a multidomain protein involved in UDP-D-glucose to UDP-L-rhamnose conversion.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Biol Chem 282:5389-403 (2007)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/17827295">17827295</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Greenberg DE, Porcella SF, Zelazny AM, Virtaneva K, Sturdevant DE, Kupko JJ 3rd, Barbian KD, Babar A, Dorward DW, Holland SM.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Genome sequence analysis of the emerging human pathogenic acetic acid bacterium Granulibacter bethesdensis.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 189:8727-36 (2007)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/18199744">18199744</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Kotake T, Hojo S, Tajima N, Matsuoka K, Koyama T, Tsumuraya Y</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">A bifunctional enzyme with L-fucokinase and GDP-L-fucose pyrophosphorylase activities salvages free L-fucose in Arabidopsis.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Biol Chem 283:8125-35 (2008)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/18304669">18304669</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Vorholter FJ, Schneiker S, Goesmann A, Krause L, Bekel T, Kaiser O, Linke B, Patschkowski T, Ruckert C, Schmid J, Sidhu VK, Sieber V, Tauch A, Watt SA, Weisshaar B, Becker A, Niehaus K, Puhler A.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">The genome of Xanthomonas campestris pv. campestris B100 and its use for the reconstruction of metabolic pathways involved in xanthan biosynthesis.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Biotechnol 134:33-45 (2008)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11479276">11479276</a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Albermann C, Piepersberg W</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Expression and identification of the RfbE protein from Vibrio cholerae O1 and its use for the enzymatic synthesis of GDP-D-perosamine.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Glycobiology 11:655-61 (2001)</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>KO&nbsp;pathway</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?ko00520">ko00520</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>&nbsp;</div></td></tr></table></td></tr>
+
+</table></td></tr></table>
+<br></form></td><td valign="top"><div style="margin-top:46px;margin-left:1em;border:#ddd 1px solid"><div class="th30" style="font-weight:bold;line-height:1.5em">&nbsp;&nbsp;All links&nbsp;&nbsp;</div>
+<pre style="margin-left:1em">
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+2+path:xcb00520">Pathway (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+biosystems+path:xcb00520">BioSystems (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+7+path:xcb00520">Genome (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genome+path:xcb00520">KEGG GENOME (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+8+path:xcb00520">Gene (32)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genes+path:xcb00520">KEGG GENES (32)</a>   
+<a href="/dbget-bin/get_linkdb?-t+alldb+path:xcb00520">All databases (34)</a>   
+<br><a href="/dbget-bin/get_linkdb?-N+path:xcb00520">Download RDF</a>   
+</pre>
+</div>
+</td></tr></table>
+
+
+<a href="/dbget/">DBGET</a> integrated database retrieval system</div>
+
+</body>
+</html>

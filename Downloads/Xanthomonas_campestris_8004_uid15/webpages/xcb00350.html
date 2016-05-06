@@ -1,0 +1,272 @@
+<!doctype html>
+<html><head>
+<title>KEGG PATHWAY: xcb00350</title>
+<link type="text/css" rel="stylesheet" href="/css/gn2.css">
+<link rel="stylesheet" href="/css/bget.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/bgetm.css" media="only screen and (max-width: 768px)">
+<style>.kcfd{display:none;}</style>
+<script>
+<!--
+var getElementsByClassName = document.getElementsByClassName ?
+  function (cl){
+    return document.getElementsByClassName(cl);
+  } :
+  function (cl){
+    var elms = [];
+    var objs = document.getElementsByTagName('*');
+    for(var i=0;i<objs.length;i++){
+      var obj = objs[i];
+      if(obj.className == cl){
+        elms.push(obj);
+      }
+    }
+    return elms;
+  };
+function toggleField(clk,cl,show,hide){
+  var objs = getElementsByClassName(cl);
+  for(var i=0;i<objs.length;i++){
+    var obj = objs[i];
+    if(!obj.style.display||obj.style.display == 'none'){
+      obj.style.display = 'block';
+      clk.innerHTML = '&nbsp;&laquo; '+hide;
+    }
+    else{
+      obj.style.display = 'none';
+      clk.innerHTML = '&nbsp;&raquo; '+show;
+    }
+  }
+}
+function toggleData(bobj,e){
+  var id = bobj.id.replace(/[^0-9]/g,'');
+  var dt = document.getElementById('kcfd'+id);
+  if(!dt.style.display||dt.style.display == 'none'){
+    bobj.name = 'hide_kcf';
+    bobj.alt = 'Hide';
+    bobj.src = '/Fig/bget/button_Hib.gif';
+    dt.style.display = 'block';
+  }
+  else{
+    bobj.name = 'show_kcf';
+    bobj.alt = 'Show';
+    bobj.src = '/Fig/bget/button_Sb.gif';
+    dt.style.display = 'none';
+  }
+}
+function btn(bobj,img) {
+  bobj.src = "/Fig/bget/button_" + img + ".gif";
+}
+function btn_e(e) {
+  e = e || event;
+  var obj = e.target;
+  var img = e.target.src;
+  var img_base = img.replace(/\\/g,'/').replace(/(b|bd|bh)\.gif$/,'');
+  if(e.type == 'mousedown'||e.type == 'touchstart'){
+    obj.src = img_base +'bd.gif';
+  }
+  else if(e.type == 'mouseover'){
+    obj.src = img_base +'bh.gif';
+  }
+  else if(e.type == 'mouseup'||e.type == 'touchend'){
+    obj.src = img_base +'b.gif';
+  }
+  else if(e.type == 'mouseout'){
+    obj.src = img_base +'b.gif';
+  }
+}
+function init(){
+  for(var i=1;i<=1;i++){
+    if(document.getElementById('kcfb'+i)){
+      document.getElementById('kcfb'+i).onclick = function(e){toggleData(this,e);};
+      document.getElementById('kcfb'+i).onmousedown = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseover = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseout = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseup = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchstart = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchend = function(e){btn_e(e);};
+    }
+  }
+}
+function Link_XtrctSeq2(form) {
+    var dna_from;
+    var dna_to;
+    var dna_len;
+    var plus_up   = Number(form.XtrctSeq_UP.value) ;
+    var plus_down = Number(form.XtrctSeq_DOWN.value);
+    var vector    = Number(form.VECTOR.value);
+    var org       = form.ORG.value;
+    var chr       = form.CHR.value;
+    var kid       = form.KEGGID.value;
+    var url;
+
+    if (plus_up == 0 && plus_down == 0) {
+	url = "/dbget-bin/www_bget?-f+-n+n+" + kid;
+    }
+    else {
+	if (vector == 1) {
+	    dna_from  = Number(form.FROM.value)  - plus_up;
+	    dna_to    = Number(form.TO.value) + plus_down;
+	} else {
+	    dna_from  = Number(form.FROM.value)  - plus_down;
+	    dna_to    = Number(form.TO.value) + plus_up;
+	}
+
+	url = "/dbget-bin/cut_sequence_genes.pl?FROM=" + dna_from + "&TO=" + dna_to +"&VECTOR=" + vector + "&ORG=" + org;
+	if (chr) url += "&CHR=" + chr;
+    }
+    //window.open( url, "_self" );
+    location.href = url;
+}
+function go_taxonomy(form,params){
+  for(var key in params){
+    if(form[key]){
+      form.setAttribute(key,params[key]);
+    }
+    else{
+      var obj = document.createElement('input');
+      obj.setAttribute('type','hidden');
+      obj.setAttribute('name',key);
+      obj.setAttribute('value',params[key]);
+      form.appendChild(obj);
+    }
+  }
+  form.submit();
+}
+window.onload=function(){window.focus();init();};
+//--->
+</script>
+
+</head>
+<body>
+<div>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="70"><a href="/kegg/kegg2.html"><img align="middle" alt="KEGG" border="0" src="/Fig/bget/kegg3.gif"></a></td><td>&nbsp;&nbsp;&nbsp;</td><td><a name="pathway:xcb00350"></a><font class="title3">PATHWAY: xcb00350</font></td><td align="right" valign="bottom"><a href="javascript:void(window.open('/kegg/document/help_bget_pathway.html','KEGG_Help','toolbar=no,location=no,directories=no,width=720,height=640,resizable=yes,scrollbars=yes'))"><img align="middle" alt="Help" border="0" name="help" onmousedown="btn(this,'Hbd')" onmouseout="btn(this,'Hb')" onmouseover="btn(this,'Hbh')" onmouseup="btn(this,'Hb')" ontouchend="btn(this,'Hb')" ontouchstart="btn(this,'Hbd')" src="/Fig/bget/button_Hb.gif"></a></td></tr></table>
+<form method="post" action="/dbget-bin/www_bget" enctype="application/x-www-form-urlencoded" name="form1"><table border=0 cellpadding=1 cellspacing=0>
+<tr>
+<td class="fr3">
+<table border=0 cellpadding=2 cellspacing=0 style="border-bottom:#000 1px solid">
+
+<tr><th class="th30" align="left" valign="middle" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Entry</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="left"><code><nobr>xcb00350&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pathway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</nobr></code></td> <td align="right"><br></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Name</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Tyrosine metabolism - Xanthomonas campestris pv. campestris 8004<br>
+</div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Class</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Metabolism; Amino acid metabolism<br>
+<a href="/kegg-bin/get_htext?query=xcb00350&amp;htext=xcb00001.keg"><img align="middle" alt="BRITE hierarchy" border="0" name="BRH" onmousedown="btn(this,'BHbd')" onmouseout="btn(this,'BHb')" onmouseover="btn(this,'BHbh')" onmouseup="btn(this,'BHb')" ontouchend="btn(this,'BHb')" ontouchstart="btn(this,'BHbd')" src="/Fig/bget/button_BHb.gif"></a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Pathway&nbsp;map</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5.5em"><div><nobr><a href="/kegg-bin/show_pathway?xcb00350">xcb00350</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Tyrosine metabolism</div></td></tr></table><center><a href="/kegg-bin/show_pathway?xcb00350"><img src="/kegg/misc/thumbnail/map00350.gif" alt="xcb00350" style="border-style:none;"></a></center><br><a href="http://www.kegg.jp/kegg-bin/show_ot_map?map=00350"><img align="middle" alt="All organisms" border="0" name="AO" onmousedown="btn(this,'AObd')" onmouseout="btn(this,'AOb')" onmouseover="btn(this,'AObh')" onmouseup="btn(this,'AOb')" ontouchend="btn(this,'AOb')" ontouchstart="btn(this,'AObd')" src="/Fig/bget/button_AOb.gif"></a><a href="http://www.kegg.jp/kegg-bin/view_ortholog_table?map=00350"><img align="middle" alt="Ortholog table" border="0" name="OT" onmousedown="btn(this,'OTbd')" onmouseout="btn(this,'OTb')" onmouseover="btn(this,'OTbh')" onmouseup="btn(this,'OTb')" ontouchend="btn(this,'OTb')" ontouchstart="btn(this,'OTbd')" src="/Fig/bget/button_OTb.gif"></a></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Other DBs</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="float:left">BSID:&nbsp;</div><div style="margin-left:3.5em"><a href="http://www.ncbi.nlm.nih.gov/biosystems/23999">23999</a></div><div style="float:left">GO:&nbsp;</div><div style="margin-left:2.5em"><a href="http://amigo.geneontology.org/amigo/term/GO:0006570">0006570</a></div></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Organism</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Xanthomonas campestris pv. campestris 8004 [GN:<a href="/dbget-bin/www_bget?gn:xcb">xcb</a>]<br>
+</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Gene</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0889">XC_0889</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:<a href="/dbget-bin/www_bget?ec:2.6.1.9">2.6.1.9</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00817">K00817</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.6.1.9">2.6.1.9</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2379">XC_2379</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>histidinol-phosphate aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:<a href="/dbget-bin/www_bget?ec:2.6.1.9">2.6.1.9</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00817">K00817</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.6.1.9">2.6.1.9</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2665">XC_2665</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:<a href="/dbget-bin/www_bget?ec:2.6.1.9">2.6.1.9</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00817">K00817</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.6.1.9">2.6.1.9</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0100">XC_0100</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>aromatic amino acid aminotransferase; K00832 aromatic-amino-acid transaminase [EC:<a href="/dbget-bin/www_bget?ec:2.6.1.57">2.6.1.57</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00832">K00832</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.6.1.57">2.6.1.57</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0450">XC_0450</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-hydroxyphenylpyruvate dioxygenase; K00457 4-hydroxyphenylpyruvate dioxygenase [EC:<a href="/dbget-bin/www_bget?ec:1.13.11.27">1.13.11.27</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00457">K00457</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.13.11.27">1.13.11.27</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0452">XC_0452</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>homogentisate 1; K00451 homogentisate 1,2-dioxygenase [EC:<a href="/dbget-bin/www_bget?ec:1.13.11.5">1.13.11.5</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00451">K00451</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.13.11.5">1.13.11.5</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3641">XC_3641</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>maleylacetoacetate isomerase; K01800 maleylacetoacetate isomerase [EC:<a href="/dbget-bin/www_bget?ec:5.2.1.2">5.2.1.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01800">K01800</a>] [EC:<a href="/dbget-bin/www_bget?ec:5.2.1.2">5.2.1.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3642">XC_3642</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>fumarylacetoacetate hydrolase; K16171 fumarylacetoacetate (FAA) hydrolase [EC:<a href="/dbget-bin/www_bget?ec:3.7.1.2">3.7.1.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K16171">K16171</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.7.1.2">3.7.1.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0886">XC_0886</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>flavin monoamine oxidase-like protein; K00274 monoamine oxidase [EC:<a href="/dbget-bin/www_bget?ec:1.4.3.4">1.4.3.4</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00274">K00274</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.4.3.4">1.4.3.4</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0775">XC_0775</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.284">1.1.1.284</a> <a href="/dbget-bin/www_bget?ec:1.1.1.1">1.1.1.1</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00121">K00121</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.1">1.1.1.1</a> <a href="/dbget-bin/www_bget?ec:1.1.1.284">1.1.1.284</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0686">XC_0686</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.284">1.1.1.284</a> <a href="/dbget-bin/www_bget?ec:1.1.1.1">1.1.1.1</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00121">K00121</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.1.1.1">1.1.1.1</a> <a href="/dbget-bin/www_bget?ec:1.1.1.284">1.1.1.284</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1109">XC_1109</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-hydroxy-2-oxovalerate aldolase; K02510 4-hydroxy-2-oxoheptanedioate aldolase [EC:<a href="/dbget-bin/www_bget?ec:4.1.2.52">4.1.2.52</a>] [KO:<a href="/dbget-bin/www_bget?ko:K02510">K02510</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.1.2.52">4.1.2.52</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1780">XC_1780</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>succinate-semialdehyde dehydrogenase; K00135 succinate-semialdehyde dehydrogenase / glutarate-semialdehyde dehydrogenase [EC:<a href="/dbget-bin/www_bget?ec:1.2.1.16">1.2.1.16</a> <a href="/dbget-bin/www_bget?ec:1.2.1.79">1.2.1.79</a> <a href="/dbget-bin/www_bget?ec:1.2.1.20">1.2.1.20</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00135">K00135</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.2.1.20">1.2.1.20</a> <a href="/dbget-bin/www_bget?ec:1.2.1.79">1.2.1.79</a> <a href="/dbget-bin/www_bget?ec:1.2.1.16">1.2.1.16</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Compound</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00022">C00022</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Pyruvate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00042">C00042</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Succinate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00082">C00082</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Tyrosine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00122">C00122</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Fumarate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00146">C00146</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Phenol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00164">C00164</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Acetoacetate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00232">C00232</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Succinate semialdehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00355">C00355</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3,4-Dihydroxy-L-phenylalanine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00483">C00483</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Tyramine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00530">C00530</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Hydroquinone</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00544">C00544</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Homogentisate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00547">C00547</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Noradrenaline</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00628">C00628</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2,5-Dihydroxybenzoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00642">C00642</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Hydroxyphenylacetate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00788">C00788</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Adrenaline</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00811">C00811</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Coumarate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00822">C00822</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Dopaquinone</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01036">C01036</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Maleylacetoacetate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01060">C01060</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3,5-Diiodo-L-tyrosine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01061">C01061</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Fumarylacetoacetate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01161">C01161</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3,4-Dihydroxyphenylacetate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01179">C01179</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-(4-Hydroxyphenyl)pyruvate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01207">C01207</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-(3,4-Dihydroxyphenyl)lactate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01693">C01693</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Dopachrome</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01829">C01829</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Thyroxine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01850">C01850</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Rosmarinate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02167">C02167</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Maleylpyruvate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02442">C02442</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Methyltyramine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02465">C02465</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Triiodothyronine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02514">C02514</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Fumarylpyruvate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C02515">C02515</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Iodo-L-tyrosine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03063">C03063</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Oxohept-3-enedioate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03077">C03077</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Chlorophenylacetate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03672">C03672</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-(4-Hydroxyphenyl)lactate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03758">C03758</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Dopamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03765">C03765</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Hydroxyphenylacetaldehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04043">C04043</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3,4-Dihydroxyphenylacetaldehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04045">C04045</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-(3,4-Dihydroxyphenyl)pyruvate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04052">C04052</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5-Carboxy-2-oxohept-3-enedioate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04185">C04185</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5,6-Dihydroxyindole-2-carboxylate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04186">C04186</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5-Carboxymethyl-2-hydroxymuconate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04368">C04368</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Amino-3-(4-hydroxyphenyl)propanoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04642">C04642</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Hydroxy-5-carboxymethylmuconate semialdehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04796">C04796</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-(L-Alanin-3-yl)-2-hydroxy-cis,cis-muconate 6-semialdehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04797">C04797</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5-(L-Alanin-3-yl)-2-hydroxy-cis,cis-muconate 6-semialdehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05338">C05338</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Hydroxyphenylacetyl-CoA</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05350">C05350</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Hydroxy-3-(4-hydroxyphenyl)propenoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05576">C05576</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3,4-Dihydroxyphenylethyleneglycol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05577">C05577</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3,4-Dihydroxymandelaldehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05578">C05578</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5,6-Dihydroxyindole</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05579">C05579</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Indole-5,6-quinone</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05580">C05580</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3,4-Dihydroxymandelate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05581">C05581</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Methoxy-4-hydroxyphenylacetaldehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05582">C05582</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Homovanillate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05583">C05583</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Methoxy-4-hydroxyphenylglycolaldehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05584">C05584</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Methoxy-4-hydroxymandelate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05585">C05585</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Gentisate aldehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05587">C05587</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Methoxytyramine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05588">C05588</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Metanephrine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05589">C05589</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Normetanephrine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05593">C05593</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Hydroxyphenylacetate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05594">C05594</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3-Methoxy-4-hydroxyphenylethyleneglycol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05595">C05595</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Hydroxyphenylacetylglutamic acid</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05596">C05596</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>p-Hydroxyphenylacetylglycine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05600">C05600</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Hydroxyhepta-2,4-dienedioate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C05604">C05604</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Carboxy-2,3-dihydro-5,6-dihydroxyindole</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06044">C06044</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>4-Hydroxyphenylethanol</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06046">C06046</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Salidroside</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06047">C06047</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Stizolobate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06048">C06048</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Stizolobinate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06199">C06199</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Hordenine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C06201">C06201</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2,4-Dihydroxyhept-2-enedioate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C10447">C10447</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>3,4-Dihydroxyphenylpropanoate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C17935">C17935</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Cysteinyldopa</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C17936">C17936</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Phaeomelanin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C17937">C17937</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Eumelanin</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C17938">C17938</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5,6-Indolequinone-2-carboxylic acid</div></td></tr></table></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/8550403">8550403</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Prieto MA, Diaz E, Garcia JL.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Molecular characterization of the 4-hydroxyphenylacetate catabolic pathway of Escherichia coli W: engineering a mobile aromatic degradative cluster.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 178:111-20 (1996)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/1194238">1194238</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Sparnins VL, Dagley S.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Alternative routes of aromatic catabolism in Pseudomonas acidovorans and Pseudomonas putida: gallic acid as a substrate and inhibitor of dioxygenases.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 124:1374-81 (1975)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/18435614">18435614</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Ito S, Wakamatsu K</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Chemistry of mixed melanogenesis--pivotal roles of dopaquinone.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Photochem Photobiol 84:582-92 (2008)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11171088">11171088</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Olivares C, Jimenez-Cervantes C, Lozano JA, Solano F, Garcia-Borron JC</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">The 5,6-dihydroxyindole-2-carboxylic acid (DHICA) oxidase activity of human tyrosinase.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Biochem J 354:131-9 (2001)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>KO&nbsp;pathway</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?ko00350">ko00350</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>&nbsp;</div></td></tr></table></td></tr>
+
+</table></td></tr></table>
+<br></form></td><td valign="top"><div style="margin-top:46px;margin-left:1em;border:#ddd 1px solid"><div class="th30" style="font-weight:bold;line-height:1.5em">&nbsp;&nbsp;All links&nbsp;&nbsp;</div>
+<pre style="margin-left:1em">
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+2+path:xcb00350">Pathway (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+biosystems+path:xcb00350">BioSystems (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+7+path:xcb00350">Genome (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genome+path:xcb00350">KEGG GENOME (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+8+path:xcb00350">Gene (13)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genes+path:xcb00350">KEGG GENES (13)</a>   
+<a href="/dbget-bin/get_linkdb?-t+alldb+path:xcb00350">All databases (15)</a>   
+<br><a href="/dbget-bin/get_linkdb?-N+path:xcb00350">Download RDF</a>   
+</pre>
+</div>
+</td></tr></table>
+
+
+<a href="/dbget/">DBGET</a> integrated database retrieval system</div>
+
+</body>
+</html>

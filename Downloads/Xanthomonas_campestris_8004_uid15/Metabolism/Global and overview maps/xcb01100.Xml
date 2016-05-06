@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb01100" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Metabolic pathways - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound />
+  <PathwayMap Key="xcb01100" Value="Metabolic pathways&lt;center&gt;" />
+  <Genes />
+</KEGG.PathwayBrief>

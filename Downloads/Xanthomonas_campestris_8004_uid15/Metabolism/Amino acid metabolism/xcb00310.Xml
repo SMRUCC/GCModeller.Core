@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00310" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Lysine degradation - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00024" Value="Acetyl-CoA" />
+    <DictionaryEntry Key="C00037" Value="Glycine" />
+    <DictionaryEntry Key="C00047" Value="L-Lysine" />
+    <DictionaryEntry Key="C00136" Value="Butanoyl-CoA" />
+    <DictionaryEntry Key="C00164" Value="Acetoacetate" />
+    <DictionaryEntry Key="C00322" Value="2-Oxoadipate" />
+    <DictionaryEntry Key="C00332" Value="Acetoacetyl-CoA" />
+    <DictionaryEntry Key="C00408" Value="L-Pipecolate" />
+    <DictionaryEntry Key="C00431" Value="5-Aminopentanoate" />
+    <DictionaryEntry Key="C00449" Value="N6-(L-1,3-Dicarboxypropyl)-L-lysine" />
+    <DictionaryEntry Key="C00450" Value="(S)-2,3,4,5-Tetrahydropyridine-2-carboxylate" />
+    <DictionaryEntry Key="C00487" Value="Carnitine" />
+    <DictionaryEntry Key="C00489" Value="Glutarate" />
+    <DictionaryEntry Key="C00527" Value="Glutaryl-CoA" />
+    <DictionaryEntry Key="C00739" Value="D-Lysine" />
+    <DictionaryEntry Key="C00877" Value="Crotonoyl-CoA" />
+    <DictionaryEntry Key="C00956" Value="L-2-Aminoadipate" />
+    <DictionaryEntry Key="C00990" Value="5-Aminopentanamide" />
+    <DictionaryEntry Key="C01028" Value="N6-Hydroxy-L-lysine" />
+    <DictionaryEntry Key="C01142" Value="(3S)-3,6-Diaminohexanoate" />
+    <DictionaryEntry Key="C01144" Value="(S)-3-Hydroxybutanoyl-CoA" />
+    <DictionaryEntry Key="C01149" Value="4-Trimethylammoniobutanal" />
+    <DictionaryEntry Key="C01181" Value="4-Trimethylammoniobutanoate" />
+    <DictionaryEntry Key="C01186" Value="(3S,5S)-3,5-Diaminohexanoate" />
+    <DictionaryEntry Key="C01211" Value="Procollagen 5-hydroxy-L-lysine" />
+    <DictionaryEntry Key="C01259" Value="3-Hydroxy-N6,N6,N6-trimethyl-L-lysine" />
+    <DictionaryEntry Key="C01672" Value="Cadaverine" />
+    <DictionaryEntry Key="C02188" Value="Protein lysine" />
+    <DictionaryEntry Key="C02727" Value="N6-Acetyl-L-lysine" />
+    <DictionaryEntry Key="C03087" Value="5-Acetamidopentanoate" />
+    <DictionaryEntry Key="C03239" Value="6-Amino-2-oxohexanoate" />
+    <DictionaryEntry Key="C03273" Value="5-Oxopentanoate" />
+    <DictionaryEntry Key="C03366" Value="5-Phosphonooxy-L-lysine" />
+    <DictionaryEntry Key="C03656" Value="(S)-5-Amino-3-oxohexanoic acid" />
+    <DictionaryEntry Key="C03793" Value="N6,N6,N6-Trimethyl-L-lysine" />
+    <DictionaryEntry Key="C03955" Value="N6-Acetyl-N6-hydroxy-L-lysine" />
+    <DictionaryEntry Key="C04020" Value="D-Lysopine" />
+    <DictionaryEntry Key="C04076" Value="L-2-Aminoadipate 6-semialdehyde" />
+    <DictionaryEntry Key="C04092" Value="delta1-Piperideine-2-carboxylate" />
+    <DictionaryEntry Key="C04487" Value="5-(D-Galactosyloxy)-L-lysine-procollagen" />
+    <DictionaryEntry Key="C05161" Value="2,5-Diaminohexanoate" />
+    <DictionaryEntry Key="C05231" Value="L-3-Aminobutyryl-CoA" />
+    <DictionaryEntry Key="C05544" Value="Protein N6-methyl-L-lysine" />
+    <DictionaryEntry Key="C05545" Value="Protein N6,N6-dimethyl-L-lysine" />
+    <DictionaryEntry Key="C05546" Value="Protein N6,N6,N6-trimethyl-L-lysine" />
+    <DictionaryEntry Key="C05548" Value="6-Acetamido-2-oxohexanoate" />
+    <DictionaryEntry Key="C05554" Value="Aerobactin" />
+    <DictionaryEntry Key="C05825" Value="2-Amino-5-oxohexanoate" />
+    <DictionaryEntry Key="C06157" Value="[Dihydrolipoyllysine-residue succinyltransferase] S-glutaryldihydrolipoyllysine" />
+    <DictionaryEntry Key="C06181" Value="Piperideine" />
+    <DictionaryEntry Key="C16741" Value="L-Hydroxylysine" />
+    <DictionaryEntry Key="C20333" Value="N2-Citryl-N6-acetyl-N6-hydroxy-L-lysine" />
+  </Compound>
+  <PathwayMap Key="xcb00310" Value="Lysine degradation&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_2749" Value="sucA; 2-oxoglutarate dehydrogenase E1 [KO:K00164] [EC:1.2.4.2]" />
+    <DictionaryEntry Key="XC_2750" Value="dihydrolipoamide succinyltransferase; K00658 2-oxoglutarate dehydrogenase E2 component (dihydrolipoamide succinyltransferase) [EC:2.3.1.61] [KO:K00658] [EC:2.3.1.61]" />
+    <DictionaryEntry Key="XC_2809" Value="glutaryl-CoA dehydrogenase; K00252 glutaryl-CoA dehydrogenase [EC:1.3.8.6] [KO:K00252] [EC:1.3.8.6]" />
+    <DictionaryEntry Key="XC_2975" Value="3-hydroxyacyl-CoA dehydrogenase; K01782 3-hydroxyacyl-CoA dehydrogenase / enoyl-CoA hydratase / 3-hydroxybutyryl-CoA epimerase [EC:1.1.1.35 4.2.1.17 5.1.2.3] [KO:K01782] [EC:5.1.2.3 4.2.1.17 1.1.1.35]" />
+    <DictionaryEntry Key="XC_2943" Value="acetoacetyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9] [KO:K00626] [EC:2.3.1.9]" />
+    <DictionaryEntry Key="XC_0204" Value="acetyl-CoA acetyltransferase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9] [KO:K00626] [EC:2.3.1.9]" />
+    <DictionaryEntry Key="XC_1780" Value="succinate-semialdehyde dehydrogenase; K00135 succinate-semialdehyde dehydrogenase / glutarate-semialdehyde dehydrogenase [EC:1.2.1.16 1.2.1.79 1.2.1.20] [KO:K00135] [EC:1.2.1.20 1.2.1.79 1.2.1.16]" />
+    <DictionaryEntry Key="XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
+    <DictionaryEntry Key="XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
+  </Genes>
+</KEGG.PathwayBrief>

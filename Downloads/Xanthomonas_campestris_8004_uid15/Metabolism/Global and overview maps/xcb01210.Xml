@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb01210" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description>2-Oxocarboxylic acids, also called 2-oxo acids and alpha-keto acids, are the most elementary set of metabolites that includes pyruvate (2-oxopropanoate), 2-oxobutanoate, oxaloacetate (2-oxosuccinate) and 2-oxoglutarate. This diagram illustrates the architecture of chain extension and modification reaction modules for 2-oxocarboxylic acids. The chain extension module RM001 is a tricarboxylic pathway where acetyl-CoA derived carbon is used to extend the chain length by one. The chain modification modules RM002 (including RM032) and RM033, together with a reductive amination step (RC00006 or RC00036), generate basic and branched-chain amino acids, respectively. The modification module RM030 is used in the biosynthesis of glucosinolates, a class of plant secondary metabolites, for conversion to oxime followed by addition of thio-glucose moiety. Furthermore, the chain extension from 2-oxoadipate to 2-oxosuberate is followed by coenzyme B biosynthesis in methonogenic archaea.&lt;br&gt;</Description>
+  <Name>2-Oxocarboxylic acid metabolism - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Modules>
+    <DictionaryEntry Key="xcb_M00010" Value="Citrate cycle, first carbon oxidation, oxaloacetate =&gt; 2-oxoglutarate [PATH:xcb01210]" />
+    <DictionaryEntry Key="xcb_M00019" Value="Valine/isoleucine biosynthesis, pyruvate =&gt; valine / 2-oxobutanoate =&gt; isoleucine [PATH:xcb01210]" />
+    <DictionaryEntry Key="xcb_M00432" Value="Leucine biosynthesis, 2-oxoisovalerate =&gt; 2-oxoisocaproate [PATH:xcb01210]" />
+  </Modules>
+  <Compound />
+  <PathwayMap Key="xcb01210" Value="2-Oxocarboxylic acid metabolism&lt;center&gt;" />
+  <Genes />
+</KEGG.PathwayBrief>

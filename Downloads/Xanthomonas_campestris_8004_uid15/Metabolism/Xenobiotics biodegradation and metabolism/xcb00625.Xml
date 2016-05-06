@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00625" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Chloroalkane and chloroalkene degradation - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00011" Value="CO2" />
+    <DictionaryEntry Key="C00024" Value="Acetyl-CoA" />
+    <DictionaryEntry Key="C00048" Value="Glyoxylate" />
+    <DictionaryEntry Key="C00058" Value="Formate" />
+    <DictionaryEntry Key="C00067" Value="Formaldehyde" />
+    <DictionaryEntry Key="C00084" Value="Acetaldehyde" />
+    <DictionaryEntry Key="C00160" Value="Glycolate" />
+    <DictionaryEntry Key="C00209" Value="Oxalate" />
+    <DictionaryEntry Key="C00222" Value="3-Oxopropanoate" />
+    <DictionaryEntry Key="C00237" Value="CO" />
+    <DictionaryEntry Key="C01380" Value="Ethylene glycol" />
+    <DictionaryEntry Key="C01548" Value="Acetylene" />
+    <DictionaryEntry Key="C02271" Value="Dichloromethane" />
+    <DictionaryEntry Key="C06547" Value="Ethylene" />
+    <DictionaryEntry Key="C06548" Value="Ethylene oxide" />
+    <DictionaryEntry Key="C06609" Value="trans-1,3-Dichloropropene" />
+    <DictionaryEntry Key="C06610" Value="cis-1,3-Dichloropropene" />
+    <DictionaryEntry Key="C06611" Value="trans-3-Chloro-2-propene-1-ol" />
+    <DictionaryEntry Key="C06612" Value="cis-3-Chloro-2-propene-1-ol" />
+    <DictionaryEntry Key="C06613" Value="trans-3-Chloroallyl aldehyde" />
+    <DictionaryEntry Key="C06614" Value="trans-3-Chloroacrylic acid" />
+    <DictionaryEntry Key="C06615" Value="cis-3-Chloroacrylic acid" />
+    <DictionaryEntry Key="C06752" Value="1,2-Dichloroethane" />
+    <DictionaryEntry Key="C06753" Value="2-Chloroethanol" />
+    <DictionaryEntry Key="C06754" Value="Chloroacetaldehyde" />
+    <DictionaryEntry Key="C06755" Value="Chloroacetic acid" />
+    <DictionaryEntry Key="C06789" Value="Tetrachloroethene" />
+    <DictionaryEntry Key="C06790" Value="Trichloroethene" />
+    <DictionaryEntry Key="C06791" Value="trans-1,2-Dichloroethene" />
+    <DictionaryEntry Key="C06792" Value="cis-1,2-Dichloroethene" />
+    <DictionaryEntry Key="C06793" Value="Vinyl chloride" />
+    <DictionaryEntry Key="C07490" Value="Trichloroethanol" />
+    <DictionaryEntry Key="C11148" Value="TCE epoxide" />
+    <DictionaryEntry Key="C11149" Value="Dichloroacetate" />
+    <DictionaryEntry Key="C11150" Value="Trichloroacetate" />
+    <DictionaryEntry Key="C14866" Value="Chloral" />
+    <DictionaryEntry Key="C16348" Value="cis-3-Chloroallyl aldehyde" />
+    <DictionaryEntry Key="C18246" Value="1,1,1-Trichloroethane" />
+    <DictionaryEntry Key="C18247" Value="1,1-Dichloroethane" />
+    <DictionaryEntry Key="C18248" Value="Chloroethane" />
+  </Compound>
+  <PathwayMap Key="xcb00625" Value="Chloroalkane and chloroalkene degradation&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_0226" Value="haloalkane dehalogenase; K01563 haloalkane dehalogenase [EC:3.8.1.5] [KO:K01563] [EC:3.8.1.5]" />
+    <DictionaryEntry Key="XC_0775" Value="alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC:1.1.1.284 1.1.1.1] [KO:K00121] [EC:1.1.1.1 1.1.1.284]" />
+    <DictionaryEntry Key="XC_0686" Value="alcohol dehydrogenase; K00121 S-(hydroxymethyl)glutathione dehydrogenase / alcohol dehydrogenase [EC:1.1.1.284 1.1.1.1] [KO:K00121] [EC:1.1.1.1 1.1.1.284]" />
+    <DictionaryEntry Key="XC_2445" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
+    <DictionaryEntry Key="XC_3421" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3] [KO:K00128] [EC:1.2.1.3]" />
+  </Genes>
+</KEGG.PathwayBrief>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00460" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Cyanoamino acid metabolism - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00014" Value="Ammonia" />
+    <DictionaryEntry Key="C00037" Value="Glycine" />
+    <DictionaryEntry Key="C00049" Value="L-Aspartate" />
+    <DictionaryEntry Key="C00065" Value="L-Serine" />
+    <DictionaryEntry Key="C00079" Value="L-Phenylalanine" />
+    <DictionaryEntry Key="C00082" Value="L-Tyrosine" />
+    <DictionaryEntry Key="C00097" Value="L-Cysteine" />
+    <DictionaryEntry Key="C00152" Value="L-Asparagine" />
+    <DictionaryEntry Key="C00183" Value="L-Valine" />
+    <DictionaryEntry Key="C00302" Value="Glutamate" />
+    <DictionaryEntry Key="C00407" Value="L-Isoleucine" />
+    <DictionaryEntry Key="C00488" Value="Formamide" />
+    <DictionaryEntry Key="C00561" Value="Mandelonitrile" />
+    <DictionaryEntry Key="C00844" Value="Prunasin" />
+    <DictionaryEntry Key="C01326" Value="Hydrogen cyanide" />
+    <DictionaryEntry Key="C01401" Value="Alanine" />
+    <DictionaryEntry Key="C01594" Value="Linamarin" />
+    <DictionaryEntry Key="C02512" Value="3-Cyano-L-alanine" />
+    <DictionaryEntry Key="C02659" Value="Acetone cyanohydrin" />
+    <DictionaryEntry Key="C03004" Value="N-Hydroxy-L-tyrosine" />
+    <DictionaryEntry Key="C03219" Value="(E)-2-Methylpropanal oxime" />
+    <DictionaryEntry Key="C03742" Value="(S)-4-Hydroxymandelonitrile" />
+    <DictionaryEntry Key="C04353" Value="(Z)-4-Hydroxyphenylacetaldehyde oxime" />
+    <DictionaryEntry Key="C05143" Value="Dhurrin" />
+    <DictionaryEntry Key="C05670" Value="3-Aminopropiononitrile" />
+    <DictionaryEntry Key="C05711" Value="gamma-Glutamyl-beta-cyanoalanine" />
+    <DictionaryEntry Key="C05714" Value="alpha-Aminopropiononitrile" />
+    <DictionaryEntry Key="C05715" Value="gamma-Amino-gamma-cyanobutanoate" />
+    <DictionaryEntry Key="C06114" Value="gamma-Glutamyl-beta-aminopropiononitrile" />
+    <DictionaryEntry Key="C08325" Value="Amygdalin" />
+    <DictionaryEntry Key="C08334" Value="Lotaustralin" />
+    <DictionaryEntry Key="C15503" Value="N,N-Dihydroxy-L-tyrosine" />
+    <DictionaryEntry Key="C16074" Value="Phenylacetonitrile" />
+    <DictionaryEntry Key="C16075" Value="(Z)-Phenylacetaldehyde oxime" />
+    <DictionaryEntry Key="C18796" Value="(2R)-2-Hydroxy-2-methylbutanenitrile" />
+    <DictionaryEntry Key="C19491" Value="(E)-2-Methylbutanal oxime" />
+    <DictionaryEntry Key="C19712" Value="N-Hydroxy-L-phenylalanine" />
+    <DictionaryEntry Key="C19714" Value="(E)-Phenylacetaldoxime" />
+    <DictionaryEntry Key="C19715" Value="N,N-Dihydroxy-L-phenylalanine" />
+    <DictionaryEntry Key="C20310" Value="N-Hydroxy-L-isoleucine" />
+    <DictionaryEntry Key="C20311" Value="N,N-Dihydroxy-L-isoleucine" />
+    <DictionaryEntry Key="C20312" Value="(Z)-2-Methylbutanal oxime" />
+    <DictionaryEntry Key="C20313" Value="N-Hydroxy-L-valine" />
+    <DictionaryEntry Key="C20314" Value="N,N-Dihydroxy-L-valine" />
+    <DictionaryEntry Key="C20315" Value="(Z)-2-Methylpropanal oxime" />
+  </Compound>
+  <PathwayMap Key="xcb00460" Value="Cyanoamino acid metabolism&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_2834" Value="beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
+    <DictionaryEntry Key="XC_3159" Value="beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
+    <DictionaryEntry Key="XC_3886" Value="beta-glucosidase; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
+    <DictionaryEntry Key="XC_1217" Value="glucan 1; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
+    <DictionaryEntry Key="XC_4197" Value="glucan 1; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
+    <DictionaryEntry Key="XC_2461" Value="glucan 1; K05349 beta-glucosidase [EC:3.2.1.21] [KO:K05349] [EC:3.2.1.21]" />
+    <DictionaryEntry Key="XC_0301" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2.2 3.4.19.13] [KO:K00681] [EC:3.4.19.13 2.3.2.2]" />
+    <DictionaryEntry Key="XC_0842" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2.2 3.4.19.13] [KO:K00681] [EC:3.4.19.13 2.3.2.2]" />
+    <DictionaryEntry Key="XC_1726" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2.2 3.4.19.13] [KO:K00681] [EC:3.4.19.13 2.3.2.2]" />
+    <DictionaryEntry Key="XC_3374" Value="asparaginase; K01424 L-asparaginase [EC:3.5.1.1] [KO:K01424] [EC:3.5.1.1]" />
+    <DictionaryEntry Key="XC_3544" Value="glyA; serine hydroxymethyltransferase [KO:K00600] [EC:2.1.2.1]" />
+  </Genes>
+</KEGG.PathwayBrief>

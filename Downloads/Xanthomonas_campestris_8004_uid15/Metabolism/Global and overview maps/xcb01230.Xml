@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb01230" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description>This map presents a modular architecture of the biosynthesis pathways of twenty amino acids, which may be viewed as consisting of the core part and its extensions. The core part is the KEGG module for conversion of three-carbon compounds from glyceraldehyde-3P to pyruvate [MD:M00002], together with the pathways around serine and glycine. This KEGG module is the most conserved one in the KEGG MODULE database and is found in almost all the completely sequenced genomes. The extensions are the pathways containing the reaction modules RM001, RM033, RM032, and RM002 for biosynthesis of branched-chain amino acids (left) and basic amino acids (bottom), and the pathways for biosynthesis of histidine and aromatic amino acids (top right). It is interesting to note that the so-called essential amino acids that cannot be synthesized in human and other organisms generally appear in these extensions. Furthermore, the bottom extension of basic amino acids appears to be most divergent containing multiple pathways for lysine biosynthesis and multiple gene sets for arginine biosynthesis.&lt;br&gt;</Description>
+  <Name>Biosynthesis of amino acids - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Modules>
+    <DictionaryEntry Key="xcb_M00002" Value="Glycolysis, core module involving three-carbon compounds [PATH:xcb01230]" />
+    <DictionaryEntry Key="xcb_M00005" Value="PRPP biosynthesis, ribose 5P =&gt; PRPP [PATH:xcb01230]" />
+    <DictionaryEntry Key="xcb_M00007" Value="Pentose phosphate pathway, non-oxidative phase, fructose 6P =&gt; ribose 5P [PATH:xcb01230]" />
+    <DictionaryEntry Key="xcb_M00010" Value="Citrate cycle, first carbon oxidation, oxaloacetate =&gt; 2-oxoglutarate [PATH:xcb01230]" />
+    <DictionaryEntry Key="xcb_M00015" Value="Proline biosynthesis, glutamate =&gt; proline [PATH:xcb01230]" />
+    <DictionaryEntry Key="xcb_M00016" Value="Lysine biosynthesis, succinyl-DAP pathway, aspartate =&gt; lysine [PATH:xcb01230]" />
+    <DictionaryEntry Key="xcb_M00018" Value="Threonine biosynthesis, aspartate =&gt; homoserine =&gt; threonine [PATH:xcb01230]" />
+    <DictionaryEntry Key="xcb_M00019" Value="Valine/isoleucine biosynthesis, pyruvate =&gt; valine / 2-oxobutanoate =&gt; isoleucine [PATH:xcb01230]" />
+    <DictionaryEntry Key="xcb_M00022" Value="Shikimate pathway, phosphoenolpyruvate + erythrose-4P =&gt; chorismate [PATH:xcb01230]" />
+    <DictionaryEntry Key="xcb_M00023" Value="Tryptophan biosynthesis, chorismate =&gt; tryptophan [PATH:xcb01230]" />
+    <DictionaryEntry Key="xcb_M00024" Value="Phenylalanine biosynthesis, chorismate =&gt; phenylalanine [PATH:xcb01230]" />
+    <DictionaryEntry Key="xcb_M00025" Value="Tyrosine biosynthesis, chorismate =&gt; tyrosine [PATH:xcb01230]" />
+    <DictionaryEntry Key="xcb_M00026" Value="Histidine biosynthesis, PRPP =&gt; histidine [PATH:xcb01230]" />
+    <DictionaryEntry Key="xcb_M00338" Value="Cysteine biosynthesis, homocysteine + serine =&gt; cysteine [PATH:xcb01230]" />
+    <DictionaryEntry Key="xcb_M00432" Value="Leucine biosynthesis, 2-oxoisovalerate =&gt; 2-oxoisocaproate [PATH:xcb01230]" />
+    <DictionaryEntry Key="xcb_M00570" Value="Isoleucine biosynthesis, threonine =&gt; 2-oxobutanoate =&gt; isoleucine [PATH:xcb01230]" />
+  </Modules>
+  <Compound />
+  <PathwayMap Key="xcb01230" Value="Biosynthesis of amino acids&lt;center&gt;" />
+  <Genes />
+</KEGG.PathwayBrief>

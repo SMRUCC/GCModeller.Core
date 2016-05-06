@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00061" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Fatty acid biosynthesis - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Modules>
+    <DictionaryEntry Key="xcb_M00082" Value="Fatty acid biosynthesis, initiation [PATH:xcb00061]" />
+    <DictionaryEntry Key="xcb_M00083" Value="Fatty acid biosynthesis, elongation [PATH:xcb00061]" />
+  </Modules>
+  <Compound>
+    <DictionaryEntry Key="C00024" Value="Acetyl-CoA" />
+    <DictionaryEntry Key="C00083" Value="Malonyl-CoA" />
+    <DictionaryEntry Key="C00154" Value="Palmitoyl-CoA" />
+    <DictionaryEntry Key="C00229" Value="Acyl-carrier protein" />
+    <DictionaryEntry Key="C00249" Value="Hexadecanoic acid" />
+    <DictionaryEntry Key="C00712" Value="(9Z)-Octadecenoic acid" />
+    <DictionaryEntry Key="C01203" Value="Oleoyl-[acyl-carrier protein]" />
+    <DictionaryEntry Key="C01209" Value="Malonyl-[acyl-carrier protein]" />
+    <DictionaryEntry Key="C01530" Value="Octadecanoic acid" />
+    <DictionaryEntry Key="C01571" Value="Decanoic acid" />
+    <DictionaryEntry Key="C02679" Value="Dodecanoic acid" />
+    <DictionaryEntry Key="C03939" Value="Acetyl-[acyl-carrier protein]" />
+    <DictionaryEntry Key="C04088" Value="Octadecanoyl-[acyl-carrier protein]" />
+    <DictionaryEntry Key="C04180" Value="cis-Dec-3-enoyl-[acp]" />
+    <DictionaryEntry Key="C04246" Value="But-2-enoyl-[acyl-carrier protein]" />
+    <DictionaryEntry Key="C04618" Value="(3R)-3-Hydroxybutanoyl-[acyl-carrier protein]" />
+    <DictionaryEntry Key="C04619" Value="(3R)-3-Hydroxydecanoyl-[acyl-carrier protein]" />
+    <DictionaryEntry Key="C04620" Value="(3R)-3-Hydroxyoctanoyl-[acyl-carrier protein]" />
+    <DictionaryEntry Key="C04633" Value="(3R)-3-Hydroxypalmitoyl-[acyl-carrier protein]" />
+    <DictionaryEntry Key="C04688" Value="(3R)-3-Hydroxytetradecanoyl-[acyl-carrier protein]" />
+    <DictionaryEntry Key="C05223" Value="Dodecanoyl-[acyl-carrier protein]" />
+    <DictionaryEntry Key="C05744" Value="Acetoacetyl-[acp]" />
+    <DictionaryEntry Key="C05745" Value="Butyryl-[acp]" />
+    <DictionaryEntry Key="C05746" Value="3-Oxohexanoyl-[acp]" />
+    <DictionaryEntry Key="C05747" Value="(R)-3-Hydroxyhexanoyl-[acp]" />
+    <DictionaryEntry Key="C05748" Value="trans-Hex-2-enoyl-[acp]" />
+    <DictionaryEntry Key="C05749" Value="Hexanoyl-[acp]" />
+    <DictionaryEntry Key="C05750" Value="3-Oxooctanoyl-[acp]" />
+    <DictionaryEntry Key="C05751" Value="trans-Oct-2-enoyl-[acp]" />
+    <DictionaryEntry Key="C05752" Value="Octanoyl-[acp]" />
+    <DictionaryEntry Key="C05753" Value="3-Oxodecanoyl-[acp]" />
+    <DictionaryEntry Key="C05754" Value="trans-Dec-2-enoyl-[acp]" />
+    <DictionaryEntry Key="C05755" Value="Decanoyl-[acp]" />
+    <DictionaryEntry Key="C05756" Value="3-Oxododecanoyl-[acp]" />
+    <DictionaryEntry Key="C05757" Value="(R)-3-Hydroxydodecanoyl-[acp]" />
+    <DictionaryEntry Key="C05758" Value="trans-Dodec-2-enoyl-[acp]" />
+    <DictionaryEntry Key="C05759" Value="3-Oxotetradecanoyl-[acp]" />
+    <DictionaryEntry Key="C05760" Value="trans-Tetradec-2-enoyl-[acp]" />
+    <DictionaryEntry Key="C05761" Value="Tetradecanoyl-[acp]" />
+    <DictionaryEntry Key="C05762" Value="3-Oxohexadecanoyl-[acp]" />
+    <DictionaryEntry Key="C05763" Value="trans-Hexadec-2-enoyl-[acp]" />
+    <DictionaryEntry Key="C05764" Value="Hexadecanoyl-[acp]" />
+    <DictionaryEntry Key="C06423" Value="Octanoic acid" />
+    <DictionaryEntry Key="C06424" Value="Tetradecanoic acid" />
+    <DictionaryEntry Key="C08362" Value="(9Z)-Hexadecenoic acid" />
+    <DictionaryEntry Key="C16219" Value="3-Oxostearoyl-[acp]" />
+    <DictionaryEntry Key="C16220" Value="(R)-3-Hydroxyoctadecanoyl-[acp]" />
+    <DictionaryEntry Key="C16221" Value="(2E)-Octadecenoyl-[acp]" />
+    <DictionaryEntry Key="C16520" Value="Hexadecenoyl-[acyl-carrier protein]" />
+    <DictionaryEntry Key="C20794" Value="n-7 Unsaturated acyl-[acyl-carrier protein]" />
+  </Compound>
+  <PathwayMap Key="xcb00061" Value="Fatty acid biosynthesis&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_2881" Value="acetyl-CoA carboxylase carboxyltransferase subunit alpha; K01962 acetyl-CoA carboxylase carboxyl transferase subunit alpha [EC:6.4.1.2] [KO:K01962] [EC:6.4.1.2]" />
+    <DictionaryEntry Key="XC_0529" Value="acetyl-CoA carboxylase biotin carboxyl carrier protein subunit; K02160 acetyl-CoA carboxylase biotin carboxyl carrier protein [KO:K02160]" />
+    <DictionaryEntry Key="XC_0527" Value="acetyl-CoA carboxylase biotin carboxylase subunit; K01961 acetyl-CoA carboxylase, biotin carboxylase subunit [EC:6.4.1.2 6.3.4.14] [KO:K01961] [EC:6.3.4.14 6.4.1.2]" />
+    <DictionaryEntry Key="XC_1578" Value="acetyl-CoA carboxylase subunit beta; K01963 acetyl-CoA carboxylase carboxyl transferase subunit beta [EC:6.4.1.2] [KO:K01963] [EC:6.4.1.2]" />
+    <DictionaryEntry Key="XC_0578" Value="ACP S-malonyltransferase; K00645 [acyl-carrier-protein] S-malonyltransferase [EC:2.3.1.39] [KO:K00645] [EC:2.3.1.39]" />
+    <DictionaryEntry Key="XC_3228" Value="ACP S-malonyltransferase; K00645 [acyl-carrier-protein] S-malonyltransferase [EC:2.3.1.39] [KO:K00645] [EC:2.3.1.39]" />
+    <DictionaryEntry Key="XC_3229" Value="3-oxoacyl-ACP synthase; K00648 3-oxoacyl-[acyl-carrier-protein] synthase III [EC:2.3.1.180] [KO:K00648] [EC:2.3.1.180]" />
+    <DictionaryEntry Key="XC_1672" Value="protein GumO; K00648 3-oxoacyl-[acyl-carrier-protein] synthase III [EC:2.3.1.180] [KO:K00648] [EC:2.3.1.180]" />
+    <DictionaryEntry Key="XC_0222" Value="3-oxoacyl-ACP synthase; K00648 3-oxoacyl-[acyl-carrier-protein] synthase III [EC:2.3.1.180] [KO:K00648] [EC:2.3.1.180]" />
+    <DictionaryEntry Key="XC_4087" Value="3-oxoacyl-ACP synthase; K00647 3-oxoacyl-[acyl-carrier-protein] synthase I [EC:2.3.1.41] [KO:K00647] [EC:2.3.1.41]" />
+    <DictionaryEntry Key="XC_3652" Value="beta-ketoacyl-[ACP] synthase I; K00647 3-oxoacyl-[acyl-carrier-protein] synthase I [EC:2.3.1.41] [KO:K00647] [EC:2.3.1.41]" />
+    <DictionaryEntry Key="XC_3225" Value="3-oxoacyl-ACP synthase; K09458 3-oxoacyl-[acyl-carrier-protein] synthase II [EC:2.3.1.179] [KO:K09458] [EC:2.3.1.179]" />
+    <DictionaryEntry Key="XC_0396" Value="oxidoreductase; K00059 3-oxoacyl-[acyl-carrier protein] reductase [EC:1.1.1.100] [KO:K00059] [EC:1.1.1.100]" />
+    <DictionaryEntry Key="XC_3227" Value="fabG; 3-ketoacyl-ACP reductase [KO:K00059] [EC:1.1.1.100]" />
+    <DictionaryEntry Key="XC_4092" Value="fabG; 3-ketoacyl-ACP reductase [KO:K00059] [EC:1.1.1.100]" />
+    <DictionaryEntry Key="XC_0429" Value="3-oxoacyl-ACP reductase; K00059 3-oxoacyl-[acyl-carrier protein] reductase [EC:1.1.1.100] [KO:K00059] [EC:1.1.1.100]" />
+    <DictionaryEntry Key="XC_3651" Value="3-hydroxydecanoyl-ACP dehydratase; K01716 3-hydroxyacyl-[acyl-carrier protein] dehydratase / trans-2-decenoyl-[acyl-carrier protein] isomerase [EC:4.2.1.59 5.3.3.14] [KO:K01716] [EC:5.3.3.14 4.2.1.59]" />
+    <DictionaryEntry Key="XC_2876" Value="fabZ; (3R)-hydroxymyristoyl-ACP dehydratase [KO:K02372] [EC:4.2.1.59]" />
+    <DictionaryEntry Key="XC_0119" Value="trans-2-enoyl-CoA reductase; K00209 enoyl-[acyl-carrier protein] reductase / trans-2-enoyl-CoA reductase (NAD+) [EC:1.3.1.9 1.3.1.44] [KO:K00209] [EC:1.3.1.44 1.3.1.9]" />
+    <DictionaryEntry Key="XC_2331" Value="long-chain fatty acyl CoA ligase; K01897 long-chain acyl-CoA synthetase [EC:6.2.1.3] [KO:K01897] [EC:6.2.1.3]" />
+  </Genes>
+</KEGG.PathwayBrief>

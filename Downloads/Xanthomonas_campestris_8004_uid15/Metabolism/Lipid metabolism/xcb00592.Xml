@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00592" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>alpha-Linolenic acid metabolism - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00157" Value="Phosphatidylcholine" />
+    <DictionaryEntry Key="C01226" Value="12-OPDA" />
+    <DictionaryEntry Key="C04672" Value="(9Z,15Z)-(13S)-12,13-Epoxyoctadeca-9,11,15-trienoic acid" />
+    <DictionaryEntry Key="C04780" Value="8-[(1R,2R)-3-Oxo-2-{(Z)-pent-2-enyl}cyclopentyl]octanoate" />
+    <DictionaryEntry Key="C04785" Value="13(S)-HPOT" />
+    <DictionaryEntry Key="C06427" Value="(9Z,12Z,15Z)-Octadecatrienoic acid" />
+    <DictionaryEntry Key="C08491" Value="(-)-Jasmonic acid" />
+    <DictionaryEntry Key="C08492" Value="3-Hexenol" />
+    <DictionaryEntry Key="C11512" Value="Methyl jasmonate" />
+    <DictionaryEntry Key="C16300" Value="Stearidonic acid" />
+    <DictionaryEntry Key="C16308" Value="Traumatic acid" />
+    <DictionaryEntry Key="C16309" Value="Traumatin" />
+    <DictionaryEntry Key="C16310" Value="3-Hexenal" />
+    <DictionaryEntry Key="C16311" Value="12-Oxo-9(Z)-dodecenoic acid" />
+    <DictionaryEntry Key="C16316" Value="13(S)-HOT" />
+    <DictionaryEntry Key="C16317" Value="(+)-7-Isojasmonic acid" />
+    <DictionaryEntry Key="C16318" Value="(+)-7-Isomethyljasmonate" />
+    <DictionaryEntry Key="C16319" Value="Etherolenic acid" />
+    <DictionaryEntry Key="C16320" Value="Colnelenic acid" />
+    <DictionaryEntry Key="C16321" Value="9(S)-HPOT" />
+    <DictionaryEntry Key="C16322" Value="9-Oxononanoic acid" />
+    <DictionaryEntry Key="C16323" Value="3,6-Nonadienal" />
+    <DictionaryEntry Key="C16324" Value="9,10-EOT" />
+    <DictionaryEntry Key="C16325" Value="10-OPDA" />
+    <DictionaryEntry Key="C16326" Value="9(S)-HOT" />
+    <DictionaryEntry Key="C16327" Value="OPC8-CoA" />
+    <DictionaryEntry Key="C16328" Value="trans-2-Enoyl-OPC8-CoA" />
+    <DictionaryEntry Key="C16330" Value="3-Oxo-OPC8-CoA" />
+    <DictionaryEntry Key="C16331" Value="OPC6-CoA" />
+    <DictionaryEntry Key="C16332" Value="trans-2-Enoyl-OPC6-CoA" />
+    <DictionaryEntry Key="C16334" Value="3-Oxo-OPC6-CoA" />
+    <DictionaryEntry Key="C16335" Value="OPC4-CoA" />
+    <DictionaryEntry Key="C16336" Value="trans-2-Enoyl-OPC4-CoA" />
+    <DictionaryEntry Key="C16338" Value="3-Oxo-OPC4-CoA" />
+    <DictionaryEntry Key="C16339" Value="(+)-7-Isojasmonic acid CoA" />
+    <DictionaryEntry Key="C16341" Value="2(R)-HPOT" />
+    <DictionaryEntry Key="C16342" Value="2(R)-HOT" />
+    <DictionaryEntry Key="C16343" Value="Heptadecatrienal" />
+    <DictionaryEntry Key="C16344" Value="Heptadecatrienoic acid" />
+    <DictionaryEntry Key="C16345" Value="Volicitin" />
+    <DictionaryEntry Key="C16346" Value="17-Hydroxylinolenic acid" />
+    <DictionaryEntry Key="C19757" Value="(Z)-3-Hexen-1-ol acetate" />
+  </Compound>
+  <PathwayMap Key="xcb00592" Value="alpha-Linolenic acid metabolism&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_2818" Value="phospholipase; K01058 phospholipase A1 [EC:3.1.1.32 3.1.1.4] [KO:K01058] [EC:3.1.1.4 3.1.1.32]" />
+    <DictionaryEntry Key="XC_2206" Value="acetyl-CoA acetyltransferase; K00632 acetyl-CoA acyltransferase [EC:2.3.1.16] [KO:K00632] [EC:2.3.1.16]" />
+  </Genes>
+</KEGG.PathwayBrief>

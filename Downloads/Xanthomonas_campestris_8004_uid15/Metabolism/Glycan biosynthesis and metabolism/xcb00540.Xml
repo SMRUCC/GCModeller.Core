@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00540" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Lipopolysaccharide biosynthesis - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Modules>
+    <DictionaryEntry Key="xcb_M00063" Value="CMP-KDO biosynthesis [PATH:xcb00540]" />
+  </Modules>
+  <Compound>
+    <DictionaryEntry Key="C00043" Value="UDP-N-acetyl-alpha-D-glucosamine" />
+    <DictionaryEntry Key="C00199" Value="D-Ribulose 5-phosphate" />
+    <DictionaryEntry Key="C00229" Value="Acyl-carrier protein" />
+    <DictionaryEntry Key="C01112" Value="D-Arabinose 5-phosphate" />
+    <DictionaryEntry Key="C01187" Value="3-Deoxy-D-manno-octulosonate" />
+    <DictionaryEntry Key="C04121" Value="CMP-3-deoxy-D-manno-octulosonate" />
+    <DictionaryEntry Key="C04478" Value="3-Deoxy-D-manno-octulosonate 8-phosphate" />
+    <DictionaryEntry Key="C04652" Value="UDP-2,3-bis(3-hydroxytetradecanoyl)glucosamine" />
+    <DictionaryEntry Key="C04738" Value="UDP-3-O-(3-hydroxytetradecanoyl)-N-acetylglucosamine" />
+    <DictionaryEntry Key="C04824" Value="Lipid X" />
+    <DictionaryEntry Key="C04919" Value="2,3,2'3'-Tetrakis(3-hydroxytetradecanoyl)-D-glucosaminyl-1,6-beta-D-glucosamine 1,4'-bisphosphate" />
+    <DictionaryEntry Key="C04932" Value="Lipid A disaccharide" />
+    <DictionaryEntry Key="C05223" Value="Dodecanoyl-[acyl-carrier protein]" />
+    <DictionaryEntry Key="C05382" Value="Sedoheptulose 7-phosphate" />
+    <DictionaryEntry Key="C05761" Value="Tetradecanoyl-[acp]" />
+    <DictionaryEntry Key="C06022" Value="UDP-3-O-(3-hydroxytetradecanoyl)-D-glucosamine" />
+    <DictionaryEntry Key="C06024" Value="3-Deoxy-D-manno-octulosonyl-lipid IV(A)" />
+    <DictionaryEntry Key="C06025" Value="Di[3-deoxy-D-manno-octulosonyl]-lipid IV(A)" />
+    <DictionaryEntry Key="C06026" Value="Di[3-deoxy-D-manno-octulosonyl]-lipid A" />
+    <DictionaryEntry Key="C06251" Value="Lauroyl-KDO2-lipid IV(A)" />
+    <DictionaryEntry Key="C06397" Value="ADP-D-glycero-beta-D-manno-heptose" />
+    <DictionaryEntry Key="C06398" Value="ADP-L-glycero-beta-D-manno-heptose" />
+    <DictionaryEntry Key="C07836" Value="D-glycero-beta-D-manno-Heptose 7-phosphate" />
+    <DictionaryEntry Key="C07838" Value="D-glycero-beta-D-manno-Heptose 1-phosphate" />
+    <DictionaryEntry Key="C11472" Value="D-glycero-beta-D-manno-Heptose 1,7-bisphosphate" />
+    <DictionaryEntry Key="C19877" Value="4-O-Phospho-alpha-Kdo-(2-&gt;6)-lipid IVA" />
+    <DictionaryEntry Key="C19878" Value="D-glycero-alpha-D-manno-Heptose 7-phosphate" />
+    <DictionaryEntry Key="C19879" Value="D-glycero-alpha-D-manno-Heptose 1,7-bisphosphate" />
+    <DictionaryEntry Key="C19880" Value="D-glycero-alpha-D-manno-Heptose 1-phosphate" />
+    <DictionaryEntry Key="C19881" Value="GDP-D-glycero-alpha-D-manno-heptose" />
+  </Compound>
+  <PathwayMap Key="xcb00540" Value="Lipopolysaccharide biosynthesis&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_2877" Value="UDP-N-acetylglucosamine acyltransferase; K00677 UDP-N-acetylglucosamine acyltransferase [EC:2.3.1.129] [KO:K00677] [EC:2.3.1.129]" />
+    <DictionaryEntry Key="XC_3504" Value="lpxC; UDP-3-O-[3-hydroxymyristoyl] N-acetylglucosamine deacetylase [KO:K02535] [EC:3.5.1.108]" />
+    <DictionaryEntry Key="XC_2875" Value="lpxD; UDP-3-O-[3-hydroxymyristoyl] glucosamine N-acyltransferase [KO:K02536] [EC:2.3.1.191]" />
+    <DictionaryEntry Key="XC_3278" Value="UDP-2; K03269 UDP-2,3-diacylglucosamine hydrolase [EC:3.6.1.54] [KO:K03269] [EC:3.6.1.54]" />
+    <DictionaryEntry Key="XC_2878" Value="lpxB; lipid-A-disaccharide synthase [KO:K00748] [EC:2.4.1.182]" />
+    <DictionaryEntry Key="XC_1996" Value="lpxK; tetraacyldisaccharide 4'-kinase [KO:K00912] [EC:2.7.1.130]" />
+    <DictionaryEntry Key="XC_1316" Value="polysialic acid capsule expression protein; K06041 arabinose-5-phosphate isomerase [EC:5.3.1.13] [KO:K06041] [EC:5.3.1.13]" />
+    <DictionaryEntry Key="XC_2533" Value="2-dehydro-3-deoxyphosphooctonate aldolase; K01627 2-dehydro-3-deoxyphosphooctonate aldolase (KDO 8-P synthase) [EC:2.5.1.55] [KO:K01627] [EC:2.5.1.55]" />
+    <DictionaryEntry Key="XC_1315" Value="hypothetical protein; K03270 3-deoxy-D-manno-octulosonate 8-phosphate phosphatase (KDO 8-P phosphatase) [EC:3.1.3.45] [KO:K03270] [EC:3.1.3.45]" />
+    <DictionaryEntry Key="XC_1997" Value="3-deoxy-manno-octulosonate cytidylyltransferase; K00979 3-deoxy-manno-octulosonate cytidylyltransferase (CMP-KDO synthetase) [EC:2.7.7.38] [KO:K00979] [EC:2.7.7.38]" />
+    <DictionaryEntry Key="XC_0827" Value="3-deoxy-D-manno-octulosonic-acid transferase; K02527 3-deoxy-D-manno-octulosonic-acid transferase [EC:2.4.99.12 2.4.99.13 2.4.99.14 2.4.99.15] [KO:K02527] [EC:2.4.99.15 2.4.99.14 2.4.99.13 2.4.99.12]" />
+    <DictionaryEntry Key="XC_0826" Value="lipid A biosynthesis lauroyl acyltransferase; K02517 Kdo2-lipid IVA lauroyltransferase [EC:2.3.1.241] [KO:K02517] [EC:2.3.1.241]" />
+    <DictionaryEntry Key="XC_3808" Value="lipid A biosynthesis lauroyl acyltransferase; K02517 Kdo2-lipid IVA lauroyltransferase [EC:2.3.1.241] [KO:K02517] [EC:2.3.1.241]" />
+    <DictionaryEntry Key="XC_3251" Value="3-deoxy-D-manno-octulosonic-acid kinase; K11211 3-deoxy-D-manno-octulosonic acid kinase [EC:2.7.1.166] [KO:K11211] [EC:2.7.1.166]" />
+    <DictionaryEntry Key="XC_3815" Value="hypothetical protein; K02847 O-antigen ligase [EC:2.4.1.-] [KO:K02847] [EC:2.4.1.-]" />
+  </Genes>
+</KEGG.PathwayBrief>

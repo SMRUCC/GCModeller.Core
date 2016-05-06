@@ -1,0 +1,377 @@
+<!doctype html>
+<html><head>
+<title>KEGG PATHWAY: xcb02030</title>
+<link type="text/css" rel="stylesheet" href="/css/gn2.css">
+<link rel="stylesheet" href="/css/bget.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/bgetm.css" media="only screen and (max-width: 768px)">
+<style>.kcfd{display:none;}</style>
+<script>
+<!--
+var getElementsByClassName = document.getElementsByClassName ?
+  function (cl){
+    return document.getElementsByClassName(cl);
+  } :
+  function (cl){
+    var elms = [];
+    var objs = document.getElementsByTagName('*');
+    for(var i=0;i<objs.length;i++){
+      var obj = objs[i];
+      if(obj.className == cl){
+        elms.push(obj);
+      }
+    }
+    return elms;
+  };
+function toggleField(clk,cl,show,hide){
+  var objs = getElementsByClassName(cl);
+  for(var i=0;i<objs.length;i++){
+    var obj = objs[i];
+    if(!obj.style.display||obj.style.display == 'none'){
+      obj.style.display = 'block';
+      clk.innerHTML = '&nbsp;&laquo; '+hide;
+    }
+    else{
+      obj.style.display = 'none';
+      clk.innerHTML = '&nbsp;&raquo; '+show;
+    }
+  }
+}
+function toggleData(bobj,e){
+  var id = bobj.id.replace(/[^0-9]/g,'');
+  var dt = document.getElementById('kcfd'+id);
+  if(!dt.style.display||dt.style.display == 'none'){
+    bobj.name = 'hide_kcf';
+    bobj.alt = 'Hide';
+    bobj.src = '/Fig/bget/button_Hib.gif';
+    dt.style.display = 'block';
+  }
+  else{
+    bobj.name = 'show_kcf';
+    bobj.alt = 'Show';
+    bobj.src = '/Fig/bget/button_Sb.gif';
+    dt.style.display = 'none';
+  }
+}
+function btn(bobj,img) {
+  bobj.src = "/Fig/bget/button_" + img + ".gif";
+}
+function btn_e(e) {
+  e = e || event;
+  var obj = e.target;
+  var img = e.target.src;
+  var img_base = img.replace(/\\/g,'/').replace(/(b|bd|bh)\.gif$/,'');
+  if(e.type == 'mousedown'||e.type == 'touchstart'){
+    obj.src = img_base +'bd.gif';
+  }
+  else if(e.type == 'mouseover'){
+    obj.src = img_base +'bh.gif';
+  }
+  else if(e.type == 'mouseup'||e.type == 'touchend'){
+    obj.src = img_base +'b.gif';
+  }
+  else if(e.type == 'mouseout'){
+    obj.src = img_base +'b.gif';
+  }
+}
+function init(){
+  for(var i=1;i<=1;i++){
+    if(document.getElementById('kcfb'+i)){
+      document.getElementById('kcfb'+i).onclick = function(e){toggleData(this,e);};
+      document.getElementById('kcfb'+i).onmousedown = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseover = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseout = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseup = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchstart = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchend = function(e){btn_e(e);};
+    }
+  }
+}
+function Link_XtrctSeq2(form) {
+    var dna_from;
+    var dna_to;
+    var dna_len;
+    var plus_up   = Number(form.XtrctSeq_UP.value) ;
+    var plus_down = Number(form.XtrctSeq_DOWN.value);
+    var vector    = Number(form.VECTOR.value);
+    var org       = form.ORG.value;
+    var chr       = form.CHR.value;
+    var kid       = form.KEGGID.value;
+    var url;
+
+    if (plus_up == 0 && plus_down == 0) {
+	url = "/dbget-bin/www_bget?-f+-n+n+" + kid;
+    }
+    else {
+	if (vector == 1) {
+	    dna_from  = Number(form.FROM.value)  - plus_up;
+	    dna_to    = Number(form.TO.value) + plus_down;
+	} else {
+	    dna_from  = Number(form.FROM.value)  - plus_down;
+	    dna_to    = Number(form.TO.value) + plus_up;
+	}
+
+	url = "/dbget-bin/cut_sequence_genes.pl?FROM=" + dna_from + "&TO=" + dna_to +"&VECTOR=" + vector + "&ORG=" + org;
+	if (chr) url += "&CHR=" + chr;
+    }
+    //window.open( url, "_self" );
+    location.href = url;
+}
+function go_taxonomy(form,params){
+  for(var key in params){
+    if(form[key]){
+      form.setAttribute(key,params[key]);
+    }
+    else{
+      var obj = document.createElement('input');
+      obj.setAttribute('type','hidden');
+      obj.setAttribute('name',key);
+      obj.setAttribute('value',params[key]);
+      form.appendChild(obj);
+    }
+  }
+  form.submit();
+}
+window.onload=function(){window.focus();init();};
+//--->
+</script>
+
+</head>
+<body>
+<div>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="70"><a href="/kegg/kegg2.html"><img align="middle" alt="KEGG" border="0" src="/Fig/bget/kegg3.gif"></a></td><td>&nbsp;&nbsp;&nbsp;</td><td><a name="pathway:xcb02030"></a><font class="title3">PATHWAY: xcb02030</font></td><td align="right" valign="bottom"><a href="javascript:void(window.open('/kegg/document/help_bget_pathway.html','KEGG_Help','toolbar=no,location=no,directories=no,width=720,height=640,resizable=yes,scrollbars=yes'))"><img align="middle" alt="Help" border="0" name="help" onmousedown="btn(this,'Hbd')" onmouseout="btn(this,'Hb')" onmouseover="btn(this,'Hbh')" onmouseup="btn(this,'Hb')" ontouchend="btn(this,'Hb')" ontouchstart="btn(this,'Hbd')" src="/Fig/bget/button_Hb.gif"></a></td></tr></table>
+<form method="post" action="/dbget-bin/www_bget" enctype="application/x-www-form-urlencoded" name="form1"><table border=0 cellpadding=1 cellspacing=0>
+<tr>
+<td class="fr3">
+<table border=0 cellpadding=2 cellspacing=0 style="border-bottom:#000 1px solid">
+
+<tr><th class="th30" align="left" valign="middle" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Entry</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="left"><code><nobr>xcb02030&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pathway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</nobr></code></td> <td align="right"><br></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Name</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Bacterial chemotaxis - Xanthomonas campestris pv. campestris 8004<br>
+</div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Description</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Chemotaxis is the process by which cells sense chemical gradients in their environment and then move towards more favorable conditions. In chemotaxis, events at the receptors control autophosphorylation of the CheA histidine kinase, and the phosphohistidine is the substrate for the response regulator CheY, which catalyzes the transfer of the phosphoryl group to a conserved aspartate. The resulting CheY-P can interact with the switch mechanism in the motor. This interaction causes a change in behavior, such as in direction or speed of rotation of flagella.<br>
+</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Class</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Cellular Processes; Cell motility<br>
+<a href="/kegg-bin/get_htext?query=xcb02030&amp;htext=xcb00001.keg"><img align="middle" alt="BRITE hierarchy" border="0" name="BRH" onmousedown="btn(this,'BHbd')" onmouseout="btn(this,'BHb')" onmouseover="btn(this,'BHbh')" onmouseup="btn(this,'BHb')" ontouchend="btn(this,'BHb')" ontouchstart="btn(this,'BHbd')" src="/Fig/bget/button_BHb.gif"></a></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Pathway&nbsp;map</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5.5em"><div><nobr><a href="/kegg-bin/show_pathway?xcb02030">xcb02030</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Bacterial chemotaxis</div></td></tr></table><center><a href="/kegg-bin/show_pathway?xcb02030"><img src="/kegg/misc/thumbnail/map02030.gif" alt="xcb02030" style="border-style:none;"></a></center><br><a href="http://www.kegg.jp/kegg-bin/show_ot_map?map=02030"><img align="middle" alt="All organisms" border="0" name="AO" onmousedown="btn(this,'AObd')" onmouseout="btn(this,'AOb')" onmouseover="btn(this,'AObh')" onmouseup="btn(this,'AOb')" ontouchend="btn(this,'AOb')" ontouchstart="btn(this,'AObd')" src="/Fig/bget/button_AOb.gif"></a><a href="http://www.kegg.jp/kegg-bin/view_ortholog_table?map=02030"><img align="middle" alt="Ortholog table" border="0" name="OT" onmousedown="btn(this,'OTbd')" onmouseout="btn(this,'OTb')" onmouseover="btn(this,'OTbh')" onmouseup="btn(this,'OTb')" ontouchend="btn(this,'OTb')" ontouchstart="btn(this,'OTbd')" src="/Fig/bget/button_OTb.gif"></a></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Module</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:6.5em"><div><nobr><a href="/kegg-bin/show_module?xcb_M00506">xcb_M00506</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CheA-CheYBV (chemotaxis) two-component regulatory system [PATH:<a href="/kegg-bin/show_pathway?xcb02030+M00506">xcb02030</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Other DBs</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="float:left">BSID:&nbsp;</div><div style="margin-left:3.5em"><a href="http://www.ncbi.nlm.nih.gov/biosystems/24076">24076</a></div><div style="float:left">GO:&nbsp;</div><div style="margin-left:2.5em"><a href="http://amigo.geneontology.org/amigo/term/GO:0006935">0006935</a></div></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Organism</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Xanthomonas campestris pv. campestris 8004 [GN:<a href="/dbget-bin/www_bget?gn:xcb">xcb</a>]<br>
+</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Gene</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1074">XC_1074</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K03406 methyl-accepting chemotaxis protein [KO:<a href="/dbget-bin/www_bget?ko:K03406">K03406</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2504">XC_2504</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K03406 methyl-accepting chemotaxis protein [KO:<a href="/dbget-bin/www_bget?ko:K03406">K03406</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2223">XC_2223</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K03406 methyl-accepting chemotaxis protein [KO:<a href="/dbget-bin/www_bget?ko:K03406">K03406</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1801">XC_1801</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K03406 methyl-accepting chemotaxis protein [KO:<a href="/dbget-bin/www_bget?ko:K03406">K03406</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1413">XC_1413</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K03406 methyl-accepting chemotaxis protein [KO:<a href="/dbget-bin/www_bget?ko:K03406">K03406</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1937">XC_1937</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>methyl-accepting chemotaxis protein; K03406 methyl-accepting chemotaxis protein [KO:<a href="/dbget-bin/www_bget?ko:K03406">K03406</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2315">XC_2315</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>methyl-accepting chemotaxis protein; K03406 methyl-accepting chemotaxis protein [KO:<a href="/dbget-bin/www_bget?ko:K03406">K03406</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0286">XC_0286</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:<a href="/dbget-bin/www_bget?ko:K05874">K05874</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0336">XC_0336</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:<a href="/dbget-bin/www_bget?ko:K05874">K05874</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0638">XC_0638</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:<a href="/dbget-bin/www_bget?ko:K05874">K05874</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2304">XC_2304</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:<a href="/dbget-bin/www_bget?ko:K05874">K05874</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2307">XC_2307</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:<a href="/dbget-bin/www_bget?ko:K05874">K05874</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2308">XC_2308</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:<a href="/dbget-bin/www_bget?ko:K05874">K05874</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2309">XC_2309</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:<a href="/dbget-bin/www_bget?ko:K05874">K05874</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2311">XC_2311</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:<a href="/dbget-bin/www_bget?ko:K05874">K05874</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2313">XC_2313</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:<a href="/dbget-bin/www_bget?ko:K05874">K05874</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2314">XC_2314</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:<a href="/dbget-bin/www_bget?ko:K05874">K05874</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2316">XC_2316</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:<a href="/dbget-bin/www_bget?ko:K05874">K05874</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2320">XC_2320</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:<a href="/dbget-bin/www_bget?ko:K05874">K05874</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2136">XC_2136</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K05874 methyl-accepting chemotaxis protein I, serine sensor receptor [KO:<a href="/dbget-bin/www_bget?ko:K05874">K05874</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0843">XC_0843</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K05875 methyl-accepting chemotaxis protein II, aspartate sensor receptor [KO:<a href="/dbget-bin/www_bget?ko:K05875">K05875</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2284">XC_2284</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis related protein; K03407 two-component system, chemotaxis family, sensor kinase CheA [EC:<a href="/dbget-bin/www_bget?ec:2.7.13.3">2.7.13.3</a>] [KO:<a href="/dbget-bin/www_bget?ko:K03407">K03407</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.13.3">2.7.13.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2303">XC_2303</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K03407 two-component system, chemotaxis family, sensor kinase CheA [EC:<a href="/dbget-bin/www_bget?ec:2.7.13.3">2.7.13.3</a>] [KO:<a href="/dbget-bin/www_bget?ko:K03407">K03407</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.13.3">2.7.13.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1414">XC_1414</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis histidine protein kinase; K03407 two-component system, chemotaxis family, sensor kinase CheA [EC:<a href="/dbget-bin/www_bget?ec:2.7.13.3">2.7.13.3</a>] [KO:<a href="/dbget-bin/www_bget?ko:K03407">K03407</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.13.3">2.7.13.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2300">XC_2300</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K03408 purine-binding chemotaxis protein CheW [KO:<a href="/dbget-bin/www_bget?ko:K03408">K03408</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2318">XC_2318</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K03408 purine-binding chemotaxis protein CheW [KO:<a href="/dbget-bin/www_bget?ko:K03408">K03408</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1802">XC_1802</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K03408 purine-binding chemotaxis protein CheW [KO:<a href="/dbget-bin/www_bget?ko:K03408">K03408</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1412">XC_1412</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K03408 purine-binding chemotaxis protein CheW [KO:<a href="/dbget-bin/www_bget?ko:K03408">K03408</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2282">XC_2282</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K03413 two-component system, chemotaxis family, response regulator CheY [KO:<a href="/dbget-bin/www_bget?ko:K03413">K03413</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2302">XC_2302</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis response regulator; K03413 two-component system, chemotaxis family, response regulator CheY [KO:<a href="/dbget-bin/www_bget?ko:K03413">K03413</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2130">XC_2130</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>response regulator; K03413 two-component system, chemotaxis family, response regulator CheY [KO:<a href="/dbget-bin/www_bget?ko:K03413">K03413</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2283">XC_2283</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis related protein; K03414 chemotaxis protein CheZ [KO:<a href="/dbget-bin/www_bget?ko:K03414">K03414</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3059">XC_3059</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>protein-glutamate methylesterase; K03412 two-component system, chemotaxis family, response regulator CheB [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.61">3.1.1.61</a>] [KO:<a href="/dbget-bin/www_bget?ko:K03412">K03412</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.61">3.1.1.61</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2323">XC_2323</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis-specific methylesterase; K03412 two-component system, chemotaxis family, response regulator CheB [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.61">3.1.1.61</a>] [KO:<a href="/dbget-bin/www_bget?ko:K03412">K03412</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.61">3.1.1.61</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2163">XC_2163</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>protein-glutamate methylesterase; K03412 two-component system, chemotaxis family, response regulator CheB [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.61">3.1.1.61</a>] [KO:<a href="/dbget-bin/www_bget?ko:K03412">K03412</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.61">3.1.1.61</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1409">XC_1409</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis-specific methylesterase; K03412 two-component system, chemotaxis family, response regulator CheB [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.61">3.1.1.61</a>] [KO:<a href="/dbget-bin/www_bget?ko:K03412">K03412</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.61">3.1.1.61</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1290">XC_1290</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>protein-glutamate methylesterase (CheB); K03412 two-component system, chemotaxis family, response regulator CheB [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.61">3.1.1.61</a>] [KO:<a href="/dbget-bin/www_bget?ko:K03412">K03412</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.61">3.1.1.61</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3757">XC_3757</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>methyltransferase; K13924 two-component system, chemotaxis family, CheB/CheR fusion protein [EC:<a href="/dbget-bin/www_bget?ec:2.1.1.80">2.1.1.80</a> <a href="/dbget-bin/www_bget?ec:3.1.1.61">3.1.1.61</a>] [KO:<a href="/dbget-bin/www_bget?ko:K13924">K13924</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.1.1.61">3.1.1.61</a> <a href="/dbget-bin/www_bget?ec:2.1.1.80">2.1.1.80</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2233">XC_2233</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K03415 two-component system, chemotaxis family, response regulator CheV [KO:<a href="/dbget-bin/www_bget?ko:K03415">K03415</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2322">XC_2322</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemoreceptor glutamine deamidase CheD; K03411 chemotaxis protein CheD [EC:<a href="/dbget-bin/www_bget?ec:3.5.1.44">3.5.1.44</a>] [KO:<a href="/dbget-bin/www_bget?ko:K03411">K03411</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.5.1.44">3.5.1.44</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3058">XC_3058</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein; K00575 chemotaxis protein methyltransferase CheR [EC:<a href="/dbget-bin/www_bget?ec:2.1.1.80">2.1.1.80</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00575">K00575</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.1.1.80">2.1.1.80</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2321">XC_2321</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>chemotaxis protein methyltransferase; K00575 chemotaxis protein methyltransferase CheR [EC:<a href="/dbget-bin/www_bget?ec:2.1.1.80">2.1.1.80</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00575">K00575</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.1.1.80">2.1.1.80</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1410">XC_1410</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>response regulator for chemotaxis; K00575 chemotaxis protein methyltransferase CheR [EC:<a href="/dbget-bin/www_bget?ec:2.1.1.80">2.1.1.80</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00575">K00575</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.1.1.80">2.1.1.80</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2261">XC_2261</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>flagellar protein; K02410 flagellar motor switch protein FliG [KO:<a href="/dbget-bin/www_bget?ko:K02410">K02410</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2267">XC_2267</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>fliM; flagellar motor switch protein FliM [KO:<a href="/dbget-bin/www_bget?ko:K02416">K02416</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2268">XC_2268</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>flagellar protein; K02417 flagellar motor switch protein FliN/FliY [KO:<a href="/dbget-bin/www_bget?ko:K02417">K02417</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2297">XC_2297</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>motC; flagellar motor protein [KO:<a href="/dbget-bin/www_bget?ko:K02556">K02556</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3724">XC_3724</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>flagellar motor protein MotA; K02556 chemotaxis protein MotA [KO:<a href="/dbget-bin/www_bget?ko:K02556">K02556</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2298">XC_2298</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>flagellar motor protein MotD; K02557 chemotaxis protein MotB [KO:<a href="/dbget-bin/www_bget?ko:K02557">K02557</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3725">XC_3725</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>motB; flagellar motor protein MotB [KO:<a href="/dbget-bin/www_bget?ko:K02557">K02557</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Compound</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00049">C00049</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Aspartate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00107">C00107</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Dipeptide</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00121">C00121</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Ribose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00124">C00124</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>D-Galactose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00208">C00208</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Maltose</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00716">C00716</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Serine</div></td></tr></table></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/12011078">12011078</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Kristich CJ, Ordal GW.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Bacillus subtilis CheD is a chemoreceptor modification enzyme required for chemotaxis.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Biol Chem 277:25356-62 (2002)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11722727">11722727</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Kirby JR, Kristich CJ, Saulmon MM, Zimmer MA, Garrity LF, Zhulin IB, Ordal GW.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">CheC is related to the family of flagellar switch proteins and acts independently from CheD to control chemotaxis in Bacillus subtilis.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Mol Microbiol 42:573-85 (2001)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/12920116">12920116</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Szurmant H, Bunn MW, Cannistraro VJ, Ordal GW.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Bacillus subtilis hydrolyzes CheY-P at the location of its action, the flagellar switch.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Biol Chem 278:48611-6 (2003)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/14749334">14749334</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Szurmant H, Muff TJ, Ordal GW.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Bacillus subtilis CheC and FliY are members of a novel class of CheY-P-hydrolyzing proteins in the chemotactic signal transduction cascade.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Biol Chem 279:21787-92 (2004)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/11158445">11158445</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Yoshihara S, Geng X, Okamoto S, Yura K, Murata T, Go M, Ohmori M, Ikeuchi M.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Mutational analysis of genes involved in pilus structure, motility and transformation competency in the unicellular motile cyanobacterium Synechocystis sp. PCC 6803.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Plant Cell Physiol 42:63-73 (2001)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/8104179">8104179</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Darzins A.</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">The pilG gene product, required for Pseudomonas aeruginosa pilus production and twitching motility, is homologous to the enteric, single-domain response regulator CheY.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">J Bacteriol 175:5934-44 (1993)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/15187186">15187186</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Szurmant H, Ordal GW</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Diversity in chemotaxis mechanisms among the bacteria and archaea.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Microbiol Mol Biol Rev 68:301-19 (2004)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/18774298">18774298</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Rao CV, Glekas GD, Ordal GW</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">The three adaptation systems of Bacillus subtilis chemotaxis.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Trends Microbiol 16:480-7 (2008)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/18990184">18990184</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Muff TJ, Ordal GW</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">The diverse CheC-type phosphatases: chemotaxis and beyond.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Mol Microbiol 70:1054-61 (2008)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Reference</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">PMID:<a href="http://www.ncbi.nlm.nih.gov/pubmed/19203648">19203648</a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Authors</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Miller LD, Russell MH, Alexandre G</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Title</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Diversity in bacterial chemotactic responses and niche adaptation.</div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 0px 0px 0px 1px; border-style: solid"><nobr>&nbsp;&nbsp;Journal</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 0px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Adv Appl Microbiol 66:53-75 (2009)</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>KO&nbsp;pathway</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?ko02030">ko02030</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>&nbsp;</div></td></tr></table></td></tr>
+
+</table></td></tr></table>
+<br></form></td><td valign="top"><div style="margin-top:46px;margin-left:1em;border:#ddd 1px solid"><div class="th30" style="font-weight:bold;line-height:1.5em">&nbsp;&nbsp;All links&nbsp;&nbsp;</div>
+<pre style="margin-left:1em">
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+2+path:xcb02030">Pathway (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+biosystems+path:xcb02030">BioSystems (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+7+path:xcb02030">Genome (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genome+path:xcb02030">KEGG GENOME (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+8+path:xcb02030">Gene (50)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genes+path:xcb02030">KEGG GENES (50)</a>   
+<a href="/dbget-bin/get_linkdb?-t+alldb+path:xcb02030">All databases (52)</a>   
+<br><a href="/dbget-bin/get_linkdb?-N+path:xcb02030">Download RDF</a>   
+</pre>
+</div>
+</td></tr></table>
+
+
+<a href="/dbget/">DBGET</a> integrated database retrieval system</div>
+
+</body>
+</html>

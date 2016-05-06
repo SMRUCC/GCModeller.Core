@@ -1,0 +1,208 @@
+<!doctype html>
+<html><head>
+<title>KEGG PATHWAY: xcb00670</title>
+<link type="text/css" rel="stylesheet" href="/css/gn2.css">
+<link rel="stylesheet" href="/css/bget.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/bgetm.css" media="only screen and (max-width: 768px)">
+<style>.kcfd{display:none;}</style>
+<script>
+<!--
+var getElementsByClassName = document.getElementsByClassName ?
+  function (cl){
+    return document.getElementsByClassName(cl);
+  } :
+  function (cl){
+    var elms = [];
+    var objs = document.getElementsByTagName('*');
+    for(var i=0;i<objs.length;i++){
+      var obj = objs[i];
+      if(obj.className == cl){
+        elms.push(obj);
+      }
+    }
+    return elms;
+  };
+function toggleField(clk,cl,show,hide){
+  var objs = getElementsByClassName(cl);
+  for(var i=0;i<objs.length;i++){
+    var obj = objs[i];
+    if(!obj.style.display||obj.style.display == 'none'){
+      obj.style.display = 'block';
+      clk.innerHTML = '&nbsp;&laquo; '+hide;
+    }
+    else{
+      obj.style.display = 'none';
+      clk.innerHTML = '&nbsp;&raquo; '+show;
+    }
+  }
+}
+function toggleData(bobj,e){
+  var id = bobj.id.replace(/[^0-9]/g,'');
+  var dt = document.getElementById('kcfd'+id);
+  if(!dt.style.display||dt.style.display == 'none'){
+    bobj.name = 'hide_kcf';
+    bobj.alt = 'Hide';
+    bobj.src = '/Fig/bget/button_Hib.gif';
+    dt.style.display = 'block';
+  }
+  else{
+    bobj.name = 'show_kcf';
+    bobj.alt = 'Show';
+    bobj.src = '/Fig/bget/button_Sb.gif';
+    dt.style.display = 'none';
+  }
+}
+function btn(bobj,img) {
+  bobj.src = "/Fig/bget/button_" + img + ".gif";
+}
+function btn_e(e) {
+  e = e || event;
+  var obj = e.target;
+  var img = e.target.src;
+  var img_base = img.replace(/\\/g,'/').replace(/(b|bd|bh)\.gif$/,'');
+  if(e.type == 'mousedown'||e.type == 'touchstart'){
+    obj.src = img_base +'bd.gif';
+  }
+  else if(e.type == 'mouseover'){
+    obj.src = img_base +'bh.gif';
+  }
+  else if(e.type == 'mouseup'||e.type == 'touchend'){
+    obj.src = img_base +'b.gif';
+  }
+  else if(e.type == 'mouseout'){
+    obj.src = img_base +'b.gif';
+  }
+}
+function init(){
+  for(var i=1;i<=1;i++){
+    if(document.getElementById('kcfb'+i)){
+      document.getElementById('kcfb'+i).onclick = function(e){toggleData(this,e);};
+      document.getElementById('kcfb'+i).onmousedown = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseover = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseout = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseup = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchstart = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchend = function(e){btn_e(e);};
+    }
+  }
+}
+function Link_XtrctSeq2(form) {
+    var dna_from;
+    var dna_to;
+    var dna_len;
+    var plus_up   = Number(form.XtrctSeq_UP.value) ;
+    var plus_down = Number(form.XtrctSeq_DOWN.value);
+    var vector    = Number(form.VECTOR.value);
+    var org       = form.ORG.value;
+    var chr       = form.CHR.value;
+    var kid       = form.KEGGID.value;
+    var url;
+
+    if (plus_up == 0 && plus_down == 0) {
+	url = "/dbget-bin/www_bget?-f+-n+n+" + kid;
+    }
+    else {
+	if (vector == 1) {
+	    dna_from  = Number(form.FROM.value)  - plus_up;
+	    dna_to    = Number(form.TO.value) + plus_down;
+	} else {
+	    dna_from  = Number(form.FROM.value)  - plus_down;
+	    dna_to    = Number(form.TO.value) + plus_up;
+	}
+
+	url = "/dbget-bin/cut_sequence_genes.pl?FROM=" + dna_from + "&TO=" + dna_to +"&VECTOR=" + vector + "&ORG=" + org;
+	if (chr) url += "&CHR=" + chr;
+    }
+    //window.open( url, "_self" );
+    location.href = url;
+}
+function go_taxonomy(form,params){
+  for(var key in params){
+    if(form[key]){
+      form.setAttribute(key,params[key]);
+    }
+    else{
+      var obj = document.createElement('input');
+      obj.setAttribute('type','hidden');
+      obj.setAttribute('name',key);
+      obj.setAttribute('value',params[key]);
+      form.appendChild(obj);
+    }
+  }
+  form.submit();
+}
+window.onload=function(){window.focus();init();};
+//--->
+</script>
+
+</head>
+<body>
+<div>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="70"><a href="/kegg/kegg2.html"><img align="middle" alt="KEGG" border="0" src="/Fig/bget/kegg3.gif"></a></td><td>&nbsp;&nbsp;&nbsp;</td><td><a name="pathway:xcb00670"></a><font class="title3">PATHWAY: xcb00670</font></td><td align="right" valign="bottom"><a href="javascript:void(window.open('/kegg/document/help_bget_pathway.html','KEGG_Help','toolbar=no,location=no,directories=no,width=720,height=640,resizable=yes,scrollbars=yes'))"><img align="middle" alt="Help" border="0" name="help" onmousedown="btn(this,'Hbd')" onmouseout="btn(this,'Hb')" onmouseover="btn(this,'Hbh')" onmouseup="btn(this,'Hb')" ontouchend="btn(this,'Hb')" ontouchstart="btn(this,'Hbd')" src="/Fig/bget/button_Hb.gif"></a></td></tr></table>
+<form method="post" action="/dbget-bin/www_bget" enctype="application/x-www-form-urlencoded" name="form1"><table border=0 cellpadding=1 cellspacing=0>
+<tr>
+<td class="fr3">
+<table border=0 cellpadding=2 cellspacing=0 style="border-bottom:#000 1px solid">
+
+<tr><th class="th30" align="left" valign="middle" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Entry</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="left"><code><nobr>xcb00670&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pathway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</nobr></code></td> <td align="right"><br></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Name</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="width:555px;overflow-x:auto;overflow-y:hidden">One carbon pool by folate - Xanthomonas campestris pv. campestris 8004<br>
+</div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Class</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Metabolism; Metabolism of cofactors and vitamins<br>
+<a href="/kegg-bin/get_htext?query=xcb00670&amp;htext=xcb00001.keg"><img align="middle" alt="BRITE hierarchy" border="0" name="BRH" onmousedown="btn(this,'BHbd')" onmouseout="btn(this,'BHb')" onmouseover="btn(this,'BHbh')" onmouseup="btn(this,'BHb')" ontouchend="btn(this,'BHb')" ontouchstart="btn(this,'BHbd')" src="/Fig/bget/button_BHb.gif"></a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Pathway&nbsp;map</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5.5em"><div><nobr><a href="/kegg-bin/show_pathway?xcb00670">xcb00670</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>One carbon pool by folate</div></td></tr></table><center><a href="/kegg-bin/show_pathway?xcb00670"><img src="/kegg/misc/thumbnail/map00670.gif" alt="xcb00670" style="border-style:none;"></a></center><br><a href="http://www.kegg.jp/kegg-bin/show_ot_map?map=00670"><img align="middle" alt="All organisms" border="0" name="AO" onmousedown="btn(this,'AObd')" onmouseout="btn(this,'AOb')" onmouseover="btn(this,'AObh')" onmouseup="btn(this,'AOb')" ontouchend="btn(this,'AOb')" ontouchstart="btn(this,'AObd')" src="/Fig/bget/button_AOb.gif"></a><a href="http://www.kegg.jp/kegg-bin/view_ortholog_table?map=00670"><img align="middle" alt="Ortholog table" border="0" name="OT" onmousedown="btn(this,'OTbd')" onmouseout="btn(this,'OTb')" onmouseover="btn(this,'OTbh')" onmouseup="btn(this,'OTb')" ontouchend="btn(this,'OTb')" ontouchstart="btn(this,'OTbd')" src="/Fig/bget/button_OTb.gif"></a></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Module</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:6.5em"><div><nobr><a href="/kegg-bin/show_module?xcb_M00126">xcb_M00126</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Tetrahydrofolate biosynthesis, GTP => THF [PATH:<a href="/kegg-bin/show_pathway?xcb00670+M00126">xcb00670</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Organism</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Xanthomonas campestris pv. campestris 8004 [GN:<a href="/dbget-bin/www_bget?gn:xcb">xcb</a>]<br>
+</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Gene</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3443">XC_3443</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>dihydrofolate reductase type III; K00287 dihydrofolate reductase [EC:<a href="/dbget-bin/www_bget?ec:1.5.1.3">1.5.1.3</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00287">K00287</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.5.1.3">1.5.1.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1933">XC_1933</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>bifunctional 5; K01491 methylenetetrahydrofolate dehydrogenase (NADP+) / methenyltetrahydrofolate cyclohydrolase [EC:<a href="/dbget-bin/www_bget?ec:1.5.1.5">1.5.1.5</a> <a href="/dbget-bin/www_bget?ec:3.5.4.9">3.5.4.9</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01491">K01491</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.5.4.9">3.5.4.9</a> <a href="/dbget-bin/www_bget?ec:1.5.1.5">1.5.1.5</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3544">XC_3544</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glyA; serine hydroxymethyltransferase [KO:<a href="/dbget-bin/www_bget?ko:K00600">K00600</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.1.2.1">2.1.2.1</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1322">XC_1322</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>purN; phosphoribosylglycinamide formyltransferase [KO:<a href="/dbget-bin/www_bget?ko:K11175">K11175</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.1.2.2">2.1.2.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3106">XC_3106</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>purT; phosphoribosylglycinamide formyltransferase 2 [KO:<a href="/dbget-bin/www_bget?ko:K08289">K08289</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.1.2.2">2.1.2.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0510">XC_0510</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>purH; bifunctional phosphoribosylaminoimidazolecarboxamide formyltransferase/IMP cyclohydrolase [KO:<a href="/dbget-bin/www_bget?ko:K00602">K00602</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.5.4.10">3.5.4.10</a> <a href="/dbget-bin/www_bget?ec:2.1.2.3">2.1.2.3</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3818">XC_3818</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>fmt; methionyl-tRNA formyltransferase [KO:<a href="/dbget-bin/www_bget?ko:K00604">K00604</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.1.2.9">2.1.2.9</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1232">XC_1232</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>gcvT; glycine cleavage system aminomethyltransferase T [KO:<a href="/dbget-bin/www_bget?ko:K00605">K00605</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.1.2.10">2.1.2.10</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2724">XC_2724</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5-methyltetrahydrofolate--homocysteine methyltransferase; K00548 5-methyltetrahydrofolate--homocysteine methyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.1.1.13">2.1.1.13</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00548">K00548</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.1.1.13">2.1.1.13</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_2725">XC_2725</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5-methyltetrahydrofolate--homocysteine methyltransferase; K00548 5-methyltetrahydrofolate--homocysteine methyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.1.1.13">2.1.1.13</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00548">K00548</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.1.1.13">2.1.1.13</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3444">XC_3444</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>thyA; thymidylate synthase [KO:<a href="/dbget-bin/www_bget?ko:K00560">K00560</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.1.1.45">2.1.1.45</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0322">XC_0322</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>purU; formyltetrahydrofolate deformylase [KO:<a href="/dbget-bin/www_bget?ko:K01433">K01433</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.5.1.10">3.5.1.10</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_3496">XC_3496</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5; K00297 methylenetetrahydrofolate reductase (NADPH) [EC:<a href="/dbget-bin/www_bget?ec:1.5.1.20">1.5.1.20</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00297">K00297</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.5.1.20">1.5.1.20</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0326">XC_0326</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5; K00297 methylenetetrahydrofolate reductase (NADPH) [EC:<a href="/dbget-bin/www_bget?ec:1.5.1.20">1.5.1.20</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00297">K00297</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.5.1.20">1.5.1.20</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0901">XC_0901</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>hypothetical protein; K01934 5-formyltetrahydrofolate cyclo-ligase [EC:<a href="/dbget-bin/www_bget?ec:6.3.3.2">6.3.3.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01934">K01934</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.3.3.2">6.3.3.2</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Compound</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00101">C00101</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Tetrahydrofolate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00143">C00143</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5,10-Methylenetetrahydrofolate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00234">C00234</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>10-Formyltetrahydrofolate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00415">C00415</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Dihydrofolate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00440">C00440</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5-Methyltetrahydrofolate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00445">C00445</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5,10-Methenyltetrahydrofolate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00504">C00504</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Folate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00664">C00664</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>5-Formiminotetrahydrofolate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03479">C03479</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Folinic acid</div></td></tr></table></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>KO&nbsp;pathway</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?ko00670">ko00670</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>&nbsp;</div></td></tr></table></td></tr>
+
+</table></td></tr></table>
+<br></form></td><td valign="top"><div style="margin-top:46px;margin-left:1em;border:#ddd 1px solid"><div class="th30" style="font-weight:bold;line-height:1.5em">&nbsp;&nbsp;All links&nbsp;&nbsp;</div>
+<pre style="margin-left:1em">
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+2+path:xcb00670">Pathway (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+biosystems+path:xcb00670">BioSystems (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+7+path:xcb00670">Genome (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genome+path:xcb00670">KEGG GENOME (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+8+path:xcb00670">Gene (15)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genes+path:xcb00670">KEGG GENES (15)</a>   
+<a href="/dbget-bin/get_linkdb?-t+alldb+path:xcb00670">All databases (17)</a>   
+<br><a href="/dbget-bin/get_linkdb?-N+path:xcb00670">Download RDF</a>   
+</pre>
+</div>
+</td></tr></table>
+
+
+<a href="/dbget/">DBGET</a> integrated database retrieval system</div>
+
+</body>
+</html>

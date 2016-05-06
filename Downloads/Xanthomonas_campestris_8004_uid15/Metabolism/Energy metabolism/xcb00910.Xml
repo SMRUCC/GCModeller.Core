@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00910" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description>The biological process of the nitrogen cycle is a complex interplay among many microorganisms catalyzing different reactions, where nitrogen is found in various oxidation states ranging from +5 in nitrate to -3 in ammonia. The core nitrogen cycle involves four reduction pathways and two oxidation pathways. Nitrogen fixation [MD:M00175] is the process of reducing atmospheric molecular nitrogen to ammonia, a biologically useful reduced form incorporated into amino acids and other vital compounds. The ability of fixing atmospheric nitrogen by the nitrogenase enzyme complex is present in restricted prokaryotes (diazotrophs). The other reduction pathways are assimilatory nitrate reduction [MD:M00531] and dissimilatory nitrate reduction [MD:M00530] both for conversion to ammonia, and denitrification [MD:M00529]. Denitrification is a respiration in which nitrate or nitrite is reduced as a terminal electron acceptor under low oxygen or anoxic conditions, producing gaseous nitrogen compounds (N2, NO and N2O) to the atmosphere. The two oxidation pathways are nitrification [MD:M00528] and anaerobic ammonium oxidation (anammox). Nitrification is the oxidation of ammonia (NH3) with oxygen into nitrite followed by the oxidation of nitrite into nitrate. The first step is performed by ammonia-oxidizing microorganisms (e.g., Nitrosomonas and Nitrosococcus) and the second step by nitrite-oxidizing microorganisms (e.g., Nitrobacter). Anammox is a biochemical process of oxidizing ammonium (NH4+) into dinitrogen gas (N2) using nitrite as an electron acceptor. It occurs in the anammoxosome, a membrane bound compartment inside the cytoplasm, of anammox bacteria (e.g., Planctomycetes).&lt;br&gt;</Description>
+  <Name>Nitrogen metabolism - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00011" Value="CO2" />
+    <DictionaryEntry Key="C00014" Value="Ammonia" />
+    <DictionaryEntry Key="C00025" Value="L-Glutamate" />
+    <DictionaryEntry Key="C00058" Value="Formate" />
+    <DictionaryEntry Key="C00064" Value="L-Glutamine" />
+    <DictionaryEntry Key="C00088" Value="Nitrite" />
+    <DictionaryEntry Key="C00169" Value="Carbamoyl phosphate" />
+    <DictionaryEntry Key="C00192" Value="Hydroxylamine" />
+    <DictionaryEntry Key="C00244" Value="Nitrate" />
+    <DictionaryEntry Key="C00288" Value="HCO3-" />
+    <DictionaryEntry Key="C00488" Value="Formamide" />
+    <DictionaryEntry Key="C00533" Value="Nitric oxide" />
+    <DictionaryEntry Key="C00697" Value="Nitrogen" />
+    <DictionaryEntry Key="C00726" Value="Nitrile" />
+    <DictionaryEntry Key="C00887" Value="Nitrous oxide" />
+    <DictionaryEntry Key="C01417" Value="Cyanate" />
+    <DictionaryEntry Key="C01563" Value="Carbamate" />
+    <DictionaryEntry Key="C05361" Value="Hydrazine" />
+    <DictionaryEntry Key="C06058" Value="Nitroalkane" />
+  </Compound>
+  <PathwayMap Key="xcb00910" Value="Nitrogen metabolism&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_2178" Value="nitrate transporter; K02575 MFS transporter, NNP family, nitrate/nitrite transporter [KO:K02575]" />
+    <DictionaryEntry Key="XC_2179" Value="nitrate transport ATP-binding protein; K15576 nitrate/nitrite transport system substrate-binding protein [KO:K15576]" />
+    <DictionaryEntry Key="XC_2175" Value="nitrate reductase; K00372 assimilatory nitrate reductase catalytic subunit [EC:1.7.99.4] [KO:K00372] [EC:1.7.99.4]" />
+    <DictionaryEntry Key="XC_2177" Value="nitrite reductase; K00362 nitrite reductase (NADH) large subunit [EC:1.7.1.15] [KO:K00362] [EC:1.7.1.15]" />
+    <DictionaryEntry Key="XC_2176" Value="nitrite assimilation small subunit; K00363 nitrite reductase (NADH) small subunit [EC:1.7.1.15] [KO:K00363] [EC:1.7.1.15]" />
+    <DictionaryEntry Key="XC_3045" Value="2-nitropropane dioxygenase; K00459 nitronate monooxygenase [EC:1.13.12.16] [KO:K00459] [EC:1.13.12.16]" />
+    <DictionaryEntry Key="XC_1751" Value="hypothetical protein; K15371 glutamate dehydrogenase [EC:1.4.1.2] [KO:K15371] [EC:1.4.1.2]" />
+    <DictionaryEntry Key="XC_1768" Value="glutamine synthase; K01915 glutamine synthetase [EC:6.3.1.2] [KO:K01915] [EC:6.3.1.2]" />
+    <DictionaryEntry Key="XC_1770" Value="glutamine synthetase; K01915 glutamine synthetase [EC:6.3.1.2] [KO:K01915] [EC:6.3.1.2]" />
+    <DictionaryEntry Key="XC_0194" Value="glutamine synthetase; K01915 glutamine synthetase [EC:6.3.1.2] [KO:K01915] [EC:6.3.1.2]" />
+    <DictionaryEntry Key="XC_0032" Value="gltB; glutamate synthase subunit alpha [KO:K00265] [EC:1.4.1.14 1.4.1.13]" />
+    <DictionaryEntry Key="XC_0031" Value="gltD; glutamate synthase subunit beta [KO:K00266] [EC:1.4.1.14 1.4.1.13]" />
+    <DictionaryEntry Key="XC_2819" Value="carbonic anhydrase; K01673 carbonic anhydrase [EC:4.2.1.1] [KO:K01673] [EC:4.2.1.1]" />
+    <DictionaryEntry Key="XC_2704" Value="carbonic anhydrase; K01673 carbonic anhydrase [EC:4.2.1.1] [KO:K01673] [EC:4.2.1.1]" />
+    <DictionaryEntry Key="XC_2678" Value="carbonic anhydrase; K01673 carbonic anhydrase [EC:4.2.1.1] [KO:K01673] [EC:4.2.1.1]" />
+    <DictionaryEntry Key="XC_4080" Value="a-type carbonic anhydrase; K01674 carbonic anhydrase [EC:4.2.1.1] [KO:K01674] [EC:4.2.1.1]" />
+  </Genes>
+</KEGG.PathwayBrief>

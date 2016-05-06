@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00660" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>C5-Branched dibasic acid metabolism - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00022" Value="Pyruvate" />
+    <DictionaryEntry Key="C00025" Value="L-Glutamate" />
+    <DictionaryEntry Key="C00026" Value="2-Oxoglutarate" />
+    <DictionaryEntry Key="C00033" Value="Acetate" />
+    <DictionaryEntry Key="C00048" Value="Glyoxylate" />
+    <DictionaryEntry Key="C00100" Value="Propanoyl-CoA" />
+    <DictionaryEntry Key="C00109" Value="2-Oxobutanoate" />
+    <DictionaryEntry Key="C00417" Value="cis-Aconitate" />
+    <DictionaryEntry Key="C00490" Value="Itaconate" />
+    <DictionaryEntry Key="C00531" Value="Itaconyl-CoA" />
+    <DictionaryEntry Key="C00651" Value="4-Methylene-L-glutamate" />
+    <DictionaryEntry Key="C00810" Value="(R)-Acetoin" />
+    <DictionaryEntry Key="C01011" Value="(3S)-Citramalyl-CoA" />
+    <DictionaryEntry Key="C01109" Value="4-Methylene-L-glutamine" />
+    <DictionaryEntry Key="C01732" Value="Mesaconate" />
+    <DictionaryEntry Key="C02226" Value="2-Methylmaleate" />
+    <DictionaryEntry Key="C02612" Value="(R)-2-Methylmalate" />
+    <DictionaryEntry Key="C02614" Value="(S)-2-Methylmalate" />
+    <DictionaryEntry Key="C02630" Value="2-Hydroxyglutarate" />
+    <DictionaryEntry Key="C02876" Value="Propanoyl phosphate" />
+    <DictionaryEntry Key="C03618" Value="L-threo-3-Methylaspartate" />
+    <DictionaryEntry Key="C06010" Value="(S)-2-Acetolactate" />
+    <DictionaryEntry Key="C06027" Value="L-erythro-3-Methylmalyl-CoA" />
+    <DictionaryEntry Key="C06028" Value="2-Methylfumaryl-CoA" />
+    <DictionaryEntry Key="C06029" Value="L-threo-3-Methylmalate" />
+    <DictionaryEntry Key="C06030" Value="Methyloxaloacetate" />
+    <DictionaryEntry Key="C06031" Value="D-threo-3-Methylmalate" />
+    <DictionaryEntry Key="C06032" Value="D-erythro-3-Methylmalate" />
+    <DictionaryEntry Key="C06033" Value="Parapyruvate" />
+    <DictionaryEntry Key="C06034" Value="4-Hydroxy-4-methylglutamate" />
+    <DictionaryEntry Key="C06035" Value="4-Methylene-2-oxoglutarate" />
+    <DictionaryEntry Key="C06234" Value="4-Methyl-L-glutamate" />
+  </Compound>
+  <PathwayMap Key="xcb00660" Value="C5-Branched dibasic acid metabolism&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_0840" Value="acetolactate synthase 2 catalytic subunit; K01652 acetolactate synthase I/II/III large subunit [EC:2.2.1.6] [KO:K01652] [EC:2.2.1.6]" />
+    <DictionaryEntry Key="XC_0839" Value="acetolactate synthase isozyme II small subunit; K11258 acetolactate synthase II small subunit [EC:2.2.1.6] [KO:K11258] [EC:2.2.1.6]" />
+    <DictionaryEntry Key="XC_1063" Value="sucC; succinyl-CoA synthetase subunit beta [KO:K01903] [EC:6.2.1.5]" />
+    <DictionaryEntry Key="XC_1064" Value="succinyl-CoA synthetase subunit alpha; K01902 succinyl-CoA synthetase alpha subunit [EC:6.2.1.5] [KO:K01902] [EC:6.2.1.5]" />
+    <DictionaryEntry Key="XC_4119" Value="hypothetical protein; K10218 4-hydroxy-4-methyl-2-oxoglutarate aldolase [EC:4.1.3.17] [KO:K10218] [EC:4.1.3.17]" />
+    <DictionaryEntry Key="XC_0833" Value="isopropylmalate isomerase large subunit; K01703 3-isopropylmalate/(R)-2-methylmalate dehydratase large subunit [EC:4.2.1.33 4.2.1.35] [KO:K01703] [EC:4.2.1.35 4.2.1.33]" />
+    <DictionaryEntry Key="XC_0834" Value="leuD; isopropylmalate isomerase small subunit [KO:K01704] [EC:4.2.1.35 4.2.1.33]" />
+    <DictionaryEntry Key="XC_0836" Value="3-isopropylmalate dehydrogenase; K00052 3-isopropylmalate dehydrogenase [EC:1.1.1.85] [KO:K00052] [EC:1.1.1.85]" />
+  </Genes>
+</KEGG.PathwayBrief>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb04122" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description>Ubiquitin and ubiquitin-like proteins (Ubls) are signalling messengers that control many cellular functions, such as cell proliferation, apoptosis, and DNA repair. It is suggested that Ub-protein modification evolved from prokaryotic sulfurtransfer systems. Molybdenum cofactor (Moco) and thiamin are sulfur-containing cofactors whose biosynthesis includes a key sulfur transfer step that uses unique sulfur carrier proteins, MoaD and ThiS. Ubiquitin, MoaD, and ThiS are all structurally related proteins whose C-termini are activated through adenylation by homologous E1-like enzymes. s2T biosynthesis may share similar chemistry with Moco and thiamin synthesis. In Saccharomyces cerevisiae, Urm1 and Uba4 function as part of a ubl protein conjugation system, though they have sequence homology to bacterial sulfur-transfer enzymes and the ability to function in sulfur transfer.&lt;br&gt;</Description>
+  <Name>Sulfur relay system - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00019" Value="S-Adenosyl-L-methionine" />
+    <DictionaryEntry Key="C00041" Value="L-Alanine" />
+    <DictionaryEntry Key="C00044" Value="GTP" />
+    <DictionaryEntry Key="C00097" Value="L-Cysteine" />
+    <DictionaryEntry Key="C00378" Value="Thiamine" />
+    <DictionaryEntry Key="C00868" Value="tRNA uridine" />
+    <DictionaryEntry Key="C05924" Value="Molybdopterin" />
+    <DictionaryEntry Key="C17322" Value="tRNA containing 2-thiouridine" />
+    <DictionaryEntry Key="C18237" Value="Molybdoenzyme molybdenum cofactor" />
+    <DictionaryEntry Key="C18239" Value="Precursor Z" />
+  </Compound>
+  <PathwayMap Key="xcb04122" Value="Sulfur relay system&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="XC_2697" Value="thiosulfate sulfurtransferase; K01011 thiosulfate/3-mercaptopyruvate sulfurtransferase [EC:2.8.1.1 2.8.1.2] [KO:K01011] [EC:2.8.1.2 2.8.1.1]" />
+    <DictionaryEntry Key="XC_2221" Value="mnmA; tRNA-specific 2-thiouridylase MnmA [KO:K00566] [EC:2.8.1.-]" />
+    <DictionaryEntry Key="XC_3245" Value="molybdopterin-converting factor chain 2; K03635 molybdopterin synthase catalytic subunit [EC:2.8.1.12] [KO:K03635] [EC:2.8.1.12]" />
+    <DictionaryEntry Key="XC_3249" Value="moaA; molybdenum cofactor biosynthesis protein A [KO:K03639] [EC:4.1.99.18]" />
+    <DictionaryEntry Key="XC_3246" Value="molybdopterin-converting factor chain 1; K03636 molybdopterin synthase sulfur carrier subunit [KO:K03636]" />
+    <DictionaryEntry Key="XC_3247" Value="moaC; molybdenum cofactor biosynthesis protein MoaC [KO:K03637] [EC:4.1.99.18]" />
+    <DictionaryEntry Key="XC_1016" Value="sulfur carrier protein ThiS; K03154 sulfur carrier protein [KO:K03154]" />
+  </Genes>
+</KEGG.PathwayBrief>

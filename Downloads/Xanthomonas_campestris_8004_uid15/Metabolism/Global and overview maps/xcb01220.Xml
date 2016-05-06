@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb01220" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description>Microorganisms are known to be capable of degrading diverse chemical substances including man-made chemicals in the environment that are mostly aromatic compounds. This diagram illustrates combination patterns of reaction modules for biodegradation of aromatic compounds, consisting of three main types of ring dihydroxylation modules, followed by meta- or ortho-cleavage modules, together with an optional preprocessing module for converting methyl group to carboxyl group on the aromatic ring.&lt;br&gt;</Description>
+  <Name>Degradation of aromatic compounds - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
+  <Compound />
+  <PathwayMap Key="xcb01220" Value="Degradation of aromatic compounds&lt;center&gt;" />
+  <Genes />
+</KEGG.PathwayBrief>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html><head>
+<title>KEGG PATHWAY: xcb00220</title>
+<link type="text/css" rel="stylesheet" href="/css/gn2.css">
+<link rel="stylesheet" href="/css/bget.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/bgetm.css" media="only screen and (max-width: 768px)">
+<style>.kcfd{display:none;}</style>
+<script>
+<!--
+var getElementsByClassName = document.getElementsByClassName ?
+  function (cl){
+    return document.getElementsByClassName(cl);
+  } :
+  function (cl){
+    var elms = [];
+    var objs = document.getElementsByTagName('*');
+    for(var i=0;i<objs.length;i++){
+      var obj = objs[i];
+      if(obj.className == cl){
+        elms.push(obj);
+      }
+    }
+    return elms;
+  };
+function toggleField(clk,cl,show,hide){
+  var objs = getElementsByClassName(cl);
+  for(var i=0;i<objs.length;i++){
+    var obj = objs[i];
+    if(!obj.style.display||obj.style.display == 'none'){
+      obj.style.display = 'block';
+      clk.innerHTML = '&nbsp;&laquo; '+hide;
+    }
+    else{
+      obj.style.display = 'none';
+      clk.innerHTML = '&nbsp;&raquo; '+show;
+    }
+  }
+}
+function toggleData(bobj,e){
+  var id = bobj.id.replace(/[^0-9]/g,'');
+  var dt = document.getElementById('kcfd'+id);
+  if(!dt.style.display||dt.style.display == 'none'){
+    bobj.name = 'hide_kcf';
+    bobj.alt = 'Hide';
+    bobj.src = '/Fig/bget/button_Hib.gif';
+    dt.style.display = 'block';
+  }
+  else{
+    bobj.name = 'show_kcf';
+    bobj.alt = 'Show';
+    bobj.src = '/Fig/bget/button_Sb.gif';
+    dt.style.display = 'none';
+  }
+}
+function btn(bobj,img) {
+  bobj.src = "/Fig/bget/button_" + img + ".gif";
+}
+function btn_e(e) {
+  e = e || event;
+  var obj = e.target;
+  var img = e.target.src;
+  var img_base = img.replace(/\\/g,'/').replace(/(b|bd|bh)\.gif$/,'');
+  if(e.type == 'mousedown'||e.type == 'touchstart'){
+    obj.src = img_base +'bd.gif';
+  }
+  else if(e.type == 'mouseover'){
+    obj.src = img_base +'bh.gif';
+  }
+  else if(e.type == 'mouseup'||e.type == 'touchend'){
+    obj.src = img_base +'b.gif';
+  }
+  else if(e.type == 'mouseout'){
+    obj.src = img_base +'b.gif';
+  }
+}
+function init(){
+  for(var i=1;i<=1;i++){
+    if(document.getElementById('kcfb'+i)){
+      document.getElementById('kcfb'+i).onclick = function(e){toggleData(this,e);};
+      document.getElementById('kcfb'+i).onmousedown = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseover = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseout = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).onmouseup = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchstart = function(e){btn_e(e);};
+      document.getElementById('kcfb'+i).ontouchend = function(e){btn_e(e);};
+    }
+  }
+}
+function Link_XtrctSeq2(form) {
+    var dna_from;
+    var dna_to;
+    var dna_len;
+    var plus_up   = Number(form.XtrctSeq_UP.value) ;
+    var plus_down = Number(form.XtrctSeq_DOWN.value);
+    var vector    = Number(form.VECTOR.value);
+    var org       = form.ORG.value;
+    var chr       = form.CHR.value;
+    var kid       = form.KEGGID.value;
+    var url;
+
+    if (plus_up == 0 && plus_down == 0) {
+	url = "/dbget-bin/www_bget?-f+-n+n+" + kid;
+    }
+    else {
+	if (vector == 1) {
+	    dna_from  = Number(form.FROM.value)  - plus_up;
+	    dna_to    = Number(form.TO.value) + plus_down;
+	} else {
+	    dna_from  = Number(form.FROM.value)  - plus_down;
+	    dna_to    = Number(form.TO.value) + plus_up;
+	}
+
+	url = "/dbget-bin/cut_sequence_genes.pl?FROM=" + dna_from + "&TO=" + dna_to +"&VECTOR=" + vector + "&ORG=" + org;
+	if (chr) url += "&CHR=" + chr;
+    }
+    //window.open( url, "_self" );
+    location.href = url;
+}
+function go_taxonomy(form,params){
+  for(var key in params){
+    if(form[key]){
+      form.setAttribute(key,params[key]);
+    }
+    else{
+      var obj = document.createElement('input');
+      obj.setAttribute('type','hidden');
+      obj.setAttribute('name',key);
+      obj.setAttribute('value',params[key]);
+      form.appendChild(obj);
+    }
+  }
+  form.submit();
+}
+window.onload=function(){window.focus();init();};
+//--->
+</script>
+
+</head>
+<body>
+<div>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td width="70"><a href="/kegg/kegg2.html"><img align="middle" alt="KEGG" border="0" src="/Fig/bget/kegg3.gif"></a></td><td>&nbsp;&nbsp;&nbsp;</td><td><a name="pathway:xcb00220"></a><font class="title3">PATHWAY: xcb00220</font></td><td align="right" valign="bottom"><a href="javascript:void(window.open('/kegg/document/help_bget_pathway.html','KEGG_Help','toolbar=no,location=no,directories=no,width=720,height=640,resizable=yes,scrollbars=yes'))"><img align="middle" alt="Help" border="0" name="help" onmousedown="btn(this,'Hbd')" onmouseout="btn(this,'Hb')" onmouseover="btn(this,'Hbh')" onmouseup="btn(this,'Hb')" ontouchend="btn(this,'Hb')" ontouchstart="btn(this,'Hbd')" src="/Fig/bget/button_Hb.gif"></a></td></tr></table>
+<form method="post" action="/dbget-bin/www_bget" enctype="application/x-www-form-urlencoded" name="form1"><table border=0 cellpadding=1 cellspacing=0>
+<tr>
+<td class="fr3">
+<table border=0 cellpadding=2 cellspacing=0 style="border-bottom:#000 1px solid">
+
+<tr><th class="th30" align="left" valign="middle" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Entry</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td align="left"><code><nobr>xcb00220&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pathway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+</nobr></code></td> <td align="right"><br></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Name</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Arginine biosynthesis - Xanthomonas campestris pv. campestris 8004<br>
+</div></div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Class</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Metabolism; Amino acid metabolism<br>
+<a href="/kegg-bin/get_htext?query=xcb00220&amp;htext=xcb00001.keg"><img align="middle" alt="BRITE hierarchy" border="0" name="BRH" onmousedown="btn(this,'BHbd')" onmouseout="btn(this,'BHb')" onmouseover="btn(this,'BHbh')" onmouseup="btn(this,'BHb')" ontouchend="btn(this,'BHb')" ontouchstart="btn(this,'BHbd')" src="/Fig/bget/button_BHb.gif"></a></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Pathway&nbsp;map</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5.5em"><div><nobr><a href="/kegg-bin/show_pathway?xcb00220">xcb00220</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Arginine biosynthesis</div></td></tr></table><center><a href="/kegg-bin/show_pathway?xcb00220"><img src="/kegg/misc/thumbnail/map00220.gif" alt="xcb00220" style="border-style:none;"></a></center><br><a href="http://www.kegg.jp/kegg-bin/show_ot_map?map=00220"><img align="middle" alt="All organisms" border="0" name="AO" onmousedown="btn(this,'AObd')" onmouseout="btn(this,'AOb')" onmouseover="btn(this,'AObh')" onmouseup="btn(this,'AOb')" ontouchend="btn(this,'AOb')" ontouchstart="btn(this,'AObd')" src="/Fig/bget/button_AOb.gif"></a><a href="http://www.kegg.jp/kegg-bin/view_ortholog_table?map=00220"><img align="middle" alt="Ortholog table" border="0" name="OT" onmousedown="btn(this,'OTbd')" onmouseout="btn(this,'OTb')" onmouseover="btn(this,'OTbh')" onmouseup="btn(this,'OTb')" ontouchend="btn(this,'OTb')" ontouchstart="btn(this,'OTbd')" src="/Fig/bget/button_OTb.gif"></a></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Other DBs</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden"><div style="float:left">BSID:&nbsp;</div><div style="margin-left:3.5em"><a href="http://www.ncbi.nlm.nih.gov/biosystems/23982">23982</a></div><div style="float:left">GO:&nbsp;</div><div style="margin-left:2.5em"><a href="http://amigo.geneontology.org/amigo/term/GO:0006525">0006525</a></div></div></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Organism</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><div style="width:555px;overflow-x:auto;overflow-y:hidden">Xanthomonas campestris pv. campestris 8004 [GN:<a href="/dbget-bin/www_bget?gn:xcb">xcb</a>]<br>
+</div></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Gene</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1869">XC_1869</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-acetylornithine carbamoyltransferase; K09065 N-acetylornithine carbamoyltransferase [EC:<a href="/dbget-bin/www_bget?ec:2.1.3.9">2.1.3.9</a>] [KO:<a href="/dbget-bin/www_bget?ko:K09065">K09065</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.1.3.9">2.1.3.9</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1871">XC_1871</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>argininosuccinate synthase; K01940 argininosuccinate synthase [EC:<a href="/dbget-bin/www_bget?ec:6.3.4.5">6.3.4.5</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01940">K01940</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.3.4.5">6.3.4.5</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1876">XC_1876</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>argininosuccinate lyase; K01755 argininosuccinate lyase [EC:<a href="/dbget-bin/www_bget?ec:4.3.2.1">4.3.2.1</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01755">K01755</a>] [EC:<a href="/dbget-bin/www_bget?ec:4.3.2.1">4.3.2.1</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_4015">XC_4015</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>arginase; K01476 arginase [EC:<a href="/dbget-bin/www_bget?ec:3.5.3.1">3.5.3.1</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01476">K01476</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.5.3.1">3.5.3.1</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1768">XC_1768</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glutamine synthase; K01915 glutamine synthetase [EC:<a href="/dbget-bin/www_bget?ec:6.3.1.2">6.3.1.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01915">K01915</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.3.1.2">6.3.1.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1770">XC_1770</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glutamine synthetase; K01915 glutamine synthetase [EC:<a href="/dbget-bin/www_bget?ec:6.3.1.2">6.3.1.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01915">K01915</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.3.1.2">6.3.1.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0194">XC_0194</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>glutamine synthetase; K01915 glutamine synthetase [EC:<a href="/dbget-bin/www_bget?ec:6.3.1.2">6.3.1.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01915">K01915</a>] [EC:<a href="/dbget-bin/www_bget?ec:6.3.1.2">6.3.1.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1751">XC_1751</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>hypothetical protein; K15371 glutamate dehydrogenase [EC:<a href="/dbget-bin/www_bget?ec:1.4.1.2">1.4.1.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K15371">K15371</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.4.1.2">1.4.1.2</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0800">XC_0800</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>aminotransferase; K14260 alanine-synthesizing transaminase [EC:<a href="/dbget-bin/www_bget?ec:2.6.1.66">2.6.1.66</a> <a href="/dbget-bin/www_bget?ec:2.6.1.2">2.6.1.2</a>] [KO:<a href="/dbget-bin/www_bget?ko:K14260">K14260</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.6.1.2">2.6.1.2</a> <a href="/dbget-bin/www_bget?ec:2.6.1.66">2.6.1.66</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1873">XC_1873</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>acetylglutamate kinase; K00930 acetylglutamate kinase [EC:<a href="/dbget-bin/www_bget?ec:2.7.2.8">2.7.2.8</a>] [KO:<a href="/dbget-bin/www_bget?ko:K00930">K00930</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.7.2.8">2.7.2.8</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1875">XC_1875</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>argC; N-acetyl-gamma-glutamyl-phosphate reductase [KO:<a href="/dbget-bin/www_bget?ko:K00145">K00145</a>] [EC:<a href="/dbget-bin/www_bget?ec:1.2.1.38">1.2.1.38</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_0882">XC_0882</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>argD; acetylornithine transaminase protein [KO:<a href="/dbget-bin/www_bget?ko:K00821">K00821</a>] [EC:<a href="/dbget-bin/www_bget?ec:2.6.1.17">2.6.1.17</a> <a href="/dbget-bin/www_bget?ec:2.6.1.11">2.6.1.11</a>]</div></td></tr><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?xcb:XC_1872">XC_1872</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>acetylornithine deacetylase; K01438 acetylornithine deacetylase [EC:<a href="/dbget-bin/www_bget?ec:3.5.1.16">3.5.1.16</a>] [KO:<a href="/dbget-bin/www_bget?ko:K01438">K01438</a>] [EC:<a href="/dbget-bin/www_bget?ec:3.5.1.16">3.5.1.16</a>]</div></td></tr></table></td></tr>
+
+
+<tr><th class="th31" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>Compound</nobr></th>
+<td class="td31" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00011">C00011</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>CO2</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00014">C00014</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Ammonia</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00025">C00025</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Glutamate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00026">C00026</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>2-Oxoglutarate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00049">C00049</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Aspartate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00062">C00062</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Arginine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00064">C00064</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Glutamine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00077">C00077</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Ornithine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00086">C00086</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Urea</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00122">C00122</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Fumarate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00169">C00169</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Carbamoyl phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00327">C00327</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>L-Citrulline</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00437">C00437</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Acetylornithine</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C00624">C00624</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Acetyl-L-glutamate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01010">C01010</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>Urea-1-carboxylate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C01250">C01250</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Acetyl-L-glutamate 5-semialdehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C03406">C03406</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-(L-Arginino)succinate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C04133">C04133</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Acetyl-L-glutamate 5-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C15532">C15532</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>N-Acetyl-L-citrulline</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20948">C20948</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>LysW-L-glutamate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20949">C20949</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>LysW-L-glutamyl 5-phosphate</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20950">C20950</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>LysW-L-glutamate 5-semialdehyde</div></td></tr><tr><td align="left" valign="top" style="width:4.5em"><div><nobr><a href="/dbget-bin/www_bget?cpd:C20951">C20951</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>LysW-L-ornithine</div></td></tr></table></td></tr>
+
+
+<tr><th class="th30" align="left" valign="top" style="border-color:#000; border-width: 1px 0px 0px 1px; border-style: solid"><nobr>KO&nbsp;pathway</nobr></th>
+<td class="td30" style="border-color:#000; border-width: 1px 1px 0px 1px; border-style: solid"><table width=555 border=0 cellspacing=0 cellpadding=0><tr><td align="left" valign="top" style="width:5em"><div><nobr><a href="/dbget-bin/www_bget?ko00220">ko00220</a>&nbsp;&nbsp;</nobr></div></td><td align="left"><div>&nbsp;</div></td></tr></table></td></tr>
+
+</table></td></tr></table>
+<br></form></td><td valign="top"><div style="margin-top:46px;margin-left:1em;border:#ddd 1px solid"><div class="th30" style="font-weight:bold;line-height:1.5em">&nbsp;&nbsp;All links&nbsp;&nbsp;</div>
+<pre style="margin-left:1em">
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+2+path:xcb00220">Pathway (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+biosystems+path:xcb00220">BioSystems (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+7+path:xcb00220">Genome (1)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genome+path:xcb00220">KEGG GENOME (1)</a>   
+<span style="color:#006"><a href="/dbget-bin/get_linkdb?-t+8+path:xcb00220">Gene (13)</a></span>   
+   <a href="/dbget-bin/get_linkdb?-t+genes+path:xcb00220">KEGG GENES (13)</a>   
+<a href="/dbget-bin/get_linkdb?-t+alldb+path:xcb00220">All databases (15)</a>   
+<br><a href="/dbget-bin/get_linkdb?-N+path:xcb00220">Download RDF</a>   
+</pre>
+</div>
+</td></tr></table>
+
+
+<a href="/dbget/">DBGET</a> integrated database retrieval system</div>
+
+</body>
+</html>
