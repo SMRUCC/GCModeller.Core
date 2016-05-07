@@ -7,7 +7,7 @@ Imports Microsoft.VisualBasic.Linq
 Module DEBUG_MAIN
 
     Sub Main()
-
+        Call Language.UnixBash.LinuxRunHelper.PerlShell()
 
         Dim ddddd = LANS.SystemsBiology.Assembly.KEGG.Archives.Csv.Pathway.LoadData("F:\GCModeller.Core\Downloads\Xanthomonas_oryzae_oryzicola_BLS256_uid16740", "xor")
 
