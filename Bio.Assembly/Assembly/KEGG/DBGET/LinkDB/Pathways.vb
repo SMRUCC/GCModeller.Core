@@ -5,6 +5,7 @@ Imports LANS.SystemsBiology.Assembly.KEGG.WebServices
 Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
 Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Terminal
 
 Namespace Assembly.KEGG.DBGET.LinkDB
 
@@ -46,8 +47,14 @@ Namespace Assembly.KEGG.DBGET.LinkDB
             Dim briefHash As Dictionary(Of String, BriteHEntry.Pathway) =
                 BriteHEntry.Pathway.LoadDictionary
             Dim Downloader As New WebClient()
+            Dim Progress As New ProgressBar("KEGG LinkDB Downloads KEGG Pathways....")
 
-            For Each entry As ListEntry In AllEntries(sp)
+            VBDebugger.Mute = True
+
+            Dim all As ListEntry() = AllEntries(sp).ToArray
+            Dim i As Integer
+
+            For Each entry As ListEntry In all
                 Dim ImageUrl = String.Format("http://www.genome.jp/kegg/pathway/{0}/{1}.png", sp, entry.EntryID)
                 Dim pathwayPage = "http://www.genome.jp/dbget-bin/www_bget?pathway+" & entry.EntryID
                 Dim path As String = EXPORT & "/webpages/" & entry.EntryID & ".html"
@@ -68,7 +75,12 @@ Namespace Assembly.KEGG.DBGET.LinkDB
                 Call data.SaveAsXml(path)
 
                 Yield data
+
+                i += 1
+                Call Progress.SetProgress(i / all.Length * 100, data.Name)
             Next
+
+            VBDebugger.Mute = False
 
             Call entries.GetJson.SaveTo(EXPORT & $"/{sp}.json")
         End Function

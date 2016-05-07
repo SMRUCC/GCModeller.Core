@@ -4,6 +4,7 @@ Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Terminal
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -213,7 +214,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <remarks></remarks>
         Public Shared Function Load(path As String, Optional fillBlank As Boolean = False) As PTT
             If Not path.FileExists Then
-                Call ConsoleDevice.xConsole.WriteLine($"^r {path.ToFileURL} is not exists on your file system!^!")
+                Call xConsole.WriteLine($"^r {path.ToFileURL} is not exists on your file system!^!")
                 Return Nothing
             End If
 

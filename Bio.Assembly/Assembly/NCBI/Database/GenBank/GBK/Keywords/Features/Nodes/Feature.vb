@@ -2,7 +2,7 @@
 Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
-Imports Microsoft.VisualBasic.ConsoleDevice
+Imports Microsoft.VisualBasic.Terminal
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Language
 Imports LANS.SystemsBiology.SequenceModel.NucleotideModels

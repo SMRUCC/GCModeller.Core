@@ -7,14 +7,14 @@ Imports Microsoft.VisualBasic.Linq
 Module DEBUG_MAIN
 
     Sub Main()
-        Call Language.UnixBash.LinuxRunHelper.PerlShell()
+        '       Call Language.UnixBash.LinuxRunHelper.PerlShell()
 
-        Dim ddddd = LANS.SystemsBiology.Assembly.KEGG.Archives.Csv.Pathway.LoadData("F:\GCModeller.Core\Downloads\Xanthomonas_oryzae_oryzicola_BLS256_uid16740", "xor")
+        '   Dim ddddd = LANS.SystemsBiology.Assembly.KEGG.Archives.Csv.Pathway.LoadData("F:\GCModeller.Core\Downloads\Xanthomonas_oryzae_oryzicola_BLS256_uid16740", "xor")
 
-        Call ddddd.SaveTo("F:\GCModeller.Core\Downloads\Xanthomonas_oryzae_oryzicola_BLS256_uid16740/xor.Csv")
+        '  Call ddddd.SaveTo("F:\GCModeller.Core\Downloads\Xanthomonas_oryzae_oryzicola_BLS256_uid16740/xor.Csv")
 
         Dim alllll = LANS.SystemsBiology.Assembly.KEGG.DBGET.LinkDB.Pathways.AllEntries("xcb").ToArray
-        Dim pwys = LANS.SystemsBiology.Assembly.KEGG.DBGET.LinkDB.Pathways.Downloads("xor", "F:\GCModeller.Core\Downloads\Xanthomonas_oryzae_oryzicola_BLS256_uid16740").ToArray
+        Dim pwys = LANS.SystemsBiology.Assembly.KEGG.DBGET.LinkDB.Pathways.Downloads("xor", "X:\Xanthomonas_oryzae_oryzicola_BLS256_uid16740").ToArray
 
         Dim s = LANS.SystemsBiology.Assembly.KEGG.DBGET.bGetObject.Organism.GetKEGGSpeciesCode("Agrobacterium tumefaciens str. C58 (Cereon)")
 

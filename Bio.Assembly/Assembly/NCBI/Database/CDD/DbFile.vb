@@ -4,7 +4,7 @@ Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel
-Imports Microsoft.VisualBasic.ConsoleDevice.Utility
+Imports Microsoft.VisualBasic.Terminal.Utility
 Imports LANS.SystemsBiology.SequenceModel
 
 Namespace Assembly.NCBI.CDD
@@ -180,8 +180,8 @@ Here, we report on the progress of the curation effort and associated improvemen
             Call $" EXPORT fasta sequence data {FASTA}".__DEBUG_ECHO
             Call CType((From Smp As SmpFile
                         In DbFile.SmpData.AsParallel
-                        Let Fsa As SequenceModel.FASTA.FastaToken = Smp.Export
-                        Select Fsa).ToArray, SequenceModel.FASTA.FastaFile).Save(FASTA)
+                        Let Fsa As FASTA.FastaToken = Smp.Export
+                        Select Fsa).ToArray, FASTA.FastaFile).Save(FASTA)
             Call DbFile.GetXml.SaveTo(DbFile.FilePath)
         End Sub
 
