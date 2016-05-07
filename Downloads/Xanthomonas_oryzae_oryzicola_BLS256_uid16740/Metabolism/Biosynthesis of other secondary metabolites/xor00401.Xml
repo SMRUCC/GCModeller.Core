@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xor00401" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Novobiocin biosynthesis - Xanthomonas oryzae pv. oryzicola BLS256&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00082" Value="L-Tyrosine" />
+    <DictionaryEntry Key="C00148" Value="L-Proline" />
+    <DictionaryEntry Key="C00254" Value="Prephenate" />
+    <DictionaryEntry Key="C01179" Value="3-(4-Hydroxyphenyl)pyruvate" />
+    <DictionaryEntry Key="C05073" Value="Coumermycin A1" />
+    <DictionaryEntry Key="C05080" Value="Novobiocin" />
+    <DictionaryEntry Key="C12032" Value="Clorobiocin" />
+    <DictionaryEntry Key="C12456" Value="3-Dimethylallyl-4-hydroxyphenylpyruvate" />
+    <DictionaryEntry Key="C12457" Value="3-Dimethylallyl-4-hydroxymandelic acid" />
+    <DictionaryEntry Key="C12458" Value="3-Dimethylallyl-4-hydroxybenzoate" />
+    <DictionaryEntry Key="C12459" Value="3-Dimethylallyl-4-hydroxybenzaldehyde" />
+    <DictionaryEntry Key="C12460" Value="3-Dimethylallyl-beta-hydroxy-L-tyrosyl-[pcp]" />
+    <DictionaryEntry Key="C12461" Value="L-Tyrosyl-[pcp]" />
+    <DictionaryEntry Key="C12462" Value="beta-Hydroxy-L-tyrosyl-[pcp]" />
+    <DictionaryEntry Key="C12463" Value="beta-Keto-L-tyrosyl-[pcp]" />
+    <DictionaryEntry Key="C12467" Value="2-Hydroxy-beta-keto-L-tyrosyl-[pcp]" />
+    <DictionaryEntry Key="C12468" Value="3-Amino-4,7-dihydroxycoumarin" />
+    <DictionaryEntry Key="C12469" Value="3-Amino-4,7-dihydroxy-8-chlorocoumarin" />
+    <DictionaryEntry Key="C12470" Value="L-Prolyl-[pcp]" />
+    <DictionaryEntry Key="C12471" Value="Chlorobiocic acid" />
+    <DictionaryEntry Key="C12472" Value="Novclobiocin 105" />
+    <DictionaryEntry Key="C12473" Value="Novclobiocin 104" />
+    <DictionaryEntry Key="C12474" Value="Novobiocic acid" />
+    <DictionaryEntry Key="C12475" Value="Demethyldecarbamoylnovobiocin" />
+    <DictionaryEntry Key="C12476" Value="Decarbamoylnovobiocin" />
+    <DictionaryEntry Key="C12477" Value="3-Methylpyrrole-2,4-dicarboxylic acid" />
+    <DictionaryEntry Key="C12479" Value="Coumermic acid" />
+    <DictionaryEntry Key="C12480" Value="Coumermycin D" />
+    <DictionaryEntry Key="C12481" Value="dTDP-5-dimethyl-L-lyxose" />
+    <DictionaryEntry Key="C12483" Value="Pyrrole-2-carbonyl-[pcp]" />
+    <DictionaryEntry Key="C20629" Value="8-Demethylnovobiocic acid" />
+    <DictionaryEntry Key="C20637" Value="5-[[(4,7-Dihydroxy-2-oxo-2H-1-benzopyran-3-yl)amino]carbonyl]-4-methyl-1H-pyrrole-3-carboxylate" />
+  </Compound>
+  <PathwayMap Key="xor00401" Value="Novobiocin biosynthesis&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="xor:XOC_0156" Value="aspC; aspartate aminotransferase; K00832 aromatic-amino-acid transaminase [EC:2.6.1.57]" />
+    <DictionaryEntry Key="xor:XOC_1743" Value="prephenate dehydrogenase; K04517 prephenate dehydrogenase [EC:1.3.1.12]" />
+    <DictionaryEntry Key="xor:XOC_2217" Value="hisC; histidinol-phosphate aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1." />
+    <DictionaryEntry Key="xor:XOC_3680" Value="histidinol-phosphate aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9]" />
+    <DictionaryEntry Key="xor:XOC_3681" Value="histidinol-phosphate aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9]" />
+    <DictionaryEntry Key="xor:XOC_3682" Value="histidinol-phosphate aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9]" />
+  </Genes>
+</KEGG.PathwayBrief>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xor00410" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>beta-Alanine metabolism - Xanthomonas oryzae pv. oryzicola BLS256&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00024" Value="Acetyl-CoA" />
+    <DictionaryEntry Key="C00049" Value="L-Aspartate" />
+    <DictionaryEntry Key="C00083" Value="Malonyl-CoA" />
+    <DictionaryEntry Key="C00099" Value="beta-Alanine" />
+    <DictionaryEntry Key="C00100" Value="Propanoyl-CoA" />
+    <DictionaryEntry Key="C00106" Value="Uracil" />
+    <DictionaryEntry Key="C00135" Value="L-Histidine" />
+    <DictionaryEntry Key="C00222" Value="3-Oxopropanoate" />
+    <DictionaryEntry Key="C00315" Value="Spermidine" />
+    <DictionaryEntry Key="C00334" Value="4-Aminobutanoate" />
+    <DictionaryEntry Key="C00383" Value="Malonate" />
+    <DictionaryEntry Key="C00386" Value="Carnosine" />
+    <DictionaryEntry Key="C00429" Value="5,6-Dihydrouracil" />
+    <DictionaryEntry Key="C00555" Value="4-Aminobutyraldehyde" />
+    <DictionaryEntry Key="C00750" Value="Spermine" />
+    <DictionaryEntry Key="C00804" Value="Propynoate" />
+    <DictionaryEntry Key="C00864" Value="Pantothenate" />
+    <DictionaryEntry Key="C00894" Value="Propenoyl-CoA" />
+    <DictionaryEntry Key="C00986" Value="1,3-Diaminopropane" />
+    <DictionaryEntry Key="C01013" Value="3-Hydroxypropanoate" />
+    <DictionaryEntry Key="C01073" Value="N-Acetyl-beta-alanine" />
+    <DictionaryEntry Key="C01262" Value="beta-Alanyl-N(pi)-methyl-L-histidine" />
+    <DictionaryEntry Key="C02335" Value="beta-Alanyl-CoA" />
+    <DictionaryEntry Key="C02642" Value="3-Ureidopropionate" />
+    <DictionaryEntry Key="C03492" Value="D-4'-Phosphopantothenate" />
+    <DictionaryEntry Key="C03722" Value="Quinolinate" />
+    <DictionaryEntry Key="C05340" Value="beta-Alanyl-L-arginine" />
+    <DictionaryEntry Key="C05341" Value="beta-Alanyl-L-lysine" />
+    <DictionaryEntry Key="C05665" Value="3-Aminopropanal" />
+    <DictionaryEntry Key="C05668" Value="3-Hydroxypropionyl-CoA" />
+    <DictionaryEntry Key="C05669" Value="beta-Nitropropanoate" />
+    <DictionaryEntry Key="C05670" Value="3-Aminopropiononitrile" />
+  </Compound>
+  <PathwayMap Key="xor00410" Value="beta-Alanine metabolism&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="xor:XOC_0933" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xor:XOC_1989" Value="omega-amino acid-pyruvate aminotransferase; K00822 beta-alanine--pyruvate transaminase [EC:2.6.1.18]" />
+    <DictionaryEntry Key="xor:XOC_2170" Value="panC; pantoate--beta-alanine ligase; K01918 pantoate--beta-alanine ligase [EC:6.3.2.1]" />
+    <DictionaryEntry Key="xor:XOC_2171" Value="panD; aspartate 1-decarboxylase; K01579 aspartate 1-decarboxylase [EC:4.1.1.11]" />
+    <DictionaryEntry Key="xor:XOC_2193" Value="piperideine-6-carboxylate dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xor:XOC_3189" Value="fatty oxidation complex alpha subunit; K01782 3-hydroxyacyl-CoA dehydrogenase / enoyl-CoA hydratase" />
+    <DictionaryEntry Key="xor:XOC_3196" Value="mmsA; methylmalonate-semialdehyde dehydrogenase; K00140 malonate-semialdehyde dehydrogenase (acetyla" />
+    <DictionaryEntry Key="xor:XOC_4242" Value="speE; spermidine synthase; K00797 spermidine synthase [EC:2.5.1.16]" />
+  </Genes>
+</KEGG.PathwayBrief>

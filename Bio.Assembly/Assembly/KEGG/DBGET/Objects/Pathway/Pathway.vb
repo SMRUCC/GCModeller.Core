@@ -50,8 +50,8 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             Set(value As ComponentModel.KeyValuePair())
                 _lstGene = value
                 If Not value.IsNullOrEmpty Then _
-                    _GeneDict = value.ToDictionary(Function(x) x.Key) Else _
-                    _GeneDict = New Dictionary(Of String, ComponentModel.KeyValuePair)
+                    _geneHash = value.ToDictionary(Function(x) x.Key.Split(":"c).Last) Else _
+                    _geneHash = New Dictionary(Of String, ComponentModel.KeyValuePair)
             End Set
         End Property
 
@@ -69,7 +69,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         Public Property Disease As ComponentModel.KeyValuePair()
 
         Dim _lstGene As ComponentModel.KeyValuePair()
-        Dim _GeneDict As Dictionary(Of String, ComponentModel.KeyValuePair) = New Dictionary(Of String, ComponentModel.KeyValuePair)
+        Dim _geneHash As New Dictionary(Of String, ComponentModel.KeyValuePair)
 
         Const SEARCH_URL As String = "http://www.kegg.jp/kegg-bin/search_pathway_text?map={0}&keyword=&mode=1&viewImage=false"
         Const PATHWAY_DBGET As String = "http://www.genome.jp/dbget-bin/www_bget?pathway:{0}{1}"
@@ -89,7 +89,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         End Function
 
         Public Function IsContainsGeneObject(GeneId As String) As Boolean
-            Return _GeneDict.ContainsKey(GeneId)
+            Return _geneHash.ContainsKey(GeneId)
         End Function
 
         ''' <summary>
@@ -336,7 +336,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
 
             Dim LQuery As String() = (From gEntry As ComponentModel.KeyValuePair
                                       In Genes
-                                      Select gEntry.Key).ToArray
+                                      Select gEntry.Key.Split(":"c).Last).ToArray
             Return LQuery
         End Function
     End Class

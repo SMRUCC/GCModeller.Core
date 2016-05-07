@@ -119,5 +119,16 @@ Namespace ComponentModel
 
             Return lst.ToArray
         End Function
+
+#Region "Linq lambda"
+
+        Public Shared Function GetKey(k As KeyValuePair) As String
+            Return k.Key
+        End Function
+
+        Public Shared Function GetValue(k As KeyValuePair) As String
+            Return k.Value
+        End Function
+#End Region
     End Class
 End Namespace

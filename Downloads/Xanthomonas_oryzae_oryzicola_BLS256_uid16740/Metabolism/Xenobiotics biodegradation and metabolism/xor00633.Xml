@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xor00633" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Nitrotoluene degradation - Xanthomonas oryzae pv. oryzicola BLS256&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C01468" Value="4-Cresol" />
+    <DictionaryEntry Key="C06002" Value="(S)-Methylmalonate semialdehyde" />
+    <DictionaryEntry Key="C11006" Value="2,4-Dinitrotoluene" />
+    <DictionaryEntry Key="C14401" Value="2,4-Diaminotoluene" />
+    <DictionaryEntry Key="C16391" Value="Trinitrotoluene" />
+    <DictionaryEntry Key="C16392" Value="4-Hydroxylamino-2,6-dinitrotoluene" />
+    <DictionaryEntry Key="C16393" Value="2-Hydroxylamino-4,6-dinitrotoluene" />
+    <DictionaryEntry Key="C16394" Value="4-Amino-2,6-dinitrotoluene" />
+    <DictionaryEntry Key="C16395" Value="2-Amino-4,6-dinitrotoluene" />
+    <DictionaryEntry Key="C16396" Value="2,4-Diamino-6-nitrotoluene" />
+    <DictionaryEntry Key="C16397" Value="2,6-Diamino-4-nitrotoluene" />
+    <DictionaryEntry Key="C16398" Value="2-Amino-4-nitrotoluene" />
+    <DictionaryEntry Key="C16399" Value="2,4-Diamino-6-hydroxylaminotoluene" />
+    <DictionaryEntry Key="C16400" Value="2,4,6-Triaminotoluene" />
+    <DictionaryEntry Key="C16401" Value="2,4,6-Trihydroxytoluene" />
+    <DictionaryEntry Key="C16402" Value="2,4-Dihydroxylamino-6-nitrotoluene" />
+    <DictionaryEntry Key="C16403" Value="4-Amino-2-hydroxylamino-6-nitrotoluene" />
+    <DictionaryEntry Key="C16411" Value="4,4',6,6'-Tetranitro-2,2'-azoxytoluene" />
+    <DictionaryEntry Key="C16412" Value="2,4',6,6'-Tetranitro-2',4-azoxytoluene" />
+    <DictionaryEntry Key="C16413" Value="2,2',6,6'-Tetranitro-4,4'-azoxytoluene" />
+    <DictionaryEntry Key="C16414" Value="2-Amino-5-hydroxyl-4-hydroxylamino-6-nitrotoluene" />
+    <DictionaryEntry Key="C16420" Value="4-Acetamido-2-amino-6-nitrotoluene" />
+    <DictionaryEntry Key="C18315" Value="4-Methyl-5-nitrocatechol" />
+    <DictionaryEntry Key="C18316" Value="2-Hydroxy-5-methylquinone" />
+    <DictionaryEntry Key="C18317" Value="2,4,5-Trihydroxytoluene" />
+    <DictionaryEntry Key="C18318" Value="cis,cis-2,4-Dihydroxy-5-methyl-6-oxo-2,4-hexadienoate" />
+    <DictionaryEntry Key="C18320" Value="4-Amino-2-nitrotoluene" />
+  </Compound>
+  <PathwayMap Key="xor00633" Value="Nitrotoluene degradation&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="xor:XOC_3133" Value="GTN Reductase; K10680 N-ethylmaleimide reductase [EC:1.-.-.-]" />
+  </Genes>
+</KEGG.PathwayBrief>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xor00430" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Taurine and hypotaurine metabolism - Xanthomonas oryzae pv. oryzicola BLS256&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00022" Value="Pyruvate" />
+    <DictionaryEntry Key="C00024" Value="Acetyl-CoA" />
+    <DictionaryEntry Key="C00025" Value="L-Glutamate" />
+    <DictionaryEntry Key="C00026" Value="2-Oxoglutarate" />
+    <DictionaryEntry Key="C00033" Value="Acetate" />
+    <DictionaryEntry Key="C00041" Value="L-Alanine" />
+    <DictionaryEntry Key="C00094" Value="Sulfite" />
+    <DictionaryEntry Key="C00097" Value="L-Cysteine" />
+    <DictionaryEntry Key="C00227" Value="Acetyl phosphate" />
+    <DictionaryEntry Key="C00245" Value="Taurine" />
+    <DictionaryEntry Key="C00506" Value="L-Cysteate" />
+    <DictionaryEntry Key="C00519" Value="Hypotaurine" />
+    <DictionaryEntry Key="C00593" Value="Sulfoacetaldehyde" />
+    <DictionaryEntry Key="C00606" Value="3-Sulfino-L-alanine" />
+    <DictionaryEntry Key="C01678" Value="Cysteamine" />
+    <DictionaryEntry Key="C01959" Value="Taurocyamine" />
+    <DictionaryEntry Key="C03149" Value="N-Phosphotaurocyamine" />
+    <DictionaryEntry Key="C05122" Value="Taurocholate" />
+    <DictionaryEntry Key="C05123" Value="2-Hydroxyethanesulfonate" />
+    <DictionaryEntry Key="C05844" Value="5-L-Glutamyl-taurine" />
+    <DictionaryEntry Key="C06735" Value="Aminoacetaldehyde" />
+    <DictionaryEntry Key="C14179" Value="Sulfoacetate" />
+  </Compound>
+  <PathwayMap Key="xor00430" Value="Taurine and hypotaurine metabolism&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="xor:XOC_0897" Value="taurine dioxygenase; K03119 taurine dioxygenase [EC:1.14.11.17]" />
+    <DictionaryEntry Key="xor:XOC_1944" Value="ggt; gamma-glutamyltransferase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3." />
+    <DictionaryEntry Key="xor:XOC_1981" Value="NAD-glutamate dehydrogenase; K15371 glutamate dehydrogenase [EC:1.4.1.2]" />
+  </Genes>
+</KEGG.PathwayBrief>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xor00640" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Propanoate metabolism - Xanthomonas oryzae pv. oryzicola BLS256&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00024" Value="Acetyl-CoA" />
+    <DictionaryEntry Key="C00033" Value="Acetate" />
+    <DictionaryEntry Key="C00042" Value="Succinate" />
+    <DictionaryEntry Key="C00068" Value="Thiamin diphosphate" />
+    <DictionaryEntry Key="C00083" Value="Malonyl-CoA" />
+    <DictionaryEntry Key="C00091" Value="Succinyl-CoA" />
+    <DictionaryEntry Key="C00099" Value="beta-Alanine" />
+    <DictionaryEntry Key="C00100" Value="Propanoyl-CoA" />
+    <DictionaryEntry Key="C00109" Value="2-Oxobutanoate" />
+    <DictionaryEntry Key="C00111" Value="Glycerone phosphate" />
+    <DictionaryEntry Key="C00132" Value="Methanol" />
+    <DictionaryEntry Key="C00163" Value="Propanoate" />
+    <DictionaryEntry Key="C00164" Value="Acetoacetate" />
+    <DictionaryEntry Key="C00186" Value="(S)-Lactate" />
+    <DictionaryEntry Key="C00207" Value="Acetone" />
+    <DictionaryEntry Key="C00222" Value="3-Oxopropanoate" />
+    <DictionaryEntry Key="C00332" Value="Acetoacetyl-CoA" />
+    <DictionaryEntry Key="C00424" Value="(S)-Lactaldehyde" />
+    <DictionaryEntry Key="C00479" Value="Propanal" />
+    <DictionaryEntry Key="C00546" Value="Methylglyoxal" />
+    <DictionaryEntry Key="C00583" Value="Propane-1,2-diol" />
+    <DictionaryEntry Key="C00683" Value="(S)-Methylmalonyl-CoA" />
+    <DictionaryEntry Key="C00804" Value="Propynoate" />
+    <DictionaryEntry Key="C00827" Value="Lactoyl-CoA" />
+    <DictionaryEntry Key="C00894" Value="Propenoyl-CoA" />
+    <DictionaryEntry Key="C01013" Value="3-Hydroxypropanoate" />
+    <DictionaryEntry Key="C01213" Value="(R)-Methylmalonyl-CoA" />
+    <DictionaryEntry Key="C01845" Value="Propan-2-ol" />
+    <DictionaryEntry Key="C02170" Value="Methylmalonate" />
+    <DictionaryEntry Key="C02225" Value="2-Methylcitrate" />
+    <DictionaryEntry Key="C02335" Value="beta-Alanyl-CoA" />
+    <DictionaryEntry Key="C02876" Value="Propanoyl phosphate" />
+    <DictionaryEntry Key="C04225" Value="(Z)-But-2-ene-1,2,3-tricarboxylate" />
+    <DictionaryEntry Key="C04593" Value="(2S,3R)-3-Hydroxybutane-1,2,3-tricarboxylate" />
+    <DictionaryEntry Key="C05235" Value="Hydroxyacetone" />
+    <DictionaryEntry Key="C05668" Value="3-Hydroxypropionyl-CoA" />
+    <DictionaryEntry Key="C05979" Value="Propane-1-ol" />
+    <DictionaryEntry Key="C05983" Value="Propionyladenylate" />
+    <DictionaryEntry Key="C05984" Value="2-Hydroxybutanoic acid" />
+    <DictionaryEntry Key="C05989" Value="3-Oxopropionyl-CoA" />
+    <DictionaryEntry Key="C06002" Value="(S)-Methylmalonate semialdehyde" />
+    <DictionaryEntry Key="C15972" Value="Enzyme N6-(lipoyl)lysine" />
+    <DictionaryEntry Key="C15973" Value="Enzyme N6-(dihydrolipoyl)lysine" />
+    <DictionaryEntry Key="C17530" Value="Methyl acetate" />
+    <DictionaryEntry Key="C20783" Value="Propane" />
+    <DictionaryEntry Key="C21017" Value="2-(alpha-Hydroxypropyl)thiamine diphosphate" />
+    <DictionaryEntry Key="C21018" Value="Enzyme N6-(S-propyldihydrolipoyl)lysine" />
+  </Compound>
+  <PathwayMap Key="xor00640" Value="Propanoate metabolism&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="xor:XOC_0306" Value="3-ketoacyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9]" />
+    <DictionaryEntry Key="xor:XOC_0366" Value="acsA; acetate--CoA ligase; K01895 acetyl-CoA synthetase [EC:6.2.1.1]" />
+    <DictionaryEntry Key="xor:XOC_1186" Value="prpB; methylisocitrate lyase; K03417 methylisocitrate lyase [EC:4.1.3.30]" />
+    <DictionaryEntry Key="xor:XOC_1187" Value="2-methylcitrate synthase; K01659 2-methylcitrate synthase [EC:2.3.3.5]" />
+    <DictionaryEntry Key="xor:XOC_1751" Value="lpdA; dihydrolipoamide dehydrogenase; K00382 dihydrolipoamide dehydrogenase [EC:1.8.1.4]" />
+    <DictionaryEntry Key="xor:XOC_1989" Value="omega-amino acid-pyruvate aminotransferase; K00822 beta-alanine--pyruvate transaminase [EC:2.6.1.18]" />
+    <DictionaryEntry Key="xor:XOC_2273" Value="acnB; aconitate hydratase 2; K01682 aconitate hydratase 2 / 2-methylisocitrate dehydratase [EC:4.2.1" />
+    <DictionaryEntry Key="xor:XOC_2949" Value="accD; acetyl-CoA carboxylase, carboxyl transferase, beta subunit; K01963 acetyl-CoA carboxylase carb" />
+    <DictionaryEntry Key="xor:XOC_3086" Value="accA; acetyl-CoA carboxylase, carboxyl transferase, alpha subunit; K01962 acetyl-CoA carboxylase car" />
+    <DictionaryEntry Key="xor:XOC_3155" Value="acetoacetyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9]" />
+    <DictionaryEntry Key="xor:XOC_3189" Value="fatty oxidation complex alpha subunit; K01782 3-hydroxyacyl-CoA dehydrogenase / enoyl-CoA hydratase" />
+    <DictionaryEntry Key="xor:XOC_3196" Value="mmsA; methylmalonate-semialdehyde dehydrogenase; K00140 malonate-semialdehyde dehydrogenase (acetyla" />
+    <DictionaryEntry Key="xor:XOC_3503" Value="chain A, Succinyl-Coa Synthetase (Succinate-Coa Ligase); K01902 succinyl-CoA synthetase alpha subuni" />
+    <DictionaryEntry Key="xor:XOC_3504" Value="succinyl-CoA synthetase beta chain; K01903 succinyl-CoA synthetase beta subunit [EC:6.2.1.5]" />
+    <DictionaryEntry Key="xor:XOC_3925" Value="lpdA; dihydrolipoamide dehydrogenase; K00382 dihydrolipoamide dehydrogenase [EC:1.8.1.4]" />
+    <DictionaryEntry Key="xor:XOC_4157" Value="accB; acetyl-CoA carboxylase, biotin carboxyl carrier protein; K02160 acetyl-CoA carboxylase biotin" />
+    <DictionaryEntry Key="xor:XOC_4159" Value="accC; acetyl-CoA carboxylase, biotin carboxylase; K01961 acetyl-CoA carboxylase, biotin carboxylase" />
+  </Genes>
+</KEGG.PathwayBrief>

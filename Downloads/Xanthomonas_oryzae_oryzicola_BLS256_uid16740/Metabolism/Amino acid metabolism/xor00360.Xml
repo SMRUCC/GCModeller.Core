@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xor00360" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Phenylalanine metabolism - Xanthomonas oryzae pv. oryzicola BLS256&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00022" Value="Pyruvate" />
+    <DictionaryEntry Key="C00024" Value="Acetyl-CoA" />
+    <DictionaryEntry Key="C00042" Value="Succinate" />
+    <DictionaryEntry Key="C00079" Value="L-Phenylalanine" />
+    <DictionaryEntry Key="C00082" Value="L-Tyrosine" />
+    <DictionaryEntry Key="C00083" Value="Malonyl-CoA" />
+    <DictionaryEntry Key="C00084" Value="Acetaldehyde" />
+    <DictionaryEntry Key="C00091" Value="Succinyl-CoA" />
+    <DictionaryEntry Key="C00122" Value="Fumarate" />
+    <DictionaryEntry Key="C00156" Value="4-Hydroxybenzoate" />
+    <DictionaryEntry Key="C00166" Value="Phenylpyruvate" />
+    <DictionaryEntry Key="C00180" Value="Benzoate" />
+    <DictionaryEntry Key="C00223" Value="p-Coumaroyl-CoA" />
+    <DictionaryEntry Key="C00323" Value="Caffeoyl-CoA" />
+    <DictionaryEntry Key="C00406" Value="Feruloyl-CoA" />
+    <DictionaryEntry Key="C00423" Value="trans-Cinnamate" />
+    <DictionaryEntry Key="C00512" Value="S-Benzoate coenzyme A" />
+    <DictionaryEntry Key="C00582" Value="Phenylacetyl-CoA" />
+    <DictionaryEntry Key="C00596" Value="2-Hydroxy-2,4-pentadienoate" />
+    <DictionaryEntry Key="C00601" Value="Phenylacetaldehyde" />
+    <DictionaryEntry Key="C00630" Value="2-Methylpropanoyl-CoA" />
+    <DictionaryEntry Key="C00642" Value="4-Hydroxyphenylacetate" />
+    <DictionaryEntry Key="C00755" Value="4-Hydroxy-3-methoxy-benzaldehyde" />
+    <DictionaryEntry Key="C00805" Value="Salicylate" />
+    <DictionaryEntry Key="C00811" Value="4-Coumarate" />
+    <DictionaryEntry Key="C01198" Value="3-(2-Hydroxyphenyl)propanoate" />
+    <DictionaryEntry Key="C01575" Value="Ephedrine" />
+    <DictionaryEntry Key="C01586" Value="Hippurate" />
+    <DictionaryEntry Key="C01772" Value="trans-2-Hydroxycinnamate" />
+    <DictionaryEntry Key="C02137" Value="alpha-Oxo-benzeneacetic acid" />
+    <DictionaryEntry Key="C02232" Value="3-Oxoadipyl-CoA" />
+    <DictionaryEntry Key="C02265" Value="D-Phenylalanine" />
+    <DictionaryEntry Key="C02505" Value="2-Phenylacetamide" />
+    <DictionaryEntry Key="C02763" Value="2-Hydroxy-3-phenylpropenoate" />
+    <DictionaryEntry Key="C02765" Value="(+)-Pseudoephedrine" />
+    <DictionaryEntry Key="C03519" Value="N-Acetyl-L-phenylalanine" />
+    <DictionaryEntry Key="C03589" Value="4-Hydroxy-2-oxopentanoate" />
+    <DictionaryEntry Key="C04044" Value="3-(2,3-Dihydroxyphenyl)propanoate" />
+    <DictionaryEntry Key="C04148" Value="Phenylacetylglutamine" />
+    <DictionaryEntry Key="C04351" Value="(R)-2-Methylimino-1-phenylpropan-1-ol" />
+    <DictionaryEntry Key="C04479" Value="2-Hydroxy-6-oxonona-2,4-diene-1,9-dioate" />
+    <DictionaryEntry Key="C05332" Value="Phenethylamine" />
+    <DictionaryEntry Key="C05593" Value="3-Hydroxyphenylacetate" />
+    <DictionaryEntry Key="C05598" Value="Phenylacetylglycine" />
+    <DictionaryEntry Key="C05607" Value="Phenyllactate" />
+    <DictionaryEntry Key="C05620" Value="N-Acetyl-D-phenylalanine" />
+    <DictionaryEntry Key="C05629" Value="Phenylpropanoate" />
+    <DictionaryEntry Key="C05852" Value="2-Hydroxyphenylacetate" />
+    <DictionaryEntry Key="C05853" Value="Phenylethyl alcohol" />
+    <DictionaryEntry Key="C06207" Value="2,6-Dihydroxyphenylacetate" />
+    <DictionaryEntry Key="C06866" Value="Capsaicin" />
+    <DictionaryEntry Key="C07086" Value="Phenylacetic acid" />
+    <DictionaryEntry Key="C07303" Value="4-Hydroxy-3-methoxyphenyl-beta-hydroxypropanoyl-CoA" />
+    <DictionaryEntry Key="C08300" Value="D-Cathine" />
+    <DictionaryEntry Key="C08301" Value="D-Cathinone" />
+    <DictionaryEntry Key="C11457" Value="3-(3-Hydroxyphenyl)propanoic acid" />
+    <DictionaryEntry Key="C11588" Value="cis-3-(Carboxy-ethyl)-3,5-cyclo-hexadiene-1,2-diol" />
+    <DictionaryEntry Key="C12621" Value="trans-3-Hydroxycinnamate" />
+    <DictionaryEntry Key="C12622" Value="cis-3-(3-Carboxyethenyl)-3,5-cyclohexadiene-1,2-diol" />
+    <DictionaryEntry Key="C12623" Value="trans-2,3-Dihydroxycinnamate" />
+    <DictionaryEntry Key="C12624" Value="2-Hydroxy-6-ketononatrienedioate" />
+    <DictionaryEntry Key="C14144" Value="5-Carboxy-2-pentenoyl-CoA" />
+    <DictionaryEntry Key="C14145" Value="(3S)-3-Hydroxyadipyl-CoA" />
+    <DictionaryEntry Key="C15524" Value="Phenylglyoxylyl-CoA" />
+    <DictionaryEntry Key="C16666" Value="Vanillylamine" />
+    <DictionaryEntry Key="C16719" Value="(-)-Norephedrine" />
+    <DictionaryEntry Key="C17268" Value="Pyruvophenone" />
+    <DictionaryEntry Key="C18202" Value="8-Methyl-6-nonenoic acid" />
+    <DictionaryEntry Key="C19945" Value="3-Oxo-5,6-dehydrosuberyl-CoA" />
+    <DictionaryEntry Key="C19946" Value="3-Oxo-5,6-dehydrosuberyl-CoA semialdehyde" />
+    <DictionaryEntry Key="C19975" Value="2-Oxepin-2(3H)-ylideneacetyl-CoA" />
+    <DictionaryEntry Key="C20062" Value="2-(1,2-Epoxy-1,2-dihydrophenyl)acetyl-CoA" />
+  </Compound>
+  <PathwayMap Key="xor00360" Value="Phenylalanine metabolism&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="xor:XOC_0156" Value="aspC; aspartate aminotransferase; K00832 aromatic-amino-acid transaminase [EC:2.6.1.57]" />
+    <DictionaryEntry Key="xor:XOC_0260" Value="phhA; phenylalanine-4-hydroxylase; K00500 phenylalanine-4-hydroxylase [EC:1.14.16.1]" />
+    <DictionaryEntry Key="xor:XOC_0264" Value="peptidase, M20-M25-M40 family; K01451 hippurate hydrolase [EC:3.5.1.32]" />
+    <DictionaryEntry Key="xor:XOC_0499" Value="hppD; 4-hydroxyphenylpyruvate dioxygenase; K00457 4-hydroxyphenylpyruvate dioxygenase [EC:1.13.11.27" />
+    <DictionaryEntry Key="xor:XOC_0934" Value="P-hydroxycinnamoyl CoA hydratase; K18383 trans-feruloyl-CoA hydratase / vanillin synthase [EC:4.2.1." />
+    <DictionaryEntry Key="xor:XOC_1064" Value="glu-trnAgln amidotransferase a subunit; K01426 amidase [EC:3.5.1.4]" />
+    <DictionaryEntry Key="xor:XOC_1701" Value="D-amino acid dehydrogenase subunit; K00285 D-amino-acid dehydrogenase [EC:1.4.5.1]" />
+    <DictionaryEntry Key="xor:XOC_2217" Value="hisC; histidinol-phosphate aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1." />
+    <DictionaryEntry Key="xor:XOC_3410" Value="katG; catalase-peroxidase HPI; K03782 catalase-peroxidase [EC:1.11.1.21]" />
+    <DictionaryEntry Key="xor:XOC_3680" Value="histidinol-phosphate aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9]" />
+    <DictionaryEntry Key="xor:XOC_3681" Value="histidinol-phosphate aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9]" />
+    <DictionaryEntry Key="xor:XOC_3682" Value="histidinol-phosphate aminotransferase; K00817 histidinol-phosphate aminotransferase [EC:2.6.1.9]" />
+    <DictionaryEntry Key="xor:XOC_3685" Value="amine oxidase; K00274 monoamine oxidase [EC:1.4.3.4]" />
+    <DictionaryEntry Key="xor:XOC_3959" Value="D-amino acid dehydrogenase small subunit; K00285 D-amino-acid dehydrogenase [EC:1.4.5.1]" />
+  </Genes>
+</KEGG.PathwayBrief>

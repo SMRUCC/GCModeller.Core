@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xor00281" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Geraniol degradation - Xanthomonas oryzae pv. oryzicola BLS256&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C01291" Value="3-(4-Methylpent-3-en-1-yl)pent-2-enedioyl-CoA" />
+    <DictionaryEntry Key="C01499" Value="Geranial" />
+    <DictionaryEntry Key="C01500" Value="Geraniol" />
+    <DictionaryEntry Key="C01920" Value="Geranoyl-CoA" />
+    <DictionaryEntry Key="C03069" Value="3-Methylcrotonyl-CoA" />
+    <DictionaryEntry Key="C04675" Value="3-Hydroxy-3-(4-methylpent-3-en-1-yl)glutaryl-CoA" />
+    <DictionaryEntry Key="C09847" Value="cis-Citral" />
+    <DictionaryEntry Key="C09848" Value="(R)-(+)-Citronellal" />
+    <DictionaryEntry Key="C09849" Value="beta-Citronellol" />
+    <DictionaryEntry Key="C09871" Value="Nerol" />
+    <DictionaryEntry Key="C11384" Value="(S)-(-)-Citronellal" />
+    <DictionaryEntry Key="C11386" Value="(-)-Citronellol" />
+    <DictionaryEntry Key="C16461" Value="Geranic acid" />
+    <DictionaryEntry Key="C16462" Value="Citronellate" />
+    <DictionaryEntry Key="C16464" Value="Citronellyl-CoA" />
+    <DictionaryEntry Key="C16465" Value="trans-Geranyl-CoA" />
+    <DictionaryEntry Key="C16466" Value="7-Methyl-3-oxo-6-octenoyl-CoA" />
+    <DictionaryEntry Key="C16468" Value="(2E)-5-Methylhexa-2,4-dienoyl-CoA" />
+    <DictionaryEntry Key="C16469" Value="3-Hydroxy-5-methylhex-4-enoyl-CoA" />
+    <DictionaryEntry Key="C16470" Value="5-Methylhex-4-enoyl-CoA" />
+    <DictionaryEntry Key="C16471" Value="5-Methyl-3-oxo-4-hexenoyl-CoA" />
+  </Compound>
+  <PathwayMap Key="xor00281" Value="Geraniol degradation&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="xor:XOC_2239" Value="hydroxymethylglutaryl-CoA lyase; K01640 hydroxymethylglutaryl-CoA lyase [EC:4.1.3.4]" />
+    <DictionaryEntry Key="xor:XOC_2423" Value="acetyl-CoA C-acyltransferase; K00632 acetyl-CoA acyltransferase [EC:2.3.1.16]" />
+    <DictionaryEntry Key="xor:XOC_3189" Value="fatty oxidation complex alpha subunit; K01782 3-hydroxyacyl-CoA dehydrogenase / enoyl-CoA hydratase" />
+    <DictionaryEntry Key="xor:XOC_3693" Value="short chain dehydrogenase; K13775 citronellol/citronellal dehydrogenase" />
+  </Genes>
+</KEGG.PathwayBrief>

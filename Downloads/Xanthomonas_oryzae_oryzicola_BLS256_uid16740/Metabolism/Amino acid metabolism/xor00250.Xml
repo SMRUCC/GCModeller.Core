@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xor00250" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Alanine, aspartate and glutamate metabolism - Xanthomonas oryzae pv. oryzicola BLS256&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00014" Value="Ammonia" />
+    <DictionaryEntry Key="C00022" Value="Pyruvate" />
+    <DictionaryEntry Key="C00025" Value="L-Glutamate" />
+    <DictionaryEntry Key="C00026" Value="2-Oxoglutarate" />
+    <DictionaryEntry Key="C00036" Value="Oxaloacetate" />
+    <DictionaryEntry Key="C00041" Value="L-Alanine" />
+    <DictionaryEntry Key="C00042" Value="Succinate" />
+    <DictionaryEntry Key="C00049" Value="L-Aspartate" />
+    <DictionaryEntry Key="C00064" Value="L-Glutamine" />
+    <DictionaryEntry Key="C00122" Value="Fumarate" />
+    <DictionaryEntry Key="C00152" Value="L-Asparagine" />
+    <DictionaryEntry Key="C00158" Value="Citrate" />
+    <DictionaryEntry Key="C00169" Value="Carbamoyl phosphate" />
+    <DictionaryEntry Key="C00232" Value="Succinate semialdehyde" />
+    <DictionaryEntry Key="C00334" Value="4-Aminobutanoate" />
+    <DictionaryEntry Key="C00352" Value="D-Glucosamine 6-phosphate" />
+    <DictionaryEntry Key="C00402" Value="D-Aspartate" />
+    <DictionaryEntry Key="C00438" Value="N-Carbamoyl-L-aspartate" />
+    <DictionaryEntry Key="C00940" Value="2-Oxoglutaramate" />
+    <DictionaryEntry Key="C01042" Value="N-Acetyl-L-aspartate" />
+    <DictionaryEntry Key="C02362" Value="2-Oxosuccinamate" />
+    <DictionaryEntry Key="C03090" Value="5-Phosphoribosylamine" />
+    <DictionaryEntry Key="C03406" Value="N-(L-Arginino)succinate" />
+    <DictionaryEntry Key="C03794" Value="N6-(1,2-Dicarboxyethyl)-AMP" />
+    <DictionaryEntry Key="C03912" Value="(S)-1-Pyrroline-5-carboxylate" />
+    <DictionaryEntry Key="C12270" Value="N-Acetylaspartylglutamate" />
+    <DictionaryEntry Key="C20775" Value="beta-Citryl-L-glutamate" />
+    <DictionaryEntry Key="C20776" Value="N-Acetylaspartylglutamylglutamate" />
+  </Compound>
+  <PathwayMap Key="xor00250" Value="Alanine, aspartate and glutamate metabolism&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="xor:XOC_0134" Value="glutamate synthase; K00266 glutamate synthase (NADPH/NADH) small chain [EC:1.4.1.13 1.4.1.14]" />
+    <DictionaryEntry Key="xor:XOC_0135" Value="glutamate synthase; K00265 glutamate synthase (NADPH/NADH) large chain [EC:1.4.1.13 1.4.1.14]" />
+    <DictionaryEntry Key="xor:XOC_0293" Value="glnA; glutamine synthetase, type I; K01915 glutamine synthetase [EC:6.3.1.2]" />
+    <DictionaryEntry Key="xor:XOC_0531" Value="bifunctional PutA protein; K13821 RHH-type transcriptional regulator, proline utilization regulon re" />
+    <DictionaryEntry Key="xor:XOC_0762" Value="glucosamine-fructose-6-phosphate aminotransferase; K00820 glucosamine--fructose-6-phosphate aminotra" />
+    <DictionaryEntry Key="xor:XOC_0985" Value="asparaginase; K01424 L-asparaginase [EC:3.5.1.1]" />
+    <DictionaryEntry Key="xor:XOC_1105" Value="purF; amidophosphoribosyltransferase; K00764 amidophosphoribosyltransferase [EC:2.4.2.14]" />
+    <DictionaryEntry Key="xor:XOC_1213" Value="purA; adenylosuccinate synthetase; K01939 adenylosuccinate synthase [EC:6.3.4.4]" />
+    <DictionaryEntry Key="xor:XOC_1497" Value="pyrB; aspartate carbamoyltransferase; K00609 aspartate carbamoyltransferase catalytic subunit [EC:2." />
+    <DictionaryEntry Key="xor:XOC_1758" Value="purB; adenylosuccinate lyase; K01756 adenylosuccinate lyase [EC:4.3.2.2]" />
+    <DictionaryEntry Key="xor:XOC_1981" Value="NAD-glutamate dehydrogenase; K15371 glutamate dehydrogenase [EC:1.4.1.2]" />
+    <DictionaryEntry Key="xor:XOC_1996" Value="gamma-glutamylputrescine synthetase; K01915 glutamine synthetase [EC:6.3.1.2]" />
+    <DictionaryEntry Key="xor:XOC_1999" Value="glnA; glutamine synthetase; K01915 glutamine synthetase [EC:6.3.1.2]" />
+    <DictionaryEntry Key="xor:XOC_2024" Value="aldehyde-dehydrogenase like protein YneI; K00135 succinate-semialdehyde dehydrogenase / glutarate-se" />
+    <DictionaryEntry Key="xor:XOC_2251" Value="carA; carbamoyl-phosphate synthase, small subunit; K01956 carbamoyl-phosphate synthase small subunit" />
+    <DictionaryEntry Key="xor:XOC_2253" Value="carB; carbamoyl-phosphate synthase, large subunit; K01955 carbamoyl-phosphate synthase large subunit" />
+    <DictionaryEntry Key="xor:XOC_2744" Value="argH; argininosuccinate lyase; K01755 argininosuccinate lyase [EC:4.3.2.1]" />
+    <DictionaryEntry Key="xor:XOC_2750" Value="argG; argininosuccinate synthase; K01940 argininosuccinate synthase [EC:6.3.4.5]" />
+    <DictionaryEntry Key="xor:XOC_2999" Value="asnB; asparagine synthase (glutamine-hydrolyzing); K01953 asparagine synthase (glutamine-hydrolysing" />
+    <DictionaryEntry Key="xor:XOC_3054" Value="asnB; asparagine synthase (glutamine-hydrolyzing); K01953 asparagine synthase (glutamine-hydrolysing" />
+    <DictionaryEntry Key="xor:XOC_3762" Value="putative aspartate aminotransferase; K14260 alanine-synthesizing transaminase [EC:2.6.1.66 2.6.1.2]" />
+    <DictionaryEntry Key="xor:XOC_3901" Value="glmS; glucosamine--fructose-6-phosphate aminotransferase, isomerizing; K00820 glucosamine--fructose-" />
+  </Genes>
+</KEGG.PathwayBrief>

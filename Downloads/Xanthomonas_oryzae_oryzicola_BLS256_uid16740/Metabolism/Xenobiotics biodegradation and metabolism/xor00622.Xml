@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xor00622" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Xylene degradation - Xanthomonas oryzae pv. oryzicola BLS256&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00022" Value="Pyruvate" />
+    <DictionaryEntry Key="C00024" Value="Acetyl-CoA" />
+    <DictionaryEntry Key="C00084" Value="Acetaldehyde" />
+    <DictionaryEntry Key="C00100" Value="Propanoyl-CoA" />
+    <DictionaryEntry Key="C00479" Value="Propanal" />
+    <DictionaryEntry Key="C00596" Value="2-Hydroxy-2,4-pentadienoate" />
+    <DictionaryEntry Key="C01454" Value="Toluate" />
+    <DictionaryEntry Key="C02923" Value="2,3-Dihydroxytoluene" />
+    <DictionaryEntry Key="C03589" Value="4-Hydroxy-2-oxopentanoate" />
+    <DictionaryEntry Key="C06210" Value="2-Hydroxy-6-keto-2,4-heptadienoate" />
+    <DictionaryEntry Key="C06575" Value="p-Cymene" />
+    <DictionaryEntry Key="C06576" Value="p-Cumic alcohol" />
+    <DictionaryEntry Key="C06577" Value="4-Isopropylbenzaldehyde" />
+    <DictionaryEntry Key="C06578" Value="p-Cumate" />
+    <DictionaryEntry Key="C06579" Value="cis-2,3-Dihydroxy-2,3-dihydro-p-cumate" />
+    <DictionaryEntry Key="C06580" Value="2,3-Dihydroxy-p-cumate" />
+    <DictionaryEntry Key="C06581" Value="2-Hydroxy-3-carboxy-6-oxo-7-methylocta-2,4-dienoate" />
+    <DictionaryEntry Key="C06582" Value="2-Hydroxy-6-oxo-7-methylocta-2,4-dienoate" />
+    <DictionaryEntry Key="C06720" Value="1,6-Dihydroxy-5-methylcyclohexa-2,4-dienecarboxylate" />
+    <DictionaryEntry Key="C06729" Value="cis-1,2-Dihydroxy-4-methylcyclohexa-3,5-diene-1-carboxylate" />
+    <DictionaryEntry Key="C06730" Value="4-Methylcatechol" />
+    <DictionaryEntry Key="C06731" Value="1,2-Dihydroxy-6-methylcyclohexa-3,5-dienecarboxylate" />
+    <DictionaryEntry Key="C06756" Value="p-Xylene" />
+    <DictionaryEntry Key="C06757" Value="4-Methylbenzyl alcohol" />
+    <DictionaryEntry Key="C06758" Value="p-Tolualdehyde" />
+    <DictionaryEntry Key="C06760" Value="2-Hydroxy-5-methyl-cis,cis-muconic semialdehyde" />
+    <DictionaryEntry Key="C06762" Value="4-Hydroxy-2-oxohexanoic acid" />
+    <DictionaryEntry Key="C07208" Value="m-Xylene" />
+    <DictionaryEntry Key="C07209" Value="3-Methylbenzaldehyde" />
+    <DictionaryEntry Key="C07211" Value="m-Methylbenzoate" />
+    <DictionaryEntry Key="C07212" Value="o-Xylene" />
+    <DictionaryEntry Key="C07213" Value="2-Methylbenzyl alcohol" />
+    <DictionaryEntry Key="C07214" Value="2-Methylbenzaldehyde" />
+    <DictionaryEntry Key="C07215" Value="o-Toluate" />
+    <DictionaryEntry Key="C07216" Value="3-Methylbenzyl alcohol" />
+    <DictionaryEntry Key="C07478" Value="2-Hydroxy-5-methyl-cis,cis-muconate" />
+    <DictionaryEntry Key="C07479" Value="2-Oxo-5-methyl-cis-muconate" />
+    <DictionaryEntry Key="C11354" Value="2-Hydroxy-cis-hex-2,4-dienoate" />
+  </Compound>
+  <PathwayMap Key="xor00622" Value="Xylene degradation&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="xor:XOC_4559" Value="AreC; K00141 benzaldehyde dehydrogenase (NAD) [EC:1.2.1.28]" />
+  </Genes>
+</KEGG.PathwayBrief>

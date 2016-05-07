@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xor00220" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Arginine biosynthesis - Xanthomonas oryzae pv. oryzicola BLS256&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00011" Value="CO2" />
+    <DictionaryEntry Key="C00014" Value="Ammonia" />
+    <DictionaryEntry Key="C00025" Value="L-Glutamate" />
+    <DictionaryEntry Key="C00026" Value="2-Oxoglutarate" />
+    <DictionaryEntry Key="C00049" Value="L-Aspartate" />
+    <DictionaryEntry Key="C00062" Value="L-Arginine" />
+    <DictionaryEntry Key="C00064" Value="L-Glutamine" />
+    <DictionaryEntry Key="C00077" Value="L-Ornithine" />
+    <DictionaryEntry Key="C00086" Value="Urea" />
+    <DictionaryEntry Key="C00122" Value="Fumarate" />
+    <DictionaryEntry Key="C00169" Value="Carbamoyl phosphate" />
+    <DictionaryEntry Key="C00327" Value="L-Citrulline" />
+    <DictionaryEntry Key="C00437" Value="N-Acetylornithine" />
+    <DictionaryEntry Key="C00624" Value="N-Acetyl-L-glutamate" />
+    <DictionaryEntry Key="C01010" Value="Urea-1-carboxylate" />
+    <DictionaryEntry Key="C01250" Value="N-Acetyl-L-glutamate 5-semialdehyde" />
+    <DictionaryEntry Key="C03406" Value="N-(L-Arginino)succinate" />
+    <DictionaryEntry Key="C04133" Value="N-Acetyl-L-glutamate 5-phosphate" />
+    <DictionaryEntry Key="C15532" Value="N-Acetyl-L-citrulline" />
+    <DictionaryEntry Key="C20948" Value="LysW-L-glutamate" />
+    <DictionaryEntry Key="C20949" Value="LysW-L-glutamyl 5-phosphate" />
+    <DictionaryEntry Key="C20950" Value="LysW-L-glutamate 5-semialdehyde" />
+    <DictionaryEntry Key="C20951" Value="LysW-L-ornithine" />
+  </Compound>
+  <PathwayMap Key="xor00220" Value="Arginine biosynthesis&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="xor:XOC_0293" Value="glnA; glutamine synthetase, type I; K01915 glutamine synthetase [EC:6.3.1.2]" />
+    <DictionaryEntry Key="xor:XOC_1981" Value="NAD-glutamate dehydrogenase; K15371 glutamate dehydrogenase [EC:1.4.1.2]" />
+    <DictionaryEntry Key="xor:XOC_1996" Value="gamma-glutamylputrescine synthetase; K01915 glutamine synthetase [EC:6.3.1.2]" />
+    <DictionaryEntry Key="xor:XOC_1999" Value="glnA; glutamine synthetase; K01915 glutamine synthetase [EC:6.3.1.2]" />
+    <DictionaryEntry Key="xor:XOC_2744" Value="argH; argininosuccinate lyase; K01755 argininosuccinate lyase [EC:4.3.2.1]" />
+    <DictionaryEntry Key="xor:XOC_2745" Value="argC; N-acetyl-gamma-glutamyl-phosphate reductase; K00145 N-acetyl-gamma-glutamyl-phosphate reductas" />
+    <DictionaryEntry Key="xor:XOC_2747" Value="argB; acetylglutamate kinase; K00930 acetylglutamate kinase [EC:2.7.2.8]" />
+    <DictionaryEntry Key="xor:XOC_2748" Value="acetylornithine deacetylase; K01438 acetylornithine deacetylase [EC:3.5.1.16]" />
+    <DictionaryEntry Key="xor:XOC_2750" Value="argG; argininosuccinate synthase; K01940 argininosuccinate synthase [EC:6.3.4.5]" />
+    <DictionaryEntry Key="xor:XOC_2751" Value="ornithine carbamoyltransferase; K09065 N-acetylornithine carbamoyltransferase [EC:2.1.3.9]" />
+    <DictionaryEntry Key="xor:XOC_3688" Value="argD; acetylornithine aminotransferase; K00821 acetylornithine/N-succinyldiaminopimelate aminotransf" />
+    <DictionaryEntry Key="xor:XOC_3762" Value="putative aspartate aminotransferase; K14260 alanine-synthesizing transaminase [EC:2.6.1.66 2.6.1.2]" />
+    <DictionaryEntry Key="xor:XOC_4304" Value="rocF; arginase; K01476 arginase [EC:3.5.3.1]" />
+  </Genes>
+</KEGG.PathwayBrief>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xor00471" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>D-Glutamine and D-glutamate metabolism - Xanthomonas oryzae pv. oryzicola BLS256&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00025" Value="L-Glutamate" />
+    <DictionaryEntry Key="C00026" Value="2-Oxoglutarate" />
+    <DictionaryEntry Key="C00064" Value="L-Glutamine" />
+    <DictionaryEntry Key="C00217" Value="D-Glutamate" />
+    <DictionaryEntry Key="C00692" Value="UDP-N-acetylmuramoyl-L-alanyl-D-glutamate" />
+    <DictionaryEntry Key="C00819" Value="D-Glutamine" />
+    <DictionaryEntry Key="C01050" Value="UDP-N-acetylmuramate" />
+    <DictionaryEntry Key="C01212" Value="UDP-N-acetylmuramoyl-L-alanine" />
+    <DictionaryEntry Key="C02237" Value="5-Oxo-D-proline" />
+    <DictionaryEntry Key="C02671" Value="D-Glutamyl-peptide" />
+    <DictionaryEntry Key="C03933" Value="5-D-Glutamyl-D-glutamyl-peptide" />
+    <DictionaryEntry Key="C05723" Value="Poly-gamma-D-glutamate" />
+  </Compound>
+  <PathwayMap Key="xor00471" Value="D-Glutamine and D-glutamate metabolism&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="xor:XOC_0844" Value="murC; UDP-N-acetylmuramate--alanine ligase; K01924 UDP-N-acetylmuramate--alanine ligase [EC:6.3.2.8]" />
+    <DictionaryEntry Key="xor:XOC_1508" Value="murD; UDP-N-acetylmuramoylalanine--D-glutamate ligase; K01925 UDP-N-acetylmuramoylalanine--D-glutama" />
+  </Genes>
+</KEGG.PathwayBrief>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xor00040" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Pentose and glucuronate interconversions - Xanthomonas oryzae pv. oryzicola BLS256&lt;br&gt;</Name>
+  <Modules>
+    <DictionaryEntry Key="xor_M00061" Value="D-Glucuronate degradation, D-glucuronate =&gt; pyruvate + D-glyceraldehyde 3P [PATH:xor00040]" />
+  </Modules>
+  <Compound>
+    <DictionaryEntry Key="C00022" Value="Pyruvate" />
+    <DictionaryEntry Key="C00026" Value="2-Oxoglutarate" />
+    <DictionaryEntry Key="C00029" Value="UDP-glucose" />
+    <DictionaryEntry Key="C00103" Value="D-Glucose 1-phosphate" />
+    <DictionaryEntry Key="C00111" Value="Glycerone phosphate" />
+    <DictionaryEntry Key="C00116" Value="Glycerol" />
+    <DictionaryEntry Key="C00167" Value="UDP-glucuronate" />
+    <DictionaryEntry Key="C00181" Value="D-Xylose" />
+    <DictionaryEntry Key="C00191" Value="D-Glucuronate" />
+    <DictionaryEntry Key="C00199" Value="D-Ribulose 5-phosphate" />
+    <DictionaryEntry Key="C00204" Value="2-Dehydro-3-deoxy-D-gluconate" />
+    <DictionaryEntry Key="C00231" Value="D-Xylulose 5-phosphate" />
+    <DictionaryEntry Key="C00259" Value="L-Arabinose" />
+    <DictionaryEntry Key="C00266" Value="Glycolaldehyde" />
+    <DictionaryEntry Key="C00309" Value="D-Ribulose" />
+    <DictionaryEntry Key="C00310" Value="D-Xylulose" />
+    <DictionaryEntry Key="C00312" Value="L-Xylulose" />
+    <DictionaryEntry Key="C00333" Value="D-Galacturonate" />
+    <DictionaryEntry Key="C00379" Value="Xylitol" />
+    <DictionaryEntry Key="C00433" Value="2,5-Dioxopentanoate" />
+    <DictionaryEntry Key="C00470" Value="Pectate" />
+    <DictionaryEntry Key="C00474" Value="Ribitol" />
+    <DictionaryEntry Key="C00476" Value="D-Lyxose" />
+    <DictionaryEntry Key="C00502" Value="D-Xylonate" />
+    <DictionaryEntry Key="C00508" Value="L-Ribulose" />
+    <DictionaryEntry Key="C00514" Value="D-Mannonate" />
+    <DictionaryEntry Key="C00532" Value="L-Arabitol" />
+    <DictionaryEntry Key="C00558" Value="D-Tagaturonate" />
+    <DictionaryEntry Key="C00618" Value="3-Dehydro-L-gulonate" />
+    <DictionaryEntry Key="C00714" Value="Pectin" />
+    <DictionaryEntry Key="C00789" Value="CDP-ribitol" />
+    <DictionaryEntry Key="C00800" Value="L-Gulonate" />
+    <DictionaryEntry Key="C00817" Value="D-Altronate" />
+    <DictionaryEntry Key="C00905" Value="D-Fructuronate" />
+    <DictionaryEntry Key="C01068" Value="D-Ribitol 5-phosphate" />
+    <DictionaryEntry Key="C01101" Value="L-Ribulose 5-phosphate" />
+    <DictionaryEntry Key="C01508" Value="L-Lyxose" />
+    <DictionaryEntry Key="C01904" Value="D-Arabitol" />
+    <DictionaryEntry Key="C02266" Value="D-Xylonolactone" />
+    <DictionaryEntry Key="C02273" Value="Digalacturonate" />
+    <DictionaryEntry Key="C02426" Value="L-Glyceraldehyde" />
+    <DictionaryEntry Key="C03033" Value="beta-D-Glucuronoside" />
+    <DictionaryEntry Key="C03291" Value="L-Xylulose 5-phosphate" />
+    <DictionaryEntry Key="C03826" Value="2-Dehydro-3-deoxy-D-xylonate" />
+    <DictionaryEntry Key="C04053" Value="5-Dehydro-4-deoxy-D-glucuronate" />
+    <DictionaryEntry Key="C04349" Value="(4S)-4,6-Dihydroxy-2,5-dioxohexanoate" />
+    <DictionaryEntry Key="C04575" Value="(4R,5S)-4,5,6-Trihydroxy-2,3-dioxohexanoate" />
+    <DictionaryEntry Key="C05385" Value="D-Glucuronate 1-phosphate" />
+    <DictionaryEntry Key="C05411" Value="L-Xylonate" />
+    <DictionaryEntry Key="C05412" Value="L-Lyxonate" />
+    <DictionaryEntry Key="C06118" Value="4-(4-Deoxy-alpha-D-gluc-4-enuronosyl)-D-galacturonate" />
+    <DictionaryEntry Key="C06441" Value="L-Xylulose 1-phosphate" />
+    <DictionaryEntry Key="C14899" Value="3-Dehydro-L-gulonate 6-phosphate" />
+    <DictionaryEntry Key="C15930" Value="L-Galactonate" />
+    <DictionaryEntry Key="C20680" Value="2-Dehydro-3-deoxy-L-galactonate" />
+  </Compound>
+  <PathwayMap Key="xor00040" Value="Pentose and glucuronate interconversions&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="xor:XOC_0256" Value="4-deoxy-L-threo-5-hexosulose-uronate ketol-isomerase; K01815 4-deoxy-L-threo-5-hexosulose-uronate ke" />
+    <DictionaryEntry Key="xor:XOC_0257" Value="4-deoxy-L-threo-5-hexosulose-uronate ketol-isomerase; K01815 4-deoxy-L-threo-5-hexosulose-uronate ke" />
+    <DictionaryEntry Key="xor:XOC_0933" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xor:XOC_1774" Value="UDP-glucose dehydrogenase; K00012 UDPglucose 6-dehydrogenase [EC:1.1.1.22]" />
+    <DictionaryEntry Key="xor:XOC_2128" Value="polygalacturonase; K01184 polygalacturonase [EC:3.2.1.15]" />
+    <DictionaryEntry Key="xor:XOC_2160" Value="xylB; xylulokinase; K00854 xylulokinase [EC:2.7.1.17]" />
+    <DictionaryEntry Key="xor:XOC_2161" Value="xylA; xylose isomerase; K01805 xylose isomerase [EC:5.3.1.5]" />
+    <DictionaryEntry Key="xor:XOC_2193" Value="piperideine-6-carboxylate dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xor:XOC_2506" Value="pectate lyase L; K01728 pectate lyase [EC:4.2.2.2]" />
+    <DictionaryEntry Key="xor:XOC_2687" Value="UTP-glucose-1-phosphate uridylyltransferase; K00963 UTP--glucose-1-phosphate uridylyltransferase [EC" />
+    <DictionaryEntry Key="xor:XOC_3823" Value="pel; pectate lyase; K01728 pectate lyase [EC:4.2.2.2]" />
+    <DictionaryEntry Key="xor:XOC_4214" Value="rpe; ribulose-phosphate 3-epimerase; K01783 ribulose-phosphate 3-epimerase [EC:5.1.3.1]" />
+    <DictionaryEntry Key="xor:XOC_4465" Value="uxuB; D-mannonate oxidoreductase; K00040 fructuronate reductase [EC:1.1.1.57]" />
+    <DictionaryEntry Key="xor:XOC_4468" Value="starvation sensing protein; K08323 mannonate dehydratase [EC:4.2.1.8]" />
+    <DictionaryEntry Key="xor:XOC_4474" Value="xylA; xylose isomerase; K01805 xylose isomerase [EC:5.3.1.5]" />
+    <DictionaryEntry Key="xor:XOC_4583" Value="uxaC; glucuronate isomerase; K01812 glucuronate isomerase [EC:5.3.1.12]" />
+  </Genes>
+</KEGG.PathwayBrief>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-16"?>
+<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xor00380" xmlns="http://www.genome.jp/kegg/pathway.html">
+  <Description />
+  <Name>Tryptophan metabolism - Xanthomonas oryzae pv. oryzicola BLS256&lt;br&gt;</Name>
+  <Compound>
+    <DictionaryEntry Key="C00024" Value="Acetyl-CoA" />
+    <DictionaryEntry Key="C00078" Value="L-Tryptophan" />
+    <DictionaryEntry Key="C00108" Value="Anthranilate" />
+    <DictionaryEntry Key="C00322" Value="2-Oxoadipate" />
+    <DictionaryEntry Key="C00328" Value="L-Kynurenine" />
+    <DictionaryEntry Key="C00331" Value="Indolepyruvate" />
+    <DictionaryEntry Key="C00332" Value="Acetoacetyl-CoA" />
+    <DictionaryEntry Key="C00398" Value="Tryptamine" />
+    <DictionaryEntry Key="C00463" Value="Indole" />
+    <DictionaryEntry Key="C00527" Value="Glutaryl-CoA" />
+    <DictionaryEntry Key="C00632" Value="3-Hydroxyanthranilate" />
+    <DictionaryEntry Key="C00637" Value="Indole-3-acetaldehyde" />
+    <DictionaryEntry Key="C00643" Value="5-Hydroxy-L-tryptophan" />
+    <DictionaryEntry Key="C00780" Value="Serotonin" />
+    <DictionaryEntry Key="C00877" Value="Crotonoyl-CoA" />
+    <DictionaryEntry Key="C00954" Value="Indole-3-acetate" />
+    <DictionaryEntry Key="C00955" Value="Indole-3-ethanol" />
+    <DictionaryEntry Key="C00978" Value="N-Acetylserotonin" />
+    <DictionaryEntry Key="C01111" Value="7,8-Dihydroxykynurenate" />
+    <DictionaryEntry Key="C01144" Value="(S)-3-Hydroxybutanoyl-CoA" />
+    <DictionaryEntry Key="C01249" Value="7,8-Dihydro-7,8-dihydroxykynurenate" />
+    <DictionaryEntry Key="C01252" Value="4-(2-Aminophenyl)-2,4-dioxobutanoate" />
+    <DictionaryEntry Key="C01598" Value="Melatonin" />
+    <DictionaryEntry Key="C01717" Value="4-Hydroxy-2-quinolinecarboxylic acid" />
+    <DictionaryEntry Key="C01987" Value="2-Aminophenol" />
+    <DictionaryEntry Key="C02043" Value="Indolelactate" />
+    <DictionaryEntry Key="C02161" Value="2-Aminophenoxazin-3-one" />
+    <DictionaryEntry Key="C02172" Value="N-Acetylisatin" />
+    <DictionaryEntry Key="C02220" Value="2-Aminomuconate" />
+    <DictionaryEntry Key="C02298" Value="N-Acetylindoxyl" />
+    <DictionaryEntry Key="C02470" Value="Xanthurenic acid" />
+    <DictionaryEntry Key="C02693" Value="(Indol-3-yl)acetamide" />
+    <DictionaryEntry Key="C02700" Value="L-Formylkynurenine" />
+    <DictionaryEntry Key="C02775" Value="2,3-Dihydroxyindole" />
+    <DictionaryEntry Key="C02937" Value="Indole-3-acetaldehyde oxime" />
+    <DictionaryEntry Key="C02938" Value="3-Indoleacetonitrile" />
+    <DictionaryEntry Key="C03227" Value="3-Hydroxy-L-kynurenine" />
+    <DictionaryEntry Key="C03230" Value="(Indol-3-yl)glycolaldehyde" />
+    <DictionaryEntry Key="C03453" Value="gamma-Oxalocrotonate" />
+    <DictionaryEntry Key="C03574" Value="2-Formylaminobenzaldehyde" />
+    <DictionaryEntry Key="C03722" Value="Quinolinate" />
+    <DictionaryEntry Key="C03824" Value="2-Aminomuconate semialdehyde" />
+    <DictionaryEntry Key="C04409" Value="2-Amino-3-carboxymuconate semialdehyde" />
+    <DictionaryEntry Key="C05634" Value="5-Hydroxyindoleacetaldehyde" />
+    <DictionaryEntry Key="C05635" Value="5-Hydroxyindoleacetate" />
+    <DictionaryEntry Key="C05636" Value="3-Hydroxykynurenamine" />
+    <DictionaryEntry Key="C05637" Value="4,8-Dihydroxyquinoline" />
+    <DictionaryEntry Key="C05638" Value="5-Hydroxykynurenamine" />
+    <DictionaryEntry Key="C05639" Value="4,6-Dihydroxyquinoline" />
+    <DictionaryEntry Key="C05640" Value="Cinnavalininate" />
+    <DictionaryEntry Key="C05641" Value="5-(3'-Carboxy-3'-oxopropenyl)-4,6-dihydroxypicolinate" />
+    <DictionaryEntry Key="C05642" Value="Formyl-N-acetyl-5-methoxykynurenamine" />
+    <DictionaryEntry Key="C05643" Value="6-Hydroxymelatonin" />
+    <DictionaryEntry Key="C05644" Value="3-Methylindolepyruvate" />
+    <DictionaryEntry Key="C05645" Value="4-(2-Amino-3-hydroxyphenyl)-2,4-dioxobutanoate" />
+    <DictionaryEntry Key="C05646" Value="5-Hydroxyindolepyruvate" />
+    <DictionaryEntry Key="C05647" Value="Formyl-5-hydroxykynurenamine" />
+    <DictionaryEntry Key="C05648" Value="5-Hydroxy-N-formylkynurenine" />
+    <DictionaryEntry Key="C05651" Value="5-Hydroxykynurenine" />
+    <DictionaryEntry Key="C05652" Value="4-(2-Amino-5-hydroxyphenyl)-2,4-dioxobutanoate" />
+    <DictionaryEntry Key="C05653" Value="Formylanthranilate" />
+    <DictionaryEntry Key="C05654" Value="5-(2'-Formylethyl)-4,6-dihydroxypicolinate" />
+    <DictionaryEntry Key="C05655" Value="5-(2'-Carboxyethyl)-4,6-dihydroxypicolinate" />
+    <DictionaryEntry Key="C05656" Value="5-(3'-Carboxy-3'-oxopropyl)-4,6-dihydroxypicolinate" />
+    <DictionaryEntry Key="C05658" Value="Indoxyl" />
+    <DictionaryEntry Key="C05659" Value="5-Methoxytryptamine" />
+    <DictionaryEntry Key="C05660" Value="5-Methoxyindoleacetate" />
+    <DictionaryEntry Key="C05663" Value="6-Hydroxykynurenate" />
+    <DictionaryEntry Key="C05830" Value="8-Methoxykynurenate" />
+    <DictionaryEntry Key="C05831" Value="3-Methoxyanthranilate" />
+    <DictionaryEntry Key="C05832" Value="5-Hydroxyindoleacetylglycine" />
+    <DictionaryEntry Key="C05834" Value="3-Methyldioxyindole" />
+    <DictionaryEntry Key="C05835" Value="2-Formaminobenzoylacetate" />
+    <DictionaryEntry Key="C05837" Value="Glucobrassicin" />
+    <DictionaryEntry Key="C06212" Value="N-Methylserotonin" />
+    <DictionaryEntry Key="C06213" Value="N-Methyltryptamine" />
+    <DictionaryEntry Key="C10164" Value="Picolinic acid" />
+    <DictionaryEntry Key="C16516" Value="Indolylmethylthiohydroximate" />
+    <DictionaryEntry Key="C16517" Value="Indolylmethyl-desulfoglucosinolate" />
+    <DictionaryEntry Key="C16518" Value="S-(Indolylmethylthiohydroximoyl)-L-cysteine" />
+    <DictionaryEntry Key="C17203" Value="N-Hydroxyl-tryptamine" />
+  </Compound>
+  <PathwayMap Key="xor00380" Value="Tryptophan metabolism&lt;center&gt;" />
+  <Genes>
+    <DictionaryEntry Key="xor:XOC_0306" Value="3-ketoacyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9]" />
+    <DictionaryEntry Key="xor:XOC_0494" Value="tryptophan 2,3-dioxygenase; K00453 tryptophan 2,3-dioxygenase [EC:1.13.11.11]" />
+    <DictionaryEntry Key="xor:XOC_0933" Value="aldehyde dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xor:XOC_1064" Value="glu-trnAgln amidotransferase a subunit; K01426 amidase [EC:3.5.1.4]" />
+    <DictionaryEntry Key="xor:XOC_1265" Value="katE; catalase; K03781 catalase [EC:1.11.1.6]" />
+    <DictionaryEntry Key="xor:XOC_1753" Value="sucA; 2-oxoglutarate dehydrogenase, E1 component; K00164 2-oxoglutarate dehydrogenase E1 component [" />
+    <DictionaryEntry Key="xor:XOC_1830" Value="kynurenine 3-monooxygenase; K00486 kynurenine 3-monooxygenase [EC:1.14.13.9]" />
+    <DictionaryEntry Key="xor:XOC_1831" Value="kynU; kynureninase; K01556 kynureninase [EC:3.7.1.3]" />
+    <DictionaryEntry Key="xor:XOC_1833" Value="3-hydroxyanthranilate 3,4-dioxygenase; K00452 3-hydroxyanthranilate 3,4-dioxygenase [EC:1.13.11.6]" />
+    <DictionaryEntry Key="xor:XOC_2193" Value="piperideine-6-carboxylate dehydrogenase; K00128 aldehyde dehydrogenase (NAD+) [EC:1.2.1.3]" />
+    <DictionaryEntry Key="xor:XOC_3003" Value="acyl-CoA dehydrogenase 1; K00252 glutaryl-CoA dehydrogenase [EC:1.3.8.6]" />
+    <DictionaryEntry Key="xor:XOC_3155" Value="acetoacetyl-CoA thiolase; K00626 acetyl-CoA C-acetyltransferase [EC:2.3.1.9]" />
+    <DictionaryEntry Key="xor:XOC_3189" Value="fatty oxidation complex alpha subunit; K01782 3-hydroxyacyl-CoA dehydrogenase / enoyl-CoA hydratase" />
+    <DictionaryEntry Key="xor:XOC_3410" Value="katG; catalase-peroxidase HPI; K03782 catalase-peroxidase [EC:1.11.1.21]" />
+    <DictionaryEntry Key="xor:XOC_3685" Value="amine oxidase; K00274 monoamine oxidase [EC:1.4.3.4]" />
+    <DictionaryEntry Key="xor:XOC_4290" Value="catalase; K03781 catalase [EC:1.11.1.6]" />
+    <DictionaryEntry Key="xor:XOC_4325" Value="catalase; K03781 catalase [EC:1.11.1.6]" />
+  </Genes>
+</KEGG.PathwayBrief>
