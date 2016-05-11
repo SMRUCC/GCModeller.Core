@@ -39,7 +39,7 @@ Namespace ComponentModel.Loci.Abstract
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Property Address As Long
+        Property Right As Long
     End Interface
 
     ''' <summary>

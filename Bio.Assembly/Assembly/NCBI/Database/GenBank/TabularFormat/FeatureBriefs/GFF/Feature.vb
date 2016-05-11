@@ -1,41 +1,12 @@
 ﻿Imports System.Text.RegularExpressions
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
-Imports System.Text
+Imports LANS.SystemsBiology.ComponentModel
 Imports LANS.SystemsBiology.ComponentModel.Loci
+Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
+Imports LANS.SystemsBiology.SequenceModel.NucleotideModels
+Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
-
-    Public Module FeatureKeys
-        Public Const tRNA As String = "tRNA"
-        Public Const CDS As String = "CDS"
-        Public Const exon As String = "exon"
-        Public Const gene As String = "gene"
-        Public Const tmRNA As String = "tmRNA"
-        Public Const rRNA As String = "rRNA"
-        Public Const region As String = "region"
-
-        Public Enum Features As Integer
-            CDS = -1
-            gene = 0
-            tRNA
-            exon
-            tmRNA
-            rRNA
-            region
-        End Enum
-
-        Public ReadOnly Property FeaturesHash As IReadOnlyDictionary(Of String, Features) =
-            New Dictionary(Of String, Features) From {
- _
-            {FeatureKeys.CDS, Features.CDS},
-            {FeatureKeys.exon, Features.exon},
-            {FeatureKeys.gene, Features.gene},
-            {FeatureKeys.region, Features.region},
-            {FeatureKeys.rRNA, Features.rRNA},
-            {FeatureKeys.tmRNA, Features.tmRNA},
-            {FeatureKeys.tRNA, Features.tRNA}
-        }
-    End Module
 
     ''' <summary>
     ''' A feature is here an interval (i.e., a range of positions) on a chromosome or a union of such intervals.
@@ -46,7 +17,10 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
     ''' 
     ''' For comparative ChIP-Seq, the features might be binding region from a pre-determined list.
     ''' </summary>
-    Public Class Feature : Inherits NucleotideLocation
+    Public Class Feature : Inherits Contig
+        Implements sIdEnumerable
+        Implements I_GeneBrief
+        Implements ILocationComponent
 
         ''' <summary>
         ''' The name of the sequence. Having an explicit sequence name allows a feature file to be prepared for a data set 
@@ -74,6 +48,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' </summary>
         ''' <returns></returns>
         Public Property Feature As String
+
         ''' <summary>
         ''' Integers. &lt;start> must be less than or equal to &lt;end>. Sequence numbering starts at 1, so these numbers 
         ''' should be between 1 and the length of the relevant sequence, inclusive. 
@@ -83,9 +58,9 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' files may need to clip for itself.)
         ''' </summary>
         ''' <returns></returns>
-        Public Overrides ReadOnly Property start As Integer
+        Public ReadOnly Property start As Integer
             Get
-                Return MyBase.Start
+                Return MappingLocation.Start
             End Get
         End Property
 
@@ -98,9 +73,9 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' files may need to clip for itself.)
         ''' </summary>
         ''' <returns></returns>
-        Public Overrides ReadOnly Property [Ends] As Integer
+        Public ReadOnly Property [Ends] As Integer
             Get
-                Return MyBase.Ends
+                Return MappingLocation.Ends
             End Get
         End Property
 
@@ -112,20 +87,23 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' </summary>
         ''' <returns></returns>
         Public Property score As String
+
         ''' <summary>
         ''' One of '+', '-' or '.'. '.' should be used when strand is not relevant, e.g. for dinucleotide repeats. 
         ''' 
         ''' Version 2 change: This field is left empty '.' for RNA and protein features.
         ''' </summary>
         ''' <returns></returns>
-        Public Overrides Property Strand As Strands
+        Public Property Strand As Strands
             Get
-                Return MyBase.Strand
+                Return _strand
             End Get
             Set(value As Strands)
-                MyBase.Strand = value
+                _strand = value
             End Set
         End Property
+
+        Dim _strand As Strands
 
         ''' <summary>
         ''' One of '0', '1', '2' or '.'. '0' indicates that the specified region is in frame, i.e. that its first base corresponds to 
@@ -184,121 +162,99 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' </summary>
         ''' <returns></returns>
         Public Property comments As String
+
+        ''' <summary>
+        ''' 请注意，这个属性不是基因号
+        ''' </summary>
+        ''' <returns></returns>
+        Public Property ID As String Implements sIdEnumerable.Identifier
+            Get
+                Return attributes("ID")
+            End Get
+            Set(value As String)
+                attributes("ID") = value
+            End Set
+        End Property
+
+        Public Property COG As String Implements I_COGEntry.COG
+            Get
+                Dim s As String = attributes.TryGetValue("Note")
+                If String.IsNullOrEmpty(s) Then
+                    Return ""
+                Else
+                    Return Regex.Match(s, "COG\d+", RegexICSng).Value
+                End If
+            End Get
+            Set(value As String)
+                Dim s As String = attributes.TryGetValue("Note")
+
+                If String.IsNullOrEmpty(s) Then
+                    attributes("Note") = value
+                Else
+                    s = Regex.Replace(s, "COG\d+", value, RegexICSng)
+                    attributes("Note") = s
+                End If
+            End Set
+        End Property
+
+        Public Property Product As String Implements I_COGEntry.Product
+            Get
+                Return attributes.TryGetValue("product")
+            End Get
+            Set(value As String)
+                attributes("product") = value
+            End Set
+        End Property
+
+        Public Property Length As Integer Implements I_COGEntry.Length
+            Get
+                Return MappingLocation.FragmentSize
+            End Get
+            Protected Set(value As Integer)
+                Throw New NotSupportedException()
+            End Set
+        End Property
+
+        Public Property Location As NucleotideLocation Implements IContig.Location
+            Get
+                Return MappingLocation
+            End Get
+            Set(value As NucleotideLocation)
+                Left = value.Left
+                Right = value.Right
+                Strand = value.Strand
+            End Set
+        End Property
+
+        Public Property Right As Long Implements ILocationComponent.Right
+            Get
+                Return _right
+            End Get
+            Set(value As Long)
+                _right = value
+                _MappingLocation = Nothing
+            End Set
+        End Property
+
+        Dim _left As Long, _right As Long
+
+        Public Property Left As Long Implements ILoci.Left
+            Get
+                Return _left
+            End Get
+            Set(value As Long)
+                _left = value
+                _MappingLocation = Nothing
+            End Set
+        End Property
 #End Region
 
         Public Overrides Function ToString() As String
             Return $"{MyBase.ToString}   {Me.seqname}::{Me.frame}"
         End Function
 
-        ''' <summary>
-        ''' 生成gff文件之中的一行的基因组特性位点的数据
-        ''' </summary>
-        ''' <returns></returns>
-        Public Function GenerateDocumentLine() As String
-            Dim attrs As String() = (From Token As KeyValuePair(Of String, String)
-                                     In attributes
-                                     Select $"{Token.Key}={Token.Value.CliPath}").ToArray
-            Dim s_attrs As String = String.Join(";", attrs)
-            Dim LineValues As String() = New String() {
-                seqname, source, Feature, CStr(start), CStr(Ends), score, Strand.GetBriefCode, frame, s_attrs
-            }
-            Dim LineValue As String = String.Join(vbTab, LineValues)
-            Return LineValue
-        End Function
-
-        Public Function BaseLocation() As ComponentModel.Loci.NucleotideLocation
-            Return New NucleotideLocation(Me)
-        End Function
-
-        ''' <summary>
-        ''' 
-        ''' </summary>
-        ''' <param name="s_Data"></param>
-        ''' <param name="version">gff1, gff2, gff3之间的差异是由于本属性值的列的读取方式的差异而产生的</param>
-        ''' <returns></returns>
-        Public Overloads Shared Function CreateObject(s_Data As String, version As Integer) As Feature
-            Dim Tokens As String() = Strings.Split(s_Data, vbTab)
-            Dim Feature As Feature = New Feature
-            Dim p As Integer = 0
-
-            ' Fields are: <seqname> <source> <feature> <start> <end> <score> <strand> <frame> [attributes] [comments]
-
-            With Feature
-                .seqname = Tokens(p.MoveNext)
-                .source = Tokens(p.MoveNext)
-                .Feature = Tokens(p.MoveNext)
-                .Left = CLng(Val(Tokens(p.MoveNext)))
-                .Right = CLng(Val(Tokens(p.MoveNext)))
-                .score = Tokens(p.MoveNext)
-                .Strand = GetStrand(Tokens(p.MoveNext))
-                .frame = Tokens(p)
-            End With
-
-            '在这里开始读取可选的列数据
-            Dim attrValue As String = If(Tokens.Count - 1 > p, Tokens(p.Increase), "")
-
-            If Not String.IsNullOrEmpty(attrValue) Then
-                Select Case version
-                    Case 1
-                    Case 2
-                    Case 3 : Feature.attributes = CreateObjectGff3(attrValue)
-                    Case Else
-                        Call Console.WriteLine($"{NameOf(version)}={version} is currently not supported yet, ignored!")
-                End Select
-            End If
-
-            Return Feature
-        End Function
-
-        ''' <summary>
-        ''' 
-        ''' </summary>
-        ''' <param name="s_Data"></param>
-        ''' <returns></returns>
-        ''' <remarks>
-        ''' gi|66571684|gb|CP000050.1|	RefSeq	Coding gene	42	1370	.	+	.	name=dnaA;product="chromosome replication initiator DnaA"
-        ''' </remarks>
-        Private Shared Function CreateObjectGff3(s_Data As String) As Dictionary(Of String, String)
-            Dim Tokens As String() = attributeTokens(Line:=s_Data)
-            Dim LQuery = (From Token As String In Tokens
-                          Let p As Integer = InStr(Token, "=")
-                          Let Name As String = Mid(Token, 1, p - 1),
-                              Value As String = Mid(Token, p + 1)
-                          Select Name, Value).ToArray
-            Dim attrs = LQuery.ToDictionary(Function(obj) obj.Name.ToLower,
-                                            Function(obj) If(Len(obj.Value) > 2 AndAlso
-                                                            obj.Value.First = """"c AndAlso
-                                                            obj.Value.Last = """"c, Mid(obj.Value, 2, Len(obj.Value) - 2), obj.Value))
-            Return attrs
-        End Function
-
-        ''' <summary>
-        ''' A regex expression string that use for split the line text.
-        ''' </summary>
-        ''' <remarks></remarks>
-        Protected Const SplitRegxExpression As String = "[" & vbTab & ";](?=(?:[^""]|""[^""]*"")*$)"
-
-        ''' <summary>
-        ''' Row parsing into column tokens
-        ''' </summary>
-        ''' <param name="Line"></param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
-        Private Shared Function attributeTokens(Line As String) As String()
-            If String.IsNullOrEmpty(Line) Then
-                Return Nothing
-            End If
-
-            Dim Row = Regex.Split(Line, SplitRegxExpression)
-            For i As Integer = 0 To Row.Length - 1
-                If Not String.IsNullOrEmpty(Row(i)) Then
-                    If Row(i).First = """"c AndAlso Row(i).Last = """"c Then
-                        Row(i) = Mid(Row(i), 2, Len(Row(i)) - 2)
-                    End If
-                End If
-
-            Next
-            Return Row
+        Protected Overrides Function __getMappingLoci() As NucleotideLocation
+            Return New NucleotideLocation(Left, Right, Strand)
         End Function
     End Class
 End Namespace

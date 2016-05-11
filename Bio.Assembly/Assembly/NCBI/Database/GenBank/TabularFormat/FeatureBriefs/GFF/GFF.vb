@@ -2,6 +2,9 @@
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports System.Text
 Imports System.Data.Linq.Mapping
+Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Linq
+Imports System.Reflection
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -10,7 +13,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
     ''' <summary>
     ''' GFF (General Feature Format) specifications document
     ''' </summary>
-    Public Class GFF : Inherits Microsoft.VisualBasic.ComponentModel.ITextFile
+    Public Class GFF : Inherits ITextFile
 
 #Region "Meta Data"
 
@@ -137,24 +140,25 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         End Function
 
         Public Function GenerateDocument() As String
-            Dim docBuilder As StringBuilder = New StringBuilder("track name=Genes color=255,0,255" & vbCrLf)
-            Dim MetaProperty = (From p As System.Reflection.PropertyInfo
-                                In GetType(GFF).GetProperties(Reflection.BindingFlags.Public Or Reflection.BindingFlags.Instance)
+            Dim sb As StringBuilder = New StringBuilder("track name=Genes color=255,0,255" & vbCrLf)
+            Dim MetaProperty = (From p As PropertyInfo
+                                In GetType(GFF).GetProperties(BindingFlags.Public Or BindingFlags.Instance)
                                 Let attrs As Object() = p.GetCustomAttributes(attributeType:=GetType(ColumnAttribute), inherit:=True)
                                 Where Not attrs.IsNullOrEmpty
-                                Select p, Name = DirectCast(attrs.First, ColumnAttribute).Name).ToArray
+                                Select p,
+                                    Name = DirectCast(attrs.First, ColumnAttribute).Name).ToArray
             For Each [Property] In MetaProperty
                 Dim value As Object = [Property].p.GetValue(Me)
                 Dim str As String = Scripting.ToString(value)
                 If String.IsNullOrEmpty(str) Then
                     Continue For
                 End If
-                Call docBuilder.AppendLine($"{[Property].Name} {str}")
+                Call sb.AppendLine($"{[Property].Name} {str}")
             Next
 
-            Call docBuilder.AppendLine(String.Join(vbCrLf, (From Feature In Me.Features Select Feature.GenerateDocumentLine).ToArray))
+            Call sb.AppendLine(String.Join(vbCrLf, Features.ToArray(AddressOf FeatureParser.ToString)))
 
-            Return docBuilder.ToString
+            Return sb.ToString
         End Function
 
         Public Overrides Function Save(Optional Path As String = "", Optional encoding As Encoding = Nothing) As Boolean
@@ -224,11 +228,20 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
                                           Where Not String.IsNullOrWhiteSpace(s) AndAlso
                                               Not s.First = "#"c
                                           Select s).ToArray
-            Dim Features As Feature() = (From sLine As String
-                                         In loadBuffer
-                                         Select Feature.CreateObject(sLine, version)).ToArray
+            Dim helper As New __parserHelper With {
+                .version = version
+            }
+            Dim Features As Feature() = loadBuffer.ToArray(AddressOf helper.CreateObject)
             Return Features
         End Function
+
+        Private Structure __parserHelper
+            Public version As Integer
+
+            Public Function CreateObject(s As String) As Feature
+                Return FeatureParser.CreateObject(s, version)
+            End Function
+        End Structure
 
         Private Shared Function TryGetMetaData(s_Data As String()) As String()
             Try
