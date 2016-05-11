@@ -9,6 +9,10 @@ Namespace SequenceModel.FASTA
             Call MyBase.New(path, maxBufferSize:=1024 * 1024 * 10)
         End Sub
 
+        ''' <summary>
+        ''' Read all sequence from the fasta file.
+        ''' </summary>
+        ''' <returns></returns>
         Public Iterator Function ReadStream() As IEnumerable(Of FastaToken)
             Dim temp As New List(Of String)
 

@@ -134,10 +134,6 @@
       <Project>{fecce1fd-e1d4-49e3-a668-60bb5e7aed99}</Project>
       <Name>+Microsoft.VisualBasic.Architecture.Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\VisualBasic_AppFramework\DocumentFormats\DocumentFormat.Csv\DocumentFormat.Csv.vbproj">
-      <Project>{1D8910C2-ADA2-4306-96DC-A61B494522ED}</Project>
-      <Name>DocumentFormat.Csv</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bio.Assembly.vbproj">
       <Project>{c699d311-9923-4c19-bf70-5048d0e2cf5d}</Project>
       <Name>Bio.Assembly</Name>

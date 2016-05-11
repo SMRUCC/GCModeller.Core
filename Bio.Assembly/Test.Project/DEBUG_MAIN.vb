@@ -1,12 +1,15 @@
 ﻿Imports LANS.SystemsBiology.Assembly.KEGG.Archives.Xml
 Imports LANS.SystemsBiology.Assembly.KEGG.DBGET
 Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
-Imports Microsoft.VisualBasic.DocumentFormat.Csv
 Imports Microsoft.VisualBasic.Linq
 
 Module DEBUG_MAIN
 
     Sub Main()
+
+        Dim gff = LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.GFF.LoadDocument("D:\Xanthomonas\Xanthomonas axonopodis pv. citrumelo F1\GCA_000225915.1_ASM22591v1_genomic.gff")
+
+
         '       Call Language.UnixBash.LinuxRunHelper.PerlShell()
 
         '   Dim ddddd = LANS.SystemsBiology.Assembly.KEGG.Archives.Csv.Pathway.LoadData("F:\GCModeller.Core\Downloads\Xanthomonas_oryzae_oryzicola_BLS256_uid16740", "xor")
