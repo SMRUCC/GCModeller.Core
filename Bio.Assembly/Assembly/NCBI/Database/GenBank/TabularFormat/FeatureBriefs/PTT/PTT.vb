@@ -5,6 +5,7 @@ Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Terminal
+Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -15,6 +16,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
     Public Class PTT : Inherits ITextFile
         Implements IReadOnlyCollection(Of GeneBrief)
         Implements IReadOnlyDictionary(Of String, GeneBrief)
+        Implements IGenomicsContextProvider(Of GeneBrief)
 
         ''' <summary>
         ''' The gene brief information collection data in this genome.(这个基因组之中的所有的基因摘要数据)
@@ -350,7 +352,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <param name="strand"><see cref="ComponentModel.Loci.Strands.Forward"/>/<see cref="ComponentModel.Loci.Strands.Reverse"/>,
         ''' <see cref="ComponentModel.Loci.Strands.Unknown"/> will be treated as reversed.</param>
         ''' <returns></returns>
-        Public Function GetStrandGene(strand As Strands) As GeneBrief()
+        Public Function GetStrandGene(strand As Strands) As GeneBrief() Implements IGenomicsContextProvider(Of GeneBrief).GetStrandFeatures
             If strand = Strands.Forward Then
                 Return forwards
             Else
@@ -394,7 +396,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <returns></returns>
         Public Function GetRelatedGenes(loci As NucleotideLocation,
                                         Optional unstrand As Boolean = False,
-                                        Optional ATGDist As Integer = 500) As Relationship(Of GeneBrief)()
+                                        Optional ATGDist As Integer = 500) As Relationship(Of GeneBrief)() Implements IGenomicsContextProvider(Of GeneBrief).GetRelatedGenes
             Dim source As GeneBrief() = If(unstrand, GeneObjects, GetStrandGene(loci.Strand))
             Dim relates As Relationship(Of GeneBrief)() = ComponentModel.Loci.GetRelatedGenes(source, loci, ATGDist)
             Return relates

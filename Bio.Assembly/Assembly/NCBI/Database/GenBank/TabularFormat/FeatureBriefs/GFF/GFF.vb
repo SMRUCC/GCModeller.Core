@@ -5,6 +5,8 @@ Imports System.Data.Linq.Mapping
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Linq
 Imports System.Reflection
+Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
+Imports LANS.SystemsBiology.ComponentModel.Loci
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -14,6 +16,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
     ''' GFF (General Feature Format) specifications document
     ''' </summary>
     Public Class GFF : Inherits ITextFile
+        Implements IGenomicsContextProvider(Of Feature)
 
 #Region "Meta Data"
 
@@ -124,6 +127,19 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' </summary>
         ''' <returns></returns>
         Public Property Features As Feature()
+            Get
+                Return _features
+            End Get
+            Set(value As Feature())
+                _features = value
+                _forwards = __getStrandFeatures(Strands.Forward)
+                _reversed = __getStrandFeatures(Strands.Reverse)
+            End Set
+        End Property
+
+        Dim _features As Feature()
+        Dim _forwards As Feature()
+        Dim _reversed As Feature()
 
         ''' <summary>
         ''' 
@@ -269,6 +285,23 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
                                                                         .ToDictionary(Function(x) x.x.attributes("name"),
                                                                                       Function(x) x.locus_tag)
             Return transformHash
+        End Function
+
+        Public Function GetRelatedGenes(loci As NucleotideLocation,
+                                        Optional unstrand As Boolean = False,
+                                        Optional ATGDist As Integer = 500) As Relationship(Of Feature)() Implements IGenomicsContextProvider(Of Feature).GetRelatedGenes
+
+            Dim source As Feature() = If(unstrand, Features, GetStrandFeatures(loci.Strand))
+            Dim relates As Relationship(Of Feature)() = ComponentModel.Loci.GetRelatedGenes(source, loci, ATGDist)
+            Return relates
+        End Function
+
+        Private Function __getStrandFeatures(strand As Strands) As Feature()
+            Return (From x As Feature In Features Where x.Strand = strand Select x).ToArray
+        End Function
+
+        Public Function GetStrandFeatures(strand As Strands) As Feature() Implements IGenomicsContextProvider(Of Feature).GetStrandFeatures
+            Return If(strand = Strands.Forward, _forwards, _reversed)
         End Function
     End Class
 End Namespace

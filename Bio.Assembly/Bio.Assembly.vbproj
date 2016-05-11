@@ -300,6 +300,7 @@
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\GFF\Feature.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\GFF\GFF.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\GeneBrief.vb" />
+    <Compile Include="ComponentModel\Loci.Models\GenomicsContext.vb" />
     <Compile Include="ComponentModel\Loci.Models\TagSite.vb" />
     <Compile Include="ComponentModel\Loci.Models\LociAPI.vb" />
     <Compile Include="ComponentModel\Loci.Models\Nucleotide\SegmentRelationships.vb" />
