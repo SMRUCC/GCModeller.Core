@@ -249,6 +249,24 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         End Property
 #End Region
 
+        Public ReadOnly Property Synonym As String
+            Get
+                Dim s As String = Nothing
+
+                If attributes.TryGetValue("locus_tag", s) Then
+                    Return s
+                End If
+                If attributes.TryGetValue("protein_id", s) Then
+                    Return s
+                End If
+                If attributes.TryGetValue("Name", s) Then
+                    Return s
+                End If
+
+                Return s
+            End Get
+        End Property
+
         Public Overrides Function ToString() As String
             Return $"{MyBase.ToString}   {Me.seqname}::{Me.frame}"
         End Function
