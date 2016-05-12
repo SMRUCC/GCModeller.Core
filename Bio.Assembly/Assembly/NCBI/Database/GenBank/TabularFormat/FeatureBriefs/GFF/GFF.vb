@@ -7,6 +7,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports System.Reflection
 Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
 Imports LANS.SystemsBiology.ComponentModel.Loci
+Imports Microsoft.VisualBasic.Serialization
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -71,7 +72,9 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         '''  ##...
         '''  ##End-DNA)
         ''' 
-        ''' To give a DNA sequence. Several people have pointed out that it may be convenient to include the sequence in the file. It should Not become mandatory to do so, And in our experience this has been very little used. Often the seqname will be a well-known identifier, And the sequence can easily be retrieved from a database, Or an accompanying file.
+        ''' To give a DNA sequence. Several people have pointed out that it may be convenient to include the sequence in the file. 
+        ''' It should Not become mandatory to do so, And in our experience this has been very little used. Often the seqname will 
+        ''' be a well-known identifier, And the sequence can easily be retrieved from a database, Or an accompanying file.
         ''' </summary>
         ''' <returns></returns>
         Public Property DNA As String
@@ -140,6 +143,30 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         Dim _features As Feature()
         Dim _forwards As Feature()
         Dim _reversed As Feature()
+
+        Sub New()
+        End Sub
+
+        ''' <summary>
+        ''' Copy specific type
+        ''' </summary>
+        ''' <param name="gff"></param>
+        ''' <param name="type"></param>
+        Sub New(gff As GFF, type As Features)
+            Me.Date = gff.Date
+            Me.DNA = gff.DNA
+            Me.Features = gff.GetsAllFeatures(type)
+            Me.GffVersion = gff.GffVersion
+            Me.Protein = gff.Protein
+            Me.RNA = gff.RNA
+            Me.SeqRegion = gff.SeqRegion
+            Me.SrcVersion = gff.SrcVersion
+            Me.Type = gff.Type
+        End Sub
+
+        Public Overrides Function ToString() As String
+            Return SeqRegion.GetJson
+        End Function
 
         ''' <summary>
         ''' 
@@ -284,7 +311,8 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             Dim transformHash As Dictionary(Of String, String) = (From x As Feature In CDS
                                                                   Let parent As String = x.attributes("parent")
                                                                   Where gene.ContainsKey(parent)
-                                                                  Select x, locus_tag = gene(parent).attributes("locus_tag")) _
+                                                                  Select x,
+                                                                      locus_tag = gene(parent).attributes("locus_tag")) _
                                                                         .ToDictionary(Function(x) x.x.attributes("name"),
                                                                                       Function(x) x.locus_tag)
             Return transformHash

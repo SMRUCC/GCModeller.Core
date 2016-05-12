@@ -1,6 +1,7 @@
 ﻿Imports LANS.SystemsBiology.Assembly.KEGG.Archives.Xml
 Imports LANS.SystemsBiology.Assembly.KEGG.DBGET
 Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
+Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat
 Imports Microsoft.VisualBasic.Linq
 
 Module DEBUG_MAIN
@@ -8,7 +9,7 @@ Module DEBUG_MAIN
     Sub Main()
 
         Dim gff = LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.GFF.LoadDocument("D:\Xanthomonas\Xanthomonas citri pv. citri 306\GCA_000007165.1_ASM716v1_genomic.gff")
-
+        Dim all_CDS = New GFF(gff, Features.CDS)
 
         '       Call Language.UnixBash.LinuxRunHelper.PerlShell()
 
