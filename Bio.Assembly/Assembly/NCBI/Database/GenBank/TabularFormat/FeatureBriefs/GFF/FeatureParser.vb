@@ -2,6 +2,7 @@
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports System.Text
 Imports LANS.SystemsBiology.ComponentModel.Loci
+Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -32,23 +33,23 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         Public Function CreateObject(s_Data As String, version As Integer) As Feature
             Dim Tokens As String() = Strings.Split(s_Data, vbTab)
             Dim Feature As Feature = New Feature
-            Dim p As Integer = 0
+            Dim p As New Pointer
 
             ' Fields are: <seqname> <source> <feature> <start> <end> <score> <strand> <frame> [attributes] [comments]
 
             With Feature
-                .seqname = Tokens(p.MoveNext)
-                .source = Tokens(p.MoveNext)
-                .Feature = Tokens(p.MoveNext)
-                .Left = CLng(Val(Tokens(p.MoveNext)))
-                .Right = CLng(Val(Tokens(p.MoveNext)))
-                .score = Tokens(p.MoveNext)
-                .Strand = GetStrand(Tokens(p.MoveNext))
-                .frame = Tokens(p)
+                .seqname = Tokens(++p)
+                .source = Tokens(++p)
+                .Feature = Tokens(++p)
+                .Left = CLng(Val(Tokens(++p)))
+                .Right = CLng(Val(Tokens(++p)))
+                .score = Tokens(++p)
+                .Strand = GetStrand(Tokens(++p))
+                .frame = Tokens(++p)
             End With
 
             '在这里开始读取可选的列数据
-            Dim attrValue As String = If(Tokens.Count - 1 > p, Tokens(p.Increase), "")
+            Dim attrValue As String = If(Tokens.Count > p, Tokens(++p), "")
 
             If Not String.IsNullOrEmpty(attrValue) Then
                 Select Case version
