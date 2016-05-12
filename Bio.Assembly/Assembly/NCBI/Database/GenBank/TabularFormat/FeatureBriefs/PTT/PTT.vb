@@ -24,7 +24,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Property GeneObjects As GeneBrief()
+        Public Property GeneObjects As GeneBrief() Implements IGenomicsContextProvider(Of GeneBrief).AllFeatures
             Get
                 Return _innerList
             End Get

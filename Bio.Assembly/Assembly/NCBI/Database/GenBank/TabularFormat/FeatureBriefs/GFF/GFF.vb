@@ -126,7 +126,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' 基因组上面的特性位点
         ''' </summary>
         ''' <returns></returns>
-        Public Property Features As Feature()
+        Public Property Features As Feature() Implements IGenomicsContextProvider(Of Feature).AllFeatures
             Get
                 Return _features
             End Get

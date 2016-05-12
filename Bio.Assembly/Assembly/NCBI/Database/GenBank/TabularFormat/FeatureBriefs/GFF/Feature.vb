@@ -169,7 +169,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <returns></returns>
         Public Property ID As String Implements sIdEnumerable.Identifier
             Get
-                Return attributes("ID")
+                Return attributes.TryGetValue("ID")
             End Get
             Set(value As String)
                 attributes("ID") = value

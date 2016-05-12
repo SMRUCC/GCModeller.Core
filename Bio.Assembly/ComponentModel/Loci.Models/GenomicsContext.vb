@@ -4,6 +4,8 @@ Namespace ComponentModel.Loci.Abstract
 
     Public Interface IGenomicsContextProvider(Of T As I_GeneBrief)
 
+        ReadOnly Property AllFeatures As T()
+
         ''' <summary>
         ''' 获取某一个位点在位置上有相关联系的基因
         ''' </summary>

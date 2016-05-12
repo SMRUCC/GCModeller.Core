@@ -2,6 +2,8 @@
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports System.Text
 Imports LANS.SystemsBiology.ComponentModel.Loci
+Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -16,14 +18,38 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         Public Const region As String = "region"
 
         Public Enum Features As Integer
-            CDS = -1
-            gene = 0
+            UnDefine = -1
+            CDS
+            gene
             tRNA
             exon
             tmRNA
             rRNA
             region
         End Enum
+
+        <Extension>
+        Public Function [GetFeatureType](x As Feature) As Features
+            If String.IsNullOrEmpty(x.Feature) OrElse
+                Not FeatureKeys.FeaturesHash.ContainsKey(x.Feature) Then
+                Return Features.UnDefine
+            Else
+                Return FeatureKeys.FeaturesHash(x.Feature)
+            End If
+        End Function
+
+        <Extension>
+        Public Function GetsAllFeatures(source As IEnumerable(Of Feature), type As Features) As Feature()
+            Return LinqAPI.Exec(Of Feature) <= From x As Feature
+                                               In source
+                                               Where type = x.GetFeatureType
+                                               Select x
+        End Function
+
+        <Extension>
+        Public Function GetsAllFeatures(gff As GFF, type As Features) As Feature()
+            Return gff.Features.GetsAllFeatures(type)
+        End Function
 
         Public ReadOnly Property FeaturesHash As IReadOnlyDictionary(Of String, Features) =
             New Dictionary(Of String, Features) From {
