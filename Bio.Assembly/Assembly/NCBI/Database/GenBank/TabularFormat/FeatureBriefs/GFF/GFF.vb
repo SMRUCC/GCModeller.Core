@@ -204,15 +204,18 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         Private Shared Sub TrySetMetaData(s_Data As String(), ByRef Gff As GFF)
             s_Data = TryGetMetaData(s_Data)
 
-            Dim LQuery = From Token As String In s_Data
+            Dim LQuery = From Token As String
+                         In s_Data
                          Where Not Token.IndexOf(" "c) = -1  ' ### 这种情况下mid函数会出错
                          Let p As Integer = InStr(Token, " ")
                          Let Name As String = Mid(Token, 1, p - 1)
                          Let Value As String = Mid(Token, p + 1)
-                         Select Name, Value '
+                         Select Name,
+                             Value
+                         Group By Name Into Group '
             Dim hash As Dictionary(Of String, String) =
                 LQuery.ToDictionary(Function(obj) obj.Name.ToLower,
-                                    Function(obj) obj.Value)
+                                    Function(obj) obj.Group.ToArray(Function(x) x.Value).JoinBy("; "))
 
             Call $"There are {hash.Count} meta data was parsed from the gff file.".__DEBUG_ECHO
 

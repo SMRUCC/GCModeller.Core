@@ -7,7 +7,7 @@ Module DEBUG_MAIN
 
     Sub Main()
 
-        Dim gff = LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.GFF.LoadDocument("D:\Xanthomonas\Xanthomonas axonopodis pv. citrumelo F1\GCA_000225915.1_ASM22591v1_genomic.gff")
+        Dim gff = LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.GFF.LoadDocument("D:\Xanthomonas\Xanthomonas citri pv. citri 306\GCA_000007165.1_ASM716v1_genomic.gff")
 
 
         '       Call Language.UnixBash.LinuxRunHelper.PerlShell()
