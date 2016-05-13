@@ -17,6 +17,35 @@ Namespace Assembly.NCBI.GenBank
     <PackageNamespace("NCBI.Genbank.Extensions", Publisher:="amethyst.asuka@gcmodeller.org")>
     Public Module Extensions
 
+        <Extension>
+        Public Function GPFF2Feature(gb As GBFF.File) As GeneBrief
+            Dim prot As FEATURES.Nodes.Feature =
+                gb.Features.ListFeatures("Protein").FirstOrDefault
+            If prot Is Nothing Then
+                Return Nothing
+            End If
+
+            Dim CDS As FEATURES.Nodes.Feature =
+                gb.Features.ListFeatures("CDS").FirstOrDefault
+            Dim locus_tag As String = ""
+            If CDS Is Nothing Then
+                locus_tag = "-"
+            Else
+                locus_tag = CDS.Query("locus_tag")
+            End If
+
+            Return New GeneBrief With {
+                .Code = gb.Version.GI,
+                .COG = "-",
+                .Gene = locus_tag,
+                .Location = prot.Location.ContiguousRegion,
+                .PID = gb.Accession.AccessionId,
+                .Length = prot.Location.ContiguousRegion.FragmentSize,
+                .Product = prot.Query("product"),
+                .Synonym = gb.Version.Ver
+            }
+        End Function
+
         <ExportAPI("ToGff"), Extension>
         Public Function ToGff(gb As GBFF.File) As TabularFormat.GFF
             Dim Gff As New TabularFormat.GFF With {

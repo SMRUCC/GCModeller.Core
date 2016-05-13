@@ -3,6 +3,7 @@ Imports System.Text.RegularExpressions
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Nodes
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
 
@@ -63,10 +64,15 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function ListFeatures(FieldName As String) As Feature()
-            Dim LQuery = (From item In Me._innerList
-                          Where String.Equals(item.KeyName, FieldName, StringComparison.OrdinalIgnoreCase)
-                          Select item).ToArray
-            Return LQuery
+            Dim features As Feature() =
+                LinqAPI.Exec(Of Feature) <= From feature As Feature
+                                            In Me._innerList
+                                            Where String.Equals(
+                                                feature.KeyName,
+                                                FieldName,
+                                                StringComparison.OrdinalIgnoreCase)
+                                            Select feature
+            Return features
         End Function
 
         ''' <summary>
