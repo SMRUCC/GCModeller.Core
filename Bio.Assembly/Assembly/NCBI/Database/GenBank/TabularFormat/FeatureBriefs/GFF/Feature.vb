@@ -269,6 +269,27 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             End Get
         End Property
 
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <returns></returns>
+        ''' <remarks>
+        ''' 请注意这个属性里面的标签的读取顺序是和<see cref="Synonym"/>属性里面的标签的读取的顺序是不一样的
+        ''' </remarks>
+        Public ReadOnly Property ProteinId As String
+            Get
+                Dim s As String = Nothing
+
+                If attributes.TryGetValue("name", s) Then
+                    Return s
+                ElseIf _attrs.TryGetValue("protein_id", s) Then
+                    Return s
+                Else
+                    Return ""
+                End If
+            End Get
+        End Property
+
         Public Overrides Function ToString() As String
             Return $"{MyBase.ToString}   {Me.seqname}::{Me.frame}"
         End Function
