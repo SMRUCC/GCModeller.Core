@@ -18,7 +18,7 @@ Namespace Assembly.NCBI.GenBank
     Public Module Extensions
 
         <Extension>
-        Public Function GPFF2Feature(gb As GBFF.File) As GeneBrief
+        Public Function GPFF2Feature(gb As GBFF.File, gff As Dictionary(Of String, TabularFormat.Feature)) As GeneBrief
             Dim prot As FEATURES.Nodes.Feature =
                 gb.Features.ListFeatures("Protein").FirstOrDefault
             If prot Is Nothing Then
@@ -34,16 +34,26 @@ Namespace Assembly.NCBI.GenBank
                 locus_tag = CDS.Query("locus_tag")
             End If
 
-            Return New GeneBrief With {
+            Dim uid As String = gb.Version.VersionString
+
+            If Not gff.ContainsKey(uid) Then
+                Throw New KeyNotFoundException(uid & " is not exists in the genomics feature table!")
+            End If
+
+            Dim ntLoci As NucleotideLocation = gff(uid).MappingLocation
+
+            Dim gene As New GeneBrief With {
                 .Code = gb.Version.GI,
                 .COG = "-",
                 .Gene = locus_tag,
-                .Location = prot.Location.ContiguousRegion,
+                .Location = ntLoci,
                 .PID = gb.Accession.AccessionId,
-                .Length = prot.Location.ContiguousRegion.FragmentSize,
+                .Length = ntLoci.FragmentSize,
                 .Product = prot.Query("product"),
-                .Synonym = gb.Version.Ver
+                .Synonym = uid
             }
+
+            Return gene
         End Function
 
         <ExportAPI("ToGff"), Extension>

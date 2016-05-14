@@ -113,8 +113,14 @@ RETURN_EMPTY:   Return New ACCESSION With {
             Ver = v
         End Sub
 
+        Public ReadOnly Property VersionString As String
+            Get
+                Return String.Format("{0}.{1}", AccessionID, Ver)
+            End Get
+        End Property
+
         Public Overrides Function ToString() As String
-            Return String.Format("{0}.{1}", AccessionID, Ver)
+            Return VersionString
         End Function
 
         Public Shared Widening Operator CType(str As String()) As VERSION

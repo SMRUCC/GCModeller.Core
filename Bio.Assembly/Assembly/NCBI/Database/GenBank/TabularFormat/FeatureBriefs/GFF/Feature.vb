@@ -120,6 +120,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         Public Property frame As String
 
 #Region "可选的字段域"
+
         ''' <summary>
         ''' From version 2 onwards, the attribute field must have an tag value structure following the syntax used within objects in 
         ''' a .ace file, flattened onto one line by semicolon separators. Tags must be standard identifiers ([A-Za-z][A-Za-z0-9_]*). 
@@ -138,6 +139,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' following specification: An optional string-valued field that can be used as a name to group together a set of records. 
         ''' Typical uses might be to group the introns and exons in one gene prediction (or experimentally verified gene structure), 
         ''' or to group multiple regions of match to another sequence, such as an EST or a protein.
+        ''' (请注意，所有的key都已经被转换为小写的形式了)
         ''' </summary>
         ''' <returns></returns>
         ''' <remarks>gff1, gff2, gff3之间的差异是由于本属性值的列的读取方式的差异而产生的</remarks>
@@ -169,16 +171,16 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <returns></returns>
         Public Property ID As String Implements sIdEnumerable.Identifier
             Get
-                Return attributes.TryGetValue("ID")
+                Return attributes.TryGetValue("id")
             End Get
             Set(value As String)
-                attributes("ID") = value
+                attributes("id") = value
             End Set
         End Property
 
         Public Property COG As String Implements I_COGEntry.COG
             Get
-                Dim s As String = attributes.TryGetValue("Note")
+                Dim s As String = attributes.TryGetValue("note")
                 If String.IsNullOrEmpty(s) Then
                     Return ""
                 Else
@@ -186,13 +188,13 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
                 End If
             End Get
             Set(value As String)
-                Dim s As String = attributes.TryGetValue("Note")
+                Dim s As String = attributes.TryGetValue("note")
 
                 If String.IsNullOrEmpty(s) Then
-                    attributes("Note") = value
+                    attributes("note") = value
                 Else
                     s = Regex.Replace(s, "COG\d+", value, RegexICSng)
-                    attributes("Note") = s
+                    attributes("note") = s
                 End If
             End Set
         End Property
@@ -259,7 +261,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
                 If attributes.TryGetValue("protein_id", s) Then
                     Return s
                 End If
-                If attributes.TryGetValue("Name", s) Then
+                If attributes.TryGetValue("name", s) Then
                     Return s
                 End If
 

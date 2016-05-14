@@ -79,7 +79,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
                           Let Name As String = Mid(Token, 1, p - 1),
                               Value As String = Mid(Token, p + 1)
                           Select Name, Value).ToArray
-            Dim attrs = LQuery.ToDictionary(Function(obj) obj.Name.ToLower,
+            Dim attrs = LQuery.ToDictionary(Function(obj) obj.Name.ToLower,   ' Key已经被转换为小写了
                                             Function(obj) If(Len(obj.Value) > 2 AndAlso
                                                             obj.Value.First = """"c AndAlso
                                                             obj.Value.Last = """"c, Mid(obj.Value, 2, Len(obj.Value) - 2), obj.Value))
