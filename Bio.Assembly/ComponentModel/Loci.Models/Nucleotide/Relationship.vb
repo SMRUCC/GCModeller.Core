@@ -1,4 +1,5 @@
 ﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+Imports Microsoft.VisualBasic.Language
 
 Namespace ComponentModel.Loci
 
@@ -6,14 +7,19 @@ Namespace ComponentModel.Loci
     ''' 描述位点在基因组上面的位置，可以使用<see cref="ToString"/>函数获取得到位置描述
     ''' </summary>
     ''' <typeparam name="T"></typeparam>
-    Public Class Relationship(Of T As I_GeneBrief)
+    Public Class Relationship(Of T As I_GeneBrief) : Inherits ClassObject
+
+        ''' <summary>
+        ''' Target gene object
+        ''' </summary>
+        ''' <returns></returns>
         Public Property Gene As T
-        Public Property Relation As  SegmentRelationships
+        Public Property Relation As SegmentRelationships
 
         Sub New()
         End Sub
 
-        Sub New(gene As T, rel As  SegmentRelationships)
+        Sub New(gene As T, rel As SegmentRelationships)
             Me.Gene = gene
             Me.Relation = rel
         End Sub
@@ -41,7 +47,8 @@ Namespace ComponentModel.Loci
         End Function
 
         ''' <summary>
-        ''' 位置关系的描述信息
+        ''' Gets loci location relationship description with this <see cref="Gene"/> object.
+        ''' (位置关系的描述信息)
         ''' </summary>
         ''' <returns></returns>
         Public Overrides Function ToString() As String

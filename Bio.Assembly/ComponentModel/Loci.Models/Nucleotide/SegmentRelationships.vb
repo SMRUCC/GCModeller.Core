@@ -1,9 +1,11 @@
 ﻿Imports System.Text.RegularExpressions
+Imports System.ComponentModel
 
 Namespace ComponentModel.Loci
 
     ''' <summary>
-    ''' 核酸链上面的位点片段之间的位置关系的描述
+    ''' The location relationship description enumeration for the two loci sites on the nucleotide sequence.
+    ''' (核酸链上面的位点片段之间的位置关系的描述)
     ''' </summary>
     ''' <remarks></remarks>
     Public Enum SegmentRelationships As Integer
@@ -25,6 +27,10 @@ Namespace ComponentModel.Loci
         ''' 比较的目标位点包括了当前的这个位置参照
         ''' </summary>
         Cover
+
+        ''' <summary>
+        ''' Target loci is on the same <see cref="Strands"/> with current loci and position is also equals.
+        ''' </summary>
         Equals
 
         ''' <summary>
@@ -43,16 +49,16 @@ Namespace ComponentModel.Loci
         ''' The loci site was on the DNA sequence.(这个片段在DNA链的正义链之上)
         ''' </summary>
         ''' <remarks></remarks>
-        Forward = 1
+        <Description("+")> Forward = 1
         ''' <summary>
         ''' The loci site was on the DNA complement strand.(这个片段在DNA链的互补链之上) 
         ''' </summary>
         ''' <remarks></remarks>
-        Reverse = -1
+        <Description("-")> Reverse = -1
         ''' <summary>
         ''' I really don't know what the direction of the loci site it is.
         ''' </summary>
         ''' <remarks></remarks>
-        Unknown = 0
+        <Description("?")> Unknown = 0
     End Enum
 End Namespace
