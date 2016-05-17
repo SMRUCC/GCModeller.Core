@@ -6,12 +6,12 @@ Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.CsvExports
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Nodes
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports LANS.SystemsBiology.SequenceModel
+Imports LANS.SystemsBiology.SequenceModel.NucleotideModels
+Imports LANS.SystemsBiology.SequenceModel.FASTA
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic
-Imports LANS.SystemsBiology.SequenceModel.NucleotideModels
-Imports LANS.SystemsBiology.SequenceModel.FASTA
 
 <PackageNamespace("Bio.Extensions", Publisher:="xie.guigang@gcmodeller.org")>
 Public Module BioAssemblyExtensions
