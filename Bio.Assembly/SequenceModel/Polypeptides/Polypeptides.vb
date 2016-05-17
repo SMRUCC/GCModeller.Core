@@ -223,7 +223,7 @@ Namespace SequenceModel.Polypeptides
         }
 
         ''' <summary>
-        ''' MEGA软件的显示蛋白质序列的残基颜色
+        ''' Protein sequence display color schema from MEGA software.(MEGA软件的显示蛋白质序列的残基颜色)
         ''' </summary>
         ''' <returns></returns>
         Public ReadOnly Property MEGASchema As Dictionary(Of Char, Color) =

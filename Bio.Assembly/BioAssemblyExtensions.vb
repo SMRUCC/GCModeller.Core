@@ -37,9 +37,14 @@ Public Module BioAssemblyExtensions
         End If
     End Function
 
+    ''' <summary>
+    ''' Generate <see cref="FastaFile"/> from a specific fasta source collection.
+    ''' </summary>
+    ''' <typeparam name="TFasta"><see cref="FastaToken"/></typeparam>
+    ''' <param name="data">Target fasta source collection which its elements base type is <see cref="fastaToken"/></param>
+    ''' <returns></returns>
     <Extension> Public Function [DirectCast](Of TFasta As FASTA.FastaToken)(data As IEnumerable(Of TFasta)) As FASTA.FastaFile
-        Dim LQuery = (From Fasta As TFasta In data Select CType(Fasta, FASTA.FastaToken)).ToArray
-        Dim FastaFile = CType(LQuery, FASTA.FastaFile)
+        Dim FastaFile As New FASTA.FastaFile(From Fasta As TFasta In data Select DirectCast(Fasta, FASTA.FastaToken))
         Return FastaFile
     End Function
 
@@ -106,8 +111,8 @@ Public Module BioAssemblyExtensions
                     End If
 
                     Dim Adjacent As String = Mid(Nt, 1, ATG)
-                    Dim a As Double = LANS.SystemsBiology.SequenceModel.NucleotideModels.GCContent(ORF)
-                    Dim b As Double = LANS.SystemsBiology.SequenceModel.NucleotideModels.GCContent(Adjacent)
+                    Dim a As Double = NucleotideModels.GCContent(ORF)
+                    Dim b As Double = NucleotideModels.GCContent(Adjacent)
                     Dim d As Double = Math.Abs(a - b)
                     Dim accept As Boolean = d > 0.1
 #Const DEBUG = 0
@@ -128,7 +133,7 @@ Public Module BioAssemblyExtensions
     End Function
 
     ''' <summary>
-    ''' <see cref="ComponentModel.Loci.Strands"/> => +, -, ?
+    ''' Convert the nucleotide sequence strand direction enumeration as character brief code. [<see cref="ComponentModel.Loci.Strands"/> => +, -, ?]
     ''' </summary>
     ''' <param name="strand"></param>
     ''' <returns></returns>
@@ -142,7 +147,8 @@ Public Module BioAssemblyExtensions
     End Function
 
     ''' <summary>
-    ''' 获取核酸链链方向的描述简要代码
+    ''' Convert the nucleotide seuqnece strand description word as character brief code.
+    ''' (获取核酸链链方向的描述简要代码)
     ''' </summary>
     ''' <param name="strand"></param>
     ''' <returns></returns>
@@ -162,9 +168,12 @@ Public Module BioAssemblyExtensions
     End Function
 
     ''' <summary>
-    ''' 判断一段ORF核酸序列是否为反向的
+    ''' Is this ORF is in the reversed strand direction?(判断一段ORF核酸序列是否为反向的)
     ''' </summary>
-    ''' <param name="nt">请注意，这个只允许核酸序列</param>
+    ''' <param name="nt">
+    ''' This function parameter is only allowed nucleotide sequence.
+    ''' (请注意，这个只允许核酸序列)
+    ''' </param>
     ''' <returns></returns>
     <Extension> Public Function IsReversed(nt As I_PolymerSequenceModel) As Boolean
         If Not InStrAny(nt.SequenceData, "ATG", "GTG") = 1 Then
@@ -181,6 +190,13 @@ Public Module BioAssemblyExtensions
         Return PTT
     End Function
 
+    ''' <summary>
+    ''' Dump feature sites information data into a tabular dataframe.
+    ''' </summary>
+    ''' <param name="gb"></param>
+    ''' <param name="features"></param>
+    ''' <param name="dumpAll"></param>
+    ''' <returns></returns>
     <ExportAPI("Features.Dump")>
     Public Function FeatureDumps(gb As GBFF.File, Optional features As String() = Nothing, Optional dumpAll As Boolean = False) As GeneDumpInfo()
         If dumpAll Then
