@@ -132,10 +132,19 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' </summary>
         ''' <param name="Name">基因名称，而非基因号</param>
         ''' <returns></returns>
-        Public Function GetGeneByName(Name As String) As GeneBrief
-            Dim LQuery = (From Gene As GeneBrief In Me._innerList
-                          Where String.Equals(Gene.Gene, Name, StringComparison.OrdinalIgnoreCase)
-                          Select Gene).FirstOrDefault
+        Public Function GetGeneByName(Name As String) As GeneBrief Implements IGenomicsContextProvider(Of GeneBrief).GetByName
+            Dim found As GeneBrief = Me(Name)
+
+            If Not found Is Nothing Then
+                Return found
+            End If
+
+            Dim LQuery As GeneBrief =
+                LinqAPI.DefaultFirst(Of GeneBrief) <= From gene As GeneBrief
+                                                      In Me._innerList
+                                                      Where String.Equals(gene.Gene, Name,
+                                                          StringComparison.OrdinalIgnoreCase)
+                                                      Select gene
             Return LQuery
         End Function
 
@@ -294,9 +303,9 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         End Function
 
         ''' <summary>
-        ''' 通过基因的Locus_Tag, <see cref="ComponentModels.GeneBrief.Synonym"/>来获取某一个基因对象是否存在
+        ''' 通过基因的Locus_Tag, <see cref="GeneBrief.Synonym"/>来获取某一个基因对象是否存在
         ''' </summary>
-        ''' <param name="locusId"><see cref="ComponentModels.GeneBrief.Synonym"/></param>
+        ''' <param name="locusId"><see cref="GeneBrief.Synonym"/></param>
         ''' <returns></returns>
         Public Function ContainsGene(locusId As String) As Boolean Implements IReadOnlyDictionary(Of String, GeneBrief).ContainsKey
             Return __innerHash.ContainsKey(locusId)
@@ -307,7 +316,11 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' </summary>
         ''' <param name="locusId"><see cref="ComponentModels.GeneBrief.Synonym"/></param>
         ''' <returns></returns>
-        Default Public ReadOnly Property GeneObject(locusId As String) As GeneBrief Implements IReadOnlyDictionary(Of String, GeneBrief).Item
+        Default Public ReadOnly Property GeneObject(locusId As String) As GeneBrief _
+            Implements _
+            IReadOnlyDictionary(Of String, GeneBrief).Item,
+            IGenomicsContextProvider(Of GeneBrief).Feature
+
             Get
                 If __innerHash.ContainsKey(locusId) Then
                     Return __innerHash(locusId)

@@ -140,6 +140,12 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             End Set
         End Property
 
+        Default Public ReadOnly Property Feature(locus_tag As String) As Feature Implements IGenomicsContextProvider(Of Feature).Feature
+            Get
+                Return GetByName(locus_tag)
+            End Get
+        End Property
+
         Dim _features As Feature()
         Dim _forwards As Feature()
         Dim _reversed As Feature()
@@ -173,7 +179,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' </summary>
         ''' <param name="Name"><see cref="feature.attributes"/> -> name</param>
         ''' <returns></returns>
-        Public Function GetByName(Name As String) As Feature
+        Public Function GetByName(Name As String) As Feature Implements IGenomicsContextProvider(Of Feature).GetByName
             Dim LQuery = From Feature As Feature
                          In Me.Features
                          Where Feature.attributes.ContainsKey("name") AndAlso
