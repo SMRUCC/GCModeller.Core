@@ -1,6 +1,7 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Scripting
 Imports Microsoft.VisualBasic.Scripting.MetaData
 
@@ -82,9 +83,9 @@ Namespace ComponentModel.Loci
             End If
 
             Select Case str.ToLower
-                Case "+", "forward", "plus", "#forward", "direct"
+                Case "+", "forward", "plus", "#forward", "direct", "#+"
                     Return Strands.Forward
-                Case "-", "reverse", "minus", "complement", "#reverse"
+                Case "-", "reverse", "minus", "complement", "#reverse", "#-"
                     Return Strands.Reverse
                 Case Else
                     Return Strands.Unknown
@@ -104,18 +105,24 @@ Namespace ComponentModel.Loci
                 Return __tryParse(sLoci)
             End If
 
-            Dim NucleotideLocation As NucleotideLocation = New NucleotideLocation
+            Dim nuclLoci As New NucleotideLocation
+
             If Regex.Match(sLoci, "complement\([^)]+\)").Success Then
-                NucleotideLocation.Strand = Strands.Reverse
+                nuclLoci.Strand = Strands.Reverse
             Else
-                NucleotideLocation.Strand = Strands.Forward
+                nuclLoci.Strand = Strands.Forward
             End If
 
-            Dim Numbers As Long() = (From match As Match In Regex.Matches(sLoci, "\d+") Let n = CType(Val(match.Value), Long) Select n Order By n Ascending).ToArray
-            NucleotideLocation.Left = Numbers(0)
-            NucleotideLocation.Right = Numbers(1)
+            Dim pos As Long() =
+                LinqAPI.Exec(Of Long) <= From match As Match
+                                         In Regex.Matches(sLoci, "\d+")
+                                         Let n As Long = CType(Val(match.Value), Long)
+                                         Select n
+                                         Order By n Ascending
+            nuclLoci.Left = pos(0)
+            nuclLoci.Right = pos(1)
 
-            Return NucleotideLocation
+            Return nuclLoci
         End Function
 
         ''' <summary>

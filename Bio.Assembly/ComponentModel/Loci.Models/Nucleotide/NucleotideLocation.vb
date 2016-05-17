@@ -262,7 +262,7 @@ Namespace ComponentModel.Loci
         ''' </summary>
         ''' <param name="Loci"></param>
         ''' <returns></returns>
-        Public Function LociIsContact(Loci As ComponentModel.Loci.NucleotideLocation) As Boolean
+        Public Function LociIsContact(Loci As NucleotideLocation) As Boolean
             Dim r = Me.GetRelationship(Loci)
             Return r = SegmentRelationships.Equals OrElse
                 r = SegmentRelationships.Inside OrElse
@@ -271,8 +271,12 @@ Namespace ComponentModel.Loci
                 r = SegmentRelationships.UpStreamOverlap
         End Function
 
+        ''' <summary>
+        ''' 这个函数的输出的字符串可以使用<see cref="LociAPI.TryParse(String)"/>方法进行解析
+        ''' </summary>
+        ''' <returns></returns>
         Public Overrides Function ToString() As String
-            Return String.Format("{0} ==> {1} #{2}", Left, Right, Strand.ToString)
+            Return $"{Left} ==> {Right} #{Strand.ToString}"
         End Function
 
         ''' <summary>

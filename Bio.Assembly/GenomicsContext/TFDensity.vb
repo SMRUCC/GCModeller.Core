@@ -7,6 +7,8 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic
+Imports System.Xml.Serialization
+Imports System.Web.Script.Serialization
 
 Namespace GenomicsContext
 
@@ -35,7 +37,8 @@ Namespace GenomicsContext
                                             .locus_tag = gene.Identifier,
                                             .Abundance = related.Length / TFs.Length,
                                             .Hits = related.ToArray(Function(g) g.Identifier),
-                                            .loci = gene.Location
+                                            .loci = gene.Location,
+                                            .product = gene.Product
                                         }
             Return LQuery
         End Function
@@ -49,9 +52,9 @@ Namespace GenomicsContext
                 Dim TGA As Integer = g.Location.Right
 
                 For Each loci In TFs
-                    If ATG - loci.Location.Right <= ranges Then
+                    If Math.Abs(ATG - loci.Location.Right) <= ranges Then
                         result += loci
-                    ElseIf loci.Location.Left - TGA <= ranges Then
+                    ElseIf Math.Abs(loci.Location.Left - TGA) <= ranges Then
                         result += loci
                     End If
                 Next
@@ -60,9 +63,9 @@ Namespace GenomicsContext
                 Dim TGA As Integer = g.Location.Left
 
                 For Each loci In TFs
-                    If TGA - loci.Location.Right <= ranges Then
+                    If Math.Abs(TGA - loci.Location.Right) <= ranges Then
                         result += loci
-                    ElseIf loci.Location.Left - ATG <= ranges Then
+                    ElseIf Math.Abs(loci.Location.Left - ATG) <= ranges Then
                         result += loci
                     End If
                 Next
@@ -75,6 +78,8 @@ Namespace GenomicsContext
             Dim data As T()
 
             Sub New(source As T(), stranded As Boolean)
+                data = source
+
                 If stranded Then
                     forwards = (From gene As T In data Where gene.Location.Strand = Strands.Forward Select gene).ToArray
                     reversed = (From gene As T In data Where gene.Location.Strand = Strands.Reverse Select gene).ToArray
@@ -82,8 +87,6 @@ Namespace GenomicsContext
                 Else
                     __gets = AddressOf __unstranded
                 End If
-
-                data = source
             End Sub
 
             Dim forwards As T()
@@ -129,7 +132,8 @@ Namespace GenomicsContext
                                             .locus_tag = gene.Identifier,
                                             .Abundance = related.Length / TFs.Length,
                                             .Hits = related.ToArray(Function(g) g.Identifier),
-                                            .loci = gene.Location
+                                            .loci = gene.Location,
+                                            .product = gene.Product
                                         }
             Return LQuery
         End Function
@@ -174,6 +178,15 @@ Namespace GenomicsContext
         Public Property loci As NucleotideLocation
         Public Property Abundance As Double
         Public Property Hits As String()
+        Public Property product As String
+        <ScriptIgnore> <XmlIgnore> Public Property location As String
+            Get
+                Return loci.ToString
+            End Get
+            Set(value As String)
+                loci = LociAPI.TryParse(value)
+            End Set
+        End Property
 
         Public Overrides Function ToString() As String
             Return Me.GetJson
