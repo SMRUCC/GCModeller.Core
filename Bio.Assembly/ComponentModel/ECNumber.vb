@@ -1,4 +1,5 @@
-﻿Imports System.Xml.Serialization
+﻿Imports System.Text.RegularExpressions
+Imports System.Xml.Serialization
 
 Namespace ComponentModel
 
@@ -49,48 +50,49 @@ Namespace ComponentModel
         ''' EC编号里面的第一个数字代表酶的分类号
         ''' </summary>
         ''' <remarks></remarks>
-        <XmlAttribute> Public Type As ECNumber.ClassTypes
+        <XmlAttribute> Public Property Type As ECNumber.ClassTypes
 
         ''' <summary>
         ''' 该大类之下的亚分类
         ''' </summary>
         ''' <remarks></remarks>
-        <XmlAttribute> Public SubType As Integer
+        <XmlAttribute> Public Property SubType As Integer
         ''' <summary>
         ''' 该亚类之下的小分类
         ''' </summary>
         ''' <remarks></remarks>
-        <XmlAttribute> Public SubCategory As Integer
+        <XmlAttribute> Public Property SubCategory As Integer
 
         ''' <summary>
         ''' 该小分类之下的序号
         ''' </summary>
         ''' <remarks></remarks>
-        <XmlAttribute> Public SerialNumber As Integer
+        <XmlAttribute> Public Property SerialNumber As Integer
 
         Public Shared Widening Operator CType(s As String) As ECNumber
-            Dim Regex As New System.Text.RegularExpressions.Regex("/d[.]/d+[.]/d+[.]/d+")
-            Dim Match = Regex.Match(input:=s)
-
-            If Match.Success Then
-                s = Match.Value
-                Dim Tokens As String() = s.Split(CChar("."))
-                Dim NewObj As New ECNumber
-
-                NewObj.Type = CInt(Val(Tokens(0)))
-                NewObj.SubType = CInt(Val(Tokens(1)))
-                NewObj.SubCategory = CInt(Val(Tokens(2)))
-                NewObj.SerialNumber = CInt(Val(Tokens(3)))
-
-                If NewObj.Type > 6 OrElse NewObj.Type < 0 Then
-                    Return Nothing  '格式错误
-                Else
-                    Return NewObj
-                End If
-            Else  '格式错误，没有找到相应的编号格式字符串
-                Return Nothing
-            End If
+            Return ValueParser(s)
         End Operator
+
+        Public Shared Function ValueParser(expr As String) As ECNumber
+            Dim Regex As New Regex("/d[.]/d+[.]/d+[.]/d+")
+            Dim m As Match = Regex.Match(expr)
+
+            If Not m.Success Then Return Nothing ' 格式错误，没有找到相应的编号格式字符串
+
+            Dim Tokens As String() = m.Value.Split(CChar("."))
+            Dim _ec As New ECNumber With {
+                .Type = CInt(Val(Tokens(0))),
+                .SubType = CInt(Val(Tokens(1))),
+                .SubCategory = CInt(Val(Tokens(2))),
+                .SerialNumber = CInt(Val(Tokens(3)))
+            }
+
+            If _ec.Type > 6 OrElse _ec.Type < 0 Then
+                Return Nothing  '格式错误
+            Else
+                Return _ec
+            End If
+        End Function
 
         ''' <summary>
         ''' IDE debug
