@@ -287,6 +287,7 @@
     <Compile Include="Assembly\Uniprot\UniprotFasta.vb" />
     <Compile Include="Assembly\Uniprot\IdMapping.vb" />
     <Compile Include="Assembly\Uniprot\Web\Entry.vb" />
+    <Compile Include="LICENSE.vb" />
     <Compile Include="ComponentModel\DBLinkBuilder\DBLink.vb" />
     <Compile Include="ComponentModel\DBLinkBuilder\Abstract.vb" />
     <Compile Include="ComponentModel\DBLinkBuilder\DBLinksManager.vb" />
