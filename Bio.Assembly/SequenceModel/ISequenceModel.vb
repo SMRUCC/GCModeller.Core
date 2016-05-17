@@ -32,6 +32,10 @@ Namespace SequenceModel
             End Get
         End Property
 
+        ''' <summary>
+        ''' The <see cref="SequenceData"/> string length.
+        ''' </summary>
+        ''' <returns></returns>
         Public Overridable ReadOnly Property Length As Integer
             Get
                 Return Len(SequenceData)
