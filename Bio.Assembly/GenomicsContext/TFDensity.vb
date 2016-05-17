@@ -12,10 +12,16 @@ Imports Microsoft.VisualBasic
 
 Namespace GenomicsContext
 
+    ''' <summary>
+    ''' Calculates the relative density of the TF on each gene on the genome.
+    ''' </summary>
     Public Module TFDensity
 
         ''' <summary>
-        ''' 虽然名称是调控因子的密度，但是也可以用作为其他类型的基因的密度的计算，这个函数是非顺式的，即只要在ATG前面的范围内或者TGA后面的范围内出现都算存在
+        ''' Although this function name means calculate the relative density of the TF on the genome for each gene, 
+        ''' but you can also calculate any type of gene its density on the genome.
+        ''' (虽然名称是调控因子的密度，但是也可以用作为其他类型的基因的密度的计算，
+        ''' 这个函数是非顺式的，即只要在ATG前面的范围内或者TGA后面的范围内出现都算存在)
         ''' </summary>
         ''' <typeparam name="T"></typeparam>
         ''' <param name="genome"></param>
@@ -23,9 +29,9 @@ Namespace GenomicsContext
         ''' <returns></returns>
         <Extension>
         Public Function Density(Of T As I_GeneBrief)(genome As IGenomicsContextProvider(Of T),
-                                                 TF As IEnumerable(Of String),
-                                                 Optional ranges As Integer = 10000,
-                                                 Optional stranded As Boolean = False) As Density()
+                                                     TF As IEnumerable(Of String),
+                                                     Optional ranges As Integer = 10000,
+                                                     Optional stranded As Boolean = False) As Density()
             Dim TFs As T() = TF.ToArray(AddressOf genome.GetByName)
             Dim getTF As Func(Of Strands, T()) = New __sourceHelper(Of T)(TFs, stranded).__gets
             Dim result As Density() = genome.__worker(getTF, AddressOf __getGenes(Of T), TFs.Length, ranges)
@@ -123,9 +129,11 @@ Namespace GenomicsContext
         ''' 顺式调控，只有TF出现在上游，并且二者链方向相同才算存在
         ''' </summary>
         ''' <typeparam name="T"></typeparam>
-        ''' <param name="genome"></param>
-        ''' <param name="TF"></param>
-        ''' <param name="ranges"></param>
+        ''' <param name="genome">Bacteria genomic context provider.</param>
+        ''' <param name="TF">The TF locus_tag list.</param>
+        ''' <param name="ranges">
+        ''' This value is set to 20000bp is more perfect works on the bacteria genome, probably...
+        ''' </param>
         ''' <returns></returns>
         <Extension>
         Public Function DensityCis(Of T As I_GeneBrief)(
