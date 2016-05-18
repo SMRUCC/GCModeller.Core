@@ -180,7 +180,10 @@ Namespace GenomicsContext
         End Function
     End Module
 
-    Public Structure Density : Implements sIdEnumerable
+    ''' <summary>
+    ''' Genomics context relative abundance
+    ''' </summary>
+    Public Class Density : Implements sIdEnumerable
 
         Public Property locus_tag As String Implements sIdEnumerable.Identifier
         Public Property loci As NucleotideLocation
@@ -199,5 +202,5 @@ Namespace GenomicsContext
         Public Overrides Function ToString() As String
             Return Me.GetJson
         End Function
-    End Structure
+    End Class
 End Namespace
