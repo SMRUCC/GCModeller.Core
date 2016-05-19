@@ -185,10 +185,22 @@ Namespace GenomicsContext
     ''' </summary>
     Public Class Density : Implements sIdEnumerable
 
+        ''' <summary>
+        ''' The gene locus_tag identifier
+        ''' </summary>
+        ''' <returns></returns>
         Public Property locus_tag As String Implements sIdEnumerable.Identifier
         Public Property loci As NucleotideLocation
+        ''' <summary>
+        ''' The specific features on the genome its relative abundance relative to this gene <see cref="locus_tag"/>
+        ''' </summary>
+        ''' <returns></returns>
         Public Property Abundance As Double
         Public Property Hits As String()
+        ''' <summary>
+        ''' Current gene object its function annotation.
+        ''' </summary>
+        ''' <returns></returns>
         Public Property product As String
         <ScriptIgnore> <XmlIgnore> Public Property location As String
             Get
