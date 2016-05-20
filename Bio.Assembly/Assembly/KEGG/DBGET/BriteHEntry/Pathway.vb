@@ -108,7 +108,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
             Return String.Join("/", ParentDIR, [Module].TrimPath(entry.Class), [Module].TrimPath(entry.Category))
         End Function
 
-        Public ReadOnly Property EntryId As String Implements IReadOnlyId.locusId
+        Public ReadOnly Property EntryId As String Implements IReadOnlyId.Identity
             Get
                 Return Entry.Key
             End Get

@@ -29,7 +29,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         ''' <returns></returns>
         Public Property Entry As ComponentModel.KeyValuePair
 
-        Public ReadOnly Property EntryId As String Implements IReadOnlyId.locusId
+        Public ReadOnly Property EntryId As String Implements IReadOnlyId.Identity
             Get
                 Return Entry.Key
             End Get

@@ -10,7 +10,7 @@ Namespace Assembly.MetaCyc.File.FileSystem.FastaObjects
     Public Class GeneObject : Inherits FastaToken
         Implements IReadOnlyId
 
-        Public ReadOnly Property UniqueId As String Implements IReadOnlyId.locusId
+        Public ReadOnly Property UniqueId As String Implements IReadOnlyId.Identity
             Get
                 Return Attributes.Last.Split.First
             End Get
