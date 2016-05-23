@@ -9,6 +9,7 @@ Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports Microsoft.VisualBasic.Serialization
 Imports LANS.SystemsBiology.ContextModel
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -138,6 +139,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
                 _features = value
                 _forwards = __getStrandFeatures(Strands.Forward)
                 _reversed = __getStrandFeatures(Strands.Reverse)
+                _contextModel = New GenomeContextProvider(Of Feature)(Me)
             End Set
         End Property
 
@@ -150,6 +152,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         Dim _features As Feature()
         Dim _forwards As Feature()
         Dim _reversed As Feature()
+        Dim _contextModel As GenomeContextProvider(Of Feature)
 
         Sub New()
         End Sub
@@ -311,11 +314,16 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         End Function
 
         Public Function ProtId2Locus() As Dictionary(Of String, String)
-            Dim CDS = (From x In Features Where String.Equals(x.Feature, "CDS", StringComparison.OrdinalIgnoreCase) Select x).ToArray
-            Dim gene = (From x In Features
-                        Where String.Equals(x.Feature, "gene", StringComparison.OrdinalIgnoreCase)
-                        Select x).ToDictionary(Function(x) x.attributes("id"))
-            Dim transformHash As Dictionary(Of String, String) = (From x As Feature In CDS
+            Dim CDS As Feature() =
+                LinqAPI.Exec(Of Feature) <= From x In Features
+                                            Where String.Equals(x.Feature, "CDS", StringComparison.OrdinalIgnoreCase)
+                                            Select x
+            Dim gene As Dictionary(Of String, Feature) = (From x In Features
+                                                          Where String.Equals(x.Feature, "gene", StringComparison.OrdinalIgnoreCase)
+                                                          Select x) _
+                                                                .ToDictionary(Function(x) x.attributes("id"))
+            Dim transformHash As Dictionary(Of String, String) = (From x As Feature
+                                                                  In CDS
                                                                   Let parent As String = x.attributes("parent")
                                                                   Where gene.ContainsKey(parent)
                                                                   Select x,
@@ -329,8 +337,8 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
                                         Optional unstrand As Boolean = False,
                                         Optional ATGDist As Integer = 500) As Relationship(Of Feature)() Implements IGenomicsContextProvider(Of Feature).GetRelatedGenes
 
-            Dim source As Feature() = If(unstrand, Features, GetStrandFeatures(loci.Strand))
-            Dim relates As Relationship(Of Feature)() = ContextModel.GetRelatedGenes(source, loci, ATGDist)
+            Dim relates As Relationship(Of Feature)() =
+                _contextModel.GetAroundRelated(loci, Not unstrand, ATGDist)
             Return relates
         End Function
 
