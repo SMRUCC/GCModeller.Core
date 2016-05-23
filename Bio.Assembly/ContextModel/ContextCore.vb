@@ -5,6 +5,10 @@ Imports Microsoft.VisualBasic.Language
 
 Namespace ContextModel
 
+    ''' <summary>
+    ''' The working core of the genomics context provider.
+    ''' </summary>
+    ''' <typeparam name="T"></typeparam>
     Public Structure RelationDelegate(Of T As IGeneBrief)
 
         Dim dataSource As OrderSelector(Of IntTag(Of T))

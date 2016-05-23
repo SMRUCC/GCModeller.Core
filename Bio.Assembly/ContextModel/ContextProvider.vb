@@ -14,14 +14,20 @@ Namespace ContextModel
         ReadOnly _reversed As OrderSelector(Of IntTag(Of T))
 
         Sub New(genome As IGenomicsContextProvider(Of T))
-            _forwards = IntTag(Of T).OrderSelector(
+            Call Me.New(
                 genome.GetStrandFeatures(Strands.Forward),
-                Function(x) x.Location.Left,
-                True)
-            _reversed = IntTag(Of T).OrderSelector(
-                genome.GetStrandFeatures(Strands.Reverse),
-                Function(x) x.Location.Right,
-                False)
+                genome.GetStrandFeatures(Strands.Reverse))
+        End Sub
+
+        Sub New(forwards As IEnumerable(Of T), reversed As IEnumerable(Of T))
+            _forwards = IntTag(Of T).OrderSelector(forwards, Function(x) x.Location.Left, True)
+            _reversed = IntTag(Of T).OrderSelector(reversed, Function(x) x.Location.Right, False)
+        End Sub
+
+        Sub New(source As T())
+            Call Me.New(
+                (From x As T In source Where x.Location.Strand = Strands.Forward Select x),
+                (From x As T In source Where x.Location.Strand = Strands.Reverse Select x))
         End Sub
 
         ''' <summary>
@@ -69,21 +75,23 @@ Namespace ContextModel
         ''' 并没有判断链的方向，假若需要判断链的方向，请在调用本函数之前就将参数<paramref name="source"/>按照链的方向筛选出来)
         ''' </summary>
         ''' <param name="source"></param>
-        ''' <param name="LociStart"></param>
-        ''' <param name="LociEnds"></param>
-        ''' <param name="ATGDistance"></param>
+        ''' <param name="start"></param>
+        ''' <param name="ends"></param>
+        ''' <param name="ATGDist"></param>
         ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
         ''' <remarks></remarks>
-        Public Function GetRelatedGenes(
-                                    source As IEnumerable(Of T),
-                                    LociStart As Integer,
-                                    LociEnds As Integer,
-                                    Optional ATGDistance As Integer = 500) As Relationship(Of T)()
-            Dim ntSite As New NucleotideLocation(
-                LociStart,
-                LociEnds,
-                Strand:=Strands.Unknown)
-            Return GetAroundRelated(source, ntSite, ATGDistance)
+        Public Shared Function GetRelatedGenes(source As IEnumerable(Of T),
+                                               start As Integer,
+                                               ends As Integer,
+                                               Optional ATGDist As Integer = 500,
+                                               Optional stranded As Boolean = True) As Relationship(Of T)()
+
+            Dim ntSite As New NucleotideLocation(start, ends, Strands.Unknown)
+            Dim provider As New GenomeContextProvider(Of T)(source.ToArray)
+            Dim relates As Relationship(Of T)() =
+                provider.GetAroundRelated(ntSite, stranded, ATGDist)
+
+            Return relates
         End Function
 
         ''' <summary>
@@ -94,7 +102,7 @@ Namespace ContextModel
         ''' <param name="Loci"></param>
         ''' <param name="ATGDistance"></param>
         ''' <returns></returns>
-        Public Function GetRelatedUpstream(source As IEnumerable(Of T), Loci As NucleotideLocation, Optional ATGDistance As Integer = 2000) As Relationship(Of T)()
+        Public Shared Function GetRelatedUpstream(source As IEnumerable(Of T), Loci As NucleotideLocation, Optional ATGDistance As Integer = 2000) As Relationship(Of T)()
             Dim LociDelegate = New RelationDelegate(Of T) With {
                 .dataSource = source,
                 .loci = Loci.Normalization
@@ -110,12 +118,19 @@ Namespace ContextModel
             Return data0.ToArray
         End Function
 
-        Public Function GetRelatedGenes(DataSource As IEnumerable(Of GeneBrief), Loci As NucleotideLocation, relation As SegmentRelationships) As GeneBrief()
-            Dim LociDelegate = New RelationDelegate(Of T) With {
-                .dataSource = DataSource,
-                .loci = Loci
-            }
-            Return LociDelegate.GetRelation(relation)
+        Public Shared Function GetRelatedGenes(source As IEnumerable(Of T),
+                                               loci As NucleotideLocation,
+                                               relation As SegmentRelationships,
+                                               Optional dist As Integer = 500,
+                                               Optional stranded As Boolean = True) As T()
+            Dim provider As New GenomeContextProvider(Of T)(source.ToArray)
+            Dim relates As Relationship(Of T)() =
+                provider.GetAroundRelated(loci, stranded, dist)
+
+            Return LinqAPI.Exec(Of T) <= From x As Relationship(Of T)
+                                         In relates
+                                         Where x.Relation = relation
+                                         Select x.Gene
         End Function
 
         Public Function GetSource(strand As Strands) As OrderSelector(Of IntTag(Of T))
@@ -123,6 +138,27 @@ Namespace ContextModel
                 Return _forwards
             Else
                 Return _reversed
+            End If
+        End Function
+
+        Private Function __delegate(loci As NucleotideLocation, stranded As Boolean) As Func(Of Strands, Integer, T())
+            Dim strand As Strands = loci.Strand
+
+            If stranded Then
+                Return AddressOf New RelationDelegate(Of T) With {
+                    .dataSource = GetSource(strand),
+                    .loci = loci.Normalization
+                }.GetRelation
+            Else
+                Dim asc As New RelationDelegate(Of T) With {
+                    .dataSource = _forwards,
+                    .loci = loci.Normalization
+                }
+                Dim desc As New RelationDelegate(Of T) With {
+                    .dataSource = _reversed,
+                    .loci = loci
+                }
+                Return Function(relType, dist) desc.GetRelation(relType, dist) + (MakeList(Of T)() <= asc.GetRelation(relType, dist))
             End If
         End Function
 
@@ -135,28 +171,23 @@ Namespace ContextModel
         ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
         ''' <remarks></remarks>
         Public Function GetAroundRelated(loci As NucleotideLocation, Optional stranded As Boolean = True, Optional lociDist As Integer = 500) As Relationship(Of T)()
-            Dim source As OrderSelector(Of IntTag(Of T)) = GetSource(loci.Strand)
+            Dim GetRelation = __delegate(loci, stranded)
             Dim foundTEMP As T()
             Dim lstRelated As New List(Of Relationship(Of T))
-            Dim LociDelegate As New RelationDelegate(Of T) With {
-                .dataSource = source,
-                .loci = loci.Normalization
-            }
 
-            foundTEMP = LociDelegate.GetRelation(SegmentRelationships.UpStream)
-            foundTEMP = (From GeneObject As T
-                         In foundTEMP
-                         Where Math.Abs(GetATGDistance(loci, GeneObject)) <= lociDist
-                         Select GeneObject).ToArray '获取ATG距离小于阈值的所有基因
+            foundTEMP = GetRelation(SegmentRelationships.UpStream, lociDist)  ' 获取ATG距离小于阈值的所有基因
+            'foundTEMP = (From gene As T
+            '             In foundTEMP
+            '             Where Math.Abs(GetATGDistance(loci, gene)) <= lociDist
+            '             Select gene).ToArray
 
             If Not foundTEMP.IsNullOrEmpty Then
-                Dim lstBuff = (From Gene As T
-                               In foundTEMP.AsParallel
-                               Select New Relationship(Of T)(Gene, SegmentRelationships.UpStream)).ToArray
-                Call lstRelated.AddRange(lstBuff)
+                lstRelated += From gene As T
+                              In foundTEMP
+                              Select New Relationship(Of T)(gene, SegmentRelationships.UpStream)
             End If
 
-            For Each RelationShip In New SegmentRelationships() {
+            For Each relationShip In New SegmentRelationships() {
  _
                SegmentRelationships.Equals,
                SegmentRelationships.Inside,
@@ -165,28 +196,27 @@ Namespace ContextModel
                SegmentRelationships.Cover
             }
 
-                foundTEMP = LociDelegate.GetRelation(RelationShip)
+                foundTEMP = GetRelation(relationShip, 3 * lociDist)
 
                 If Not foundTEMP.IsNullOrEmpty Then
-                    Dim lstBuff = (From Gene As T
-                                   In foundTEMP.AsParallel
-                                   Select New Relationship(Of T)(Gene, RelationShip)).ToArray
-                    Call lstRelated.AddRange(lstBuff)
+                    lstRelated += From gene As T
+                                  In foundTEMP
+                                  Select New Relationship(Of T)(gene, relationShip)
                 End If
             Next
 
-            Dim DownStreamGenes = LociDelegate.GetRelation(SegmentRelationships.DownStream)
-            Dim Dwsrt As T() = (From Gene As T
-                                     In DownStreamGenes
-                                Let Distance As Integer = LocationDescriptions.AtgDistance(Gene, loci)
-                                Where Distance <= lociDist
-                                Select Gene).ToArray
+            Dim DownStreamGenes = GetRelation(SegmentRelationships.DownStream, 3 * lociDist)
+            Dim Dwsrt As T() =
+                LinqAPI.Exec(Of T) <= From gene As T
+                                      In DownStreamGenes
+                                      Let Distance As Integer = LocationDescriptions.AtgDistance(gene, loci)
+                                      Where Distance <= lociDist
+                                      Select gene
 
             If Not Dwsrt.IsNullOrEmpty Then
-                Dim lstBuff = (From Gene As T
-                               In foundTEMP.AsParallel
-                               Select New Relationship(Of T)(Gene, SegmentRelationships.DownStream)).ToArray
-                Call lstRelated.AddRange(lstBuff)
+                lstRelated += From gene As T
+                              In foundTEMP
+                              Select New Relationship(Of T)(gene, SegmentRelationships.DownStream)
             End If
 
             Return lstRelated.ToArray  '只返回下游的第一个基因
