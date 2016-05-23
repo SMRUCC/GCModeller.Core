@@ -48,8 +48,11 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
 
                 _forwards = (From gene As GeneBrief In value Where gene.Location.Strand = Strands.Forward Select gene).ToArray
                 _reversed = (From gene As GeneBrief In value Where gene.Location.Strand = Strands.Reverse Select gene).ToArray
+                _contextModel = New GenomeContextProvider(Of GeneBrief)(Me)
             End Set
         End Property
+
+        Dim _contextModel As GenomeContextProvider(Of GeneBrief)
 
         Public ReadOnly Property forwards As GeneBrief()
         Public ReadOnly Property reversed As GeneBrief()
@@ -412,8 +415,8 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         Public Function GetRelatedGenes(loci As NucleotideLocation,
                                         Optional unstrand As Boolean = False,
                                         Optional ATGDist As Integer = 500) As Relationship(Of GeneBrief)() Implements IGenomicsContextProvider(Of GeneBrief).GetRelatedGenes
-            Dim source As GeneBrief() = If(unstrand, GeneObjects, GetStrandGene(loci.Strand))
-            Dim relates As Relationship(Of GeneBrief)() = ContextModel.GetRelatedGenes(source, loci, ATGDist)
+            Dim relates As Relationship(Of GeneBrief)() =
+                _contextModel.GetRelatedGenes(loci, Not unstrand, ATGDist)
             Return relates
         End Function
     End Class
