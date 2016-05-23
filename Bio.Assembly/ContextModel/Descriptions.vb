@@ -34,232 +34,14 @@ Namespace ContextModel
             Return BlankData
         End Function
 
-        Private Function __getLocationFunction(Of T_Gene As IGeneBrief)(
-                                                  GeneSegment As T_Gene,
-                                                  SegmentLocation As NucleotideLocation) As SegmentRelationships
+        Public Function AtgDistance(Of T As IGeneBrief)(gene As T, nucl As NucleotideLocation) As Integer
+            Call nucl.Normalization()
+            Call gene.Location.Normalization()
 
-            Dim r = GeneSegment.Location.GetRelationship(SegmentLocation)
-
-            If r = SegmentRelationships.DownStream AndAlso
-                GeneSegment.Location.Strand = Strands.Reverse Then
-                Return SegmentRelationships.UpStream  '反向的基因需要被特别注意，当目标片段处于下游的时候，该下游片段可能为该基因的启动子区
-
-            ElseIf r = SegmentRelationships.UpStream AndAlso
-                GeneSegment.Location.Strand = Strands.Reverse Then
-                Return SegmentRelationships.DownStream
-
-            ElseIf r = SegmentRelationships.UpStreamOverlap AndAlso
-                GeneSegment.Location.Strand = Strands.Reverse Then
-                Return SegmentRelationships.DownStreamOverlap
-
-            ElseIf r = SegmentRelationships.DownStreamOverlap AndAlso
-                GeneSegment.Location.Strand = Strands.Reverse Then
-                Return SegmentRelationships.UpStreamOverlap
-
+            If gene.Location.Strand = Strands.Forward Then
+                Return Math.Abs(gene.Location.Right - nucl.Left)
             Else
-                Return r
-            End If
-        End Function
-
-        ''' <summary>
-        ''' 获取某一个指定的位点在基因组之中的内部反向的基因的集合
-        ''' </summary>
-        ''' <typeparam name="T_Gene"></typeparam>
-        ''' <param name="source"></param>
-        ''' <param name="LociStart"></param>
-        ''' <param name="LociEnds"></param>
-        ''' <param name="Strand"></param>
-        ''' <returns></returns>
-        Public Function GetInnerAntisense(Of T_Gene As IGeneBrief)(source As IEnumerable(Of T_Gene),
-                                                                    LociStart As Integer,
-                                                                    LociEnds As Integer,
-                                                                    Strand As Strands) As T_Gene()
-            Dim Raw As Relationship(Of T_Gene)() = source.GetRelatedGenes(LociStart, LociEnds, 0)
-            Dim LQuery = (From obj In Raw
-                          Where obj.Relation = SegmentRelationships.Inside AndAlso '只需要在内部并且和指定的链的方向反向的对象就可以了
-                              (Strand <> obj.Gene.Location.Strand AndAlso
-                              obj.Gene.Location.Strand <> Strands.Unknown)
-                          Select obj.Gene).ToArray
-            Return LQuery
-        End Function
-
-        ''' <summary>
-        ''' Gets the related genes on a specific loci site location.(函数获取某一个给定的位点附近的所有的有关联的基因对象。
-        ''' 请注意，这个函数仅仅是依靠于两个位点之间的相互位置关系来判断的，
-        ''' 并没有判断链的方向，假若需要判断链的方向，请在调用本函数之前就将参数<paramref name="datasource"/>按照链的方向筛选出来)
-        ''' </summary>
-        ''' <param name="DataSource"></param>
-        ''' <param name="LociStart"></param>
-        ''' <param name="LociEnds"></param>
-        ''' <param name="ATGDistance"></param>
-        ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
-        ''' <remarks></remarks>
-        <Extension> Public Function GetRelatedGenes(DataSource As IEnumerable(Of GeneBrief),
-                                                    LociStart As Integer,
-                                                    LociEnds As Integer,
-                                                    Optional ATGDistance As Integer = 500) As Relationship(Of GeneBrief)()
-            Return GetRelatedGenes(Of GeneBrief)(DataSource, LociStart, LociEnds, ATGDistance)
-        End Function
-
-        ''' <summary>
-        ''' Gets the related genes on a specific loci site location.(函数获取某一个给定的位点附近的所有的有关联的基因对象。
-        ''' 请注意，这个函数仅仅是依靠于两个位点之间的相互位置关系来判断的，
-        ''' 并没有判断链的方向，假若需要判断链的方向，请在调用本函数之前就将参数<paramref name="source"/>按照链的方向筛选出来)
-        ''' </summary>
-        ''' <typeparam name="T_Gene"></typeparam>
-        ''' <param name="source"></param>
-        ''' <param name="LociStart"></param>
-        ''' <param name="LociEnds"></param>
-        ''' <param name="ATGDistance"></param>
-        ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
-        ''' <remarks></remarks>
-        <Extension> Public Function GetRelatedGenes(Of T_Gene As IGeneBrief)(
-                                    source As Generic.IEnumerable(Of T_Gene),
-                                    LociStart As Integer,
-                                    LociEnds As Integer,
-                                    Optional ATGDistance As Integer = 500) As Relationship(Of T_Gene)()
-            Dim ntSite As New ComponentModel.Loci.NucleotideLocation(
-                LociStart,
-                LociEnds,
-                Strand:=Strands.Unknown)
-            Return GetRelatedGenes(source, ntSite, ATGDistance)
-        End Function
-
-        Private Structure __getRelationDelegate(Of T_Gene As IGeneBrief)
-            Dim DataSource As Generic.IEnumerable(Of T_Gene)
-            Dim Loci As NucleotideLocation
-
-            Public Function GetRelation(RelationType As SegmentRelationships) As T_Gene()
-                Dim Loci As NucleotideLocation = Me.Loci
-
-                Return (From GeneSegment As T_Gene
-                        In DataSource
-                        Let Relation = __getLocationFunction(GeneSegment, Loci)
-                        Where Relation = RelationType
-                        Select GeneSegment).ToArray
-            End Function
-
-            Public Function GetRelation(RelationType As SegmentRelationships, ATGDistance As Integer) As T_Gene()
-                Dim Genes = GetRelation(RelationType)
-                Dim Loci As ComponentModel.Loci.NucleotideLocation = Me.Loci
-                Dim LQuery = (From GeneObject As T_Gene
-                              In Genes
-                              Where Math.Abs(GetATGDistance(Loci, GeneObject)) <= ATGDistance
-                              Select GeneObject).ToArray '获取ATG距离小于阈值的所有基因
-                Return LQuery
-            End Function
-        End Structure
-
-        ''' <summary>
-        ''' <see cref="SegmentRelationships.UpStreamOverlap"/> and 
-        ''' <see cref="SegmentRelationships.UpStream"/>
-        ''' </summary>
-        ''' <typeparam name="T_Gene"></typeparam>
-        ''' <param name="source"></param>
-        ''' <param name="Loci"></param>
-        ''' <param name="ATGDistance"></param>
-        ''' <returns></returns>
-        <Extension> Public Function GetRelatedUpstream(Of T_Gene As IGeneBrief)(source As IEnumerable(Of T_Gene),
-                                                                                 Loci As NucleotideLocation,
-                                                                                 Optional ATGDistance As Integer = 2000) As Relationship(Of T_Gene)()
-            Dim LociDelegate = New __getRelationDelegate(Of T_Gene)() With {
-                .DataSource = source,
-                .Loci = Loci.Normalization
-            }
-            Dim UpStreams As New KeyValuePair(Of SegmentRelationships, T_Gene())(
-               SegmentRelationships.UpStream,
-                LociDelegate.GetRelation(SegmentRelationships.UpStream, ATGDistance))
-            Dim UpStreamOverlaps As New KeyValuePair(Of SegmentRelationships, T_Gene())(
-               SegmentRelationships.UpStreamOverlap,
-                LociDelegate.GetRelation(SegmentRelationships.UpStreamOverlap, ATGDistance))
-            Dim array = {UpStreams, UpStreamOverlaps}
-            Dim data0 = array.ToArray(Function(x) x.Value.ToArray(Function(g) New Relationship(Of T_Gene)(g, x.Key))).MatrixToList
-            Return data0.ToArray
-        End Function
-
-        Public Function GetRelatedGenes(DataSource As IEnumerable(Of GeneBrief), Loci As NucleotideLocation, relation As SegmentRelationships) As GeneBrief()
-            Dim LociDelegate = New __getRelationDelegate(Of GeneBrief)() With {
-                .DataSource = DataSource,
-                .Loci = Loci
-            }
-            Return LociDelegate.GetRelation(relation)
-        End Function
-
-        ''' <summary>
-        ''' Gets the related genes on a specific loci site location.(函数获取某一个给定的位点附近的所有的有关联的基因对象。
-        ''' 请注意，这个函数仅仅是依靠于两个位点之间的相互位置关系来判断的，
-        ''' 并没有判断链的方向，假若需要判断链的方向，请在调用本函数之前就将参数<paramref name="source"/>按照链的方向筛选出来)
-        ''' </summary>
-        ''' <typeparam name="T_Gene"></typeparam>
-        ''' <param name="source"></param>
-        ''' <param name="ATGDistance"></param>
-        ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
-        ''' <remarks></remarks>
-        <Extension> Public Function GetRelatedGenes(Of T_Gene As IGeneBrief)(source As IEnumerable(Of T_Gene), Loci As NucleotideLocation, Optional ATGDistance As Integer = 500) As Relationship(Of T_Gene)()
-            Dim foundTEMP As T_Gene()
-            Dim lstRelated As New List(Of Relationship(Of T_Gene))
-            Dim LociDelegate As New __getRelationDelegate(Of T_Gene)() With {
-                .DataSource = source,
-                .Loci = Loci.Normalization
-            }
-
-            foundTEMP = LociDelegate.GetRelation(SegmentRelationships.UpStream)
-            foundTEMP = (From GeneObject As T_Gene
-                         In foundTEMP
-                         Where Math.Abs(GetATGDistance(Loci, GeneObject)) <= ATGDistance
-                         Select GeneObject).ToArray '获取ATG距离小于阈值的所有基因
-
-            If Not foundTEMP.IsNullOrEmpty Then
-                Dim lstBuff = (From Gene As T_Gene
-                               In foundTEMP.AsParallel
-                               Select New Relationship(Of T_Gene)(Gene, SegmentRelationships.UpStream)).ToArray
-                Call lstRelated.AddRange(lstBuff)
-            End If
-
-            For Each RelationShip In New ComponentModel.Loci.SegmentRelationships() {
- _
-               SegmentRelationships.Equals,
-               SegmentRelationships.Inside,
-               SegmentRelationships.DownStreamOverlap,
-               SegmentRelationships.UpStreamOverlap,
-               SegmentRelationships.Cover
-            }
-
-                foundTEMP = LociDelegate.GetRelation(RelationShip)
-
-                If Not foundTEMP.IsNullOrEmpty Then
-                    Dim lstBuff = (From Gene As T_Gene
-                                   In foundTEMP.AsParallel
-                                   Select New Relationship(Of T_Gene)(Gene, RelationShip)).ToArray
-                    Call lstRelated.AddRange(lstBuff)
-                End If
-            Next
-
-            Dim DownStreamGenes = LociDelegate.GetRelation(SegmentRelationships.DownStream)
-            Dim Dwsrt As T_Gene() = (From Gene As T_Gene
-                                     In DownStreamGenes
-                                     Let Distance As Integer = __atgDistance(Gene, Loci)
-                                     Where Distance <= ATGDistance
-                                     Select Gene).ToArray
-
-            If Not Dwsrt.IsNullOrEmpty Then
-                Dim lstBuff = (From Gene As T_Gene
-                               In foundTEMP.AsParallel
-                               Select New Relationship(Of T_Gene)(Gene, SegmentRelationships.DownStream)).ToArray
-                Call lstRelated.AddRange(lstBuff)
-            End If
-
-            Return lstRelated.ToArray  '只返回下游的第一个基因
-        End Function
-
-        Private Function __atgDistance(Of T_Gene As IGeneBrief)(Gene As T_Gene, LociLocation As NucleotideLocation) As Integer
-            Call LociLocation.Normalization()
-            Call Gene.Location.Normalization()
-
-            If Gene.Location.Strand = Strands.Forward Then
-                Return Math.Abs(Gene.Location.Right - LociLocation.Left)
-            Else
-                Return Math.Abs(Gene.Location.Left - LociLocation.Right)
+                Return Math.Abs(gene.Location.Left - nucl.Right)
             End If
         End Function
 
@@ -267,21 +49,29 @@ Namespace ContextModel
         ''' Calculates the ATG distance between the target gene and a loci segment on.(计算位点相对于某一个基因的ATG距离)
         ''' </summary>
         ''' <param name="loci"></param>
-        ''' <param name="Gene"></param>
+        ''' <param name="gene"></param>
         ''' <returns>总是计算最大的距离</returns>
         ''' <remarks></remarks>
-        <Extension> Public Function GetATGDistance(loci As ComponentModel.Loci.Location, Gene As IGeneBrief) As Integer
+        <Extension> Public Function GetATGDistance(loci As Location, gene As IGeneBrief) As Integer
             Call loci.Normalization()
-            Call Gene.Location.Normalization()
+            Call gene.Location.Normalization()
 
-            If Gene.Location.Strand = Strands.Forward Then '直接和左边相减
-                Return loci.Right - Gene.Location.Left
-            ElseIf Gene.Location.Strand = Strands.Reverse Then  '互补链方向的基因，则应该减去右边
-                Return Gene.Location.Right - loci.Left
+            If gene.Location.Strand = Strands.Forward Then '直接和左边相减
+                Return loci.Right - gene.Location.Left
+            ElseIf gene.Location.Strand = Strands.Reverse Then  '互补链方向的基因，则应该减去右边
+                Return gene.Location.Right - loci.Left
             Else
-                Return loci.Left - Gene.Location.Left
+                Return loci.Left - gene.Location.Left
             End If
         End Function
+
+        Const Intergenic As String = "Intergenic region"
+        Const DownStream As String = "In the downstream of [{0}] gene ORF."
+        Const IsORF As String = "Is [{0}] gene ORF."
+        Const Inside As String = "Inside the [{0}] gene ORF."
+        Const OverloapsDownStream As String = "Overlap on down_stream with [{0}] gene ORF."
+        Const OverlapsUpStream As String = "Overlap on up_stream with [{0}] gene ORF."
+        Const PromoterRegion As String = "In the promoter region of [{0}] gene ORF."
 
         ''' <summary>
         ''' Gets the loci location description data.
@@ -293,20 +83,20 @@ Namespace ContextModel
         ''' <remarks></remarks>
         <Extension> Public Function LocationDescription(Of T As IGeneBrief)(posi As SegmentRelationships, data As T) As String
             If IsBlankSegment(data) Then
-                Return "Intergenic region"
+                Return Intergenic
 
             ElseIf posi = SegmentRelationships.DownStream Then
-                Return String.Format("In the downstream of [{0}] gene ORF.", data.Identifier)
+                Return String.Format(DownStream, data.Identifier)
             ElseIf posi = SegmentRelationships.Equals Then
-                Return String.Format("Is [{0}] gene ORF.", data.Identifier)
+                Return String.Format(IsORF, data.Identifier)
             ElseIf posi = SegmentRelationships.Inside Then
-                Return String.Format("Inside the [{0}] gene ORF.", data.Identifier)
+                Return String.Format(Inside, data.Identifier)
             ElseIf posi = SegmentRelationships.DownStreamOverlap Then
-                Return String.Format("Overlap on down_stream with [{0}] gene ORF.", data.Identifier)
+                Return String.Format(OverloapsDownStream, data.Identifier)
             ElseIf posi = SegmentRelationships.UpStreamOverlap Then
-                Return String.Format("Overlap on up_stream with [{0}] gene ORF.", data.Identifier)
+                Return String.Format(OverlapsUpStream, data.Identifier)
             Else
-                Return String.Format("In the promoter region of [{0}] gene ORF.", data.Identifier)
+                Return String.Format(PromoterRegion, data.Identifier)
             End If
         End Function
     End Module
