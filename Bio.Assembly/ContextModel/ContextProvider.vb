@@ -4,6 +4,7 @@ Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports Microsoft.VisualBasic.ComponentModel.Ranges
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Language
 
 Namespace ContextModel
 
@@ -82,34 +83,8 @@ Namespace ContextModel
                 LociStart,
                 LociEnds,
                 Strand:=Strands.Unknown)
-            Return GetRelatedGenes(source, ntSite, ATGDistance)
+            Return GetAroundRelated(source, ntSite, ATGDistance)
         End Function
-
-        Private Structure __getRelationDelegate
-            Dim DataSource As IEnumerable(Of T)
-            Dim Loci As NucleotideLocation
-
-            Public Function GetRelation(relType As SegmentRelationships) As T()
-                Dim Loci As NucleotideLocation = Me.Loci
-
-                Return (From GeneSegment As T
-                        In DataSource
-                        Let Relation As SegmentRelationships =
-                            GetLociRelations(GeneSegment, Loci)
-                        Where Relation = relType
-                        Select GeneSegment).ToArray
-            End Function
-
-            Public Function GetRelation(relType As SegmentRelationships, ATGDistance As Integer) As T()
-                Dim Genes = GetRelation(relType)
-                Dim Loci As NucleotideLocation = Me.Loci
-                Dim LQuery = (From GeneObject As T
-                              In Genes
-                              Where Math.Abs(GetATGDistance(Loci, GeneObject)) <= ATGDistance
-                              Select GeneObject).ToArray '获取ATG距离小于阈值的所有基因
-                Return LQuery
-            End Function
-        End Structure
 
         ''' <summary>
         ''' <see cref="SegmentRelationships.UpStreamOverlap"/> and 
@@ -119,12 +94,10 @@ Namespace ContextModel
         ''' <param name="Loci"></param>
         ''' <param name="ATGDistance"></param>
         ''' <returns></returns>
-        Public Function GetRelatedUpstream(source As IEnumerable(Of T),
-                                                                                 Loci As NucleotideLocation,
-                                                                                 Optional ATGDistance As Integer = 2000) As Relationship(Of T)()
-            Dim LociDelegate = New __getRelationDelegate() With {
-                .DataSource = source,
-                .Loci = Loci.Normalization
+        Public Function GetRelatedUpstream(source As IEnumerable(Of T), Loci As NucleotideLocation, Optional ATGDistance As Integer = 2000) As Relationship(Of T)()
+            Dim LociDelegate = New RelationDelegate(Of T) With {
+                .dataSource = source,
+                .loci = Loci.Normalization
             }
             Dim UpStreams As New KeyValuePair(Of SegmentRelationships, T())(
                SegmentRelationships.UpStream,
@@ -138,34 +111,42 @@ Namespace ContextModel
         End Function
 
         Public Function GetRelatedGenes(DataSource As IEnumerable(Of GeneBrief), Loci As NucleotideLocation, relation As SegmentRelationships) As GeneBrief()
-            Dim LociDelegate = New __getRelationDelegate() With {
-                .DataSource = DataSource,
-                .Loci = Loci
+            Dim LociDelegate = New RelationDelegate(Of T) With {
+                .dataSource = DataSource,
+                .loci = Loci
             }
             Return LociDelegate.GetRelation(relation)
+        End Function
+
+        Public Function GetSource(strand As Strands) As OrderSelector(Of IntTag(Of T))
+            If strand = Strands.Forward Then
+                Return _forwards
+            Else
+                Return _reversed
+            End If
         End Function
 
         ''' <summary>
         ''' Gets the related genes on a specific loci site location.(函数获取某一个给定的位点附近的所有的有关联的基因对象。
         ''' 请注意，这个函数仅仅是依靠于两个位点之间的相互位置关系来判断的，
-        ''' 并没有判断链的方向，假若需要判断链的方向，请在调用本函数之前就将参数<paramref name="source"/>按照链的方向筛选出来)
+        ''' 假若这个参数<param name="stranded"></param>为真，假若需要判断链的方向)
         ''' </summary>
-        ''' <param name="source"></param>
-        ''' <param name="ATGDistance"></param>
+        ''' <param name="lociDist"></param>
         ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
         ''' <remarks></remarks>
-        Public Function GetRelatedGenes(source As IEnumerable(Of T), Loci As NucleotideLocation, Optional ATGDistance As Integer = 500) As Relationship(Of T)()
+        Public Function GetAroundRelated(loci As NucleotideLocation, Optional stranded As Boolean = True, Optional lociDist As Integer = 500) As Relationship(Of T)()
+            Dim source As OrderSelector(Of IntTag(Of T)) = GetSource(loci.Strand)
             Dim foundTEMP As T()
             Dim lstRelated As New List(Of Relationship(Of T))
-            Dim LociDelegate As New __getRelationDelegate() With {
-                .DataSource = source,
-                .Loci = Loci.Normalization
+            Dim LociDelegate As New RelationDelegate(Of T) With {
+                .dataSource = source,
+                .loci = loci.Normalization
             }
 
             foundTEMP = LociDelegate.GetRelation(SegmentRelationships.UpStream)
             foundTEMP = (From GeneObject As T
                          In foundTEMP
-                         Where Math.Abs(GetATGDistance(Loci, GeneObject)) <= ATGDistance
+                         Where Math.Abs(GetATGDistance(loci, GeneObject)) <= lociDist
                          Select GeneObject).ToArray '获取ATG距离小于阈值的所有基因
 
             If Not foundTEMP.IsNullOrEmpty Then
@@ -197,8 +178,8 @@ Namespace ContextModel
             Dim DownStreamGenes = LociDelegate.GetRelation(SegmentRelationships.DownStream)
             Dim Dwsrt As T() = (From Gene As T
                                      In DownStreamGenes
-                                Let Distance As Integer = LocationDescriptions.AtgDistance(Gene, Loci)
-                                Where Distance <= ATGDistance
+                                Let Distance As Integer = LocationDescriptions.AtgDistance(Gene, loci)
+                                Where Distance <= lociDist
                                 Select Gene).ToArray
 
             If Not Dwsrt.IsNullOrEmpty Then

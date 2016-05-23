@@ -5,22 +5,23 @@ Imports LANS.SystemsBiology.ComponentModel
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports LANS.SystemsBiology.SequenceModel
 Imports LANS.SystemsBiology.ContextModel
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
     Public Class PTTDbLoader : Inherits TabularLazyLoader
         Implements IReadOnlyDictionary(Of String, GeneBrief)
 
-        Dim _CDSPtt As PTT
+        Dim _ORF_PTT As PTT
         Dim _RNARnt As PTT
-        Dim _GenomeFasta As FASTA.FastaToken
+        Dim _genomeOrigin As FASTA.FastaToken
         Dim _lstFile As PTTEntry
 
         ''' <summary>
         ''' 整个基因组中的所有基因的集合，包括有蛋白质编码基因和RNA基因
         ''' </summary>
         ''' <remarks></remarks>
-        Dim _GenomeList As Dictionary(Of String, GeneBrief) = New Dictionary(Of String, GeneBrief)
+        Dim _genomeContext As Dictionary(Of String, GeneBrief) = New Dictionary(Of String, GeneBrief)
 
         Public ReadOnly Property GeneFastas As Dictionary(Of String, FastaObjects.Fasta)
         Public ReadOnly Property Proteins As Dictionary(Of String, FastaObjects.Fasta)
@@ -32,9 +33,10 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function ExportCOGProfiles(Of T_Entry As ICOGDigest)() As T_Entry()
-            Dim LQuery = (From gene As GeneBrief
-                          In Me._GenomeList.Values.AsParallel
-                          Select gene.getCOGEntry(Of T_Entry)()).ToArray
+            Dim LQuery As T_Entry() =
+                LinqAPI.Exec(Of T_Entry) <= From gene As GeneBrief
+                                            In Me._genomeContext.Values.AsParallel
+                                            Select gene.getCOGEntry(Of T_Entry)()
             Return LQuery
         End Function
 
@@ -44,23 +46,28 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Shared Function CreateObject(briefs As IEnumerable(Of IGeneBrief), SourceFasta As FASTA.FastaToken) As PTTDbLoader
-            Dim BriefData = (From Protein In briefs Select GeneBrief.CreateObject(Protein)).ToArray
+            Dim BriefData As GeneBrief() =
+                LinqAPI.Exec(Of GeneBrief) <= From prot As IGeneBrief
+                                              In briefs
+                                              Select GeneBrief.CreateObject(prot)
             Return New PTTDbLoader With {
                 ._lstFile = New PTTEntry,
-                ._CDSPtt = New PTT With {
+                ._ORF_PTT = New PTT With {
                     .GeneObjects = BriefData,
                     .Size = SourceFasta.Length,
                     .Title = SourceFasta.Title
                 },
                 ._DIR = "NULL",
-                ._GenomeFasta = SourceFasta,
-                ._GenomeList = BriefData.ToDictionary(Function(gene) gene.Synonym),
+                ._genomeOrigin = SourceFasta,
+                ._genomeContext = BriefData.ToDictionary(Function(gene) gene.Synonym),
                 ._RptGenomeBrief = New Rpt With {
                     .Size = SourceFasta.Length,
                     .NumberOfGenes = briefs.Count
                 }
             }
         End Function
+
+        Dim __contextProvider As GenomeContextProvider(Of GeneBrief)
 
         ''' <summary>
         ''' 会依照所传递进来的<paramref name="Strand">链的方向的参数</paramref>来查找与之相关的基因
@@ -102,10 +109,10 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             _RptGenomeBrief = Rpt.Load(Of Rpt)(_lstFile.rpt)
 
             For Each genEntry As GeneBrief In ORF_PTT().GeneObjects
-                Call _GenomeList.Add(genEntry.Synonym, genEntry)
+                Call _genomeContext.Add(genEntry.Synonym, genEntry)
             Next
             For Each genEntry As GeneBrief In RNARnt.GeneObjects
-                Call _GenomeList.Add(genEntry.Synonym, genEntry)
+                Call _genomeContext.Add(genEntry.Synonym, genEntry)
             Next
 
             Dim FastaFile As FASTA.FastaFile
@@ -148,7 +155,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         Private Function GetGeneUniqueId(Location As String) As String
             Location = Location.Split.First
             Dim Points = (From m As Match In Regex.Matches(Location, "\d+") Let n = CInt(Val(m.Value)) Select n Order By n Ascending).ToArray
-            Dim LQuery = (From genEntry In _GenomeList
+            Dim LQuery = (From genEntry In _genomeContext
                           Where genEntry.Value.Location.Left = Points.First AndAlso
                               genEntry.Value.Location.Right = Points.Last
                           Select genEntry.Key).FirstOrDefault
@@ -156,7 +163,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         End Function
 
         Private Function GetLocusId(Pid As String) As String
-            Dim LQuery = (From genEntry In _GenomeList Where String.Equals(Pid, genEntry.Value.PID) Select genEntry.Key).FirstOrDefault
+            Dim LQuery = (From genEntry In _genomeContext Where String.Equals(Pid, genEntry.Value.PID) Select genEntry.Key).FirstOrDefault
             Return LQuery
         End Function
 
@@ -165,10 +172,10 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' </summary>
         ''' <returns></returns>
         Public Function ORF_PTT() As PTT
-            If _CDSPtt Is Nothing Then
-                _CDSPtt = PTT.Load(_lstFile.ptt)
+            If _ORF_PTT Is Nothing Then
+                _ORF_PTT = PTT.Load(_lstFile.ptt)
             End If
-            Return _CDSPtt
+            Return _ORF_PTT
         End Function
 
         ''' <summary>
@@ -191,10 +198,10 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' </summary>
         ''' <returns></returns>
         Public Function GenomeFasta() As FASTA.FastaToken
-            If _GenomeFasta Is Nothing Then
-                _GenomeFasta = FASTA.FastaToken.LoadNucleotideData(_lstFile.fna)
+            If _genomeOrigin Is Nothing Then
+                _genomeOrigin = FASTA.FastaToken.LoadNucleotideData(_lstFile.fna)
             End If
-            Return _GenomeFasta
+            Return _genomeOrigin
         End Function
 
         ''' <summary>
@@ -206,25 +213,25 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
 #Region " Implements IReadOnlyDictionary(Of String, PTT.GeneBrief)"
 
         Public Iterator Function GetEnumerator() As IEnumerator(Of KeyValuePair(Of String, TabularFormat.ComponentModels.GeneBrief)) Implements IEnumerable(Of KeyValuePair(Of String, TabularFormat.ComponentModels.GeneBrief)).GetEnumerator
-            For Each Item As KeyValuePair(Of String, TabularFormat.ComponentModels.GeneBrief) In _GenomeList
+            For Each Item As KeyValuePair(Of String, TabularFormat.ComponentModels.GeneBrief) In _genomeContext
                 Yield Item
             Next
         End Function
 
         Public ReadOnly Property Count As Integer Implements IReadOnlyCollection(Of KeyValuePair(Of String, TabularFormat.ComponentModels.GeneBrief)).Count
             Get
-                Return _GenomeList.Count
+                Return _genomeContext.Count
             End Get
         End Property
 
         Public Function ContainsKey(key As String) As Boolean Implements IReadOnlyDictionary(Of String, TabularFormat.ComponentModels.GeneBrief).ContainsKey
-            Return _GenomeList.ContainsKey(key)
+            Return _genomeContext.ContainsKey(key)
         End Function
 
         Default Public ReadOnly Property Item(key As String) As TabularFormat.ComponentModels.GeneBrief Implements IReadOnlyDictionary(Of String, TabularFormat.ComponentModels.GeneBrief).Item
             Get
-                If _GenomeList.ContainsKey(key) Then
-                    Return _GenomeList(key)
+                If _genomeContext.ContainsKey(key) Then
+                    Return _genomeContext(key)
                 Else
                     Return Nothing
                 End If
@@ -233,17 +240,17 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
 
         Public ReadOnly Property Keys As IEnumerable(Of String) Implements IReadOnlyDictionary(Of String, TabularFormat.ComponentModels.GeneBrief).Keys
             Get
-                Return _GenomeList.Keys
+                Return _genomeContext.Keys
             End Get
         End Property
 
         Public Function TryGetValue(key As String, ByRef value As TabularFormat.ComponentModels.GeneBrief) As Boolean Implements IReadOnlyDictionary(Of String, TabularFormat.ComponentModels.GeneBrief).TryGetValue
-            Return _GenomeList.TryGetValue(key, value)
+            Return _genomeContext.TryGetValue(key, value)
         End Function
 
         Public ReadOnly Property Values As IEnumerable(Of TabularFormat.ComponentModels.GeneBrief) Implements IReadOnlyDictionary(Of String, TabularFormat.ComponentModels.GeneBrief).Values
             Get
-                Return _GenomeList.Values
+                Return _genomeContext.Values
             End Get
         End Property
 
