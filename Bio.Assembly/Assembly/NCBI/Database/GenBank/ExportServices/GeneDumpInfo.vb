@@ -1,4 +1,4 @@
-﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Nodes
+﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
 Imports LANS.SystemsBiology.ComponentModel
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
@@ -12,7 +12,7 @@ Namespace Assembly.NCBI.GenBank.CsvExports
     ''' <remarks></remarks>
     Public Class GeneDumpInfo
         Implements sIdEnumerable
-        Implements I_GeneBrief
+        Implements IGeneBrief
 
         ''' <summary>
         ''' 假若在GBK文件之中没有Locus_tag属性，则导出函数<see cref="DumpEXPORT"></see>会尝试使用<see cref="ProteinId"></see>来替代
@@ -22,7 +22,7 @@ Namespace Assembly.NCBI.GenBank.CsvExports
         ''' <remarks></remarks>
         Public Property LocusID As String Implements sIdEnumerable.Identifier
         Public Property GeneName As String
-        Public Property CommonName As String Implements I_COGEntry.Product
+        Public Property CommonName As String Implements ICOGDigest.Product
         Public Property Left As Integer
         Public Property Right As Integer
         Public Property Strand As String
@@ -52,9 +52,9 @@ Namespace Assembly.NCBI.GenBank.CsvExports
         Public Property Translation As String
         Public Property Transl_Table As String
 
-        Public Property COG As String Implements I_COGEntry.COG
-        Public Property Length As Integer Implements I_COGEntry.Length
-        Public Property Location As NucleotideLocation Implements I_GeneBrief.Location
+        Public Property COG As String Implements ICOGDigest.COG
+        Public Property Length As Integer Implements ICOGDigest.Length
+        Public Property Location As NucleotideLocation Implements IGeneBrief.Location
             Get
                 Return New NucleotideLocation(Left, Right, Strand:=Strand)
             End Get

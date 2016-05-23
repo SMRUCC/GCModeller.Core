@@ -7,14 +7,14 @@ Namespace ComponentModel
     ''' The basically information of a gene object.(这个接口对象表示了一个在计算机程序之中的最基本的基因信息的载体对象)
     ''' </summary>
     ''' <remarks></remarks>
-    Public Interface I_GeneBrief : Inherits I_COGEntry, IContig
+    Public Interface IGeneBrief : Inherits ICOGDigest, IContig
     End Interface
 
     ''' <summary>
     ''' The COG annotation data of the genes.(基因对象的COG注释结果)
     ''' </summary>
     ''' <remarks></remarks>
-    Public Interface I_COGEntry : Inherits sIdEnumerable
+    Public Interface ICOGDigest : Inherits sIdEnumerable
 
         ''' <summary>
         ''' The gene object COG classification.(COG功能分类)

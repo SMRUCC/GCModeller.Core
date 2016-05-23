@@ -6,6 +6,7 @@ Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Terminal
 Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
+Imports LANS.SystemsBiology.ContextModel
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -303,11 +304,12 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         End Function
 
         ''' <summary>
-        ''' 通过基因的Locus_Tag, <see cref="GeneBrief.Synonym"/>来获取某一个基因对象是否存在
+        ''' Does the target locus_tag exists in this genome brief data model.
+        ''' (通过基因的locus_tag, <see cref="GeneBrief.Synonym"/>来获取某一个基因对象是否存在)
         ''' </summary>
         ''' <param name="locusId"><see cref="GeneBrief.Synonym"/></param>
         ''' <returns></returns>
-        Public Function ContainsGene(locusId As String) As Boolean Implements IReadOnlyDictionary(Of String, GeneBrief).ContainsKey
+        Public Function ExistsLocusId(locusId As String) As Boolean Implements IReadOnlyDictionary(Of String, GeneBrief).ContainsKey
             Return __innerHash.ContainsKey(locusId)
         End Function
 
@@ -411,7 +413,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
                                         Optional unstrand As Boolean = False,
                                         Optional ATGDist As Integer = 500) As Relationship(Of GeneBrief)() Implements IGenomicsContextProvider(Of GeneBrief).GetRelatedGenes
             Dim source As GeneBrief() = If(unstrand, GeneObjects, GetStrandGene(loci.Strand))
-            Dim relates As Relationship(Of GeneBrief)() = ComponentModel.Loci.GetRelatedGenes(source, loci, ATGDist)
+            Dim relates As Relationship(Of GeneBrief)() = ContextModel.GetRelatedGenes(source, loci, ATGDist)
             Return relates
         End Function
     End Class

@@ -4,6 +4,7 @@ Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
 Imports LANS.SystemsBiology.ComponentModel.Loci.NucleotideLocation
+Imports LANS.SystemsBiology.ContextModel
 Imports Microsoft.VisualBasic.Linq.Extensions
 
 Namespace SequenceModel.NucleotideModels

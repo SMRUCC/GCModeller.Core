@@ -10,14 +10,14 @@ Namespace Assembly.DOOR
     ''' </summary>
     ''' <remarks></remarks>
     Public Class GeneBrief : Implements sIdEnumerable
-        Implements I_GeneBrief
+        Implements IGeneBrief
 
         Public Property OperonID As String Implements sIdEnumerable.Identifier
         Public Property GI As String
         Public Property Synonym As String
-        Public Property Length As Integer Implements I_COGEntry.Length
-        Public Property COG_number As String Implements I_COGEntry.COG
-        Public Property Product As String Implements I_COGEntry.Product
+        Public Property Length As Integer Implements ICOGDigest.Length
+        Public Property COG_number As String Implements ICOGDigest.COG
+        Public Property Product As String Implements ICOGDigest.Product
         Public Property Location As NucleotideLocation Implements IContig.Location
 
         Public Overrides Function ToString() As String

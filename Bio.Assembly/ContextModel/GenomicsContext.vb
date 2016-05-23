@@ -1,8 +1,10 @@
 ﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+Imports LANS.SystemsBiology.ComponentModel
+Imports LANS.SystemsBiology.ComponentModel.Loci
 
-Namespace ComponentModel.Loci.Abstract
+Namespace ContextModel
 
-    Public Interface IGenomicsContextProvider(Of T As I_GeneBrief)
+    Public Interface IGenomicsContextProvider(Of T As IGeneBrief)
 
         ''' <summary>
         ''' Listing all of the features loci sites on the genome. 

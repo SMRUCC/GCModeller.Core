@@ -3,7 +3,7 @@ Imports System.Text.RegularExpressions
 Imports System.Text
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.CsvExports
 Imports System.Runtime.CompilerServices
-Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Nodes
+Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
 Imports Microsoft.VisualBasic
 Imports LANS.SystemsBiology.SequenceModel
 Imports Microsoft.VisualBasic.Serialization

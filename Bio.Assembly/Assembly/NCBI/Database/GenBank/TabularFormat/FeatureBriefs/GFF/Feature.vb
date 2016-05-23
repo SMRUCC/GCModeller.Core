@@ -19,7 +19,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
     ''' </summary>
     Public Class Feature : Inherits Contig
         Implements sIdEnumerable
-        Implements I_GeneBrief
+        Implements IGeneBrief
         Implements ILocationComponent
 
         ''' <summary>
@@ -178,7 +178,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             End Set
         End Property
 
-        Public Property COG As String Implements I_COGEntry.COG
+        Public Property COG As String Implements ICOGDigest.COG
             Get
                 Dim s As String = attributes.TryGetValue("note")
                 If String.IsNullOrEmpty(s) Then
@@ -199,7 +199,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             End Set
         End Property
 
-        Public Property Product As String Implements I_COGEntry.Product
+        Public Property Product As String Implements ICOGDigest.Product
             Get
                 Return attributes.TryGetValue("product")
             End Get
@@ -208,7 +208,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             End Set
         End Property
 
-        Public Property Length As Integer Implements I_COGEntry.Length
+        Public Property Length As Integer Implements ICOGDigest.Length
             Get
                 Return MappingLocation.FragmentSize
             End Get

@@ -278,7 +278,7 @@
     <Compile Include="Assembly\NCBI\Database\Genbank\ExportServices\gbEntry.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\ExportServices\gbExportService.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\DBLINK.vb" />
-    <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\FEATURES\Nodes\CDS.vb" />
+    <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\FEATURES\CDS.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\GbkWriter.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\SOURCE\ORGANISM.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\GFF\FeatureParser.vb" />
@@ -287,7 +287,10 @@
     <Compile Include="Assembly\Uniprot\UniprotFasta.vb" />
     <Compile Include="Assembly\Uniprot\IdMapping.vb" />
     <Compile Include="Assembly\Uniprot\Web\Entry.vb" />
-    <Compile Include="GenomicsContext\TFDensity.vb" />
+    <Compile Include="ContextModel\ContextCore.vb" />
+    <Compile Include="ContextModel\Operon.vb" />
+    <Compile Include="ContextModel\ContextProvider.vb" />
+    <Compile Include="ContextModel\TFDensity.vb" />
     <Compile Include="LICENSE.vb" />
     <Compile Include="ComponentModel\DBLinkBuilder\DBLink.vb" />
     <Compile Include="ComponentModel\DBLinkBuilder\Abstract.vb" />
@@ -302,12 +305,12 @@
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\GFF\Feature.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\GFF\GFF.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\GeneBrief.vb" />
-    <Compile Include="ComponentModel\Loci.Models\GenomicsContext.vb" />
+    <Compile Include="ContextModel\GenomicsContext.vb" />
     <Compile Include="ComponentModel\Loci.Models\TagSite.vb" />
     <Compile Include="ComponentModel\Loci.Models\LociAPI.vb" />
     <Compile Include="ComponentModel\Loci.Models\Nucleotide\SegmentRelationships.vb" />
-    <Compile Include="ComponentModel\Loci.Models\Nucleotide\Relationship.vb" />
-    <Compile Include="ComponentModel\Loci.Models\Nucleotide\Descriptions.vb" />
+    <Compile Include="ContextModel\Relationship.vb" />
+    <Compile Include="ContextModel\Descriptions.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\PTT\RNT.vb" />
     <Compile Include="Assembly\NCBI\SeqDump\Protein.vb" />
     <Compile Include="Assembly\NCBI\WebServiceHandler\ComponentModel.vb" />
@@ -327,7 +330,7 @@
     <Compile Include="Assembly\MetaCyc\Schemas\CompoundModelFactory.vb" />
     <Compile Include="Assembly\MetaCyc\Schemas\PathwayBrief\AssignGene.vb" />
     <Compile Include="Assembly\MetaCyc\Schemas\PathwayBrief\PwyFilters.vb" />
-    <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\FEATURES\Nodes\SearchInvoker.vb" />
+    <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\FEATURES\SearchInvoker.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\Fasta.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\PTT\PTTDbLoader.vb" />
     <Compile Include="ComponentModel\PeriodicTable.vb" />
@@ -423,7 +426,7 @@
     <Compile Include="Assembly\MetaCyc\Schemas\Reflection\PathRoute.vb" />
     <Compile Include="Assembly\MetaCyc\Schemas\Reflection\TableLink.vb" />
     <Compile Include="Assembly\NCBI\Database\CDD\BLAST\DomnArch.vb" />
-    <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\FEATURES\Nodes\Qualifier.vb" />
+    <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\FEATURES\Qualifier.vb" />
     <Compile Include="SequenceModel\NucleicAcid\NucleicAcid.vb" />
     <Compile Include="ComponentModel\ECNumber.vb" />
     <Compile Include="SequenceModel\FASTA\IO\FastaToken.vb" />
@@ -470,8 +473,8 @@
     <Compile Include="Assembly\MetaCyc\File\AttributeValue DataFile\DataFiles\Parser\FileReader.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\Gene.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\File.vb" />
-    <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\FEATURES\Nodes\Location.vb" />
-    <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\FEATURES\Nodes\Feature.vb" />
+    <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\FEATURES\Location.vb" />
+    <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\FEATURES\Feature.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\KeyWord.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\COMMENT.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\REFERENCE.vb" />

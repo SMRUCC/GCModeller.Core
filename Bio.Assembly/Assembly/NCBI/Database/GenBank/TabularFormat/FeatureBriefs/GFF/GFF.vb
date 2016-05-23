@@ -8,6 +8,7 @@ Imports System.Reflection
 Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports Microsoft.VisualBasic.Serialization
+Imports LANS.SystemsBiology.ContextModel
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -329,7 +330,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
                                         Optional ATGDist As Integer = 500) As Relationship(Of Feature)() Implements IGenomicsContextProvider(Of Feature).GetRelatedGenes
 
             Dim source As Feature() = If(unstrand, Features, GetStrandFeatures(loci.Strand))
-            Dim relates As Relationship(Of Feature)() = ComponentModel.Loci.GetRelatedGenes(source, loci, ATGDist)
+            Dim relates As Relationship(Of Feature)() = ContextModel.GetRelatedGenes(source, loci, ATGDist)
             Return relates
         End Function
 
