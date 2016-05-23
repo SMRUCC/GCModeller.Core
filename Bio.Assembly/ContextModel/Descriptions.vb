@@ -34,6 +34,30 @@ Namespace ContextModel
             Return BlankData
         End Function
 
+        Public Function __getLocationFunction(Of T As IGeneBrief)(gene As T, nucl As NucleotideLocation) As SegmentRelationships
+            Dim r As SegmentRelationships = gene.Location.GetRelationship(nucl)
+
+            If r = SegmentRelationships.DownStream AndAlso
+                gene.Location.Strand = Strands.Reverse Then
+                Return SegmentRelationships.UpStream  '反向的基因需要被特别注意，当目标片段处于下游的时候，该下游片段可能为该基因的启动子区
+
+            ElseIf r = SegmentRelationships.UpStream AndAlso
+                gene.Location.Strand = Strands.Reverse Then
+                Return SegmentRelationships.DownStream
+
+            ElseIf r = SegmentRelationships.UpStreamOverlap AndAlso
+                gene.Location.Strand = Strands.Reverse Then
+                Return SegmentRelationships.DownStreamOverlap
+
+            ElseIf r = SegmentRelationships.DownStreamOverlap AndAlso
+                gene.Location.Strand = Strands.Reverse Then
+                Return SegmentRelationships.UpStreamOverlap
+
+            Else
+                Return r
+            End If
+        End Function
+
         Public Function AtgDistance(Of T As IGeneBrief)(gene As T, nucl As NucleotideLocation) As Integer
             Call nucl.Normalization()
             Call gene.Location.Normalization()

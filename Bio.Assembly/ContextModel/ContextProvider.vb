@@ -1,6 +1,9 @@
-﻿Imports LANS.SystemsBiology.ComponentModel
+﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+Imports LANS.SystemsBiology.ComponentModel
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports Microsoft.VisualBasic.ComponentModel.Ranges
+Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Linq
 
 Namespace ContextModel
 
@@ -20,47 +23,19 @@ Namespace ContextModel
                 False)
         End Sub
 
-        Private Function __getLocationFunction(Of T As IGeneBrief)(
-                                                GeneSegment As T,
-                                                SegmentLocation As NucleotideLocation) As SegmentRelationships
-
-            Dim r = GeneSegment.Location.GetRelationship(SegmentLocation)
-
-            If r = SegmentRelationships.DownStream AndAlso
-                GeneSegment.Location.Strand = Strands.Reverse Then
-                Return SegmentRelationships.UpStream  '反向的基因需要被特别注意，当目标片段处于下游的时候，该下游片段可能为该基因的启动子区
-
-            ElseIf r = SegmentRelationships.UpStream AndAlso
-                GeneSegment.Location.Strand = Strands.Reverse Then
-                Return SegmentRelationships.DownStream
-
-            ElseIf r = SegmentRelationships.UpStreamOverlap AndAlso
-                GeneSegment.Location.Strand = Strands.Reverse Then
-                Return SegmentRelationships.DownStreamOverlap
-
-            ElseIf r = SegmentRelationships.DownStreamOverlap AndAlso
-                GeneSegment.Location.Strand = Strands.Reverse Then
-                Return SegmentRelationships.UpStreamOverlap
-
-            Else
-                Return r
-            End If
-        End Function
-
         ''' <summary>
         ''' 获取某一个指定的位点在基因组之中的内部反向的基因的集合
         ''' </summary>
-        ''' <typeparam name="T"></typeparam>
         ''' <param name="source"></param>
         ''' <param name="LociStart"></param>
         ''' <param name="LociEnds"></param>
         ''' <param name="Strand"></param>
         ''' <returns></returns>
-        Public Function GetInnerAntisense(Of T As IGeneBrief)(source As IEnumerable(Of T),
+        Public Function GetInnerAntisense(source As IEnumerable(Of T),
                                                                     LociStart As Integer,
                                                                     LociEnds As Integer,
                                                                     Strand As Strands) As T()
-            Dim Raw As Relationship(Of T)() = source.GetRelatedGenes(LociStart, LociEnds, 0)
+            Dim Raw As Relationship(Of T)() = GetRelatedGenes(source, LociStart, LociEnds, 0)
             Dim LQuery = (From obj In Raw
                           Where obj.Relation = SegmentRelationships.Inside AndAlso '只需要在内部并且和指定的链的方向反向的对象就可以了
                               (Strand <> obj.Gene.Location.Strand AndAlso
@@ -80,11 +55,11 @@ Namespace ContextModel
         ''' <param name="ATGDistance"></param>
         ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
         ''' <remarks></remarks>
-        <Extension> Public Function GetRelatedGenes(DataSource As IEnumerable(Of GeneBrief),
+        Public Function GetRelatedGenes(DataSource As IEnumerable(Of GeneBrief),
                                                     LociStart As Integer,
                                                     LociEnds As Integer,
                                                     Optional ATGDistance As Integer = 500) As Relationship(Of GeneBrief)()
-            Return GetRelatedGenes(Of GeneBrief)(DataSource, LociStart, LociEnds, ATGDistance)
+            Return GetRelatedGenes(DataSource, LociStart, LociEnds, ATGDistance)
         End Function
 
         ''' <summary>
@@ -92,14 +67,13 @@ Namespace ContextModel
         ''' 请注意，这个函数仅仅是依靠于两个位点之间的相互位置关系来判断的，
         ''' 并没有判断链的方向，假若需要判断链的方向，请在调用本函数之前就将参数<paramref name="source"/>按照链的方向筛选出来)
         ''' </summary>
-        ''' <typeparam name="T"></typeparam>
         ''' <param name="source"></param>
         ''' <param name="LociStart"></param>
         ''' <param name="LociEnds"></param>
         ''' <param name="ATGDistance"></param>
         ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
         ''' <remarks></remarks>
-        <Extension> Public Function GetRelatedGenes(Of T As IGeneBrief)(
+        Public Function GetRelatedGenes(
                                     source As IEnumerable(Of T),
                                     LociStart As Integer,
                                     LociEnds As Integer,
@@ -111,23 +85,23 @@ Namespace ContextModel
             Return GetRelatedGenes(source, ntSite, ATGDistance)
         End Function
 
-        Private Structure __getRelationDelegate(Of T As IGeneBrief)
+        Private Structure __getRelationDelegate
             Dim DataSource As IEnumerable(Of T)
             Dim Loci As NucleotideLocation
 
-            Public Function GetRelation(RelationType As SegmentRelationships) As T()
+            Public Function GetRelation(relType As SegmentRelationships) As T()
                 Dim Loci As NucleotideLocation = Me.Loci
 
                 Return (From GeneSegment As T
                         In DataSource
                         Let Relation = __getLocationFunction(GeneSegment, Loci)
-                        Where Relation = RelationType
+                        Where Relation = relType
                         Select GeneSegment).ToArray
             End Function
 
-            Public Function GetRelation(RelationType As SegmentRelationships, ATGDistance As Integer) As T()
-                Dim Genes = GetRelation(RelationType)
-                Dim Loci As ComponentModel.Loci.NucleotideLocation = Me.Loci
+            Public Function GetRelation(relType As SegmentRelationships, ATGDistance As Integer) As T()
+                Dim Genes = GetRelation(relType)
+                Dim Loci As NucleotideLocation = Me.Loci
                 Dim LQuery = (From GeneObject As T
                               In Genes
                               Where Math.Abs(GetATGDistance(Loci, GeneObject)) <= ATGDistance
@@ -140,15 +114,14 @@ Namespace ContextModel
         ''' <see cref="SegmentRelationships.UpStreamOverlap"/> and 
         ''' <see cref="SegmentRelationships.UpStream"/>
         ''' </summary>
-        ''' <typeparam name="T"></typeparam>
         ''' <param name="source"></param>
         ''' <param name="Loci"></param>
         ''' <param name="ATGDistance"></param>
         ''' <returns></returns>
-        <Extension> Public Function GetRelatedUpstream(Of T As IGeneBrief)(source As IEnumerable(Of T),
+        Public Function GetRelatedUpstream(source As IEnumerable(Of T),
                                                                                  Loci As NucleotideLocation,
                                                                                  Optional ATGDistance As Integer = 2000) As Relationship(Of T)()
-            Dim LociDelegate = New __getRelationDelegate(Of T)() With {
+            Dim LociDelegate = New __getRelationDelegate() With {
                 .DataSource = source,
                 .Loci = Loci.Normalization
             }
@@ -164,7 +137,7 @@ Namespace ContextModel
         End Function
 
         Public Function GetRelatedGenes(DataSource As IEnumerable(Of GeneBrief), Loci As NucleotideLocation, relation As SegmentRelationships) As GeneBrief()
-            Dim LociDelegate = New __getRelationDelegate(Of GeneBrief)() With {
+            Dim LociDelegate = New __getRelationDelegate() With {
                 .DataSource = DataSource,
                 .Loci = Loci
             }
@@ -176,15 +149,14 @@ Namespace ContextModel
         ''' 请注意，这个函数仅仅是依靠于两个位点之间的相互位置关系来判断的，
         ''' 并没有判断链的方向，假若需要判断链的方向，请在调用本函数之前就将参数<paramref name="source"/>按照链的方向筛选出来)
         ''' </summary>
-        ''' <typeparam name="T"></typeparam>
         ''' <param name="source"></param>
         ''' <param name="ATGDistance"></param>
         ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
         ''' <remarks></remarks>
-        <Extension> Public Function GetRelatedGenes(Of T As IGeneBrief)(source As IEnumerable(Of T), Loci As NucleotideLocation, Optional ATGDistance As Integer = 500) As Relationship(Of T)()
+        Public Function GetRelatedGenes(source As IEnumerable(Of T), Loci As NucleotideLocation, Optional ATGDistance As Integer = 500) As Relationship(Of T)()
             Dim foundTEMP As T()
             Dim lstRelated As New List(Of Relationship(Of T))
-            Dim LociDelegate As New __getRelationDelegate(Of T)() With {
+            Dim LociDelegate As New __getRelationDelegate() With {
                 .DataSource = source,
                 .Loci = Loci.Normalization
             }
