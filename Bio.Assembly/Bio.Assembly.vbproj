@@ -287,6 +287,7 @@
     <Compile Include="Assembly\Uniprot\UniprotFasta.vb" />
     <Compile Include="Assembly\Uniprot\IdMapping.vb" />
     <Compile Include="Assembly\Uniprot\Web\Entry.vb" />
+    <Compile Include="ContextModel\Operon.vb" />
     <Compile Include="ContextModel\ContextProvider.vb" />
     <Compile Include="ContextModel\TFDensity.vb" />
     <Compile Include="LICENSE.vb" />

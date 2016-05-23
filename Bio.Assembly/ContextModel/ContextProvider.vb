@@ -94,7 +94,8 @@ Namespace ContextModel
 
                 Return (From GeneSegment As T
                         In DataSource
-                        Let Relation = __getLocationFunction(GeneSegment, Loci)
+                        Let Relation As SegmentRelationships =
+                            GetLociRelations(GeneSegment, Loci)
                         Where Relation = relType
                         Select GeneSegment).ToArray
             End Function

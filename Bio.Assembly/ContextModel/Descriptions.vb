@@ -34,7 +34,7 @@ Namespace ContextModel
             Return BlankData
         End Function
 
-        Public Function __getLocationFunction(Of T As IGeneBrief)(gene As T, nucl As NucleotideLocation) As SegmentRelationships
+        Public Function GetLociRelations(Of T As IGeneBrief)(gene As T, nucl As NucleotideLocation) As SegmentRelationships
             Dim r As SegmentRelationships = gene.Location.GetRelationship(nucl)
 
             If r = SegmentRelationships.DownStream AndAlso
