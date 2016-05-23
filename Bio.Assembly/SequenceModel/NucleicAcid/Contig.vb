@@ -5,6 +5,7 @@ Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
 Imports LANS.SystemsBiology.ComponentModel.Loci.NucleotideLocation
 Imports LANS.SystemsBiology.ContextModel
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq.Extensions
 
 Namespace SequenceModel.NucleotideModels
@@ -46,9 +47,14 @@ Namespace SequenceModel.NucleotideModels
             Me._MappingLocation = MappingLocation.Copy
         End Sub
 
-        Public Function GetRelatedGenes(PTT As PTT, loc As SegmentRelationships) As GeneBrief()
-            Dim strandGenes As GeneBrief() = PTT.GetStrandGene(MappingLocation.Strand)
-            Dim gets As GeneBrief() = LocationDescriptions.GetRelatedGenes(strandGenes, MappingLocation, loc)
+        Public Function GetRelatedGenes(PTT As PTT, loc As SegmentRelationships, Optional atgDist As Integer = 500) As GeneBrief()
+            Dim found As Relationship(Of GeneBrief)() =
+                PTT.GetRelatedGenes(MappingLocation, True)
+            Dim gets As GeneBrief() =
+                LinqAPI.Exec(Of GeneBrief) <= From x As Relationship(Of GeneBrief)
+                                              In found
+                                              Where loc.HasFlag(x.Relation)
+                                              Select x.Gene
             Return gets
         End Function
 
@@ -58,11 +64,9 @@ Namespace SequenceModel.NucleotideModels
         ''' <param name="PTT"></param>
         ''' <returns></returns>
         Public Function GetRelatedUpstream(PTT As PTT, ATGDist As Integer) As GeneBrief()
-            Dim strandGenes As GeneBrief() = PTT.GetStrandGene(MappingLocation.Strand)
-            Dim gets = LocationDescriptions.GetRelatedUpstream(strandGenes, MappingLocation, ATGDist)
-            Return gets.ToArray(Function(obj) obj.Gene)
+            Dim rel As SegmentRelationships = SegmentRelationships.UpStream + SegmentRelationships.UpStreamOverlap
+            Return GetRelatedGenes(PTT, rel, ATGDist)
         End Function
-
 
         Public Function GetsATGDist(Gene As GeneBrief) As Integer
             Return GetATGDistance(MappingLocation, Gene)
