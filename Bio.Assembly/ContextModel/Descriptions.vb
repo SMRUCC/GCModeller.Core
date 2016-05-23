@@ -14,7 +14,7 @@ Namespace ContextModel
         ''' </summary>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        <Extension> Public Function IsBlankSegment(Gene As I_GeneBrief) As Boolean
+        <Extension> Public Function IsBlankSegment(Gene As IGeneBrief) As Boolean
             If Gene Is Nothing Then
                 Return True
             End If
@@ -24,7 +24,7 @@ Namespace ContextModel
 
         Public Const BLANK_VALUE As String = "Blank"
 
-        <Extension> Public Function BlankSegment(Of T As I_GeneBrief)(Location As NucleotideLocation) As T
+        <Extension> Public Function BlankSegment(Of T As IGeneBrief)(Location As NucleotideLocation) As T
             Dim BlankData = Activator.CreateInstance(Of T)()
             BlankData.COG = BLANK_VALUE
             BlankData.Product = BLANK_VALUE
@@ -34,7 +34,7 @@ Namespace ContextModel
             Return BlankData
         End Function
 
-        Private Function __getLocationFunction(Of T_Gene As I_GeneBrief)(
+        Private Function __getLocationFunction(Of T_Gene As IGeneBrief)(
                                                   GeneSegment As T_Gene,
                                                   SegmentLocation As NucleotideLocation) As SegmentRelationships
 
@@ -70,7 +70,7 @@ Namespace ContextModel
         ''' <param name="LociEnds"></param>
         ''' <param name="Strand"></param>
         ''' <returns></returns>
-        Public Function GetInnerAntisense(Of T_Gene As I_GeneBrief)(source As IEnumerable(Of T_Gene),
+        Public Function GetInnerAntisense(Of T_Gene As IGeneBrief)(source As IEnumerable(Of T_Gene),
                                                                     LociStart As Integer,
                                                                     LociEnds As Integer,
                                                                     Strand As Strands) As T_Gene()
@@ -94,7 +94,7 @@ Namespace ContextModel
         ''' <param name="ATGDistance"></param>
         ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
         ''' <remarks></remarks>
-        <Extension> Public Function GetRelatedGenes(DataSource As Generic.IEnumerable(Of GeneBrief),
+        <Extension> Public Function GetRelatedGenes(DataSource As IEnumerable(Of GeneBrief),
                                                     LociStart As Integer,
                                                     LociEnds As Integer,
                                                     Optional ATGDistance As Integer = 500) As Relationship(Of GeneBrief)()
@@ -113,7 +113,7 @@ Namespace ContextModel
         ''' <param name="ATGDistance"></param>
         ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
         ''' <remarks></remarks>
-        <Extension> Public Function GetRelatedGenes(Of T_Gene As I_GeneBrief)(
+        <Extension> Public Function GetRelatedGenes(Of T_Gene As IGeneBrief)(
                                     source As Generic.IEnumerable(Of T_Gene),
                                     LociStart As Integer,
                                     LociEnds As Integer,
@@ -125,7 +125,7 @@ Namespace ContextModel
             Return GetRelatedGenes(source, ntSite, ATGDistance)
         End Function
 
-        Private Structure __getRelationDelegate(Of T_Gene As I_GeneBrief)
+        Private Structure __getRelationDelegate(Of T_Gene As IGeneBrief)
             Dim DataSource As Generic.IEnumerable(Of T_Gene)
             Dim Loci As NucleotideLocation
 
@@ -159,7 +159,7 @@ Namespace ContextModel
         ''' <param name="Loci"></param>
         ''' <param name="ATGDistance"></param>
         ''' <returns></returns>
-        <Extension> Public Function GetRelatedUpstream(Of T_Gene As I_GeneBrief)(source As IEnumerable(Of T_Gene),
+        <Extension> Public Function GetRelatedUpstream(Of T_Gene As IGeneBrief)(source As IEnumerable(Of T_Gene),
                                                                                  Loci As NucleotideLocation,
                                                                                  Optional ATGDistance As Integer = 2000) As Relationship(Of T_Gene)()
             Dim LociDelegate = New __getRelationDelegate(Of T_Gene)() With {
@@ -195,7 +195,7 @@ Namespace ContextModel
         ''' <param name="ATGDistance"></param>
         ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
         ''' <remarks></remarks>
-        <Extension> Public Function GetRelatedGenes(Of T_Gene As I_GeneBrief)(source As IEnumerable(Of T_Gene), Loci As NucleotideLocation, Optional ATGDistance As Integer = 500) As Relationship(Of T_Gene)()
+        <Extension> Public Function GetRelatedGenes(Of T_Gene As IGeneBrief)(source As IEnumerable(Of T_Gene), Loci As NucleotideLocation, Optional ATGDistance As Integer = 500) As Relationship(Of T_Gene)()
             Dim foundTEMP As T_Gene()
             Dim lstRelated As New List(Of Relationship(Of T_Gene))
             Dim LociDelegate As New __getRelationDelegate(Of T_Gene)() With {
@@ -252,7 +252,7 @@ Namespace ContextModel
             Return lstRelated.ToArray  '只返回下游的第一个基因
         End Function
 
-        Private Function __atgDistance(Of T_Gene As I_GeneBrief)(Gene As T_Gene, LociLocation As NucleotideLocation) As Integer
+        Private Function __atgDistance(Of T_Gene As IGeneBrief)(Gene As T_Gene, LociLocation As NucleotideLocation) As Integer
             Call LociLocation.Normalization()
             Call Gene.Location.Normalization()
 
@@ -270,7 +270,7 @@ Namespace ContextModel
         ''' <param name="Gene"></param>
         ''' <returns>总是计算最大的距离</returns>
         ''' <remarks></remarks>
-        <Extension> Public Function GetATGDistance(loci As ComponentModel.Loci.Location, Gene As I_GeneBrief) As Integer
+        <Extension> Public Function GetATGDistance(loci As ComponentModel.Loci.Location, Gene As IGeneBrief) As Integer
             Call loci.Normalization()
             Call Gene.Location.Normalization()
 
@@ -291,7 +291,7 @@ Namespace ContextModel
         ''' <param name="data"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        <Extension> Public Function LocationDescription(Of T As I_GeneBrief)(posi As SegmentRelationships, data As T) As String
+        <Extension> Public Function LocationDescription(Of T As IGeneBrief)(posi As SegmentRelationships, data As T) As String
             If IsBlankSegment(data) Then
                 Return "Intergenic region"
 

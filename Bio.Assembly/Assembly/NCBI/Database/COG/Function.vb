@@ -194,7 +194,7 @@ Namespace Assembly.NCBI.COG
             Return Data
         End Function
 
-        Public Overloads Function ClassCategory(Of T As I_COGEntry)(source As IEnumerable(Of T)) As Dictionary(Of COGCategories, String())
+        Public Overloads Function ClassCategory(Of T As ICOGDigest)(source As IEnumerable(Of T)) As Dictionary(Of COGCategories, String())
             Dim hash As New Dictionary(Of COGCategories, String()) From {  '主要是为了填满所有分类，因为source之中可能并不包含有所有的cog分类
                 {COGCategories.Genetics, New String() {}},
                 {COGCategories.Metabolism, New String() {}},

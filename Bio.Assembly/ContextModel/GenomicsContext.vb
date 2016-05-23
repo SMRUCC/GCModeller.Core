@@ -4,7 +4,7 @@ Imports LANS.SystemsBiology.ComponentModel.Loci
 
 Namespace ContextModel
 
-    Public Interface IGenomicsContextProvider(Of T As I_GeneBrief)
+    Public Interface IGenomicsContextProvider(Of T As IGeneBrief)
 
         ''' <summary>
         ''' Listing all of the features loci sites on the genome. 

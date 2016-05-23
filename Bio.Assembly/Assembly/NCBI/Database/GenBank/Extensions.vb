@@ -113,7 +113,7 @@ Namespace Assembly.NCBI.GenBank
             Return PTT.Load(path)
         End Function
 
-        <Extension> Public Function GetObjects(Of TGene As I_GeneBrief)(source As IEnumerable(Of TGene), site As Integer, direction As Strands) As TGene()
+        <Extension> Public Function GetObjects(Of TGene As IGeneBrief)(source As IEnumerable(Of TGene), site As Integer, direction As Strands) As TGene()
             Dim Data As TGene()
 
             If direction = Strands.Reverse Then

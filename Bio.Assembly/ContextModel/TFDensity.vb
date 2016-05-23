@@ -28,7 +28,7 @@ Namespace ContextModel
         ''' <param name="TF"></param>
         ''' <returns></returns>
         <Extension>
-        Public Function Density(Of T As I_GeneBrief)(genome As IGenomicsContextProvider(Of T),
+        Public Function Density(Of T As IGeneBrief)(genome As IGenomicsContextProvider(Of T),
                                                      TF As IEnumerable(Of String),
                                                      Optional ranges As Integer = 10000,
                                                      Optional stranded As Boolean = False) As Density()
@@ -39,7 +39,7 @@ Namespace ContextModel
         End Function
 
         <Extension>
-        Private Function __getGenes(Of T As I_GeneBrief)(g As T, TFs As T(), ranges As Integer) As T()
+        Private Function __getGenes(Of T As IGeneBrief)(g As T, TFs As T(), ranges As Integer) As T()
             Dim result As New List(Of T)
 
             If g.Location.Strand = Strands.Forward Then ' 上游是小于ATG，下游是大于TGA
@@ -69,7 +69,7 @@ Namespace ContextModel
             Return result
         End Function
 
-        Private Structure __sourceHelper(Of T As I_GeneBrief)
+        Private Structure __sourceHelper(Of T As IGeneBrief)
             Dim data As T()
 
             Sub New(source As T(), stranded As Boolean)
@@ -105,7 +105,7 @@ Namespace ContextModel
         End Structure
 
         <Extension>
-        Private Function __worker(Of T As I_GeneBrief)(genome As IGenomicsContextProvider(Of T),
+        Private Function __worker(Of T As IGeneBrief)(genome As IGenomicsContextProvider(Of T),
                                                        getTF As Func(Of Strands, T()),
                                                        getRelated As Func(Of T, T(), Integer, T()),
                                                        numTotal As Integer,
@@ -136,7 +136,7 @@ Namespace ContextModel
         ''' </param>
         ''' <returns></returns>
         <Extension>
-        Public Function DensityCis(Of T As I_GeneBrief)(
+        Public Function DensityCis(Of T As IGeneBrief)(
                                       genome As IGenomicsContextProvider(Of T),
                                       TF As IEnumerable(Of String),
                                       Optional ranges As Integer = 10000) As Density()
@@ -155,7 +155,7 @@ Namespace ContextModel
         ''' <param name="ranges"></param>
         ''' <returns></returns>
         <Extension>
-        Private Function __getCisGenes(Of T As I_GeneBrief)(g As T, TFs As T(), ranges As Integer) As T()
+        Private Function __getCisGenes(Of T As IGeneBrief)(g As T, TFs As T(), ranges As Integer) As T()
             Dim result As New List(Of T)
 
             If g.Location.Strand = Strands.Forward Then ' 上游是小于ATG，下游是大于TGA

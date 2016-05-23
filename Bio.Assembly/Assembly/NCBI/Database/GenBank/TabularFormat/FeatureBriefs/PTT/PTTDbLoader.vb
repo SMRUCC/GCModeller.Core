@@ -31,7 +31,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <typeparam name="T_Entry"></typeparam>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Function ExportCOGProfiles(Of T_Entry As I_COGEntry)() As T_Entry()
+        Public Function ExportCOGProfiles(Of T_Entry As ICOGDigest)() As T_Entry()
             Dim LQuery = (From gene As GeneBrief
                           In Me._GenomeList.Values.AsParallel
                           Select gene.getCOGEntry(Of T_Entry)()).ToArray
@@ -43,7 +43,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' </summary>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function CreateObject(briefs As IEnumerable(Of I_GeneBrief), SourceFasta As FASTA.FastaToken) As PTTDbLoader
+        Public Shared Function CreateObject(briefs As IEnumerable(Of IGeneBrief), SourceFasta As FASTA.FastaToken) As PTTDbLoader
             Dim BriefData = (From Protein In briefs Select GeneBrief.CreateObject(Protein)).ToArray
             Return New PTTDbLoader With {
                 ._lstFile = New PTTEntry,
