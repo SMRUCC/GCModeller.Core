@@ -1,6 +1,6 @@
 ﻿Imports System.Text
 Imports System.Text.RegularExpressions
-Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Nodes
+Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Language
@@ -128,7 +128,7 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
         Private Shared Function __nullFeature() As Feature
             Return New Feature With {
                 .KeyName = "source",
-                .Location = New Nodes.Location With {
+                .Location = New GBFF.Keywords.FEATURES.Location With {
                     .Complement = False,
                     .Locations = New RegionSegment() {
                         New RegionSegment With {

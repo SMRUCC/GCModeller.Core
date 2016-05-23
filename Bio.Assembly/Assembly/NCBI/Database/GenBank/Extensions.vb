@@ -5,7 +5,7 @@ Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES.Nodes
+Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
 Imports LANS.SystemsBiology.ComponentModel
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat
 Imports LANS.SystemsBiology.ComponentModel.Loci
@@ -19,13 +19,13 @@ Namespace Assembly.NCBI.GenBank
 
         <Extension>
         Public Function GPFF2Feature(gb As GBFF.File, gff As Dictionary(Of String, TabularFormat.Feature)) As GeneBrief
-            Dim prot As FEATURES.Nodes.Feature =
+            Dim prot As GBFF.Keywords.FEATURES.Feature =
                 gb.Features.ListFeatures("Protein").FirstOrDefault
             If prot Is Nothing Then
                 Return Nothing
             End If
 
-            Dim CDS As FEATURES.Nodes.Feature =
+            Dim CDS As GBFF.Keywords.FEATURES.Feature =
                 gb.Features.ListFeatures("CDS").FirstOrDefault
             Dim locus_tag As String = ""
             If CDS Is Nothing Then
@@ -74,7 +74,7 @@ Namespace Assembly.NCBI.GenBank
 
         <ExportAPI("Locus.Maps"), Extension>
         Public Function LocusMaps(gb As GenBank.GBFF.File) As Dictionary(Of String, String)
-            Dim LQuery = (From x As GBFF.Keywords.FEATURES.Nodes.Feature
+            Dim LQuery = (From x As GBFF.Keywords.FEATURES.Feature
                           In gb.Features._innerList
                           Let locus As String = x.Query(FeatureQualifiers.locus_tag)
                           Where Not String.IsNullOrEmpty(locus)
@@ -144,7 +144,7 @@ Namespace Assembly.NCBI.GenBank
         ''' <returns></returns>
         <ExportAPI("Protein.Export", Info:="Export protein sequence with full annotation.")>
         <Extension> Public Function ExportProteins(Gbk As NCBI.GenBank.GBFF.File) As SequenceModel.FASTA.FastaFile
-            Dim LQuery = From feature As FEATURES.Nodes.Feature
+            Dim LQuery = From feature As GBFF.Keywords.FEATURES.Feature
                          In Gbk.Features
                          Where String.Equals(feature.KeyName, "CDS")
                          Let attrs As String() = New String() {
@@ -177,7 +177,7 @@ Namespace Assembly.NCBI.GenBank
         <Extension> Public Function ExportProteins_Short(gb As NCBI.GenBank.GBFF.File,
                                                          <Parameter("locusId.Only")>
                                                          Optional OnlyLocusTag As Boolean = False) As FASTA.FastaFile
-            Dim LQuery = From feature As FEATURES.Nodes.Feature
+            Dim LQuery = From feature As GBFF.Keywords.FEATURES.Feature
                          In gb.Features
                          Where String.Equals(feature.KeyName, "CDS")
                          Select feature.__protShort(OnlyLocusTag) '
@@ -191,7 +191,7 @@ Namespace Assembly.NCBI.GenBank
         ''' <param name="feature"></param>
         ''' <param name="onlyLocusTag"></param>
         ''' <returns></returns>
-        <Extension> Private Function __protShort(feature As FEATURES.Nodes.Feature, onlyLocusTag As Boolean) As SequenceModel.FASTA.FastaToken
+        <Extension> Private Function __protShort(feature As GBFF.Keywords.FEATURES.Feature, onlyLocusTag As Boolean) As SequenceModel.FASTA.FastaToken
             Dim product As String = feature.Query("product")
             If product Is Nothing Then
                 product = ""
@@ -217,7 +217,7 @@ Namespace Assembly.NCBI.GenBank
         '''
         <ExportAPI("Export.GeneList")>
         <Extension> Public Function GeneList(Gbk As NCBI.GenBank.GBFF.File) As KeyValuePair(Of String, String)()
-            Dim GQuery As IEnumerable(Of GBFF.Keywords.FEATURES.Nodes.Feature) =
+            Dim GQuery As IEnumerable(Of GBFF.Keywords.FEATURES.Feature) =
                 From feature In Gbk.Features
                 Where String.Equals(feature.KeyName, "gene")
                 Select feature 'Gene list query
@@ -228,7 +228,7 @@ Namespace Assembly.NCBI.GenBank
         End Function
 
         <ExportAPI("Export.16SrRNA")>
-        <Extension> Public Function _16SribosomalRNA(Gbk As NCBI.GenBank.GBFF.File) As FEATURES.Nodes.Feature
+        <Extension> Public Function _16SribosomalRNA(Gbk As NCBI.GenBank.GBFF.File) As GBFF.Keywords.FEATURES.Feature
             Dim LQuery = From feature In Gbk.Features.AsParallel
                          Where String.Equals(feature.KeyName, "rRNA") AndAlso InStr(feature.Query("product"), "16S ribosomal RNA")
                          Select feature '
