@@ -1,11 +1,11 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports LANS.SystemsBiology.ComponentModel
-Imports LANS.SystemsBiology.ComponentModel.Loci.NucleotideLocation
+Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic
 
-Namespace ComponentModel.Loci
+Namespace ContextModel
 
     Public Module LocationDescriptions
 
@@ -36,23 +36,23 @@ Namespace ComponentModel.Loci
 
         Private Function __getLocationFunction(Of T_Gene As I_GeneBrief)(
                                                   GeneSegment As T_Gene,
-                                                  SegmentLocation As NucleotideLocation) As  SegmentRelationships
+                                                  SegmentLocation As NucleotideLocation) As SegmentRelationships
 
             Dim r = GeneSegment.Location.GetRelationship(SegmentLocation)
 
-            If r =SegmentRelationships.DownStream AndAlso
+            If r = SegmentRelationships.DownStream AndAlso
                 GeneSegment.Location.Strand = Strands.Reverse Then
                 Return SegmentRelationships.UpStream  '反向的基因需要被特别注意，当目标片段处于下游的时候，该下游片段可能为该基因的启动子区
 
-            ElseIf r =SegmentRelationships.UpStream AndAlso
+            ElseIf r = SegmentRelationships.UpStream AndAlso
                 GeneSegment.Location.Strand = Strands.Reverse Then
                 Return SegmentRelationships.DownStream
 
-            ElseIf r =SegmentRelationships.UpStreamOverlap AndAlso
+            ElseIf r = SegmentRelationships.UpStreamOverlap AndAlso
                 GeneSegment.Location.Strand = Strands.Reverse Then
                 Return SegmentRelationships.DownStreamOverlap
 
-            ElseIf r =SegmentRelationships.DownStreamOverlap AndAlso
+            ElseIf r = SegmentRelationships.DownStreamOverlap AndAlso
                 GeneSegment.Location.Strand = Strands.Reverse Then
                 Return SegmentRelationships.UpStreamOverlap
 
@@ -216,7 +216,7 @@ Namespace ComponentModel.Loci
                 Call lstRelated.AddRange(lstBuff)
             End If
 
-            For Each RelationShip In New ComponentModel.Loci. SegmentRelationships() {
+            For Each RelationShip In New ComponentModel.Loci.SegmentRelationships() {
  _
                SegmentRelationships.Equals,
                SegmentRelationships.Inside,

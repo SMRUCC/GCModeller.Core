@@ -6,6 +6,7 @@ Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Terminal
 Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
+Imports LANS.SystemsBiology.ContextModel
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -412,7 +413,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
                                         Optional unstrand As Boolean = False,
                                         Optional ATGDist As Integer = 500) As Relationship(Of GeneBrief)() Implements IGenomicsContextProvider(Of GeneBrief).GetRelatedGenes
             Dim source As GeneBrief() = If(unstrand, GeneObjects, GetStrandGene(loci.Strand))
-            Dim relates As Relationship(Of GeneBrief)() = ComponentModel.Loci.GetRelatedGenes(source, loci, ATGDist)
+            Dim relates As Relationship(Of GeneBrief)() = ContextModel.GetRelatedGenes(source, loci, ATGDist)
             Return relates
         End Function
     End Class

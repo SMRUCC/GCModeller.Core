@@ -1,7 +1,9 @@
 ﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+Imports LANS.SystemsBiology.ComponentModel
+Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports Microsoft.VisualBasic.Language
 
-Namespace ComponentModel.Loci
+Namespace ContextModel
 
     ''' <summary>
     ''' 描述位点在基因组上面的位置，可以使用<see cref="ToString"/>函数获取得到位置描述

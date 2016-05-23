@@ -4,6 +4,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports LANS.SystemsBiology.ComponentModel
 Imports LANS.SystemsBiology.ComponentModel.Loci.NucleotideLocation
+Imports LANS.SystemsBiology.ContextModel
 Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.NCBI.GenBank.TabularFormat.ComponentModels
@@ -156,7 +157,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat.ComponentModels
         End Function
 
         ''' <summary>
-        ''' 判断本对象是否是由<see cref="BlankSegment"></see>方法所生成的空白片段
+        ''' 判断本对象是否是由<see cref=" ContextModel.BlankSegment"></see>方法所生成的空白片段
         ''' </summary>
         ''' <value></value>
         ''' <returns></returns>

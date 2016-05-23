@@ -4,6 +4,7 @@ Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports LANS.SystemsBiology.ComponentModel
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports LANS.SystemsBiology.SequenceModel
+Imports LANS.SystemsBiology.ContextModel
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -72,11 +73,11 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <remarks></remarks>
         Public Function GetRelatedGenes(LociStart As Integer, LociEnds As Integer, Strand As Strands, Optional ATGDistance As Integer = 500) As Relationship(Of GeneBrief)()
             If Strand = Strands.Unknown Then
-                Return ComponentModel.Loci.GetRelatedGenes(Of GeneBrief)(Me.Values.ToArray, LociStart, LociEnds, ATGDistance)
+                Return ContextModel.GetRelatedGenes(Of GeneBrief)(Me.Values.ToArray, LociStart, LociEnds, ATGDistance)
             End If
 
             Dim LQuery = (From genEntry In Me Where genEntry.Value.Location.Strand = Strand Select genEntry.Value).ToArray
-            Return ComponentModel.Loci.GetRelatedGenes(Of GeneBrief)(LQuery, LociStart, LociEnds, ATGDistance)
+            Return ContextModel.GetRelatedGenes(Of GeneBrief)(LQuery, LociStart, LociEnds, ATGDistance)
         End Function
 
         ''' <summary>
@@ -87,7 +88,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function GetRelatedGenes(LociStart As Integer, LociEnds As Integer, Optional ATGDistance As Integer = 500) As Relationship(Of GeneBrief)()
-            Return ComponentModel.Loci.GetRelatedGenes(Of GeneBrief)(Me.Values, LociStart, LociEnds, ATGDistance)
+            Return ContextModel.GetRelatedGenes(Of GeneBrief)(Me.Values, LociStart, LociEnds, ATGDistance)
         End Function
 
         Protected Sub New()

@@ -1,6 +1,8 @@
 ﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+Imports LANS.SystemsBiology.ComponentModel
+Imports LANS.SystemsBiology.ComponentModel.Loci
 
-Namespace ComponentModel.Loci.Abstract
+Namespace ContextModel
 
     Public Interface IGenomicsContextProvider(Of T As I_GeneBrief)
 

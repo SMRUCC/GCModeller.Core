@@ -10,7 +10,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic
 
-Namespace GenomicsContext
+Namespace ContextModel
 
     ''' <summary>
     ''' Calculates the relative density of the TF on each gene on the genome.
