@@ -79,12 +79,8 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function GetRelatedGenes(LociStart As Integer, LociEnds As Integer, Strand As Strands, Optional ATGDistance As Integer = 500) As Relationship(Of GeneBrief)()
-            If Strand = Strands.Unknown Then
-                Return ContextModel.GetRelatedGenes(Of GeneBrief)(Me.Values.ToArray, LociStart, LociEnds, ATGDistance)
-            End If
-
-            Dim LQuery = (From genEntry In Me Where genEntry.Value.Location.Strand = Strand Select genEntry.Value).ToArray
-            Return ContextModel.GetRelatedGenes(Of GeneBrief)(LQuery, LociStart, LociEnds, ATGDistance)
+            Dim loci As New NucleotideLocation(LociStart, LociEnds, Strand)
+            Return __contextProvider.GetAroundRelated(loci, True, ATGDistance)
         End Function
 
         ''' <summary>
@@ -95,7 +91,8 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function GetRelatedGenes(LociStart As Integer, LociEnds As Integer, Optional ATGDistance As Integer = 500) As Relationship(Of GeneBrief)()
-            Return ContextModel.GetRelatedGenes(Of GeneBrief)(Me.Values, LociStart, LociEnds, ATGDistance)
+            Dim loci As New NucleotideLocation(LociStart, LociEnds, Strands.Forward)
+            Return __contextProvider.GetAroundRelated(loci, False, ATGDistance)
         End Function
 
         Protected Sub New()
