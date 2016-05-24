@@ -409,7 +409,7 @@
     <Compile Include="SequenceModel\FASTA\Reflection\Attributes.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\Extensions.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\ACCESSION.vb" />
-    <Compile Include="ComponentModel\Generic\ValuePair.vb" />
+    <Compile Include="ComponentModel\ValuePair.vb" />
     <Compile Include="ComponentModel\Loci.Models\Location.vb" />
     <Compile Include="Assembly\MetaCyc\File\FileSystem\FASTA\GeneObject.vb" />
     <Compile Include="Assembly\MetaCyc\File\FileSystem\FASTA\Proteins.vb" />
