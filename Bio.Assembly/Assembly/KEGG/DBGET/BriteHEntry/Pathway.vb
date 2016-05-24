@@ -1,6 +1,7 @@
 ﻿Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.ComponentModel
 
 Namespace Assembly.KEGG.DBGET.BriteHEntry
 
@@ -31,7 +32,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Property Entry As ComponentModel.KeyValuePair
+        Public Property Entry As KeyValuePair
 
         Public Overrides Function ToString() As String
             Return String.Format("[{0}]{1}   {2}", [Class], Category, Entry.ToString)
@@ -75,7 +76,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                                                (strLine.First = "A"c OrElse strLine.First = "B"c OrElse strLine.First = "C"c)
                                            Select strLine).ToArray
             Dim [Class] As String = "", Category As String = ""
-            Dim ItemList As List(Of Pathway) = New List(Of Pathway)
+            Dim ItemList As New List(Of Pathway)
 
             For i As Integer = 0 To Chunkbuffer.Length - 1
                 Dim strLine As String = Chunkbuffer(i)
@@ -93,7 +94,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                     ItemList += New Pathway With {
                         .Category = Category,
                         .Class = [Class],
-                        .Entry = New ComponentModel.KeyValuePair With {
+                        .Entry = New KeyValuePair With {
                             .Key = IdNum,
                             .Value = strLine
                         }

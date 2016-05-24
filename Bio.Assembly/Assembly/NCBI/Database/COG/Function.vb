@@ -4,6 +4,7 @@ Imports System.Xml.Serialization
 Imports LANS.SystemsBiology.ComponentModel
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.ComponentModel
 
 Namespace Assembly.NCBI.COG
 
@@ -214,7 +215,7 @@ Namespace Assembly.NCBI.COG
                 If hash.ContainsKey(cat.category) Then
                     Call hash.Remove(cat.category)
                 End If
-                Call hash.Add(cat.category, cat.Group.ToArray(Of String)(Function(obj) obj.geneId))
+                Call hash.Add(cat.category, cat.Group.ToArray(Of String)(Function(obj) obj.geneid))
             Next
 
             Return hash
@@ -229,47 +230,47 @@ Namespace Assembly.NCBI.COG
                     New Category With {
                         .Class = COGCategories.Genetics,
                         .Description = "INFORMATION STORAGE AND PROCESSING",
-                        .SubClasses = New LANS.SystemsBiology.ComponentModel.KeyValuePair() {
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "J", .Value = "Translation, ribosomal structure and biogenesis"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "A", .Value = "RNA processing and modification"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "K", .Value = "Transcription"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "L", .Value = "Replication, recombination and repair"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "B", .Value = "Chromatin structure and dynamics"}}
+                        .SubClasses = New KeyValuePair() {
+                            New KeyValuePair With {.Key = "J", .Value = "Translation, ribosomal structure and biogenesis"},
+                            New KeyValuePair With {.Key = "A", .Value = "RNA processing and modification"},
+                            New KeyValuePair With {.Key = "K", .Value = "Transcription"},
+                            New KeyValuePair With {.Key = "L", .Value = "Replication, recombination and repair"},
+                            New KeyValuePair With {.Key = "B", .Value = "Chromatin structure and dynamics"}}
             },
                     New Category With {
                         .Class = COGCategories.Signaling,
                         .Description = "CELLULAR PROCESSES AND SIGNALING",
-                        .SubClasses = New LANS.SystemsBiology.ComponentModel.KeyValuePair() {
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "D", .Value = "Cell cycle control, cell division, chromosome partitioning"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "Y", .Value = "Nuclear structure"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "V", .Value = "Defense mechanisms"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "T", .Value = "Signal transduction mechanisms"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "M", .Value = "Cell wall/membrane/envelope biogenesis"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "N", .Value = "Cell motility"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "Z", .Value = "Cytoskeleton"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "W", .Value = "Extracellular structures"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "U", .Value = "Intracellular trafficking, secretion, and vesicular transport"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "O", .Value = "Posttranslational modification, protein turnover, chaperones"}}
+                        .SubClasses = New KeyValuePair() {
+                            New KeyValuePair With {.Key = "D", .Value = "Cell cycle control, cell division, chromosome partitioning"},
+                            New KeyValuePair With {.Key = "Y", .Value = "Nuclear structure"},
+                            New KeyValuePair With {.Key = "V", .Value = "Defense mechanisms"},
+                            New KeyValuePair With {.Key = "T", .Value = "Signal transduction mechanisms"},
+                            New KeyValuePair With {.Key = "M", .Value = "Cell wall/membrane/envelope biogenesis"},
+                            New KeyValuePair With {.Key = "N", .Value = "Cell motility"},
+                            New KeyValuePair With {.Key = "Z", .Value = "Cytoskeleton"},
+                            New KeyValuePair With {.Key = "W", .Value = "Extracellular structures"},
+                            New KeyValuePair With {.Key = "U", .Value = "Intracellular trafficking, secretion, and vesicular transport"},
+                            New KeyValuePair With {.Key = "O", .Value = "Posttranslational modification, protein turnover, chaperones"}}
             },
                     New Category With {
                         .Class = COGCategories.Metabolism,
                         .Description = "METABOLISM",
-                        .SubClasses = New LANS.SystemsBiology.ComponentModel.KeyValuePair() {
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "C", .Value = "Energy production and conversion"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "G", .Value = "Carbohydrate transport and metabolism"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "E", .Value = "Amino acid transport and metabolism"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "F", .Value = "Nucleotide transport and metabolism"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "H", .Value = "Coenzyme transport and metabolism"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "I", .Value = "Lipid transport and metabolism"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "P", .Value = "Inorganic ion transport and metabolism"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "Q", .Value = "Secondary metabolites biosynthesis, transport and catabolism"}}
+                        .SubClasses = New KeyValuePair() {
+                            New KeyValuePair With {.Key = "C", .Value = "Energy production and conversion"},
+                            New KeyValuePair With {.Key = "G", .Value = "Carbohydrate transport and metabolism"},
+                            New KeyValuePair With {.Key = "E", .Value = "Amino acid transport and metabolism"},
+                            New KeyValuePair With {.Key = "F", .Value = "Nucleotide transport and metabolism"},
+                            New KeyValuePair With {.Key = "H", .Value = "Coenzyme transport and metabolism"},
+                            New KeyValuePair With {.Key = "I", .Value = "Lipid transport and metabolism"},
+                            New KeyValuePair With {.Key = "P", .Value = "Inorganic ion transport and metabolism"},
+                            New KeyValuePair With {.Key = "Q", .Value = "Secondary metabolites biosynthesis, transport and catabolism"}}
             },
                     New Category With {
                         .Class = COGCategories.Unclassified,
                         .Description = "POORLY CHARACTERIZED",
-                        .SubClasses = New LANS.SystemsBiology.ComponentModel.KeyValuePair() {
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "R", .Value = "General function prediction only"},
-                            New LANS.SystemsBiology.ComponentModel.KeyValuePair With {.Key = "S", .Value = "Function unknown"}}
+                        .SubClasses = New KeyValuePair() {
+                            New KeyValuePair With {.Key = "R", .Value = "General function prediction only"},
+                            New KeyValuePair With {.Key = "S", .Value = "Function unknown"}}
                     }
                 }
             }

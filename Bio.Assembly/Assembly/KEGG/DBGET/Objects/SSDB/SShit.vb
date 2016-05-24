@@ -1,6 +1,7 @@
 ﻿Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
 Imports LANS.SystemsBiology.Assembly.KEGG.WebServices
+Imports Microsoft.VisualBasic.ComponentModel
 
 Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
 
@@ -20,14 +21,14 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
 
         Public Property Entry As QueryEntry
         Public Property EntryUrl As String
-        Public Property KO As ComponentModel.KeyValuePair
+        Public Property KO As KeyValuePair
         <XmlAttribute> Public Property Length As String
         <XmlAttribute> Public Property SWScore As String
         <XmlAttribute> Public Property Margin As String
         <XmlAttribute> Public Property Bits As String
         <XmlAttribute> Public Property Identity As String
         <XmlAttribute> Public Property Overlap As String
-        Public Property Best As ComponentModel.KeyValuePair
+        Public Property Best As KeyValuePair
 
         Public ReadOnly Property Coverage As Double
             Get
@@ -65,7 +66,10 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
                 TempChunk = New String() {strTemp.Get_href, Regex.Match(strTemp, ">[^>]+?</a>").Value}
                 TempChunk(1) = Mid(TempChunk(1), 2)
                 TempChunk(1) = Mid(TempChunk(1), 1, Len(TempChunk(1)) - 4)
-                ResultItem.KO = New ComponentModel.KeyValuePair With {.Key = TempChunk(0), .Value = TempChunk(1)}
+                ResultItem.KO = New KeyValuePair With {
+                    .Key = TempChunk(0),
+                    .Value = TempChunk(1)
+                }
 
                 Dim strValue As String() = (From n As String
                                             In (From item As Match In Regex.Matches(strData, "</a>[^<]+<a", RegexOptions.IgnoreCase) Select item.Value).ToArray.Last.Split
@@ -82,11 +86,17 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
                 ResultItem.Bits = strValue(p.MoveNext)
                 ResultItem.Identity = strValue(p.MoveNext)
                 ResultItem.Overlap = strValue(p.MoveNext)
-                ResultItem.Best = New ComponentModel.KeyValuePair With {.Key = strValue(p).Replace("&lt;", "<").Replace("&gt;", ">"), .Value = Regex.Match(BestValue, ">\d+</a>").Value}
+                ResultItem.Best = New KeyValuePair With {
+                    .Key = strValue(p).Replace("&lt;", "<").Replace("&gt;", ">"),
+                    .Value = Regex.Match(BestValue, ">\d+</a>").Value
+                }
                 ResultItem.Best.Value = Mid(ResultItem.Best.Value, 2)
                 ResultItem.Best.Value = Mid(ResultItem.Best.Value, 1, Len(ResultItem.Best.Value) - 4)
             Else
-                ResultItem.KO = New ComponentModel.KeyValuePair With {.Key = "", .Value = ""}
+                ResultItem.KO = New KeyValuePair With {
+                    .Key = "",
+                    .Value = ""
+                }
                 strData = Regex.Match(strData, "\s+\d+\d+\d+.+").Value
 
                 Dim strValue As String() = (From n In strData.Split Where Not String.IsNullOrEmpty(n.Trim) Select n).ToArray
@@ -103,7 +113,10 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
                 ResultItem.Bits = strValue(p.MoveNext)
                 ResultItem.Identity = strValue(p.MoveNext)
                 ResultItem.Overlap = strValue(p.MoveNext)
-                ResultItem.Best = New ComponentModel.KeyValuePair With {.Key = strValue(p).Replace("&lt;", "<").Replace("&gt;", ">"), .Value = Regex.Match(BestValue, ">\d+</a>").Value}
+                ResultItem.Best = New KeyValuePair With {
+                    .Key = strValue(p).Replace("&lt;", "<").Replace("&gt;", ">"),
+                    .Value = Regex.Match(BestValue, ">\d+</a>").Value
+                }
                 ResultItem.Best.Value = Mid(ResultItem.Best.Value, 2)
                 ResultItem.Best.Value = Mid(ResultItem.Best.Value, 1, Len(ResultItem.Best.Value) - 4)
             End If

@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.ComponentModel
 
 Namespace Assembly.KEGG.DBGET.BriteHEntry
 
@@ -7,7 +8,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         Public Property [Class] As String
         Public Property Category As String
         Public Property SubCategory As String
-        Public Property Entry As ComponentModel.KeyValuePair
+        Public Property Entry As KeyValuePair
 
         Public Shared Function LoadFromResource() As EnzymaticReaction()
             Dim Model = BriteHText.Load(My.Resources.br08201)
@@ -38,13 +39,14 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         End Function
 
         Private Shared Function __rxns(EC As BriteHText, [class] As BriteHText, category As BriteHText, subCat As BriteHText) As EnzymaticReaction()
-            Dim LQuery = (From rxn As BriteHText In EC.CategoryItems
+            Dim LQuery = (From rxn As BriteHText
+                          In EC.CategoryItems
                           Let erxn As EnzymaticReaction = New EnzymaticReaction With {
                               .EC = EC.ClassLabel,
                               .Category = category.ClassLabel,
                               .Class = [class].ClassLabel,
                               .SubCategory = subCat.ClassLabel,
-                              .Entry = New ComponentModel.KeyValuePair With {
+                              .Entry = New KeyValuePair With {
                                     .Key = rxn.EntryId,
                                     .Value = rxn.Description
                               }

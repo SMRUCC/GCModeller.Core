@@ -3,7 +3,9 @@ Imports System.Xml.Serialization
 Imports LANS.SystemsBiology.Assembly.KEGG.Archives.Xml.Nodes
 Imports LANS.SystemsBiology.Assembly.KEGG.DBGET
 Imports LANS.SystemsBiology.ComponentModel
+Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 
 Namespace Assembly.KEGG.Archives.Xml.Nodes
@@ -80,19 +82,22 @@ Namespace Assembly.KEGG.Archives.Xml.Nodes
                           Let mapRxns As ReactionMaps() = __mapFlux(Model, MappedEC)
                           Select Gene,
                               mapRxns).ToArray
-            Dim maps As EC_Mapping() = (From map In LQuery
-                                        Let mapLDM As EC_Mapping = New EC_Mapping With {
-                                            .locusId = map.Gene.locusId,
-                                            .ECMaps = map.mapRxns
-                                        }
-                                        Select mapLDM).ToArray
+            Dim maps As EC_Mapping() =
+                LinqAPI.Exec(Of EC_Mapping) <= From map
+                                               In LQuery
+                                               Select New EC_Mapping With {
+                                                   .locusId = map.Gene.locusId,
+                                                   .ECMaps = map.mapRxns
+                                               }
             Return maps
         End Function
 
         Private Shared Function __mapFlux(model As XmlModel, mappedEC As String) As ReactionMaps
-            Dim LQuery = (From rxn As DBGET.bGetObject.Reaction In model.Metabolome
-                          Where IsECEquals(rxn.ECNum, mappedEC)
-                          Select rxn).ToArray
+            Dim LQuery As bGetObject.Reaction() =
+                LinqAPI.Exec(Of bGetObject.Reaction) <= From rxn As DBGET.bGetObject.Reaction
+                                                        In model.Metabolome
+                                                        Where IsECEquals(rxn.ECNum, mappedEC)
+                                                        Select rxn
             Return New ReactionMaps With {
                 .EC = mappedEC,
                 .Reactions = LQuery.ToArray(Function(x) x.Entry)
