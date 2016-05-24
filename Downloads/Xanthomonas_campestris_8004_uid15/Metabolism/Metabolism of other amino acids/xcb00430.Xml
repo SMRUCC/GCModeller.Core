@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-16"?>
-<KEGG.PathwayBrief xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" EntryId="xcb00430" xmlns="http://www.genome.jp/kegg/pathway.html">
+<KEGG.PathwayBrief xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" EntryId="xcb00430" xmlns="http://www.genome.jp/kegg/pathway.html">
   <Description />
   <Name>Taurine and hypotaurine metabolism - Xanthomonas campestris pv. campestris 8004&lt;br&gt;</Name>
   <Compound>
-    <DictionaryEntry Key="C00022" Value="Pyruvate" />
-    <DictionaryEntry Key="C00024" Value="Acetyl-CoA" />
-    <DictionaryEntry Key="C00025" Value="L-Glutamate" />
-    <DictionaryEntry Key="C00026" Value="2-Oxoglutarate" />
-    <DictionaryEntry Key="C00033" Value="Acetate" />
-    <DictionaryEntry Key="C00041" Value="L-Alanine" />
-    <DictionaryEntry Key="C00094" Value="Sulfite" />
-    <DictionaryEntry Key="C00097" Value="L-Cysteine" />
-    <DictionaryEntry Key="C00227" Value="Acetyl phosphate" />
-    <DictionaryEntry Key="C00245" Value="Taurine" />
-    <DictionaryEntry Key="C00506" Value="L-Cysteate" />
-    <DictionaryEntry Key="C00519" Value="Hypotaurine" />
-    <DictionaryEntry Key="C00593" Value="Sulfoacetaldehyde" />
-    <DictionaryEntry Key="C00606" Value="3-Sulfino-L-alanine" />
-    <DictionaryEntry Key="C01678" Value="Cysteamine" />
-    <DictionaryEntry Key="C01959" Value="Taurocyamine" />
-    <DictionaryEntry Key="C03149" Value="N-Phosphotaurocyamine" />
-    <DictionaryEntry Key="C05122" Value="Taurocholate" />
-    <DictionaryEntry Key="C05123" Value="2-Hydroxyethanesulfonate" />
-    <DictionaryEntry Key="C05844" Value="5-L-Glutamyl-taurine" />
-    <DictionaryEntry Key="C06735" Value="Aminoacetaldehyde" />
-    <DictionaryEntry Key="C14179" Value="Sulfoacetate" />
+    <hashEntry Key="C00022" Value="Pyruvate" />
+    <hashEntry Key="C00024" Value="Acetyl-CoA" />
+    <hashEntry Key="C00025" Value="L-Glutamate" />
+    <hashEntry Key="C00026" Value="2-Oxoglutarate" />
+    <hashEntry Key="C00033" Value="Acetate" />
+    <hashEntry Key="C00041" Value="L-Alanine" />
+    <hashEntry Key="C00094" Value="Sulfite" />
+    <hashEntry Key="C00097" Value="L-Cysteine" />
+    <hashEntry Key="C00227" Value="Acetyl phosphate" />
+    <hashEntry Key="C00245" Value="Taurine" />
+    <hashEntry Key="C00506" Value="L-Cysteate" />
+    <hashEntry Key="C00519" Value="Hypotaurine" />
+    <hashEntry Key="C00593" Value="Sulfoacetaldehyde" />
+    <hashEntry Key="C00606" Value="3-Sulfino-L-alanine" />
+    <hashEntry Key="C01678" Value="Cysteamine" />
+    <hashEntry Key="C01959" Value="Taurocyamine" />
+    <hashEntry Key="C03149" Value="N-Phosphotaurocyamine" />
+    <hashEntry Key="C05122" Value="Taurocholate" />
+    <hashEntry Key="C05123" Value="2-Hydroxyethanesulfonate" />
+    <hashEntry Key="C05844" Value="5-L-Glutamyl-taurine" />
+    <hashEntry Key="C06735" Value="Aminoacetaldehyde" />
+    <hashEntry Key="C14179" Value="Sulfoacetate" />
   </Compound>
   <PathwayMap Key="xcb00430" Value="Taurine and hypotaurine metabolism&lt;center&gt;" />
   <Genes>
-    <DictionaryEntry Key="xcb:XC_0301" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2." />
-    <DictionaryEntry Key="xcb:XC_0842" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2." />
-    <DictionaryEntry Key="xcb:XC_1726" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2." />
-    <DictionaryEntry Key="xcb:XC_1751" Value="hypothetical protein; K15371 glutamate dehydrogenase [EC:1.4.1.2]" />
-    <DictionaryEntry Key="xcb:XC_3456" Value="taurine dioxygenase; K03119 taurine dioxygenase [EC:1.14.11.17]" />
+    <hashEntry Key="xcb:XC_0301" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2." />
+    <hashEntry Key="xcb:XC_0842" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2." />
+    <hashEntry Key="xcb:XC_1726" Value="gamma-glutamyltranspeptidase; K00681 gamma-glutamyltranspeptidase / glutathione hydrolase [EC:2.3.2." />
+    <hashEntry Key="xcb:XC_1751" Value="hypothetical protein; K15371 glutamate dehydrogenase [EC:1.4.1.2]" />
+    <hashEntry Key="xcb:XC_3456" Value="taurine dioxygenase; K03119 taurine dioxygenase [EC:1.14.11.17]" />
   </Genes>
 </KEGG.PathwayBrief>
