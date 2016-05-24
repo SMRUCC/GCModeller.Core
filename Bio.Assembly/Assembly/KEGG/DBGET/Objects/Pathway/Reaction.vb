@@ -28,8 +28,8 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         ''' <remarks></remarks>
         Public Property ECNum As String()
         Public Property Comments As String
-        Public Property Pathway As ComponentModel.KeyValuePair()
-        Public Property [Module] As ComponentModel.KeyValuePair()
+        Public Property Pathway As KeyValuePair()
+        Public Property [Module] As KeyValuePair()
         Public Property Orthology As TripleKeyValuesPair()
 
         Const URL As String = "http://www.kegg.jp/dbget-bin/www_bget?rn:{0}"

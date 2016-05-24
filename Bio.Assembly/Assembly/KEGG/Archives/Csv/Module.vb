@@ -1,5 +1,7 @@
 ﻿Imports System.Data.Linq.Mapping
+Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.KEGG.Archives.Csv
 
@@ -63,10 +65,11 @@ Namespace Assembly.KEGG.Archives.Csv
             If XmlModel.Reaction.IsNullOrEmpty Then
                 ReactionIdlist = New String() {}
             Else
-                ReactionIdlist = (From rxn As ComponentModel.KeyValuePair
-                                  In XmlModel.Reaction
-                                  Select rxn.Key
-                                  Order By Key Ascending).ToArray
+                ReactionIdlist =
+                    LinqAPI.Exec(Of String) <= From rxn As KeyValuePair
+                                               In XmlModel.Reaction
+                                               Select rxn.Key
+                                               Order By Key Ascending
             End If
 
             Return New [Module] With {

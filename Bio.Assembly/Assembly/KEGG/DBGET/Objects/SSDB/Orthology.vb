@@ -18,9 +18,9 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
             End Get
         End Property
 
-        Public Property [Module] As ComponentModel.KeyValuePair()
-        Public Property Pathway As ComponentModel.KeyValuePair()
-        Public Property Disease As ComponentModel.KeyValuePair()
+        Public Property [Module] As KeyValuePair()
+        Public Property Pathway As KeyValuePair()
+        Public Property Disease As KeyValuePair()
         Public Property Genes As QueryEntry()
         Public Property References As Reference()
         Public Property xRefEntry As TripleKeyValuesPair()

@@ -1,5 +1,7 @@
 ﻿Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.KEGG.DBGET.BriteHEntry
 
@@ -27,7 +29,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         ''' KO
         ''' </summary>
         ''' <returns></returns>
-        Public Property Entry As ComponentModel.KeyValuePair
+        Public Property Entry As KeyValuePair
 
         Public ReadOnly Property EntryId As String Implements IReadOnlyId.Identity
             Get
@@ -70,23 +72,25 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         End Function
 
         Private Shared Function Build(Model As BriteHText) As [Module]()
-            Dim ModuleList As List(Of [Module]) = New List(Of [Module])
+            Dim ModuleList As New List(Of [Module])
 
             For Each item In Model.CategoryItems
                 For Each CategoryItem In item.CategoryItems
                     For Each SubCategory As BriteHText In CategoryItem.CategoryItems
-                        Dim mods As [Module]() = (From ModuleEntry As BriteHText
-                                                  In SubCategory.CategoryItems
-                                                  Let Entry = New ComponentModel.KeyValuePair With {
-                                                      .Key = ModuleEntry.EntryId,
-                                                      .Value = ModuleEntry.Description
-                                                  }
-                                                  Select New [Module] With {
-                                                      .Entry = Entry,
-                                                      .Class = item.ClassLabel,
-                                                      .Category = CategoryItem.ClassLabel,
-                                                      .SubCategory = SubCategory.ClassLabel}).ToArray
-                        Call ModuleList.AddRange(mods)
+                        Dim mods As [Module]() =
+                            LinqAPI.Exec(Of [Module]) <= From ModuleEntry As BriteHText
+                                                         In SubCategory.CategoryItems
+                                                         Let Entry = New KeyValuePair With {
+                                                             .Key = ModuleEntry.EntryId,
+                                                             .Value = ModuleEntry.Description
+                                                         }
+                                                         Select New [Module] With {
+                                                             .Entry = Entry,
+                                                             .Class = item.ClassLabel,
+                                                             .Category = CategoryItem.ClassLabel,
+                                                             .SubCategory = SubCategory.ClassLabel
+                                                         }
+                        ModuleList += mods
                     Next
                 Next
             Next

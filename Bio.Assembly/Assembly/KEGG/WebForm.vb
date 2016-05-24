@@ -5,6 +5,7 @@ Imports LANS.SystemsBiology.Assembly.KEGG.DBGET
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.HtmlParser
+Imports Microsoft.VisualBasic.ComponentModel
 
 Namespace Assembly.KEGG.WebServices.InternalWebFormParsers
 
@@ -59,12 +60,12 @@ Namespace Assembly.KEGG.WebServices.InternalWebFormParsers
 
         Private Shared ReadOnly HtmlFormatControl As String() = New String() {"<td .+?>", "<div .+?>", "</th>|</div>|</td>|</tr>|<tr>|<tbody>|<div>|</tbody>|</table>|<nobr>|</nobr>", "<table .+?>"}
 
-        Protected Friend Shared Function parseList(strValue As String, SplitRegx As String) As ComponentModel.KeyValuePair()
+        Protected Friend Shared Function parseList(strValue As String, SplitRegx As String) As KeyValuePair()
             If String.IsNullOrEmpty(strValue) Then
-                Return New ComponentModel.KeyValuePair() {}
+                Return New KeyValuePair() {}
             End If
 
-            Dim ComponentList As List(Of ComponentModel.KeyValuePair) = New List(Of ComponentModel.KeyValuePair)
+            Dim ComponentList As New List(Of KeyValuePair)
             Dim Chunkbuffer As String() = (From m As Match In Regex.Matches(strValue, SplitRegx) Select m.Value Distinct).ToArray
 
             For i As Integer = 0 To Chunkbuffer.Count - 2
@@ -78,12 +79,15 @@ Namespace Assembly.KEGG.WebServices.InternalWebFormParsers
                 ComponentEntry = ComponentEntry.GetValue
                 ComponentDescription = WebForm.RemoveHrefLink(ComponentDescription)
 
-                Call ComponentList.Add(New ComponentModel.KeyValuePair With {.Key = ComponentEntry, .Value = ComponentDescription})
+                ComponentList += New KeyValuePair With {
+                    .Key = ComponentEntry,
+                    .Value = ComponentDescription
+                }
             Next
 
             Dim p As Integer = InStr(strValue, Chunkbuffer.Last)
             strValue = Mid(strValue, p)
-            Dim LastEntry As ComponentModel.KeyValuePair = New ComponentModel.KeyValuePair
+            Dim LastEntry As New KeyValuePair
             LastEntry.Key = Regex.Match(strValue, SplitRegx).Value
             LastEntry.Value = WebForm.RemoveHrefLink(strValue.Replace(LastEntry.Key, "").Trim)
             LastEntry.Key = LastEntry.Key.GetValue

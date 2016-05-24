@@ -2,6 +2,7 @@
 Imports System.Xml.Serialization
 Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Language.UnixBash
@@ -30,7 +31,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Property Modules As ComponentModel.KeyValuePair()
+        Public Property Modules As KeyValuePair()
         ''' <summary>
         ''' The kegg compound entry collection data in this pathway.
         ''' (可以通过这个代谢物的列表得到可以出现在当前的这个代谢途径之中的所有的非酶促反应过程，
@@ -39,19 +40,19 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Property Compound As ComponentModel.KeyValuePair()
+        Public Property Compound As KeyValuePair()
 
-        Public Property PathwayMap As ComponentModel.KeyValuePair
+        Public Property PathwayMap As KeyValuePair
 
-        Public Property Genes As ComponentModel.KeyValuePair()
+        Public Property Genes As KeyValuePair()
             Get
                 Return _lstGene
             End Get
-            Set(value As ComponentModel.KeyValuePair())
+            Set(value As KeyValuePair())
                 _lstGene = value
                 If Not value.IsNullOrEmpty Then _
                     _geneHash = value.ToDictionary(Function(x) x.Key.Split(":"c).Last) Else _
-                    _geneHash = New Dictionary(Of String, ComponentModel.KeyValuePair)
+                    _geneHash = New Dictionary(Of String, KeyValuePair)
             End Set
         End Property
 
@@ -66,10 +67,10 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             End Get
         End Property
 
-        Public Property Disease As ComponentModel.KeyValuePair()
+        Public Property Disease As KeyValuePair()
 
-        Dim _lstGene As ComponentModel.KeyValuePair()
-        Dim _geneHash As New Dictionary(Of String, ComponentModel.KeyValuePair)
+        Dim _lstGene As KeyValuePair()
+        Dim _geneHash As New Dictionary(Of String, KeyValuePair)
 
         Const SEARCH_URL As String = "http://www.kegg.jp/kegg-bin/search_pathway_text?map={0}&keyword=&mode=1&viewImage=false"
         Const PATHWAY_DBGET As String = "http://www.genome.jp/dbget-bin/www_bget?pathway:{0}{1}"
@@ -79,13 +80,13 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 Return False
             End If
 
-            Dim thisLinq As IEnumerable(Of ComponentModel.KeyValuePair) =
-                LinqAPI.DefaultFirst(Of ComponentModel.KeyValuePair)() <= From comp As ComponentModel.KeyValuePair
-                                                                          In Compound
-                                                                          Where String.Equals(comp.Key, KEGGCompound)
-                                                                          Select comp
+            Dim thisLinq As IEnumerable(Of KeyValuePair) =
+                LinqAPI.DefaultFirst(Of KeyValuePair)() <= From comp As KeyValuePair
+                                                           In Compound
+                                                           Where String.Equals(comp.Key, KEGGCompound)
+                                                           Select comp
 
-            Return Not [Class](Of ComponentModel.KeyValuePair).IsNullOrEmpty Like thisLinq
+            Return Not [Class](Of KeyValuePair).IsNullOrEmpty Like thisLinq
         End Function
 
         Public Function IsContainsGeneObject(GeneId As String) As Boolean
@@ -229,7 +230,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                     Continue For
                 End If
 
-                CompoundList += From met As ComponentModel.KeyValuePair
+                CompoundList += From met As KeyValuePair
                                 In pwy.Compound
                                 Select met.Key
             Next
@@ -260,7 +261,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         ''' <param name="s_Value"></param>
         ''' <param name="type"></param>
         ''' <returns></returns>
-        Friend Shared Function __parseHTML_ModuleList(s_Value As String, type As LIST_TYPES) As ComponentModel.KeyValuePair()
+        Friend Shared Function __parseHTML_ModuleList(s_Value As String, type As LIST_TYPES) As KeyValuePair()
             If String.IsNullOrEmpty(s_Value) Then
                 Return Nothing
             End If
@@ -277,7 +278,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             End Select
 
             Dim sbuf As String() = (From m As Match In Regex.Matches(s_Value, SplitRegex) Select m.Value).ToArray
-            Dim ModuleList As New List(Of ComponentModel.KeyValuePair)
+            Dim ModuleList As New List(Of KeyValuePair)
 
             Select Case type
                 Case LIST_TYPES.Disease
@@ -300,7 +301,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 ModuleEntry = ModuleEntry.GetValue
                 ModuleFunction = WebForm.RemoveHrefLink(ModuleFunction)
 
-                ModuleList += New ComponentModel.KeyValuePair With {
+                ModuleList += New KeyValuePair With {
                     .Key = ModuleEntry,
                     .Value = ModuleFunction
                 }
@@ -308,7 +309,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
 
             Dim p As Integer = InStr(s_Value, sbuf.Last)
             s_Value = Mid(s_Value, p)
-            Dim LastEntry As ComponentModel.KeyValuePair = New ComponentModel.KeyValuePair
+            Dim LastEntry As New KeyValuePair
             LastEntry.Key = Regex.Match(s_Value, SplitRegex).Value
             LastEntry.Value = WebForm.RemoveHrefLink(s_Value.Replace(LastEntry.Key, "").Trim)
             LastEntry.Key = LastEntry.Key.GetValue
@@ -334,7 +335,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 Return New String() {}
             End If
 
-            Dim LQuery As String() = (From gEntry As ComponentModel.KeyValuePair
+            Dim LQuery As String() = (From gEntry As KeyValuePair
                                       In Genes
                                       Select gEntry.Key.Split(":"c).Last).ToArray
             Return LQuery

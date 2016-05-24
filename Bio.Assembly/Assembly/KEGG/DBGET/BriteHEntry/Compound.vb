@@ -1,5 +1,6 @@
 ﻿Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.ComponentModel
 
 Namespace Assembly.KEGG.DBGET.BriteHEntry
 
@@ -25,7 +26,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         Public Property Category As String
         Public Property SubCategory As String
         Public Property Order As String
-        Public Property Entry As ComponentModel.KeyValuePair
+        Public Property Entry As KeyValuePair
 
         Private Shared Function Build(Model As BriteHText) As Compound()
             Dim CompoundList As New List(Of Compound)
@@ -49,7 +50,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                                             Select New Compound With {
                                                 .Class = [Class].ClassLabel,
                                                 .Category = Category.ClassLabel,
-                                                .Entry = New ComponentModel.KeyValuePair With {
+                                                .Entry = New KeyValuePair With {
                                                     .Key = htext.EntryId,
                                                     .Value = htext.Description
                                                 }
@@ -73,18 +74,17 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                                     Continue For
                                 End If
 
-                                Call CompoundList.AddRange((From item As BriteHText In SubCategory.CategoryItems
-                                                            Select New Compound With
-                                                                   {
-                                                                       .Class = [Class].ClassLabel,
-                                                                       .Category = Category.ClassLabel,
-                                                                       .SubCategory = SubCategory.ClassLabel,
-                                                                       .Entry = New ComponentModel.KeyValuePair With
-                                                                                {
-                                                                                    .Key = item.EntryId,
-                                                                                    .Value = item.Description
-                                                                                }
-                                                                   }).ToArray)
+                                CompoundList += From item As BriteHText
+                                                In SubCategory.CategoryItems
+                                                Select New Compound With {
+                                                    .Class = [Class].ClassLabel,
+                                                    .Category = Category.ClassLabel,
+                                                    .SubCategory = SubCategory.ClassLabel,
+                                                    .Entry = New KeyValuePair With {
+                                                        .Key = item.EntryId,
+                                                        .Value = item.Description
+                                                    }
+                                                }
                             Next
                         Next
                     Next
@@ -106,19 +106,19 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                                     If OrderItem.CategoryItems.IsNullOrEmpty Then
                                         Continue For
                                     End If
-                                    Call CompoundList.AddRange((From item In OrderItem.CategoryItems
-                                                                Select New Compound With
-                                                                       {
-                                                                           .Class = [Class].ClassLabel,
-                                                                           .Category = Category.ClassLabel,
-                                                                           .SubCategory = SubCategory.ClassLabel,
-                                                                           .Order = OrderItem.ClassLabel,
-                                                                           .Entry = New ComponentModel.KeyValuePair With
-                                                                                    {
-                                                                                        .Key = item.EntryId,
-                                                                                        .Value = item.Description
-                                                                                    }
-                                                                       }).ToArray)
+
+                                    CompoundList += From item
+                                                    In OrderItem.CategoryItems
+                                                    Select New Compound With {
+                                                        .Class = [Class].ClassLabel,
+                                                        .Category = Category.ClassLabel,
+                                                        .SubCategory = SubCategory.ClassLabel,
+                                                        .Order = OrderItem.ClassLabel,
+                                                        .Entry = New KeyValuePair With {
+                                                            .Key = item.EntryId,
+                                                            .Value = item.Description
+                                                        }
+                                                    }
 
                                 Next
                             Next
