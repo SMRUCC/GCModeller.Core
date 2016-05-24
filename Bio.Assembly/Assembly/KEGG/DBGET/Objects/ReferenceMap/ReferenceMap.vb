@@ -3,6 +3,7 @@ Imports System.Xml.Serialization
 Imports LANS.SystemsBiology.Assembly.KEGG.WebServices
 Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
 Imports LANS.SystemsBiology.SequenceModel
+Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
@@ -46,9 +47,9 @@ Namespace Assembly.KEGG.DBGET.ReferenceMap
 
         Public Property [Class] As String
         Public Property Name As String
-        Public Property [Module] As ComponentModel.KeyValuePair()
-        Public Property Disease As ComponentModel.KeyValuePair()
-        Public Property OtherDBs As ComponentModel.KeyValuePair()
+        Public Property [Module] As KeyValuePair()
+        Public Property Disease As KeyValuePair()
+        Public Property OtherDBs As KeyValuePair()
         Public Property References As String()
         Public Property Reactions As ReferenceReaction()
             Get
@@ -107,12 +108,12 @@ Namespace Assembly.KEGG.DBGET.ReferenceMap
 
             sValue = Form("Module").FirstOrDefault
             If Not String.IsNullOrEmpty(sValue) Then
-                RefMap.Module = LinqAPI.Exec(Of ComponentModel.KeyValuePair)() <= From m As Match
+                RefMap.Module = LinqAPI.Exec(Of KeyValuePair)() <= From m As Match
                                                                                   In Regex.Matches(sValue, MODULE_PATTERN)
-                                                                                  Let str As String = m.Value
-                                                                                  Let ModID As String = Regex.Match(str, "M\d+").Value
-                                                                                  Let descr As String = str.Replace(String.Format("<a href=""/kegg-bin/show_module?{0}"">{0}</a>", ModID), "").Trim
-                                                                                  Select New ComponentModel.KeyValuePair With {
+                                                                   Let str As String = m.Value
+                                                                   Let ModID As String = Regex.Match(str, "M\d+").Value
+                                                                   Let descr As String = str.Replace(String.Format("<a href=""/kegg-bin/show_module?{0}"">{0}</a>", ModID), "").Trim
+                                                                   Select New KeyValuePair With {
                                                                                         .Key = ModID,
                                                                                         .Value = Regex.Replace(descr, "<a href=""/kegg-bin/show_pathway?map\d+\+M\d+"">map\d+</a>", ModID)
                                                                                   }
@@ -120,10 +121,10 @@ Namespace Assembly.KEGG.DBGET.ReferenceMap
 
             sValue = Form("Disease").FirstOrDefault
             If Not String.IsNullOrEmpty(sValue) Then
-                RefMap.Disease = LinqAPI.Exec(Of ComponentModel.KeyValuePair) <= From m As Match
+                RefMap.Disease = LinqAPI.Exec(Of KeyValuePair) <= From m As Match
                                                                                  In Regex.Matches(sValue, "<a href=""/dbget-bin/www_bget\?ds:H.+?"">H.+?</a> [^<]+")
-                                                                                 Let str As String = m.Value
-                                                                                 Select __diseaseParser(str)
+                                                                  Let str As String = m.Value
+                                                                  Select __diseaseParser(str)
             End If
 
             sValue = Form("Other DBs").FirstOrDefault
@@ -134,9 +135,16 @@ Namespace Assembly.KEGG.DBGET.ReferenceMap
 
             Dim ReactionEntryList = KEGG.WebServices.LoadList(Form.AllLinksWidget("KEGG REACTION")) '代谢途径之中的代谢反应的集合
             Dim RefGeneEntryList = KEGG.WebServices.LoadList(Form.AllLinksWidget("Gene")) '当前的这个代谢途径之中的直系同源基因列表
-            RefMap.ReferenceGenes = (From item As ListEntry In RefGeneEntryList
-                                     Select New KeyValuePairObject(Of ListEntry, KeyValuePairObject(Of String, FASTA.FastaToken)()) _
-                                     With {.Key = item, .Value = Nothing}).ToArray
+            RefMap.ReferenceGenes =
+                LinqAPI.Exec(Of KeyValuePairObject(Of ListEntry, KeyValuePairObject(Of String, FASTA.FastaToken)())) <=
+                    From item As ListEntry
+                    In RefGeneEntryList
+                    Select New KeyValuePairObject(Of
+                        ListEntry,
+                        KeyValuePairObject(Of String, FASTA.FastaToken)()) With {
+                            .Key = item,
+                            .Value = Nothing
+                        }
             RefMap.Reactions = LinqAPI.Exec(Of ReferenceReaction) <= From Entry As ListEntry
                                                                      In ReactionEntryList
                                                                      Select __downloadRefRxn(Entry)
@@ -161,24 +169,38 @@ Namespace Assembly.KEGG.DBGET.ReferenceMap
 
         Const DB_LINK_PATTERN As String = ".+: (<a href="".+?"">.+?</a>\s*)+"
 
-        Private Shared Function __DBLinksParser(str As String) As ComponentModel.KeyValuePair()
-            Dim ChunkBuffer As String() = (From m As Match In Regex.Matches(str, DB_LINK_PATTERN) Select m.Value).ToArray
-            Dim LQuery = (From s As String In ChunkBuffer Select __parserLinks(s)).ToArray.MatrixToVector
+        Private Shared Function __DBLinksParser(str As String) As KeyValuePair()
+            Dim LQuery As KeyValuePair() =
+                Regex.Matches(str, DB_LINK_PATTERN) _
+                    .ToArray(AddressOf __parserLinks) _
+                    .MatrixToVector
             Return LQuery
         End Function
 
-        Private Shared Function __parserLinks(str As String) As ComponentModel.KeyValuePair()
+        Private Shared Function __parserLinks(str As String) As KeyValuePair()
             Dim DBName As String = Regex.Match(str, ".+?:").Value
-            Dim ID As String() = (From m As Match In Regex.Matches(str.Replace(DBName, ""), "<a href=.+?</a>") Select Regex.Match(m.Value, ">.+?</a>").Value).ToArray
+            Dim ID As String() =
+                LinqAPI.Exec(Of String) <= From m As Match
+                                           In Regex.Matches(str.Replace(DBName, ""), "<a href=.+?</a>")
+                                           Select Regex.Match(m.Value, ">.+?</a>").Value
             DBName = DBName.Split(CChar(":")).First
-            Dim LQuery = (From sid As String In ID Select New ComponentModel.KeyValuePair With {.Key = DBName, .Value = sid.GetValue}).ToArray
+            Dim LQuery As KeyValuePair() =
+                LinqAPI.Exec(Of KeyValuePair) <= From sid As String
+                                                 In ID
+                                                 Select New KeyValuePair With {
+                                                     .Key = DBName,
+                                                     .Value = sid.GetValue
+                                                 }
             Return LQuery
         End Function
 
-        Private Shared Function __diseaseParser(str As String) As ComponentModel.KeyValuePair
+        Private Shared Function __diseaseParser(str As String) As KeyValuePair
             Dim dsID As String = Regex.Match(str, "H\d+").Value
             Dim Description As String = str.Replace(String.Format("<a href=""/dbget-bin/www_bget?ds:{0}"">{0}</a>", dsID), "")
-            Return New ComponentModel.KeyValuePair With {.Key = dsID, .Value = Description}
+            Return New KeyValuePair With {
+                .Key = dsID,
+                .Value = Description
+            }
         End Function
     End Class
 End Namespace

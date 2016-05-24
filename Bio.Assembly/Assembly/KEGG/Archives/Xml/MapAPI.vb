@@ -2,6 +2,7 @@
 Imports System.Text.RegularExpressions
 Imports LANS.SystemsBiology.Assembly.KEGG.DBGET
 Imports LANS.SystemsBiology.ComponentModel.EquaionModel.DefaultTypes
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 
 Namespace Assembly.KEGG.Archives.Xml
@@ -14,13 +15,15 @@ Namespace Assembly.KEGG.Archives.Xml
         ''' <param name="value">sensory histidine kinase CreC; K07641 two-component system, OmpR family, sensor histidine kinase CreC [EC:2.7.13.3] [KO:K07641] [EC:2.7.13.3]</param>
         ''' <returns></returns>
         <Extension> Public Function EcParser(value As String) As String()
-            Dim LQuery = (From m As Match In Regex.Matches(value, "\[EC.+?\]", RegexOptions.IgnoreCase)
-                          Let strValue As String = Mid(m.Value, 4)
-                          Let str = If(strValue.First = ":"c, Mid(strValue, 2), strValue)
-                          Let ss As String = Mid(str, 1, Len(str) - 1)
-                          Select ss.Split
-                          Distinct).ToArray.MatrixToVector.Distinct.ToArray
-            Return LQuery
+            Dim LQuery As String() =
+                LinqAPI.Exec(Of String) <= From m As Match
+                                           In Regex.Matches(value, "\[EC.+?\]", RegexOptions.IgnoreCase)
+                                           Let strValue As String = Mid(m.Value, 4)
+                                           Let str = If(strValue.First = ":"c, Mid(strValue, 2), strValue)
+                                           Let ss As String = Mid(str, 1, Len(str) - 1)
+                                           Select ss.Split
+                                           Distinct
+            Return LQuery.Distinct.ToArray
         End Function
 
         ''' <summary>

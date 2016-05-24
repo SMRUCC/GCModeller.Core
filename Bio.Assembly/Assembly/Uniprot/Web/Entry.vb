@@ -1,8 +1,9 @@
-﻿
+﻿Imports Microsoft.VisualBasic.ComponentModel
+
 Namespace Assembly.Uniprot.Web
 
     Public Class Entry
-        Public Property Entry As ComponentModel.KeyValuePair
+        Public Property Entry As KeyValuePair
         Public Property EntryName As String
         Public Property StatusReviewed As Boolean
         Public Property ProteinNames As String

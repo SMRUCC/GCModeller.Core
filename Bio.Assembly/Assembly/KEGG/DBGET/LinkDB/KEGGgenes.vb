@@ -1,6 +1,7 @@
 ﻿Imports System.Text.RegularExpressions
 Imports LANS.SystemsBiology.Assembly.KEGG.DBGET.LinkDB
 Imports LANS.SystemsBiology.ComponentModel
+Imports Microsoft.VisualBasic.ComponentModel
 
 Namespace Assembly.KEGG.DBGET.LinkDB
 

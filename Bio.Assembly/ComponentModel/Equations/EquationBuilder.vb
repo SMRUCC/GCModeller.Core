@@ -1,5 +1,8 @@
-﻿Imports System.Text
+﻿Imports System.Runtime.CompilerServices
+Imports System.Text
 Imports System.Text.RegularExpressions
+Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq
 
 Namespace ComponentModel.EquaionModel
 
@@ -13,19 +16,23 @@ Namespace ComponentModel.EquaionModel
             Dim EquationObject As IEquation(Of TCompound) = Activator.CreateInstance(Of TEquation)()
             EquationObject.Reversible = CType(InStr(Equation, EQUATION_DIRECTIONS_REVERSIBLE), Boolean)
 
-            Dim deli As String = If(EquationObject.Reversible, EQUATION_DIRECTIONS_REVERSIBLE, EQUATION_DIRECTIONS_IRREVERSIBLE)
+            Dim deli As String = If(EquationObject.Reversible,
+                EQUATION_DIRECTIONS_REVERSIBLE,
+                EQUATION_DIRECTIONS_IRREVERSIBLE)
             Dim Tokens As String() = Strings.Split(Equation, deli)
 
             Try
                 EquationObject.Reactants = GetSides(Of TCompound)(Tokens(Scan0))
                 EquationObject.Products = GetSides(Of TCompound)(Tokens(1))
             Catch ex As Exception   ' 生成字典的时候可能会因为重复的代谢物而出错
-                ex = New Exception($"Could not process ""{Equation}"", duplicated found!", ex)
-                Throw ex
+                Dim msg As String = String.Format(Duplicated, Equation)
+                Throw New Exception(msg, ex)
             End Try
 
             Return EquationObject
         End Function
+
+        Const Duplicated As String = "Could not process ""{0}"", duplicated found!"
 
         Public Function CreateObject(Equation As String) As DefaultTypes.Equation
             Return CreateObject(Of DefaultTypes.CompoundSpecieReference, DefaultTypes.Equation)(Equation)
@@ -36,8 +43,8 @@ Namespace ComponentModel.EquaionModel
                 Return New T() {}
             End If
 
-            Dim Tokens As String() = Strings.Split(Expr, EQUATION_SPECIES_CONNECTOR)
-            Dim LQuery = (From token As String In Tokens Select __tryParse(Of T)(token)).ToArray
+            Dim tokens As String() = Strings.Split(Expr, EQUATION_SPECIES_CONNECTOR)
+            Dim LQuery As T() = tokens.ToArray(AddressOf __tryParse(Of T))
             Return LQuery
         End Function
 
@@ -62,20 +69,18 @@ Namespace ComponentModel.EquaionModel
             Return CompoundSpecie
         End Function
 
-        Public Function ToString(GetLeftSide As Func(Of KeyValuePair(Of Double, String)()), GetRightSide As Func(Of KeyValuePair(Of Double, String)()), Reversible As Boolean) As String
-            Dim sBuilder As StringBuilder = New StringBuilder(1024)
-            Dim DirectionFlag As String = If(Reversible, EQUATION_DIRECTIONS_REVERSIBLE, EQUATION_DIRECTIONS_IRREVERSIBLE)
-
-            Call EquationBuilder.AppendSides(sBuilder, Compounds:=GetLeftSide())
-            Call sBuilder.Append(DirectionFlag)
-            Call EquationBuilder.AppendSides(sBuilder, Compounds:=GetRightSide())
-
-            Return sBuilder.ToString
+        Public Function ToString(GetLeftSide As Func(Of KeyValuePair(Of Double, String)()),
+                                 GetRightSide As Func(Of KeyValuePair(Of Double, String)()),
+                                 Reversible As Boolean) As String
+            Return ToString(GetLeftSide(), GetRightSide(), Reversible)
         End Function
 
         Public Function ToString(LeftSide As KeyValuePair(Of Double, String)(), RightSide As KeyValuePair(Of Double, String)(), Reversible As Boolean) As String
-            Dim sBuilder As StringBuilder = New StringBuilder(1024)
-            Dim DirectionFlag As String = If(Reversible, EQUATION_DIRECTIONS_REVERSIBLE, EQUATION_DIRECTIONS_IRREVERSIBLE)
+            Dim sBuilder As New StringBuilder(1024)
+            Dim DirectionFlag As String =
+                If(Reversible,
+                EQUATION_DIRECTIONS_REVERSIBLE,
+                EQUATION_DIRECTIONS_IRREVERSIBLE)
 
             Call EquationBuilder.AppendSides(sBuilder, Compounds:=LeftSide)
             Call sBuilder.Append(DirectionFlag)
@@ -84,27 +89,16 @@ Namespace ComponentModel.EquaionModel
             Return sBuilder.ToString
         End Function
 
-        Private Sub AppendSides(sBuilder As StringBuilder, Compounds As KeyValuePair(Of Double, String)())
-            If Compounds.IsNullOrEmpty Then
-                Return
-            End If
-
-            For Each Compound In Compounds
-                If Compound.Key > 1 Then
-                    Call sBuilder.Append(String.Format("{0} {1}", Compound.Key, Compound.Value))
-                Else
-                    Call sBuilder.Append(Compound.Value)
-                End If
-
-                Call sBuilder.Append(EQUATION_SPECIES_CONNECTOR)
-            Next
-
-            Call sBuilder.Remove(sBuilder.Length - 3, 3)
+        Private Sub AppendSides(sb As StringBuilder, Compounds As KeyValuePair(Of Double, String)())
+            Call Compounds.__appendSide(sb, Function(x) x.Key, Function(x) x.Value)
         End Sub
 
         Public Function ToString(Of TCompound As ICompoundSpecies)(Equation As IEquation(Of TCompound)) As String
             Dim sBuilder As StringBuilder = New StringBuilder(1024)
-            Dim DirectionFlag As String = If(Equation.Reversible, EQUATION_DIRECTIONS_REVERSIBLE, EQUATION_DIRECTIONS_IRREVERSIBLE)
+            Dim DirectionFlag As String =
+                If(Equation.Reversible,
+                EQUATION_DIRECTIONS_REVERSIBLE,
+                EQUATION_DIRECTIONS_IRREVERSIBLE)
 
             Call EquationBuilder.AppendSides(sBuilder, Compounds:=Equation.Reactants)
             Call sBuilder.Append(DirectionFlag)
@@ -117,22 +111,22 @@ Namespace ComponentModel.EquaionModel
             Return ToString(Of DefaultTypes.CompoundSpecieReference)(Equation)
         End Function
 
-        Private Sub AppendSides(sBuilder As StringBuilder, Compounds As ICompoundSpecies())
-            If Compounds.IsNullOrEmpty Then
-                Return
+        <Extension>
+        Private Sub __appendSide(Of T)(compounds As IEnumerable(Of T), sb As StringBuilder, getSto As Func(Of T, Double), getId As Func(Of T, String))
+            If Not compounds.IsNullOrEmpty Then
+                Dim array As String() =
+                    LinqAPI.Exec(Of String) <= From cp As T
+                                               In compounds
+                                               Let sto As Double = getSto(cp)
+                                               Let id As String = getId(cp)
+                                               Select If(sto > 1, $"{sto} {id}", id)
+                Dim side As String = String.Join(EQUATION_SPECIES_CONNECTOR, array)
+                Call sb.Append(side)
             End If
+        End Sub
 
-            For Each Compound In Compounds
-                If Compound.StoiChiometry > 1 Then
-                    Call sBuilder.Append(String.Format("{0} {1}", Compound.StoiChiometry, Compound.Identifier))
-                Else
-                    Call sBuilder.Append(Compound.Identifier)
-                End If
-
-                Call sBuilder.Append(EQUATION_SPECIES_CONNECTOR)
-            Next
-
-            Call sBuilder.Remove(sBuilder.Length - 3, 3)
+        Private Sub AppendSides(sBuilder As StringBuilder, Compounds As ICompoundSpecies())
+            Call Compounds.__appendSide(sBuilder, Function(x) x.StoiChiometry, Function(x) x.Identifier)
         End Sub
     End Module
 End Namespace

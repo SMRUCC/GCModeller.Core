@@ -40,9 +40,10 @@ Namespace ComponentModel
                 Return value
             End If
 
-            Dim Atoms = (From m As Match In Regex.Matches(Formula, REGEX_ATOM) Select m.Value).ToArray
+            Dim Atoms As String() = Regex.Matches(Formula, REGEX_ATOM).ToArray
             Dim sum As Double = 0
-            For Each Atom In Atoms
+
+            For Each Atom As String In Atoms
                 Dim Counts As Integer = Val(Regex.Match(Atom, "\d+").Value)
                 If Counts = 0 Then
                     Counts = 1 '当只有一个原子的时候，仅有符号而没有相对应的数字

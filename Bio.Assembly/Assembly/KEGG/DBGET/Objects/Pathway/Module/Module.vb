@@ -2,6 +2,8 @@
 Imports System.Xml.Serialization
 Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Linq
 
 Namespace Assembly.KEGG.DBGET.bGetObject
 
@@ -73,21 +75,21 @@ Namespace Assembly.KEGG.DBGET.bGetObject
     Public Class [Module] : Inherits ComponentModel.PathwayBrief
 
         Public Property Name As String
-        Public Property Pathway As ComponentModel.KeyValuePair()
-        Public Property Compound As LANS.SystemsBiology.ComponentModel.KeyValuePair()
-        Public Property Reaction As LANS.SystemsBiology.ComponentModel.KeyValuePair()
+        Public Property Pathway As KeyValuePair()
+        Public Property Compound As KeyValuePair()
+        Public Property Reaction As KeyValuePair()
             Get
                 Return _lstReactions
             End Get
-            Set(value As LANS.SystemsBiology.ComponentModel.KeyValuePair())
+            Set(value As KeyValuePair())
                 _lstReactions = value
-                _dictReaction = LANS.SystemsBiology.ComponentModel.KeyValuePair.ToDictionary(value)
+                _dictReaction = KeyValuePair.ToDictionary(value)
             End Set
         End Property
 
-        Public Property PathwayGenes As ComponentModel.KeyValuePair()
+        Public Property PathwayGenes As KeyValuePair()
 
-        Dim _lstReactions As LANS.SystemsBiology.ComponentModel.KeyValuePair()
+        Dim _lstReactions As KeyValuePair()
         Dim _dictReaction As Dictionary(Of String, String)
 
         Public Function ContainsReaction(Id As String) As Boolean
@@ -130,7 +132,9 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                     Continue For
                 End If
 
-                buf += From rxn As ComponentModel.KeyValuePair In [mod].Reaction Select rxn.Key
+                buf += From rxn As KeyValuePair
+                       In [mod].Reaction
+                       Select rxn.Key
             Next
 
             Return (From strId As String In buf Select strId Distinct).ToArray
@@ -167,9 +171,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 Return New String() {}
             End If
 
-            Return (From gEntry As ComponentModel.KeyValuePair
-                    In PathwayGenes
-                    Select gEntry.Key).ToArray
+            Return PathwayGenes.ToArray(Function(x) x.key)
         End Function
     End Class
 End Namespace

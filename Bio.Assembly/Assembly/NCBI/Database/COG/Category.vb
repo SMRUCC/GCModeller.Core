@@ -2,6 +2,7 @@
 Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
 Imports LANS.SystemsBiology.ComponentModel
+Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Linq.Extensions
 
 Namespace Assembly.NCBI.COG
