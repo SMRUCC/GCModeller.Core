@@ -25,12 +25,14 @@ This Projects includes some common used biological database reader, the database
 All of these good staff is in the namespace:
 
 ```vb.net
-LANS.SystemsBiology.Assembly.Bac_sRNA.org
-LANS.SystemsBiology.Assembly.DOMINE
-LANS.SystemsBiology.Assembly.DOOR
-LANS.SystemsBiology.Assembly.KEGG
-LANS.SystemsBiology.Assembly.MetaCyc
-LANS.SystemsBiology.Assembly.NCBI
-LANS.SystemsBiology.Assembly.Uniprot
+Imports LANS.SystemsBiology.Assembly.Bac_sRNA.org
+Imports LANS.SystemsBiology.Assembly.DOMINE
+Imports LANS.SystemsBiology.Assembly.DOOR
+Imports LANS.SystemsBiology.Assembly.KEGG
+Imports LANS.SystemsBiology.Assembly.MetaCyc
+Imports LANS.SystemsBiology.Assembly.NCBI
+Imports LANS.SystemsBiology.Assembly.Uniprot
 ```
+
+### Quick guide for Read database
 
