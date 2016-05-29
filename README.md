@@ -1,18 +1,38 @@
 # GCModeller.Core
-**GCModeller** base core assembly library on common biological database read and write I/O.
+GCModeller base core assembly library on common biological database read and write I/O
 
-The library assembly file was public avaliable at nuget site: https://www.nuget.org/packages/GCModeller.Core/
+The library was public release avaliable at nuget site: https://www.nuget.org/packages/GCModeller.Core/
 
 >  PM>  Install-Package GCModeller.Core
 
-This project is the core lib of GCModeller, it provides the common components in the GCModeller analysis tools such as sequence model, genomics context model, sequence pattern model, and protein structure models.
+### Library overviews
 
-This Projects includes some common used biological database reader, these database includes:
+This project is the core lib of GCModeller, it provides the common components in the GCModeller analysis tools such as sequence model and protein structure models, some necessary interface and component class for build the bio-system model in the GCModeller.
+
+```vb.net
+Imports LANS.SystemsBiology.ComponentModel
+Imports LANS.SystemsBiology.ContextModel
+Imports LANS.SystemsBiology.SequenceModel
+```
+
+This Projects includes some common used biological database reader, the database includes:
 
 1. NCBI GenBank database
 2. KEGG DBGET API
-3. MetaCyc Database
+3. MetaCyc Database 
 4. FASTA sequence database
-5. DOOR database
 
-This project is original written by Mr Xie, and currently maintaining by Miss asuka.
+All of these good staff is in the namespace:
+
+```vb.net
+Imports LANS.SystemsBiology.Assembly.Bac_sRNA.org
+Imports LANS.SystemsBiology.Assembly.DOMINE
+Imports LANS.SystemsBiology.Assembly.DOOR
+Imports LANS.SystemsBiology.Assembly.KEGG
+Imports LANS.SystemsBiology.Assembly.MetaCyc
+Imports LANS.SystemsBiology.Assembly.NCBI
+Imports LANS.SystemsBiology.Assembly.Uniprot
+```
+
+### Quick guide for Read database
+
