@@ -273,6 +273,7 @@
     <Compile Include="Assembly\NCBI\Database\COG\Category.vb" />
     <Compile Include="Assembly\NCBI\Database\COG\COGs\COGNames.vb" />
     <Compile Include="Assembly\NCBI\Database\COG\COGs\COGTable.vb" />
+    <Compile Include="Assembly\NCBI\Database\Genbank\ExportServices\GBFFFeatureDumps.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\ExportServices\GenbankExportInfo.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\ExportServices\GeneDumpInfo.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\ExportServices\gbEntry.vb" />

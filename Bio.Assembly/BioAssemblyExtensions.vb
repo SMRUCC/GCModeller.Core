@@ -13,6 +13,7 @@ Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+Imports Microsoft.VisualBasic.Language
 
 <PackageNamespace("Bio.Extensions", Publisher:="xie.guigang@gcmodeller.org")>
 Public Module BioAssemblyExtensions
@@ -108,143 +109,32 @@ Public Module BioAssemblyExtensions
     End Function
 
     ''' <summary>
-    ''' Dump feature sites information data into a tabular dataframe.
-    ''' </summary>
-    ''' <param name="gb"></param>
-    ''' <param name="features"></param>
-    ''' <param name="dumpAll"></param>
-    ''' <returns></returns>
-    <ExportAPI("Features.Dump")>
-    Public Function FeatureDumps(gb As GBFF.File,
-                                 Optional features As String() = Nothing,
-                                 Optional dumpAll As Boolean = False) As GeneDumpInfo()
-        If dumpAll Then
-            Dim fs = (From x As Feature In gb.Features.ToArray Where x.ContainsKey("gene") Select x).ToArray
-            Return __dumpCDS(fs)
-        End If
-
-        If features Is Nothing Then features = {"5'UTR", "CDS", "regulatory", "misc_feature", "3'UTR"}
-
-        Dim result As New List(Of GeneDumpInfo)
-
-        For Each feature As String In features
-            Dim fs As Feature() = gb.Features.ListFeatures(feature)
-            result += _dumpMethods(feature)(fs)
-        Next
-
-        Return result.ToArray
-    End Function
-
-#Region "Dump Methods"
-
-    Dim _dumpMethods As Dictionary(Of String, Func(Of Feature(), GeneDumpInfo())) =
-        New Dictionary(Of String, Func(Of Feature(), GeneDumpInfo())) From {
-            {"5'UTR", AddressOf __dump5UTRs},
-            {"3'UTR", AddressOf __dump3UTRs},
-            {"CDS", AddressOf __dumpCDS},
-            {"regulatory", AddressOf __dumpRegulatory},
-            {"misc_feature", AddressOf __dumpMiscFeature}
-    }
-
-    Private Function __dumpMiscFeature(features As Feature()) As LANS.SystemsBiology.Assembly.NCBI.GenBank.CsvExports.GeneDumpInfo()
-        Dim dump = features.ToArray(
-            Function(feature) _
-                New LANS.SystemsBiology.Assembly.NCBI.GenBank.CsvExports.GeneDumpInfo With {
-                  .COG = "misc_feature",
-                  .Function = feature("note"),
-                  .CommonName = feature("note"),
-                  .Location = feature.Location.ContiguousRegion,
-                  .LocusID = feature("locus_tag"),
-                  .GeneName = feature("gene") & "_mics_feature",
-                  .Translation = feature("translation"),
-                  .ProteinId = feature("protein_id"),
-                  .CDS = feature.SequenceData
-              })
-        Return dump
-    End Function
-
-    Private Function __dumpRegulatory(features As Feature()) As LANS.SystemsBiology.Assembly.NCBI.GenBank.CsvExports.GeneDumpInfo()
-        Dim dump = features.ToArray(
-            Function(feature) _
-                New LANS.SystemsBiology.Assembly.NCBI.GenBank.CsvExports.GeneDumpInfo With {
-                  .COG = "regulatory",
-                  .Function = feature("regulatory_class"),
-                  .CommonName = feature("note"),
-                  .Location = feature.Location.ContiguousRegion,
-                  .LocusID = feature("locus_tag"),
-                  .GeneName = feature("gene") & "_regulatory",
-                  .Translation = feature("translation"),
-                  .ProteinId = feature("protein_id"),
-                  .CDS = feature.SequenceData
-              })
-        Return dump
-    End Function
-
-    Private Function __dumpCDS(features As Feature()) As LANS.SystemsBiology.Assembly.NCBI.GenBank.CsvExports.GeneDumpInfo()
-        Dim dump = features.ToArray(
-          Function(feature) _
-              New LANS.SystemsBiology.Assembly.NCBI.GenBank.CsvExports.GeneDumpInfo With {
-                  .COG = "CDS",
-                  .Function = feature("function"),
-                  .CommonName = feature("note"),
-                  .Location = feature.Location.ContiguousRegion,
-                  .LocusID = feature("locus_tag"),
-                  .GeneName = feature("gene"),
-                  .Translation = feature("translation"),
-                  .ProteinId = feature("protein_id"),
-                  .CDS = feature.SequenceData
-              })
-        Return dump
-    End Function
-
-    <Extension> Private Function __dump5UTRs(features As Feature()) As LANS.SystemsBiology.Assembly.NCBI.GenBank.CsvExports.GeneDumpInfo()
-        Dim dump = features.ToArray(
-            Function(feature) _
-                New LANS.SystemsBiology.Assembly.NCBI.GenBank.CsvExports.GeneDumpInfo With {
-                    .COG = "5'UTR",
-                    .Function = feature("function"),
-                    .CommonName = feature("note"),
-                    .Location = feature.Location.ContiguousRegion,
-                    .LocusID = $"5'UTR_{feature.Location.ContiguousRegion.Left}..{feature.Location.ContiguousRegion.Right}",
-                    .GeneName = $"5'UTR_{feature.Location.ContiguousRegion.Left}..{feature.Location.ContiguousRegion.Right}",
-                    .CDS = feature.SequenceData
-                })
-        Return dump
-    End Function
-
-    <Extension> Private Function __dump3UTRs(features As Feature()) As LANS.SystemsBiology.Assembly.NCBI.GenBank.CsvExports.GeneDumpInfo()
-        Dim dump = features.ToArray(
-            Function(feature) _
-                New LANS.SystemsBiology.Assembly.NCBI.GenBank.CsvExports.GeneDumpInfo With {
-                    .COG = "3'UTR",
-                    .Function = feature("function"),
-                    .CommonName = feature("note"),
-                    .Location = feature.Location.ContiguousRegion,
-                    .LocusID = $"3'UTR_{feature.Location.ContiguousRegion.Left}..{feature.Location.ContiguousRegion.Right}",
-                    .GeneName = $"3'UTR_{feature.Location.ContiguousRegion.Left}..{feature.Location.ContiguousRegion.Right}",
-                    .CDS = feature.SequenceData
-                })
-        Return dump
-    End Function
-#End Region
-
-    ''' <summary>
     ''' 对位点进行分组操作
     ''' </summary>
     ''' <param name="contigs"></param>
     ''' <param name="offsets"></param>
     ''' <returns></returns>
-    <Extension> Public Function Group(Of Contig As NucleotideModels.Contig)(contigs As IEnumerable(Of Contig), Optional offsets As Integer = 5) As Dictionary(Of Integer, Contig())
+    <Extension> Public Function Group(Of Contig As NucleotideModels.Contig)(
+                                         contigs As IEnumerable(Of Contig),
+                                         Optional offsets As Integer = 5) As Dictionary(Of Integer, Contig())
+
         Dim Groups As New Dictionary(Of Integer, List(Of Contig))
         Dim idx As Integer = 1
 
         For Each loci As NucleotideModels.Contig In contigs
-            Dim hash As Integer = (From x In Groups.AsParallel
-                                   Let equal = (From site As Contig In x.Value
-                                                Where site.MappingLocation.Equals(loci.MappingLocation, offsets)
-                                                Select site).FirstOrDefault
-                                   Where Not equal Is Nothing
-                                   Select x.Key).FirstOrDefault
+            Dim equalContig As Func(Of IEnumerable(Of Contig), Contig) =
+                Function(value) LinqAPI.DefaultFirst(Of Contig) <= From site As Contig
+                                                                   In value
+                                                                   Let siteMap As NucleotideLocation =
+                                                                       site.MappingLocation
+                                                                   Where siteMap.Equals(loci.MappingLocation, offsets)
+                                                                   Select site
+            Dim hash As Integer =
+                LinqAPI.DefaultFirst(Of Integer) <= From x
+                                                    In Groups.AsParallel
+                                                    Let equal As Contig = equalContig(x.Value)
+                                                    Where Not equal Is Nothing
+                                                    Select x.Key
             If hash < 1 Then
                 Call Groups.Add(idx.MoveNext, New List(Of Contig) From {loci})      ' 新的分组
             Else
