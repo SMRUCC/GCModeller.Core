@@ -39,7 +39,7 @@ Namespace ComponentModel.Loci.Abstract
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Property Right As Long
+        Property Right As Integer
     End Interface
 
     ''' <summary>
@@ -53,6 +53,6 @@ Namespace ComponentModel.Loci.Abstract
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Property Left As Long
+        Property Left As Integer
     End Interface
 End Namespace

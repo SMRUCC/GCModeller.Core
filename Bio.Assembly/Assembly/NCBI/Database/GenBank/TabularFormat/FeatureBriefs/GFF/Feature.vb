@@ -228,23 +228,23 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             End Set
         End Property
 
-        Public Property Right As Long Implements ILocationComponent.Right
+        Public Property Right As Integer Implements ILocationComponent.Right
             Get
                 Return _right
             End Get
-            Set(value As Long)
+            Set(value As Integer)
                 _right = value
                 _MappingLocation = Nothing
             End Set
         End Property
 
-        Dim _left As Long, _right As Long
+        Dim _left As Integer, _right As Integer
 
-        Public Property Left As Long Implements ILoci.Left
+        Public Property Left As Integer Implements ILoci.Left
             Get
                 Return _left
             End Get
-            Set(value As Long)
+            Set(value As Integer)
                 _left = value
                 _MappingLocation = Nothing
             End Set

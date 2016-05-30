@@ -2,6 +2,7 @@
 Imports System.Xml.Serialization
 Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+Imports Microsoft.VisualBasic.ComponentModel.Ranges
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic.Serialization
 
@@ -29,8 +30,9 @@ Namespace ComponentModel.Loci
     ''' (一个序列片段区域的位置，请注意，当Left的大小大于Right的时候，模块会自动纠正为Left小于Right的状态，这个对象可以同时用来表示核酸序列或者蛋白质序列上面的位置)
     ''' </summary>
     ''' <remarks></remarks>
-    Public Class Location : Implements ILocationComponent
-        Implements IKeyValuePairObject(Of Long, Long)
+    Public Class Location : Inherits IntRange
+        Implements ILocationComponent
+        Implements IKeyValuePairObject(Of Integer, Integer)
 
         ''' <summary>
         ''' <see cref="Location"/>: Gets or set the left start value of the segment on the target sequence.(目标片段的左端起始区域，与链的方向无关)
@@ -38,7 +40,14 @@ Namespace ComponentModel.Loci
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        <XmlAttribute> Public Property Left As Long Implements ILocationComponent.Left, IKeyValuePairObject(Of Long, Long).Identifier
+        <XmlAttribute> Public Property Left As Integer Implements ILocationComponent.Left, IKeyValuePairObject(Of Integer, Integer).Identifier
+            Get
+                Return MyBase.Min
+            End Get
+            Set(value As Integer)
+                MyBase.Min = value
+            End Set
+        End Property
 
         ''' <summary>
         ''' <see cref="Location"/>: Gets or set the right ends value of the segment on the target sequence.(目标片段的右端结束区域，与链的方向无关)
@@ -46,12 +55,19 @@ Namespace ComponentModel.Loci
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        <XmlAttribute> Public Property Right As Long Implements ILocationComponent.Right, IKeyValuePairObject(Of Long, Long).Value
+        <XmlAttribute> Public Property Right As Integer Implements ILocationComponent.Right, IKeyValuePairObject(Of Integer, Integer).Value
+            Get
+                Return MyBase.Max
+            End Get
+            Set(value As Integer)
+                MyBase.Max = value
+            End Set
+        End Property
 
         Sub New()
         End Sub
 
-        Sub New(Left As Long, Right As Long)
+        Sub New(Left As Integer, Right As Integer)
             Me.Left = Left
             Me.Right = Right
             Call Normalization()
@@ -79,7 +95,7 @@ Namespace ComponentModel.Loci
         ''' <remarks></remarks>
         Public Function Normalization() As Location
             If Left > Right Then
-                Call _Left.SwapWith(_Right)
+                Call Min.SwapWith(Max)
             End If
             Return Me
         End Function
@@ -92,9 +108,9 @@ Namespace ComponentModel.Loci
         ''' 将这个位点对象转换为每一个残基位点的位置对象，可能有些无聊
         ''' </summary>
         ''' <returns></returns>
-        Public Function GetResiduesLoci() As Long()
+        Public Function GetResiduesLoci() As Integer()
             Dim LeftBase As Integer = Math.Min(Left, Right)
-            Dim LQuery As Long() = (From i As Long In Me.FragmentSize.Sequence Select i + LeftBase).ToArray
+            Dim LQuery As Integer() = (From i As Integer In Me.FragmentSize.Sequence Select i + LeftBase).ToArray
             Return LQuery
         End Function
 
@@ -183,7 +199,6 @@ Namespace ComponentModel.Loci
         ''' <remarks></remarks>
         Public ReadOnly Property FragmentSize As Integer
             Get
-                Call Normalization()
                 Return Math.Abs(Right - Left) + 1
             End Get
         End Property

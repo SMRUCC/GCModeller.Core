@@ -64,9 +64,9 @@ Namespace ComponentModel.Loci
             Call Me.Normalization()
 
             If Strand = Strands.Forward Then
-                Return Start - Distance '正向链，则是上游在前面
+                Return Left - Distance '正向链，则是上游在前面
             Else
-                Return Start + Distance '反向链，则是上游在后面
+                Return Right + Distance '反向链，则是上游在后面
             End If
         End Function
 

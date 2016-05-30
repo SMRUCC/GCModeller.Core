@@ -6,8 +6,8 @@ Namespace ComponentModel.Loci
     Public Class Loci : Implements ILocationComponent
 
         Public Property TagData As String
-        Public Property Left As Long Implements ILocationComponent.Left
-        Public Property Right As Long Implements ILocationComponent.Right
+        Public Property Left As Integer Implements ILocationComponent.Left
+        Public Property Right As Integer Implements ILocationComponent.Right
 
         Public Overrides Function ToString() As String
             Return TagData
