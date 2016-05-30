@@ -19,7 +19,7 @@ This Projects includes some common used biological database reader, the database
 
 1. NCBI GenBank database
 2. KEGG DBGET API
-3. MetaCyc Database 
+3. MetaCyc Database
 4. FASTA sequence database
 
 All of these good staff is in the namespace:
@@ -36,3 +36,19 @@ Imports LANS.SystemsBiology.Assembly.Uniprot
 
 ### Quick guide for Read database
 
+```vb.net
+Dim path As String = "/path/to/database/file"
+
+' Read NCBI genbank database file.
+Dim gb As GBFF.File = GBFF.File.Load(path)
+Dim gbs As IEnumerable(Of GBFF.File) = GBFF.File.LoadDatabase(path)
+Dim PTT As PTT = PTT.Load(path)
+Dim GFF As GFF = GFF.LoadDocument(path)
+
+' Read fasta sequence file
+Dim Fasta As New FASTA.FastaFile(path)
+Dim nt As New FASTA.FastaToken(path)
+
+nt = FastaToken.Load(path)
+nt = FastaToken.LoadNucleotideData(path)
+```
