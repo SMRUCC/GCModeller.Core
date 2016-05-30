@@ -146,7 +146,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Publish|x64'">
     <DebugSymbols>true</DebugSymbols>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\x64\Publish\</OutputPath>
+    <OutputPath>X:\nuget_publish\GCModeller.Core\</OutputPath>
     <RemoveIntegerChecks>true</RemoveIntegerChecks>
     <DocumentationFile>LANS.SystemsBiology.Assembly.Components_v2.0_33.0.0.0__89845dcd8080cc91.xml</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -158,7 +158,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Publish|x86'">
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\x86\Publish\</OutputPath>
+    <OutputPath>X:\nuget_publish\GCModeller.Core\x86\</OutputPath>
     <RemoveIntegerChecks>true</RemoveIntegerChecks>
     <DocumentationFile>LANS.SystemsBiology.Assembly.Components_v2.0_33.0.0.0__89845dcd8080cc91.xml</DocumentationFile>
     <Optimize>true</Optimize>
@@ -273,6 +273,7 @@
     <Compile Include="Assembly\NCBI\Database\COG\Category.vb" />
     <Compile Include="Assembly\NCBI\Database\COG\COGs\COGNames.vb" />
     <Compile Include="Assembly\NCBI\Database\COG\COGs\COGTable.vb" />
+    <Compile Include="Assembly\NCBI\Database\Genbank\ExportServices\GBFFFeatureDumps.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\ExportServices\GenbankExportInfo.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\ExportServices\GeneDumpInfo.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\ExportServices\gbEntry.vb" />
@@ -287,6 +288,7 @@
     <Compile Include="Assembly\Uniprot\UniprotFasta.vb" />
     <Compile Include="Assembly\Uniprot\IdMapping.vb" />
     <Compile Include="Assembly\Uniprot\Web\Entry.vb" />
+    <Compile Include="ContextModel\Context.vb" />
     <Compile Include="ContextModel\ContextCore.vb" />
     <Compile Include="ContextModel\Operon.vb" />
     <Compile Include="ContextModel\ContextProvider.vb" />

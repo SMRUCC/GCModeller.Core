@@ -6,6 +6,7 @@ Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic
 Imports System.IO
+Imports Microsoft.VisualBasic.Language
 
 Namespace SequenceModel.FASTA
 
@@ -44,10 +45,11 @@ Namespace SequenceModel.FASTA
         ''' </summary>
         ''' <param name="data"></param>
         Sub New(data As Generic.IEnumerable(Of FastaToken))
-            _innerList = (From fa As FastaToken
-                          In data
-                          Where Not fa Is Nothing
-                          Select fa).ToList
+            _innerList =
+                LinqAPI.MakeList(Of FastaToken) <= From fa As FastaToken
+                                                   In data
+                                                   Where Not fa Is Nothing
+                                                   Select fa
         End Sub
 
         Sub New(fa As SequenceModel.FASTA.FastaToken)
@@ -172,7 +174,8 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
                 Sequence.SequenceData = Sequence.SequenceData.ToUpper.Replace("N", "-")
             Next
 
-            Dim LQuery = (From fa As FastaToken In Data._innerList
+            Dim LQuery = (From fa As FastaToken
+                          In Data._innerList
                           Where Not fa.IsProtSource
                           Select fa).ToArray
             If Explicit Then
@@ -221,24 +224,24 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
         End Function
 
         ''' <summary>
-        ''' Try parsing a fasta file object from the text file content <paramref name="strDocumentText"></paramref>
+        ''' Try parsing a fasta file object from the text file content <paramref name="doc"></paramref>
         ''' </summary>
-        ''' <param name="strDocumentText">The file data content in the fasta file, not the path of the fasta file!</param>
+        ''' <param name="doc">The file data content in the fasta file, not the path of the fasta file!</param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function ParseDocument(strDocumentText As String) As FastaFile
-            Dim Fasta As New FastaFile(DocParser(strDocumentText))
+        Public Shared Function ParseDocument(doc As String) As FastaFile
+            Dim Fasta As New FastaFile(DocParser(doc))
             Return Fasta
         End Function
 
-        Public Sub Split(SaveDir As Path)
-            Call FileIO.FileSystem.CreateDirectory(SaveDir)
+        Public Sub Split(saveDIR As Path)
+            Call FileIO.FileSystem.CreateDirectory(saveDIR)
 
             Dim Index As Integer
 
             For Each FASTA As SequenceModel.FASTA.FastaToken In __innerList
                 Index += 1
-                FASTA.SaveTo(String.Format("{0}/{1}.fasta", SaveDir, Index))
+                FASTA.SaveTo(String.Format("{0}/{1}.fasta", saveDIR, Index))
             Next
         End Sub
 
@@ -250,10 +253,10 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function QueryAny(KeyWord As String, Optional CaseSensitive As CompareMethod = CompareMethod.Text) As FastaFile
-            Dim LQuery As Generic.IEnumerable(Of FastaToken) = From Fasta As FastaToken
-                                                               In __innerList.AsParallel
-                                                               Where Find(Fasta.Attributes, KeyWord, CaseSensitive)
-                                                               Select Fasta '
+            Dim LQuery As IEnumerable(Of FastaToken) = From Fasta As FastaToken
+                                                       In __innerList.AsParallel
+                                                       Where Find(Fasta.Attributes, KeyWord, CaseSensitive)
+                                                       Select Fasta '
             Return New FastaFile With {
                 .__innerList = LQuery.ToList
             }
@@ -267,21 +270,25 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function Query(KeyWord As String, Optional CaseSensitive As CompareMethod = CompareMethod.Text) As FastaToken
-            Dim LQuery As Generic.IEnumerable(Of FastaToken) = From FASTA As FastaToken
-                                                               In __innerList.AsParallel
-                                                               Where Find(FASTA.Attributes, KeyWord, CaseSensitive)
-                                                               Select FASTA '
-            Try
-                Return LQuery.First
-            Catch ex As Exception
-                Return Nothing
-            End Try
+            Dim LQuery As IEnumerable(Of FastaToken) = From FASTA As FastaToken
+                                                       In __innerList.AsParallel
+                                                       Where Find(FASTA.Attributes, KeyWord, CaseSensitive)
+                                                       Select FASTA '
+            Return LQuery.FirstOrDefault
         End Function
 
         Public Function Query(Keyword As String, Index As Integer, Optional CaseSensitive As CompareMethod = CompareMethod.Text) As FastaToken()
-            Dim List = (From fsa In __innerList Where fsa.Attributes.Count - 1 >= Index Select fsa).ToArray
-            Dim LQuery = From fsa In List Where InStr(fsa.Attributes(Index), Keyword, CaseSensitive) > 0 Select fsa '
-            Return LQuery.ToArray
+            Dim list As IEnumerable(Of FastaToken) =
+                From fsa As FastaToken
+                In __innerList
+                Where fsa.Attributes.Count - 1 >= Index
+                Select fsa
+            Dim LQuery As FastaToken() =
+                LinqAPI.Exec(Of FastaToken) <= From fsa As FastaToken
+                                               In list
+                                               Where InStr(fsa.Attributes(Index), Keyword, CaseSensitive) > 0
+                                               Select fsa '
+            Return LQuery
         End Function
 
         Private Shared Function Find(AttributeList As String(), KeyWord As String, CaseSensitive As CompareMethod) As Boolean
@@ -295,20 +302,26 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
         End Function
 
         Public Function Take(KeyWordList As List(Of String), Optional CaseSensitive As CompareMethod = CompareMethod.Text) As FastaFile
-            Dim FASTA2List As New List(Of LANS.SystemsBiology.SequenceModel.FASTA.FastaToken)
-            For Each KeyWord As String In KeyWordList
-                Dim LQuery = From FASTA In __innerList Where InStr(FASTA.Title, KeyWord, CaseSensitive) Select FASTA '
-                FASTA2List.AddRange(LQuery.ToArray)
+            Dim result As New List(Of FastaToken)
+
+            For Each keyWord As String In KeyWordList
+                result += From FASTA As FastaToken
+                          In __innerList
+                          Where InStr(FASTA.Title, keyWord, CaseSensitive)
+                          Select FASTA '
             Next
 
             Return New FastaFile With {
-                .__innerList = FASTA2List
+                .__innerList = result
             }
         End Function
 
         Public Function Takes(prediction As System.Func(Of FastaToken, Boolean)) As FastaFile
-            Dim LQuery = (From Fsa In Me._innerList Where True = prediction(Fsa) Select Fsa).ToArray
-            Return LQuery
+            Dim LQuery As IEnumerable(Of FastaToken) = From fa As FastaToken
+                                                       In Me._innerList
+                                                       Where True = prediction(fa)
+                                                       Select fa
+            Return New FastaFile(LQuery)
         End Function
 
         ''' <summary>
@@ -318,7 +331,11 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
         ''' <param name="encoding">不同的程序会对这个由要求，例如meme程序在linux系统之中要求序列文件为unicode编码格式而windows版本的meme程序则要求ascii格式</param>
         ''' <remarks></remarks>
         Public Overrides Function Save(Optional Path As String = "", Optional encoding As Encoding = Nothing) As Boolean
-            Return Save(60, Path, encoding)
+            Try
+                Return Save(60, Path, encoding)
+            Catch ex As Exception
+                Throw New Exception(Path, ex)
+            End Try
         End Function
 
         ''' <summary>
@@ -328,7 +345,11 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
         ''' <param name="encoding">不同的程序会对这个由要求，例如meme程序在linux系统之中要求序列文件为unicode编码格式而windows版本的meme程序则要求ascii格式</param>
         ''' <remarks></remarks>
         Public Overloads Function Save(LineBreak As Integer, Optional Path As String = "", Optional encoding As Encodings = Encodings.ASCII) As Boolean
-            Return Save(LineBreak, Path, encoding.GetEncodings)
+            Try
+                Return Save(LineBreak, Path, encoding.GetEncodings)
+            Catch ex As Exception
+                Throw New Exception(Path, ex)
+            End Try
         End Function
 
         ''' <summary>
@@ -345,10 +366,12 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
             Path = getPath(Path)
 
             Dim sBuilder As StringBuilder = New StringBuilder(10 * 1024)
-            Dim DocumentNodes = (From FastaObject As FastaToken In _innerList.AsParallel
+            Dim DocumentNodes = (From FastaObject As FastaToken
+                                 In _innerList.AsParallel
                                  Let NodeText As String = FastaObject.GenerateDocument(LineBreak:=LineBreak)
-                                 Select NodeText, Len = NodeText.Length).ToArray
-            Dim MaxSize As Double = (From n In DocumentNodes Select CDbl(n.Len)).ToArray.Sum
+                                 Select NodeText,
+                                     Len = NodeText.Length).ToArray
+            Dim MaxSize As Double = (From n In DocumentNodes Select CDbl(n.Len)).Sum
 
             If MaxSize > sBuilder.MaxCapacity Then
                 Return __saveUltraLargeSize((From node In DocumentNodes.AsParallel Select node.NodeText), Path, encoding, MaxSize)
