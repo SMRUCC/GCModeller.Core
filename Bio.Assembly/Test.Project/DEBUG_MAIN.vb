@@ -8,8 +8,8 @@ Module DEBUG_MAIN
 
     Sub Main()
 
-        Dim gff = LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.GFF.LoadDocument("D:\Xanthomonas\Xanthomonas citri pv. citri 306\GCA_000007165.1_ASM716v1_genomic.gff")
-        Dim all_CDS = New GFF(gff, Features.CDS)
+        '    Dim gff = LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.GFF.LoadDocument("D:\Xanthomonas\Xanthomonas citri pv. citri 306\GCA_000007165.1_ASM716v1_genomic.gff")
+        '   Dim all_CDS = New GFF(gff, Features.CDS)
 
         '       Call Language.UnixBash.LinuxRunHelper.PerlShell()
 
@@ -18,7 +18,7 @@ Module DEBUG_MAIN
         '  Call ddddd.SaveTo("F:\GCModeller.Core\Downloads\Xanthomonas_oryzae_oryzicola_BLS256_uid16740/xor.Csv")
 
         Dim alllll = LANS.SystemsBiology.Assembly.KEGG.DBGET.LinkDB.Pathways.AllEntries("xcb").ToArray
-        Dim pwys = LANS.SystemsBiology.Assembly.KEGG.DBGET.LinkDB.Pathways.Downloads("xor", "X:\Xanthomonas_oryzae_oryzicola_BLS256_uid16740").ToArray
+        Dim pwys = LANS.SystemsBiology.Assembly.KEGG.DBGET.LinkDB.Pathways.Downloads("xcb", "F:\GCModeller.Core\Downloads\Xanthomonas_campestris_8004_uid15").ToArray
 
         Dim s = LANS.SystemsBiology.Assembly.KEGG.DBGET.bGetObject.Organism.GetKEGGSpeciesCode("Agrobacterium tumefaciens str. C58 (Cereon)")
 
