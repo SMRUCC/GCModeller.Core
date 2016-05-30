@@ -1,10 +1,28 @@
 ﻿Imports LANS.SystemsBiology.Assembly.KEGG.Archives.Xml
 Imports LANS.SystemsBiology.Assembly.KEGG.DBGET
 Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
+Imports LANS.SystemsBiology.Assembly.NCBI.GenBank
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat
+Imports LANS.SystemsBiology.SequenceModel
+Imports LANS.SystemsBiology.SequenceModel.FASTA
 Imports Microsoft.VisualBasic.Linq
 
 Module DEBUG_MAIN
+
+    Public Sub ReadDatabase()
+
+        Dim path As String = "/path/to/database/file"
+        Dim gb As GBFF.File = GBFF.File.Load(path)
+        Dim gbs As IEnumerable(Of GBFF.File) = GBFF.File.LoadDatabase(path)
+        Dim PTT As PTT = PTT.Load(path)
+        Dim GFF As GFF = GFF.LoadDocument(path)
+
+        Dim Fasta As New FASTA.FastaFile(path)
+        Dim nt As New FASTA.FastaToken(path)
+
+        nt = FastaToken.Load(path)
+        nt = FastaToken.LoadNucleotideData(path)
+    End Sub
 
     Sub Main()
 
