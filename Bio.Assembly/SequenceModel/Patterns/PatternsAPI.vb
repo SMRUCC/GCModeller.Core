@@ -104,24 +104,37 @@ Namespace SequenceModel.Patterns
             Return var
         End Function
 
-        Private Function __variation(ch As Char, index As Integer, cutoff As Double, fr As PatternModel) As Double
-            If ch = "-"c Then
+        <Extension>
+        Public Function Variation(res As IPatternSite, ref As Char, Optional cutoff As Double = 0.7) As Double
+            If ref = "-"c Then   ' 参考序列这里已经是完全的呗突变掉了
                 Return 1
             End If
 
-            Dim pos As IPatternSite = fr(index)
-            If Array.IndexOf(pos.EnumerateKeys.ToArray, ch) = -1 Then
+            ' 有频率的残基列表之中找不到参考的残基，则突变率为 1
+            If Array.IndexOf(res.EnumerateKeys.ToArray, ref) = -1 Then
                 Return 1
             End If
 
-            Dim frq As Double = pos(ch)
+            Dim frq As Double = res(ref)
             Dim var As Double = 1 - frq
 
             If var < cutoff Then
-                var = 0
+                Return 0
+            Else
+                Return var
             End If
+        End Function
 
-            Return var
+        ''' <summary>
+        ''' 这个是参考的碱基位点
+        ''' </summary>
+        ''' <param name="ch"></param>
+        ''' <param name="index"></param>
+        ''' <param name="cutoff"></param>
+        ''' <param name="fr"></param>
+        ''' <returns></returns>
+        Private Function __variation(ch As Char, index As Integer, cutoff As Double, fr As PatternModel) As Double
+            Return fr(index).Variation(ch, cutoff)
         End Function
 
         ''' <summary>
