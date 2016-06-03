@@ -3,6 +3,7 @@ Imports LANS.SystemsBiology.Assembly.KEGG.DBGET
 Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat
+Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports LANS.SystemsBiology.SequenceModel
 Imports LANS.SystemsBiology.SequenceModel.FASTA
 Imports Microsoft.VisualBasic.Linq
@@ -25,6 +26,16 @@ Module DEBUG_MAIN
     End Sub
 
     Sub Main()
+
+        ' 3777599          ==> 3779884 #Forward
+        '        3779678 ==> 3779822 #Forward
+
+        '                  3773960, 3775024
+        ' 3773579, 3773650
+
+        Dim ff As New LANS.SystemsBiology.ContextModel.Context(New NucleotideLocation(3769097, 3769702, Strands.Forward), 500)
+        Dim loci As New NucleotideLocation(3769223, 3769149, Strands.Reverse)
+        Dim relsss = ff.GetRelation(loci, True)
 
         '    Dim gff = LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.GFF.LoadDocument("D:\Xanthomonas\Xanthomonas citri pv. citri 306\GCA_000007165.1_ASM716v1_genomic.gff")
         '   Dim all_CDS = New GFF(gff, Features.CDS)

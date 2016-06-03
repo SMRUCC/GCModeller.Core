@@ -17,9 +17,9 @@ Namespace ContextModel
             Call Me.New(g.Location, dist, g.ToString)
         End Sub
 
-        Sub New(loci As NucleotideLocation, dist As Integer, Optional tag As String = Nothing)
+        Sub New(loci As NucleotideLocation, dist As Integer, Optional userTag As String = Nothing)
             Feature = loci
-            tag = NotEmpty(tag, loci.ToString)
+            Tag = NotEmpty(userTag, loci.ToString)
 
             If loci.Strand = Strands.Forward Then
                 Upstream = New NucleotideLocation(loci.Left - dist, loci.Left, Strands.Forward)
