@@ -25,7 +25,7 @@ Namespace SequenceModel.FASTA
         End Operator
 
         Public Overloads Shared Widening Operator CType(lstFiles As String()) As FastaFile
-            Return lstFiles.Merge(True)
+            Return lstFiles.Merge(True, False)
         End Operator
 
         Sub New()

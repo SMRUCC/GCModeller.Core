@@ -2,6 +2,7 @@
 Imports System.Text
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Language
 
 Namespace ComponentModel.DBLinkBuilder
 
@@ -40,8 +41,15 @@ Namespace ComponentModel.DBLinkBuilder
 
         Private Shared Sub LoadData(DBLinks As List(Of DBLink), Methods As KeyValuePair(Of String, Action(Of DBLink))())
             For Each Method In Methods
-                Dim Find = (From item In DBLinks Where String.Equals(item.DBName, Method.Key, StringComparison.OrdinalIgnoreCase) Select item).ToArray
-                Dim SetValue = Method.Value
+                Dim Find As DBLink() =
+                    LinqAPI.Exec(Of DBLink) <= From lnk As DBLink
+                                               In DBLinks
+                                               Where String.Equals(
+                                                   lnk.DBName,
+                                                   Method.Key,
+                                                   StringComparison.OrdinalIgnoreCase)
+                                               Select lnk
+                Dim SetValue As Action(Of DBLink) = Method.Value
                 Call SetValue(If(Find.IsNullOrEmpty, Nothing, Find.First))
             Next
         End Sub
@@ -96,9 +104,14 @@ Namespace ComponentModel.DBLinkBuilder
 
         Public Overrides ReadOnly Property IsEmpty As Boolean
             Get
-                Return _CheBI.IsNullOrEmpty AndAlso _PubChem Is Nothing AndAlso __3DMET Is Nothing AndAlso
-                    _HMDB Is Nothing AndAlso _KNApSAcK Is Nothing AndAlso _MASSBANK Is Nothing AndAlso
-                    _NIKKAJI Is Nothing AndAlso _PDB_CCD Is Nothing
+                Return _CheBI.IsNullOrEmpty AndAlso
+                    _PubChem Is Nothing AndAlso
+                    __3DMET Is Nothing AndAlso
+                    _HMDB Is Nothing AndAlso
+                    _KNApSAcK Is Nothing AndAlso
+                    _MASSBANK Is Nothing AndAlso
+                    _NIKKAJI Is Nothing AndAlso
+                    _PDB_CCD Is Nothing
             End Get
         End Property
     End Class
