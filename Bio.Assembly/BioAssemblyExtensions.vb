@@ -4,19 +4,52 @@ Imports System.Text.RegularExpressions
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.CsvExports
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
+Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports LANS.SystemsBiology.SequenceModel
-Imports LANS.SystemsBiology.SequenceModel.NucleotideModels
 Imports LANS.SystemsBiology.SequenceModel.FASTA
-Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports Microsoft.VisualBasic.Scripting.MetaData
-Imports Microsoft.VisualBasic.Linq.Extensions
+Imports LANS.SystemsBiology.SequenceModel.NucleotideModels
 Imports Microsoft.VisualBasic
-Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq.Extensions
+Imports Microsoft.VisualBasic.Scripting.MetaData
 
 <PackageNamespace("Bio.Extensions", Publisher:="xie.guigang@gcmodeller.org")>
 Public Module BioAssemblyExtensions
+
+    ''' <summary>
+    ''' Current nt base is a unknown base?
+    ''' </summary>
+    ''' <param name="base"></param>
+    ''' <returns></returns>
+    <Extension>
+    Public Function IsUnknown(base As Char) As Integer
+        Select Case base
+            Case "N"c, "n"c, "-"c, "?"c
+                Return 1
+            Case Else
+                Return 0
+        End Select
+    End Function
+
+    ''' <summary>
+    ''' Is this nt base is pure
+    ''' </summary>
+    ''' <param name="base"></param>
+    ''' <returns></returns>
+    ''' 
+    <Extension>
+    Public Function IsPure(base As Char) As Integer
+        Select Case base
+            Case "A"c, "C"c, "G"c, "T"c,
+                 "a"c, "c"c, "g"c, "t"c
+
+                Return 1
+            Case Else
+                Return 0
+        End Select
+    End Function
 
     ''' <summary>
     ''' 将COG字符串进行修剪，返回的是大写的COG符号

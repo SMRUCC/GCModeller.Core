@@ -5,7 +5,7 @@
 ''' </summary>
 Public Interface IRegulon
 
-    Property locusId As String
+    Property TFlocusId As String
     Property RegulatedGenes As String()
 
 End Interface
@@ -44,7 +44,7 @@ Public MustInherit Class Regulon : Implements IRegulon
 
     Public Property Id As String
     Public Property RegulatedGenes As String() Implements IRegulon.RegulatedGenes
-    Public Property Regulator As String Implements IRegulon.locusId
+    Public Property Regulator As String Implements IRegulon.TFlocusId
 End Class
 
 ''' <summary>
@@ -96,7 +96,7 @@ Public Module RegulationModel
 
         Public Property RegulatedGenes As String() Implements IRegulon.RegulatedGenes
 
-        Public Property Regulator As String Implements IRegulon.locusId
+        Public Property Regulator As String Implements IRegulon.TFlocusId
     End Structure
 
     <Extension> Public Function GetRegulators(Of TRegulation As IRegulatorRegulation)(data As IEnumerable(Of TRegulation)) As String()
