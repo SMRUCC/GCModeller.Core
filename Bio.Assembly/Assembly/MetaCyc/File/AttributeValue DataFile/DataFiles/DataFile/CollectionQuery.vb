@@ -1,5 +1,6 @@
 ﻿Imports System.Reflection
 Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Reflection
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.MetaCyc.File.DataFiles
 
@@ -25,15 +26,19 @@ Namespace Assembly.MetaCyc.File.DataFiles
         ''' Takes a sub list of the elements that were pointed by the unique-id collection.
         ''' (获取一个UniqueId集合所指向的对象元素列表，会自动过滤掉不存在的UniqueId值)
         ''' </summary>
-        ''' <param name="UniqueIdCollection">
+        ''' <param name="uids">
         ''' The unique-id collection of the objects that wants to take from the list obejct.
         ''' (将要从本列表对象获取的对象的唯一标识符的集合)
         ''' </param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Function Takes(UniqueIdCollection As Generic.IEnumerable(Of String)) As T()
-            Dim LQuery As IEnumerable(Of T) = From Id As String In UniqueIdCollection Where Array.IndexOf(Index, Id) > -1 Select Item(Id) '
-            Return LQuery.ToArray
+        Public Function Takes(uids As IEnumerable(Of String)) As T()
+            Dim LQuery As T() =
+                LinqAPI.Exec(Of T) <= From Id As String
+                                      In uids
+                                      Where Array.IndexOf(Index, Id) > -1
+                                      Select Item(Id) '
+            Return LQuery
         End Function
 
         ''' <summary>

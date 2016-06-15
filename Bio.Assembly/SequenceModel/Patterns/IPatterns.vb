@@ -71,6 +71,9 @@ Namespace SequenceModel.Patterns
         End Sub
     End Structure
 
+    ''' <summary>
+    ''' 一个经过多序列比对对齐操作的序列集合之中所得到的残基的出现频率模型，可以用这个模型来计算突变率以及SNP位点
+    ''' </summary>
     Public Structure PatternModel : Implements IPatternProvider
 
         Public ReadOnly Property Residues As SimpleSite()
@@ -84,6 +87,17 @@ Namespace SequenceModel.Patterns
         Sub New(rs As IEnumerable(Of SimpleSite))
             Residues = rs.ToArray
         End Sub
+
+        ''' <summary>
+        ''' 通过比较参考序列得到每一个残基上面的突变率
+        ''' </summary>
+        ''' <param name="ref">序列的长度必须要和<see cref="Residues"/>的长度相等</param>
+        ''' <param name="cutoff"></param>
+        ''' <returns></returns>
+        Public Function GetVariation(ref As FASTA.FastaToken, cutoff As Double) As Double()
+            Dim refs As Char() = ref.SequenceData.ToUpper.ToCharArray
+            Return Residues.ToArray(Function(x, i) x.Variation(refs(i), cutoff))
+        End Function
 
         Public Iterator Function PWM() As IEnumerable(Of IPatternSite) Implements IPatternProvider.PWM
             For Each x As SimpleSite In Residues

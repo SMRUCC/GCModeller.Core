@@ -436,14 +436,14 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function Generate() As String
-            Dim sBuilder As New StringBuilder(10 * 1024)
-            Dim token As String
+            Dim sb As New StringBuilder(10 * 1024)
+            Dim s As String
 
-            For Each FASTA As FastaToken In __innerList
-                token = FASTA.GenerateDocument(LineBreak:=60)
-                Call sBuilder.AppendLine(token)
+            For Each fa As FastaToken In __innerList
+                s = fa.GenerateDocument(LineBreak:=60)
+                Call sb.AppendLine(s)
             Next
-            Return sBuilder.ToString
+            Return sb.ToString
         End Function
 
         ''' <summary>

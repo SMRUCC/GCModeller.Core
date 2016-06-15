@@ -2,6 +2,8 @@
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Language.UnixBash
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.KEGG.DBGET.BriteHEntry
 
@@ -120,10 +122,11 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                           Let genes As String() = x.GetPathwayGenes
                           Where Not StringHelpers.IsNullOrEmpty(genes)
                           Select (From g As String
-                              In genes
+                                  In genes
                                   Select g,
                                   modX = x)).MatrixAsIterator
-            Dim Groups = (From x In LQuery
+            Dim Groups = (From x
+                          In LQuery
                           Select x
                           Group x By x.g Into Group) _
                            .ToDictionary(Function(x) x.g,
@@ -141,10 +144,11 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         End Function
 
         Private Shared Function __getFiles(Of T As PathwayBrief)(DIR As String) As PathwayBrief()
-            Dim files = FileIO.FileSystem.GetFiles(DIR, FileIO.SearchOption.SearchAllSubDirectories, "*.xml")
-            Dim LQuery = (From xml As String
-                      In files.AsParallel
-                          Select DirectCast(xml.LoadXml(Of T), PathwayBrief)).ToArray
+            Dim files As IEnumerable(Of String) = ls - l - r - wildcards("*.xml") <= DIR
+            Dim LQuery As PathwayBrief() =
+                LinqAPI.Exec(Of PathwayBrief) <= From xml As String
+                                                 In files.AsParallel
+                                                 Select DirectCast(xml.LoadXml(Of T), PathwayBrief)
             Return LQuery
         End Function
 
