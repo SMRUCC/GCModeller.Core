@@ -3,6 +3,7 @@ Imports LANS.SystemsBiology.Assembly.KEGG.DBGET
 Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat
+Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports LANS.SystemsBiology.SequenceModel
 Imports LANS.SystemsBiology.SequenceModel.FASTA
@@ -27,6 +28,17 @@ Module DEBUG_MAIN
 
     Sub Main()
 
+        Dim ptt As PTT = TabularFormat.PTT.Load("G:\Xanthomonas_campestris_8004_uid15\CP000050.ptt")
+        Dim loci As New NucleotideLocation(3769223, 3769149, Strands.Reverse)
+        Dim genome As New LANS.SystemsBiology.ContextModel.GenomeContextProvider(Of GeneBrief)(ptt)
+
+        Dim rellllll = genome.GetAroundRelated(loci)
+        Dim rel22222223 = genome.GetAroundRelated(loci, False)
+
+        loci = New NucleotideLocation(3834400, 3834450) ' XC_3200, XC_3199, KEGG测试成功
+
+        rellllll = genome.GetAroundRelated(loci, False)
+
         ' 3777599          ==> 3779884 #Forward
         '        3779678 ==> 3779822 #Forward
 
@@ -34,7 +46,7 @@ Module DEBUG_MAIN
         ' 3773579, 3773650
 
         Dim ff As New LANS.SystemsBiology.ContextModel.Context(New NucleotideLocation(3769097, 3769702, Strands.Forward), 500)
-        Dim loci As New NucleotideLocation(3769223, 3769149, Strands.Reverse)
+
         Dim relsss = ff.GetRelation(loci, True)
 
         '    Dim gff = LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.GFF.LoadDocument("D:\Xanthomonas\Xanthomonas citri pv. citri 306\GCA_000007165.1_ASM716v1_genomic.gff")
