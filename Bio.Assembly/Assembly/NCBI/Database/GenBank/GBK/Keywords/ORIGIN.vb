@@ -13,7 +13,7 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords
     ''' </summary>
     ''' <remarks></remarks>
     Public Class ORIGIN : Inherits KeyWord
-        Implements I_FastaToken
+        Implements IAbstractFastaToken
         Implements IEnumerable(Of Char)
 
         ''' <summary>
@@ -123,13 +123,13 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords
             Return New FastaToken(attrs, SequenceData)
         End Function
 
-        Public ReadOnly Property Title As String Implements I_FastaToken.Title
+        Public ReadOnly Property Title As String Implements IAbstractFastaToken.Title
             Get
                 Return "GBK_ORIGIN"
             End Get
         End Property
 
-        Public Property Attributes As String() Implements I_FastaToken.Attributes
+        Public Property Attributes As String() Implements IAbstractFastaToken.Attributes
 
         Public Iterator Function GetEnumerator() As IEnumerator(Of Char) Implements IEnumerable(Of Char).GetEnumerator
             For Each ch As Char In SequenceData

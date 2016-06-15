@@ -15,7 +15,7 @@ Namespace SequenceModel.FASTA
     ''' The fasta object is a sequence model object with a specific title to identify the sequence and a sequence data property to represents the specific molecule.
     ''' </summary>
     ''' <remarks></remarks>
-    Public Interface I_FastaToken : Inherits I_PolymerSequenceModel
+    Public Interface IAbstractFastaToken : Inherits I_PolymerSequenceModel
         ''' <summary>
         ''' The title value which contains some brief information about this sequence.(这条序列数据的标题摘要信息)
         ''' </summary>

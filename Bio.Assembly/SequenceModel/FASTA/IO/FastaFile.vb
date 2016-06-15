@@ -56,7 +56,7 @@ Namespace SequenceModel.FASTA
             Call Me.New({fa})
         End Sub
 
-        Sub New(fa As Generic.IEnumerable(Of FASTA.I_FastaToken))
+        Sub New(fa As Generic.IEnumerable(Of FASTA.IAbstractFastaToken))
             Call Me.New(fa.ToArray(Function(x) New FastaToken(x)))
         End Sub
 
@@ -566,7 +566,7 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
         ''' <param name="path"></param>
         ''' <param name="encoding"></param>
         ''' <returns></returns>
-        Public Shared Function SaveData(Of T As I_FastaToken)(data As IEnumerable(Of T), path As String, Optional encoding As Encoding = Nothing) As Boolean
+        Public Shared Function SaveData(Of T As IAbstractFastaToken)(data As IEnumerable(Of T), path As String, Optional encoding As Encoding = Nothing) As Boolean
             Dim LQuery = (From fa As T
                           In data
                           Select FastaToken.GenerateDocumentText(fa) & vbCrLf).ToArray

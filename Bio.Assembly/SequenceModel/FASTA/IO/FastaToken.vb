@@ -18,7 +18,7 @@ Namespace SequenceModel.FASTA
     <PackageNamespace("GCModeller.IO.FastaToken", Publisher:="amethyst.asuka@gcmodeller.org")>
     Public Class FastaToken : Inherits ISequenceModel
         Implements I_PolymerSequenceModel
-        Implements I_FastaToken
+        Implements IAbstractFastaToken
         Implements ISaveHandle
         Implements I_FastaProvider
 
@@ -48,7 +48,7 @@ Namespace SequenceModel.FASTA
         ''' usually different between each biological database.(这个FASTA文件的属性头，标题的格式通常在不同的数据库之间是具有很大差异的)
         ''' </summary>
         ''' <remarks></remarks>
-        Public Overridable Property Attributes As String() Implements I_FastaToken.Attributes, I_FastaProvider.Attributes
+        Public Overridable Property Attributes As String() Implements IAbstractFastaToken.Attributes, I_FastaProvider.Attributes
             Get
                 Return _InnerList.ToArray
             End Get
@@ -89,7 +89,7 @@ Namespace SequenceModel.FASTA
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public ReadOnly Property Title As String Implements I_FastaToken.Title, I_FastaProvider.Title
+        Public ReadOnly Property Title As String Implements IAbstractFastaToken.Title, I_FastaProvider.Title
             Get
                 Return Me.ToString
             End Get
@@ -139,7 +139,7 @@ Namespace SequenceModel.FASTA
             SequenceData = fa.SequenceData
         End Sub
 
-        Sub New(LDM As FASTA.I_FastaToken)
+        Sub New(LDM As FASTA.IAbstractFastaToken)
             Me.SequenceData = LDM.SequenceData
             Me.Attributes = LDM.Attributes
         End Sub
@@ -435,7 +435,7 @@ Namespace SequenceModel.FASTA
         End Operator
 
         <ExportAPI("ToDoc")>
-        Public Shared Function GenerateDocumentText(FastaObject As I_FastaToken) As String
+        Public Shared Function GenerateDocumentText(FastaObject As IAbstractFastaToken) As String
             Return String.Format(">{0}{1}{2}", FastaObject.Title, vbCrLf, FastaObject.SequenceData).Replace(vbCr, "")
         End Function
 
