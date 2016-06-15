@@ -43,6 +43,12 @@ Namespace ContextModel
             Return genes
         End Function
 
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="relType"></param>
+        ''' <param name="ATGdist"></param>
+        ''' <returns></returns>
         Public Function GetATGRelation(relType As SegmentRelationships, ATGdist As Integer) As T()
             Dim genes As T() = GetRelation(relType, ATGdist)
             Dim loci As NucleotideLocation = Me.loci

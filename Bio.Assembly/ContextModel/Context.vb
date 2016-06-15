@@ -5,12 +5,28 @@ Imports Microsoft.VisualBasic.Serialization
 
 Namespace ContextModel
 
+    ''' <summary>
+    ''' Context model of a specific genomics feature site.
+    ''' </summary>
     Public Structure Context
 
+        ''' <summary>
+        ''' Current feature site
+        ''' </summary>
         Public ReadOnly Feature As NucleotideLocation
+        ''' <summary>
+        ''' <see cref="Feature"/> its upstream region with a specific length
+        ''' </summary>
         Public ReadOnly Upstream As NucleotideLocation
+        ''' <summary>
+        ''' <see cref="Feature"/> its downstream region with a specific length
+        ''' </summary>
         Public ReadOnly Downstream As NucleotideLocation
         Public ReadOnly Antisense As NucleotideLocation
+
+        ''' <summary>
+        ''' The user custom tag data for this feature site.
+        ''' </summary>
         Public ReadOnly Tag As String
 
         Sub New(g As IGeneBrief, dist As Integer)
@@ -36,6 +52,12 @@ Namespace ContextModel
             Call Me.New(g.MappingLocation, dist, g.ToString)
         End Sub
 
+        ''' <summary>
+        ''' Get relationship between target <see cref="NucleotideLocation"/> with current feature site.
+        ''' </summary>
+        ''' <param name="loci"></param>
+        ''' <param name="stranded">Get <see cref="SegmentRelationships"/> ignored of nucleotide <see cref="Strands"/>?</param>
+        ''' <returns></returns>
         Public Function GetRelation(loci As NucleotideLocation, stranded As Boolean) As SegmentRelationships
             If stranded Then
                 Return __relStranede(loci)
@@ -44,6 +66,11 @@ Namespace ContextModel
             End If
         End Function
 
+        ''' <summary>
+        ''' Get <see cref="SegmentRelationships"/> ignored of nucleotide <see cref="Strands"/>.
+        ''' </summary>
+        ''' <param name="loci"></param>
+        ''' <returns></returns>
         Private Function __relUnstrand(loci As NucleotideLocation) As SegmentRelationships
             Dim rel As SegmentRelationships = __getRel(loci)
 
@@ -96,6 +123,10 @@ Namespace ContextModel
             End If
         End Function
 
+        ''' <summary>
+        ''' Get tags data
+        ''' </summary>
+        ''' <returns></returns>
         Public Overrides Function ToString() As String
             Return Tag
         End Function

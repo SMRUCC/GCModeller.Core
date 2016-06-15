@@ -39,9 +39,10 @@ Namespace ContextModel
         ''' <param name="Strand"></param>
         ''' <returns></returns>
         Public Function GetInnerAntisense(source As IEnumerable(Of T),
-                                                                    LociStart As Integer,
-                                                                    LociEnds As Integer,
-                                                                    Strand As Strands) As T()
+                                          LociStart As Integer,
+                                          LociEnds As Integer,
+                                          Strand As Strands) As T()
+
             Dim Raw As Relationship(Of T)() = GetRelatedGenes(source, LociStart, LociEnds, 0)
             Dim LQuery = (From obj In Raw
                           Where obj.Relation = SegmentRelationships.Inside AndAlso '只需要在内部并且和指定的链的方向反向的对象就可以了
@@ -63,9 +64,10 @@ Namespace ContextModel
         ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
         ''' <remarks></remarks>
         Public Function GetRelatedGenes(DataSource As IEnumerable(Of GeneBrief),
-                                                    LociStart As Integer,
-                                                    LociEnds As Integer,
-                                                    Optional ATGDistance As Integer = 500) As Relationship(Of GeneBrief)()
+                                        LociStart As Integer,
+                                        LociEnds As Integer,
+                                        Optional ATGDistance As Integer = 500) As Relationship(Of GeneBrief)()
+
             Return GetRelatedGenes(DataSource, LociStart, LociEnds, ATGDistance)
         End Function
 
@@ -209,7 +211,7 @@ Namespace ContextModel
             Dim Dwsrt As T() =
                 LinqAPI.Exec(Of T) <= From gene As T
                                       In DownStreamGenes
-                                      Let Distance As Integer = LocationDescriptions.AtgDistance(gene, loci)
+                                      Let Distance As Integer = LocationDescriptions.ATGDistance(gene, loci)
                                       Where Distance <= lociDist
                                       Select gene
 
