@@ -34,6 +34,13 @@ Namespace ContextModel
             Return BlankData
         End Function
 
+        ''' <summary>
+        ''' Get the loci relationship between the target gene and the specific feature loci.
+        ''' </summary>
+        ''' <typeparam name="T"></typeparam>
+        ''' <param name="gene"></param>
+        ''' <param name="nucl"></param>
+        ''' <returns></returns>
         Public Function GetLociRelations(Of T As IGeneBrief)(gene As T, nucl As NucleotideLocation) As SegmentRelationships
             Dim r As SegmentRelationships = gene.Location.GetRelationship(nucl)
 
@@ -58,7 +65,14 @@ Namespace ContextModel
             End If
         End Function
 
-        Public Function AtgDistance(Of T As IGeneBrief)(gene As T, nucl As NucleotideLocation) As Integer
+        ''' <summary>
+        ''' Calculate the ATG distance between the target gene and the specific feature loci.
+        ''' </summary>
+        ''' <typeparam name="T"></typeparam>
+        ''' <param name="gene"></param>
+        ''' <param name="nucl"></param>
+        ''' <returns></returns>
+        Public Function ATGDistance(Of T As IGeneBrief)(gene As T, nucl As NucleotideLocation) As Integer
             Call nucl.Normalization()
             Call gene.Location.Normalization()
 

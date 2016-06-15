@@ -1,13 +1,27 @@
-﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat
+Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports LANS.SystemsBiology.ComponentModel
 Imports LANS.SystemsBiology.ComponentModel.Loci
-Imports Microsoft.VisualBasic.ComponentModel.Ranges
 Imports Microsoft.VisualBasic
-Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.ComponentModel.Ranges
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq
 
 Namespace ContextModel
 
+    ''' <summary>
+    ''' 基因组上下文计算工具，一般使用<see cref="PTT"/>或者<see cref="GFF"/>文件作为数据源.
+    ''' 
+    ''' ```vbnet
+    ''' Dim PTT As <see cref="PTT"/> = TabularFormat.PTT.Load("G:\Xanthomonas_campestris_8004_uid15\CP000050.ptt")
+    ''' Dim genome As New <see cref="GenomeContextProvider"/>(Of GeneBrief)(PTT)
+    ''' Dim loci As New <see cref="NucleotideLocation"/>(3834400, 3834450) ' XC_3200, XC_3199, KEGG测试成功
+    ''' Dim rels = genome.GetAroundRelated(loci, False)
+    ''' 
+    ''' rels = genome.GetAroundRelated(loci, True)
+    ''' ```
+    ''' </summary>
+    ''' <typeparam name="T"></typeparam>
     Public Class GenomeContextProvider(Of T As IGeneBrief)
 
         ReadOnly _forwards As OrderSelector(Of IntTag(Of T))
@@ -39,9 +53,10 @@ Namespace ContextModel
         ''' <param name="Strand"></param>
         ''' <returns></returns>
         Public Function GetInnerAntisense(source As IEnumerable(Of T),
-                                                                    LociStart As Integer,
-                                                                    LociEnds As Integer,
-                                                                    Strand As Strands) As T()
+                                          LociStart As Integer,
+                                          LociEnds As Integer,
+                                          Strand As Strands) As T()
+
             Dim Raw As Relationship(Of T)() = GetRelatedGenes(source, LociStart, LociEnds, 0)
             Dim LQuery = (From obj In Raw
                           Where obj.Relation = SegmentRelationships.Inside AndAlso '只需要在内部并且和指定的链的方向反向的对象就可以了
@@ -63,9 +78,10 @@ Namespace ContextModel
         ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
         ''' <remarks></remarks>
         Public Function GetRelatedGenes(DataSource As IEnumerable(Of GeneBrief),
-                                                    LociStart As Integer,
-                                                    LociEnds As Integer,
-                                                    Optional ATGDistance As Integer = 500) As Relationship(Of GeneBrief)()
+                                        LociStart As Integer,
+                                        LociEnds As Integer,
+                                        Optional ATGDistance As Integer = 500) As Relationship(Of GeneBrief)()
+
             Return GetRelatedGenes(DataSource, LociStart, LociEnds, ATGDistance)
         End Function
 
@@ -133,6 +149,11 @@ Namespace ContextModel
                                          Select x.Gene
         End Function
 
+        ''' <summary>
+        ''' Gets the stranded gene object data source.
+        ''' </summary>
+        ''' <param name="strand"></param>
+        ''' <returns></returns>
         Public Function GetSource(strand As Strands) As OrderSelector(Of IntTag(Of T))
             If strand = Strands.Forward Then
                 Return _forwards
@@ -141,6 +162,12 @@ Namespace ContextModel
             End If
         End Function
 
+        ''' <summary>
+        ''' Creates the anonymous function pointer for the relationship <see cref="GetAroundRelated"/>
+        ''' </summary>
+        ''' <param name="loci"></param>
+        ''' <param name="stranded"></param>
+        ''' <returns></returns>
         Private Function __delegate(loci As NucleotideLocation, stranded As Boolean) As Func(Of Strands, Integer, T())
             Dim strand As Strands = loci.Strand
 
@@ -209,7 +236,7 @@ Namespace ContextModel
             Dim Dwsrt As T() =
                 LinqAPI.Exec(Of T) <= From gene As T
                                       In DownStreamGenes
-                                      Let Distance As Integer = LocationDescriptions.AtgDistance(gene, loci)
+                                      Let Distance As Integer = LocationDescriptions.ATGDistance(gene, loci)
                                       Where Distance <= lociDist
                                       Select gene
 
