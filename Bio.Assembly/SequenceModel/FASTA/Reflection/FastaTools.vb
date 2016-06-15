@@ -4,6 +4,7 @@ Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Language.UnixBash
+Imports Microsoft.VisualBasic.Language
 
 Namespace SequenceModel.FASTA.Reflection
 
@@ -48,32 +49,46 @@ Namespace SequenceModel.FASTA.Reflection
             Return New FastaFile(LQuery)
         End Function
 
+        ''' <summary>
+        ''' Merge the fasta sequence file from a file list.
+        ''' </summary>
+        ''' <param name="list"></param>
+        ''' <param name="Trim"></param>
+        ''' <param name="rawTitle"></param>
+        ''' <returns></returns>
         <ExportAPI("Merge", Info:="Merge the fasta sequence file from a file list.")>
         <Extension>
-        Public Function Merge(list As IEnumerable(Of String), Trim As Boolean) As FastaFile
-            Dim MergeFa = (From file As String
-                           In list.AsParallel
-                           Select FastaFile.Read(file)).MatrixToList
+        Public Function Merge(list As IEnumerable(Of String), Trim As Boolean, rawTitle As Boolean) As FastaFile
+            Dim mergeFa As FastaToken() =
+                LinqAPI.Exec(Of FastaToken) <= From file As String
+                                               In list.AsParallel
+                                               Select FastaFile.Read(file)
 
             If Trim Then
-                MergeFa = (From fa As FastaToken
-                           In MergeFa.AsParallel
+                mergeFa = (From fa As FastaToken
+                           In mergeFa.AsParallel
                            Let attrs As String() = New String() {fa.Attributes.First.Split.First}
                            Select fa.InvokeSet(NameOf(fa.Attributes), attrs)).ToList
-                MergeFa = (From fa As FastaToken
-                           In MergeFa.AsParallel
+                mergeFa = (From fa As FastaToken
+                           In mergeFa.AsParallel
                            Select fa.FastaTrimCorrupt).ToList
+            Else
+                If Not rawTitle Then
+                    For Each fa As FastaToken In mergeFa
+                        fa.Attributes = {fa.Attributes.First.Split.First}
+                    Next
+                End If
             End If
 
-            MergeFa = (From fa As FastaToken
-                       In MergeFa.AsParallel
-                       Where Not String.IsNullOrEmpty(fa.SequenceData)
-                       Select fa).ToList
+            Dim source As IEnumerable(Of FastaToken) =
+                From fa As FastaToken
+                In mergeFa.AsParallel
+                Where Not String.IsNullOrEmpty(fa.SequenceData)
+                Select fa
 
             Call Console.Write(".")
 
-            Dim fasta As New FastaFile(MergeFa)
-            Return fasta
+            Return New FastaFile(mergeFa)
         End Function
 
         ''' <summary>
@@ -83,14 +98,22 @@ Namespace SequenceModel.FASTA.Reflection
         ''' <param name="trim"></param>
         ''' <returns></returns>
         <ExportAPI("Merge", Info:="Merge the fasta sequence file from a directory.")>
-        Public Function Merge(inDIR As String, trim As Boolean) As FastaFile
+        Public Function Merge(inDIR As String, trim As Boolean, rawTitle As Boolean) As FastaFile
             Dim files As IEnumerable(Of String) = ls - l - wildcards("*.fa", "*.fsa", "*.fas", "*.fasta") <= inDIR
-            Return files.Merge(trim)
+            Return files.Merge(trim, rawTitle)
         End Function
 
-        Public Function Merge(inDIR As String, ext As String, trim As Boolean) As FastaFile
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="inDIR"></param>
+        ''' <param name="ext"></param>
+        ''' <param name="trim"></param>
+        ''' <param name="rawTitle">是否保留有原来的标题</param>
+        ''' <returns></returns>
+        Public Function Merge(inDIR As String, ext As String, trim As Boolean, rawTitle As Boolean) As FastaFile
             Dim files As IEnumerable(Of String) = ls - l - wildcards(ext) <= inDIR
-            Return files.Merge(trim)
+            Return files.Merge(trim, rawTitle)
         End Function
 
         Const HTML_CHARS As String = "</>!\[].+:()0123456789"
