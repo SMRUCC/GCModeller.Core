@@ -1,13 +1,27 @@
-﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat
+Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports LANS.SystemsBiology.ComponentModel
 Imports LANS.SystemsBiology.ComponentModel.Loci
-Imports Microsoft.VisualBasic.ComponentModel.Ranges
 Imports Microsoft.VisualBasic
-Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.ComponentModel.Ranges
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq
 
 Namespace ContextModel
 
+    ''' <summary>
+    ''' 基因组上下文计算工具，一般使用<see cref="PTT"/>或者<see cref="GFF"/>文件作为数据源.
+    ''' 
+    ''' ```vbnet
+    ''' Dim PTT As <see cref="PTT"/> = TabularFormat.PTT.Load("G:\Xanthomonas_campestris_8004_uid15\CP000050.ptt")
+    ''' Dim genome As New <see cref="GenomeContextProvider"/>(Of GeneBrief)(PTT)
+    ''' Dim loci As New <see cref="NucleotideLocation"/>(3834400, 3834450) ' XC_3200, XC_3199, KEGG测试成功
+    ''' Dim rels = genome.GetAroundRelated(loci, False)
+    ''' 
+    ''' rels = genome.GetAroundRelated(loci, True)
+    ''' ```
+    ''' </summary>
+    ''' <typeparam name="T"></typeparam>
     Public Class GenomeContextProvider(Of T As IGeneBrief)
 
         ReadOnly _forwards As OrderSelector(Of IntTag(Of T))
@@ -135,6 +149,11 @@ Namespace ContextModel
                                          Select x.Gene
         End Function
 
+        ''' <summary>
+        ''' Gets the stranded gene object data source.
+        ''' </summary>
+        ''' <param name="strand"></param>
+        ''' <returns></returns>
         Public Function GetSource(strand As Strands) As OrderSelector(Of IntTag(Of T))
             If strand = Strands.Forward Then
                 Return _forwards
@@ -143,6 +162,12 @@ Namespace ContextModel
             End If
         End Function
 
+        ''' <summary>
+        ''' Creates the anonymous function pointer for the relationship <see cref="GetAroundRelated"/>
+        ''' </summary>
+        ''' <param name="loci"></param>
+        ''' <param name="stranded"></param>
+        ''' <returns></returns>
         Private Function __delegate(loci As NucleotideLocation, stranded As Boolean) As Func(Of Strands, Integer, T())
             Dim strand As Strands = loci.Strand
 
