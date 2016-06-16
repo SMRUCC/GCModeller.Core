@@ -157,8 +157,10 @@ Namespace ContextModel
         Public Function GetSource(strand As Strands) As OrderSelector(Of IntTag(Of T))
             If strand = Strands.Forward Then
                 Return _forwards
-            Else
+            ElseIf strand = Strands.Reverse Then
                 Return _reversed
+            Else
+                Throw New NotImplementedException(strand.ToString & " " & GetType(Strands).FullName)
             End If
         End Function
 

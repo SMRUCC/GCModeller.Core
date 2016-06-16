@@ -32,7 +32,7 @@ Module DEBUG_MAIN
         Dim loci As New NucleotideLocation(3769223, 3769149, Strands.Reverse)
         Dim genome As New LANS.SystemsBiology.ContextModel.GenomeContextProvider(Of GeneBrief)(ptt)
 
-        loci = New NucleotideLocation(1693322, 1693314, Strands.Forward)
+        loci = New NucleotideLocation(1693322, 1693314, Strands.Unknown)
 
         Dim rel22222223 = genome.GetAroundRelated(loci, False)
 
