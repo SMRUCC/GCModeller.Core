@@ -99,12 +99,17 @@ Namespace ComponentModel.Loci
         Public Sub New()
         End Sub
 
-        Sub New(loci As Location, Strand As Strands)
+        ''' <summary>
+        ''' Create location model from the exists loci data, and then assign a new <see cref="Strands"/> value for it.
+        ''' </summary>
+        ''' <param name="loci"></param>
+        ''' <param name="strand">The new <see cref="Strands"/> value for the target loci.</param>
+        Sub New(loci As Location, strand As Strands)
             Call loci.Normalization()
 
             MyBase.Left = loci.Left
             MyBase.Right = loci.Right
-            Me.Strand = Strand
+            Me.Strand = strand
         End Sub
 
         Sub New(loci As ILocationComponent, Optional strand As Strands = Strands.Forward)

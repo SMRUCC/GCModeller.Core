@@ -32,8 +32,13 @@ Module DEBUG_MAIN
         Dim loci As New NucleotideLocation(3769223, 3769149, Strands.Reverse)
         Dim genome As New LANS.SystemsBiology.ContextModel.GenomeContextProvider(Of GeneBrief)(ptt)
 
-        Dim rellllll = genome.GetAroundRelated(loci)
+        loci = New NucleotideLocation(1693322, 1693314, Strands.Forward)
+
         Dim rel22222223 = genome.GetAroundRelated(loci, False)
+
+
+        Dim rellllll = genome.GetAroundRelated(loci)
+
 
         loci = New NucleotideLocation(3834400, 3834450) ' XC_3200, XC_3199, KEGG测试成功
 
