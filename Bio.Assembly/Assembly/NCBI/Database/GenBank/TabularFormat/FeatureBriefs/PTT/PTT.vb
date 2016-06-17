@@ -250,7 +250,6 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             Dim lines As String() = System.IO.File.ReadAllLines(path)
             Dim PTT As PTT = New PTT With {
                 .FilePath = path,
-                .__innerBuffer = lines,
                 .Title = lines(0)
             }
 

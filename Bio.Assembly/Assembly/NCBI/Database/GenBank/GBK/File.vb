@@ -1,11 +1,14 @@
-﻿Imports System.Text.RegularExpressions
-Imports System.Text
-Imports Microsoft.VisualBasic.Scripting.MetaData
-Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports Microsoft.VisualBasic.Linq.Extensions
-Imports Microsoft.VisualBasic.ComponentModel
+﻿Imports System.Text
+Imports System.Text.RegularExpressions
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords
 Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
+Imports LANS.SystemsBiology.SequenceModel
+Imports LANS.SystemsBiology.SequenceModel.NucleotideModels
+Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq.Extensions
+Imports Microsoft.VisualBasic.Scripting.MetaData
 
 Namespace Assembly.NCBI.GenBank.GBFF
 
@@ -143,26 +146,25 @@ Namespace Assembly.NCBI.GenBank.GBFF
         ''' <param name="Feature">The target feature site on the genome DNA sequence.</param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Overloads Function Read(Feature As Feature) As SequenceModel.FASTA.FastaToken
+        Public Overloads Function Read(Feature As Feature) As FASTA.FastaToken
             Dim Left As Long = Feature.Location.Locations.First.Left
             Dim Right As Long = Feature.Location.Locations.Last.Right
-            Dim Sequence As String = Mid(Origin, Left, System.Math.Abs(Left - Right))
+            Dim Sequence As String = Mid(Origin, Left, Math.Abs(Left - Right))
 
             If Feature.Location.Complement Then
-                Sequence = (SequenceModel.NucleotideModels.NucleicAcid.Complement(Sequence))
+                Sequence = (NucleicAcid.Complement(Sequence))
             End If
 
-            Dim FastaObject As SequenceModel.FASTA.FastaToken =
-                New SequenceModel.FASTA.FastaToken With {
-                    .SequenceData = Sequence,
-                    .Attributes = New String() {
-                        "Feature",
-                        Feature.Location.ToString,
-                        Feature.KeyName
-                    }
+            Dim fa As New FASTA.FastaToken With {
+                .SequenceData = Sequence,
+                .Attributes = New String() {
+                    "Feature",
+                    Feature.Location.ToString,
+                    Feature.KeyName
                 }
+            }
 
-            Return FastaObject
+            Return fa
         End Function
 
         ''' <summary>
@@ -209,8 +211,8 @@ Namespace Assembly.NCBI.GenBank.GBFF
             Return GenBank
         End Function
 
-        Private Shared Function __originReadThread(gb As NCBI.GenBank.GBFF.File) As NCBI.GenBank.GBFF.Keywords.ORIGIN
-            Dim ChunkBuffer As String() = File.Internal_readBlock(KeyWord.GBK_FIELD_KEY_ORIGIN, gb)
+        Private Shared Function __originReadThread(gb As NCBI.GenBank.GBFF.File, buf As String()) As NCBI.GenBank.GBFF.Keywords.ORIGIN
+            Dim ChunkBuffer As String() = File.Internal_readBlock(KeyWord.GBK_FIELD_KEY_ORIGIN, buf)
 
             If ChunkBuffer.IsNullOrEmpty Then
                 Call $"{gb.FilePath.ToFileURL} have no sequence data.".__DEBUG_ECHO
@@ -220,27 +222,26 @@ Namespace Assembly.NCBI.GenBank.GBFF
             End If
         End Function
 
-        Private Shared Function __loadData(FileData As String(), Path As String) As NCBI.GenBank.GBFF.File
+        Private Shared Function __loadData(innerBufs As String(), Path As String) As NCBI.GenBank.GBFF.File
             Call "Start loading ncbi gbk file...".__DEBUG_ECHO
 
             Dim Sw As Stopwatch = Stopwatch.StartNew
             Dim gb As New File With {
-                .__innerBuffer = FileData,
                 .FilePath = Path
             }
-            Dim ReadThread As Action = Sub() Call __readOrigin(gb)
-            Dim ReadThreadResult As IAsyncResult = ReadThread.BeginInvoke(Nothing, Nothing)
+            Dim ReadThread As Action(Of File, String()) = AddressOf __readOrigin
+            Dim ReadThreadResult As IAsyncResult = ReadThread.BeginInvoke(gb, innerBufs, Nothing, Nothing)
 
-            gb.Comment = Internal_readBlock(KeyWord.GBK_FIELD_KEY_COMMENT, gb)
-            gb.Features = Internal_readBlock(KeyWord.GBK_FIELD_KEY_FEATURES, gb).Skip(1).ToArray
-            gb.Accession = ACCESSION.CreateObject(NCBI.GenBank.GBFF.File.Internal_readBlock(KeyWord.GBK_FIELD_KEY_ACCESSION, gb), IO.Path.GetFileNameWithoutExtension(Path))
-            gb.Reference = REFERENCE.InternalParser(gb.__innerBuffer)
-            gb.Definition = Internal_readBlock(KeyWord.GBK_FIELD_KEY_DEFINITION, gb)
-            gb.Version = Internal_readBlock(KeyWord.GBK_FIELD_KEY_VERSION, gb)
-            gb.Source = Internal_readBlock(KeyWord.GBK_FIELD_KEY_SOURCE, gb)
-            gb.Locus = LOCUS.InternalParser(NCBI.GenBank.GBFF.File.Internal_readBlock(KeyWord.GBK_FIELD_KEY_LOCUS, gb).First)
-            gb.Keywords = GBFF.Keywords.KEYWORDS.__innerParser(Internal_readBlock(KeyWord.GBK_FIELD_KEY_KEYWORDS, gb))
-            gb.DbLink = GBFF.Keywords.DBLINK.Parser(Internal_readBlock(KeyWord.GBK_FIELD_KEY_DBLINK, gb))
+            gb.Comment = Internal_readBlock(KeyWord.GBK_FIELD_KEY_COMMENT, innerBufs)
+            gb.Features = Internal_readBlock(KeyWord.GBK_FIELD_KEY_FEATURES, innerBufs).Skip(1).ToArray
+            gb.Accession = ACCESSION.CreateObject(NCBI.GenBank.GBFF.File.Internal_readBlock(KeyWord.GBK_FIELD_KEY_ACCESSION, innerBufs), Path.BaseName)
+            gb.Reference = REFERENCE.InternalParser(innerBufs)
+            gb.Definition = Internal_readBlock(KeyWord.GBK_FIELD_KEY_DEFINITION, innerBufs)
+            gb.Version = Internal_readBlock(KeyWord.GBK_FIELD_KEY_VERSION, innerBufs)
+            gb.Source = Internal_readBlock(KeyWord.GBK_FIELD_KEY_SOURCE, innerBufs)
+            gb.Locus = LOCUS.InternalParser(NCBI.GenBank.GBFF.File.Internal_readBlock(KeyWord.GBK_FIELD_KEY_LOCUS, innerBufs).First)
+            gb.Keywords = GBFF.Keywords.KEYWORDS.__innerParser(Internal_readBlock(KeyWord.GBK_FIELD_KEY_KEYWORDS, innerBufs))
+            gb.DbLink = GBFF.Keywords.DBLINK.Parser(Internal_readBlock(KeyWord.GBK_FIELD_KEY_DBLINK, innerBufs))
 
             gb.Accession.gbRaw = gb
             gb.Comment.gbRaw = gb
@@ -258,13 +259,13 @@ Namespace Assembly.NCBI.GenBank.GBFF
             Call $"({gb.Accession.AccessionId})""{gb.Definition.Value}"" data load done!  {FileIO.FileSystem.GetFileInfo(Path).Length}bytes {Sw.ElapsedMilliseconds}ms...".__DEBUG_ECHO
 
             gb.Origin.gbRaw = gb  '由于使用线程进行读取的，所以不能保证在赋值的时候是否初始化基因组序列完成
-            gb.__innerBuffer = Nothing
+            innerBufs = Nothing
 
             Return gb
         End Function
 
-        Private Shared Sub __readOrigin(gb As File)
-            gb.Origin = __originReadThread(gb)
+        Private Shared Sub __readOrigin(gb As File, bufs As String())
+            gb.Origin = __originReadThread(gb, buf:=bufs)
         End Sub
 
         ''' <summary>
@@ -273,28 +274,32 @@ Namespace Assembly.NCBI.GenBank.GBFF
         ''' <param name="keyword">字段名</param>
         ''' <returns>该字段的内容</returns>
         ''' <remarks></remarks>
-        Private Shared Function Internal_readBlock(Keyword As String, File As File) As String()
-            Dim Regx As Regex = New Regex(String.Format("^{0}\s+.+$", Keyword))
-            Dim LQuery = (From str As String In File.__innerBuffer
-                          Where Regx.Match(str).Success OrElse String.Equals(str, Keyword)
-                          Select str).ToArray
-            Dim index As Integer, p As Integer
+        Private Shared Function Internal_readBlock(Keyword As String, ByRef innerBufs As String()) As String()
+            Dim Regx As New Regex(String.Format("^{0}\s+.+$", Keyword))
+            Dim LQuery As String() =
+                LinqAPI.Exec(Of String) <= From str As String
+                                           In innerBufs
+                                           Where Regx.Match(str).Success OrElse
+                                               String.Equals(str, Keyword)
+                                           Select str
+            Dim index As Integer
+            Dim p As Integer
             Dim Data() As String = Nothing
 
             For Each Head As String In LQuery
-                index = Array.IndexOf(File.__innerBuffer, Head)
+                index = Array.IndexOf(innerBufs, Head)
                 p = index + 1
 
-                Do While String.IsNullOrEmpty(File.__innerBuffer(p)) OrElse File.__innerBuffer(p).First = " "c
+                Do While String.IsNullOrEmpty(innerBufs(p)) OrElse innerBufs(p).First = " "c
                     p += 1
-                    If p = File.__innerBuffer.Length Then
+                    If p = innerBufs.Length Then
                         Exit Do
                     End If
                 Loop
 
                 Dim sBuf As String() = New String(p - index - 1) {}
 
-                Call Array.ConstrainedCopy(File.__innerBuffer,
+                Call Array.ConstrainedCopy(innerBufs,
                                            index,
                                            sBuf,
                                            Scan0,
