@@ -1,6 +1,7 @@
 ﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports LANS.SystemsBiology.ComponentModel
 Imports LANS.SystemsBiology.ComponentModel.Loci
+Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.Language
 
 Namespace ContextModel
@@ -10,6 +11,7 @@ Namespace ContextModel
     ''' </summary>
     ''' <typeparam name="T"></typeparam>
     Public Class Relationship(Of T As IGeneBrief) : Inherits ClassObject
+        Implements IReadOnlyId
 
         ''' <summary>
         ''' Target gene object
@@ -17,6 +19,20 @@ Namespace ContextModel
         ''' <returns></returns>
         Public Property Gene As T
         Public Property Relation As SegmentRelationships
+
+        ''' <summary>
+        ''' <see cref="IGeneBrief.Identifier"/>
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property locus_tag As String Implements IReadOnlyId.Identity
+            Get
+                If Gene Is Nothing Then
+                    Return ""
+                Else
+                    Return Gene.Identifier
+                End If
+            End Get
+        End Property
 
         Sub New()
         End Sub

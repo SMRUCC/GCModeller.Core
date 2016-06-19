@@ -29,6 +29,11 @@ Namespace SequenceModel.NucleotideModels
             Complement = loci.Complement
         End Sub
 
+        Sub New(loci As SimpleSegment, sId As String)
+            Call Me.New(loci)
+            ID = sId
+        End Sub
+
         Protected Overrides Function __getMappingLoci() As NucleotideLocation
             Return New NucleotideLocation(Start, Ends, Strand).Normalization
         End Function
