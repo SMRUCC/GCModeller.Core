@@ -40,6 +40,7 @@ Namespace SequenceModel.NucleotideModels
     ''' </summary>
     ''' <remarks></remarks>
     Public Class NucleicAcid : Inherits ISequenceModel
+        Implements IEnumerable(Of DNA)
 
         ''' <summary>
         ''' 大小写不敏感
@@ -336,7 +337,7 @@ Namespace SequenceModel.NucleotideModels
             Return __nucleotideAsChar(nn).ToString
         End Function
 
-        Public Overloads Shared Function ToString(nt As Generic.IEnumerable(Of DNA)) As String
+        Public Overloads Shared Function ToString(nt As IEnumerable(Of DNA)) As String
             Dim array As Char() = nt.ToArray(Function(x) __nucleotideAsChar(x))
             Return New String(array)
         End Function
@@ -366,8 +367,14 @@ Namespace SequenceModel.NucleotideModels
             }
         End Operator
 
-        Public Function GetEnumerator() As Collections.IEnumerator
-            Return _innerSeqModel.Value.GetEnumerator
+        Private Iterator Function IEnumerable_GetEnumerator() As IEnumerator(Of DNA) Implements IEnumerable(Of DNA).GetEnumerator
+            For Each base As DNA In _innerSeqModel.Value
+                Yield base
+            Next
+        End Function
+
+        Private Iterator Function IEnumerable_GetEnumerator1() As IEnumerator Implements IEnumerable.GetEnumerator
+            Yield IEnumerable_GetEnumerator()
         End Function
     End Class
 End Namespace

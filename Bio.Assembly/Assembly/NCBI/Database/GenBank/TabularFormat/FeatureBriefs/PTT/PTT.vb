@@ -132,7 +132,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         End Function
 
         ''' <summary>
-        '''
+        ''' Find gene by using genen name.
         ''' </summary>
         ''' <param name="Name">基因名称，而非基因号</param>
         ''' <returns></returns>
@@ -152,12 +152,13 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             Return LQuery
         End Function
 
-        Public Function GetGeneByDescription(Matches As Func(Of String, Boolean)) As GeneBrief()
-            Dim LQuery = (From gene As GeneBrief
-                          In Me._innerList
-                          Where Matches(gene.Product)
-                          Select gene).ToArray
-            Return LQuery
+        Public Iterator Function GetGeneByDescription(Matches As Func(Of String, Boolean)) As IEnumerable(Of GeneBrief)
+            For Each result As GeneBrief In From gene As GeneBrief
+                                            In Me._innerList
+                                            Where Matches(gene.Product)
+                                            Select gene
+                Yield result
+            Next
         End Function
 
         Sub New()
