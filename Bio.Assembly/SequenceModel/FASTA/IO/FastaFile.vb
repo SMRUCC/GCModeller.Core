@@ -44,7 +44,7 @@ Namespace SequenceModel.FASTA
         ''' 构造函数会自动移除空值对象
         ''' </summary>
         ''' <param name="data"></param>
-        Sub New(data As Generic.IEnumerable(Of FastaToken))
+        Sub New(data As IEnumerable(Of FastaToken))
             _innerList =
                 LinqAPI.MakeList(Of FastaToken) <= From fa As FastaToken
                                                    In data
@@ -52,7 +52,7 @@ Namespace SequenceModel.FASTA
                                                    Select fa
         End Sub
 
-        Sub New(fa As SequenceModel.FASTA.FastaToken)
+        Sub New(fa As FASTA.FastaToken)
             Call Me.New({fa})
         End Sub
 

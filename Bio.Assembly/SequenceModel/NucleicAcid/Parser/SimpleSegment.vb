@@ -9,11 +9,27 @@ Namespace SequenceModel.NucleotideModels
     Public Class SimpleSegment : Inherits Contig
         Implements I_PolymerSequenceModel
 
+        ''' <summary>
+        ''' Probably synonym, locus_tag data
+        ''' </summary>
+        ''' <returns></returns>
         Public Property ID As String
+
+#Region "Location of this loci"
+
         Public Property Strand As String
         Public Property Start As Integer
         Public Property Ends As Integer
+#End Region
+        ''' <summary>
+        ''' 当前的这个位点的序列数据
+        ''' </summary>
+        ''' <returns></returns>
         Public Property SequenceData As String Implements I_PolymerSequenceModel.SequenceData
+        ''' <summary>
+        ''' The complements sequence of data <see cref="SequenceData"/>
+        ''' </summary>
+        ''' <returns></returns>
         Public Property Complement As String
 
         Sub New()
@@ -32,6 +48,14 @@ Namespace SequenceModel.NucleotideModels
         Sub New(loci As SimpleSegment, sId As String)
             Call Me.New(loci)
             ID = sId
+        End Sub
+
+        Sub New(site As SimpleSegment, loci As NucleotideLocation)
+            Call Me.New(site)
+
+            Start = loci.Left
+            Ends = loci.Right
+            Strand = loci.Strand.GetBriefCode
         End Sub
 
         Protected Overrides Function __getMappingLoci() As NucleotideLocation

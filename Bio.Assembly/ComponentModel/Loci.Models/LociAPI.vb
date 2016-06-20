@@ -11,12 +11,12 @@ Namespace ComponentModel.Loci
     Public Module LociAPI
 
         ''' <summary>
-        ''' 合并相邻的一个位点集合到一个新的更加长的位点
+        ''' 直接合并相邻的一个位点集合到一个新的更加长的位点
         ''' </summary>
         ''' <typeparam name="TLocation"></typeparam>
         ''' <param name="groupedData"></param>
         ''' <returns></returns>
-        Public Function Merge(Of TLocation As Location)(groupedData As Generic.IEnumerable(Of TLocation)) As TLocation
+        Public Function Merge(Of TLocation As Location)(groupedData As IEnumerable(Of TLocation)) As TLocation
             Dim RightAligned As TLocation = (From objLoci As TLocation
                                              In groupedData
                                              Select objLoci
@@ -149,8 +149,8 @@ Namespace ComponentModel.Loci
 
         <ExportAPI("Loci.Equals")>
         Public Function Equals(x As Location, loci As Location, Optional AllowedOffset As Integer = 10) As Boolean
-            Dim Loci1 As Long() = {x.Left(), x.Right()}
-            Dim Loci2 As Long() = {loci.Left, loci.Right}
+            Dim Loci1 As Integer() = {x.Left(), x.Right()}
+            Dim Loci2 As Integer() = {loci.Left, loci.Right}
 
             If AllowedOffset = 0 Then
                 Return Loci1.Min = Loci2.Min AndAlso

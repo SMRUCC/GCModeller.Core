@@ -147,14 +147,14 @@ Namespace ComponentModel.Loci
         End Sub
 
         ''' <summary>
-        ''' 
+        ''' Creates loci object from raw location data.
         ''' </summary>
-        ''' <param name="LociStart"><see cref="Location"/>: Gets or set the left start value of the segment on the target sequence.(目标片段的左端起始区域，与链的方向无关)</param>
-        ''' <param name="LociEnds"><see cref="Location"/>: Gets or set the right stop value of the segment on the target sequence.(目标片段的右端终止区域，与链的方向无关)</param>
+        ''' <param name="start"><see cref="Location"/>: Gets or set the left start value of the segment on the target sequence.(目标片段的左端起始区域，与链的方向无关)</param>
+        ''' <param name="[end]"><see cref="Location"/>: Gets or set the right stop value of the segment on the target sequence.(目标片段的右端终止区域，与链的方向无关)</param>
         ''' <param name="Strand">链的方向</param>
-        Public Sub New(LociStart As Integer, LociEnds As Integer, Strand As Strands)
-            MyBase.Left = LociStart
-            MyBase.Right = LociEnds
+        Public Sub New(start As Integer, [end] As Integer, Strand As Strands)
+            MyBase.Left = start
+            MyBase.Right = [end]
             Me.Strand = Strand
         End Sub
 

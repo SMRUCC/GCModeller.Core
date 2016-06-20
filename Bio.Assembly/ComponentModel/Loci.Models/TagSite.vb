@@ -2,26 +2,56 @@
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Serialization
 
 Namespace ComponentModel.Loci.Abstract
 
+    ''' <summary>
+    ''' This loci site have a tag
+    ''' </summary>
     Public Interface ITagSite
-        Property Address As String
+
         ''' <summary>
-        ''' 当前的这个位点对象距离<see cref="Address"/>所标记的位点的距离
+        ''' This property is usually be the locus_tag attribute
+        ''' </summary>
+        ''' <returns></returns>
+        Property tag As String
+        ''' <summary>
+        ''' The distance of current loci site to the site that tagged by <see cref="tag"/> value.
+        ''' (当前的这个位点对象距离<see cref="tag"/>所标记的位点的距离)
         ''' </summary>
         ''' <returns></returns>
         Property Distance As Integer
     End Interface
 
+    Public Structure TagSite(Of T As IContig)
+        Implements ITagSite
+
+        Public Property contig As T
+
+        Public Property Distance As Integer Implements ITagSite.Distance
+        Public Property tag As String Implements ITagSite.tag
+
+        Public Overrides Function ToString() As String
+            Return Me.GetJson
+        End Function
+    End Structure
+
     Public Module TagSiteExtensions
 
+        ''' <summary>
+        ''' 对位点进行分组操作
+        ''' </summary>
+        ''' <typeparam name="T"></typeparam>
+        ''' <param name="source"></param>
+        ''' <param name="offset"></param>
+        ''' <returns></returns>
         <Extension>
         Public Iterator Function Groups(Of T As ITagSite)(source As IEnumerable(Of T), Optional offset As Integer = 10) As IEnumerable(Of GroupResult(Of T, String))
-            Dim Grouping = (From x As T In source Select x Group x By x.Address Into Group)  ' 首先按照位点的tag标记进行分组
+            Dim Grouping = (From x As T In source Select x Group x By x.tag Into Group)  ' 首先按照位点的tag标记进行分组
             Dim locis As GroupResult(Of T, String)() = (From x
                                                         In Grouping'.AsParallel
-                                                        Select x.Group.__innerGroup(offset, tag:=x.Address)).MatrixToVector
+                                                        Select x.Group.__innerGroup(offset, tag:=x.tag)).MatrixAsIterator
             For Each x As GroupResult(Of T, String) In locis
                 Yield x
             Next

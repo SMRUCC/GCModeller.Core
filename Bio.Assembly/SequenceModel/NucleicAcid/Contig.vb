@@ -14,6 +14,7 @@ Namespace SequenceModel.NucleotideModels
     ''' 这个基础的模型对象只有在基因组上面的位置信息
     ''' </summary>
     Public MustInherit Class Contig
+        Implements IContig
 
         Protected _MappingLocation As NucleotideLocation
 
@@ -21,13 +22,26 @@ Namespace SequenceModel.NucleotideModels
         ''' 在参考基因组上面的Mapping得到的位置，假若需要修改位置，假若害怕影响到原有的数据的话，则请复写这个属性然后使用复制的方法得到新的位点数据
         ''' </summary>
         ''' <returns></returns>
-        Public Overridable ReadOnly Property MappingLocation As NucleotideLocation
+        Public Overridable ReadOnly Property MappingLocation(Optional reset As Boolean = False) As NucleotideLocation
             Get
+                If reset Then
+                    _MappingLocation = Nothing
+                End If
+
                 If _MappingLocation Is Nothing Then
                     _MappingLocation = __getMappingLoci()
                 End If
                 Return _MappingLocation
             End Get
+        End Property
+
+        Private Property Location As NucleotideLocation Implements IContig.Location
+            Get
+                Return _MappingLocation
+            End Get
+            Set(value As NucleotideLocation)
+                _MappingLocation = value
+            End Set
         End Property
 
         Protected MustOverride Function __getMappingLoci() As NucleotideLocation
