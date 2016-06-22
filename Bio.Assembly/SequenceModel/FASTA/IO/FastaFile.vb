@@ -71,6 +71,15 @@ Namespace SequenceModel.FASTA
 
         Protected Friend Overridable Property _innerList As List(Of FastaToken) = New List(Of FastaToken)
 
+        Public Iterator Function AsKSource() As IEnumerable(Of KSeq)
+            For Each fa As FastaToken In _innerList
+                Yield New KSeq With {
+                    .Name = fa.Title,
+                    .Seq = fa.SequenceData.ToCharArray
+                }
+            Next
+        End Function
+
         ''' <summary>
         ''' 本FASTA数据文件对象的文件位置
         ''' </summary>

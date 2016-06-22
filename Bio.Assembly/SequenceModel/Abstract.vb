@@ -1,6 +1,7 @@
 ﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports System.Xml.Serialization
+Imports Microsoft.VisualBasic.Language
 
 Namespace SequenceModel
 
@@ -20,9 +21,9 @@ Namespace SequenceModel
     End Interface
 
     ''' <summary>
-    ''' This class can be using for build a <see cref="LANS.SystemsBiology.SequenceModel.FASTA.FastaToken"/> object.
+    ''' This class can be using for build a <see cref="FASTA.FastaToken"/> object.
     ''' </summary>
-    Public MustInherit Class ISequenceBuilder
+    Public MustInherit Class ISequenceBuilder : Inherits ClassObject
 
         ''' <summary>
         ''' <see cref="GetSequenceData()"/> length.(序列的长度)
