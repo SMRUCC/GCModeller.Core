@@ -54,16 +54,25 @@ Namespace SequenceModel.NucleotideModels
         ''' <summary>
         ''' 将当前的核酸片段数据对象转换为FASTA对象
         ''' </summary>
+        ''' <param name="title">If this value is not presents, then the function will using the location info as default.</param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Function GetFasta() As FASTA.FastaToken
-            Dim l As String = String.Format("{0}..{1}", Left, Right)
-            If Complement Then
-                l = String.Format("complement({0})", l)
+        Public Function GetFasta(Optional title As String = "") As FASTA.FastaToken
+            Dim attrs As String()
+
+            If String.IsNullOrEmpty(title) Then
+                Dim l As String = String.Format("{0}..{1}", Left, Right)
+                If Complement Then
+                    l = String.Format("complement({0})", l)
+                End If
+                attrs = New String() {title, Description, l}
+            Else
+                attrs = title.Split("|"c)
             End If
+
             Return New FASTA.FastaToken With {
-                .SequenceData = SequenceData,
-                .Attributes = New String() {Title, Description, l}
+                .Attributes = attrs,
+                .SequenceData = SequenceData
             }
         End Function
 

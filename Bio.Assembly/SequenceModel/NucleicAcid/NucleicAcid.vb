@@ -217,6 +217,21 @@ Namespace SequenceModel.NucleotideModels
             Return LQuery
         End Function
 
+        ''' <summary>
+        ''' Removes the invalids characters in the nt sequence. Invalids source is comes from <see cref="ISequenceModel.AA_CHARS_ALL"/>
+        ''' </summary>
+        ''' <param name="nt">Case insensitive.</param>
+        ''' <returns></returns>
+        Public Shared Function RemoveInvalids(nt As String) As String
+            Dim seq As New StringBuilder(nt.ToUpper)
+
+            For Each c As Char In ISequenceModel.AA_CHARS_ALL
+                Call seq.Replace(c, "-"c)
+            Next
+
+            Return seq.ToString
+        End Function
+
         Const InvalidNotAllowed As String = "Target fasta sequence is a protein sequence. Only allows character [ATGCN-.]..."
         Const NTCHRS As String = "ATGC-"
 
