@@ -1,9 +1,10 @@
-﻿Imports System.Text
-Imports System.ComponentModel
+﻿Imports System.ComponentModel
+Imports System.Text
 Imports LANS.SystemsBiology.SequenceModel.ISequenceModel
-Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq.Extensions
+Imports Microsoft.VisualBasic.Serialization
 
 Namespace SequenceModel.NucleotideModels
 
@@ -191,16 +192,32 @@ Namespace SequenceModel.NucleotideModels
             Call __convertSequence(SequenceData.SequenceData)
         End Sub
 
-        Private Sub __convertSequence(SequenceData As String)
-            SequenceData = SequenceData.ToUpper.Replace("N", "-").Replace(".", "-")
-            Dim LQuery = (From c As Char In SequenceData Where ISequenceModel.AA_CHARS_ALL.IndexOf(c) > -1 Select c).ToArray  '
-            If Not LQuery.IsNullOrEmpty Then
-                Throw New DataException("Target fasta sequence is a protein sequence. Only allows character [ATGCN-.]...")
+        Private Sub __convertSequence(seq As String)
+            Dim nt As String = seq.ToUpper.Replace("N", "-").Replace(".", "-")
+            Dim invalids As Char() = InvalidForNt(nt)
+
+            seq = nt
+
+            If invalids.Length > 0 Then  ' 有非法字符
+                Dim ex As Exception = New DataException(InvalidNotAllowed)
+                ex = New Exception(invalids.GetJson, ex)
+                Throw ex
             Else
-                Me.SequenceData = SequenceData
+                Me.SequenceData = seq
             End If
         End Sub
 
+        Public Shared Function InvalidForNt(seq As String) As Char()
+            Dim LQuery As Char() =
+                LinqAPI.Exec(Of Char) <= From c As Char
+                                         In seq
+                                         Where ISequenceModel.AA_CHARS_ALL.IndexOf(c) > -1
+                                         Select c
+                                         Distinct
+            Return LQuery
+        End Function
+
+        Const InvalidNotAllowed As String = "Target fasta sequence is a protein sequence. Only allows character [ATGCN-.]..."
         Const NTCHRS As String = "ATGC-"
 
         Public Shared Function CopyNT(seq As String) As NucleicAcid
@@ -226,9 +243,11 @@ Namespace SequenceModel.NucleotideModels
         ''' </summary>
         ''' <remarks></remarks>
         Private Sub __generateSeqCache()
-            _innerSeqCache = New String((From ntBase As DNA
-                                         In Me._innerSeqModel.Value
-                                         Select __nucleotideAsChar(ntBase)).ToArray)
+            Dim chars As Char() =
+                LinqAPI.Exec(Of Char) <= From ntBase As DNA
+                                         In _innerSeqModel.Value
+                                         Select __nucleotideAsChar(ntBase)
+            _innerSeqCache = New String(chars)
             MyBase.SequenceData = _innerSeqCache
         End Sub
 
