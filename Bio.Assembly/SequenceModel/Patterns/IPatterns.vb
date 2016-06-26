@@ -6,6 +6,7 @@ Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace SequenceModel.Patterns
 

@@ -5,6 +5,7 @@ Imports Microsoft.VisualBasic
 Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace ProteinModel
 

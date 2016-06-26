@@ -10,6 +10,7 @@ Imports LANS.SystemsBiology.ComponentModel.Loci
 Imports Microsoft.VisualBasic.Serialization
 Imports LANS.SystemsBiology.ContextModel
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 

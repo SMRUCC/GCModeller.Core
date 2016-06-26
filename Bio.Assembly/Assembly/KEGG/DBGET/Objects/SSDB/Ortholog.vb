@@ -2,6 +2,7 @@
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic.Serialization
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
 

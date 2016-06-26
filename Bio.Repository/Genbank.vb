@@ -12,6 +12,7 @@ Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic
 Imports LANS.SystemsBiology.SequenceModel
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Public Module Installer
 

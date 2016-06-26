@@ -3,6 +3,7 @@ Imports System.Text
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic.Serialization
 Imports LANS.SystemsBiology.Assembly.KEGG.DBGET.bGetObject.Organism
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace Assembly.KEGG.WebServices
 

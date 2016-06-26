@@ -3,7 +3,7 @@ Imports System.Text.RegularExpressions
 Imports LANS.SystemsBiology.Assembly.KEGG.DBGET.bGetObject
 Imports LANS.SystemsBiology.Assembly.KEGG.WebServices
 Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
-Imports Microsoft.VisualBasic.Serialization
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Terminal
 

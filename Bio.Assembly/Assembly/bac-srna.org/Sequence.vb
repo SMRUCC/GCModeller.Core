@@ -3,6 +3,7 @@ Imports LANS.SystemsBiology.SequenceModel
 Imports LANS.SystemsBiology.SequenceModel.FASTA
 Imports LANS.SystemsBiology.SequenceModel.NucleotideModels
 Imports Microsoft.VisualBasic.Serialization
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace Assembly.Bac_sRNA.org
 
