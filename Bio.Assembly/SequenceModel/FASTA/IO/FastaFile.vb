@@ -86,13 +86,7 @@ Namespace SequenceModel.FASTA
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public ReadOnly Property SourceFile As String
-            Get
-                Return MyBase.FilePath
-            End Get
-        End Property
-
-        Public Shadows Property FilePath As String
+        Public Overrides Property FilePath As String
             Get
                 Return MyBase.FilePath
             End Get
@@ -505,10 +499,11 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function Match(regxText As String, Optional options As RegexOptions = RegexOptions.Singleline) As FastaToken()
-            Dim LQuery = (From fasta As FastaToken
-                          In Me.__innerList
-                          Where Regex.Match(fasta.SequenceData.ToUpper, regxText, options).Success
-                          Select fasta).ToArray
+            Dim LQuery As FastaToken() =
+                LinqAPI.Exec(Of FastaToken) <= From fasta As FastaToken
+                                               In Me.__innerList
+                                               Where Regex.Match(fasta.SequenceData.ToUpper, regxText, options).Success
+                                               Select fasta
             Return LQuery
         End Function
 
