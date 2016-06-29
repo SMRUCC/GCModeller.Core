@@ -67,13 +67,15 @@ Namespace Assembly.NCBI.COG
                      .COG = Strings.UCase([Function].__trimCOGs(x.COG))})
 
             hash.Add("-", New With {.fun = __notAssigned(), .count = New List(Of String)})
+
             For Each x In locus
                 For Each c As Char In x.COG
                     hash(c).count.Add(x.Identifier)
                 Next
             Next
 
-            Return hash.Values.ToArray(Function(x) x.fun.InvokeSet(NameOf(COGFunc.locus), x.count.ToArray))
+            Dim setValue = New SetValue(Of COGFunc)().GetSet(NameOf(COGFunc.locus))
+            Return hash.Values.ToArray(Function(x) setValue(x.fun, x.count.ToArray))
         End Function
     End Class
 End Namespace
