@@ -25,7 +25,7 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.SequenceModel.Polypeptides.Polypeptides
+Imports SMRUCC.genomics.SequenceModel.Polypeptides.Polypeptides
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 

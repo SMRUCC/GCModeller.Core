@@ -26,7 +26,7 @@
 #End Region
 
 Imports System.Text
-Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
+Imports SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Scripting.MetaData
@@ -226,7 +226,7 @@ Namespace SequenceModel.FASTA
         ''' 
         <ExportAPI("Load.NT")>
         Public Shared Function LoadNucleotideData(path As String, Optional Explicit As Boolean = False) As FastaToken
-            Dim FastaObjectData As LANS.SystemsBiology.SequenceModel.FASTA.FastaToken = Load(path)
+            Dim FastaObjectData As FASTA.FastaToken = Load(path)
 
             If FastaObjectData Is Nothing Then
                 Return Nothing

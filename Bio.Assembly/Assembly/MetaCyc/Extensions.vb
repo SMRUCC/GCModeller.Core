@@ -27,8 +27,8 @@
 
 Imports System.Runtime.CompilerServices
 Imports System.Text
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
-Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema.Metabolism
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles
+Imports SMRUCC.genomics.Assembly.MetaCyc.Schema.Metabolism
 
 Namespace Assembly.MetaCyc
 

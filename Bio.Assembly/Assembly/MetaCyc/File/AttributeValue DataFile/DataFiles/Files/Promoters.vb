@@ -25,9 +25,9 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema.Reflection
-Imports LANS.SystemsBiology.SequenceModel
-Imports LANS.SystemsBiology.SequenceModel.FASTA.Reflection
+Imports SMRUCC.genomics.Assembly.MetaCyc.Schema.Reflection
+Imports SMRUCC.genomics.SequenceModel
+Imports SMRUCC.genomics.SequenceModel.FASTA.Reflection
 Imports Microsoft.VisualBasic
 
 Namespace Assembly.MetaCyc.File.DataFiles

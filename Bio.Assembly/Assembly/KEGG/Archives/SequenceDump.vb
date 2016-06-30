@@ -26,8 +26,8 @@
 #End Region
 
 Imports System.Text.RegularExpressions
-Imports LANS.SystemsBiology.SequenceModel
-Imports LANS.SystemsBiology.SequenceModel.FASTA
+Imports SMRUCC.genomics.SequenceModel
+Imports SMRUCC.genomics.SequenceModel.FASTA
 Imports Microsoft.VisualBasic.Linq.Extensions
 
 Namespace Assembly.KEGG.Archives

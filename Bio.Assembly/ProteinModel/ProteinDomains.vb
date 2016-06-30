@@ -25,8 +25,8 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.Assembly
-Imports LANS.SystemsBiology.SequenceModel
+Imports SMRUCC.genomics.Assembly
+Imports SMRUCC.genomics.SequenceModel
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic
 Imports System.Xml.Serialization

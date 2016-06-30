@@ -26,7 +26,7 @@
 #End Region
 
 Imports System.Xml.Serialization
-Imports LANS.SystemsBiology.Assembly.KEGG.DBGET
+Imports SMRUCC.genomics.Assembly.KEGG.DBGET
 
 Namespace Assembly.KEGG.Archives.Xml.Nodes
 

@@ -25,7 +25,7 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.ComponentModel.Loci.NucleotideLocation
+Imports SMRUCC.genomics.ComponentModel.Loci.NucleotideLocation
 
 Namespace ComponentModel.Loci.Abstract
 

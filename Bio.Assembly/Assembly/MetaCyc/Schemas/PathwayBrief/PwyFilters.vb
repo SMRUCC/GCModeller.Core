@@ -26,8 +26,8 @@
 #End Region
 
 Imports System.Text
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.FileSystem
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.FileSystem
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic
@@ -51,11 +51,11 @@ Namespace Assembly.MetaCyc.Schema.PathwayBrief
         ''' 3. 根据Reaction-List属性值列表将基因与相应的代谢途径建立联系，最后输出数据
         ''' </remarks>
         Public Function Performance(MetaCyc As DatabaseLoadder) As Pathway()
-            Dim Pathways As LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Pathways =
+            Dim Pathways As MetaCyc.File.DataFiles.Pathways =
                 MetaCyc.GetPathways
             Dim AssignedRxnGeneLinks As Dictionary(Of String, String()) = New AssignGene(MetaCyc).Performance
-            Dim GeneratePwy As System.Func(Of LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Slots.Pathway, Pathway) =
-                Function(pwyObj As LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Slots.Pathway)
+            Dim GeneratePwy As System.Func(Of MetaCyc.File.DataFiles.Slots.Pathway, Pathway) =
+                Function(pwyObj As MetaCyc.File.DataFiles.Slots.Pathway)
                     Dim pathway As Pathway = New Pathway With
                                              {
                                                  .Identifier = pwyObj.Identifier,

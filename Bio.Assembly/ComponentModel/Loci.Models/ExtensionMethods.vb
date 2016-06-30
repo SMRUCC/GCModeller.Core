@@ -25,9 +25,9 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.ComponentModel.Loci.Location
+Imports SMRUCC.genomics.ComponentModel.Loci.Location
 Imports System.Runtime.CompilerServices
-Imports LANS.SystemsBiology.SequenceModel.NucleotideModels
+Imports SMRUCC.genomics.SequenceModel.NucleotideModels
 Imports Microsoft.VisualBasic
 
 Namespace ComponentModel.Loci

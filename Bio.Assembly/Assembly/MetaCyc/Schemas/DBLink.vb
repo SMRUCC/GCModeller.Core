@@ -27,7 +27,7 @@
 
 Imports System.Text.RegularExpressions
 Imports System.Text
-Imports LANS.SystemsBiology.ComponentModel.DBLinkBuilder
+Imports SMRUCC.genomics.ComponentModel.DBLinkBuilder
 Imports Microsoft.VisualBasic
 
 Namespace Assembly.MetaCyc.Schema

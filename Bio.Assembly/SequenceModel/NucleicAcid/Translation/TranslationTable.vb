@@ -25,8 +25,8 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.SequenceModel.Polypeptides.Polypeptides
-Imports LANS.SystemsBiology.SequenceModel.NucleotideModels.NucleicAcid
+Imports SMRUCC.genomics.SequenceModel.Polypeptides.Polypeptides
+Imports SMRUCC.genomics.SequenceModel.NucleotideModels.NucleicAcid
 Imports System.Text
 Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.Scripting.MetaData

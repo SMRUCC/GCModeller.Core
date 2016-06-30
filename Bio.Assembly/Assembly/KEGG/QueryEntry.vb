@@ -29,7 +29,7 @@ Imports System.Xml.Serialization
 Imports System.Text
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic.Serialization
-Imports LANS.SystemsBiology.Assembly.KEGG.DBGET.bGetObject.Organism
+Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject.Organism
 Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace Assembly.KEGG.WebServices
@@ -169,8 +169,8 @@ Namespace Assembly.KEGG.WebServices
 
         ''' <summary>LANS.SystemsBiology.Assembly.KEGG.WebServices.WebRequest.QueryEntry
         ''' KEGG species id, the general species string in NCBI database can be mapping through the organism list which can 
-        ''' be get from method <see cref="LANS.SystemsBiology.Assembly.KEGG.DBGET.bGetObject.Organism.GetOrganismList"></see>.(KEGG
-        ''' 数据库中的物种ID编号的简写形式，NCBI数据库中的标准的物种编号可以通过方法<see cref="LANS.SystemsBiology.Assembly.KEGG.DBGET.bGetObject.Organism.GetOrganismList"></see>
+        ''' be get from method <see cref="KEGG.DBGET.bGetObject.Organism.GetOrganismList"></see>.(KEGG
+        ''' 数据库中的物种ID编号的简写形式，NCBI数据库中的标准的物种编号可以通过方法<see cref="KEGG.DBGET.bGetObject.Organism.GetOrganismList"></see>
         ''' 来进行映射)
         ''' </summary>
         ''' <value></value>

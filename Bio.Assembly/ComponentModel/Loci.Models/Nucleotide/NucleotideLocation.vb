@@ -27,7 +27,7 @@
 
 Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
-Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
+Imports SMRUCC.genomics.ComponentModel.Loci.Abstract
 
 Namespace ComponentModel.Loci
 

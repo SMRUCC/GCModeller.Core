@@ -26,7 +26,7 @@
 #End Region
 
 Imports System.Text.RegularExpressions
-Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
+Imports SMRUCC.genomics.ComponentModel.Loci.Abstract
 
 Namespace ComponentModel.Loci
 

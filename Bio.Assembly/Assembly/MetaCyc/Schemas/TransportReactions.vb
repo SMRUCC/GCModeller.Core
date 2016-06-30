@@ -25,9 +25,9 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.Assembly.Expasy.Database
-Imports LANS.SystemsBiology.ComponentModel.EquaionModel
-Imports LANS.SystemsBiology.ComponentModel.EquaionModel.DefaultTypes
+Imports SMRUCC.genomics.Assembly.Expasy.Database
+Imports SMRUCC.genomics.ComponentModel.EquaionModel
+Imports SMRUCC.genomics.ComponentModel.EquaionModel.DefaultTypes
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic
 
@@ -145,7 +145,7 @@ Namespace Assembly.MetaCyc.Schema
                                   .StoiChiometry = x.StoiChiometry}).ToArray,
                                   .Reversible = Reversible
             }
-            Return LANS.SystemsBiology.ComponentModel.EquaionModel.EquationBuilder.ToString(Model)
+            Return EquationBuilder.ToString(Model)
         End Function
 
         Private Shared Function GetUniqueId(x As CompoundSpecies) As String

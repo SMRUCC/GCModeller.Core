@@ -26,7 +26,7 @@
 #End Region
 
 'Imports System.Text.RegularExpressions
-'Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.PttGenomeBrief.ComponentModels
+'Imports SMRUCC.genomics.Assembly.NCBI.GenBank.PttGenomeBrief.ComponentModels
 'Imports System.Text
 
 'Namespace Assembly.NCBI.GenBank.PttGenomeBrief.GenomeFeature

@@ -27,7 +27,7 @@
 
 Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
-Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
+Imports SMRUCC.genomics.Assembly.KEGG.WebServices.InternalWebFormParsers
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Linq

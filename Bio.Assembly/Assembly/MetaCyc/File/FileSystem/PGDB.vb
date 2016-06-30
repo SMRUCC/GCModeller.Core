@@ -26,11 +26,11 @@
 #End Region
 
 Imports System.Text
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Slots.Object
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.FileSystem.FastaObjects
-Imports LANS.SystemsBiology.SequenceModel
-Imports LANS.SystemsBiology.SequenceModel.FASTA.FastaFile
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles.Slots.Object
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.FileSystem.FastaObjects
+Imports SMRUCC.genomics.SequenceModel
+Imports SMRUCC.genomics.SequenceModel.FASTA.FastaFile
 
 Namespace Assembly.MetaCyc.File.FileSystem
 

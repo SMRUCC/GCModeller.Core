@@ -27,7 +27,7 @@
 
 Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Reflection
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles.Reflection
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic
 

@@ -25,9 +25,9 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.Assembly
-Imports LANS.SystemsBiology.Assembly.NCBI.CDD
-Imports LANS.SystemsBiology.ComponentModel.Loci
+Imports SMRUCC.genomics.Assembly
+Imports SMRUCC.genomics.Assembly.NCBI.CDD
+Imports SMRUCC.genomics.ComponentModel.Loci
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 
 Namespace ProteinModel

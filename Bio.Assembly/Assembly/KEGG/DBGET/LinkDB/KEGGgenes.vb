@@ -26,8 +26,8 @@
 #End Region
 
 Imports System.Text.RegularExpressions
-Imports LANS.SystemsBiology.Assembly.KEGG.DBGET.LinkDB
-Imports LANS.SystemsBiology.ComponentModel
+Imports SMRUCC.genomics.Assembly.KEGG.DBGET.LinkDB
+Imports SMRUCC.genomics.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel
 
 Namespace Assembly.KEGG.DBGET.LinkDB

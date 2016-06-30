@@ -26,7 +26,7 @@
 #End Region
 
 Imports System.Text.RegularExpressions
-Imports LANS.SystemsBiology.SequenceModel
+Imports SMRUCC.genomics.SequenceModel
 
 Namespace Assembly.NCBI.SequenceDump
 

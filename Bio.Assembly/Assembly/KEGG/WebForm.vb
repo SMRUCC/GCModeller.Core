@@ -28,7 +28,7 @@
 Imports System.Text.RegularExpressions
 Imports System.Runtime.CompilerServices
 Imports System.Text
-Imports LANS.SystemsBiology.Assembly.KEGG.DBGET
+Imports SMRUCC.genomics.Assembly.KEGG.DBGET
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.HtmlParser

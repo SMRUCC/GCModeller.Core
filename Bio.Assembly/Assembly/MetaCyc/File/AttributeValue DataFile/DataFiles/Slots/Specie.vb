@@ -25,7 +25,7 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Reflection
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles.Reflection
 Imports System.Reflection
 Imports System.Text
 Imports System.Xml.Serialization

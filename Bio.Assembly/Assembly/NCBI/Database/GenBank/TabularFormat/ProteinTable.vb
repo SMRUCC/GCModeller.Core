@@ -26,7 +26,7 @@
 #End Region
 
 Imports System.Text
-Imports LANS.SystemsBiology.ComponentModel.Loci
+Imports SMRUCC.genomics.ComponentModel.Loci
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
@@ -72,7 +72,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
 
         Public Function ToPTTGene() As NCBI.GenBank.TabularFormat.ComponentModels.GeneBrief
             Dim strand As Strands = GetStrand(Me.Strand)
-            Dim loci As New ComponentModel.Loci.NucleotideLocation(Me.Start, Me.Stop, strand)
+            Dim loci As New NucleotideLocation(Me.Start, Me.Stop, strand)
             Return New NCBI.GenBank.TabularFormat.ComponentModels.GeneBrief With {
                 .Code = Me.Product,
                 .COG = Me.COG,
@@ -84,7 +84,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             }
         End Function
 
-        Public Function GetLoci() As LANS.SystemsBiology.ComponentModel.Loci.NucleotideLocation
+        Public Function GetLoci() As NucleotideLocation
             Dim strand = GetStrand(Me.Strand)
             Dim loci As New ComponentModel.Loci.NucleotideLocation(Me.Start, Me.Stop, strand)
             Return loci

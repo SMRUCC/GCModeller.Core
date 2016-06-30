@@ -25,19 +25,19 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords
+Imports SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords
 Imports System.Text.RegularExpressions
 Imports System.Text
 Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
-Imports LANS.SystemsBiology.ComponentModel
-Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat
-Imports LANS.SystemsBiology.ComponentModel.Loci
-Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
-Imports LANS.SystemsBiology.SequenceModel
+Imports SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
+Imports SMRUCC.genomics.ComponentModel
+Imports SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat
+Imports SMRUCC.genomics.ComponentModel.Loci
+Imports SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+Imports SMRUCC.genomics.SequenceModel
 
 Namespace Assembly.NCBI.GenBank
 

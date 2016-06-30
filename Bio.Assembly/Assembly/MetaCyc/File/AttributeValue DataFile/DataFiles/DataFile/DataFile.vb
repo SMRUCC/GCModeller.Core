@@ -28,9 +28,9 @@
 Imports System.Text.RegularExpressions
 Imports System.Text
 Imports System.Reflection
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Reflection
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles.Reflection
 Imports Microsoft.VisualBasic
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.FileSystem
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.FileSystem
 Imports Microsoft.VisualBasic.ComponentModel
 
 Namespace Assembly.MetaCyc.File.DataFiles

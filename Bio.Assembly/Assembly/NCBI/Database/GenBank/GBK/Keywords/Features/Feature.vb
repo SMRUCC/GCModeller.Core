@@ -32,7 +32,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.Terminal
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Language
-Imports LANS.SystemsBiology.SequenceModel.NucleotideModels
+Imports SMRUCC.genomics.SequenceModel.NucleotideModels
 
 Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
 

@@ -27,8 +27,8 @@
 
 Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
-Imports LANS.SystemsBiology.ProteinModel
-Imports LANS.SystemsBiology.SequenceModel
+Imports SMRUCC.genomics.ProteinModel
+Imports SMRUCC.genomics.SequenceModel
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 

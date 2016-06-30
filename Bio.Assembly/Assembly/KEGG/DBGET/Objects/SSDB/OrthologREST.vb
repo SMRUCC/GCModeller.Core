@@ -27,8 +27,8 @@
 
 Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
-Imports LANS.SystemsBiology.Assembly.KEGG.WebServices
-Imports LANS.SystemsBiology.SequenceModel
+Imports SMRUCC.genomics.Assembly.KEGG.WebServices
+Imports SMRUCC.genomics.SequenceModel
 Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.KEGG.DBGET.bGetObject.SSDB

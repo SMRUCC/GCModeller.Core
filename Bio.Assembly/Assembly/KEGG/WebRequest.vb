@@ -33,7 +33,7 @@ Imports System.Windows.Forms
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic
-Imports LANS.SystemsBiology.SequenceModel
+Imports SMRUCC.genomics.SequenceModel
 
 Namespace Assembly.KEGG.WebServices
 
@@ -209,7 +209,7 @@ Namespace Assembly.KEGG.WebServices
         ''' <remarks></remarks>
         ''' 
         <ExportAPI("Query", Info:="Get an entry list from a keyword throught the KEGG database web request.{(speciesId:AccessionId), entry_description}")>
-        Public Function HandleQuery(keyword As String, Page As Integer) As LANS.SystemsBiology.Assembly.KEGG.WebServices.QueryEntry()
+        Public Function HandleQuery(keyword As String, Page As Integer) As KEGG.WebServices.QueryEntry()
             Dim pageContent As String = String.Format(KEGG_DBGET_WWW_QUERY & Page, keyword).GET
             Return __queryEntryParser(pageContent)
         End Function

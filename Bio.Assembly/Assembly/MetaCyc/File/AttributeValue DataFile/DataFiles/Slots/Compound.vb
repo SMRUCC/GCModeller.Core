@@ -25,12 +25,12 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Reflection
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles.Reflection
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
-Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema
-Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema.Reflection
+Imports SMRUCC.genomics.Assembly.MetaCyc.Schema
+Imports SMRUCC.genomics.Assembly.MetaCyc.Schema.Reflection
 
 Namespace Assembly.MetaCyc.File.DataFiles.Slots
 

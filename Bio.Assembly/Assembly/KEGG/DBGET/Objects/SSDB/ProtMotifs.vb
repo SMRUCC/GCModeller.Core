@@ -27,7 +27,7 @@
 
 Imports System.Runtime.CompilerServices
 Imports System.Text.RegularExpressions
-Imports LANS.SystemsBiology.ComponentModel.Loci
+Imports SMRUCC.genomics.ComponentModel.Loci
 Imports Microsoft.VisualBasic.Linq
 
 Namespace Assembly.KEGG.DBGET.bGetObject.SSDB

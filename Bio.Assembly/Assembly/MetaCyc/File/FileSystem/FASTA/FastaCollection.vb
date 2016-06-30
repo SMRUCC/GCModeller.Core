@@ -27,8 +27,8 @@
 
 Imports System.Text.RegularExpressions
 Imports System.Text
-Imports LANS.SystemsBiology.ComponentModel.Loci
-Imports LANS.SystemsBiology.SequenceModel.FASTA
+Imports SMRUCC.genomics.ComponentModel.Loci
+Imports SMRUCC.genomics.SequenceModel.FASTA
 
 Namespace Assembly.MetaCyc.File.FileSystem.FastaObjects
 

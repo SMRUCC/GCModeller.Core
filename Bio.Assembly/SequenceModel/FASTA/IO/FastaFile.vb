@@ -26,7 +26,7 @@
 #End Region
 
 Imports Path = System.String
-Imports LANS.SystemsBiology.SequenceModel.FASTA.Reflection
+Imports SMRUCC.genomics.SequenceModel.FASTA.Reflection
 Imports System.Text
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic.ComponentModel

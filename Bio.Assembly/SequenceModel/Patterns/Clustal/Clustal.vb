@@ -31,7 +31,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Scripting
 Imports Microsoft.VisualBasic.ComponentModel
-Imports LANS.SystemsBiology.SequenceModel.FASTA
+Imports SMRUCC.genomics.SequenceModel.FASTA
 
 Namespace SequenceModel.Patterns.Clustal
 

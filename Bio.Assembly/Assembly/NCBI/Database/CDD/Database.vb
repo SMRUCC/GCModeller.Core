@@ -25,7 +25,7 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.SequenceModel
+Imports SMRUCC.genomics.SequenceModel
 
 Namespace Assembly.NCBI.CDD
 

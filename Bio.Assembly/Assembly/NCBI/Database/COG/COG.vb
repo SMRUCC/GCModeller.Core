@@ -25,7 +25,7 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.ComponentModel
+Imports SMRUCC.genomics.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq

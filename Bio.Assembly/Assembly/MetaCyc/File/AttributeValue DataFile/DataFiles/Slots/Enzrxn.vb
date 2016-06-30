@@ -26,8 +26,8 @@
 #End Region
 
 Imports System.Text
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Reflection
-Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema.Reflection
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles.Reflection
+Imports SMRUCC.genomics.Assembly.MetaCyc.Schema.Reflection
 Imports Microsoft.VisualBasic
 
 Namespace Assembly.MetaCyc.File.DataFiles.Slots

@@ -25,8 +25,8 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema
-Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema.Reflection
+Imports SMRUCC.genomics.Assembly.MetaCyc.Schema
+Imports SMRUCC.genomics.Assembly.MetaCyc.Schema.Reflection
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Linq
 

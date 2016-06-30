@@ -28,7 +28,7 @@
 Imports System.Drawing
 Imports System.Runtime.CompilerServices
 Imports System.Text
-Imports LANS.SystemsBiology.SequenceModel.NucleotideModels.NucleicAcid
+Imports SMRUCC.genomics.SequenceModel.NucleotideModels.NucleicAcid
 
 Namespace SequenceModel.Polypeptides
 

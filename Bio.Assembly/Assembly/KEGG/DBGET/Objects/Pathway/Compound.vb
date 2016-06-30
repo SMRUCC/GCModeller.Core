@@ -28,8 +28,8 @@
 Imports System.Text.RegularExpressions
 Imports System.Text
 Imports System.Xml.Serialization
-Imports LANS.SystemsBiology.ComponentModel.DBLinkBuilder
-Imports LANS.SystemsBiology.Assembly.MetaCyc.Schema
+Imports SMRUCC.genomics.ComponentModel.DBLinkBuilder
+Imports SMRUCC.genomics.Assembly.MetaCyc.Schema
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Linq
 

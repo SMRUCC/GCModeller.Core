@@ -29,7 +29,7 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Linq
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles
 
 Namespace Assembly.MetaCyc.File
 

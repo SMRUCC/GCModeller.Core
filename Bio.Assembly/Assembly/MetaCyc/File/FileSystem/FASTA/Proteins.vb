@@ -25,7 +25,7 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.SequenceModel.FASTA
+Imports SMRUCC.genomics.SequenceModel.FASTA
 
 Namespace Assembly.MetaCyc.File.FileSystem.FastaObjects
 

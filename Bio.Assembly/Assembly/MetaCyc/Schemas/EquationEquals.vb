@@ -25,8 +25,8 @@
 
 #End Region
 
-Imports LANS.SystemsBiology.ComponentModel.EquaionModel
-Imports LANS.SystemsBiology.ComponentModel.EquaionModel.DefaultTypes
+Imports SMRUCC.genomics.ComponentModel.EquaionModel
+Imports SMRUCC.genomics.ComponentModel.EquaionModel.DefaultTypes
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 
 Namespace Assembly.MetaCyc.Schema
@@ -41,7 +41,7 @@ Namespace Assembly.MetaCyc.Schema
             End Get
         End Property
 
-        Sub New(MetaCycCompounds As LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Compounds, CompoundSpecies As ICompoundObject())
+        Sub New(MetaCycCompounds As MetaCyc.File.DataFiles.Compounds, CompoundSpecies As ICompoundObject())
             _CompoundMapping = New MetaCyc.Schema.CompoundsMapping(MetaCycCompounds).EffectorMapping(CompoundSpecies)
             _CompoundMapping = (From item In _CompoundMapping Where Not String.IsNullOrEmpty(item.MetaCycId) Select item).ToArray
         End Sub

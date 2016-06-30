@@ -26,7 +26,7 @@
 #End Region
 
 Imports System.Text
-Imports LANS.SystemsBiology.SequenceModel.ISequenceModel
+Imports SMRUCC.genomics.SequenceModel.ISequenceModel
 Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.CommandLine.Reflection

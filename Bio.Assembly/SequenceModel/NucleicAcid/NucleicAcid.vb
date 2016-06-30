@@ -27,7 +27,7 @@
 
 Imports System.ComponentModel
 Imports System.Text
-Imports LANS.SystemsBiology.SequenceModel.ISequenceModel
+Imports SMRUCC.genomics.SequenceModel.ISequenceModel
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq.Extensions
@@ -203,7 +203,7 @@ Namespace SequenceModel.NucleotideModels
         ''' Construct the nucleotide sequence from a ATGC based sequence string.
         ''' (从一个序列字符串之中创建一条核酸链分子对象)
         ''' </summary>
-        ''' <param name="SequenceData">This sequence data can be user input from the interface or sequence data from the <see cref="LANS.SystemsBiology.SequenceModel.FASTA.FastaToken"/> object.</param>
+        ''' <param name="SequenceData">This sequence data can be user input from the interface or sequence data from the <see cref="FASTA.FastaToken"/> object.</param>
         Sub New(SequenceData As String)
             Call __convertSequence(SequenceData)
         End Sub
