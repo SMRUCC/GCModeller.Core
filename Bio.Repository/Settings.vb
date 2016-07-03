@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::f8d26d553ed4794a63e7d257d5dc89bb, ..\GCModeller\core\Bio.Assembly\ContextModel\Operon.vb"
+﻿#Region "Microsoft.VisualBasic::21b75017618ab07dd813c6c486cb3e38, ..\GCModeller\core\Bio.Repository\Settings.vb"
 
     ' Author:
     ' 
@@ -25,9 +25,15 @@
 
 #End Region
 
-Namespace ContextModel
 
-    Public Class Operon
-
+Namespace My
+    
+    'This class allows you to handle specific events on the settings class:
+    ' The SettingChanging event is raised before a setting's value is changed.
+    ' The PropertyChanged event is raised after a setting's value is changed.
+    ' The SettingsLoaded event is raised after the setting values are loaded.
+    ' The SettingsSaving event is raised before the setting values are saved.
+    Partial Friend NotInheritable Class MySettings
     End Class
 End Namespace
+
