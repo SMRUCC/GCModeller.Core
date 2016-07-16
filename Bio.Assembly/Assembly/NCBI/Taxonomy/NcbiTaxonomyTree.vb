@@ -45,9 +45,26 @@ Namespace Assembly.NCBI
     ''' </remarks>
     Public Class NcbiTaxonomyTree : Inherits ClassObject
 
-        Shared ReadOnly stdranks As IReadOnlyCollection(Of String) = {"species", "genus", "family", "order", "class", "phylum", "superkingdom"}
+        ''' <summary>
+        ''' + species
+        ''' + genus
+        ''' + family
+        ''' + order
+        ''' + class
+        ''' + phylum
+        ''' + superkingdom
+        ''' </summary>
+        Private Shared ReadOnly stdranks As New List(Of String) From {
+            "species",
+            "genus",
+            "family",
+            "order",
+            "class",
+            "phylum",
+            "superkingdom"
+        }
 
-        Public ReadOnly Property dic As New Dictionary(Of Integer, TaxonNode)
+        Public ReadOnly Property Taxonomy As New Dictionary(Of Integer, TaxonNode)
 
         Const sciNdeli As String = "scientific name"
 
@@ -96,13 +113,13 @@ Namespace Assembly.NCBI
                 taxid = CInt(lineTokens(0))
                 Dim parent_taxid As Integer = CInt(lineTokens(1))
 
-                If dic.ContainsKey(taxid) Then ': # 18204/1308852
-                    Dim x As TaxonNode = dic(taxid)
+                If Taxonomy.ContainsKey(taxid) Then ': # 18204/1308852
+                    Dim x As TaxonNode = Taxonomy(taxid)
                     x.rank = lineTokens(2)
                     x.parent = parent_taxid
-                    dic(taxid) = x ' dic(taxid).Replace(rank = line[2][1:             -1], parent=parent_taxid)
+                    Taxonomy(taxid) = x ' dic(taxid).Replace(rank = line[2][1:             -1], parent=parent_taxid)
                 Else ':           # 1290648/1308852
-                    dic(taxid) = New TaxonNode With {
+                    Taxonomy(taxid) = New TaxonNode With {
                         .name = taxid2name(taxid),
                         .rank = lineTokens(2),
                         .parent = parent_taxid,
@@ -111,10 +128,10 @@ Namespace Assembly.NCBI
                     Call taxid2name.Remove(taxid)
                 End If
 
-                If dic.ContainsKey(parent_taxid) Then
-                    dic(parent_taxid).children.Add(taxid)
+                If Taxonomy.ContainsKey(parent_taxid) Then
+                    Taxonomy(parent_taxid).children.Add(taxid)
                 Else
-                    dic(parent_taxid) = New TaxonNode With {
+                    Taxonomy(parent_taxid) = New TaxonNode With {
                         .name = taxid2name(parent_taxid),
                         .rank = Nothing,
                         .parent = Nothing,
@@ -127,17 +144,17 @@ Namespace Assembly.NCBI
             Call "nodes.dmp parsed".__DEBUG_ECHO
 
             '# To avoid infinite Loop
-            Dim root_children = dic(1).children
+            Dim root_children = Taxonomy(1).children
             root_children.Remove(1)
-            Dim xx = dic(1)
+            Dim xx = Taxonomy(1)
             xx.parent = Nothing
             xx.children = root_children
-            dic(1) = xx 'dic(1)._replace(parent = None, children = root_children)
+            Taxonomy(1) = xx 'dic(1)._replace(parent = None, children = root_children)
 
             Call "NcbiTaxonomyTree built".__DEBUG_ECHO
         End Sub
 
-        Public Function GetParent(taxids As IEnumerable(Of Integer)) As Dictionary(Of Integer, String)
+        Public Function GetParent(ParamArray taxids As Integer()) As Dictionary(Of Integer, String)
             '"""
             '    >>> tree = NcbiTaxonomyTree(nodes_filename="nodes.dmp", names_filename="names.dmp")
             '    >>> tree.getParent([28384, 131567])
@@ -146,53 +163,58 @@ Namespace Assembly.NCBI
             Dim result As New Dictionary(Of Integer, String)
 
             For Each taxid As Integer In taxids
-                result(taxid) = dic(taxid).parent
+                result(taxid) = Taxonomy(taxid).parent
             Next
 
             Return result
         End Function
 
-        Public Function getRank(taxids As IEnumerable(Of Integer))
+        Public Function GetRank(ParamArray taxids As Integer()) As Dictionary(Of Integer, String)
             '"""
             '    >>> tree = NcbiTaxonomyTree(nodes_filename="nodes.dmp", names_filename="names.dmp")
             '    >>> tree.getRank([28384, 131567])
             '    {28384: 'no rank', 131567: 'no rank'}
             '"""
             Dim result As New Dictionary(Of Integer, String)
-            For Each taxid In taxids
-                result(taxid) = dic(taxid).rank
+
+            For Each taxid As Integer In taxids
+                result(taxid) = Taxonomy(taxid).rank
             Next
+
             Return result
         End Function
 
-        Public Function getChildren(taxids As IEnumerable(Of Integer))
+        Public Function GetChildren(ParamArray taxids As Integer()) As Dictionary(Of Integer, List(Of Integer))
             '"""
             '    >>> tree = NcbiTaxonomyTree(nodes_filename="nodes.dmp", names_filename="names.dmp")
             '    >>> tree.getChildren([28384, 131567])
             '    {28384: [2387, 2673, 31896, 36549, 81077], 131567: [2, 2157, 2759]}
             '"""
             Dim result As New Dictionary(Of Integer, List(Of Integer))
-            For Each taxid In taxids
-                result(taxid) = dic(taxid).children
+
+            For Each taxid As Integer In taxids
+                result(taxid) = Taxonomy(taxid).children
             Next
+
             Return result
         End Function
 
-        Public Function getName(taxids As IEnumerable(Of Integer))
+        Public Function GetName(ParamArray taxids As Integer()) As Dictionary(Of Integer, String)
             '"""
             '    >>> tree = NcbiTaxonomyTree(nodes_filename="nodes.dmp", names_filename="names.dmp")
             '    >>> tree.getName([28384, 131567])
             '    {28384: 'other sequences', 131567: 'cellular organisms'}
             '"""
             Dim result As New Dictionary(Of Integer, String)
+
             For Each taxid In taxids
-                result(taxid) = dic(taxid).name
+                result(taxid) = Taxonomy(taxid).name
             Next
 
             Return result
         End Function
 
-        Public Function getAscendantsWithRanksAndNames(taxids As IEnumerable(Of Integer), Optional only_std_ranks As Boolean = False)
+        Public Function GetAscendantsWithRanksAndNames(taxids As IEnumerable(Of Integer), Optional only_std_ranks As Boolean = False) As Dictionary(Of Integer, TaxonNode())
             '""" 
             '    >>> tree = NcbiTaxonomyTree(nodes_filename="nodes.dmp", names_filename="names.dmp")
             '    >>> tree.getAscendantsWithRanksAndNames([1,562]) # doctest: +NORMALIZE_WHITESPACE
@@ -215,35 +237,50 @@ Namespace Assembly.NCBI
             '      Node(taxid=1224, rank='phylum', name='Proteobacteria'),
             '      Node(taxid=2, rank='superkingdom', name='Bacteria')]}
             '"""
-            Dim _getAscendantsWithRanksAndNames =
-                Function(taxid) ', only_std_ranks)
-                    '  Node = NamedTuple('Node', ['taxid', 'rank', 'name'])
-                    Dim lineage = {New TaxonNode With {.taxid = taxid,
-                                                                      .rank = dic(taxid).rank,
-                             .name = dic(taxid).name}}
-                    Do While dic(taxid).parent IsNot Nothing
-                        taxid = dic(taxid).parent
-                        lineage.Append(New TaxonNode With {.taxid = taxid,
-                                      .rank = dic(taxid).rank,
-                                       .name = dic(taxid).name})
-                    Loop
-                    If only_std_ranks Then
-                        Dim std_lineage = LinqAPI.MakeList(Of TaxonNode) <= From lvl In lineage Where stdranks.Contains(lvl.rank)
-                        Dim lastlevel = 0
-                        If lineage(lastlevel).rank = "no rank" Then
-                            std_lineage.Insert(0, lineage(lastlevel))
-                        End If
-                        lineage = std_lineage
-                    End If
-                    Return lineage
-                End Function
-
             Dim result As New Dictionary(Of Integer, TaxonNode())
 
             For Each taxid In taxids
-                result(taxid) = _getAscendantsWithRanksAndNames(taxid)
+                result(taxid) = __ascendantsWithRanksAndNames(taxid, only_std_ranks)
             Next
             Return result
+        End Function
+
+        Private Function __ascendantsWithRanksAndNames(taxid As Integer, only_std_ranks As Boolean) As TaxonNode()
+            Dim lineage As New List(Of TaxonNode) From {
+                New TaxonNode With {
+                    .taxid = taxid,
+                    .rank = Taxonomy(taxid).rank,
+                    .name = Taxonomy(taxid).name
+                }
+            }
+
+            Do While Taxonomy(taxid).parent IsNot Nothing
+                taxid = Taxonomy(taxid).parent
+                lineage += New TaxonNode With {
+                    .taxid = taxid,
+                    .rank = Taxonomy(taxid).rank,
+                    .name = Taxonomy(taxid).name
+                }
+            Loop
+
+            If only_std_ranks Then
+                Dim std_lineage = LinqAPI.MakeList(Of TaxonNode) <=
+ _
+                    From lvl As TaxonNode
+                    In lineage
+                    Where stdranks.IndexOf(lvl.rank) > -1
+                    Select lvl
+
+                Dim lastlevel As Integer = 0
+
+                If lineage(lastlevel).rank = "no rank" Then
+                    std_lineage.Insert(0, lineage(lastlevel))
+                End If
+
+                lineage = std_lineage
+            End If
+
+            Return lineage
         End Function
 
         Public Function _getDescendants(taxid) As IEnumerable(Of Integer)
@@ -252,7 +289,7 @@ Namespace Assembly.NCBI
             '    >>> tree._getDescendants(208962) # doctest: +NORMALIZE_WHITESPACE
             '    [208962, 502347, 550692, 550693, 909209, 910238, 1115511, 1440052]
             '"""
-            Dim children = dic(taxid).children
+            Dim children = Taxonomy(taxid).children
             Dim result
 
             If Not children.IsNullOrEmpty Then
@@ -295,8 +332,8 @@ Namespace Assembly.NCBI
             Dim result = {}
             For Each taxid In taxids
                 result(taxid) = From descendant In _getDescendants(taxid) Select New TaxonNode With {.taxid = descendant,
-                           .rank = dic(descendant).rank,
-                           .name = dic(descendant).name}
+                           .rank = Taxonomy(descendant).rank,
+                           .name = Taxonomy(descendant).name}
 
             Next
             Return result
@@ -326,7 +363,7 @@ Namespace Assembly.NCBI
         End Function
 
         Private Function _getLeaves(taxid As Integer) As IEnumerable
-            Dim children = dic(taxid).children
+            Dim children = Taxonomy(taxid).children
             Dim out = From child In children Where children IsNot Nothing Select _getLeaves(child) 'Else taxid
             Return out
         End Function
@@ -342,8 +379,8 @@ Namespace Assembly.NCBI
             '"""
             '   Node = namedtuple('Node', ['taxid', 'rank', 'name'])                            
             Dim result = From leaf In getLeaves(taxid) Select New TaxonNode With {.taxid = leaf,
-                   .rank = dic(leaf).rank,
-               .name = dic(leaf).name}
+                   .rank = Taxonomy(leaf).rank,
+               .name = Taxonomy(leaf).name}
 
             Return result
         End Function
@@ -358,7 +395,7 @@ Namespace Assembly.NCBI
             '    >>> tree.getTaxidsAtRank('superkingdom')
             '    [2, 2157, 2759, 10239, 12884]
             '""" 
-            Return From node In dic.Values Where node.rank = rank Select node
+            Return From node In Taxonomy.Values Where node.rank = rank Select node
         End Function
         Public Function preorderTraversal(taxid As Integer, only_leaves As Boolean)
             '""" Prefix (Preorder) visit of the tree
@@ -369,13 +406,13 @@ Namespace Assembly.NCBI
 
             If only_leaves Then
                 _preorderTraversal = Function()
-                                         Dim children = dic(taxid).children
+                                         Dim children = Taxonomy(taxid).children
                                          Dim result = From child In children Select _preorderTraversal(child) 'for] if children else taxid
                                          Return result
                                      End Function
             Else
                 _preorderTraversal = Function()
-                                         Dim children = dic(taxid).children
+                                         Dim children = Taxonomy(taxid).children
                                          Dim result
                                          If children IsNot Nothing Then
                                              result = From child In children Select _preorderTraversal(child) ', taxid )
