@@ -49,7 +49,7 @@ Namespace Assembly.NCBI
 
         Public ReadOnly Property dic As New Dictionary(Of Integer, Node)
 
-        Const sciNdeli As String = vbTab & "scientific name" & vbTab
+        Const sciNdeli As String = "scientific name"
 
         ''' <summary>
         ''' Builds the following dictionnary from NCBI taxonomy ``nodes.dmp`` and 
@@ -69,53 +69,63 @@ Namespace Assembly.NCBI
             If (Not nodes_filename.FileExists) OrElse (Not names_filename.FileExists) Then
                 Throw New Exception
             End If
-            '  Log.info("NcbiTaxonomyTree building ...")
-            '  Dim Node = namedtuple('Node', ['name', 'rank', 'parent', 'children'])
+
+            Call "NcbiTaxonomyTree building ...".__DEBUG_ECHO
+
             Dim taxid2name As New Dictionary(Of Integer, String)
-            '   Log.debug("names.dmp parsing ...")
             Dim taxid As Integer
 
+            Call $"{names_filename.ToFileURL} parsing ...".__DEBUG_ECHO
+
             For Each line In names_filename.IterateAllLines
-                Dim lineToken = line.Split("|"c)
+                Dim lineToken As String() = line.Replace(vbTab, "").Split("|"c)
                 If lineToken(3).TextEquals(sciNdeli) Then
                     taxid = CInt(lineToken(0))
-                    taxid2name(taxid) = New String(lineToken(1).slice(1, -1).ToArray)
+                    taxid2name(taxid) = lineToken(1)
                 End If
             Next
-            ' Log.debug("names.dmp parsed")
 
-            '   Log.debug("nodes.dmp parsing ...")
+            Call "names.dmp parsed".__DEBUG_ECHO
+            Call $"{nodes_filename} parsing ...".__DEBUG_ECHO
 
             For Each line As String In nodes_filename.IterateAllLines
-                Dim lineTokens = From elt In line.Split("|"c) Select New String(elt.slice(0, 3).ToArray)
+                Dim lineTokens As String() = line.Replace(vbTab, "").Split("|"c)
+                'LinqAPI.Exec(Of String) <= From elt As String
+                '                           In line.Split("|"c)
+                '                           Select New String(elt.slice(0, 2).ToArray)
                 taxid = CInt(lineTokens(0))
-                Dim parent_taxid = CInt(lineTokens(1))
+                Dim parent_taxid As Integer = CInt(lineTokens(1))
 
                 If dic.ContainsKey(taxid) Then ': # 18204/1308852
-                    Dim x = dic(taxid)
-                    x.rank = lineTokens(2).slice(1, -1).CharString
+                    Dim x As Node = dic(taxid)
+                    x.rank = lineTokens(2)
                     x.parent = parent_taxid
                     dic(taxid) = x ' dic(taxid).Replace(rank = line[2][1:             -1], parent=parent_taxid)
                 Else ':           # 1290648/1308852
                     dic(taxid) = New Node With {
                         .name = taxid2name(taxid),
-                        .rank = lineTokens(2).slice(1, -1).CharString,
+                        .rank = lineTokens(2),
                         .parent = parent_taxid,
                         .children = New List(Of Integer)
                     }
-                    '    del taxid2name(taxid)
+                    Call taxid2name.Remove(taxid)
                 End If
 
-                Try ':         # 1290648/1308852
+                If dic.ContainsKey(parent_taxid) Then
                     dic(parent_taxid).children.Add(taxid)
-                Catch ex As Exception
-                    '   except KeyError:         # 18204/1308852
-                    dic(parent_taxid) = New Node With {.name = taxid2name(parent_taxid), .rank = Nothing, .parent = Nothing, .children = New List(Of Integer)({taxid})}
-                    '     del taxid2name[parent_taxid]
-                End Try
+                Else
+                    dic(parent_taxid) = New Node With {
+                        .name = taxid2name(parent_taxid),
+                        .rank = Nothing,
+                        .parent = Nothing,
+                        .children = New List(Of Integer)({taxid})
+                    }
+                    Call taxid2name.Remove(parent_taxid)
+                End If
             Next
 
-            ' Log.debug("nodes.dmp parsed")
+            Call "nodes.dmp parsed".__DEBUG_ECHO
+
             '# To avoid infinite Loop
             Dim root_children = dic(1).children
             root_children.Remove(1)
@@ -123,7 +133,8 @@ Namespace Assembly.NCBI
             xx.parent = Nothing
             xx.children = root_children
             dic(1) = xx 'dic(1)._replace(parent = None, children = root_children)
-            '  Log.info("NcbiTaxonomyTree built")
+
+            Call "NcbiTaxonomyTree built".__DEBUG_ECHO
         End Sub
 
         Public Function getParent(taxids As IEnumerable(Of Integer))
