@@ -1,6 +1,7 @@
 ﻿Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Language.Python
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace Assembly.NCBI
@@ -283,24 +284,39 @@ Namespace Assembly.NCBI
             Return lineage
         End Function
 
-        Public Function _getDescendants(taxid) As IEnumerable(Of Integer)
+        Public Function __descendants(taxid As Integer) As IEnumerable(Of Integer)
             '""" 
             '    >>> tree = NcbiTaxonomyTree(nodes_filename="nodes.dmp", names_filename="names.dmp")
             '    >>> tree._getDescendants(208962) # doctest: +NORMALIZE_WHITESPACE
             '    [208962, 502347, 550692, 550693, 909209, 910238, 1115511, 1440052]
             '"""
             Dim children = Taxonomy(taxid).children
-            Dim result
+            Dim result As New List(Of Integer)
 
             If Not children.IsNullOrEmpty Then
-                result = From child In children Select _getDescendants(child)
-                result.insert(0, taxid)
+
+                result =
+                    LinqAPI.MakeList(Of Integer) <=
+                    From child As Integer
+                    In children
+                    Select __descendants(child)
+                result.Insert(0, taxid)
+
             Else
-                result = taxid
+                result += taxid
             End If
+
             Return result
         End Function
-        Public Function getDescendants(taxids)
+
+        ''' <summary>
+        ''' Returns all the descendant taxids from a branch/clade 
+        ''' of a list of taxids : all nodes (leaves or not) of the 
+        ''' tree are returned including the original one.
+        ''' </summary>
+        ''' <param name="taxids"></param>
+        ''' <returns></returns>
+        Public Function GetDescendants(ParamArray taxids As Integer()) As Dictionary(Of Integer, Integer())
             '""" Returns all the descendant taxids from a branch/clade 
             '    of a list of taxids : all nodes (leaves or not) of the 
             '    tree are returned including the original one.
@@ -310,13 +326,21 @@ Namespace Assembly.NCBI
             '    >>> taxid2descendants == {566: [566, 1115515], 208962: [208962, 502347, 550692, 550693, 909209, 910238, 1115511, 1440052]}
             '    True
             '"""
-            Dim result = {}
+            Dim result As New Dictionary(Of Integer, Integer())
+
             For Each taxid In taxids
-                result(taxid) = flatten(_getDescendants(taxid))
+                result(taxid) = flatten(__descendants(taxid)).ToArray(Of Integer)
             Next
+
             Return result
         End Function
-        Public Function getDescendantsWithRanksAndNames(taxids)
+
+        ''' <summary>
+        ''' Returns the ordered list of the descendants with their respective ranks and names for a LIST of taxids.
+        ''' </summary>
+        ''' <param name="taxids"></param>
+        ''' <returns></returns>
+        Public Function GetDescendantsWithRanksAndNames(ParamArray taxids As Integer()) As Dictionary(Of Integer, TaxonNode())
             '""" Returns the ordered list of the descendants with their respective ranks and names for a LIST of taxids.
 
             '    >>> tree = NcbiTaxonomyTree(nodes_filename="nodes.dmp", names_filename="names.dmp")
@@ -329,17 +353,30 @@ Namespace Assembly.NCBI
             '    'Escherichia vulneris NBRC 102420'
             '"""
             '    Node = namedtuple('Node', ['taxid', 'rank', 'name'])
-            Dim result = {}
-            For Each taxid In taxids
-                result(taxid) = From descendant In _getDescendants(taxid) Select New TaxonNode With {.taxid = descendant,
-                           .rank = Taxonomy(descendant).rank,
-                           .name = Taxonomy(descendant).name}
+            Dim result As New Dictionary(Of Integer, TaxonNode())
 
+            For Each taxid In taxids
+                result(taxid) = LinqAPI.Exec(Of TaxonNode) <=
+ _
+                    From descendant As Integer
+                    In __descendants(taxid)
+                    Select New TaxonNode With {
+                        .taxid = descendant,
+                        .rank = Taxonomy(descendant).rank,
+                        .name = Taxonomy(descendant).name
+                    }
             Next
+
             Return result
         End Function
 
-        Public Function getLeaves(taxid As Integer) As IEnumerable
+        ''' <summary>
+        ''' Returns all the descendant taxids that are leaves of the tree from 
+        ''' a branch/clade determined by ONE taxid.
+        ''' </summary>
+        ''' <param name="taxid"></param>
+        ''' <returns></returns>
+        Public Function GetLeaves(taxid As Integer) As Integer()
             '""" Returns all the descendant taxids that are leaves of the tree from 
             '    a branch/clade determined by ONE taxid.
 
@@ -351,20 +388,17 @@ Namespace Assembly.NCBI
             '    >>> len(taxids_leaves_escherichia_genus)
             '    3382
             '"""
+            Dim children As IEnumerable(Of Integer) = Taxonomy(taxid).children
 
-            Dim result = _getLeaves(taxid)
-
-            If result Is Nothing Then  '    # In case of the taxid has no child
-                result = [result]
-            Else
-                result = flatten(result)
+            If children.IsNullOrEmpty Then
+                Return {taxid} ' # In case of the taxid has no child
             End If
-            Return result
-        End Function
 
-        Private Function _getLeaves(taxid As Integer) As IEnumerable
-            Dim children = Taxonomy(taxid).children
-            Dim out = From child In children Where children IsNot Nothing Select _getLeaves(child) 'Else taxid
+            Dim out = LinqAPI.Exec(Of Integer) <=
+                From child As Integer
+                In children'.AsParallel
+                Select GetLeaves(child) ' Else taxid
+
             Return out
         End Function
 
@@ -378,7 +412,7 @@ Namespace Assembly.NCBI
             '    Node(taxid=1266749, rank='no rank', name='Escherichia coli B1C1')
             '"""
             '   Node = namedtuple('Node', ['taxid', 'rank', 'name'])                            
-            Dim result = From leaf In getLeaves(taxid) Select New TaxonNode With {.taxid = leaf,
+            Dim result = From leaf In GetLeaves(taxid) Select New TaxonNode With {.taxid = leaf,
                    .rank = Taxonomy(leaf).rank,
                .name = Taxonomy(leaf).name}
 
@@ -442,8 +476,9 @@ Namespace Assembly.NCBI
             ' # compiler Is deprecated In py2.6
             Dim l As New List(Of Object)
 
-            For Each elt In seq
+            For Each elt As Object In seq
                 Dim t As Type = elt.GetType
+
                 If Array.IndexOf(t.GetInterfaces, GetType(IEnumerable)) > -1 Then
                     For Each elt2 In flatten(DirectCast(elt, IEnumerable))
                         l.Add(elt2)

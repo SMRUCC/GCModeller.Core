@@ -66,6 +66,12 @@ Module DEBUG_MAIN
         Call tax.GetName({28384, 131567}).GetJson.__DEBUG_ECHO
         Call tax.GetAscendantsWithRanksAndNames({1, 562}).getjson.__DEBUG_ECHO
         Call tax.GetAscendantsWithRanksAndNames({562}, True).GetJson.__DEBUG_ECHO
+        Call tax.GetDescendants(208962, 566).getjson.__DEBUG_ECHO
+        Call tax.GetDescendantsWithRanksAndNames(566).GetJson.__DEBUG_ECHO
+        ' Call tax.GetLeaves(1).Length.__DEBUG_ECHO
+        Call tax.GetLeaves(561).Length.__DEBUG_ECHO
+
+
 
         Dim ptt As PTT = TabularFormat.PTT.Load("G:\Xanthomonas_campestris_8004_uid15\CP000050.ptt")
         Dim loci As New NucleotideLocation(3769223, 3769149, Strands.Reverse)
