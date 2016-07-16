@@ -402,7 +402,13 @@ Namespace Assembly.NCBI
             Return out
         End Function
 
-        Public Function getLeavesWithRanksAndNames(taxid)
+        ''' <summary>
+        ''' Returns all the descendant taxids that are leaves of the tree from 
+        ''' a branch/clade determined by ONE taxid.
+        ''' </summary>
+        ''' <param name="taxid"></param>
+        ''' <returns></returns>
+        Public Function GetLeavesWithRanksAndNames(taxid As Integer) As TaxonNode()
             '""" Returns all the descendant taxids that are leaves of the tree from 
             '    a branch/clade determined by ONE taxid.
 
@@ -412,13 +418,31 @@ Namespace Assembly.NCBI
             '    Node(taxid=1266749, rank='no rank', name='Escherichia coli B1C1')
             '"""
             '   Node = namedtuple('Node', ['taxid', 'rank', 'name'])                            
-            Dim result = From leaf In GetLeaves(taxid) Select New TaxonNode With {.taxid = leaf,
-                   .rank = Taxonomy(leaf).rank,
-               .name = Taxonomy(leaf).name}
+            Dim result As TaxonNode() = LinqAPI.Exec(Of TaxonNode) <=
+ _
+                From leaf As Integer
+                In GetLeaves(taxid)
+                Select New TaxonNode With {
+                    .taxid = leaf,
+                    .rank = Taxonomy(leaf).rank,
+                    .name = Taxonomy(leaf).name
+                }
 
             Return result
         End Function
-        Public Function getTaxidsAtRank(rank)
+
+        ''' <summary>
+        ''' Returns all the taxids that are at a specified rank: 
+        ''' 
+        ''' + standard ranks: 
+        '''   ``species, genus, family, order, class, phylum, superkingdom.``
+        ''' + non-standard ranks: 
+        '''   ``forma, varietas, subspecies, species group, subtribe, tribe, subclass, kingdom.``
+        '''   
+        ''' </summary>
+        ''' <param name="rank"></param>
+        ''' <returns></returns>
+        Public Function GetTaxidsAtRank(rank As String) As Integer()
             '""" Returns all the taxids that are at a specified rank : 
             '    standard ranks : species, genus, family, order, class, phylum,
             '        superkingdom.
@@ -429,34 +453,70 @@ Namespace Assembly.NCBI
             '    >>> tree.getTaxidsAtRank('superkingdom')
             '    [2, 2157, 2759, 10239, 12884]
             '""" 
-            Return From node In Taxonomy.Values Where node.rank = rank Select node
+            Dim LQuery = LinqAPI.Exec(Of
+                KeyValuePair(Of Integer, TaxonNode)) <=
+ _
+                From node As KeyValuePair(Of Integer, TaxonNode)
+                In Taxonomy
+                Where node.Value.rank = rank
+                Select node
+
+            Dim out = LQuery.ToArray(Function(x) x.Key)
+            Return out
         End Function
-        Public Function preorderTraversal(taxid As Integer, only_leaves As Boolean)
+
+        ''' <summary>
+        ''' Prefix (Preorder) visit of the tree: https://en.wikipedia.org/wiki/Tree_traversal
+        ''' </summary>
+        ''' <param name="taxid"></param>
+        ''' <param name="only_leaves"></param>
+        ''' <returns></returns>
+        Public Function preorderTraversal(taxid As Integer, only_leaves As Boolean) As Integer()
             '""" Prefix (Preorder) visit of the tree
             '    https://en.wikipedia.org/wiki/Tree_traversal
             '"""
 
-            Dim _preorderTraversal
+            Dim _preorderTraversal As Func(Of Integer, Integer())
 
             If only_leaves Then
-                _preorderTraversal = Function()
-                                         Dim children = Taxonomy(taxid).children
-                                         Dim result = From child In children Select _preorderTraversal(child) 'for] if children else taxid
-                                         Return result
-                                     End Function
+                _preorderTraversal = AddressOf __preorderTraversalOnlyLeaves
             Else
-                _preorderTraversal = Function()
-                                         Dim children = Taxonomy(taxid).children
-                                         Dim result
-                                         If children IsNot Nothing Then
-                                             result = From child In children Select _preorderTraversal(child) ', taxid )
-                                         Else
-                                             result = taxid
-                                         End If
-                                         Return result
-                                     End Function
+                _preorderTraversal = AddressOf __preorderTraversal
             End If
+
             Return _preorderTraversal(taxid)
+        End Function
+
+        Private Function __preorderTraversal(taxid As Integer) As Integer()
+            Dim children = Taxonomy(taxid).children
+            Dim result As Integer()
+
+            If children IsNot Nothing Then
+                result = LinqAPI.Exec(Of Integer) <=
+ _
+                    From child As Integer
+                    In children
+                    Select __preorderTraversal(child) ', taxid )
+
+                result.Add(taxid)
+            Else
+                result = {taxid}
+            End If
+            Return result
+        End Function
+
+        Private Function __preorderTraversalOnlyLeaves(taxid As Integer) As Integer()
+            Dim children = Taxonomy(taxid).children
+
+            If children.IsNullOrEmpty Then
+                Return {taxid}
+            End If
+
+            Dim result As Integer() =
+                LinqAPI.Exec(Of Integer) <= From child As Integer
+                                            In children
+                                            Select __preorderTraversalOnlyLeaves(child) 'for] if children else taxid
+            Return result
         End Function
 
         ''' <summary>

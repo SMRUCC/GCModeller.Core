@@ -70,8 +70,8 @@ Module DEBUG_MAIN
         Call tax.GetDescendantsWithRanksAndNames(566).GetJson.__DEBUG_ECHO
         ' Call tax.GetLeaves(1).Length.__DEBUG_ECHO
         Call tax.GetLeaves(561).Length.__DEBUG_ECHO
-
-
+        Call tax.GetLeavesWithRanksAndNames(561) '.GetJson.__DEBUG_ECHO
+        Call tax.GetTaxidsAtRank("superkingdom").GetJson.__DEBUG_ECHO
 
         Dim ptt As PTT = TabularFormat.PTT.Load("G:\Xanthomonas_campestris_8004_uid15\CP000050.ptt")
         Dim loci As New NucleotideLocation(3769223, 3769149, Strands.Reverse)
