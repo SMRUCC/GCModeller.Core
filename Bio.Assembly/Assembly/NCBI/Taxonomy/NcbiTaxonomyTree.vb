@@ -49,6 +49,8 @@ Namespace Assembly.NCBI
 
         Public ReadOnly Property dic As New Dictionary(Of Integer, Node)
 
+        Const sciNdeli As String = vbTab & "scientific name" & vbTab
+
         ''' <summary>
         ''' Builds the following dictionnary from NCBI taxonomy ``nodes.dmp`` and 
         ''' ``names.dmp`` files 
@@ -75,7 +77,7 @@ Namespace Assembly.NCBI
 
             For Each line In names_filename.IterateAllLines
                 Dim lineToken = line.Split("|"c)
-                If lineToken(3) = "\tscientific name\t" Then
+                If lineToken(3).TextEquals(sciNdeli) Then
                     taxid = CInt(lineToken(0))
                     taxid2name(taxid) = New String(lineToken(1).slice(1, -1).ToArray)
                 End If

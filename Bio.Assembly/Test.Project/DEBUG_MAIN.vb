@@ -57,6 +57,10 @@ Module DEBUG_MAIN
 
     Sub Main()
 
+        Dim tax As New NCBI.NcbiTaxonomyTree("G:\temp\NCBI_taxonomy_tree-master\nodes.dmp", "G:\temp\NCBI_taxonomy_tree-master\names.dmp")
+
+
+
         Dim ptt As PTT = TabularFormat.PTT.Load("G:\Xanthomonas_campestris_8004_uid15\CP000050.ptt")
         Dim loci As New NucleotideLocation(3769223, 3769149, Strands.Reverse)
         Dim genome As New ContextModel.GenomeContextProvider(Of GeneBrief)(ptt)
