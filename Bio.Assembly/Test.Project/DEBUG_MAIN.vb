@@ -59,6 +59,7 @@ Module DEBUG_MAIN
 
         Dim tax As New NCBI.NcbiTaxonomyTree("G:\temp\NCBI_taxonomy_tree-master\nodes.dmp", "G:\temp\NCBI_taxonomy_tree-master\names.dmp")
 
+        Dim result = tax.GetParent({28384, 131567})
 
 
         Dim ptt As PTT = TabularFormat.PTT.Load("G:\Xanthomonas_campestris_8004_uid15\CP000050.ptt")
