@@ -27,12 +27,12 @@
 
 Imports System.Net
 Imports System.Text.RegularExpressions
+Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.VisualBasic.Terminal
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices.InternalWebFormParsers
-Imports Microsoft.VisualBasic.Serialization.JSON
-Imports Microsoft.VisualBasic
-Imports Microsoft.VisualBasic.Terminal
 
 Namespace Assembly.KEGG.DBGET.LinkDB
 
@@ -59,7 +59,7 @@ Namespace Assembly.KEGG.DBGET.LinkDB
                 Dim key As String = Regex.Match(entry, ">.+?</a>").Value
                 key = Mid(key, 2, Len(key) - 5)
                 Dim Description As String = Strings.Split(entry, "</a>").Last.Trim
-                Dim url As String = "http://www.genome.jp" & entry.Get_href
+                Dim url As String = "http://www.genome.jp" & entry.href
 
                 Yield New ListEntry With {
                     .EntryID = key,

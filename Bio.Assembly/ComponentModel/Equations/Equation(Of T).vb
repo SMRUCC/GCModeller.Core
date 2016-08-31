@@ -78,7 +78,7 @@ Namespace ComponentModel.EquaionModel
                           Select x
                           Group x By x.Identifier.ToLower Into Group)
             Dim hash As Dictionary(Of String, T()) =
-                Groups.ToDictionary(Function(x) x.ToLower,
+                Groups.ToDictionary(Function(x) x.Group.First.Identifier,
                                     Function(x) x.Group.ToArray)
             Return hash
         End Function
@@ -102,7 +102,9 @@ Namespace ComponentModel.EquaionModel
         ''' <param name="ID"></param>
         ''' <returns></returns>
         Public Overridable Function GetCoEfficient(ID As String) As Double
-            If __leftHash.ContainsKey(ID.ToLower.ShadowCopy(ID)) Then
+            ID = ID.ToLower
+
+            If __leftHash.ContainsKey(ID) Then
                 Return -1 * __leftHash(ID).ToArray(Function(x) x.StoiChiometry).Sum
             ElseIf __rightHash.ContainsKey(ID) Then
                 Return __rightHash(ID).ToArray(Function(x) x.StoiChiometry).Sum
