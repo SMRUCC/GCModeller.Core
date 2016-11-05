@@ -1,9 +1,10 @@
-﻿#Region "Microsoft.VisualBasic::f64c7a503df062d33119a415311c65dd, ..\GCModeller\core\Bio.Assembly\SequenceModel\FASTA\IO\UltralargeSizeFastaReader.vb"
+﻿#Region "Microsoft.VisualBasic::5b8bd8e41cc2b608ff1d5e9752491a43, ..\GCModeller\core\Bio.Assembly\SequenceModel\FASTA\IO\UltralargeSizeFastaReader.vb"
 
     ' Author:
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
     '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
     ' 
     ' Copyright (c) 2016 GPL3 Licensed
     ' 
@@ -58,9 +59,11 @@ Namespace SequenceModel.FASTA
         ''' <param name="chunkSize"></param>
         ''' <param name="encoding"></param>
         ''' <returns></returns>
-        Public Shared Function FastSplit(path As String, n As Integer, outDIR As String,
-                                     Optional chunkSize As Long = 1024 * 1024 * 128,
-                                     Optional encoding As System.Text.Encoding = Nothing) As Boolean
+        Public Shared Function FastSplit(path As String,
+                                         n As Integer,
+                                         outDIR As String,
+                                         Optional chunkSize As Long = 1024 * 1024 * 128,
+                                         Optional encoding As Encoding = Nothing) As Boolean
 
             Using IO As System.IO.FileStream = New IO.FileStream(path, System.IO.FileMode.Open)
                 Dim chunkBuffer As Byte() = New Byte(chunkSize - 1) {}

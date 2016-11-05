@@ -1,9 +1,10 @@
-﻿#Region "Microsoft.VisualBasic::ef6ba6b91a4699238b6d165d412bcc5e, ..\GCModeller\core\Bio.Assembly\SequenceModel\FASTA\Reflection\FastaTools.vb"
+﻿#Region "Microsoft.VisualBasic::d6531a498ce6239e46f368cbdcd0f8ae, ..\GCModeller\core\Bio.Assembly\SequenceModel\FASTA\Reflection\FastaTools.vb"
 
     ' Author:
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
     '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
     ' 
     ' Copyright (c) 2016 GPL3 Licensed
     ' 
@@ -260,7 +261,7 @@ REDO:           seq = Mid(seq, i)
                                    Select If(String.IsNullOrEmpty(pairItem.Key.Precursor), New String() {value}, New String() {pairItem.Key.Precursor, value})).ToArray
                 Dim Fsa As FastaToken = New FastaToken With {
                     .SequenceData = objItem.GetSequenceData,
-                    .Attributes = stringItems.MatrixToVector
+                    .Attributes = stringItems.ToVector
                 }
                 Return Fsa
             Else

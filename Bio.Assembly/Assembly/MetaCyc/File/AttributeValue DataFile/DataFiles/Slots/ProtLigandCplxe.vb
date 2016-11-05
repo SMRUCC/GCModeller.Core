@@ -4,6 +4,7 @@
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
     '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
     ' 
     ' Copyright (c) 2016 GPL3 Licensed
     ' 
@@ -29,6 +30,7 @@ Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles.Reflection
 Imports SMRUCC.genomics.Assembly.MetaCyc.Schema.Reflection
 Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.MetaCyc.File.DataFiles.Slots
 

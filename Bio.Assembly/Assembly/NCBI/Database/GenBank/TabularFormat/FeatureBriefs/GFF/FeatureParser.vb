@@ -1,27 +1,28 @@
-﻿#Region "Microsoft.VisualBasic::161f1da90c20d1c067cf3f18a3a2fe67, ..\GCModeller\core\Bio.Assembly\Assembly\NCBI\Database\GenBank\TabularFormat\FeatureBriefs\GFF\FeatureParser.vb"
+﻿#Region "Microsoft.VisualBasic::2fea8a4f2605f927fe971f334885ceb7, ..\GCModeller\core\Bio.Assembly\Assembly\NCBI\Database\GenBank\TabularFormat\FeatureBriefs\GFF\FeatureParser.vb"
 
-' Author:
-' 
-'       asuka (amethyst.asuka@gcmodeller.org)
-'       xieguigang (xie.guigang@live.com)
-' 
-' Copyright (c) 2016 GPL3 Licensed
-' 
-' 
-' GNU GENERAL PUBLIC LICENSE (GPL3)
-' 
-' This program is free software: you can redistribute it and/or modify
-' it under the terms of the GNU General Public License as published by
-' the Free Software Foundation, either version 3 of the License, or
-' (at your option) any later version.
-' 
-' This program is distributed in the hope that it will be useful,
-' but WITHOUT ANY WARRANTY; without even the implied warranty of
-' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-' GNU General Public License for more details.
-' 
-' You should have received a copy of the GNU General Public License
-' along with this program. If not, see <http://www.gnu.org/licenses/>.
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #End Region
 
@@ -43,7 +44,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         Public Function ToString(x As Feature) As String
             Dim attrs As String() = (From Token As KeyValuePair(Of String, String)
                                      In x.attributes
-                                     Select $"{Token.Key}={Token.Value.CliPath}").ToArray
+                                     Select $"{Token.Key}={Token.Value.CLIPath}").ToArray
             Dim attrsHash As String = String.Join(";", attrs)
             Dim tokens As String() = New String() {
                 x.seqname, x.source, x.Feature, CStr(x.start), CStr(x.Ends), x.score, x.Strand.GetBriefCode, x.frame, attrsHash

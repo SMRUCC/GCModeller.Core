@@ -1,9 +1,10 @@
-﻿#Region "Microsoft.VisualBasic::48e1879a66e9d8f288d7cddea8b8d20a, ..\GCModeller\core\Bio.Assembly\Assembly\KEGG\Archives\Xml\XmlModel.vb"
+﻿#Region "Microsoft.VisualBasic::de8397269815a79f84c1ac85504b6771, ..\GCModeller\core\Bio.Assembly\Assembly\KEGG\Archives\Xml\XmlModel.vb"
 
     ' Author:
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
     '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
     ' 
     ' Copyright (c) 2016 GPL3 Licensed
     ' 
@@ -31,6 +32,7 @@ Imports SMRUCC.genomics.Assembly.KEGG.Archives.Xml.Nodes
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Linq.Extensions
+Imports Microsoft.VisualBasic.Text
 
 Namespace Assembly.KEGG.Archives.Xml
 
@@ -66,7 +68,7 @@ Namespace Assembly.KEGG.Archives.Xml
                                  In __reactions
                                  Select x
                                  Group x By x.Entry Into Group) _
-                                      .ToDictionary(Function(x) x.Entry, 
+                                      .ToDictionary(Function(x) x.Entry,
                                                     Function(x) x.Group.First)
                 End If
             End Set
@@ -130,7 +132,7 @@ Namespace Assembly.KEGG.Archives.Xml
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function GetAllPathways() As bGetObject.Pathway()
-            Dim LQuery = Pathways.ToArray(Function(x) x.Pathways).MatrixToVector
+            Dim LQuery = Pathways.ToArray(Function(x) x.Pathways).ToVector
             Return LQuery
         End Function
 

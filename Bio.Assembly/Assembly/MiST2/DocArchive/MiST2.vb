@@ -1,9 +1,10 @@
-﻿#Region "Microsoft.VisualBasic::ad4b29295971e1d4a4cfb915958bbc58, ..\GCModeller\core\Bio.Assembly\Assembly\MiST2\DocArchive\MiST2.vb"
+﻿#Region "Microsoft.VisualBasic::a17f254a8a8a671088990bd3ca448c1e, ..\GCModeller\core\Bio.Assembly\Assembly\MiST2\DocArchive\MiST2.vb"
 
     ' Author:
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
     '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
     ' 
     ' Copyright (c) 2016 GPL3 Licensed
     ' 
@@ -29,6 +30,7 @@ Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
 Imports SMRUCC.genomics.SequenceModel
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Text
 
 Namespace Assembly.MiST2
 

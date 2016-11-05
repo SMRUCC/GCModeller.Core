@@ -4,6 +4,7 @@
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
     '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
     ' 
     ' Copyright (c) 2016 GPL3 Licensed
     ' 
@@ -106,7 +107,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
             Else
                 Return (From htext As BriteHText
                     In Me.CategoryItems
-                        Select s_Data = htext.GetEntries).ToArray.MatrixToVector
+                        Select s_Data = htext.GetEntries).ToArray.ToVector
             End If
         End Function
 

@@ -79,7 +79,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>G:\GCModeller\GCModeller\bin</OutputPath>
+    <OutputPath>D:\GCModeller\GCModeller\bin</OutputPath>
     <DefineConstants>PARALLEL=1</DefineConstants>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
     <DocumentationFile>SMRUCC.genomics.Core.xml</DocumentationFile>
@@ -205,6 +205,15 @@
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2|AnyCPU'">
+    <OutputPath>bin\Release2\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2|x64'">
+    <OutputPath>bin\x64\Release2\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2|x86'">
+    <OutputPath>bin\x86\Release2\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -252,7 +261,8 @@
     <Compile Include="Assembly\DOOR\OperonLDM.vb" />
     <Compile Include="Assembly\EBI.ChEBI\Database\IO.StreamProviders\Tables.vb" />
     <Compile Include="Assembly\Expasy\API.vb" />
-    <Compile Include="Assembly\Expasy\CsvDumps.vb" />
+    <Compile Include="Assembly\Expasy\csv\SwissProt.vb" />
+    <Compile Include="Assembly\Expasy\csv\Enzyme.vb" />
     <Compile Include="Assembly\Expasy\NomenclatureDB\Enzyme.vb" />
     <Compile Include="Assembly\KEGG\Archives\Csv\Ortholog.vb" />
     <Compile Include="Assembly\KEGG\Archives\Csv\Module.vb" />
@@ -322,7 +332,12 @@
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\GFF\FeatureParser.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\GFF\FeatureKeys.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\PTT\DbAPI.vb" />
-    <Compile Include="Assembly\NCBI\Taxonomy\NcbiTaxonomyTree.vb" />
+    <Compile Include="Assembly\NCBI\SeqDump\NTheader.vb" />
+    <Compile Include="Assembly\NCBI\Taxonomy\Accession2Taxid.vb" />
+    <Compile Include="Assembly\NCBI\Taxonomy\TaxidMaps.vb" />
+    <Compile Include="Assembly\NCBI\Taxonomy\Tree\Ranks.vb" />
+    <Compile Include="Assembly\NCBI\Taxonomy\Tree\TaxonomyNode.vb" />
+    <Compile Include="Assembly\NCBI\Taxonomy\Tree\NcbiTaxonomyTree.vb" />
     <Compile Include="Assembly\NCBI\Taxonomy\TaxonomyWeb.vb" />
     <Compile Include="Assembly\NCBI\Taxonomy\Taxonomy.vb" />
     <Compile Include="Assembly\NCBI\WebServiceHandler\Taxonomy.vb" />
@@ -401,9 +416,10 @@
     <Compile Include="Assembly\MetaCyc\Schemas\PathwayMappingTool.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\PTT\Rpt.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\PTT\PTT.vb" />
-    <Compile Include="Assembly\NCBI\SeqDump\Gene.vb" />
+    <Compile Include="Assembly\NCBI\SeqDump\nt.vb" />
     <Compile Include="BioAssemblyExtensions.vb" />
     <Compile Include="IQueryExtensions.vb" />
+    <Compile Include="Metagenomics\OTUData.vb" />
     <Compile Include="ProteinModel\DomainObject.vb" />
     <Compile Include="ProteinModel\DomainModels.vb" />
     <Compile Include="SequenceModel\Abstract.vb" />
@@ -681,7 +697,7 @@
     <None Include="Resources\transl_table\transl_table-25.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\runtime\visualbasic_App\Microsoft.VisualBasic.Architecture.Framework\+Microsoft.VisualBasic.Architecture.Framework.vbproj">
+    <ProjectReference Include="..\..\..\runtime\sciBASIC#\Microsoft.VisualBasic.Architecture.Framework\+Microsoft.VisualBasic.Architecture.Framework.vbproj">
       <Project>{fecce1fd-e1d4-49e3-a668-60bb5e7aed99}</Project>
       <Name>+Microsoft.VisualBasic.Architecture.Framework</Name>
     </ProjectReference>

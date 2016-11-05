@@ -4,6 +4,7 @@
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
     '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
     ' 
     ' Copyright (c) 2016 GPL3 Licensed
     ' 
@@ -157,7 +158,7 @@ Namespace ContextModel
                SegmentRelationships.UpStreamOverlap,
                 LociDelegate.GetRelation(SegmentRelationships.UpStreamOverlap, ATGDistance))
             Dim array = {UpStreams, UpStreamOverlaps}
-            Dim data0 = array.ToArray(Function(x) x.Value.ToArray(Function(g) New Relationship(Of T)(g, x.Key))).MatrixToList
+            Dim data0 = array.ToArray(Function(x) x.Value.ToArray(Function(g) New Relationship(Of T)(g, x.Key))).Unlist
             Return data0.ToArray
         End Function
 
@@ -197,24 +198,27 @@ Namespace ContextModel
         ''' <param name="loci"></param>
         ''' <param name="stranded"></param>
         ''' <returns></returns>
-        Private Function __delegate(loci As NucleotideLocation, stranded As Boolean) As Func(Of Strands, Integer, T())
+        Private Function __delegate(loci As NucleotideLocation, stranded As Boolean， parallel As Boolean) As Func(Of Strands, Integer, T())
             Dim strand As Strands = loci.Strand
 
             If stranded Then
                 Return AddressOf New RelationDelegate(Of T) With {
                     .dataSource = GetSource(strand),
-                    .loci = loci.Normalization
+                    .loci = loci.Normalization,
+                    .parallel = parallel
                 }.GetRelation
             Else
                 Dim asc As New RelationDelegate(Of T) With {
                     .dataSource = _forwards,
-                    .loci = loci.Normalization
+                    .loci = loci.Normalization,
+                    .parallel = parallel
                 }
                 Dim desc As New RelationDelegate(Of T) With {
                     .dataSource = _reversed,
-                    .loci = loci
+                    .loci = loci,
+                    .parallel = parallel
                 }
-                Return Function(relType, dist) desc.GetRelation(relType, dist) + (MakeList(Of T)() <= asc.GetRelation(relType, dist))
+                Return Function(relType, dist) desc.GetRelation(relType, dist) + (LinqAPI.MakeList(Of T)() <= asc.GetRelation(relType, dist))
             End If
         End Function
 
@@ -226,8 +230,8 @@ Namespace ContextModel
         ''' <param name="lociDist"></param>
         ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
         ''' <remarks></remarks>
-        Public Function GetAroundRelated(loci As NucleotideLocation, Optional stranded As Boolean = True, Optional lociDist As Integer = 500) As Relationship(Of T)()
-            Dim GetRelation = __delegate(loci, stranded)
+        Public Function GetAroundRelated(loci As NucleotideLocation, Optional stranded As Boolean = True, Optional lociDist As Integer = 500, Optional parallel As Boolean = False) As Relationship(Of T)()
+            Dim GetRelation = __delegate(loci, stranded, parallel)
             Dim foundTEMP As T()
             Dim lstRelated As New List(Of Relationship(Of T))
 

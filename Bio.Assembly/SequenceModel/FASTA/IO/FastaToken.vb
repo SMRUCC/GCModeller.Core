@@ -1,27 +1,28 @@
-﻿#Region "Microsoft.VisualBasic::5e86124d936c612f50c4729157f5c5c0, ..\GCModeller\core\Bio.Assembly\SequenceModel\FASTA\IO\FastaToken.vb"
+﻿#Region "Microsoft.VisualBasic::cea50b3d5fe3dea82883a4f2256cef24, ..\GCModeller\core\Bio.Assembly\SequenceModel\FASTA\IO\FastaToken.vb"
 
-    ' Author:
-    ' 
-    '       asuka (amethyst.asuka@gcmodeller.org)
-    '       xieguigang (xie.guigang@live.com)
-    ' 
-    ' Copyright (c) 2016 GPL3 Licensed
-    ' 
-    ' 
-    ' GNU GENERAL PUBLIC LICENSE (GPL3)
-    ' 
-    ' This program is free software: you can redistribute it and/or modify
-    ' it under the terms of the GNU General Public License as published by
-    ' the Free Software Foundation, either version 3 of the License, or
-    ' (at your option) any later version.
-    ' 
-    ' This program is distributed in the hope that it will be useful,
-    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
-    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    ' GNU General Public License for more details.
-    ' 
-    ' You should have received a copy of the GNU General Public License
-    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+' Author:
+' 
+'       asuka (amethyst.asuka@gcmodeller.org)
+'       xieguigang (xie.guigang@live.com)
+'       xie (genetics@smrucc.org)
+' 
+' Copyright (c) 2016 GPL3 Licensed
+' 
+' 
+' GNU GENERAL PUBLIC LICENSE (GPL3)
+' 
+' This program is free software: you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation, either version 3 of the License, or
+' (at your option) any later version.
+' 
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+' 
+' You should have received a copy of the GNU General Public License
+' along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #End Region
 
@@ -29,10 +30,12 @@ Imports System.Text
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Text
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
+Imports SMRUCC.genomics.SequenceModel.NucleotideModels
 
 Namespace SequenceModel.FASTA
 
@@ -44,11 +47,15 @@ Namespace SequenceModel.FASTA
     ''' <remarks></remarks>
     ''' 
     <PackageNamespace("GCModeller.IO.FastaToken", Publisher:="amethyst.asuka@gcmodeller.org")>
+    <ActiveViews(FastaToken.SampleView, type:="bash")>
     Public Class FastaToken : Inherits ISequenceModel
         Implements I_PolymerSequenceModel
         Implements IAbstractFastaToken
         Implements ISaveHandle
         Implements I_FastaProvider
+
+        Friend Const SampleView = ">LexA
+AAGCGAACAAATGTTCTATA"
 
 #Region "Object Properties"
 
@@ -274,7 +281,7 @@ Namespace SequenceModel.FASTA
         ''' <remarks></remarks>
         ''' 
         <ExportAPI("Load")>
-        Public Shared Function Load(File As String) As FastaToken
+        Public Shared Function Load(File As String, Optional deli As Char() = Nothing) As FastaToken
             Dim lines As String() = IO.File.ReadAllLines(File)
 
             If lines.IsNullOrEmpty Then
@@ -282,7 +289,7 @@ Namespace SequenceModel.FASTA
                 Return Nothing
             End If
 
-            Return ParseFromStream(lines)
+            Return ParseFromStream(lines, If(deli.IsNullOrEmpty, {"|"c}, deli))
         End Function
 
         ''' <summary>
@@ -293,13 +300,13 @@ Namespace SequenceModel.FASTA
         ''' <remarks></remarks>
         ''' 
         <ExportAPI("FastaToken.From.Stream")>
-        Public Shared Function ParseFromStream(stream As IEnumerable(Of String)) As FastaToken
+        Public Shared Function ParseFromStream(stream As IEnumerable(Of String), deli As Char()) As FastaToken
             If stream.IsNullOrEmpty Then Return Nothing
 
             Dim lines As String() = stream.ToArray
             Dim fa As New FastaToken
 
-            fa.Attributes = Mid(lines(Scan0), 2).Split(CChar("|"))
+            fa.Attributes = Mid(lines(Scan0), 2).Split(deli)
             fa.Attributes = fa.Attributes.ToArray(Function(s) s.Replace(StreamIterator.SOH, ""))
             fa.SequenceData = String.Join("", lines.Skip(1).ToArray)  ' Linux mono does not support <Extension> attribute!
 
@@ -314,11 +321,11 @@ Namespace SequenceModel.FASTA
         ''' <remarks></remarks>
         ''' 
         <ExportAPI("FastaToken.Parser")>
-        Public Shared Function TryParse(strData As String) As FastaToken
+        Public Shared Function TryParse(strData As String, Optional deli As Char = "|"c) As FastaToken
             Dim LQuery = (From strLine As String
                           In strData.Split(CChar(vbLf))
                           Select strLine.Replace(vbCr, "")).ToArray
-            Return FastaToken.ParseFromStream(LQuery)
+            Return FastaToken.ParseFromStream(LQuery, {deli})
         End Function
 
         ''' <summary>
@@ -328,8 +335,8 @@ Namespace SequenceModel.FASTA
         ''' 因为在继承类之中可能会复写ToString函数以生成不同的标题格式，则可以使用这个参数来决定是否使用复写的格式。</param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        ''' <param name="LineBreak">大于0的数值会换行，小于或者等于0的数值不会换行</param>
-        Public Function GenerateDocument(LineBreak As Integer, Optional [overrides] As Boolean = True) As String
+        ''' <param name="lineBreak">大于0的数值会换行，小于或者等于0的数值不会换行</param>
+        Public Function GenerateDocument(lineBreak As Integer, Optional [overrides] As Boolean = True, Optional removeCR As Boolean = True) As String
             Dim sb As New StringBuilder(">", 10 * 1024)
 
             If [overrides] Then
@@ -340,31 +347,33 @@ Namespace SequenceModel.FASTA
 
             Call sb.AppendLine()
 
-            If LineBreak <= 0 Then
+            If lineBreak <= 0 Then
                 Call sb.AppendLine(SequenceData)
             Else
-                For i As Integer = 1 To Len(SequenceData) Step LineBreak
-                    Dim Segment As String = Mid(SequenceData, i, LineBreak)
-                    Call sb.AppendLine(Segment)
+                For i As Integer = 1 To Len(SequenceData) Step lineBreak
+                    Dim sg As String = Mid(SequenceData, i, lineBreak)
+                    Call sb.AppendLine(sg)
                 Next
             End If
 
-            Call sb.Replace(vbCr, "")
+            If removeCR Then
+                Call sb.Replace(vbCr, "")
+            End If
 
             Return sb.ToString
         End Function
 
         ''' <summary>
-        ''' The Fasta sequence equals on both sequence data and title information.
+        ''' The Fasta sequence equals on both sequence data and title information.(值比较来判断是否相等)
         ''' </summary>
         ''' <param name="obj"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Overrides Function Equals(obj As Object) As Boolean
             If TypeOf obj Is FastaToken Then
-                Dim [Object] = DirectCast(obj, FastaToken)
-                Return String.Equals([Object].Title, Me.Title) AndAlso
-                    String.Equals([Object].SequenceData, Me.SequenceData)
+                Dim fa As FastaToken = DirectCast(obj, FastaToken)
+                Return String.Equals(fa.Title, Me.Title) AndAlso
+                    String.Equals(fa.SequenceData, Me.SequenceData)
             Else
                 Return False
             End If
@@ -376,7 +385,7 @@ Namespace SequenceModel.FASTA
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Overloads Function Copy() As FastaToken
-            Dim FastaObject As FastaToken = New FastaToken With {
+            Dim FastaObject As New FastaToken With {
                 .Attributes = New String(Me.Attributes.Count - 1) {}
             }
             Call Me.Attributes.CopyTo(FastaObject.Attributes, index:=Scan0)
@@ -418,9 +427,9 @@ Namespace SequenceModel.FASTA
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function Reverse() As FastaToken
-            Dim attrs As List(Of String) = Me.Attributes.ToList.Join("Reversed_sequence")
+            Dim attrs As List(Of String) = Attributes.ToList.Join("Reversed_sequence")
             Dim revSeq As String = New String(SequenceData.Reverse.ToArray)
-            Dim fa As FastaToken = New FastaToken With {
+            Dim fa As New FastaToken With {
                 .Attributes = attrs.ToArray,
                 .SequenceData = revSeq
             }
@@ -431,15 +440,19 @@ Namespace SequenceModel.FASTA
         ''' <summary>
         ''' Convert the specific feature data in Genbank database into a fasta sequence.
         ''' </summary>
-        ''' <param name="Feature">只是从这个特性对象之中得到蛋白质序列</param>
+        ''' <param name="feature">只是从这个特性对象之中得到蛋白质序列</param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Shadows Widening Operator CType(Feature As Feature) As FastaToken
-            Dim GI = From s As String In Feature.QueryDuplicated("db_xref") Where InStr(s, "GI:") Select s.Split(CChar(":")).Last '
-            Dim gb As String = String.Format("gb|{0}", Feature.Query("protein_id"))
+        Public Shared Shadows Widening Operator CType(feature As Feature) As FastaToken
+            Dim GI$ = LinqAPI.DefaultFirst(Of String) <=
+                From s As String
+                In feature.QueryDuplicated("db_xref")
+                Where InStr(s, "GI:")
+                Select s.Split(CChar(":")).Last '
+            Dim gb As String = String.Format("gb|{0}", feature.Query("protein_id"))
             Dim fa As New FastaToken With {
-                .Attributes = {$"gi|{GI.FirstOrDefault}", gb, Feature.Query("locus_tag"), Feature.Query("product")},
-                .SequenceData = Feature.Query("translation")
+                .Attributes = {$"gi|{GI}", gb, feature.Query("locus_tag"), feature.Query("product")},
+                .SequenceData = feature.Query("translation")
             }
 
             Return fa
@@ -454,16 +467,21 @@ Namespace SequenceModel.FASTA
         ''' 
         <ExportAPI("Complement")>
         Public Shared Function Complement(FASTA As FastaToken) As FastaToken
-            If FASTA.IsProtSource Then Throw New DataException(InvalidComplementSource)
+            If FASTA.IsProtSource Then
+                Throw New DataException(InvalidComplementSource)
+            End If
 
-            Dim cmplSeq As String = NucleotideModels.NucleicAcid.Complement(FASTA.SequenceData)
-            Dim FastaObject = New SequenceModel.FASTA.FastaToken With {
+            Dim cmplSeq As String = NucleicAcid.Complement(FASTA.SequenceData)
+            Dim FastaObject As New FastaToken With {
                 .Attributes = FASTA.Attributes,
                 .SequenceData = cmplSeq
             }
             Return FastaObject
         End Function
 
+        ''' <summary>
+        ''' Data type miss match: the sequence information is a protein sequence, can not get complement sequence.
+        ''' </summary>
         Const InvalidComplementSource As String = "Data type miss match: the sequence information is a protein sequence, can not get complement sequence."
 
         ''' <summary>
@@ -473,7 +491,7 @@ Namespace SequenceModel.FASTA
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Shared Shadows Narrowing Operator CType(obj As FastaToken) As String
-            Return obj.GenerateDocument(LineBreak:=60)
+            Return obj.GenerateDocument(lineBreak:=60)
         End Operator
 
         <ExportAPI("ToDoc")>
@@ -489,26 +507,24 @@ Namespace SequenceModel.FASTA
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function SaveTo(Optional Path As String = "", Optional encoding As Encoding = Nothing) As Boolean Implements ISaveHandle.Save
-            Return SaveTo(LineBreak:=60, Path:=Path, encoding:=encoding)
+            Return SaveTo(lineBreak:=60, Path:=Path, encoding:=encoding)
         End Function
 
         ''' <summary>
-        ''' Save the current fasta sequence object into the file system. <param name="LineBreak"></param> smaller than 1 will means no line break in the saved fasta sequence.
+        ''' Save the current fasta sequence object into the file system. <param name="lineBreak"></param> smaller than 1 will means no line break in the saved fasta sequence.
         ''' </summary>
         ''' <param name="Path"></param>
         ''' <param name="encoding"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Function SaveTo(LineBreak As Integer, Optional Path As String = "", Optional encoding As Encoding = Nothing) As Boolean
-            Dim ParentDir As String = FileIO.FileSystem.GetParentPath(Path)
+        Public Function SaveTo(lineBreak As Integer, Optional Path As String = "", Optional encoding As Encoding = Nothing) As Boolean
+            Dim doc$ = GenerateDocument(lineBreak)
 
             If encoding Is Nothing Then
-                encoding = System.Text.Encoding.Default
+                encoding = Encoding.Default
             End If
 
-            Call FileIO.FileSystem.CreateDirectory(ParentDir)
-            Call FileIO.FileSystem.WriteAllText(Path, Me.GenerateDocument(LineBreak), append:=False, encoding:=encoding)
-            Return True
+            Return doc.SaveTo(Path, encoding, False)
         End Function
 
         ''' <summary>
@@ -519,14 +535,15 @@ Namespace SequenceModel.FASTA
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function SaveAsOneLine(Optional Path As String = "", Optional encoding As Encoding = Nothing) As Boolean
-            Dim FastaBuilder As StringBuilder = New StringBuilder(">")
-            Call FastaBuilder.AppendLine(ToString)
-            Call FastaBuilder.AppendLine(SequenceData)
+            Dim sb As New StringBuilder(">")
 
-            Return FastaBuilder.ToString.SaveTo(Path, encoding)
+            Call sb.AppendLine(ToString)
+            Call sb.AppendLine(SequenceData)
+
+            Return sb.ToString.SaveTo(Path, encoding)
         End Function
 
-        Public Function Save(Optional Path As String = "", Optional encoding As Encodings = Encodings.UTF8) As Boolean Implements ISaveHandle.Save
+        Public Function Save(Optional Path$ = "", Optional encoding As Encodings = Encodings.UTF8) As Boolean Implements ISaveHandle.Save
             Return SaveTo(Path, encoding.GetEncodings)
         End Function
     End Class
