@@ -1,6 +1,35 @@
-﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
-Imports LANS.SystemsBiology.ComponentModel
-Imports LANS.SystemsBiology.ComponentModel.Loci
+﻿#Region "Microsoft.VisualBasic::407f6a35a2d182a2870ee948f26d12a3, ..\GCModeller\core\Bio.Assembly\ContextModel\Relationship.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+Imports SMRUCC.genomics.ComponentModel
+Imports SMRUCC.genomics.ComponentModel.Loci
+Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.Language
 
 Namespace ContextModel
@@ -10,6 +39,7 @@ Namespace ContextModel
     ''' </summary>
     ''' <typeparam name="T"></typeparam>
     Public Class Relationship(Of T As IGeneBrief) : Inherits ClassObject
+        Implements IReadOnlyId
 
         ''' <summary>
         ''' Target gene object
@@ -17,6 +47,20 @@ Namespace ContextModel
         ''' <returns></returns>
         Public Property Gene As T
         Public Property Relation As SegmentRelationships
+
+        ''' <summary>
+        ''' <see cref="IGeneBrief.Identifier"/>
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property locus_tag As String Implements IReadOnlyId.Identity
+            Get
+                If Gene Is Nothing Then
+                    Return ""
+                Else
+                    Return Gene.Identifier
+                End If
+            End Get
+        End Property
 
         Sub New()
         End Sub

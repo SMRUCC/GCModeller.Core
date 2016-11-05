@@ -1,11 +1,39 @@
-﻿Imports System.Text.RegularExpressions
+﻿#Region "Microsoft.VisualBasic::fdacff90bf03057f79cd9a7a65563ccd, ..\GCModeller\core\Bio.Assembly\Assembly\Expasy\NomenclatureDB\NomenclatureDB.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Text.RegularExpressions
 Imports System.Text
 Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Linq
-Imports LANS.SystemsBiology.SequenceModel
+Imports SMRUCC.genomics.SequenceModel
 
 Namespace Assembly.Expasy.Database
 
@@ -60,7 +88,7 @@ Namespace Assembly.Expasy.Database
                               In Enzymes
                               Where InStr(enz.Identification, ECNumber) = 1
                               Select enz.SwissProt).ToArray
-                Return LQuery.MatrixAsIterator.Distinct.ToArray
+                Return LQuery.IteratesALL.Distinct.ToArray
             Else
                 Return (From id As String
                         In Enzymes.GetItem(ECNumber).SwissProt
@@ -73,7 +101,7 @@ Namespace Assembly.Expasy.Database
         Public Function TryExportUniprotFasta(data As IEnumerable(Of Uniprot.UniprotFasta)) As FASTA.FastaFile
             Dim UniprotIDs As String() = (From enz As Enzyme
                                           In Me.Enzymes
-                                          Select enz.SwissProt).MatrixAsIterator.Distinct.ToArray
+                                          Select enz.SwissProt).IteratesALL.Distinct.ToArray
             Dim LQuery As IEnumerable(Of FASTA.FastaToken) = From fa As Uniprot.UniprotFasta
                                                              In data.AsParallel
                                                              Where Array.IndexOf(UniprotIDs, fa.UniprotID)
@@ -107,11 +135,11 @@ Namespace Assembly.Expasy.Database
             }
         End Function
 
-        Public Sub Export(ByRef Classes As CsvExport.Enzyme(), ByRef SwissProt As CsvExport.SwissProt())
-            Classes = (From enz As Enzyme
-                       In Enzymes
-                       Select CsvExport.Enzyme.CreateObject(enz)).ToArray
-            SwissProt = Enzymes.Select(AddressOf CsvExport.SwissProt.CreateObjects).MatrixToVector
+        Public Sub Export(ByRef Classes As csv.Enzyme(), ByRef SwissProt As csv.SwissProt())
+            Classes = Enzymes.ToArray(AddressOf csv.Enzyme.CreateObject)
+            SwissProt = Enzymes _
+                .Select(AddressOf csv.SwissProt.CreateObjects) _
+                .ToVector
         End Sub
 
         Public Overrides Function Save(Optional FilePath As String = "", Optional Encoding As Encoding = Nothing) As Boolean

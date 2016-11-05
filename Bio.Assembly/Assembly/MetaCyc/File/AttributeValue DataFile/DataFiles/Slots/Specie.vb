@@ -1,4 +1,32 @@
-﻿Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Reflection
+﻿#Region "Microsoft.VisualBasic::91782d04573526314f1ad1a00215a00f, ..\GCModeller\core\Bio.Assembly\Assembly\MetaCyc\File\AttributeValue DataFile\DataFiles\Slots\Specie.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles.Reflection
 Imports System.Reflection
 Imports System.Text
 Imports System.Xml.Serialization
@@ -79,7 +107,7 @@ Namespace Assembly.MetaCyc.File.DataFiles.Slots
         '    Return Specie
         'End Operator
 
-        'Public Shared Shadows Widening Operator CType(e As LANS.SystemsBiology.Assembly.MetaCyc.File.AttributeValue) As Specie
+        'Public Shared Shadows Widening Operator CType(e As SMRUCC.genomics.Assembly.MetaCyc.File.AttributeValue) As Specie
         '    Dim Query As Generic.IEnumerable(Of MetaCyc.File.DataFiles.Slots.Specie) =
         '        From c As MetaCyc.File.AttributeValue.Object
         '        In e.Objects

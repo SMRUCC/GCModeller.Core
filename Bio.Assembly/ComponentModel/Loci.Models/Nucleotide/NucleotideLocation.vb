@@ -1,6 +1,34 @@
-﻿Imports System.Text.RegularExpressions
+﻿#Region "Microsoft.VisualBasic::c663c732d53f7ebde4b45777287b6ff7, ..\GCModeller\core\Bio.Assembly\ComponentModel\Loci.Models\Nucleotide\NucleotideLocation.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
-Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
+Imports SMRUCC.genomics.ComponentModel.Loci.Abstract
 
 Namespace ComponentModel.Loci
 
@@ -99,12 +127,17 @@ Namespace ComponentModel.Loci
         Public Sub New()
         End Sub
 
-        Sub New(loci As Location, Strand As Strands)
+        ''' <summary>
+        ''' Create location model from the exists loci data, and then assign a new <see cref="Strands"/> value for it.
+        ''' </summary>
+        ''' <param name="loci"></param>
+        ''' <param name="strand">The new <see cref="Strands"/> value for the target loci.</param>
+        Sub New(loci As Location, strand As Strands)
             Call loci.Normalization()
 
             MyBase.Left = loci.Left
             MyBase.Right = loci.Right
-            Me.Strand = Strand
+            Me.Strand = strand
         End Sub
 
         Sub New(loci As ILocationComponent, Optional strand As Strands = Strands.Forward)
@@ -142,14 +175,13 @@ Namespace ComponentModel.Loci
         End Sub
 
         ''' <summary>
-        ''' 
+        ''' Creates loci object from raw location data.
         ''' </summary>
-        ''' <param name="LociStart"><see cref="Location"/>: Gets or set the left start value of the segment on the target sequence.(目标片段的左端起始区域，与链的方向无关)</param>
-        ''' <param name="LociEnds"><see cref="Location"/>: Gets or set the right stop value of the segment on the target sequence.(目标片段的右端终止区域，与链的方向无关)</param>
+        ''' <param name="start"><see cref="Location"/>: Gets or set the left start value of the segment on the target sequence.(目标片段的左端起始区域，与链的方向无关)</param>
+        ''' <param name="[end]"><see cref="Location"/>: Gets or set the right stop value of the segment on the target sequence.(目标片段的右端终止区域，与链的方向无关)</param>
         ''' <param name="Strand">链的方向</param>
-        Public Sub New(LociStart As Integer, LociEnds As Integer, Strand As Strands)
-            MyBase.Left = LociStart
-            MyBase.Right = LociEnds
+        Public Sub New(start As Integer, [end] As Integer, Strand As Strands)
+            Call MyBase.New(start, [end])
             Me.Strand = Strand
         End Sub
 

@@ -1,8 +1,39 @@
-﻿Imports System.Xml.Serialization
+﻿#Region "Microsoft.VisualBasic::94d30f921cf974d4e0d500adce656c96, ..\GCModeller\core\Bio.Assembly\Assembly\KEGG\QueryEntry.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
 Imports System.Text
 Imports System.Text.RegularExpressions
+Imports System.Xml.Serialization
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Serialization
-Imports LANS.SystemsBiology.Assembly.KEGG.DBGET.bGetObject.Organism
+Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.VisualBasic.Text
+Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject.Organism
 
 Namespace Assembly.KEGG.WebServices
 
@@ -12,6 +43,7 @@ Namespace Assembly.KEGG.WebServices
     ''' <remarks>
     ''' The example format as:
     ''' 
+    ''' ```
     ''' Nostoc sp. PCC 7120
     ''' #
     ''' alr4156
@@ -21,9 +53,19 @@ Namespace Assembly.KEGG.WebServices
     ''' all2134
     ''' all2133
     ''' ......
+    ''' ```
     ''' </remarks>
     Public Class QuerySource
+
+        ''' <summary>
+        ''' The genome name.
+        ''' </summary>
+        ''' <returns></returns>
         Public Property genome As String
+        ''' <summary>
+        ''' The list of gene locus id that using for the query.
+        ''' </summary>
+        ''' <returns></returns>
         Public Property locusId As String()
 
         ''' <summary>
@@ -85,7 +127,14 @@ Namespace Assembly.KEGG.WebServices
             Dim Tokens As String() = IO.File.ReadAllLines(path)
             Dim name As String = Tokens(Scan0)
             Dim lstId As String() = Tokens.Skip(2).ToArray
-            lstId = (From s As String In lstId Where Not String.IsNullOrEmpty(s) Select s.Split.First).ToArray
+
+            lstId = LinqAPI.Exec(Of String) <=
+ _
+                From s As String
+                In lstId
+                Where Not String.IsNullOrEmpty(s)
+                Select s.Split.First
+
             Return New QuerySource With {
                 .genome = name,
                 .locusId = lstId
@@ -127,8 +176,9 @@ Namespace Assembly.KEGG.WebServices
         Public Shared Function InternalParser(s As String) As ListEntry
             Dim urlEntry As String = Regex.Match(s, "<a href="".+?"">.+?</a>").Value
             Dim descr As String = s.Replace(urlEntry, "").Trim
-            Dim url As String = "http://www.genome.jp" & urlEntry.Get_href
+            Dim url As String = "http://www.genome.jp" & urlEntry.href
             Dim EntryID As String = urlEntry.GetValue
+
             Return New ListEntry With {
                 .Description = descr,
                 .EntryID = EntryID,
@@ -139,10 +189,10 @@ Namespace Assembly.KEGG.WebServices
 
     Public Class QueryEntry
 
-        ''' <summary>LANS.SystemsBiology.Assembly.KEGG.WebServices.WebRequest.QueryEntry
+        ''' <summary>SMRUCC.genomics.Assembly.KEGG.WebServices.WebRequest.QueryEntry
         ''' KEGG species id, the general species string in NCBI database can be mapping through the organism list which can 
-        ''' be get from method <see cref="LANS.SystemsBiology.Assembly.KEGG.DBGET.bGetObject.Organism.GetOrganismList"></see>.(KEGG
-        ''' 数据库中的物种ID编号的简写形式，NCBI数据库中的标准的物种编号可以通过方法<see cref="LANS.SystemsBiology.Assembly.KEGG.DBGET.bGetObject.Organism.GetOrganismList"></see>
+        ''' be get from method <see cref="KEGG.DBGET.bGetObject.Organism.GetOrganismList"></see>.(KEGG
+        ''' 数据库中的物种ID编号的简写形式，NCBI数据库中的标准的物种编号可以通过方法<see cref="KEGG.DBGET.bGetObject.Organism.GetOrganismList"></see>
         ''' 来进行映射)
         ''' </summary>
         ''' <value></value>
@@ -174,10 +224,10 @@ Namespace Assembly.KEGG.WebServices
         End Function
 
         Public Shared Widening Operator CType(strArray As String()) As QueryEntry
-            If strArray.IsNullOrEmpty OrElse strArray.Count < 2 Then
+            If strArray.IsNullOrEmpty OrElse strArray.Length < 2 Then
                 Return New QueryEntry
             Else
-                If strArray.Count = 2 Then
+                If strArray.Length = 2 Then
                     Return New QueryEntry With {
                         .SpeciesId = strArray(0),
                         .LocusId = strArray(1)

@@ -1,10 +1,38 @@
-﻿Imports LANS.SystemsBiology.Assembly.NCBI
-Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat
-Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
-Imports LANS.SystemsBiology.ComponentModel.Loci
-Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
-Imports LANS.SystemsBiology.ComponentModel.Loci.NucleotideLocation
-Imports LANS.SystemsBiology.ContextModel
+﻿#Region "Microsoft.VisualBasic::4fc227f00648c4fbdc179b5be71cede7, ..\GCModeller\core\Bio.Assembly\SequenceModel\NucleicAcid\Contig.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports SMRUCC.genomics.Assembly.NCBI
+Imports SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat
+Imports SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+Imports SMRUCC.genomics.ComponentModel.Loci
+Imports SMRUCC.genomics.ComponentModel.Loci.Abstract
+Imports SMRUCC.genomics.ComponentModel.Loci.NucleotideLocation
+Imports SMRUCC.genomics.ContextModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq.Extensions
 
@@ -14,6 +42,7 @@ Namespace SequenceModel.NucleotideModels
     ''' 这个基础的模型对象只有在基因组上面的位置信息
     ''' </summary>
     Public MustInherit Class Contig
+        Implements IContig
 
         Protected _MappingLocation As NucleotideLocation
 
@@ -21,13 +50,26 @@ Namespace SequenceModel.NucleotideModels
         ''' 在参考基因组上面的Mapping得到的位置，假若需要修改位置，假若害怕影响到原有的数据的话，则请复写这个属性然后使用复制的方法得到新的位点数据
         ''' </summary>
         ''' <returns></returns>
-        Public Overridable ReadOnly Property MappingLocation As NucleotideLocation
+        Public Overridable ReadOnly Property MappingLocation(Optional reset As Boolean = False) As NucleotideLocation
             Get
+                If reset Then
+                    _MappingLocation = Nothing
+                End If
+
                 If _MappingLocation Is Nothing Then
                     _MappingLocation = __getMappingLoci()
                 End If
                 Return _MappingLocation
             End Get
+        End Property
+
+        Private Property Location As NucleotideLocation Implements IContig.Location
+            Get
+                Return _MappingLocation
+            End Get
+            Set(value As NucleotideLocation)
+                _MappingLocation = value
+            End Set
         End Property
 
         Protected MustOverride Function __getMappingLoci() As NucleotideLocation

@@ -1,14 +1,43 @@
-﻿Imports System.Xml.Serialization
+﻿#Region "Microsoft.VisualBasic::35c475a9a6d83aead3d0204665758416, ..\GCModeller\core\Bio.Assembly\ContextModel\TFDensity.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Xml.Serialization
 Imports System.Web.Script.Serialization
 Imports System.Runtime.CompilerServices
-Imports LANS.SystemsBiology.ComponentModel
-Imports LANS.SystemsBiology.ComponentModel.Loci
-Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
+Imports SMRUCC.genomics.ComponentModel
+Imports SMRUCC.genomics.ComponentModel.Loci
+Imports SMRUCC.genomics.ComponentModel.Loci.Abstract
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace ContextModel
 
@@ -29,9 +58,10 @@ Namespace ContextModel
         ''' <returns></returns>
         <Extension>
         Public Function Density(Of T As IGeneBrief)(genome As IGenomicsContextProvider(Of T),
-                                                     TF As IEnumerable(Of String),
-                                                     Optional ranges As Integer = 10000,
-                                                     Optional stranded As Boolean = False) As Density()
+                                                    TF As IEnumerable(Of String),
+                                                    Optional ranges As Integer = 10000,
+                                                    Optional stranded As Boolean = False) As Density()
+
             Dim TFs As T() = TF.ToArray(AddressOf genome.GetByName)
             Dim getTF As Func(Of Strands, T()) = New __sourceHelper(Of T)(TFs, stranded).__gets
             Dim result As Density() = genome.__worker(getTF, AddressOf __getGenes(Of T), TFs.Length, ranges)
@@ -104,24 +134,27 @@ Namespace ContextModel
             End Function
         End Structure
 
-        <Extension>
-        Private Function __worker(Of T As IGeneBrief)(genome As IGenomicsContextProvider(Of T),
-                                                       getTF As Func(Of Strands, T()),
-                                                       getRelated As Func(Of T, T(), Integer, T()),
-                                                       numTotal As Integer,
-                                                       ranges As Integer) As Density()
-            Dim LQuery As Density() =
-                LinqAPI.Exec(Of Density) <= From gene As T
-                                            In genome.AllFeatures
-                                            Let sides As T() = getTF(gene.Location.Strand)
-                                            Let related As T() = getRelated(gene, sides, ranges)
-                                            Select New Density With {
-                                                .locus_tag = gene.Identifier,
-                                                .Abundance = related.Length / numTotal,
-                                                .Hits = related.ToArray(Function(g) g.Identifier),
-                                                .loci = gene.Location,
-                                                .product = gene.Product
-                                            }
+        <Extension> Private Function __worker(Of T As IGeneBrief)(
+                                            genome As IGenomicsContextProvider(Of T),
+                                             getTF As Func(Of Strands, T()),
+                                        getRelated As Func(Of T, T(), Integer, T()),
+                                          numTotal As Integer,
+                                            ranges As Integer) As Density()
+
+            Dim LQuery As Density() = LinqAPI.Exec(Of Density) <=
+ _
+                From gene As T
+                In genome.AllFeatures
+                Let sides As T() = getTF(gene.Location.Strand)
+                Let related As T() = getRelated(gene, sides, ranges)
+                Select New Density With {
+                    .locus_tag = gene.Identifier,
+                    .Abundance = related.Length / numTotal,
+                    .Hits = related.ToArray(Function(g) g.Identifier),
+                    .loci = gene.Location,
+                    .product = gene.Product
+                }
+
             Return LQuery
         End Function
 
@@ -135,14 +168,18 @@ Namespace ContextModel
         ''' This value is set to 20000bp is more perfect works on the bacteria genome, probably...
         ''' </param>
         ''' <returns></returns>
-        <Extension>
-        Public Function DensityCis(Of T As IGeneBrief)(
-                                      genome As IGenomicsContextProvider(Of T),
-                                      TF As IEnumerable(Of String),
-                                      Optional ranges As Integer = 10000) As Density()
+        <Extension> Public Function DensityCis(Of T As IGeneBrief)(
+                                             genome As IGenomicsContextProvider(Of T),
+                                                 TF As IEnumerable(Of String),
+                                    Optional ranges As Integer = 10000) As Density()
+
             Dim TFs As T() = TF.ToArray(AddressOf genome.GetByName)
             Dim getTF As Func(Of Strands, T()) = New __sourceHelper(Of T)(TFs, True).__gets
-            Dim result As Density() = genome.__worker(getTF, AddressOf __getCisGenes(Of T), TFs.Length, ranges)
+            Dim result As Density() =
+                genome.__worker(getTF,
+                                AddressOf __getCisGenes(Of T),
+                                TFs.Length,
+                                ranges)
             Return result
         End Function
 

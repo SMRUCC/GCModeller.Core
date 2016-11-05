@@ -1,8 +1,37 @@
-﻿Imports System.Text.RegularExpressions
-Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+﻿#Region "Microsoft.VisualBasic::2fea8a4f2605f927fe971f334885ceb7, ..\GCModeller\core\Bio.Assembly\Assembly\NCBI\Database\GenBank\TabularFormat\FeatureBriefs\GFF\FeatureParser.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Text.RegularExpressions
+Imports SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports System.Text
-Imports LANS.SystemsBiology.ComponentModel.Loci
+Imports SMRUCC.genomics.ComponentModel.Loci
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -15,7 +44,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         Public Function ToString(x As Feature) As String
             Dim attrs As String() = (From Token As KeyValuePair(Of String, String)
                                      In x.attributes
-                                     Select $"{Token.Key}={Token.Value.CliPath}").ToArray
+                                     Select $"{Token.Key}={Token.Value.CLIPath}").ToArray
             Dim attrsHash As String = String.Join(";", attrs)
             Dim tokens As String() = New String() {
                 x.seqname, x.source, x.Feature, CStr(x.start), CStr(x.Ends), x.score, x.Strand.GetBriefCode, x.frame, attrsHash
@@ -25,14 +54,16 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         End Function
 
         ''' <summary>
-        ''' 
+        ''' ```
+        ''' Fields are: &lt;seqname> &lt;source> &lt;feature> &lt;start> &lt;end> &lt;score> &lt;strand> &lt;frame> [attributes] [comments]
+        ''' ```
         ''' </summary>
         ''' <param name="s_Data"></param>
         ''' <param name="version">gff1, gff2, gff3之间的差异是由于本属性值的列的读取方式的差异而产生的</param>
         ''' <returns></returns>
         Public Function CreateObject(s_Data As String, version As Integer) As Feature
             Dim Tokens As String() = Strings.Split(s_Data, vbTab)
-            Dim Feature As Feature = New Feature
+            Dim Feature As New Feature
             Dim p As New Pointer
 
             ' Fields are: <seqname> <source> <feature> <start> <end> <score> <strand> <frame> [attributes] [comments]

@@ -1,14 +1,77 @@
-﻿Imports System.Text
-Imports LANS.SystemsBiology.SequenceModel.ISequenceModel
+﻿#Region "Microsoft.VisualBasic::42380d7c94557ea3f4f9a208f6797df8, ..\GCModeller\core\Bio.Assembly\SequenceModel\NucleicAcid\NucleicAcidStaticsProperty.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
 Imports System.Runtime.CompilerServices
-Imports Microsoft.VisualBasic.Scripting.MetaData
-Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports System.Text
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Scripting.MetaData
+Imports SMRUCC.genomics.SequenceModel.FASTA
+Imports SMRUCC.genomics.SequenceModel.ISequenceModel
 
 Namespace SequenceModel.NucleotideModels
 
     <PackageNamespace("NucleicAcid.Property", Publisher:="amethyst.asuka@gcmodeller.org")>
     Public Module NucleicAcidStaticsProperty
+
+        ''' <summary>
+        ''' 批量计算出GCSkew或者GC%
+        ''' </summary>
+        ''' <param name="nts"></param>
+        ''' <param name="winSize"></param>
+        ''' <param name="steps"></param>
+        ''' <param name="method"></param>
+        ''' <returns></returns>
+        <Extension>
+        Public Function GCData(nts As IEnumerable(Of FastaToken),
+                               Optional winSize As Integer = 250,
+                               Optional steps As Integer = 50,
+                               Optional method As NtProperty = Nothing) As NamedValue(Of Double())()
+
+            If method Is Nothing Then
+                method = AddressOf GCSkew
+            End If
+            Dim LQuery = From genome As SeqValue(Of FastaToken)
+                         In nts.SeqIterator.AsParallel
+                         Select genome,
+                             skew = method(genome.obj, winSize, steps, True)
+                         Order By genome.i Ascending  ' 排序是因为可能没有做多序列比对对齐，在这里需要使用第一条序列的长度作为参考
+            Return LinqAPI.Exec(Of NamedValue(Of Double())) <=
+                From g
+                In LQuery
+                Select New NamedValue(Of Double()) With {
+                    .Name = g.genome.obj.ToString,
+                    .x = g.skew
+                }
+        End Function
 
         <ExportAPI("GC%", Info:="Calculate the GC content of the target sequence data.")>
         <Extension> Public Function GC_Content(Sequence As IEnumerable(Of DNA)) As Double
@@ -53,10 +116,10 @@ Namespace SequenceModel.NucleotideModels
         ''' 
         <ExportAPI("CompositionVector")>
         Public Function GetCompositionVector(Sequence As Char()) As Integer()
-            Dim A As Integer = (From ch In Sequence Where ch = "A"c Select 1).ToArray.Count
-            Dim T As Integer = (From ch In Sequence Where ch = "T"c Select 1).ToArray.Count
-            Dim G As Integer = (From ch In Sequence Where ch = "G"c Select 1).ToArray.Count
-            Dim C As Integer = (From ch In Sequence Where ch = "C"c Select 1).ToArray.Count
+            Dim A As Integer = (From ch In Sequence Where ch = "A"c Select 1).Count
+            Dim T As Integer = (From ch In Sequence Where ch = "T"c Select 1).Count
+            Dim G As Integer = (From ch In Sequence Where ch = "G"c Select 1).Count
+            Dim C As Integer = (From ch In Sequence Where ch = "C"c Select 1).Count
 
             Return New Integer() {A, T, G, C}
         End Function
@@ -125,7 +188,8 @@ Namespace SequenceModel.NucleotideModels
         Private Function __contentCommon(SequenceModel As I_PolymerSequenceModel,
                                          SlideWindowSize As Integer,
                                          Steps As Integer,
-                                         Circular As Boolean, base As Char()) As Double()
+                                         Circular As Boolean,
+                                         base As Char()) As Double()
             If Circular Then
                 Return __circular(SequenceModel, SlideWindowSize, Steps, base)
             Else
@@ -188,41 +252,41 @@ Namespace SequenceModel.NucleotideModels
         ''' Calculation the GC skew of a specific nucleotide acid sequence.(对核酸链分子计算GC偏移量，请注意，当某一个滑窗区段内的GC是相等的话，则会出现正无穷)
         ''' </summary>
         ''' <param name="SequenceModel">Target sequence object should be a nucleotide acid sequence.(目标对象必须为核酸链分子)</param>
-        ''' <param name="Circular"></param>
+        ''' <param name="isCircular"></param>
         ''' <returns>返回的矩阵是每一个核苷酸碱基上面的GC偏移量</returns>
         ''' <remarks></remarks>
         ''' 
         <ExportAPI("GCSkew", Info:="Calculation the GC skew of a specific nucleotide acid sequence.")>
-        Public Function GCSkew(SequenceModel As I_PolymerSequenceModel, SlideWindowSize As Integer, Steps As Integer, Circular As Boolean) As Double()
+        Public Function GCSkew(SequenceModel As I_PolymerSequenceModel, slideWindowSize As Integer, steps As Integer, isCircular As Boolean) As Double()
             Dim SequenceData As String = SequenceModel.SequenceData.ToUpper
-            Dim ChunkBuffer As List(Of Double) = New List(Of Double)
+            Dim bufs As New List(Of Double)
 
-            If Circular Then
-                For i As Integer = 1 To SequenceData.Length - SlideWindowSize Step Steps
-                    Dim Segment As String = Mid(SequenceData, i, SlideWindowSize)
+            If isCircular Then
+                For i As Integer = 1 To SequenceData.Length - slideWindowSize Step steps
+                    Dim Segment As String = Mid(SequenceData, i, slideWindowSize)
                     Dim G = (From ch In Segment Where ch = "G"c Select 1).ToArray.Length
                     Dim C = (From ch In Segment Where ch = "C"c Select 1).ToArray.Length
-                    Call ChunkBuffer.Add((G - C) / (G + C))
+                    Call bufs.Add((G - C) / (G + C))
                 Next
-                For i As Integer = SequenceData.Length - SlideWindowSize + 1 To SequenceData.Length Step Steps
-                    Dim Segment As String = Mid(SequenceData, i, SlideWindowSize)
-                    Dim l = SlideWindowSize - Len(Segment)
+                For i As Integer = SequenceData.Length - slideWindowSize + 1 To SequenceData.Length Step steps
+                    Dim Segment As String = Mid(SequenceData, i, slideWindowSize)
+                    Dim l = slideWindowSize - Len(Segment)
                     Segment &= Mid(SequenceData, 1, l)
                     Dim G = (From ch In Segment Where ch = "G"c Select 1).ToArray.Length
                     Dim C = (From ch In Segment Where ch = "C"c Select 1).ToArray.Length
-                    Call ChunkBuffer.Add((G - C) / (G + C))
+                    Call bufs.Add((G - C) / (G + C))
                 Next
             Else
-                For i As Integer = 1 To SequenceData.Length Step Steps
-                    Dim Segment As String = Mid(SequenceData, i, SlideWindowSize)
+                For i As Integer = 1 To SequenceData.Length Step steps
+                    Dim Segment As String = Mid(SequenceData, i, slideWindowSize)
                     Dim G = (From ch In Segment Where ch = "G"c Select 1).ToArray.Length
                     Dim C = (From ch In Segment Where ch = "C"c Select 1).ToArray.Length
-                    Call ChunkBuffer.Add((G - C) / (G + C))
+                    Call bufs.Add((G - C) / (G + C))
                 Next
             End If
 
-            ChunkBuffer = (From n As Double In ChunkBuffer Select __NAHandle(n, SlideWindowSize)).ToList '碱基之间是有顺序的，故而不适用并行化拓展
-            Return ChunkBuffer.ToArray
+            bufs = (From n As Double In bufs Select __NAHandle(n, slideWindowSize)).ToList '碱基之间是有顺序的，故而不适用并行化拓展
+            Return bufs.ToArray
         End Function
 
         Private Function __NAHandle(n As Double, SlideWindowSize As Integer) As Double

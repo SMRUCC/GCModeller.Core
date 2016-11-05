@@ -1,10 +1,39 @@
-﻿Imports System.Text.RegularExpressions
+﻿#Region "Microsoft.VisualBasic::2de3daceb010c701501ef93a4ff0d9e9, ..\GCModeller\core\Bio.Assembly\Assembly\MetaCyc\Schemas\Mappings\CompoundsMapping.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
 Imports System.Text
+Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.Linq
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.FileSystem
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File
+Imports Microsoft.VisualBasic.Text
 Imports Microsoft.VisualBasic.Text.Similarity
+Imports SMRUCC.genomics.Assembly.MetaCyc.File
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.FileSystem
 
 Namespace Assembly.MetaCyc.Schema
 
@@ -56,7 +85,7 @@ Namespace Assembly.MetaCyc.Schema
 
             Dim LQuery = (From s As String
                           In compound.CommonNames
-                          Let lev As DistResult = StatementMatches.MatchFuzzy(s, name)
+                          Let lev As DistResult = LevenshteinDistance.ComputeDistance(s, name)
                           Where Not lev Is Nothing
                           Select lev.MatchSimilarity).Max
             Return LQuery

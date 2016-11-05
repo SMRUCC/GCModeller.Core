@@ -1,5 +1,33 @@
-﻿Imports System.Text
-Imports LANS.SystemsBiology.ComponentModel.Loci
+﻿#Region "Microsoft.VisualBasic::f81ec1ba0307960638982c66f7708ea8, ..\GCModeller\core\Bio.Assembly\Assembly\NCBI\Database\GenBank\TabularFormat\ProteinTable.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Text
+Imports SMRUCC.genomics.ComponentModel.Loci
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
@@ -45,7 +73,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
 
         Public Function ToPTTGene() As NCBI.GenBank.TabularFormat.ComponentModels.GeneBrief
             Dim strand As Strands = GetStrand(Me.Strand)
-            Dim loci As New ComponentModel.Loci.NucleotideLocation(Me.Start, Me.Stop, strand)
+            Dim loci As New NucleotideLocation(Me.Start, Me.Stop, strand)
             Return New NCBI.GenBank.TabularFormat.ComponentModels.GeneBrief With {
                 .Code = Me.Product,
                 .COG = Me.COG,
@@ -57,7 +85,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             }
         End Function
 
-        Public Function GetLoci() As LANS.SystemsBiology.ComponentModel.Loci.NucleotideLocation
+        Public Function GetLoci() As NucleotideLocation
             Dim strand = GetStrand(Me.Strand)
             Dim loci As New ComponentModel.Loci.NucleotideLocation(Me.Start, Me.Stop, strand)
             Return loci

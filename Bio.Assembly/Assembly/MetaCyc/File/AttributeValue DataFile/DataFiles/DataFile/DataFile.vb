@@ -1,9 +1,37 @@
-﻿Imports System.Text.RegularExpressions
+﻿#Region "Microsoft.VisualBasic::302192dcac201384b62e5c130f5b51f4, ..\GCModeller\core\Bio.Assembly\Assembly\MetaCyc\File\AttributeValue DataFile\DataFiles\DataFile\DataFile.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Text.RegularExpressions
 Imports System.Text
 Imports System.Reflection
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles.Reflection
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles.Reflection
 Imports Microsoft.VisualBasic
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.FileSystem
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.FileSystem
 Imports Microsoft.VisualBasic.ComponentModel
 
 Namespace Assembly.MetaCyc.File.DataFiles
@@ -113,7 +141,7 @@ Namespace Assembly.MetaCyc.File.DataFiles
         ''' <remarks></remarks>
         Public Function Append(e As T) As Long
             Call FrameObjects.Add(item:=e)
-            Return FrameObjects.LongCount
+            Return FrameObjects.Count
         End Function
 
         Public Sub AddRange(source As IEnumerable(Of T))
@@ -172,7 +200,7 @@ Namespace Assembly.MetaCyc.File.DataFiles
         End Sub
 
         Public Function Contains(item As KeyValuePair(Of String, T)) As Boolean Implements ICollection(Of KeyValuePair(Of String, T)).Contains
-            Return FrameObjects.Contains(item)
+            Return FrameObjects.ContainsKey(item.Key)
         End Function
 
         Public Shadows Sub CopyTo(array() As KeyValuePair(Of String, T), arrayIndex As Integer) Implements ICollection(Of KeyValuePair(Of String, T)).CopyTo

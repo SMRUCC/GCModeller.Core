@@ -1,12 +1,40 @@
-﻿Imports System.Text.RegularExpressions
+﻿#Region "Microsoft.VisualBasic::c52ff89d50047fb341a4e5925cb38470, ..\GCModeller\core\Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Pathway.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
-Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.DataStructures
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Linq
+Imports SMRUCC.genomics.Assembly.KEGG.WebServices.InternalWebFormParsers
 
 Namespace Assembly.KEGG.DBGET.bGetObject
 
@@ -81,10 +109,12 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             End If
 
             Dim thisLinq As IEnumerable(Of KeyValuePair) =
-                LinqAPI.DefaultFirst(Of KeyValuePair)() <= From comp As KeyValuePair
-                                                           In Compound
-                                                           Where String.Equals(comp.Key, KEGGCompound)
-                                                           Select comp
+                LinqAPI.DefaultFirst(Of KeyValuePair)() <=
+ _
+                From comp As KeyValuePair
+                In Compound
+                Where String.Equals(comp.Key, KEGGCompound)
+                Select comp
 
             Return Not [Class](Of KeyValuePair).IsNullOrEmpty Like thisLinq
         End Function
@@ -103,9 +133,13 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             If Modules.IsNullOrEmpty Then
                 Return False
             End If
-            Dim LQuery = (From [mod] In Modules
-                          Where String.Equals([mod].Key, ModuleId)
-                          Select [mod]).FirstOrDefault
+            Dim LQuery As KeyValuePair = LinqAPI.DefaultFirst(Of KeyValuePair) <=
+ _
+                From [mod] As KeyValuePair
+                In Modules
+                Where String.Equals([mod].Key, ModuleId)
+                Select [mod]
+
             Return Not LQuery Is Nothing
         End Function
 
@@ -147,7 +181,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             Return 0
         End Function
 
-        Public Shared Function DownloadAll(Export As String, Optional BriefFile As String = "", Optional DirectoryOrganized As Boolean = True) As Integer
+        Public Shared Function DownloadAll(EXPORT As String, Optional BriefFile As String = "", Optional DirectoryOrganized As Boolean = True) As Integer
             Dim BriefEntries As KEGG.DBGET.BriteHEntry.Pathway() =
                 If(String.IsNullOrEmpty(BriefFile),
                    KEGG.DBGET.BriteHEntry.Pathway.LoadFromResource,
@@ -155,7 +189,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
 
             For Each Entry As KEGG.DBGET.BriteHEntry.Pathway In BriefEntries
                 Dim EntryId As String = Entry.Entry.Key
-                Dim SaveToDir As String = If(DirectoryOrganized, BriteHEntry.Pathway.CombineDIR(Entry, Export), Export)
+                Dim SaveToDir As String = If(DirectoryOrganized, BriteHEntry.Pathway.CombineDIR(Entry, EXPORT), EXPORT)
 
                 Dim XmlFile As String = $"{SaveToDir}/map{EntryId}.xml"
                 Dim PngFile As String = $"{SaveToDir}/map{EntryId}.png"
@@ -277,7 +311,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                     SplitRegex = PATHWAY_SPLIT
             End Select
 
-            Dim sbuf As String() = (From m As Match In Regex.Matches(s_Value, SplitRegex) Select m.Value).ToArray
+            Dim sbuf As String() = Regex.Matches(s_Value, SplitRegex).ToArray
             Dim ModuleList As New List(Of KeyValuePair)
 
             Select Case type
@@ -335,9 +369,12 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 Return New String() {}
             End If
 
-            Dim LQuery As String() = (From gEntry As KeyValuePair
-                                      In Genes
-                                      Select gEntry.Key.Split(":"c).Last).ToArray
+            Dim LQuery As String() = LinqAPI.Exec(Of String) <=
+ _
+                From gEntry As KeyValuePair
+                In Genes
+                Select gEntry.Key.Split(":"c).Last
+
             Return LQuery
         End Function
     End Class
@@ -369,7 +406,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             Dim EntryItem As New PathwayEntry
             Dim sbuf As String() = Strings.Split(s, vbLf)
             EntryItem.Entry = sbuf.First.GetValue
-            EntryItem.Url = sbuf.First.Get_href
+            EntryItem.Url = sbuf.First.href
             sbuf = sbuf.Skip(3).ToArray
 
             Dim p As New Pointer(0)

@@ -1,5 +1,34 @@
-﻿Imports System.Text
+﻿#Region "Microsoft.VisualBasic::9f266931b0c38405ed3d73bc75f2da6d, ..\GCModeller\core\Bio.Assembly\Assembly\NCBI\Database\GenBank\TabularFormat\FeatureBriefs\PTT\Rpt.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Text
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -39,24 +68,25 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <returns></returns>
         Public Shared Function Load(Of T As Rpt)(FilePath As String) As T
             Dim Rpt As T = Activator.CreateInstance(Of T)()
-            Rpt.FilePath = FilePath
-            Rpt.__innerBuffer = FilePath.ReadAllLines
+            Dim innerBuffer As String() = FilePath.ReadAllLines
 
-            Rpt.Accession = GetValue(Rpt.__innerBuffer, "Accession: ")
-            Rpt.GI = GetValue(Rpt.__innerBuffer, "GI: ")
-            Rpt.Size = Val(GetValue(Rpt.__innerBuffer, "DNA  length = "))
-            Rpt.Taxname = GetValue(Rpt.__innerBuffer, "Taxname: ")
-            Rpt.Taxid = GetValue(Rpt.__innerBuffer, "Taxid: ")
-            Rpt.GeneticCode = GetValue(Rpt.__innerBuffer, "Genetic Code: ")
-            Rpt.Publications = GetValue(Rpt.__innerBuffer, "Publications: ").Split(CChar("; "))
-            Rpt.ProteinCount = GetValue(Rpt.__innerBuffer, "Protein count: ")
-            Rpt.CDSCount = GetValue(Rpt.__innerBuffer, "CDS count: ")
-            Rpt.PseudoCDSCount = GetValue(Rpt.__innerBuffer, "Pseudo CDS count: ")
-            Rpt.RNACount = GetValue(Rpt.__innerBuffer, "RNA count: ")
-            Rpt.NumberOfGenes = GetValue(Rpt.__innerBuffer, "Gene count: ")
-            Rpt.PseudoGeneCount = GetValue(Rpt.__innerBuffer, "Pseudo gene count: ")
-            Rpt.Others = GetValue(Rpt.__innerBuffer, "Others: ")
-            Rpt.Total = GetValue(Rpt.__innerBuffer, "Total: ")
+            Rpt.FilePath = FilePath
+
+            Rpt.Accession = GetValue(innerBuffer, "Accession: ")
+            Rpt.GI = GetValue(innerBuffer, "GI: ")
+            Rpt.Size = Val(GetValue(innerBuffer, "DNA  length = "))
+            Rpt.Taxname = GetValue(innerBuffer, "Taxname: ")
+            Rpt.Taxid = GetValue(innerBuffer, "Taxid: ")
+            Rpt.GeneticCode = GetValue(innerBuffer, "Genetic Code: ")
+            Rpt.Publications = Strings.Split(GetValue(innerBuffer, "Publications: "), "; ")
+            Rpt.ProteinCount = GetValue(innerBuffer, "Protein count: ").ParseInteger
+            Rpt.CDSCount = GetValue(innerBuffer, "CDS count: ").ParseInteger
+            Rpt.PseudoCDSCount = GetValue(innerBuffer, "Pseudo CDS count: ").ParseInteger
+            Rpt.RNACount = GetValue(innerBuffer, "RNA count: ").ParseInteger
+            Rpt.NumberOfGenes = GetValue(innerBuffer, "Gene count: ").ParseInteger
+            Rpt.PseudoGeneCount = GetValue(innerBuffer, "Pseudo gene count: ").ParseInteger
+            Rpt.Others = GetValue(innerBuffer, "Others: ").ParseInteger
+            Rpt.Total = GetValue(innerBuffer, "Total: ").ParseInteger
 
             Return Rpt
         End Function
@@ -65,7 +95,6 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             Dim obj As T = Activator.CreateInstance(Of T)()
 
             obj.FilePath = FilePath
-            obj.__innerBuffer = If(FileIO.FileSystem.FileExists(FilePath), FilePath.ReadAllLines, New String() {})
             obj.Accession = Accession
             obj.GI = GI
             obj.Size = Size
@@ -86,10 +115,11 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         End Function
 
         Private Shared Function GetValue(data As String(), Key As String) As String
-            Dim LQuery = (From sValue As String In data
-                          Let strKey As String = Mid(sValue, 1, Len(Key))
-                          Where String.Equals(strKey, Key, StringComparison.OrdinalIgnoreCase)
-                          Select sValue.Replace(Key, "")).FirstOrDefault
+            Dim LQuery As String =
+                LinqAPI.DefaultFirst(Of String) <= From sValue As String In data
+                                                   Let strKey As String = Mid(sValue, 1, Len(Key))
+                                                   Where String.Equals(strKey, Key, StringComparison.OrdinalIgnoreCase)
+                                                   Select sValue.Replace(Key, "")
             Return Trim(LQuery)
         End Function
 

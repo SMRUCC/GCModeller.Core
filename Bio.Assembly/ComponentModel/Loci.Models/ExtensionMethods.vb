@@ -1,6 +1,34 @@
-﻿Imports LANS.SystemsBiology.ComponentModel.Loci.Location
+﻿#Region "Microsoft.VisualBasic::9ca323ea35e39fb2ccd824eaae7a67a7, ..\GCModeller\core\Bio.Assembly\ComponentModel\Loci.Models\ExtensionMethods.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports SMRUCC.genomics.ComponentModel.Loci.Location
 Imports System.Runtime.CompilerServices
-Imports LANS.SystemsBiology.SequenceModel.NucleotideModels
+Imports SMRUCC.genomics.SequenceModel.NucleotideModels
 Imports Microsoft.VisualBasic
 
 Namespace ComponentModel.Loci
@@ -62,7 +90,7 @@ Namespace ComponentModel.Loci
                                   Order By GroupTag Ascending).ToArray
             Dim l_GroupOperation = (From GroupTag As String
                                     In (From item In GroupOperation Select item.GroupTag Distinct).AsParallel
-                                    Let TagedLocation = (From item In GroupOperation Where String.Equals(GroupTag, item.GroupTag) Select item.Possible_Duplicated).MatrixToVector
+                                    Let TagedLocation = (From item In GroupOperation Where String.Equals(GroupTag, item.GroupTag) Select item.Possible_Duplicated).ToVector
                                     Select GroupTag, TagedLocation).ToArray
             lc = (From item In l_GroupOperation.AsParallel
                   Select If(item.TagedLocation.Count = 1, item.TagedLocation.First, LociAPI.Merge(item.TagedLocation))).ToArray
@@ -90,7 +118,7 @@ Namespace ComponentModel.Loci
                                   Order By GroupTag Ascending).ToArray
             Dim l_GroupOperation = (From GroupTag As String
                               In (From item In GroupOperation Select item.GroupTag Distinct).ToArray
-                                    Let TagedLocation = (From item In GroupOperation Where String.Equals(GroupTag, item.GroupTag) Select item.Possible_Duplicated).ToArray.MatrixToVector
+                                    Let TagedLocation = (From item In GroupOperation Where String.Equals(GroupTag, item.GroupTag) Select item.Possible_Duplicated).ToArray.ToVector
                                     Select GroupTag, TagedLocation).ToArray
             lc = (From item In l_GroupOperation Select If(item.TagedLocation.Count = 1, item.TagedLocation.First, LociAPI.Merge(item.TagedLocation))).ToArray
             Return lc.ToArray

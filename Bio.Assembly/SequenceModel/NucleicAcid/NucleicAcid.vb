@@ -1,9 +1,39 @@
-﻿Imports System.Text
+﻿#Region "Microsoft.VisualBasic::39ac13f97540cb5c50329de30f30672e, ..\GCModeller\core\Bio.Assembly\SequenceModel\NucleicAcid\NucleicAcid.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
 Imports System.ComponentModel
-Imports LANS.SystemsBiology.SequenceModel.ISequenceModel
-Imports Microsoft.VisualBasic.Linq.Extensions
+Imports System.Text
+Imports SMRUCC.genomics.SequenceModel.ISequenceModel
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq.Extensions
+Imports Microsoft.VisualBasic.Serialization
+Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace SequenceModel.NucleotideModels
 
@@ -40,6 +70,7 @@ Namespace SequenceModel.NucleotideModels
     ''' </summary>
     ''' <remarks></remarks>
     Public Class NucleicAcid : Inherits ISequenceModel
+        Implements IEnumerable(Of DNA)
 
         ''' <summary>
         ''' 大小写不敏感
@@ -75,18 +106,14 @@ Namespace SequenceModel.NucleotideModels
         End Function
 
         ''' <summary>
-        ''' 这个延时加载的设计好像并没有什么卵用
-        ''' </summary>
-        Dim _innerSeqModel As Microsoft.VisualBasic.ComponentModel.Lazy(Of List(Of DNA))
-
-        ''' <summary>
         ''' Cache data for maintaining the high performance on sequence operation.
         ''' </summary>
         ''' <remarks></remarks>
         Dim _innerSeqCache As String
+        Dim _innerSeqModel As List(Of DNA)
 
         Public Function ToArray() As DNA()
-            Return _innerSeqModel.Value.ToArray
+            Return _innerSeqModel.ToArray
         End Function
 
         ''' <summary>
@@ -107,10 +134,9 @@ Namespace SequenceModel.NucleotideModels
             End Get
             Set(value As String)
                 Dim helper As New __cacheHelper(value)
-                Me._innerSeqModel =
-                    New Microsoft.VisualBasic.ComponentModel.Lazy(Of
-                    List(Of DNA))(AddressOf helper.__getList)
-                Call __generateSeqCache()
+                _innerSeqModel = helper.__getList
+                MyBase.SequenceData = value
+                _innerSeqCache = value
             End Set
         End Property
 
@@ -154,7 +180,6 @@ Namespace SequenceModel.NucleotideModels
         End Property
 
         Sub New(Sequence As IEnumerable(Of DNA))
-            Me._innerSeqModel = New Microsoft.VisualBasic.ComponentModel.Lazy(Of List(Of DNA))(Sequence.ToList)
             Call __convertSequence(ToString(Sequence))
         End Sub
 
@@ -173,7 +198,7 @@ Namespace SequenceModel.NucleotideModels
         ''' Construct the nucleotide sequence from a ATGC based sequence string.
         ''' (从一个序列字符串之中创建一条核酸链分子对象)
         ''' </summary>
-        ''' <param name="SequenceData">This sequence data can be user input from the interface or sequence data from the <see cref="LANS.SystemsBiology.SequenceModel.FASTA.FastaToken"/> object.</param>
+        ''' <param name="SequenceData">This sequence data can be user input from the interface or sequence data from the <see cref="FASTA.FastaToken"/> object.</param>
         Sub New(SequenceData As String)
             Call __convertSequence(SequenceData)
         End Sub
@@ -182,24 +207,59 @@ Namespace SequenceModel.NucleotideModels
         ''' Construct the nucleotide seuqnece form a nt sequence model object. The nt sequence object should inherits from the base class <see cref="SequenceModel.ISequenceModel"/>
         ''' </summary>
         ''' <param name="SequenceData"></param>
-        Sub New(SequenceData As SequenceModel.ISequenceModel)
+        Sub New(SequenceData As ISequenceModel)
             Call __convertSequence(SequenceData.SequenceData)
         End Sub
 
-        Sub New(SequenceData As SequenceModel.FASTA.FastaToken)
+        Sub New(SequenceData As FASTA.FastaToken)
             Call __convertSequence(SequenceData.SequenceData)
         End Sub
 
-        Private Sub __convertSequence(SequenceData As String)
-            SequenceData = SequenceData.ToUpper.Replace("N", "-").Replace(".", "-")
-            Dim LQuery = (From c As Char In SequenceData Where ISequenceModel.AA_CHARS_ALL.IndexOf(c) > -1 Select c).ToArray  '
-            If Not LQuery.IsNullOrEmpty Then
-                Throw New DataException("Target fasta sequence is a protein sequence. Only allows character [ATGCN-.]...")
+        ''' <summary>
+        ''' 检查序列的可用性
+        ''' </summary>
+        ''' <param name="seq"></param>
+        Private Sub __convertSequence(seq As String)
+            Dim nt As String = seq.ToUpper.Replace("N", "-").Replace(".", "-")
+            Dim invalids As Char() = InvalidForNt(nt)
+
+            seq = nt
+
+            If invalids.Length > 0 Then  ' 有非法字符
+                Dim ex As Exception = New DataException(InvalidNotAllowed)
+                ex = New Exception(invalids.GetJson, ex)
+                Throw ex
             Else
-                Me.SequenceData = SequenceData
+                Me.SequenceData = seq
             End If
         End Sub
 
+        Public Shared Function InvalidForNt(seq As String) As Char()
+            Dim LQuery As Char() =
+                LinqAPI.Exec(Of Char) <= From c As Char
+                                         In seq
+                                         Where ISequenceModel.AA_CHARS_ALL.IndexOf(c) > -1
+                                         Select c
+                                         Distinct
+            Return LQuery
+        End Function
+
+        ''' <summary>
+        ''' Removes the invalids characters in the nt sequence. Invalids source is comes from <see cref="ISequenceModel.AA_CHARS_ALL"/>
+        ''' </summary>
+        ''' <param name="nt">Case insensitive.</param>
+        ''' <returns></returns>
+        Public Shared Function RemoveInvalids(nt As String) As String
+            Dim seq As New StringBuilder(nt.ToUpper)
+
+            For Each c As Char In ISequenceModel.AA_CHARS_ALL
+                Call seq.Replace(c, "-"c)
+            Next
+
+            Return seq.ToString
+        End Function
+
+        Const InvalidNotAllowed As String = "Target fasta sequence is a protein sequence. Only allows character [ATGCN-.]..."
         Const NTCHRS As String = "ATGC-"
 
         Public Shared Function CopyNT(seq As String) As NucleicAcid
@@ -219,17 +279,6 @@ Namespace SequenceModel.NucleotideModels
 
             Return New String(lst.ToArray)
         End Function
-
-        ''' <summary>
-        ''' 假若修改了<see cref="_innerSeqModel"></see>之中的对象的话，则需要使用本方法重新生成序列缓存数据
-        ''' </summary>
-        ''' <remarks></remarks>
-        Private Sub __generateSeqCache()
-            _innerSeqCache = New String((From ntBase As DNA
-                                         In Me._innerSeqModel.Value
-                                         Select __nucleotideAsChar(ntBase)).ToArray)
-            MyBase.SequenceData = _innerSeqCache
-        End Sub
 
         ''' <summary>
         ''' 分割得到的小片段的长度
@@ -336,7 +385,7 @@ Namespace SequenceModel.NucleotideModels
             Return __nucleotideAsChar(nn).ToString
         End Function
 
-        Public Overloads Shared Function ToString(nt As Generic.IEnumerable(Of DNA)) As String
+        Public Overloads Shared Function ToString(nt As IEnumerable(Of DNA)) As String
             Dim array As Char() = nt.ToArray(Function(x) __nucleotideAsChar(x))
             Return New String(array)
         End Function
@@ -366,8 +415,14 @@ Namespace SequenceModel.NucleotideModels
             }
         End Operator
 
-        Public Function GetEnumerator() As Collections.IEnumerator
-            Return _innerSeqModel.Value.GetEnumerator
+        Private Iterator Function IEnumerable_GetEnumerator() As IEnumerator(Of DNA) Implements IEnumerable(Of DNA).GetEnumerator
+            For Each base As DNA In _innerSeqModel
+                Yield base
+            Next
+        End Function
+
+        Private Iterator Function IEnumerable_GetEnumerator1() As IEnumerator Implements IEnumerable.GetEnumerator
+            Yield IEnumerable_GetEnumerator()
         End Function
     End Class
 End Namespace

@@ -1,7 +1,35 @@
-﻿Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat
-Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
-Imports LANS.SystemsBiology.ComponentModel
-Imports LANS.SystemsBiology.ComponentModel.Loci
+﻿#Region "Microsoft.VisualBasic::e3ae7601557103d20939b857a9f79b83, ..\GCModeller\core\Bio.Assembly\ContextModel\ContextProvider.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat
+Imports SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+Imports SMRUCC.genomics.ComponentModel
+Imports SMRUCC.genomics.ComponentModel.Loci
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.ComponentModel.Ranges
 Imports Microsoft.VisualBasic.Language
@@ -130,7 +158,7 @@ Namespace ContextModel
                SegmentRelationships.UpStreamOverlap,
                 LociDelegate.GetRelation(SegmentRelationships.UpStreamOverlap, ATGDistance))
             Dim array = {UpStreams, UpStreamOverlaps}
-            Dim data0 = array.ToArray(Function(x) x.Value.ToArray(Function(g) New Relationship(Of T)(g, x.Key))).MatrixToList
+            Dim data0 = array.ToArray(Function(x) x.Value.ToArray(Function(g) New Relationship(Of T)(g, x.Key))).Unlist
             Return data0.ToArray
         End Function
 
@@ -157,8 +185,10 @@ Namespace ContextModel
         Public Function GetSource(strand As Strands) As OrderSelector(Of IntTag(Of T))
             If strand = Strands.Forward Then
                 Return _forwards
-            Else
+            ElseIf strand = Strands.Reverse Then
                 Return _reversed
+            Else
+                Throw New NotImplementedException(strand.ToString & " " & GetType(Strands).FullName)
             End If
         End Function
 
@@ -168,24 +198,27 @@ Namespace ContextModel
         ''' <param name="loci"></param>
         ''' <param name="stranded"></param>
         ''' <returns></returns>
-        Private Function __delegate(loci As NucleotideLocation, stranded As Boolean) As Func(Of Strands, Integer, T())
+        Private Function __delegate(loci As NucleotideLocation, stranded As Boolean， parallel As Boolean) As Func(Of Strands, Integer, T())
             Dim strand As Strands = loci.Strand
 
             If stranded Then
                 Return AddressOf New RelationDelegate(Of T) With {
                     .dataSource = GetSource(strand),
-                    .loci = loci.Normalization
+                    .loci = loci.Normalization,
+                    .parallel = parallel
                 }.GetRelation
             Else
                 Dim asc As New RelationDelegate(Of T) With {
                     .dataSource = _forwards,
-                    .loci = loci.Normalization
+                    .loci = loci.Normalization,
+                    .parallel = parallel
                 }
                 Dim desc As New RelationDelegate(Of T) With {
                     .dataSource = _reversed,
-                    .loci = loci
+                    .loci = loci,
+                    .parallel = parallel
                 }
-                Return Function(relType, dist) desc.GetRelation(relType, dist) + (MakeList(Of T)() <= asc.GetRelation(relType, dist))
+                Return Function(relType, dist) desc.GetRelation(relType, dist) + (LinqAPI.MakeList(Of T)() <= asc.GetRelation(relType, dist))
             End If
         End Function
 
@@ -197,8 +230,8 @@ Namespace ContextModel
         ''' <param name="lociDist"></param>
         ''' <returns>请注意，函数所返回的列表之中包含有不同的关系！</returns>
         ''' <remarks></remarks>
-        Public Function GetAroundRelated(loci As NucleotideLocation, Optional stranded As Boolean = True, Optional lociDist As Integer = 500) As Relationship(Of T)()
-            Dim GetRelation = __delegate(loci, stranded)
+        Public Function GetAroundRelated(loci As NucleotideLocation, Optional stranded As Boolean = True, Optional lociDist As Integer = 500, Optional parallel As Boolean = False) As Relationship(Of T)()
+            Dim GetRelation = __delegate(loci, stranded, parallel)
             Dim foundTEMP As T()
             Dim lstRelated As New List(Of Relationship(Of T))
 

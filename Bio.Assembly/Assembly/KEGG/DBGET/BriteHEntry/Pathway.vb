@@ -1,7 +1,36 @@
-﻿Imports System.Text.RegularExpressions
-Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+﻿#Region "Microsoft.VisualBasic::d0aee2fbe807627e0a24021e885b9336, ..\GCModeller\core\Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\Pathway.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.KEGG.DBGET.BriteHEntry
 
@@ -44,7 +73,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Shared Function LoadFromResource() As Pathway()
-            Dim TempFile As String = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "/KEGG_PATHWAYS.txt"
+            Dim TempFile As String = App.AppSystemTemp & "/KEGG_PATHWAYS.txt"
             Call IO.File.WriteAllText(TempFile, My.Resources.br08901, encoding:=System.Text.Encoding.ASCII)
             Return LoadData(TempFile)
         End Function

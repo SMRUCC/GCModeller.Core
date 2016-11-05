@@ -1,6 +1,34 @@
-﻿Imports System.Text
-Imports LANS.SystemsBiology.ComponentModel.Loci
-Imports LANS.SystemsBiology.SequenceModel.ISequenceModel
+﻿#Region "Microsoft.VisualBasic::61ea1d549a200366d312dc384385b77f, ..\GCModeller\core\Bio.Assembly\SequenceModel\NucleicAcid\Parser\SegmentObject.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Text
+Imports SMRUCC.genomics.ComponentModel.Loci
+Imports SMRUCC.genomics.SequenceModel.ISequenceModel
 
 Namespace SequenceModel.NucleotideModels
 
@@ -54,16 +82,25 @@ Namespace SequenceModel.NucleotideModels
         ''' <summary>
         ''' 将当前的核酸片段数据对象转换为FASTA对象
         ''' </summary>
+        ''' <param name="title">If this value is not presents, then the function will using the location info as default.</param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Function GetFasta() As FASTA.FastaToken
-            Dim l As String = String.Format("{0}..{1}", Left, Right)
-            If Complement Then
-                l = String.Format("complement({0})", l)
+        Public Function GetFasta(Optional title As String = "") As FASTA.FastaToken
+            Dim attrs As String()
+
+            If String.IsNullOrEmpty(title) Then
+                Dim l As String = String.Format("{0}..{1}", Left, Right)
+                If Complement Then
+                    l = String.Format("complement({0})", l)
+                End If
+                attrs = New String() {title, Description, l}
+            Else
+                attrs = title.Split("|"c)
             End If
+
             Return New FASTA.FastaToken With {
-                .SequenceData = SequenceData,
-                .Attributes = New String() {Title, Description, l}
+                .Attributes = attrs,
+                .SequenceData = SequenceData
             }
         End Function
 

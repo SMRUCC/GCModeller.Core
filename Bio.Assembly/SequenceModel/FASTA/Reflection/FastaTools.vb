@@ -1,10 +1,39 @@
-﻿Imports System.Runtime.CompilerServices
+﻿#Region "Microsoft.VisualBasic::d6531a498ce6239e46f368cbdcd0f8ae, ..\GCModeller\core\Bio.Assembly\SequenceModel\FASTA\Reflection\FastaTools.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Runtime.CompilerServices
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq
 
 Namespace SequenceModel.FASTA.Reflection
 
@@ -65,13 +94,19 @@ Namespace SequenceModel.FASTA.Reflection
                                                Select FastaFile.Read(file)
 
             If Trim Then
-                mergeFa = (From fa As FastaToken
-                           In mergeFa.AsParallel
-                           Let attrs As String() = New String() {fa.Attributes.First.Split.First}
-                           Select fa.InvokeSet(NameOf(fa.Attributes), attrs)).ToList
-                mergeFa = (From fa As FastaToken
-                           In mergeFa.AsParallel
-                           Select fa.FastaTrimCorrupt).ToList
+                Dim setValue =
+                    New SetValue(Of FastaToken)().GetSet(NameOf(FastaToken.Attributes))
+
+                mergeFa = LinqAPI.Exec(Of FastaToken) <=
+                    From fa As FastaToken
+                    In mergeFa.AsParallel
+                    Let attrs As String() = New String() {fa.Attributes.First.Split.First}
+                    Select setValue(fa, attrs)
+
+                mergeFa = LinqAPI.Exec(Of FastaToken) <=
+                    From fa As FastaToken
+                    In mergeFa.AsParallel
+                    Select fa.FastaTrimCorrupt
             Else
                 If Not rawTitle Then
                     For Each fa As FastaToken In mergeFa
@@ -226,7 +261,7 @@ REDO:           seq = Mid(seq, i)
                                    Select If(String.IsNullOrEmpty(pairItem.Key.Precursor), New String() {value}, New String() {pairItem.Key.Precursor, value})).ToArray
                 Dim Fsa As FastaToken = New FastaToken With {
                     .SequenceData = objItem.GetSequenceData,
-                    .Attributes = stringItems.MatrixToVector
+                    .Attributes = stringItems.ToVector
                 }
                 Return Fsa
             Else

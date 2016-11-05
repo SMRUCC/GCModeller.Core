@@ -1,4 +1,32 @@
-﻿Imports LANS.SystemsBiology.ComponentModel
+﻿#Region "Microsoft.VisualBasic::38969b2d0d9dbe5b7ff1e1b12edd22bd, ..\GCModeller\core\Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\ModuleClassAPI.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports SMRUCC.genomics.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.Linq
@@ -61,7 +89,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
             __getName = getName
             _geneHash = geneHash
 
-            _Modules = _geneHash.Values.MatrixAsIterator.Distinct.ToArray
+            _Modules = _geneHash.Values.IteratesALL.Distinct.ToArray
             _modHash = Modules.ToDictionary
         End Sub
 
@@ -124,7 +152,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                           Select (From g As String
                                   In genes
                                   Select g,
-                                  modX = x)).MatrixAsIterator
+                                  modX = x)).IteratesALL
             Dim Groups = (From x
                           In LQuery
                           Select x

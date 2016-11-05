@@ -1,12 +1,40 @@
-﻿Imports System.Text.RegularExpressions
+﻿#Region "Microsoft.VisualBasic::e7944735e1ae26df2fbea7d08466d28b, ..\GCModeller\core\Bio.Assembly\Assembly\NCBI\Database\GenBank\TabularFormat\FeatureBriefs\PTT\PTT.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Text.RegularExpressions
 Imports System.Text
-Imports LANS.SystemsBiology.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
-Imports LANS.SystemsBiology.ComponentModel.Loci
+Imports SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
+Imports SMRUCC.genomics.ComponentModel.Loci
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Terminal
-Imports LANS.SystemsBiology.ComponentModel.Loci.Abstract
-Imports LANS.SystemsBiology.ContextModel
+Imports SMRUCC.genomics.ComponentModel.Loci.Abstract
+Imports SMRUCC.genomics.ContextModel
 
 Namespace Assembly.NCBI.GenBank.TabularFormat
 
@@ -132,7 +160,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         End Function
 
         ''' <summary>
-        '''
+        ''' Find gene by using genen name.
         ''' </summary>
         ''' <param name="Name">基因名称，而非基因号</param>
         ''' <returns></returns>
@@ -152,12 +180,13 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             Return LQuery
         End Function
 
-        Public Function GetGeneByDescription(Matches As Func(Of String, Boolean)) As GeneBrief()
-            Dim LQuery = (From gene As GeneBrief
-                          In Me._innerList
-                          Where Matches(gene.Product)
-                          Select gene).ToArray
-            Return LQuery
+        Public Iterator Function GetGeneByDescription(Matches As Func(Of String, Boolean)) As IEnumerable(Of GeneBrief)
+            For Each result As GeneBrief In From gene As GeneBrief
+                                            In Me._innerList
+                                            Where Matches(gene.Product)
+                                            Select gene
+                Yield result
+            Next
         End Function
 
         Sub New()
@@ -250,7 +279,6 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
             Dim lines As String() = System.IO.File.ReadAllLines(path)
             Dim PTT As PTT = New PTT With {
                 .FilePath = path,
-                .__innerBuffer = lines,
                 .Title = lines(0)
             }
 

@@ -1,6 +1,34 @@
-﻿Imports System.Text.RegularExpressions
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.FileSystem
+﻿#Region "Microsoft.VisualBasic::08e3ed9ebc84f99a77e7f41f64897f80, ..\GCModeller\core\Bio.Assembly\Assembly\MetaCyc\Schemas\PathwayMappingTool.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Text.RegularExpressions
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.FileSystem
 
 Namespace Assembly.MetaCyc.Schema.Metabolism
 
@@ -59,7 +87,7 @@ Namespace Assembly.MetaCyc.Schema.Metabolism
                         Call FileIO.FileSystem.WriteAllText(App.CurrentDirectory & "/Err.log", Err & vbCrLf, append:=True)
                     Else
                         fasta.Attributes = {"gnl", Id, String.Format("{0} {1} 0..0 Unknown", Protein.Identifier, Regex.Match(fasta.Attributes.Last, "GN=\S+").Value.Split(CChar("=")).Last)}
-                        Call FileIO.FileSystem.WriteAllText(SavedFile, fasta.GenerateDocument(LineBreak:=60), append:=True, encoding:=System.Text.Encoding.ASCII)
+                        Call FileIO.FileSystem.WriteAllText(SavedFile, fasta.GenerateDocument(lineBreak:=60), append:=True, encoding:=System.Text.Encoding.ASCII)
                     End If
                 End If
             Next

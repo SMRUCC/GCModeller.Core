@@ -1,4 +1,32 @@
-﻿Imports System.Runtime.CompilerServices
+﻿#Region "Microsoft.VisualBasic::57d0abe2721225f39c7dd0ec6f2f346d, ..\GCModeller\core\Bio.Assembly\ComponentModel\Loci.Models\LociAPI.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Runtime.CompilerServices
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Language
@@ -11,12 +39,12 @@ Namespace ComponentModel.Loci
     Public Module LociAPI
 
         ''' <summary>
-        ''' 合并相邻的一个位点集合到一个新的更加长的位点
+        ''' 直接合并相邻的一个位点集合到一个新的更加长的位点
         ''' </summary>
         ''' <typeparam name="TLocation"></typeparam>
         ''' <param name="groupedData"></param>
         ''' <returns></returns>
-        Public Function Merge(Of TLocation As Location)(groupedData As Generic.IEnumerable(Of TLocation)) As TLocation
+        Public Function Merge(Of TLocation As Location)(groupedData As IEnumerable(Of TLocation)) As TLocation
             Dim RightAligned As TLocation = (From objLoci As TLocation
                                              In groupedData
                                              Select objLoci
@@ -149,8 +177,8 @@ Namespace ComponentModel.Loci
 
         <ExportAPI("Loci.Equals")>
         Public Function Equals(x As Location, loci As Location, Optional AllowedOffset As Integer = 10) As Boolean
-            Dim Loci1 As Long() = {x.Left(), x.Right()}
-            Dim Loci2 As Long() = {loci.Left, loci.Right}
+            Dim Loci1 As Integer() = {x.Left(), x.Right()}
+            Dim Loci2 As Integer() = {loci.Left, loci.Right}
 
             If AllowedOffset = 0 Then
                 Return Loci1.Min = Loci2.Min AndAlso

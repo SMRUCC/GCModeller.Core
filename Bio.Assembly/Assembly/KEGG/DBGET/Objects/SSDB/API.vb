@@ -1,12 +1,40 @@
-﻿Imports System.Text.RegularExpressions
-Imports LANS.SystemsBiology.Assembly.KEGG.WebServices
-Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.WebRequest
+﻿#Region "Microsoft.VisualBasic::8b709b2aad0223f2d88895cc83f3dcf5, ..\GCModeller\core\Bio.Assembly\Assembly\KEGG\DBGET\Objects\SSDB\API.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Text.RegularExpressions
+Imports SMRUCC.genomics.Assembly.KEGG.WebServices
+Imports SMRUCC.genomics.Assembly.KEGG.WebServices.WebRequest
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Language.UnixBash
-Imports LANS.SystemsBiology.Assembly.KEGG.WebServices.InternalWebFormParsers
+Imports SMRUCC.genomics.Assembly.KEGG.WebServices.InternalWebFormParsers
 
 Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
 
@@ -80,7 +108,7 @@ both of these relationships hold
             Dim LQuery = (From EntryPoint As QueryEntry
                           In EntryList
                           Select HandleDownload(EntryPoint.LocusId)).ToArray
-            Return LQuery.MatrixToVector
+            Return LQuery.ToVector
         End Function
 
         Const GENE_ENTRY As String = "<a href=""/dbget-bin/www_bget.+?>.+?</a>" '.*?<a"
@@ -132,7 +160,7 @@ both of these relationships hold
 
             Dim EntryData As QueryEntry = New QueryEntry With {
                 .LocusId = Entry.GetValue,
-                .SpeciesId = Entry.Get_href.Split(CChar("?")).Last.Split(CChar(":")).First,
+                .SpeciesId = Entry.href.Split(CChar("?")).Last.Split(CChar(":")).First,
                 .Description = Name
             }
             Return EntryData
@@ -183,8 +211,8 @@ both of these relationships hold
                                    In str
                                    Select (From m As Match
                                            In Regex.Matches(ss, xRef, RegexOptions.IgnoreCase + RegexOptions.Singleline)
-                                           Select m.Value)).MatrixToVector
-            Dim Values = DBs.ToArray(Function(lnk) __xRefParser(lnk)).MatrixToVector
+                                           Select m.Value)).ToVector
+            Dim Values = DBs.ToArray(Function(lnk) __xRefParser(lnk)).ToVector
             Return Values
         End Function
 
@@ -194,7 +222,7 @@ both of these relationships hold
             Dim values As TripleKeyValuesPair() = Links.ToArray(
                 Function(ss) New TripleKeyValuesPair With {
                     .Key = Name,
-                    .Value1 = ss.Get_href,
+                    .Value1 = ss.href,
                     .Value2 = ss.GetValue})
             Return values
         End Function
@@ -209,7 +237,7 @@ both of these relationships hold
             Dim Xmls As IEnumerable(Of String) = ls - l - wildcards("*.xml") <= source
             Dim LQuery = (From xml As String In Xmls.AsParallel
                           Let result As SSDB.OrthologREST = xml.LoadXml(Of SSDB.OrthologREST)
-                          Select SSDB.Ortholog.CreateObjects(result)).MatrixToVector
+                          Select SSDB.Ortholog.CreateObjects(result)).ToVector
             Return LQuery
         End Function
     End Module

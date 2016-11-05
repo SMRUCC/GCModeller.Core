@@ -1,5 +1,33 @@
-﻿Imports LANS.SystemsBiology.Assembly.MetaCyc.File.DataFiles
-Imports LANS.SystemsBiology.Assembly.MetaCyc.File.FileSystem
+﻿#Region "Microsoft.VisualBasic::66cd302f64eaa5125c53891361d190ef, ..\GCModeller\core\Bio.Assembly\Assembly\MetaCyc\Schemas\PathwayBrief\AssignGene.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.DataFiles
+Imports SMRUCC.genomics.Assembly.MetaCyc.File.FileSystem
 Imports Microsoft.VisualBasic
 
 Namespace Assembly.MetaCyc.Schema.PathwayBrief
@@ -55,7 +83,7 @@ Namespace Assembly.MetaCyc.Schema.PathwayBrief
         Private Shared Function Query(EnzUniqueIdCollection As List(Of String), EnzAssignedGenes As KeyValuePair(Of String, String())()) As String()
             Dim LQuery = (From link In EnzAssignedGenes
                           Where EnzUniqueIdCollection.IndexOf(link.Key) > -1
-                          Select link.Value).MatrixToVector
+                          Select link.Value).ToVector
             Return LQuery
         End Function
 

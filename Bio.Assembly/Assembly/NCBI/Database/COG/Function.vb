@@ -1,7 +1,35 @@
-﻿Imports System.ComponentModel
+﻿#Region "Microsoft.VisualBasic::ec25dab0858503e5bd610a34335c2eb7, ..\GCModeller\core\Bio.Assembly\Assembly\NCBI\Database\COG\Function.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.ComponentModel
 Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
-Imports LANS.SystemsBiology.ComponentModel
+Imports SMRUCC.genomics.ComponentModel
 Imports Microsoft.VisualBasic.Linq.Extensions
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.ComponentModel
@@ -113,8 +141,11 @@ Namespace Assembly.NCBI.COG
         ''' <param name="COG">已经自动处理好所有事情了</param>
         ''' <returns></returns>
         Public Function GetCategory(COG As String) As COGCategories
-            If String.IsNullOrEmpty(__trimCOGs(COG).ShadowCopy(COG)) OrElse
+            COG = __trimCOGs(COG)
+
+            If String.IsNullOrEmpty(COG) OrElse
                 String.Equals(COG, "-") Then
+
                 Return COGCategories.NotAssigned
             Else
                 Dim COGChar As Char = COG.First
@@ -129,8 +160,11 @@ Namespace Assembly.NCBI.COG
         End Function
 
         Public Function GetCategories(COG As String) As COGCategories()
-            If String.IsNullOrEmpty(__trimCOGs(COG).ShadowCopy(COG)) OrElse
+            COG = __trimCOGs(COG)
+
+            If String.IsNullOrEmpty(COG) OrElse
                 String.Equals(COG, "-") Then
+
                 Return {COGCategories.NotAssigned}
             End If
 
@@ -207,7 +241,7 @@ Namespace Assembly.NCBI.COG
                                      Let categories As COGCategories() = GetCategories(gene.COG)
                                      Select (From cat As COGCategories In categories
                                              Select geneId = gene.Identifier,
-                                                 category = GetCategory(gene.COG)).ToArray).MatrixToList
+                                                 category = GetCategory(gene.COG)).ToArray).Unlist
                           Select geneid = x.geneId,
                               category = x.category
                           Group By category Into Group).ToArray

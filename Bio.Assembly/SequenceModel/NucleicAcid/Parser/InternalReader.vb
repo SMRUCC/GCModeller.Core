@@ -1,4 +1,32 @@
-﻿Namespace SequenceModel.NucleotideModels : Partial Class SegmentReader
+﻿#Region "Microsoft.VisualBasic::ce0d818dd48852c56e95ccdec67d4d9f, ..\GCModeller\core\Bio.Assembly\SequenceModel\NucleicAcid\Parser\InternalReader.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Namespace SequenceModel.NucleotideModels : Partial Class SegmentReader
 
         Protected Class InternalReader
 
@@ -58,6 +86,9 @@
                         } '为线状分子，则仅将剩余部分截取，并给出警告
                     End If
                 Else
+                    If Start <= 0 Then
+                        Throw New Exception($"Argument 'Start' must be greater than zero for mid function: start:={Start}, len:={Length}, seq-len:={SequenceData.Length}")
+                    End If
                     Return New NucleicAcid With {
                         .SequenceData = Mid(SequenceData, Start, Length)
                     }
@@ -100,12 +131,22 @@
                             Starts = 1
                         End If
                         If WARNING Then
-                            Call Console.WriteLine(READER_WARNING_MESSAGE, vbCrLf, Len(Me.SequenceData), vbCrLf, Starts, vbCrLf, Length)
+                            Call String.Format(READER_WARNING_MESSAGE,
+                                               vbCrLf,
+                                               Len(Me.SequenceData),
+                                               vbCrLf,
+                                               Starts,
+                                               vbCrLf,
+                                               Length).Warning
                         End If
-                        Return New NucleicAcid With {.SequenceData = Mid(Me.SequenceData, Starts, Length)} '为线状分子，则仅将剩余部分截取，并给出警告
+                        Return New NucleicAcid With {
+                            .SequenceData = Mid(Me.SequenceData, Starts, Length)
+                        } '为线状分子，则仅将剩余部分截取，并给出警告
                     End If
                 Else
-                    Return New NucleicAcid With {.SequenceData = Mid(Me.SequenceData, Starts, Length)}
+                    Return New NucleicAcid With {
+                        .SequenceData = Mid(Me.SequenceData, Starts, Length)
+                    }
                 End If
             End Function
 #End Region

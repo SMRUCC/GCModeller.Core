@@ -1,7 +1,35 @@
-﻿Imports System.Text.RegularExpressions
+﻿#Region "Microsoft.VisualBasic::1be7f71941c18ca3fdad18bc4db80c35, ..\GCModeller\core\Bio.Assembly\Assembly\KEGG\Archives\Xml\CompilerAPI.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
-Imports LANS.SystemsBiology.Assembly.KEGG.Archives.Xml.Nodes
-Imports LANS.SystemsBiology.Assembly.KEGG.DBGET
+Imports SMRUCC.genomics.Assembly.KEGG.Archives.Xml.Nodes
+Imports SMRUCC.genomics.Assembly.KEGG.DBGET
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Linq.Extensions
@@ -39,7 +67,7 @@ Namespace Assembly.KEGG.Archives.Xml
             Dim Model As XmlModel = New XmlModel With {
                 .Pathways = Pathways.ToArray,
                 .Modules = Modules.ToArray,
-                .Metabolome = __getAllReactions(Pathways.ToArray(Function(x) x.Pathways).MatrixAsIterator, Reactions),
+                .Metabolome = __getAllReactions(Pathways.ToArray(Function(x) x.Pathways).IteratesALL, Reactions),
                 .spCode = speciesCode
             }
             Model.EC_Mappings = EC_Mapping.Generate_ECMappings(Model)
@@ -54,10 +82,10 @@ Namespace Assembly.KEGG.Archives.Xml
 
         Private Function __getAllReactions(Modules As IEnumerable(Of bGetObject.Pathway), Reactions As IEnumerable(Of bGetObject.Reaction)) As bGetObject.Reaction()
             Dim source As bGetObject.Reaction() = Reactions.ToArray
-            Dim parts = (From bMod As bGetObject.Pathway In Modules Select MapAPI.GetReactions(bMod, source)).MatrixAsIterator
+            Dim parts = (From bMod As bGetObject.Pathway In Modules Select MapAPI.GetReactions(bMod, source)).IteratesALL
             Dim allCompounds As String() = Modules.ToArray(
                 Function(x As bGetObject.Pathway) x.Compound.ToArray(
-                Function(cp) cp.Key)).MatrixAsIterator.Distinct.ToArray
+                Function(cp) cp.Key)).IteratesALL.Distinct.ToArray
 
             Dim allNoEnzyme = (From x As bGetObject.Reaction
                                In MapAPI.GetReactions(allCompounds, source)
@@ -101,7 +129,7 @@ Namespace Assembly.KEGG.Archives.Xml
                                 Select New PwyBriteFunc With {
                                     .Class = item.Class.Class,
                                     .Category = CategoryValue,
-                                    .Pathways = (From cc In Category Select cc.dataItem).ToArray}).ToArray).MatrixToVector
+                                    .Pathways = (From cc In Category Select cc.dataItem).ToArray}).ToArray).ToVector
             Return Data
         End Function
 
