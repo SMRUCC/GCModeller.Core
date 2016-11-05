@@ -4,6 +4,7 @@
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
     '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
     ' 
     ' Copyright (c) 2016 GPL3 Licensed
     ' 
@@ -149,7 +150,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         Public Function GetSubstrateCompounds() As String()
             Dim FluxModel = EquationBuilder.CreateObject(Of DefaultTypes.CompoundSpecieReference, DefaultTypes.Equation)(Regex.Replace(Equation, "(\s*\(.+?\))|(n )", ""))
             Dim Compounds = (From csr As DefaultTypes.CompoundSpecieReference
-                             In {FluxModel.Reactants, FluxModel.Products}.MatrixAsIterator
+                             In {FluxModel.Reactants, FluxModel.Products}.IteratesALL
                              Select csr.Identifier
                              Distinct).ToArray
             Return Compounds

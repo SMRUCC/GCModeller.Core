@@ -4,6 +4,7 @@
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
     '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
     ' 
     ' Copyright (c) 2016 GPL3 Licensed
     ' 
@@ -70,7 +71,7 @@ Namespace Assembly.Expasy.AnnotationsTool
         Implements IKeyValuePairObject(Of String, String)
 
         Public Property ProteinId As String Implements sIdEnumerable.Identifier, IKeyValuePairObject(Of String, String).Identifier
-        Public Property UniprotMatched As String Implements IKeyValuePairObject(Of String, String).Value
+        Public Property uniprot As String Implements IKeyValuePairObject(Of String, String).Value
 
         Public Overrides Function ToString() As String
             Return MyClass.GetJson

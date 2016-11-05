@@ -4,6 +4,7 @@
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
     '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
     ' 
     ' Copyright (c) 2016 GPL3 Licensed
     ' 
@@ -71,7 +72,7 @@ Namespace Assembly.MetaCyc.File
             lines = path.ReadAllLines
             first = lines.First
             prop = GetDbProperty(lines)
-            lines = GetData(lines).ToArray.MatrixToVector
+            lines = GetData(lines).ToArray.ToVector
 
             Return ""
         End Function

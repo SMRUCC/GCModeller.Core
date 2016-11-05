@@ -4,6 +4,7 @@
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
     '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
     ' 
     ' Copyright (c) 2016 GPL3 Licensed
     ' 
@@ -62,7 +63,7 @@ Namespace ContextModel
 
         Sub New(loci As NucleotideLocation, dist As Integer, Optional userTag As String = Nothing)
             Feature = loci
-            Tag = NotEmpty(userTag, loci.ToString)
+            Tag = FirstNotEmpty(userTag, loci.ToString)
 
             If loci.Strand = Strands.Forward Then
                 Upstream = New NucleotideLocation(loci.Left - dist, loci.Left, Strands.Forward)

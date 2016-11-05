@@ -1,9 +1,10 @@
-﻿#Region "Microsoft.VisualBasic::b22db83c89da2c535538bea8caf45118, ..\GCModeller\core\Bio.Assembly\SequenceModel\NucleicAcid\NucleicAcidStaticsProperty.vb"
+﻿#Region "Microsoft.VisualBasic::42380d7c94557ea3f4f9a208f6797df8, ..\GCModeller\core\Bio.Assembly\SequenceModel\NucleicAcid\NucleicAcidStaticsProperty.vb"
 
     ' Author:
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
     '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
     ' 
     ' Copyright (c) 2016 GPL3 Licensed
     ' 
@@ -25,17 +26,52 @@
 
 #End Region
 
-Imports System.Text
-Imports SMRUCC.genomics.SequenceModel.ISequenceModel
 Imports System.Runtime.CompilerServices
-Imports Microsoft.VisualBasic.Scripting.MetaData
-Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports System.Text
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Scripting.MetaData
+Imports SMRUCC.genomics.SequenceModel.FASTA
+Imports SMRUCC.genomics.SequenceModel.ISequenceModel
 
 Namespace SequenceModel.NucleotideModels
 
     <PackageNamespace("NucleicAcid.Property", Publisher:="amethyst.asuka@gcmodeller.org")>
     Public Module NucleicAcidStaticsProperty
+
+        ''' <summary>
+        ''' 批量计算出GCSkew或者GC%
+        ''' </summary>
+        ''' <param name="nts"></param>
+        ''' <param name="winSize"></param>
+        ''' <param name="steps"></param>
+        ''' <param name="method"></param>
+        ''' <returns></returns>
+        <Extension>
+        Public Function GCData(nts As IEnumerable(Of FastaToken),
+                               Optional winSize As Integer = 250,
+                               Optional steps As Integer = 50,
+                               Optional method As NtProperty = Nothing) As NamedValue(Of Double())()
+
+            If method Is Nothing Then
+                method = AddressOf GCSkew
+            End If
+            Dim LQuery = From genome As SeqValue(Of FastaToken)
+                         In nts.SeqIterator.AsParallel
+                         Select genome,
+                             skew = method(genome.obj, winSize, steps, True)
+                         Order By genome.i Ascending  ' 排序是因为可能没有做多序列比对对齐，在这里需要使用第一条序列的长度作为参考
+            Return LinqAPI.Exec(Of NamedValue(Of Double())) <=
+                From g
+                In LQuery
+                Select New NamedValue(Of Double()) With {
+                    .Name = g.genome.obj.ToString,
+                    .x = g.skew
+                }
+        End Function
 
         <ExportAPI("GC%", Info:="Calculate the GC content of the target sequence data.")>
         <Extension> Public Function GC_Content(Sequence As IEnumerable(Of DNA)) As Double

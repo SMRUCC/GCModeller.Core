@@ -1,9 +1,10 @@
-﻿#Region "Microsoft.VisualBasic::15bdcbc6c531504206bee2749e2b2d21, ..\GCModeller\core\Bio.Assembly\ProteinModel\ProteinDomains.vb"
+﻿#Region "Microsoft.VisualBasic::04963b10520bd2941207755918c9f58c, ..\GCModeller\core\Bio.Assembly\ProteinModel\ProteinDomains.vb"
 
     ' Author:
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
     '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
     ' 
     ' Copyright (c) 2016 GPL3 Licensed
     ' 
@@ -25,14 +26,15 @@
 
 #End Region
 
+Imports System.Xml.Serialization
+Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Serialization
+Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.VisualBasic.Text
 Imports SMRUCC.genomics.Assembly
 Imports SMRUCC.genomics.SequenceModel
-Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
-Imports Microsoft.VisualBasic
-Imports System.Xml.Serialization
-Imports Microsoft.VisualBasic.Serialization
-Imports Microsoft.VisualBasic.Linq
-Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace ProteinModel
 
@@ -113,7 +115,7 @@ Namespace ProteinModel
             Else
                 Dim lstInteracts As IEnumerable(Of String) = (From motif As DomainObject
                                                               In Me.Domains
-                                                              Select motif.GetInteractionDomains(DOMINE)).MatrixAsIterator
+                                                              Select motif.GetInteractionDomains(DOMINE)).IteratesALL
                 Return lstInteracts.Distinct.ToArray
             End If
         End Function

@@ -4,6 +4,7 @@
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
     '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
     ' 
     ' Copyright (c) 2016 GPL3 Licensed
     ' 
@@ -70,7 +71,7 @@ Namespace Assembly.MiST2
         ''' <returns></returns>
         Public Function GetRR() As String()
             Dim LQuery = (From transducin As Transducin
-                          In {RR, HRR}.MatrixToVector
+                          In {RR, HRR}.ToVector
                           Select transducin.Identifier
                           Distinct).ToArray
             Return LQuery
@@ -81,7 +82,7 @@ Namespace Assembly.MiST2
         ''' </summary>
         ''' <returns></returns>
         Public Function get_HisKinase() As String()
-            Dim LQuery = (From item In {HisK, HHK}.MatrixToVector Select item.Identifier Distinct).ToArray
+            Dim LQuery = (From item In {HisK, HHK}.ToVector Select item.Identifier Distinct).ToArray
             Return LQuery
         End Function
 

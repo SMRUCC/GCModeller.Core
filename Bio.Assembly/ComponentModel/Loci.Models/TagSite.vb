@@ -4,6 +4,7 @@
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
     '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
     ' 
     ' Copyright (c) 2016 GPL3 Licensed
     ' 
@@ -31,6 +32,7 @@ Imports Microsoft.VisualBasic.Parallel
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Serialization
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.VisualBasic.Language
 
 Namespace ComponentModel.Loci.Abstract
 
@@ -80,7 +82,7 @@ Namespace ComponentModel.Loci.Abstract
             Dim locis As IEnumerable(Of GroupResult(Of T, String)) =
                 (From x
                  In Grouping'.AsParallel
-                 Select x.Group.__innerGroup(offset, tag:=x.tag)).MatrixAsIterator
+                 Select x.Group.__innerGroup(offset, tag:=x.tag)).IteratesALL
 
             For Each x As GroupResult(Of T, String) In locis
                 Yield x
