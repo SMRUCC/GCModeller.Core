@@ -53,6 +53,20 @@ Namespace SequenceModel
             }
         End Function
 
+        <Extension>
+        Public Function ReadComplement(seq As I_PolymerSequenceModel, left%, length%, Optional tag$ = Nothing) As SimpleSegment
+            Dim cut$ = Mid(seq.SequenceData, left, length)
+            cut = New String(NucleicAcid.Complement(cut).Reverse.ToArray)
+
+            Return New SimpleSegment With {
+                .SequenceData = cut,
+                .ID = tag,
+                .Start = left,
+                .Ends = length + left - 1,
+                .Strand = "-"
+            }
+        End Function
+
         ''' <summary>
         ''' 
         ''' </summary>
@@ -90,8 +104,8 @@ Namespace SequenceModel
         ''' <remarks>Not sure, probably success.</remarks>
         <Extension>
         Public Function CutSequenceCircular(seq As I_PolymerSequenceModel,
-                                        site As NucleotideLocation,
-                                        join As NucleotideLocation) As SimpleSegment
+                                            site As NucleotideLocation,
+                                            join As NucleotideLocation) As SimpleSegment
 
             Dim a As SimpleSegment = seq.CutSequenceLinear(site:=site)
             Dim b As SimpleSegment = seq.CutSequenceLinear(site:=join)
@@ -120,6 +134,13 @@ Namespace SequenceModel
 
                 Return out
             End If
+        End Function
+
+        <Extension>
+        Public Function CutSequenceCircular(seq As I_PolymerSequenceModel, site%, join%) As SimpleSegment
+            Return seq.CutSequenceCircular(
+                New NucleotideLocation(site, seq.SequenceData.Length),
+                New NucleotideLocation(1, join))
         End Function
     End Module
 End Namespace
