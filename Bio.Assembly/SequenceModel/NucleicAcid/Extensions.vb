@@ -272,17 +272,20 @@ cause an out of memory condition when calculating the LD over two very large str
                 Dim current As SimpleSegment = list(Scan0)
 
                 list.RemoveAt(Scan0)
+                current.Ends = current.Start + current.SequenceData.Length
 
                 For i As Integer = 0 To list.Count - 1
 
                     With list(i)
+
+                        .Ends = .Start + .SequenceData.Length ' 不信任輸入的數據的右端的位置？？
 
                         Dim loci = .MappingLocation
 
                         If current.MappingLocation(True).Inside(loci, 0) Then
                             removes.Add(list(i))  ' target is already includes in current, ignores
                         ElseIf current.MappingLocation.IsOverlapping(loci) Then
-                            Dim l = current.MappingLocation.Right - loci.Left + 2   ' extends current
+                            Dim l = current.MappingLocation.Right - loci.Left + 1   ' extends current
                             Dim seq$ = Mid(.SequenceData, l)
 
                             current.SequenceData &= seq
