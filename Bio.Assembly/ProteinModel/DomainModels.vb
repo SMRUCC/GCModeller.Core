@@ -61,6 +61,9 @@ Namespace ProteinModel
             Me.Location = Location
         End Sub
 
+        Sub New()
+        End Sub
+
         Public Overrides Function ToString() As String
             Return String.Format("{0}: {1}", DomainId, Location.ToString)
         End Function
