@@ -147,8 +147,8 @@ Namespace ComponentModel.Loci
 
         Private Function __assembly(source As IEnumerable(Of Location), lenOffset As Integer) As Location()
             Dim lstLoci As New List(Of Location)
-            Dim current As Location = source.First
-            Dim raw As New List(Of Location)(source.Skip(1))
+            Dim current As Location
+            Dim raw As New List(Of Location)(source)
             Dim n As New Value(Of Location)
 
             Do While raw.Count > 0

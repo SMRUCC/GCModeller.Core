@@ -187,10 +187,17 @@ Namespace ComponentModel.Loci
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function InsideOrOverlapWith(b As Location, WithOffSet As Integer) As Boolean
-            If ContainSite(b.Left - WithOffSet) OrElse ContainSite(b.Right + WithOffSet) Then
-                Return True
+            If ContainSite(b.Left) OrElse ContainSite(b.Right) Then
+                Return True ' at least is overlaps
             End If
-            Return ContainSite(b.Left) OrElse ContainSite(b.Right)
+
+            For i As Integer = 1 To WithOffSet
+                If ContainSite(b.Left - i) OrElse ContainSite(b.Right + i) Then
+                    Return True
+                End If
+            Next
+
+            Return False
         End Function
 
         Public ReadOnly Property Center As Integer
