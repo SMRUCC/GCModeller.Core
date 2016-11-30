@@ -156,7 +156,11 @@ Namespace ComponentModel.Loci
                 raw.RemoveAt(Scan0)
 
                 If current.Extension Is Nothing Then
+                    ' 需要在离开前初始化，否则上一层调用函数会因为空引用出错
                     current.Extension = New ExtendedProps
+                End If
+                If raw.Count = 0 Then
+                    Exit Do
                 End If
 
                 Do While current.InsideOrOverlapWith(n = raw(Scan0), WithOffSet:=lenOffset)

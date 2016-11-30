@@ -15,8 +15,8 @@ Namespace ComponentModel.Loci
         ''' <param name="gapOffset%">默认是不允许跳过gap间隙的</param>
         ''' <returns></returns>
         <Extension>
-        Public Function Assemble(sites As IEnumerable(Of IMotifSite), Optional groupByType As Boolean = False, Optional gapOffset% = 0) As MotifSite()
-            Dim out As New List(Of MotifSite)
+        Public Function Assemble(sites As IEnumerable(Of IMotifSite), Optional groupByType As Boolean = False, Optional gapOffset% = 0) As IEnumerable(Of IMotifSite)
+            Dim out As New List(Of IMotifSite)
 
             If groupByType Then
                 Dim gbt = From x As IMotifSite
@@ -28,7 +28,7 @@ Namespace ComponentModel.Loci
                     out += g.Group.Assemble(False, gapOffset:=gapOffset)
                 Next
 
-                Return out.ToArray
+                Return out
             End If
 
             Dim locations As New List(Of Location)
@@ -55,6 +55,7 @@ Namespace ComponentModel.Loci
                     .Remove(motif)
                 out += New MotifSite With {
                     .Name = o.Name,
+                    .Site = o.Site,
                     .Type = {
                         o.Type
                     } _
@@ -70,7 +71,7 @@ Namespace ComponentModel.Loci
                 }
             Next
 
-            Return out.ToArray
+            Return out
         End Function
     End Module
 End Namespace
