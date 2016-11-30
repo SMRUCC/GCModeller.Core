@@ -129,6 +129,12 @@ Namespace ComponentModel.Loci
             Return Me
         End Function
 
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="loci"></param>
+        ''' <param name="offsets">当这个大于零的时候会进行模糊匹配</param>
+        ''' <returns></returns>
         Public Overloads Function Equals(loci As Location, Optional offsets As Integer = 0) As Boolean
             Return LociAPI.Equals(loci, Me, offsets)
         End Function
@@ -175,9 +181,15 @@ Namespace ComponentModel.Loci
                 ContainSite(loci.Right) Then
                 Return True
             Else
-                Return ContainSite(loci.Left + offSet) AndAlso
-                    ContainSite(loci.Right - offSet)
+                For i As Integer = 1 To offSet
+                    If ContainSite(loci.Left + i) AndAlso
+                        ContainSite(loci.Right - i) Then
+                        Return True
+                    End If
+                Next
             End If
+
+            Return False
         End Function
 
         ''' <summary>
@@ -259,7 +271,8 @@ Namespace ComponentModel.Loci
         End Operator
 
         ''' <summary>
-        ''' <see cref="Left"/>, <see cref="Right"/> offset a length value and then construct a new <see cref="Location"/> value.
+        ''' <see cref="Left"/>, <see cref="Right"/> offset a length value and 
+        ''' then construct a new <see cref="Location"/> value.
         ''' </summary>
         ''' <param name="value"></param>
         ''' <returns></returns>
