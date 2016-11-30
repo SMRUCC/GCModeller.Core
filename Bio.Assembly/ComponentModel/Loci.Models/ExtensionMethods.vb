@@ -121,7 +121,7 @@ Namespace ComponentModel.Loci
                               In (From item In GroupOperation Select item.GroupTag Distinct).ToArray
                                     Let TagedLocation = (From item In GroupOperation Where String.Equals(GroupTag, item.GroupTag) Select item.Possible_Duplicated).ToArray.ToVector
                                     Select GroupTag, TagedLocation).ToArray
-            lc = (From item In l_GroupOperation Select If(item.TagedLocation.Count = 1, item.TagedLocation.First, LociAPI.Merge(item.TagedLocation))).ToArray
+            lc = (From item In l_GroupOperation Select If(item.TagedLocation.Length = 1, item.TagedLocation.First, LociAPI.Merge(item.TagedLocation))).ToArray
             Return lc.ToArray
         End Function
 
@@ -170,6 +170,10 @@ Namespace ComponentModel.Loci
                         .Count) = +n
 
                     Call raw.RemoveAt(Scan0)
+
+                    If raw.Count = 0 Then
+                        Exit Do
+                    End If
                 Loop
 
                 Call lstLoci.Add(current)
