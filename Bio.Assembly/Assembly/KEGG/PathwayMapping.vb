@@ -23,7 +23,7 @@ Namespace Assembly.KEGG.WebServices
         ''' </summary>
         ''' <param name="list$">Enter gene list with KO annotation</param>
         ''' <param name="globalmap">Include global/overview maps</param>
-        Public Sub Reconstruct(list$, Optional globalmap As Boolean = True)
+        Public Sub Reconstruct(list$, Optional globalmap As Boolean = True, Optional work$ = "./")
             If list.FileExists(True) Then
                 list = list.ReadAllText
             End If
@@ -34,7 +34,7 @@ Namespace Assembly.KEGG.WebServices
             Call args.Add("submit", "Exec")
             Call args.Add("unclassified", list)
 
-            Dim html = "http://www.genome.jp/kegg/tool/map_pathway.html"
+            Dim html = "http://www.genome.jp/kegg-bin/find_pathway_object".PostRequest(args, "http://www.genome.jp/kegg/tool/map_pathway.html")
         End Sub
     End Module
 End Namespace
