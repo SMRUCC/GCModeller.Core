@@ -149,7 +149,7 @@ Namespace Assembly.Uniprot.Web
         ''' </summary>
         DMDM_ID
 #End Region
-#Region "2D gel databases" >
+#Region "2D gel databases"
         ''' <summary>
         ''' World-2DPAGE
         ''' </summary>
@@ -190,10 +190,10 @@ Namespace Assembly.Uniprot.Web
         ''' GeneDB
         ''' </summary>
         GENEDB_ID
-        ''' <summary>
-        ''' GeneID (Entrez Gene)
-        ''' </summary>
-        P_ENTREZGENEID
+        '''' <summary>
+        '''' GeneID (Entrez Gene)
+        '''' </summary>
+        'P_ENTREZGENEID
         ''' <summary>
         ''' KEGG
         ''' </summary>
