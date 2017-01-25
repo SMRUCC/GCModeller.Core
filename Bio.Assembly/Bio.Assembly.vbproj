@@ -335,6 +335,7 @@
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\DBLINK.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\FEATURES\CDS.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\GbkWriter.vb" />
+    <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\FEATURES\ParserHelper.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\GBK\KEYWORDS\SOURCE\ORGANISM.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\GFF\FeatureParser.vb" />
     <Compile Include="Assembly\NCBI\Database\Genbank\TabularFormat\FeatureBriefs\GFF\FeatureKeys.vb" />

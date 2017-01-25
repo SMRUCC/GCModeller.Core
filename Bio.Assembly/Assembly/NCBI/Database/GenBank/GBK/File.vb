@@ -103,13 +103,13 @@ Namespace Assembly.NCBI.GenBank.GBFF
         ''' <remarks></remarks>
         Public ReadOnly Property IsPlasmidSource As Boolean
             Get
-                Return Not String.IsNullOrEmpty(Features.SourceFeature.Query("plasmid"))
+                Return Not String.IsNullOrEmpty(Features.source.Query("plasmid"))
             End Get
         End Property
 
         Public ReadOnly Property Taxon As String
             Get
-                Dim db_xref As String() = Features.SourceFeature.QueryDuplicated("db_xref")
+                Dim db_xref As String() = Features.source.QueryDuplicated("db_xref")
                 Dim LQuery = (From s As String
                               In db_xref
                               Let tokens As String() = s.Split(CChar(":"))
@@ -167,7 +167,7 @@ Namespace Assembly.NCBI.GenBank.GBFF
         ''' <remarks></remarks>
         Public ReadOnly Property SourceFeature As Feature
             Get
-                Return Features.SourceFeature
+                Return Features.source
             End Get
         End Property
 
@@ -265,7 +265,7 @@ Namespace Assembly.NCBI.GenBank.GBFF
             Dim ReadThreadResult As IAsyncResult = ReadThread.BeginInvoke(gb, innerBufs, Nothing, Nothing)
 
             gb.Comment = Internal_readBlock(KeyWord.GBK_FIELD_KEY_COMMENT, innerBufs)
-            gb.Features = Internal_readBlock(KeyWord.GBK_FIELD_KEY_FEATURES, innerBufs).Skip(1).ToArray
+            gb.Features = Internal_readBlock(KeyWord.GBK_FIELD_KEY_FEATURES, innerBufs).Skip(1).ToArray.FeaturesListParser
             gb.Accession = ACCESSION.CreateObject(Internal_readBlock(KeyWord.GBK_FIELD_KEY_ACCESSION, innerBufs), Path.BaseName)
             gb.Reference = REFERENCE.InternalParser(innerBufs)
             gb.Definition = Internal_readBlock(KeyWord.GBK_FIELD_KEY_DEFINITION, innerBufs)
