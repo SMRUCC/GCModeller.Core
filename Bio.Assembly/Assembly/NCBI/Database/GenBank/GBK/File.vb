@@ -93,7 +93,7 @@ Namespace Assembly.NCBI.GenBank.GBFF
         ''' <remarks></remarks>
         Public Property Locus As Keywords.LOCUS
         Public Property Keywords As Keywords.KEYWORDS
-        Public Property DbLink As DBLINK
+        Public Property DbLinks As DBLINK
 
         ''' <summary>
         ''' 这个Genbank对象是否为一个质粒的基因组数据
@@ -266,14 +266,14 @@ Namespace Assembly.NCBI.GenBank.GBFF
 
             gb.Comment = Internal_readBlock(KeyWord.GBK_FIELD_KEY_COMMENT, innerBufs)
             gb.Features = Internal_readBlock(KeyWord.GBK_FIELD_KEY_FEATURES, innerBufs).Skip(1).ToArray
-            gb.Accession = ACCESSION.CreateObject(NCBI.GenBank.GBFF.File.Internal_readBlock(KeyWord.GBK_FIELD_KEY_ACCESSION, innerBufs), Path.BaseName)
+            gb.Accession = ACCESSION.CreateObject(Internal_readBlock(KeyWord.GBK_FIELD_KEY_ACCESSION, innerBufs), Path.BaseName)
             gb.Reference = REFERENCE.InternalParser(innerBufs)
             gb.Definition = Internal_readBlock(KeyWord.GBK_FIELD_KEY_DEFINITION, innerBufs)
             gb.Version = Internal_readBlock(KeyWord.GBK_FIELD_KEY_VERSION, innerBufs)
             gb.Source = Internal_readBlock(KeyWord.GBK_FIELD_KEY_SOURCE, innerBufs)
-            gb.Locus = LOCUS.InternalParser(NCBI.GenBank.GBFF.File.Internal_readBlock(KeyWord.GBK_FIELD_KEY_LOCUS, innerBufs).First)
+            gb.Locus = LOCUS.InternalParser(Internal_readBlock(KeyWord.GBK_FIELD_KEY_LOCUS, innerBufs).First)
             gb.Keywords = GBFF.Keywords.KEYWORDS.__innerParser(Internal_readBlock(KeyWord.GBK_FIELD_KEY_KEYWORDS, innerBufs))
-            gb.DbLink = GBFF.Keywords.DBLINK.Parser(Internal_readBlock(KeyWord.GBK_FIELD_KEY_DBLINK, innerBufs))
+            gb.DbLinks = GBFF.Keywords.DBLINK.Parser(Internal_readBlock(KeyWord.GBK_FIELD_KEY_DBLINK, innerBufs))
 
             gb.Accession.gbRaw = gb
             gb.Comment.gbRaw = gb
@@ -284,7 +284,7 @@ Namespace Assembly.NCBI.GenBank.GBFF
             gb.Reference.gbRaw = gb
             gb.Source.gbRaw = gb
             gb.Version.gbRaw = gb
-            gb.DbLink.gbRaw = gb
+            gb.DbLinks.gbRaw = gb
 
             Call gb.Features.LinkEntry()
             Call ReadThread.EndInvoke(ReadThreadResult)
