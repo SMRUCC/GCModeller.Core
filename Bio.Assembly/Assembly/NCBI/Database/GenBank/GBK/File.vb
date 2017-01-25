@@ -47,10 +47,10 @@ Namespace Assembly.NCBI.GenBank.GBFF
     Public MustInherit Class IgbComponent
 
         ''' <summary>
-        ''' 这个构件对象所处在的Genbank数据库对象
+        ''' Link to the genbank raw object.(这个构件对象所处在的``genbank``数据库对象.)
         ''' </summary>
         ''' <remarks></remarks>
-        Protected Friend gbRaw As File
+        Protected Friend gb As File
     End Class
 
     ''' <summary>
@@ -107,14 +107,20 @@ Namespace Assembly.NCBI.GenBank.GBFF
             End Get
         End Property
 
+        ''' <summary>
+        ''' 物种数据
+        ''' </summary>
+        ''' <returns></returns>
         Public ReadOnly Property Taxon As String
             Get
                 Dim db_xref As String() = Features.source.QueryDuplicated("db_xref")
-                Dim LQuery = (From s As String
-                              In db_xref
-                              Let tokens As String() = s.Split(CChar(":"))
-                              Where String.Equals(tokens.First, "taxon", StringComparison.OrdinalIgnoreCase)
-                              Select tokens.Last).FirstOrDefault
+                Dim LQuery = LinqAPI.DefaultFirst(Of String) <=
+                    From s As String
+                    In db_xref
+                    Let tokens As String() = s.Split(CChar(":"))
+                    Where String.Equals(tokens.First, "taxon", StringComparison.OrdinalIgnoreCase)
+                    Select tokens.Last
+
                 Return LQuery
             End Get
         End Property
@@ -275,22 +281,22 @@ Namespace Assembly.NCBI.GenBank.GBFF
             gb.Keywords = GBFF.Keywords.KEYWORDS.__innerParser(Internal_readBlock(KeyWord.GBK_FIELD_KEY_KEYWORDS, innerBufs))
             gb.DbLinks = GBFF.Keywords.DBLINK.Parser(Internal_readBlock(KeyWord.GBK_FIELD_KEY_DBLINK, innerBufs))
 
-            gb.Accession.gbRaw = gb
-            gb.Comment.gbRaw = gb
-            gb.Definition.gbRaw = gb
-            gb.Features.gbRaw = gb
-            gb.Keywords.gbRaw = gb
-            gb.Locus.gbRaw = gb
-            gb.Reference.gbRaw = gb
-            gb.Source.gbRaw = gb
-            gb.Version.gbRaw = gb
-            gb.DbLinks.gbRaw = gb
+            gb.Accession.gb = gb
+            gb.Comment.gb = gb
+            gb.Definition.gb = gb
+            gb.Features.gb = gb
+            gb.Keywords.gb = gb
+            gb.Locus.gb = gb
+            gb.Reference.gb = gb
+            gb.Source.gb = gb
+            gb.Version.gb = gb
+            gb.DbLinks.gb = gb
 
             Call gb.Features.LinkEntry()
             Call ReadThread.EndInvoke(ReadThreadResult)
             Call $"({gb.Accession.AccessionId})""{gb.Definition.Value}"" data load done!  {FileIO.FileSystem.GetFileInfo(Path).Length}bytes {Sw.ElapsedMilliseconds}ms...".__DEBUG_ECHO
 
-            gb.Origin.gbRaw = gb  '由于使用线程进行读取的，所以不能保证在赋值的时候是否初始化基因组序列完成
+            gb.Origin.gb = gb  '由于使用线程进行读取的，所以不能保证在赋值的时候是否初始化基因组序列完成
             innerBufs = Nothing
 
             Return gb

@@ -148,7 +148,7 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
 
         Friend Sub LinkEntry()
             For Each Feature In Me._innerList
-                Feature.gbRaw = Me.gbRaw
+                Feature.gb = Me.gb
             Next
         End Sub
 
