@@ -28,9 +28,9 @@
 
 Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
-Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
-Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text.Xml
 
 Namespace Assembly.Uniprot.XML
@@ -52,6 +52,28 @@ Namespace Assembly.Uniprot.XML
             Dim xml As String = path.ReadAllText.Replace(UniprotXML.ns, Xmlns.DefaultXmlns)
             Dim model As UniprotXML = xml.LoadFromXml(Of UniprotXML)
             Return model
+        End Function
+
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="handle$">file or directory</param>
+        ''' <returns></returns>
+        Public Shared Function LoadDictionary(handle$) As Dictionary(Of entry)
+            If handle.FileExists(True) Then
+                Return Load(handle).entries.ToDictionary
+            Else
+                Dim files As IEnumerable(Of UniprotXML) = (ls - l - r - "*.xml" <= handle).Select(AddressOf Load)
+                Dim groups = From protein As entry
+                             In files.Select(Function(xml) xml.entries).IteratesALL
+                             Select protein
+                             Group protein By protein.accession Into Group
+                Dim out As Dictionary(Of entry) = groups _
+                    .Select(Function(g) g.Group.First) _
+                    .ToDictionary
+
+                Return out
+            End If
         End Function
 
         Public Overrides Function ToString() As String
