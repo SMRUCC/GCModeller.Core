@@ -1,4 +1,6 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.Text
+Imports SMRUCC.genomics.Assembly.KEGG.WebServices
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices.InternalWebFormParsers
 
 Namespace Assembly.KEGG.DBGET.bGetObject
@@ -32,7 +34,23 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         ''' <param name="html"></param>
         ''' <returns></returns>
         <Extension> Public Function ParseModel(html As WebForm) As HumanGene
+            Dim hsa As New HumanGene With {
+                .AA = html.GetText("AA seq"),
+                .NT = html.GetText("NT seq"),
+                .Position = html.GetText("Position"),
+                .Entry = html.GetText(NameOf(HumanGene.Entry)).Split.First
+            }
 
+            With hsa
+                .AA = .AA.Trim.lTokens.Skip(1).JoinBy(ASCII.LF)
+                .NT = .NT.Replace(InternalWebFormParsers.DBGET, "") _
+                    .StripBlank _
+                    .lTokens _
+                    .Skip(1) _
+                    .JoinBy(ASCII.LF)
+            End With
+
+            Return hsa
         End Function
 
         ''' <summary>
