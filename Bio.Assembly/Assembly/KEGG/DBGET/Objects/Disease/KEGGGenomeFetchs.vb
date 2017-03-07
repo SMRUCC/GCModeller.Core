@@ -38,7 +38,11 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 .AA = html.GetText("AA seq"),
                 .NT = html.GetText("NT seq"),
                 .Position = html.GetText("Position"),
-                .Entry = html.GetText(NameOf(HumanGene.Entry)).Split.First
+                .Entry = html.GetText(NameOf(HumanGene.Entry)).Split.First,
+                .OtherDBs = html("Other DBs").FirstOrDefault.__otherDBs,
+                .Pathway = PathwayWebParser.__parseHTML_ModuleList(html("Pathway").FirstOrDefault, LIST_TYPES.Pathway),
+                .GeneName = html.GetText("Gene name"),
+                .Disease = __parseHTML_ModuleList(html.GetValue("Disease").FirstOrDefault, LIST_TYPES.Disease)
             }
 
             With hsa
