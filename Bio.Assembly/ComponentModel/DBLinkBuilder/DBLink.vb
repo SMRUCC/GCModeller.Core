@@ -50,6 +50,14 @@ Namespace ComponentModel.DBLinkBuilder
         ''' <returns></returns>
         <XmlAttribute> Public Property Entry As String Implements IKeyValuePairObject(Of String, String).Value, IDBLink.ID
 
+        Sub New()
+        End Sub
+
+        Sub New(DB$, ID$)
+            DBName = DB
+            Entry = ID
+        End Sub
+
         Public Overrides Function ToString() As String
             Return ToString(Me)
         End Function
@@ -69,6 +77,12 @@ Namespace ComponentModel.DBLinkBuilder
                 .DBName = Name.Trim.GetString,
                 .Entry = Entry
             }
+        End Function
+
+        Public Shared Function FromTagValue(s$, Optional tag$ = ":") As DBLink
+            With s.GetTagValue(tag, trim:=True)
+                Return New DBLink(.Name, .Value)
+            End With
         End Function
 
         Public Function GetFormatValue() As String Implements IDBLink.GetFormatValue
