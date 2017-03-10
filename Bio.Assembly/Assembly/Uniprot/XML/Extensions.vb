@@ -1,6 +1,7 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq
 
 Namespace Assembly.Uniprot.XML
 
@@ -20,6 +21,21 @@ Namespace Assembly.Uniprot.XML
             Else
                 Return protein.gene.ORF.First
             End If
+        End Function
+
+        ''' <summary>
+        ''' 获取蛋白质在细胞内的定位结果
+        ''' </summary>
+        ''' <param name="protein"></param>
+        ''' <returns></returns>
+        <Extension> Public Function SubCellularLocations(protein As entry) As String()
+            Dim cellularComments = protein.CommentList.TryGetValue("subcellular location")
+            Return cellularComments _
+                .Select(Function(c) c.subcellularLocations.ToArray(Function(x) x.locations)) _
+                .IteratesALL _
+                .IteratesALL _
+                .Distinct _
+                .ToArray
         End Function
 
         ''' <summary>
