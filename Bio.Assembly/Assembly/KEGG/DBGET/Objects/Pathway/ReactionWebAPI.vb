@@ -48,9 +48,15 @@ Namespace Assembly.KEGG.DBGET.bGetObject
 
             On Error Resume Next
 
-            rn.Entry = WebForm.StripName(WebForm.GetValue("Entry").FirstOrDefault).StripHTMLTags.StripBlank.Split.First
-            rn.Comments = __trimComments(WebForm.StripName(WebForm.GetValue("Comment").FirstOrDefault)).StripBlank.TrimNewLine
-            rn.Definition = WebForm.StripName(WebForm.GetValue("Definition").FirstOrDefault).StripHTMLTags.StripBlank
+            rn.Entry = WebForm.GetValue("Entry").FirstOrDefault.Strip_NOBR.StripHTMLTags.StripBlank.Split.First
+            rn.Comments = __trimComments(WebForm.GetValue("Comment").FirstOrDefault).Strip_NOBR.StripBlank.TrimNewLine
+            rn.Definition = WebForm.GetValue("Definition") _
+                .FirstOrDefault _
+                .Strip_NOBR _
+                .Replace("<=", "&lt;=") _
+                .StripHTMLTags _
+                .StripBlank _
+                .Replace("&lt;=", "<=")
             rn.Pathway = WebForm.parseList(WebForm.GetValue("Pathway").FirstOrDefault, "<a href="".+?"">.+?</a>")
             rn.Module = WebForm.parseList(WebForm.GetValue("Module").FirstOrDefault, "<a href="".+?"">.+?</a>")
             rn.CommonNames = __getCommonNames(WebForm.GetValue("Name").FirstOrDefault)
@@ -58,8 +64,13 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             rn.Orthology = __orthologyParser(WebForm.GetValue("Orthology").FirstOrDefault)
             rn.Class = WebForm.parseList(WebForm.GetValue("Reaction class").FirstOrDefault, "<a href="".+?"">.+?</a>")
 
-            Dim ecTemp As String = WebForm.GetValue("Enzyme").FirstOrDefault
-            rn.ECNum = Regex.Matches(ecTemp, "\d+(\.\d+)+").ToArray.Distinct.ToArray
+            Dim ecTemp As String = WebForm _
+                .GetValue("Enzyme") _
+                .FirstOrDefault
+            rn.ECNum = Regex.Matches(ecTemp, "\d+(\.\d+)+") _
+                .ToArray _
+                .Distinct _
+                .ToArray
 
             Return rn
         End Function
@@ -155,7 +166,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             Return LinqAPI.Exec(Of String) <=
  _
                 From line As String
-                In Strings.Split(WebForm.StripName(str), "<br>")
+                In Strings.Split(str.Strip_NOBR, "<br>")
                 Let s = line.StripHTMLTags.StripBlank
                 Where Not String.IsNullOrEmpty(s)
                 Select s
