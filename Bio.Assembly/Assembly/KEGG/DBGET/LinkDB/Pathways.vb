@@ -1,33 +1,34 @@
 ﻿#Region "Microsoft.VisualBasic::fd7a904f40048fd042cb63e7b1ea69b7, ..\GCModeller\core\Bio.Assembly\Assembly\KEGG\DBGET\LinkDB\Pathways.vb"
 
-    ' Author:
-    ' 
-    '       asuka (amethyst.asuka@gcmodeller.org)
-    '       xieguigang (xie.guigang@live.com)
-    '       xie (genetics@smrucc.org)
-    ' 
-    ' Copyright (c) 2016 GPL3 Licensed
-    ' 
-    ' 
-    ' GNU GENERAL PUBLIC LICENSE (GPL3)
-    ' 
-    ' This program is free software: you can redistribute it and/or modify
-    ' it under the terms of the GNU General Public License as published by
-    ' the Free Software Foundation, either version 3 of the License, or
-    ' (at your option) any later version.
-    ' 
-    ' This program is distributed in the hope that it will be useful,
-    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
-    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    ' GNU General Public License for more details.
-    ' 
-    ' You should have received a copy of the GNU General Public License
-    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+' Author:
+' 
+'       asuka (amethyst.asuka@gcmodeller.org)
+'       xieguigang (xie.guigang@live.com)
+'       xie (genetics@smrucc.org)
+' 
+' Copyright (c) 2016 GPL3 Licensed
+' 
+' 
+' GNU GENERAL PUBLIC LICENSE (GPL3)
+' 
+' This program is free software: you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation, either version 3 of the License, or
+' (at your option) any later version.
+' 
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+' 
+' You should have received a copy of the GNU General Public License
+' along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #End Region
 
 Imports System.Net
 Imports System.Text.RegularExpressions
+Imports System.Threading
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Terminal
@@ -76,12 +77,16 @@ Namespace Assembly.KEGG.DBGET.LinkDB
         ''' <param name="sp"></param>
         ''' <param name="EXPORT"></param>
         ''' <returns></returns>
-        Public Iterator Function Downloads(sp As String, Optional EXPORT As String = "./LinkDB-Pathways/") As IEnumerable(Of Pathway)
+        Public Function Downloads(sp$,
+                                  Optional EXPORT$ = "./LinkDB-Pathways/",
+                                  Optional forceUpdate As Boolean = False) As IEnumerable(Of String())
+
             Dim entries As New List(Of ListEntry)
             Dim briefHash As Dictionary(Of String, BriteHEntry.Pathway) =
                 BriteHEntry.Pathway.LoadDictionary
             Dim Downloader As New WebClient()
             Dim Progress As New ProgressBar("KEGG LinkDB Downloads KEGG Pathways....", cls:=True)
+            Dim failures As New List(Of String)
 
             VBDebugger.Mute = True
 
@@ -94,28 +99,37 @@ Namespace Assembly.KEGG.DBGET.LinkDB
                 Dim path As String = EXPORT & "/webpages/" & entry.EntryID & ".html"
                 Dim img As String = EXPORT & $"/{entry.EntryID}.png"
                 Dim bCode As String = Regex.Match(entry.EntryID, "\d+").Value
+                Dim xml$ = BriteHEntry.Pathway.CombineDIR(briefHash(bCode), EXPORT) & $"/{entry.EntryID}.Xml"
+
+                If xml.FileLength > 0 AndAlso img.FileLength > 0 Then
+                    If Not forceUpdate Then
+                        GoTo EXIT_LOOP
+                    End If
+                End If
 
                 Call pathwayPage.GET.SaveTo(path)
                 Call Downloader.DownloadFile(ImageUrl, img)
 
                 Dim data As Pathway = Pathway.DownloadPage(path)
 
-                entries += entry
-                data.Genes = KEGGgenes.Download($"http://www.genome.jp/dbget-bin/get_linkdb?-t+genes+path:{entry.EntryID}").ToArray
+                If data Is Nothing Then
+                    failures += entry.EntryID
+                Else
+                    entries += entry
+                    data.Genes = KEGGgenes.Download($"http://www.genome.jp/dbget-bin/get_linkdb?-t+genes+path:{entry.EntryID}").ToArray
 
-                path = BriteHEntry.Pathway.CombineDIR(briefHash(bCode), EXPORT)
-                path = path & $"/{entry.EntryID}.Xml"
+                    Call data.SaveAsXml(path)
+                End If
 
-                Call data.SaveAsXml(path)
-
-                Yield data
-
-                Call Progress.SetProgress(++i / all.Length * 100, data.Name)
+                Call Thread.Sleep(1000)
+EXIT_LOOP:      Call Progress.SetProgress(++i / all.Length * 100, entry.GetJson)
             Next
 
             VBDebugger.Mute = False
 
             Call entries.GetJson.SaveTo(EXPORT & $"/{sp}.json")
+
+            Return failures
         End Function
     End Module
 End Namespace
