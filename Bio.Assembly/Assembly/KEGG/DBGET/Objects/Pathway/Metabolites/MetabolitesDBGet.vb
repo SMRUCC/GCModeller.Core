@@ -29,7 +29,11 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         ''' <param name="url"></param>
         ''' <returns></returns>
         Public Function DownloadCompoundFrom(url As String) As Compound
-            Dim html As New WebForm(url)
+            Return New WebForm(url).ParseCompound
+        End Function
+
+        <Extension>
+        Public Function ParseCompound(html As WebForm) As Compound
             Dim links As DBLinks = GetDBLinks(html.GetValue("Other DBs").FirstOrDefault)
             Dim cpd As New Compound(links) With {
                 .Entry = Regex.Match(html.GetValue("Entry").FirstOrDefault, "[GC]\d+").Value,

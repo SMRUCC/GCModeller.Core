@@ -69,7 +69,10 @@ Module DEBUG_MAIN
 
         Dim cpdTest As KEGG.DBGET.bGetObject.Compound = MetabolitesDBGet.DownloadCompoundFrom("G:\GCModeller\GCModeller\test\KEGG\dbget\cpd_Test.html") 'MetabolitesDBGet.DownloadCompound("C00311")
 
+        ' Call "http://www.kegg.jp/dbget-bin/www_bget?gl:G00112".GET.SaveTo("x:\gl_Test.html")
 
+
+        Dim KEGG_gl As Glycan = Glycan.DownloadFrom("G:\GCModeller\GCModeller\test\KEGG\dbget\gl_Test.html")
 
         Pause()
 
