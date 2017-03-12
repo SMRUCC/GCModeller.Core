@@ -652,9 +652,6 @@
     <None Include="Resources\ko00002.keg.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\br08201.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ko00001.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -749,6 +746,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\KEGG\Compounds\br08010.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KEGG\Reactions\br08201.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KEGG\Reactions\br08202.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KEGG\Reactions\br08203.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

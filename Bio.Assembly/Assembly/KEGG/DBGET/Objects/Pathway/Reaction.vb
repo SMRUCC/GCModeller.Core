@@ -41,6 +41,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
     ''' KEGG reaction annotation data.
     ''' </summary>
     ''' <remarks></remarks>
+    <XmlRoot("bGetObject.Reaction", [Namespace]:="http://GCModeller.org/core/assembly/KEGG/dbget/reaction?rn:r_ID")>
     Public Class Reaction : Implements INamedValue
 
         <XmlAttribute>
