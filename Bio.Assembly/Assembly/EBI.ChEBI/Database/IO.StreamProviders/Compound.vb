@@ -1,4 +1,6 @@
 ﻿Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text
@@ -6,10 +8,15 @@ Imports Microsoft.VisualBasic.Text
 Namespace Assembly.EBI.ChEBI.Database.IO.StreamProviders.Tsv
 
     Public Class Compound
+        Implements INamedValue
 
         Public Property ID As String
         Public Property STATUS As String
-        Public Property CHEBI_ACCESSION As String
+        ''' <summary>
+        ''' ``CHEBI:\d+``
+        ''' </summary>
+        ''' <returns></returns>
+        Public Property CHEBI_ACCESSION As String Implements INamedValue.Key
         Public Property SOURCE As String
         Public Property PARENT_ID As String
         Public Property NAME As String
@@ -20,6 +27,16 @@ Namespace Assembly.EBI.ChEBI.Database.IO.StreamProviders.Tsv
 
         Public Overrides Function ToString() As String
             Return Me.GetJson
+        End Function
+
+        Public Shared Function LoadTable(path$) As Dictionary(Of String, Compound)
+            Dim data As Compound() = Load(path)
+            Dim nameds As NamedValue(Of Compound)() = data _
+                .Select(Function(c) New NamedValue(Of Compound) With {
+                    .Name = c.CHEBI_ACCESSION.GetTagValue(":", trim:=True).Value,
+                    .Value = c
+                }).ToArray
+            Return nameds.ToDictionary(Function(k) k.Name, Function(v) v.Value)
         End Function
 
         Public Shared Function Load(path$) As Compound()
