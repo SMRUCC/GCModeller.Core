@@ -50,7 +50,7 @@ Namespace SequenceModel.NucleotideModels
             End With
         End Sub
 
-        Public Function IsAValidDNAChar(c As Char) As Boolean
+        Public Shared Function IsAValidDNAChar(c As Char) As Boolean
             Return validsChars(c) > -1
         End Function
 
