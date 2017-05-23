@@ -54,5 +54,14 @@ Namespace Assembly.EBI.ChEBI
 
             Return chebiIDlist
         End Function
+
+        '''' <summary>
+        '''' 从一个chebi编号查找出其他的编号，相当于查找``Secondary ChEBI IDs``关联结果
+        '''' </summary>
+        '''' <param name="chebiID$"></param>
+        '''' <returns></returns>
+        'Public Function FoundOthersChebiID(chebi As [NameOf], chebiID$) As String()
+
+        'End Function
     End Module
 End Namespace
