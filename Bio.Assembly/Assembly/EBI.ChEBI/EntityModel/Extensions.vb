@@ -63,5 +63,36 @@ Namespace Assembly.EBI.ChEBI
         'Public Function FoundOthersChebiID(chebi As [NameOf], chebiID$) As String()
 
         'End Function
+
+        ''' <summary>
+        ''' 查找目标和指定的编号是否为``Secondary ChEBI IDs``关联结果
+        ''' </summary>
+        ''' <param name="compound"></param>
+        ''' <param name="chebiID$">
+        ''' 可能有两种形式：
+        ''' 
+        ''' 带有前缀的：CHEBI:4108
+        ''' 没有前缀的：4108
+        ''' </param>
+        ''' <returns></returns>
+        <Extension> Public Function TheSameAs(compound As ChEBIEntity, chebiID$) As Boolean
+            If chebiID.IndexOf(":"c) = -1 Then
+                chebiID = "CHEBI:" & chebiID
+            End If
+
+            With compound
+                If .chebiId.TextEquals(chebiID) Then
+                    Return True
+                End If
+
+                For Each id$ In .SecondaryChEBIIds
+                    If id.TextEquals(chebiID) Then
+                        Return True
+                    End If
+                Next
+            End With
+
+            Return False
+        End Function
     End Module
 End Namespace
