@@ -14,7 +14,7 @@ Namespace Assembly.EBI.ChEBI
         ''' <param name="chebi">可以使用<see cref="DATA.LoadNameOfDatabaseFromTsv"/>函数来构建出数据库参数</param>
         ''' <param name="id$"></param>
         ''' <param name="idtype"></param>
-        ''' <param name="mass#"></param>
+        ''' <param name="mass#">假设这个值是不会有大问题的</param>
         ''' <param name="names$"></param>
         ''' <returns></returns>
         <Extension>
@@ -35,10 +35,14 @@ Namespace Assembly.EBI.ChEBI
                     .Select(Of String)("COMPOUND_ID") _
                     .Distinct _
                     .ToArray
+            Else
+            End If
+
+            If mass > 0 Then
                 ' 这些所获取得到的编号可能是一种物质的不同的化学形式
                 ' 也可能是字符串模糊匹配出错了
                 ' 之后还需要依靠mass来确定一个符合结果要求的编号
-                Dim comfirm As New List(Of String)
+re0:            Dim comfirm As New List(Of String)
 
                 For Each id$ In chebiIDlist
                     Dim chemical = chebi.GetChemicalDatas(chebiID:=id)

@@ -256,6 +256,11 @@ Namespace Assembly.EBI.ChEBI
         Public Function MatchByID(ID$, type As AccessionTypes, Optional ByRef chebi$ = Nothing) As Tables.Accession()
             Dim list As Tables.Accession() = DbXrefs(type)
 
+            If ID.StringEmpty Then
+                ' 空的编号字符串，则肯定没有结果
+                Return {}
+            End If
+
             For Each accID As Tables.Accession In list
                 If ID.TextEquals(accID.ACCESSION_NUMBER) Then
                     With accID
