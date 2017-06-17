@@ -63,7 +63,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
 
             DIR = DIR & "/" & ChEBI
 
-            Using progress As New ProgressBar("Download missing ChEBI compounds data...", cls:=True)
+            Using progress As New ProgressBar("Download missing ChEBI compounds data...", CLS:=True)
                 Dim tick As New ProgressProvider(accs.Length)
 
                 Call $"Have {downloads.Count} compounds have been downloaded...".__DEBUG_ECHO
@@ -98,7 +98,7 @@ EXIT_LOOP:
                     ETA = tick.ETA(progress.ElapsedMilliseconds).FormatTime
                     Call progress.SetProgress(
                         tick.StepProgress,
-                        detail:=ETA)
+                        details:=ETA)
                 Next
             End Using
 
