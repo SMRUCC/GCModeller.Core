@@ -27,6 +27,7 @@
 #End Region
 
 Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.Data.csv
@@ -79,8 +80,7 @@ Public Module Installer
                         }
                         Call DbWriter.Flush(idx)   ' 将对象写入内存缓存，进入队列等待回写入文件系统
 
-                        genes += gb.GbffToORF_PTT.GeneObjects.ToArray(
-                            Function(g) New GeneInfo(g, idx.AccId))
+                        genes += gb.GbffToORF_PTT.GeneObjects.Select(Function(g) New GeneInfo(g, idx.AccId))
                     Next
                 Next
 
