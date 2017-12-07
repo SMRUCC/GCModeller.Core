@@ -1,28 +1,28 @@
-﻿#Region "Microsoft.VisualBasic::56596f770719239e3ad3f6d2bc7a8918, ..\core\Bio.Assembly\SequenceModel\MWCalculator.vb"
+﻿#Region "Microsoft.VisualBasic::aa0dd6c9a364b8d3ed04f82dd9708dc7, ..\GCModeller\core\Bio.Assembly\SequenceModel\MWCalculator.vb"
 
-' Author:
-' 
-'       asuka (amethyst.asuka@gcmodeller.org)
-'       xieguigang (xie.guigang@live.com)
-'       xie (genetics@smrucc.org)
-' 
-' Copyright (c) 2016 GPL3 Licensed
-' 
-' 
-' GNU GENERAL PUBLIC LICENSE (GPL3)
-' 
-' This program is free software: you can redistribute it and/or modify
-' it under the terms of the GNU General Public License as published by
-' the Free Software Foundation, either version 3 of the License, or
-' (at your option) any later version.
-' 
-' This program is distributed in the hope that it will be useful,
-' but WITHOUT ANY WARRANTY; without even the implied warranty of
-' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-' GNU General Public License for more details.
-' 
-' You should have received a copy of the GNU General Public License
-' along with this program. If not, see <http://www.gnu.org/licenses/>.
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #End Region
 
@@ -63,13 +63,12 @@ Namespace SequenceModel
             {AminoAcid.Valine, 99.1311}
         }
 
-        Private ReadOnly NucleicAcidsMolecularWeights As SortedDictionary(Of Char, Double) =
-            New SortedDictionary(Of Char, Double) From {
-                {"A"c, 491.2},
-                {"C"c, 467.2},
-                {"G"c, 507.2},
-                {"T"c, 482.2},
-                {"U"c, 324.2}
+        Private ReadOnly NucleicAcidsMolecularWeights As New SortedDictionary(Of Char, Double) From {
+            {"A"c, 491.2},
+            {"C"c, 467.2},
+            {"G"c, 507.2},
+            {"T"c, 482.2},
+            {"U"c, 324.2}
         }
 
         ''' <summary>
@@ -77,6 +76,8 @@ Namespace SequenceModel
         ''' </summary>
         ''' <param name="SequenceData"></param>
         ''' <returns></returns>
+        ''' 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
         <ExportAPI("MW.Polypeptide")>
         Public Function CalcMW_Polypeptide(SequenceData As ISequenceModel) As Double
             Return SequenceData.SequenceData.CalcMW_Polypeptide
@@ -96,6 +97,8 @@ Namespace SequenceModel
         ''' </summary>
         ''' <param name="SequenceData"></param>
         ''' <returns></returns>
+        ''' 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
         <ExportAPI("MW.NT")>
         Public Function CalcMW_Nucleotides(SequenceData As ISequenceModel) As Double
             With SequenceData.SequenceData

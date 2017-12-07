@@ -1,28 +1,28 @@
-﻿#Region "Microsoft.VisualBasic::8788f6af25db6ab0258c149a03d17967, ..\core\Bio.Assembly\BioAssemblyExtensions.vb"
+﻿#Region "Microsoft.VisualBasic::e15eb4639791097d53b60fddeb6f625d, ..\GCModeller\core\Bio.Assembly\BioAssemblyExtensions.vb"
 
-' Author:
-' 
-'       asuka (amethyst.asuka@gcmodeller.org)
-'       xieguigang (xie.guigang@live.com)
-'       xie (genetics@smrucc.org)
-' 
-' Copyright (c) 2016 GPL3 Licensed
-' 
-' 
-' GNU GENERAL PUBLIC LICENSE (GPL3)
-' 
-' This program is free software: you can redistribute it and/or modify
-' it under the terms of the GNU General Public License as published by
-' the Free Software Foundation, either version 3 of the License, or
-' (at your option) any later version.
-' 
-' This program is distributed in the hope that it will be useful,
-' but WITHOUT ANY WARRANTY; without even the implied warranty of
-' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-' GNU General Public License for more details.
-' 
-' You should have received a copy of the GNU General Public License
-' along with this program. If not, see <http://www.gnu.org/licenses/>.
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #End Region
 
@@ -80,7 +80,7 @@ Public Module BioAssemblyExtensions
     ''' </summary>
     ''' <param name="base"></param>
     ''' <returns></returns>
-    ''' 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     <Extension>
     Public Function IsPure(base As Char) As Integer
         Select Case base
@@ -130,6 +130,8 @@ Public Module BioAssemblyExtensions
     ''' </summary>
     ''' <param name="strand"></param>
     ''' <returns></returns>
+    ''' 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     <Extension> Public Function GetBriefCode(strand As Strands) As String
         Select Case strand
             Case Strands.Forward : Return "+"
@@ -145,6 +147,8 @@ Public Module BioAssemblyExtensions
     ''' </summary>
     ''' <param name="strand"></param>
     ''' <returns></returns>
+    ''' 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     <Extension> Public Function GetBriefStrandCode(strand As String) As String
         Dim value As Strands = GetStrand(strand)
         Return value.GetBriefCode
@@ -156,6 +160,8 @@ Public Module BioAssemblyExtensions
     ''' <param name="c">从文本文件之中所读取出来关于链方向的字符串描述数据</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
+    ''' 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
     <Extension> Public Function GetStrands(c As Char) As Strands
         Return CStr(c).GetStrand
     End Function
@@ -213,8 +219,8 @@ Public Module BioAssemblyExtensions
             If hash < 1 Then
                 Call Groups.Add(++idx, New List(Of Contig) From {loci})      ' 新的分组
             Else
-                Dim lst As List(Of Contig) = Groups(hash)
-                Call lst.Add(item:=loci)
+                Dim list As List(Of Contig) = Groups(hash)
+                Call list.Add(item:=loci)
             End If
         Next
 
