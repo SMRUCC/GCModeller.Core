@@ -89,7 +89,8 @@ Namespace Assembly.KEGG.WebServices
                                             .ToArray
                                     }
                                 }
-                            End Function)
+                            End Function) _
+                    .ToArray
             }
         End Function
     End Class
