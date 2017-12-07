@@ -25,6 +25,7 @@ Namespace Assembly.KEGG.WebServices
         End Property
         Public Property Map As Map
 
+        <XmlIgnore>
         Public ReadOnly Property Index As Index(Of String)
 
         Public ReadOnly Property MapTitle As String
