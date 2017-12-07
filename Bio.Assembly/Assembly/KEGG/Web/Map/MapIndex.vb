@@ -1,5 +1,6 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports System.Xml.Serialization
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.Language.UnixBash
@@ -12,8 +13,19 @@ Namespace Assembly.KEGG.WebServices
 
         <XmlAttribute>
         Public Property MapID As String Implements IKeyedEntity(Of String).Key
-        Public Property Index As TermsVector
+        Public Property KeyVector As TermsVector
+            Get
+                Return New TermsVector With {
+                    .Terms = Index.Objects
+                }
+            End Get
+            Set(value As TermsVector)
+                _Index = New Index(Of String)(value.Terms)
+            End Set
+        End Property
         Public Property Map As Map
+
+        Public ReadOnly Property Index As Index(Of String)
 
         Public ReadOnly Property MapTitle As String
             <MethodImpl(MethodImplOptions.AggressiveInlining)>
@@ -43,6 +55,16 @@ Namespace Assembly.KEGG.WebServices
         ''' Get by ID
         ''' </summary>
         Dim table As Dictionary(Of String, MapIndex)
+
+        Public Iterator Function QueryMapsByMembers(entity As IEnumerable(Of String)) As IEnumerable(Of Map)
+            For Each key As String In entity
+                For Each map As MapIndex In table.Values
+                    If map.Index.IndexOf(key) > -1 Then
+                        Yield map.Map
+                    End If
+                Next
+            Next
+        End Function
 
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Function Exists(key As String) As Boolean Implements IRepositoryRead(Of String, MapIndex).Exists
@@ -79,7 +101,7 @@ Namespace Assembly.KEGG.WebServices
                                 Return New MapIndex With {
                                     .Map = map,
                                     .MapID = map.ID,
-                                    .Index = New TermsVector With {
+                                    .KeyVector = New TermsVector With {
                                         .Terms = map _
                                             .Areas _
                                             .Select(Function(a) a.IDVector) _
