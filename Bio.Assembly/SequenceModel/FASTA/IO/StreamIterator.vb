@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::d0a7945528a3f606a6afbf342044e020, ..\core\Bio.Assembly\SequenceModel\FASTA\IO\StreamIterator.vb"
+﻿#Region "Microsoft.VisualBasic::aa546db6a5232b46e2cf4fd977266e42, ..\GCModeller\core\Bio.Assembly\SequenceModel\FASTA\IO\StreamIterator.vb"
 
 ' Author:
 ' 
@@ -27,6 +27,7 @@
 #End Region
 
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Language.Default
 Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Serialization.JSON
 
@@ -125,7 +126,7 @@ Namespace SequenceModel.FASTA
         ''' 默认的Fasta文件拓展名列表
         ''' </summary>
         ''' <returns></returns>
-        Public Shared ReadOnly Property DefaultSuffix As String() = {"*.fasta", "*.fa", "*.fsa", "*.fas"}
+        Public Shared ReadOnly Property DefaultSuffix As DefaultValue(Of String()) = {"*.fasta", "*.fa", "*.fsa", "*.fas"}
 
         ''' <summary>
         ''' 全部都是使用<see cref="StreamIterator"/>对象来进行读取的
@@ -145,15 +146,12 @@ Namespace SequenceModel.FASTA
                     Yield fa
                 Next
             Else
-                If ext.IsNullOrEmpty Then
-                    ext = DefaultSuffix
-                End If
                 If debug Then
                     Call "Directory exists, reading fasta data from files in DATA directory...".__DEBUG_ECHO
-                    Call $"File types: {ext.GetJson}".__DEBUG_ECHO
+                    Call $"File types: {(ext Or DefaultSuffix).GetJson}".__DEBUG_ECHO
                 End If
 
-                For Each file As String In ls - l - r - ext <= handle
+                For Each file As String In ls - l - r - (ext Or DefaultSuffix) <= handle
                     If debug Then
                         Call file.ToFileURL.__DEBUG_ECHO
                     End If

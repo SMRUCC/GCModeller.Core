@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::8e5332cec3c6a9795dd516e30ea1117d, ..\core\Bio.Assembly\SequenceModel\Patterns\IPatterns.vb"
+﻿#Region "Microsoft.VisualBasic::1651976c45076e72fc719a191cbb8fe9, ..\GCModeller\core\Bio.Assembly\SequenceModel\Patterns\IPatterns.vb"
 
     ' Author:
     ' 
@@ -27,13 +27,8 @@
 #End Region
 
 Imports System.Runtime.CompilerServices
-Imports System.Text
-Imports SMRUCC.genomics.SequenceModel.FASTA
-Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports Microsoft.VisualBasic.Scripting.MetaData
-Imports Microsoft.VisualBasic.Serialization
-Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace SequenceModel.Patterns
@@ -72,6 +67,7 @@ Namespace SequenceModel.Patterns
         End Property
 
         Default Public ReadOnly Property Probability(c As Char) As Double Implements IPatternSite.Probability
+            <MethodImpl(MethodImplOptions.AggressiveInlining)>
             Get
                 Return _Alphabets(c)
             End Get
@@ -88,10 +84,12 @@ Namespace SequenceModel.Patterns
             Return Alphabets.GetJson
         End Function
 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Function EnumerateKeys() As IEnumerable(Of Char) Implements IPatternSite.EnumerateKeys
             Return Alphabets.Keys
         End Function
 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Function EnumerateValues() As IEnumerable(Of Double) Implements IPatternSite.EnumerateValues
             Return Alphabets.Values
         End Function
@@ -105,6 +103,7 @@ Namespace SequenceModel.Patterns
         Public ReadOnly Property Residues As SimpleSite()
 
         Default Public ReadOnly Property Site(i As Integer) As IPatternSite Implements IPatternProvider.Site
+            <MethodImpl(MethodImplOptions.AggressiveInlining)>
             Get
                 Return Residues(i)
             End Get

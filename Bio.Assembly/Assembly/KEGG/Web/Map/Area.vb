@@ -1,4 +1,33 @@
-﻿Imports System.Drawing
+﻿#Region "Microsoft.VisualBasic::f28696259b69c41c3c410b1ef2c3a0e6, ..\GCModeller\core\Bio.Assembly\Assembly\KEGG\Web\Map\Area.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xieguigang (xie.guigang@live.com)
+    '       xie (genetics@smrucc.org)
+    ' 
+    ' Copyright (c) 2016 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+#End Region
+
+Imports System.Drawing
+Imports System.Runtime.CompilerServices
 Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
@@ -48,15 +77,15 @@ Namespace Assembly.KEGG.WebServices
         Public ReadOnly Property Type As String
             Get
                 If InStr(href, "/dbget-bin/www_bget") = 1 Then
-                    With IDVector.First
-                        If .IsPattern("[CDG]\d+") Then
+                    With IDVector
+                        If .First.IsPattern("[CDG]\d+") Then
                             ' compound, drug, glycan
                             Return NameOf(Compound)
-                        ElseIf .IndexOf(":"c) > -1 Then
+                        ElseIf (shape = "rect" AndAlso .Any(Function(id) id.IsPattern("K\d+"))) OrElse .First.IndexOf(":"c) > -1 Then
                             Return "Gene"
-                        ElseIf .IsPattern("R\d+") Then
+                        ElseIf .First.IsPattern("R\d+") Then
                             Return "Reaction"
-                        ElseIf shape = "rect" AndAlso .IndexOf(":"c) = -1 Then
+                        ElseIf shape = "rect" AndAlso .First.IndexOf(":"c) = -1 Then
                             Return NameOf(Pathway)
                         ElseIf shape = "poly" Then
                             Return "Reaction"
@@ -73,6 +102,7 @@ Namespace Assembly.KEGG.WebServices
         End Property
 
         Public ReadOnly Property IDVector As String()
+            <MethodImpl(MethodImplOptions.AggressiveInlining)>
             Get
                 Return href.Split("?"c).Last.Split("+"c)
             End Get
@@ -86,7 +116,7 @@ Namespace Assembly.KEGG.WebServices
                     .Select(Function(s)
                                 Dim name = s.GetTagValue(" ")
                                 Return New NamedValue(Of String) With {
-                                    .name = name.Name,
+                                    .Name = name.Name,
                                     .Value = name.Value.GetStackValue("(", ")")
                                 }
                             End Function) _
@@ -97,7 +127,7 @@ Namespace Assembly.KEGG.WebServices
         End Property
 
         Public Overrides Function ToString() As String
-            Return Me.GetJson
+            Return $"[{shape}] {IDVector.GetJson}"
         End Function
 
         Public Shared Function Parse(line$) As Area

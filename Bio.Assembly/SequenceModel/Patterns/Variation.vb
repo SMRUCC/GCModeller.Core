@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::90714979183a25f8253c8e758e9b417c, ..\core\Bio.Assembly\SequenceModel\Patterns\Variation.vb"
+﻿#Region "Microsoft.VisualBasic::c72ad99a969ebd8496e766fa201a025d, ..\GCModeller\core\Bio.Assembly\SequenceModel\Patterns\Variation.vb"
 
 ' Author:
 ' 
@@ -26,6 +26,7 @@
 
 #End Region
 
+Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm.base
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
@@ -86,6 +87,7 @@ Namespace SequenceModel.Patterns
             Return out
         End Function
 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Shared Function Build(source As FastaFile, ref$) As SeqValue(Of Dictionary(Of String, Variations))()
             Try
                 Return Build(source, source.Index(ref$))

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::4c2384b9a3f314c7e380d228b610ea4e, ..\core\Bio.Assembly\Test.Project\DEBUG_MAIN.vb"
+﻿#Region "Microsoft.VisualBasic::91961d1a2533ef921c71877a6fcffcf2, ..\GCModeller\core\Testing\DEBUG_MAIN.vb"
 
     ' Author:
     ' 
@@ -244,7 +244,7 @@ Module DEBUG_MAIN
         Dim model = CompilerAPI.Compile("F:\1.13.RegPrecise_network\Cellular Phenotypes\KEGG_Pathways", "F:\1.13.RegPrecise_network\Cellular Phenotypes\KEGG_Modules", "F:\GCModeller\KEGG\Reactions", "xcb")
         Call model.SaveAsXml("x:\dfsasdfsdf.kegg.xml")
 
-        Dim rxns = FileIO.FileSystem.GetFiles("F:\GCModeller\KEGG\Reactions", FileIO.SearchOption.SearchAllSubDirectories, "*.xml").ToArray(Function(x) x.LoadXml(Of KEGG.DBGET.bGetObject.Reaction))
+        Dim rxns = FileIO.FileSystem.GetFiles("F:\GCModeller\KEGG\Reactions", FileIO.SearchOption.SearchAllSubDirectories, "*.xml").Select(Function(x) x.LoadXml(Of KEGG.DBGET.bGetObject.Reaction)).ToArray
 
 
 
