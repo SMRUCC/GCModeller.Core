@@ -9,6 +9,22 @@ Namespace Metagenomics
         Public Delegate Function TaxonomyProjector(Of T)(obj As T) As Taxonomy
 
         ''' <summary>
+        ''' 判断当前的这个<paramref name="rank"/>字符串所代表的物种分类名称是否是空的？？
+        ''' </summary>
+        ''' <param name="rank"></param>
+        ''' <returns></returns>
+        ''' 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        <Extension>
+        Public Function TaxonomyRankEmpty(rank As String) As Boolean
+            Return rank.StringEmpty OrElse
+                rank.TextEquals("NA") OrElse
+                rank.TextEquals("unclassified") OrElse
+                rank.TextEquals("unknown") OrElse
+                rank.TextEquals("Unassigned")
+        End Function
+
+        ''' <summary>
         ''' 
         ''' </summary>
         ''' <typeparam name="T"></typeparam>
@@ -41,7 +57,7 @@ Namespace Metagenomics
 
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         <Extension>
-        Public Function SelectByTaxonomyRange(relativeAbundance As Dictionary(Of Taxonomy, Double), ref As Taxonomy) As IEnumerable(Of Double)
+        Public Function SelectByTaxonomyRange(relativeAbundance As IEnumerable(Of KeyValuePair(Of Taxonomy, Double)), ref As Taxonomy) As IEnumerable(Of Double)
             Return relativeAbundance.SelectByTaxonomyRange(ref, Function(tax) tax.Key, Function(tax) tax.Value)
         End Function
     End Module
