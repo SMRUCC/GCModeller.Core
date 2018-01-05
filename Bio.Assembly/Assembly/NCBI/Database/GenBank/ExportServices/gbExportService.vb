@@ -167,7 +167,7 @@ Namespace Assembly.NCBI.GenBank
         ''' <param name="ORF">默认参数值为True，表示只导出蛋白编码基因的位置信息</param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        <Extension> Public Function GbkffExportToPTT(genbank As GBFF.File, Optional ORF As Boolean = True) As TabularFormat.PTT
+        <Extension> Public Function GbffToPTT(genbank As GBFF.File, Optional ORF As Boolean = True) As TabularFormat.PTT
             Dim assert As Assert(Of Feature)
 
             If ORF Then
