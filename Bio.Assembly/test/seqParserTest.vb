@@ -10,8 +10,8 @@ Module seqParserTest
 
         For i As Integer = 0 To 9
             Dim gene = genes(i)
-            Dim seq = nt.CutSequenceCircular(gene.Location)
-            Dim fa = seq.SimpleFasta
+            Dim seq = nt.CutSequenceCircular(gene.Location - 50)
+            Dim fa = seq.SimpleFasta(gene.Synonym)
 
             Call fa.SaveTo($"./{i}.fasta")
         Next
