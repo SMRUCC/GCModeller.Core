@@ -602,9 +602,6 @@
     <Compile Include="Assembly\NCBI\SeqDump\Protein.vb" />
     <Compile Include="Assembly\NCBI\WebServiceHandler\ComponentModel.vb" />
     <Compile Include="Assembly\NCBI\WebServiceHandler\Entrez\QueryHandler.vb" />
-    <Compile Include="ComponentModel\DynamicsHTML.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="ComponentModel\Loci.Models\Interfaces.vb" />
     <Compile Include="ComponentModel\Loci.Models\LociSites\LociModel.vb" />
     <Compile Include="ComponentModel\Loci.Models\ExtensionMethods.vb" />
