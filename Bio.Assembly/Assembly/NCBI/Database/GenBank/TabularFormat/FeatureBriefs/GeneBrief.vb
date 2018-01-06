@@ -98,7 +98,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat.ComponentModels
             Return DirectCast(MemberwiseClone(), GeneBrief)
         End Function
 
-        Public Function getCOGEntry(Of T_Entry As ICOGDigest)() As T_Entry
+        Public Function getCOGEntry(Of T_Entry As IFeatureDigest)() As T_Entry
             Dim obj As T_Entry = Activator.CreateInstance(Of T_Entry)()
             obj.COG = COG
             obj.Length = Length

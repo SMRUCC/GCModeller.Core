@@ -27,11 +27,8 @@
 #End Region
 
 Imports System.Runtime.CompilerServices
-Imports SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports SMRUCC.genomics.ComponentModel
 Imports SMRUCC.genomics.ComponentModel.Loci
-Imports Microsoft.VisualBasic.Linq.Extensions
-Imports Microsoft.VisualBasic
 
 Namespace ContextModel
 

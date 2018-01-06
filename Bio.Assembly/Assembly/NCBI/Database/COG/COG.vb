@@ -58,7 +58,7 @@ Namespace Assembly.NCBI.COG
             }
         End Function
 
-        Public Shared Function GetClass(Of T As ICOGDigest)(source As IEnumerable(Of T), func As [Function]) As COGFunction()
+        Public Shared Function GetClass(Of T As IFeatureDigest)(source As IEnumerable(Of T), func As [Function]) As COGFunction()
             Dim hash = func.Catalogs.Select(
                 Function(x) x.ToArray).IteratesALL _
                         .ToDictionary(Function(x) x.Catalog.First,

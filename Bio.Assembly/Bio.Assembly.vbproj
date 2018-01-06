@@ -573,7 +573,7 @@
     <Compile Include="ComponentModel\Loci.Models\LociSites\MotifSite.vb" />
     <Compile Include="ContextModel\Algorithm\Context.vb" />
     <Compile Include="ContextModel\Algorithm\ContextCore.vb" />
-    <Compile Include="ContextModel\Algorithm\Operon.vb" />
+    <Compile Include="ContextModel\Operon\Operon.vb" />
     <Compile Include="ContextModel\Algorithm\ContextProvider.vb" />
     <Compile Include="ContextModel\Algorithm\TFDensity.vb" />
     <Compile Include="ContextModel\Extensions.vb" />
