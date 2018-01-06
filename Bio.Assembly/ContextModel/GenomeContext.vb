@@ -21,6 +21,13 @@ Namespace ContextModel
         ''' </summary>
         Dim contextName$
 
+        Default Public ReadOnly Property Feature(i As Integer) As T
+            <MethodImpl(MethodImplOptions.AggressiveInlining)>
+            Get
+                Return sequence(i)
+            End Get
+        End Property
+
         ''' <summary>
         ''' The number of genes in this genome
         ''' </summary>

@@ -104,5 +104,46 @@ Namespace ContextModel.Operon
                 .ToDictionary(Function(feature) feature,
                               Function(i) P(i, genomes))
         End Function
+
+        ''' <summary>
+        ''' For the Hamming distance between two genes A And B, we sum the number Of times that only A Or B Is found in the genome, 
+        ''' DH=Sum([1,n], di)‚ where n Is the number of genomes, di=0 if the orthologs of A And B are both present Or both absent in genome i, 
+        ''' And di = 1 otherwise.
+        ''' </summary>
+        ''' <typeparam name="T"></typeparam>
+        ''' <param name="A$"></param>
+        ''' <param name="B$"></param>
+        ''' <param name="genomes"></param>
+        ''' <returns></returns>
+        Public Function DHamming(Of T As IGeneBrief)(A$, B$, genomes As GenomeContext(Of T)()) As Integer
+            Dim D%
+
+            For Each i In genomes
+                If i.Absent(A) AndAlso i.Absent(B) Then
+                    D += 0
+                ElseIf Not i.Absent(A) AndAlso Not i.Absent(B) Then
+                    D += 0
+                Else
+                    D += 1
+                End If
+            Next
+
+            Return D
+        End Function
+
+        ''' <summary>
+        ''' The score is calculated as the natural log of the length ratio of upstream gene And downstream gene, 
+        ''' Or L = ln(li/lj), j = i + 1, whereas li And lj are the length of the genes.
+        ''' </summary>
+        ''' <typeparam name="T"></typeparam>
+        ''' <param name="i%"></param>
+        ''' <param name="genome"></param>
+        ''' <returns></returns>
+        Public Function LengthRatio(Of T As IGeneBrief)(i%, genome As GenomeContext(Of T)) As Double
+            Dim j = i + 1
+            Dim gi = genome(i), gj = genome(j)
+            Dim l = Math.Log(gi.Length / gj.Length)
+            Return l
+        End Function
     End Module
 End Namespace
