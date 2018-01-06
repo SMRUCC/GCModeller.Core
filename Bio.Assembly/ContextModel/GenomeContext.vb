@@ -15,6 +15,23 @@ Namespace ContextModel
         ''' </summary>
         Dim contextName$
 
+        ''' <summary>
+        ''' The number of genes in this genome
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property N As Integer
+            Get
+                Return plus.Length + minus.Length
+            End Get
+        End Property
+
+        Public ReadOnly Property AllFeatureKeys As String()
+            <MethodImpl(MethodImplOptions.AggressiveInlining)>
+            Get
+                Return featureTags.Keys.ToArray
+            End Get
+        End Property
+
         Sub New(genome As IEnumerable(Of T), Optional name$ = "unnamed")
             featureTags = genome _
                 .GroupBy(Function(g)
@@ -32,6 +49,16 @@ Namespace ContextModel
             contextName = name
         End Sub
 
+        ''' <summary>
+        ''' The number of genes between feature 1 and feature 2.
+        ''' </summary>
+        ''' <param name="feature1$"></param>
+        ''' <param name="feature2$"></param>
+        ''' <returns></returns>
+        Public Function Delta(feature1$, feature2$) As Integer
+
+        End Function
+
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Private Function selectByStrand(strand As Strands) As T()
             Return featureTags _
@@ -47,6 +74,11 @@ Namespace ContextModel
             Else
                 Return {}
             End If
+        End Function
+
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Function Absent(feature As String) As Boolean
+            Return Not featureTags.ContainsKey(feature)
         End Function
 
         Public Overrides Function ToString() As String
