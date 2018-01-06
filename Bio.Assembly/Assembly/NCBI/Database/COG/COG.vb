@@ -65,11 +65,14 @@ Namespace Assembly.NCBI.COG
                                       Function(x) New With {
                                         .fun = x,
                                         .count = New List(Of String)})
-            Dim locus = source.Select(
-                Function(x) New With {
-                    x.Key,
-                    .COG = Strings.UCase([Function].__trimCOGs(x.COG))
-                }).ToArray
+            Dim locus = source _
+                .Select(Function(x)
+                            Return New With {
+                                x.Key,
+                                .COG = Strings.UCase([Function].__trimCOGs(x.Feature))
+                            }
+                        End Function) _
+                .ToArray
 
             hash.Add("-", New With {.fun = __notAssigned(), .count = New List(Of String)})
 

@@ -48,9 +48,9 @@ Namespace Assembly.DOOR
         Public Property OperonID As String Implements INamedValue.Key
         Public Property GI As String
         Public Property Synonym As String
-        Public Property Length As Integer Implements IFeatureDigest.Length
-        Public Property COG_number As String Implements IFeatureDigest.COG
-        Public Property Product As String Implements IFeatureDigest.Product
+        Public Property Length As Integer Implements IGeneBrief.Length
+        Public Property COG_number As String Implements IFeatureDigest.Feature
+        Public Property Product As String Implements IGeneBrief.Product
         Public Property Location As NucleotideLocation Implements IContig.Location
 
         Public Overrides Function ToString() As String

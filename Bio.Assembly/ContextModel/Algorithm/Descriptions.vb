@@ -51,7 +51,7 @@ Namespace ContextModel
 
         <Extension> Public Function BlankSegment(Of T As IGeneBrief)(Location As NucleotideLocation) As T
             Dim BlankData = Activator.CreateInstance(Of T)()
-            BlankData.COG = BLANK_VALUE
+            BlankData.Feature = BLANK_VALUE
             BlankData.Product = BLANK_VALUE
             BlankData.Key = BLANK_VALUE
             BlankData.Length = Location.FragmentSize
