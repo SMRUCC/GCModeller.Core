@@ -1,28 +1,46 @@
-﻿#Region "Microsoft.VisualBasic::744aef6eb5f85d0da573832c16abebef, ..\GCModeller\core\Bio.Assembly\ContextModel\PromoterRegionParser.vb"
+﻿#Region "Microsoft.VisualBasic::e5fff411fdc6c3e7579edeb9a5c64d8e, core\Bio.Assembly\ContextModel\Promoter\PromoterRegionParser.vb"
 
-' Author:
-' 
-'       asuka (amethyst.asuka@gcmodeller.org)
-'       xieguigang (xie.guigang@live.com)
-'       xie (genetics@smrucc.org)
-' 
-' Copyright (c) 2018 GPL3 Licensed
-' 
-' 
-' GNU GENERAL PUBLIC LICENSE (GPL3)
-' 
-' This program is free software: you can redistribute it and/or modify
-' it under the terms of the GNU General Public License as published by
-' the Free Software Foundation, either version 3 of the License, or
-' (at your option) any later version.
-' 
-' This program is distributed in the hope that it will be useful,
-' but WITHOUT ANY WARRANTY; without even the implied warranty of
-' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-' GNU General Public License for more details.
-' 
-' You should have received a copy of the GNU General Public License
-' along with this program. If not, see <http://www.gnu.org/licenses/>.
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xie (genetics@smrucc.org)
+    '       xieguigang (xie.guigang@live.com)
+    ' 
+    ' Copyright (c) 2018 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+
+
+    ' /********************************************************************************/
+
+    ' Summaries:
+
+    '     Class PromoterRegionParser
+    ' 
+    '         Properties: PrefixLengths, PromoterRegions
+    ' 
+    '         Function: ContainsLength, GetRegionCollectionByLength, (+2 Overloads) GetSequenceById
+    ' 
+    '         Sub: (+3 Overloads) New
+    ' 
+    ' 
+    ' /********************************************************************************/
 
 #End Region
 
@@ -50,10 +68,10 @@ Namespace ContextModel.Promoter
     <Package("Parser.Gene.Promoter", Publisher:="xie.guigang@gmail.com")>
     Public Class PromoterRegionParser
 
-        Public Shared ReadOnly Property PrefixLength As IReadOnlyList(Of Integer) = {100, 150, 200, 250, 300, 400, 500}
+        Public Shared ReadOnly Property PrefixLengths As IReadOnlyList(Of Integer) = GetPrefixLengths().ToArray
 
         Public ReadOnly Property PromoterRegions As IntegerTagged(Of Dictionary(Of String, FastaSeq))()
-        ReadOnly lengthIndex As New Index(Of Integer)(PrefixLength)
+        ReadOnly lengthIndex As New Index(Of Integer)(PrefixLengths)
 
         ''' <summary>
         ''' 基因组的Fasta核酸序列
@@ -62,15 +80,15 @@ Namespace ContextModel.Promoter
         ''' <remarks></remarks>
         Sub New(nt As FastaSeq, PTT As PTT)
             Dim genome As IPolymerSequenceModel = nt
-            Dim regions(PrefixLength.GetLength - 1) As IntegerTagged(Of Dictionary(Of String, FastaSeq))
+            Dim regions(PrefixLengths.GetLength - 1) As IntegerTagged(Of Dictionary(Of String, FastaSeq))
             Dim i As int = 0
 
             genome.SequenceData = genome.SequenceData.ToUpper
 
-            For Each l% In PrefixLength
+            For Each l% In PrefixLengths
                 regions(++i) = New IntegerTagged(Of Dictionary(Of String, FastaSeq)) With {
                     .Tag = l,
-                    .Value = CreateObject(l, PTT, genome)
+                    .Value = PTT.ParseUpstreamByLength(genome, l)
                 }
             Next
 
@@ -85,30 +103,13 @@ Namespace ContextModel.Promoter
             Call Me.New(genome.GenomeFasta, genome.ORF_PTT)
         End Sub
 
-        ''' <summary>
-        ''' 解析出所有基因前面的序列片段
-        ''' </summary>
-        ''' <param name="Length"></param>
-        ''' <param name="PTT"></param>
-        ''' <param name="nt"></param>
-        ''' <returns></returns>
-        Private Shared Function CreateObject(length As Integer, PTT As PTT, nt As IPolymerSequenceModel) As Dictionary(Of String, FASTA.FastaSeq)
-            Dim parser = From gene As ComponentModels.GeneBrief
-                         In PTT.GeneObjects.AsParallel
-                         Let upstream = gene.GetUpstreamSeq(nt, length)
-                         Select gene.Synonym,
-                             promoter = upstream
-            Dim table = parser.ToDictionary(Function(g) g.Synonym, Function(g) g.promoter)
-            Return table
-        End Function
-
         Public Function GetRegionCollectionByLength(l%) As Dictionary(Of String, FastaSeq)
-            Dim i As Integer = Me.lengthIndex.IndexOf(l)
+            Dim i% = lengthIndex.IndexOf(l)
             Return Me.PromoterRegions(i%)
         End Function
 
-        Public Function GetSequenceById(lstId As IEnumerable(Of String), <Parameter("Len")> Length As Integer) As FASTA.FastaFile
-            Return GetSequenceById(Me, lstId, Length)
+        Public Function GetSequenceById(geneIDs As IEnumerable(Of String), <Parameter("Len")> length%) As FastaFile
+            Return GetSequenceById(Me, geneIDs, length)
         End Function
 
         Shared ReadOnly default150 As DefaultValue(Of Integer) = 150.AsDefault(Function(value) Not ContainsLength(length:=DirectCast(value, Integer)))
@@ -122,7 +123,9 @@ Namespace ContextModel.Promoter
         ''' <returns></returns>
         ''' <remarks></remarks>
         <ExportAPI("Get.Sequence.By.Id")>
-        Public Shared Function GetSequenceById(parser As PromoterRegionParser, geneIDs As IEnumerable(Of String), Optional length% = 150) As FastaFile
+        Public Shared Function GetSequenceById(parser As PromoterRegionParser,
+                                               geneIDs As IEnumerable(Of String),
+                                               Optional length As PrefixLength = PrefixLength.L150) As FastaFile
             With geneIDs.Indexing
                 Dim query = From fasta
                             In parser.GetRegionCollectionByLength(length Or default150)
@@ -140,7 +143,7 @@ Namespace ContextModel.Promoter
         ''' <returns></returns>
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Private Shared Function ContainsLength(length As Integer) As Boolean
-            If Array.IndexOf(PrefixLength, length) = -1 Then
+            If Array.IndexOf(PrefixLengths, length) = -1 Then
                 Call $"The promoter region length {length} is not valid, using default value is 150bp.".__DEBUG_ECHO
             Else
                 Return True

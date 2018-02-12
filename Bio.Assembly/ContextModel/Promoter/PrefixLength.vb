@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::ad398fd9ee5658cfd20531f0fe848a71, core\Bio.Assembly\ProteinModel\Abstract.vb"
+﻿#Region "Microsoft.VisualBasic::7d97d12dfcb428fb0f6a6f614d119970, core\Bio.Assembly\ContextModel\Promoter\PrefixLength.vb"
 
     ' Author:
     ' 
@@ -31,34 +31,27 @@
 
     ' Summaries:
 
-    '     Interface IMotifDomain
+    '     Enum PrefixLength
     ' 
-    '         Properties: ID, Location
+    ' 
+    '  
+    ' 
+    ' 
     ' 
     ' 
     ' /********************************************************************************/
 
 #End Region
 
-Imports SMRUCC.genomics.ComponentModel.Loci
+Namespace ContextModel.Promoter
 
-Namespace ProteinModel
-
-    ''' <summary>
-    ''' 一个蛋白质结构域对象的抽象模型
-    ''' </summary>
-    Public Interface IMotifDomain
-
-        ''' <summary>
-        ''' 蛋白质结构域在数据库之中的编号或者名称
-        ''' </summary>
-        ''' <returns></returns>
-        Property ID As String
-        ''' <summary>
-        ''' 在蛋白质分子序列上面的位置区域
-        ''' </summary>
-        ''' <returns></returns>
-        Property Location As Location
-
-    End Interface
+    Public Enum PrefixLength As Integer
+        L100 = 100
+        L150 = 150
+        L200 = 200
+        L250 = 250
+        L300 = 300
+        L400 = 400
+        L500 = 500
+    End Enum
 End Namespace

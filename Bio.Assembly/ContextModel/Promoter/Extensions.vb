@@ -1,4 +1,47 @@
-﻿Imports System.Runtime.CompilerServices
+﻿#Region "Microsoft.VisualBasic::da0fb94164e12ada8d21bfcbf950d1f3, core\Bio.Assembly\ContextModel\Promoter\Extensions.vb"
+
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xie (genetics@smrucc.org)
+    '       xieguigang (xie.guigang@live.com)
+    ' 
+    ' Copyright (c) 2018 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+
+
+    ' /********************************************************************************/
+
+    ' Summaries:
+
+    '     Module Extensions
+    ' 
+    '         Function: GetPrefixLengths, GetUpstreamSeq, headers, ParseUpstreamByLength
+    ' 
+    ' 
+    ' /********************************************************************************/
+
+#End Region
+
+Imports System.Runtime.CompilerServices
+Imports SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat
 Imports SMRUCC.genomics.Assembly.NCBI.GenBank.TabularFormat.ComponentModels
 Imports SMRUCC.genomics.ComponentModel.Loci
 Imports SMRUCC.genomics.SequenceModel
@@ -8,6 +51,34 @@ Imports SMRUCC.genomics.SequenceModel.NucleotideModels
 Namespace ContextModel.Promoter
 
     Public Module Extensions
+
+        ''' <summary>
+        ''' Read from <see cref="PrefixLength"/> members.
+        ''' </summary>
+        ''' <returns></returns>
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Function GetPrefixLengths() As IEnumerable(Of Integer)
+            Return From L In GetType(PrefixLength).GetEnumValues Select CInt(L)
+        End Function
+
+        ''' <summary>
+        ''' 解析出所有基因前面的序列片段
+        ''' </summary>
+        ''' <param name="context"></param>
+        ''' <param name="nt"></param>
+        ''' <param name="length%"></param>
+        ''' <returns></returns>
+        <Extension>
+        Public Function ParseUpstreamByLength(context As PTT, nt As IPolymerSequenceModel, length%) As Dictionary(Of String, FastaSeq)
+            Dim genes = context.GeneObjects
+            Dim parser = From gene As GeneBrief
+                         In genes.AsParallel
+                         Let upstream = gene.GetUpstreamSeq(nt, length)
+                         Select gene.Synonym,
+                             promoter = upstream
+            Dim table = parser.ToDictionary(Function(g) g.Synonym, Function(g) g.promoter)
+            Return table
+        End Function
 
         ''' <summary>
         ''' Get upstream nt sequence in a specific length for target gene.
