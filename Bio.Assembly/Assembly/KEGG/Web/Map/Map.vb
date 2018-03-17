@@ -1,44 +1,44 @@
 ﻿#Region "Microsoft.VisualBasic::99ab56c0c837829263159f298a4592f8, core\Bio.Assembly\Assembly\KEGG\Web\Map\Map.vb"
 
-    ' Author:
-    ' 
-    '       asuka (amethyst.asuka@gcmodeller.org)
-    '       xie (genetics@smrucc.org)
-    '       xieguigang (xie.guigang@live.com)
-    ' 
-    ' Copyright (c) 2018 GPL3 Licensed
-    ' 
-    ' 
-    ' GNU GENERAL PUBLIC LICENSE (GPL3)
-    ' 
-    ' 
-    ' This program is free software: you can redistribute it and/or modify
-    ' it under the terms of the GNU General Public License as published by
-    ' the Free Software Foundation, either version 3 of the License, or
-    ' (at your option) any later version.
-    ' 
-    ' This program is distributed in the hope that it will be useful,
-    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
-    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    ' GNU General Public License for more details.
-    ' 
-    ' You should have received a copy of the GNU General Public License
-    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+' Author:
+' 
+'       asuka (amethyst.asuka@gcmodeller.org)
+'       xie (genetics@smrucc.org)
+'       xieguigang (xie.guigang@live.com)
+' 
+' Copyright (c) 2018 GPL3 Licensed
+' 
+' 
+' GNU GENERAL PUBLIC LICENSE (GPL3)
+' 
+' 
+' This program is free software: you can redistribute it and/or modify
+' it under the terms of the GNU General Public License as published by
+' the Free Software Foundation, either version 3 of the License, or
+' (at your option) any later version.
+' 
+' This program is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY; without even the implied warranty of
+' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+' GNU General Public License for more details.
+' 
+' You should have received a copy of the GNU General Public License
+' along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
+' Summaries:
 
-    '     Class Map
-    ' 
-    '         Properties: Areas, ID, Name, PathwayImage
-    ' 
-    '         Function: GetEntryInfo, GetImage, GetMembers, ParseHTML, ToString
-    ' 
-    ' 
-    ' /********************************************************************************/
+'     Class Map
+' 
+'         Properties: Areas, ID, Name, PathwayImage
+' 
+'         Function: GetEntryInfo, GetImage, GetMembers, ParseHTML, ToString
+' 
+' 
+' /********************************************************************************/
 
 #End Region
 
@@ -52,6 +52,7 @@ Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.JSON
+Imports Microsoft.VisualBasic.Text
 Imports Microsoft.VisualBasic.Text.HtmlParser
 Imports SMRUCC.genomics.SequenceModel.FASTA
 Imports r = System.Text.RegularExpressions.Regex
@@ -66,12 +67,13 @@ Namespace Assembly.KEGG.WebServices
 
         <XmlElement("name")>
         Public Property Name As String
+        Public Property URL As String
 
         ''' <summary>
         ''' 节点的位置，在这里面包含有代谢物(小圆圈)以及基因(方块)的位置定义
         ''' </summary>
         ''' <returns></returns>
-        <XmlElement("area")>
+        <XmlArray("shapes")>
         Public Property Areas As Area()
 
         ''' <summary>
@@ -91,9 +93,13 @@ Namespace Assembly.KEGG.WebServices
         End Function
 
         Public Function GetImage() As Image
-            Dim lines$() = PathwayImage.LineTokens
+            Dim lines$() = PathwayImage _
+                .Trim(" "c, ASCII.LF, ASCII.CR) _
+                .LineTokens _
+                .Select(AddressOf Trim) _
+                .ToArray
             Dim base64$ = String.Join("", lines)
-            Return Image.FromStream(base64.UnzipBase64)
+            Return base64.GetImage
         End Function
 
         Public Overrides Function ToString() As String
@@ -136,10 +142,12 @@ Namespace Assembly.KEGG.WebServices
             With "http://www.genome.jp/" & img.src
                 Call .DownloadFile(tmp)
 
-                img = tmp.LoadImage _
-                         .ToStream(ImageFormats.Png) _
-                         .ZipAsBase64
+                img = tmp.LoadImage.ToBase64String
                 img = FastaSeq.SequenceLineBreak(200, img)
+                img = vbLf & img _
+                    .LineTokens _
+                    .Select(Function(s) New String(" ", 4) & s) _
+                    .JoinBy(ASCII.LF)
             End With
 
             Dim info As NamedValue(Of String) = GetEntryInfo(html)
@@ -148,7 +156,8 @@ Namespace Assembly.KEGG.WebServices
                 .PathwayImage = img,
                 .Areas = shapes,
                 .ID = info.Name,
-                .Name = info.Value
+                .Name = info.Value,
+                .URL = url
             }
         End Function
     End Class
