@@ -60,7 +60,10 @@ Imports XmlProperty = Microsoft.VisualBasic.Text.Xml.Models.Property
 
 Namespace Assembly.KEGG.DBGET.bGetObject
 
+    <XmlType("Orthology-terms", [Namespace]:=OrthologyTerms.Xmlns)>
     Public Structure OrthologyTerms
+
+        Public Const Xmlns$ = "http://GCModeller.org/core/KEGG/Model/OrthologyTerm.xsd"
 
         <XmlIgnore>
         Public ReadOnly Property EntityList As String()
@@ -74,15 +77,19 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         ''' The KO terms?
         ''' </summary>
         ''' <returns></returns>
-        <XmlElement("Term")>
+        <XmlElement("terms")>
         Public Property Terms As XmlProperty()
+
+        Public Overrides Function ToString() As String
+            Return EntityList.GetJson
+        End Function
     End Structure
 
     ''' <summary>
     ''' KEGG reaction annotation data.
     ''' </summary>
     ''' <remarks></remarks>
-    <XmlRoot("KEGG-reaction", [Namespace]:=Reaction.Xmlns)>
+    <XmlRoot("reaction", [Namespace]:=Reaction.Xmlns)>
     Public Class Reaction : Implements INamedValue
 
         Public Const Xmlns$ = "http://GCModeller.org/core/KEGG/DBGET/Reaction.xsd"
@@ -93,6 +100,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         ''' <returns></returns>
         <XmlElement("ID")>
         Public Property ID As String Implements INamedValue.Key
+        <XmlElement("commonNames")>
         Public Property CommonNames As String()
         <XmlElement("def")>
         Public Property Definition As String
@@ -139,6 +147,14 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         ''' + [nm]+1
         ''' </summary>
         Const polymers$ = "(\(.+?\))|([nm](\s*[+-]\s*[0-9mn]+)? )"
+
+        <XmlNamespaceDeclarations()>
+        Public xmlnsImports As XmlSerializerNamespaces
+
+        Public Sub New()
+            xmlnsImports = New XmlSerializerNamespaces
+            xmlnsImports.Add("KO", OrthologyTerms.Xmlns)
+        End Sub
 
         ''' <summary>
         ''' 从<see cref="Equation"/>属性值字符串创建一个代谢过程的模型
