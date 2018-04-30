@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::99ab56c0c837829263159f298a4592f8, core\Bio.Assembly\Assembly\KEGG\Web\Map\Map.vb"
+﻿#Region "Microsoft.VisualBasic::f93a515dc3cafda5160bf9215123c580, core\Bio.Assembly\Assembly\KEGG\Web\Map\Map.vb"
 
 ' Author:
 ' 
@@ -33,7 +33,7 @@
 
 '     Class Map
 ' 
-'         Properties: Areas, ID, Name, PathwayImage
+'         Properties: Areas, ID, Name, PathwayImage, URL
 ' 
 '         Function: GetEntryInfo, GetImage, GetMembers, ParseHTML, ToString
 ' 
@@ -45,6 +45,7 @@
 Imports System.Drawing
 Imports System.Runtime.CompilerServices
 Imports System.Xml.Serialization
+Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
@@ -60,7 +61,8 @@ Imports r = System.Text.RegularExpressions.Regex
 Namespace Assembly.KEGG.WebServices
 
     <XmlRoot("Map", [Namespace]:="http://GCModeller.org/core/KEGG/KGML_map.xsd")>
-    Public Class Map : Implements INamedValue
+    Public Class Map : Inherits XmlDataModel
+        Implements INamedValue
 
         <XmlAttribute>
         Public Property ID As String Implements IKeyedEntity(Of String).Key
@@ -147,7 +149,7 @@ Namespace Assembly.KEGG.WebServices
                 img = vbLf & img _
                     .LineTokens _
                     .Select(Function(s) New String(" ", 4) & s) _
-                    .JoinBy(ASCII.LF)
+                    .JoinBy(ASCII.LF) & vbLf
             End With
 
             Dim info As NamedValue(Of String) = GetEntryInfo(html)
