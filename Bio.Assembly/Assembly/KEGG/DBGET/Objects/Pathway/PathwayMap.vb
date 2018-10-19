@@ -79,7 +79,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         ''' <remarks></remarks>
         Public Property name As String
 
-        Public Property KOpathway As NamedValue
+        Public Property KOpathway As String
         Public Property disease As NamedValue()
         Public Property modules As NamedValue()
         Public Property brite As BriteHEntry.Pathway
@@ -201,7 +201,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                                 .text = cols(1).StripHTMLTags.StripBlank
                             }
                         End Function) _
-                .FirstOrDefault
+                .FirstOrDefault?.name
 
 #Region "All links"
 
