@@ -50,6 +50,7 @@
 Imports System.Drawing
 Imports System.Runtime.CompilerServices
 Imports System.Threading
+Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language.Default
 Imports Microsoft.VisualBasic.Net.Http
@@ -117,6 +118,14 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         ''' <returns></returns>
         Public Property KEGGReaction As NamedValue()
 #End Region
+
+        <XmlNamespaceDeclarations()>
+        Public xmlnsImports As XmlSerializerNamespaces
+
+        Public Sub New()
+            xmlnsImports = New XmlSerializerNamespaces
+            xmlnsImports.Add("KO", OrthologyTerms.Xmlns)
+        End Sub
 
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Overrides Function GetPathwayGenes() As String()
