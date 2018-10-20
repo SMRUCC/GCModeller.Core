@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::15c8845b802031c796a844c6dad3c52f, test\fetchTest.vb"
+﻿#Region "Microsoft.VisualBasic::1219638eca54607e608e425b6289037e, Bio.Assembly\Assembly\NCBI\Database\GenBank\TabularFormat\FeatureBriefs\GFF\Extensions.vb"
 
     ' Author:
     ' 
@@ -31,22 +31,24 @@
 
     ' Summaries:
 
-    ' Module fetchTest
+    '     Module Extensions
     ' 
-    '     Sub: Main
+    '         Function: Load
+    ' 
     ' 
     ' /********************************************************************************/
 
 #End Region
 
-Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
+Imports System.Runtime.CompilerServices
 
-Module fetchTest
+Namespace Assembly.NCBI.GenBank.TabularFormat.GFF
 
-    Sub Main()
-        Dim pathway = PathwayMap.Download("map00280")
+    Public Module Extensions
 
-        Call pathway.GetXml.SaveTo("./test_pathwaydata.xml")
-    End Sub
-End Module
-
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Function Load(path As String) As GFFTable
+            Return GFFTable.LoadDocument(path)
+        End Function
+    End Module
+End Namespace
