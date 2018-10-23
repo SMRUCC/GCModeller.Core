@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::4296ba824b8cd926a63f4ebd7e35b2fd, core\Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\ModuleClassAPI.vb"
+﻿#Region "Microsoft.VisualBasic::70c11b92ddf8cb3db6dc44cc1dc90a56, Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\ModuleClassAPI.vb"
 
     ' Author:
     ' 
@@ -169,7 +169,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         Private Shared Function __geneHash(mods As PathwayBrief()) As Dictionary(Of String, PathwayBrief())
             Dim LQuery = (From x As PathwayBrief In mods
                           Let genes As String() = x.GetPathwayGenes
-                          Where Not StringHelpers.IsNullOrEmpty(genes)
+                          Where Not genes.IsNullOrEmpty
                           Select (From g As String
                                   In genes
                                   Select g,

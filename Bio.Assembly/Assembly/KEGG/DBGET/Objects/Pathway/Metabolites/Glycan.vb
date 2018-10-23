@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::53c257bfeeed62f0a6744843e48dfbcb, core\Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\Glycan.vb"
+﻿#Region "Microsoft.VisualBasic::dda6e8933aa12a61191122b811fa2e7e, Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\Glycan.vb"
 
     ' Author:
     ' 
@@ -33,10 +33,10 @@
 
     '     Class Glycan
     ' 
-    '         Properties: Composition, Mass, Orthology
+    '         Properties: Composition, CompoundId, Mass, Orthology
     ' 
     '         Constructor: (+2 Overloads) Sub New
-    '         Function: __parseOrthology, Download, DownloadFrom, ToCompound
+    '         Function: __parseOrthology, Download, DownloadFrom, GetLinkDbRDF, ToCompound
     ' 
     ' 
     ' /********************************************************************************/
@@ -64,6 +64,30 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         Public Property Mass As String
         Public Property Orthology As KeyValuePair()
 
+        Public ReadOnly Property CompoundId As String()
+            Get
+                If Remarks.IsNullOrEmpty Then
+                    Return {}
+                End If
+
+                Dim sameAs$ = Remarks.Select(Function(s)
+                                                 Return s.GetTagValue(":"c, trim:=True)
+                                             End Function) _
+                                     .Where(Function(t) t.Name = "Same as") _
+                                     .FirstOrDefault _
+                                     .Value
+
+                If sameAs.StringEmpty Then
+                    Return {}
+                Else
+                    Return sameAs.Split _
+                                 .Select(AddressOf Trim) _
+                                 .Where(Function(id) id.First = "C"c) _
+                                 .ToArray
+                End If
+            End Get
+        End Property
+
         Sub New()
         End Sub
 
@@ -83,6 +107,15 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Overloads Shared Function Download(ID$) As Glycan
             Return DownloadFrom(url:=String.Format(URL, ID))
+        End Function
+
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Overloads Shared Function GetLinkDbRDF(glycan As Glycan) As IEnumerable(Of LinkDB.Relationship)
+            If InStr(glycan.Entry, ":") > 0 Then
+                Return LinkDB.Relationship.GetLinkDb(glycan.Entry)
+            Else
+                Return LinkDB.Relationship.GetLinkDb($"gl:{glycan.Entry}")
+            End If
         End Function
 
         Public Overloads Shared Function DownloadFrom(url As String) As Glycan

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::e84f6e88cffb691b55088eb18341175c, core\Bio.Assembly\Assembly\UniProt\XML\GetID.vb"
+﻿#Region "Microsoft.VisualBasic::bb3bf334d3ccba24441bb1d4a93ec3eb, Bio.Assembly\Assembly\UniProt\XML\GetID.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     ' 
     '  
     ' 
-    '     Function: (+2 Overloads) GetID, ParseType
+    '     Function: EnumerateParsers, (+2 Overloads) GetID, ParseType
     ' 
     ' 
     ' /********************************************************************************/
@@ -53,12 +53,15 @@
 Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+Imports Microsoft.VisualBasic.Linq
 
 Namespace Assembly.Uniprot.XML
 
     Public Module GetIDs
 
-        Public Enum IDTypes
+        Public Enum IDTypes As Integer
+            NA = -1
+
             ''' <summary>
             ''' Uniprot accession ID
             ''' </summary>
@@ -74,6 +77,15 @@ Namespace Assembly.Uniprot.XML
         ''' 名字是小写的
         ''' </summary>
         Dim parser As New MapsHelper(Of IDTypes)(map:=EnumParser(Of IDTypes)(), [default]:=IDTypes.Accession)
+
+        Public Iterator Function EnumerateParsers() As IEnumerable(Of Map(Of IDTypes, Func(Of entry, String)))
+            For Each type As IDTypes In [Enums](Of IDTypes)().Where(Function(t) t <> IDTypes.NA)
+                Yield New Map(Of IDTypes, Func(Of entry, String)) With {
+                    .Key = type,
+                    .Maps = .Key.GetID()
+                }
+            Next
+        End Function
 
         Public Function ParseType(type$) As IDTypes
             Return parser(LCase(type))
@@ -107,11 +119,17 @@ Namespace Assembly.Uniprot.XML
                            End Function
                 Case IDTypes.LocusTag
                     Return Function(prot As entry)
-                               Return prot.gene("ordered locus").FirstOrDefault
+                               If prot.gene Is Nothing Then
+                                   Return Nothing
+                               Else
+                                   Return prot _
+                                       .gene("ordered locus") _
+                                       .DefaultFirst
+                               End If
                            End Function
                 Case IDTypes.ORF
                     Return Function(prot As entry)
-                               Return prot.gene.ORF.FirstOrDefault
+                               Return prot.gene?.ORF?.FirstOrDefault
                            End Function
                 Case IDTypes.RefSeq
                     Return Function(prot As entry)

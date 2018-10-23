@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::30828824861da77a8152fa0487a37383, core\Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\Compound.vb"
+﻿#Region "Microsoft.VisualBasic::0340bbf3fd11fb37fa3a1563bc6c1d23, Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\Compound.vb"
 
     ' Author:
     ' 
@@ -33,14 +33,15 @@
 
     '     Class Compound
     ' 
-    '         Properties: [Module], CHEBI, CommonNames, DbLinks, Entry
-    '                     Enzyme, ExactMass, Formula, MolWeight, Pathway
-    '                     PUBCHEM, reactionId, Remarks
+    '         Properties: [Class], [Module], CHEBI, CommonNames, DbLinks
+    '                     Entry, Enzyme, ExactMass, Formula, Image
+    '                     KCF, MolWeight, Pathway, PUBCHEM, reactionId
+    '                     Remarks
     ' 
     '         Constructor: (+2 Overloads) Sub New
     ' 
-    '         Function: DownloadKCF, GetDBLinkManager, GetDBLinks, GetModules, GetPathways
-    '                   ToString
+    '         Function: DownloadKCF, GetDBLinkManager, GetDBLinks, GetLinkDbRDF, GetModules
+    '                   GetPathways, ToString
     ' 
     '         Sub: DownloadKCF, DownloadStructureImage
     ' 
@@ -51,6 +52,7 @@
 
 Imports System.Runtime.CompilerServices
 Imports System.Xml.Serialization
+Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Text
@@ -60,7 +62,8 @@ Imports SMRUCC.genomics.ComponentModel.EquaionModel
 
 Namespace Assembly.KEGG.DBGET.bGetObject
 
-    Public Class Compound : Implements ICompoundObject
+    Public Class Compound : Inherits XmlDataModel
+        Implements ICompoundObject
 
         Public Const xmlns_kegg$ = "http://www.kegg.jp/dbget-bin/www_bget?cpd:compound_id"
 
@@ -91,6 +94,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         Public Property [Module] As NamedValue()
         Public Property Remarks As String()
         Public Property Enzyme As String()
+        Public Property [Class] As String
 
         Protected Friend _DBLinks As DBLinks
 
@@ -107,6 +111,9 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 _DBLinks = New DBLinks(Value)
             End Set
         End Property
+
+        Public Property KCF As String
+        Public Property Image As String
 
         <XmlNamespaceDeclarations()>
         Public xmlns As New XmlSerializerNamespaces
@@ -196,5 +203,14 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 _DBLinks.AddEntry(New DBLink With {.DBName = "PUBCHEM", .Entry = value})
             End Set
         End Property
+
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Shared Function GetLinkDbRDF(compound As Compound) As IEnumerable(Of LinkDB.Relationship)
+            If InStr(compound.Entry, ":") > 0 Then
+                Return LinkDB.Relationship.GetLinkDb(compound.Entry)
+            Else
+                Return LinkDB.Relationship.GetLinkDb($"cpd:{compound.Entry}")
+            End If
+        End Function
     End Class
 End Namespace

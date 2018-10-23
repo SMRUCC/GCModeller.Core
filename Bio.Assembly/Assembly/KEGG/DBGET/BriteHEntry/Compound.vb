@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::9bc1c6c6ec41e47aa2aaa0db0402ee0d, core\Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\Compound.vb"
+﻿#Region "Microsoft.VisualBasic::207a6b3f23b60a166844e6149fea951c, Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\Compound.vb"
 
     ' Author:
     ' 
@@ -40,7 +40,7 @@
     '         Function: Build, BuildPath, Download, DownloadCompounds, DownloadFromResource
     '                   Lipids, LoadFile
     ' 
-    '         Sub: __downloadsInternal, WorkspaceCleanup
+    '         Sub: downloadsInternal, WorkspaceCleanup
     ' 
     ' 
     ' /********************************************************************************/
@@ -53,10 +53,12 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Language.UnixBash
+Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Terminal
 Imports Microsoft.VisualBasic.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
+Imports SMRUCC.genomics.SequenceModel.FASTA
 
 Namespace Assembly.KEGG.DBGET.BriteHEntry
 
@@ -191,7 +193,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         ''' > http://www.kegg.jp/kegg-bin/get_htext?br08002.keg
         ''' </summary>
         ''' <returns></returns>
-        Public Function Lipids() As Compound()
+        Public Shared Function Lipids() As Compound()
             Dim satellite As New ResourcesSatellite(GetType(LICENSE))
             Return Compound.Build(BriteHText.Load(satellite.GetString(cpd_br08002)))
         End Function
@@ -268,6 +270,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
 
         ''' <summary>
         ''' 请注意，这个函数只能够下载包含有分类信息的化合物，假若代谢物还没有分类信息的话，则无法利用这个函数进行下载
+        ''' (gif图片是以base64编码放在XML文件里面的)
         ''' 
         ''' + ``br08001``  Compounds with biological roles
         ''' + ``br08002``  Lipids
@@ -304,34 +307,39 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                 New NamedValue(Of Compound())("Target-based classification of compounds", Build(BriteHText.Load(satellite.GetString(cpd_br08010))))
             }
             Dim failures As New List(Of String)
+            ' 这个是为了解决重复下载的问题而设计的
+            Dim successFiles As New Dictionary(Of String, String)
 
             For Each briteEntry As NamedValue(Of Compound()) In resource
                 With briteEntry
-                    Call __downloadsInternal(
+                    Call downloadsInternal(
                         .Name, .Value,
-                        failures,
+                        failures, successFiles,
                         EXPORT,
                         DirectoryOrganized,
                         forceUpdate,
-                        structInfo)
+                        structInfo
+                    )
                 End With
             Next
 
-            Dim success As Index(Of String) = (ls - l - r - "*.XML" <= EXPORT) _
+            Dim success As Index(Of String) = (ls - l - r - "*.xml" <= EXPORT) _
                 .Select(AddressOf BaseName) _
                 .Indexing
 
-            Using progress As New ProgressBar("Downloads others", 1, CLS:=True)
+            Using progress As New ProgressBar($"Downloads others, {success.Count} success was indexed!", 1, CLS:=True)
                 Dim tick As New ProgressProvider(maxID)
                 Dim saveDIR = EXPORT & "/OtherUnknowns/"
                 Dim skip As Boolean = False
+                Dim xml$
 
                 For i As Integer = 1 To maxID
                     Dim id = "C" & i.FormatZero("00000")
 
                     If success(id) = -1 Then
                         skip = False
-                        Call Download(id, saveDIR, forceUpdate, structInfo, skip)
+                        xml = $"{saveDIR}/{id}.xml"
+                        Call Download(id, xml, forceUpdate, structInfo, skip)
                     Else
                         skip = True
                     End If
@@ -341,6 +349,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                     If Not skip Then
                         Call Thread.Sleep(thread_sleep)
                     End If
+
                     Call progress.SetProgress(tick.StepProgress, details:=id & "   " & ETA)
                 Next
             End Using
@@ -350,17 +359,15 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
 
         ''' <summary>
         ''' 将指定编号的代谢物数据下载下来然后保存在指定的文件夹之中
+        ''' gif图片是以base64编码放在XML文件里面的
         ''' </summary>
         ''' <param name="entryID$"></param>
-        ''' <param name="saveDIR$"></param>
         ''' <param name="forceUpdate"></param>
         ''' <param name="structInfo"></param>
         ''' <param name="skip"></param>
         ''' <returns></returns>
-        Private Shared Function Download(entryID$, saveDIR$, forceUpdate As Boolean, structInfo As Boolean, ByRef skip As Boolean) As Boolean
-            Dim xml$ = $"{saveDIR}/{entryID}.xml"
-
-            If Not forceUpdate AndAlso xml.FileExists(True) Then
+        Private Shared Function Download(entryID$, xmlFile$, forceUpdate As Boolean, structInfo As Boolean, ByRef skip As Boolean) As Boolean
+            If Not forceUpdate AndAlso xmlFile.FileExists(True) Then
                 skip = True
                 Return True
             End If
@@ -372,21 +379,34 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                     Call $"[{entryID}] is not exists in the kegg!".Warning
                     Return False
                 Else
-                    Call gl.GetXml.SaveTo(xml)
+                    Call gl.GetXml.SaveTo(xmlFile)
                 End If
             Else
-                Dim cpd As bGetObject.Compound = MetabolitesDBGet.DownloadCompound(entryID)
+                Dim cpd As bGetObject.Compound = MetaboliteDBGET.DownloadCompound(entryID)
 
                 If cpd.IsNullOrEmpty Then
                     Call $"[{entryID}] is not exists in the kegg!".Warning
                     Return False
                 Else
-                    Call cpd.GetXml.SaveTo(xml)
-
                     If structInfo Then
-                        Call cpd.DownloadKCF(xml.TrimSuffix & ".KCF")
-                        Call cpd.DownloadStructureImage(xml.TrimSuffix & ".gif")
+                        Dim KCF$ = App.GetAppSysTempFile(".txt", App.PID)
+                        Dim gif = App.GetAppSysTempFile(".gif", App.PID)
+
+                        Call cpd.DownloadKCF(KCF)
+                        Call cpd.DownloadStructureImage(gif)
+
+                        If KCF.FileExists Then
+                            cpd.KCF = KCF.ReadAllText
+                        End If
+
+                        ' gif分子二维结构图是以base64
+                        ' 字符串的形式写在XML文件之中的
+                        If gif.FileExists Then
+                            cpd.Image = FastaSeq.SequenceLineBreak(200, New DataURI(gif).ToString)
+                        End If
                     End If
+
+                    Call cpd.GetXml.SaveTo(xmlFile)
                 End If
             End If
 
@@ -405,13 +425,14 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
             End With
         End Sub
 
-        Private Shared Sub __downloadsInternal(key$,
-                                               briteEntry As Compound(),
-                                               ByRef failures As List(Of String),
-                                               EXPORT$,
-                                               DirectoryOrganized As Boolean,
-                                               forceUpdate As Boolean,
-                                               structInfo As Boolean)
+        Private Shared Sub downloadsInternal(key$,
+                                             briteEntry As Compound(),
+                                             ByRef failures As List(Of String),
+                                             ByRef successList As Dictionary(Of String, String),
+                                             EXPORT$,
+                                             DirectoryOrganized As Boolean,
+                                             forceUpdate As Boolean,
+                                             structInfo As Boolean)
             ' 2017-3-12
             ' 有些entry的编号是空值？？？
             Dim keys As Compound() = briteEntry _
@@ -429,10 +450,14 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                 For Each entry As Compound In keys
                     Dim EntryId As String = entry.Entry.Key
                     Dim saveDIR As String = entry.BuildPath(EXPORT, DirectoryOrganized, [class]:=key)
+                    Dim xmlFile$ = $"{saveDIR}/{EntryId}.xml"
 
                     skip = False
 
-                    If Not Download(EntryId, saveDIR, forceUpdate, structInfo, skip) Then
+                    If successList.ContainsKey(EntryId) Then
+                        skip = successList(EntryId).FileCopy(xmlFile)
+                    End If
+                    If Not skip AndAlso Not Download(EntryId, xmlFile, forceUpdate, structInfo, skip) Then
                         failures += EntryId
                     End If
 
@@ -441,6 +466,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                     If Not skip Then
                         Call Thread.Sleep(thread_sleep)
                     End If
+
                     Call progress.SetProgress(tick.StepProgress, details:=ETA)
                 Next
             End Using
@@ -490,7 +516,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                     Continue For
                 End If
 
-                Dim cpd As bGetObject.Compound = MetabolitesDBGet.DownloadCompound(EntryId)
+                Dim cpd As bGetObject.Compound = MetaboliteDBGET.DownloadCompound(EntryId)
 
                 If cpd Is Nothing Then
                     Call $"[{entry.ToString}] is not exists in the kegg!".Warning

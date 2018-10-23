@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::c4fd529bfa0b0db1bff003cd577c6dd3, core\Bio.Assembly\Assembly\NCBI\Database\GenBank\GBK\Keywords\KeyWord.vb"
+﻿#Region "Microsoft.VisualBasic::e65aee828454241c0f62247eabfc6f2d, Bio.Assembly\Assembly\NCBI\Database\GenBank\GBK\Keywords\KeyWord.vb"
 
     ' Author:
     ' 
@@ -102,7 +102,7 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords
         Public Shared Function __innerParser(str As String()) As KEYWORDS
             Call __trimHeadKey(str)
 
-            If StringHelpers.IsNullOrEmpty(str) OrElse String.Equals(str.First, ".") Then
+            If str.IsNullOrEmpty OrElse String.Equals(str.First, ".") Then
                 Return New KEYWORDS With {
                     .KeyWordList = New List(Of String)
                 }

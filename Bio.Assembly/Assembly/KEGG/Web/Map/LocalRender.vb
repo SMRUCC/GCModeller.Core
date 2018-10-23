@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::8235e23586ccf129a8b38d49f902ef3a, core\Bio.Assembly\Assembly\KEGG\Web\Map\LocalRender.vb"
+﻿#Region "Microsoft.VisualBasic::128ac365b631a83181feb9a9bfd633ae, Bio.Assembly\Assembly\KEGG\Web\Map\LocalRender.vb"
 
     ' Author:
     ' 
@@ -49,6 +49,7 @@ Imports System.Drawing
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Imaging.Math2D
+Imports Microsoft.VisualBasic.Language.Default
 Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Scripting.Runtime
@@ -61,11 +62,26 @@ Namespace Assembly.KEGG.WebServices
     Public Class LocalRender : Implements IEnumerable(Of Map)
 
         ReadOnly mapTable As Dictionary(Of String, Map)
+        ReadOnly digitMapID As Boolean
 
-        Sub New(maps As IEnumerable(Of NamedValue(Of Map)))
-            mapTable = maps.ToDictionary(
-                Function(map) map.Name,
-                Function(pathway) pathway.Value)
+        ''' <summary>
+        ''' 因为KEGG的对应物种的pathway map都是来自于标准的pathway map
+        ''' 所以他们的数字id都是一样的，在这里会将id解析为数字id
+        ''' </summary>
+        ''' <param name="maps"></param>
+        Sub New(maps As IEnumerable(Of NamedValue(Of Map)), Optional digitID As Boolean = False)
+            mapTable = maps _
+                .ToDictionary(Function(map)
+                                  If Not digitID Then
+                                      Return map.Name
+                                  Else
+                                      Return map.Name.Match("\d+")
+                                  End If
+                              End Function,
+                              Function(pathway)
+                                  Return pathway.Value
+                              End Function)
+            digitMapID = digitID
         End Sub
 
         ''' <summary>
@@ -94,7 +110,7 @@ Namespace Assembly.KEGG.WebServices
         ''' </summary>
         ''' <param name="repo$"></param>
         ''' <returns></returns>
-        Public Shared Function FromRepository(repo$) As LocalRender
+        Public Shared Function FromRepository(repo$, Optional digitID As Boolean = False) As LocalRender
             Dim maps = (ls - l - r - "*.XML" <= repo) _
                 .Select(Function(path$)
                             Return New NamedValue(Of Map) With {
@@ -103,7 +119,7 @@ Namespace Assembly.KEGG.WebServices
                                 .Description = path
                             }
                         End Function)
-            Return New LocalRender(maps)
+            Return New LocalRender(maps, digitID)
         End Function
 
         ''' <summary>
@@ -132,6 +148,14 @@ Namespace Assembly.KEGG.WebServices
             Next
         End Function
 
+        ''' <summary>
+        ''' 解析url之中的数据，将指定的基因按照给定的颜色进行高亮显示
+        ''' </summary>
+        ''' <param name="url$"></param>
+        ''' <param name="font"></param>
+        ''' <param name="textColor$"></param>
+        ''' <param name="scale$"></param>
+        ''' <returns></returns>
         Public Function Rendering(url$, Optional font As Font = Nothing, Optional textColor$ = "white", Optional scale$ = "1,1") As Image
             With URLEncoder.URLParser(url)
                 Return Rendering(.Name, .Value, font, textColor, scale)
@@ -157,16 +181,14 @@ Namespace Assembly.KEGG.WebServices
             Dim pen As Brush = textColor.GetBrush
             Dim scaleFactor As SizeF = scale.FloatSizeParser
 
-            If font Is Nothing Then
-                font = New Font(FontFace.SimSun, 10, FontStyle.Regular)
-            End If
+            Static SimSum As DefaultValue(Of Font) = New Font(FontFace.SimSun, 10, FontStyle.Regular)
 
             Using g As Graphics2D = pathway _
                 .GetImage _
                 .CreateCanvas2D(directAccess:=True)
 
-                Call renderGenes(g, font, pen, pathway, scaleFactor, nodes)
-                Call renderCompound(g, font, pathway, scaleFactor, nodes)
+                Call renderGenes(g, font Or SimSum, pen, pathway, scaleFactor, nodes)
+                Call renderCompound(g, font Or SimSum, pathway, scaleFactor, nodes)
 
                 Return g
             End Using

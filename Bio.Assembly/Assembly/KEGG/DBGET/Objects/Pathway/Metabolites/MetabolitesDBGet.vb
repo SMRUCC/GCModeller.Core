@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::bac3236c5d24e1832838d6af19d42566, core\Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\MetabolitesDBGet.vb"
+﻿#Region "Microsoft.VisualBasic::f5b5162c6ab019a40c4db7fa93df9a3d, Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\MetabolitesDBGet.vb"
 
     ' Author:
     ' 
@@ -31,10 +31,11 @@
 
     ' Summaries:
 
-    '     Module MetabolitesDBGet
+    '     Module MetaboliteDBGET
     ' 
     '         Function: __parseNamedData, DownloadCompound, DownloadCompoundFrom, FetchTo, GetCommonNames
-    '                   GetDBLinks, LoadCompoundObject, MatchByName, ParseCompound, TryParse
+    '                   GetDBLinks, LoadCompoundObject, MatchByName, ParseCompound, ScanLoad
+    '                   TryParse
     ' 
     ' 
     ' /********************************************************************************/
@@ -45,6 +46,7 @@ Imports System.Runtime.CompilerServices
 Imports System.Text.RegularExpressions
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm.base
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Text.HtmlParser
 Imports Microsoft.VisualBasic.Text.Xml.Models
@@ -53,7 +55,7 @@ Imports SMRUCC.genomics.ComponentModel.DBLinkBuilder
 
 Namespace Assembly.KEGG.DBGET.bGetObject
 
-    Public Module MetabolitesDBGet
+    Public Module MetaboliteDBGET
 
         <Extension>
         Public Function MatchByName(compound As Compound, name$) As Boolean
@@ -182,12 +184,28 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 Return Nothing
             End If
 
-            Dim t$() = html.DivInternals
+            Dim t$() = html.GetTablesHTML
+            'Dim LQuery As DBLink() = t _
+            '    .SlideWindows(winSize:=2, offset:=2) _
+            '    .Where(Function(w) w.Length >= 2) _
+            '    .Select(Function(s)
+            '                Return s(0).StripHTMLTags(stripBlank:=True).Trim(":"c).Trim.TryParse(s(1))
+            '            End Function) _
+            '    .IteratesALL _
+            '    .ToArray
             Dim LQuery As DBLink() = t _
-                .SlideWindows(2, 2) _
-                .Select(Function(s) TryParse(s(0).StripHTMLTags(stripBlank:=True).Trim(":"c).Trim, s(1))) _
-                .IteratesALL _
+                .Select(Function(linkTable)
+                            Dim tr = linkTable.GetRowsHTML(0)
+                            Dim tuple = tr.GetColumnsHTML
+                            Dim name = tuple(0).StripHTMLTags(True).Trim(":"c, " "c)
+                            Dim id$ = tuple.ElementAtOrDefault(1) _
+                                           .StripHTMLTags(True) _
+                                           .Trim
+
+                            Return New DBLink(name, id)
+                        End Function) _
                 .ToArray
+
             Return New DBLinks(LQuery)
         End Function
 
@@ -207,11 +225,13 @@ Namespace Assembly.KEGG.DBGET.bGetObject
 
             DBName = If(String.IsNullOrEmpty(LQuery), DBName, LQuery)
 
-            Return IDs.Select(
-                Function(ID$) New DBLink With {
-                    .DBName = DBName,
-                    .Entry = ID
-                }).ToArray
+            Return IDs.Select(Function(ID$)
+                                  Return New DBLink With {
+                                      .DBName = DBName,
+                                      .Entry = ID
+                                  }
+                              End Function) _
+                      .ToArray
         End Function
 
         Friend Function GetCommonNames(str$) As String()
@@ -246,6 +266,34 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 Return xml.LoadXml(Of Glycan)(stripInvalidsCharacter:=True)
             Else
                 Return xml.LoadXml(Of Compound)(stripInvalidsCharacter:=True)
+            End If
+        End Function
+
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Function ScanLoad(repository$, Optional rewriteClass As Boolean = False) As IEnumerable(Of Compound)
+            If rewriteClass Then
+                repository = repository.GetDirectoryFullPath
+
+                Return (ls - l - r - "*.Xml" <= repository) _
+                    .Select(Function(path)
+                                Dim compound As Compound = path.LoadCompoundObject
+                                Dim class$ = path.GetFullPath _
+                                                 .Replace(repository, "") _
+                                                 .Trim("/"c) _
+                                                 .Split("/"c) _
+                                                 .Take(2) _
+                                                 .JoinBy("/")
+
+                                compound.Class = [class]
+
+                                If [class].Split("/"c).First.MatchPattern("Unknown", RegexICSng) Then
+                                    compound.Class = "Unknown"
+                                End If
+
+                                Return compound
+                            End Function)
+            Else
+                Return (ls - l - r - "*.Xml" <= repository).Select(AddressOf LoadCompoundObject)
             End If
         End Function
     End Module

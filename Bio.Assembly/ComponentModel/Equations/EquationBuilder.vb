@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::312607c0a5693a87434d384616628621, core\Bio.Assembly\ComponentModel\Equations\EquationBuilder.vb"
+﻿#Region "Microsoft.VisualBasic::038972d70af81fba554f92c6ac4c3b38, Bio.Assembly\ComponentModel\Equations\EquationBuilder.vb"
 
     ' Author:
     ' 
@@ -175,13 +175,15 @@ Namespace ComponentModel.EquaionModel
 
         <Extension>
         Private Sub __appendSide(Of T)(compounds As IEnumerable(Of T), sb As StringBuilder, getSto As Func(Of T, Double), getId As Func(Of T, String))
-            If Not compounds.IsNullOrEmpty Then
-                Dim array As String() =
-                    LinqAPI.Exec(Of String) <= From cp As T
-                                               In compounds
-                                               Let sto As Double = getSto(cp)
-                                               Let id As String = getId(cp)
-                                               Select If(sto > 1, $"{sto} {id}", id)
+            If Not compounds Is Nothing Then
+                Dim array$() = LinqAPI.Exec(Of String) _
+ _
+                    () <= From cp As T
+                          In compounds
+                          Let sto As Double = getSto(cp)
+                          Let id As String = getId(cp)
+                          Select If(sto > 1, $"{sto} {id}", id)
+
                 Dim side As String = String.Join(EQUATION_SPECIES_CONNECTOR, array)
                 Call sb.Append(side)
             End If

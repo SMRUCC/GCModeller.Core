@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::e9a6b43c72fa29b574faf9a937ba41e5, core\test\DEBUG_MAIN.vb"
+﻿#Region "Microsoft.VisualBasic::85e18f85d418e1ac839e3eeb50e61450, test\DEBUG_MAIN.vb"
 
     ' Author:
     ' 
@@ -39,13 +39,11 @@
 
 #End Region
 
-Imports Microsoft.VisualBasic.Data.csv
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports SMRUCC.genomics
 Imports SMRUCC.genomics.Assembly
 Imports SMRUCC.genomics.Assembly.KEGG.Archives.Xml
-Imports SMRUCC.genomics.Assembly.KEGG.DBGET
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.BriteHEntry
 Imports SMRUCC.genomics.Assembly.KEGG.WebServices
@@ -72,10 +70,10 @@ Module DEBUG_MAIN
         Dim GFF As GFF.GFFTable = GFFTable.LoadDocument(path)
 
         Dim Fasta As New FASTA.FastaFile(path)
-        Dim nt As New FASTA.FastaToken(path)
+        Dim nt As New FASTA.FastaSeq(path)
 
-        nt = FastaToken.Load(path)
-        nt = FastaToken.LoadNucleotideData(path)
+        nt = FastaSeq.Load(path)
+        nt = FastaSeq.LoadNucleotideData(path)
     End Sub
 
     Sub Main()
@@ -101,7 +99,7 @@ Module DEBUG_MAIN
         Pause()
 
 
-        Dim cpdTest As KEGG.DBGET.bGetObject.Compound = MetabolitesDBGet.DownloadCompoundFrom("G:\GCModeller\GCModeller\test\KEGG\dbget\cpd_Test.html") 'MetabolitesDBGet.DownloadCompound("C00311")
+        Dim cpdTest As KEGG.DBGET.bGetObject.Compound = MetaboliteDBGET.DownloadCompoundFrom("G:\GCModeller\GCModeller\test\KEGG\dbget\cpd_Test.html") 'MetabolitesDBGet.DownloadCompound("C00311")
 
         ' Call "http://www.kegg.jp/dbget-bin/www_bget?gl:G00112".GET.SaveTo("x:\gl_Test.html")
 
@@ -174,7 +172,7 @@ Module DEBUG_MAIN
 
         Dim dddasdad = SMRUCC.genomics.Assembly.KEGG.DBGET.BriteHEntry.htext.ko00001
 
-        Dim nt As New FastaToken("H:\Xanthomonas_campestris_8004_uid15\CP000050.fna")
+        Dim nt As New FastaSeq("H:\Xanthomonas_campestris_8004_uid15\CP000050.fna")
 
         Dim sss = nt.CutSequenceLinear(NucleotideLocation.Parse("1434841..1435203"))
         sss = nt.CutSequenceLinear(NucleotideLocation.Parse("complement(14113..14883)"))

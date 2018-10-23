@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::fbe35cdfe93fde358dd62ad90efcb13c, core\Bio.Assembly\Assembly\NCBI\Taxonomy\Tree\NcbiTaxonomyTree.vb"
+﻿#Region "Microsoft.VisualBasic::ed1a9e13ed9ff6a77f7666bb140d57a6, Bio.Assembly\Assembly\NCBI\Taxonomy\Tree\NcbiTaxonomyTree.vb"
 
     ' Author:
     ' 
@@ -506,16 +506,17 @@ Namespace Assembly.NCBI.Taxonomy
             '    >>> len(taxids_leaves_escherichia_genus)
             '    3382
             '"""
-            Dim children As IEnumerable(Of Integer) = Taxonomy(taxid).children
+            Dim children = Taxonomy(taxid).children
 
             If children.IsNullOrEmpty Then
                 Return {taxid} ' # In case of the taxid has no child
             End If
 
-            Dim out = LinqAPI.Exec(Of Integer) <=
-                From child As Integer
-                In children'.AsParallel
-                Select GetLeaves(child) ' Else taxid
+            Dim out = LinqAPI.Exec(Of Integer) _
+ _
+                () <= From child As Integer
+                      In children'.AsParallel
+                      Select GetLeaves(child) ' Else taxid
 
             Return out
         End Function

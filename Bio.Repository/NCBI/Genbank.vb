@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::af13562135682a966002c9ca953ad016, core\Bio.Repository\NCBI\Genbank.vb"
+﻿#Region "Microsoft.VisualBasic::a52b5f2061f763607bb703d92e3c9779, Bio.Repository\NCBI\Genbank.vb"
 
     ' Author:
     ' 
@@ -383,8 +383,7 @@ Public Class GenbankIndex : Implements IKeyedEntity(Of String), INamedValue
 
     Public Function Gbk(DIR As String) As GBFF.File
         Dim path As String = $"{DIR}/{Me.DIR}/"
-        Dim files As IEnumerable(Of String) =
-            ls - l - r - wildcards("*.gb", "*.gbk") <= path
+        Dim files = (ls - l - r - wildcards("*.gb", "*.gbk") <= path).ToArray
 
         If files.IsNullOrEmpty Then
             Return Nothing

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::099de3fb68e282cf592131914ef0ddc2, core\Bio.Assembly\SequenceModel\FASTA\IO\FastaToken.vb"
+﻿#Region "Microsoft.VisualBasic::f68df8e5b501470c78da9b7c923c2747, Bio.Assembly\SequenceModel\FASTA\IO\FastaToken.vb"
 
     ' Author:
     ' 
@@ -350,11 +350,12 @@ AAGCGAACAAATGTTCTATA"
         ''' 
         <ExportAPI("FastaToken.From.Stream")>
         Public Shared Function ParseFromStream(stream As IEnumerable(Of String), deli As Char()) As FastaSeq
-            If stream.IsNullOrEmpty Then
+            Dim lines$() = stream.SafeQuery.ToArray
+
+            If lines.Length = 0 Then
                 Return Nothing
             End If
 
-            Dim lines As String() = stream.ToArray
             Dim attrs$() = Mid(lines(Scan0), 2).Split(deli)
             Dim removeInvalids = Function(s$) s.Replace(StreamIterator.SOH, "")
 

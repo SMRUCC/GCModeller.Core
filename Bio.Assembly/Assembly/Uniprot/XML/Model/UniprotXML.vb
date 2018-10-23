@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::3308db1bc2c78f4432423f634f9d4843, core\Bio.Assembly\Assembly\UniProt\XML\Model\UniprotXML.vb"
+﻿#Region "Microsoft.VisualBasic::116df49b950aeb031b70c2f91dd6b435, Bio.Assembly\Assembly\UniProt\XML\Model\UniprotXML.vb"
 
     ' Author:
     ' 
@@ -43,6 +43,7 @@
 
 #End Region
 
+Imports System.Runtime.CompilerServices
 Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
@@ -104,6 +105,8 @@ Namespace Assembly.Uniprot.XML
         ''' </summary>
         ''' <param name="path$"></param>
         ''' <returns></returns>
+        ''' 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Shared Function EnumerateEntries(path$) As IEnumerable(Of entry)
             Return path.LoadUltraLargeXMLDataSet(Of entry)(xmlns:="http://uniprot.org/uniprot")
         End Function

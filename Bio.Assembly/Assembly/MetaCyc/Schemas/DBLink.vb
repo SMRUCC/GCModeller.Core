@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::1abf0d40eb9b6c6dc4b822e9187b798d, core\Bio.Assembly\Assembly\MetaCyc\Schemas\DBLink.vb"
+﻿#Region "Microsoft.VisualBasic::c4d8af41af36ef79ab15f9cc150cef84, Bio.Assembly\Assembly\MetaCyc\Schemas\DBLink.vb"
 
     ' Author:
     ' 
@@ -55,6 +55,7 @@ Imports System.Text.RegularExpressions
 Imports System.Text
 Imports SMRUCC.genomics.ComponentModel.DBLinkBuilder
 Imports Microsoft.VisualBasic
+Imports Microsoft.VisualBasic.Linq
 
 Namespace Assembly.MetaCyc.Schema
 
@@ -102,16 +103,7 @@ Namespace Assembly.MetaCyc.Schema
             End Function
 
             Public Shared Function GetUniprotId(DBLinks As Generic.IEnumerable(Of DBLink)) As String
-                If DBLinks.IsNullOrEmpty Then
-                    Return ""
-                End If
-
-                Dim LQuery = (From DBLink In DBLinks Where String.Equals("UNIPROT", DBLink.DBName) Select DBLink.AccessionId).ToArray
-                If LQuery.IsNullOrEmpty Then
-                    Return ""
-                Else
-                    Return LQuery.First
-                End If
+                Return (From DBLink In DBLinks.SafeQuery Where String.Equals("UNIPROT", DBLink.DBName) Select DBLink.AccessionId).FirstOrDefault
             End Function
 
             ''' <summary>

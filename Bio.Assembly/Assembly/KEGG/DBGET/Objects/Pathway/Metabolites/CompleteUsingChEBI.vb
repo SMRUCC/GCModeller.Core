@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::af9a38d620bb475dc840f1e9df0b8485, core\Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\CompleteUsingChEBI.vb"
+﻿#Region "Microsoft.VisualBasic::6b1923687029b4684a56bff41d0070e7, Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\CompleteUsingChEBI.vb"
 
     ' Author:
     ' 
@@ -31,7 +31,7 @@
 
     ' Summaries:
 
-    '     Module MetabolitesDBGet
+    '     Module MetaboliteDBGET
     ' 
     '         Function: CompleteUsingChEBI
     ' 
@@ -52,7 +52,7 @@ Imports SMRUCC.genomics.Assembly.EBI.ChEBI.Database.IO.StreamProviders.Tsv.Table
 
 Namespace Assembly.KEGG.DBGET.bGetObject
 
-    Partial Module MetabolitesDBGet
+    Partial Module MetaboliteDBGET
 
         Const ChEBI$ = NameOf(ChEBI) & "_unclassified"
 
@@ -101,7 +101,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                         Thread.Sleep(1000)
                     End If
 
-                    Dim cpd As Compound = MetabolitesDBGet.DownloadCompound(acc.ACCESSION_NUMBER)
+                    Dim cpd As Compound = MetaboliteDBGET.DownloadCompound(acc.ACCESSION_NUMBER)
 
                     If cpd Is Nothing Then
                         ' 没有下载成功

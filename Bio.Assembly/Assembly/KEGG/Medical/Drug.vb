@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::a7ef2da3c24fc5453c6eab410568e0fa, core\Bio.Assembly\Assembly\KEGG\Medical\Drug.vb"
+﻿#Region "Microsoft.VisualBasic::2468d4910373dd9bd8e9f27a970c41b8, Bio.Assembly\Assembly\KEGG\Medical\Drug.vb"
 
     ' Author:
     ' 
@@ -33,9 +33,10 @@
 
     '     Class Drug
     ' 
-    '         Properties: Activity, Atoms, Bounds, Comments, DBLinks
-    '                     Entry, Exact_Mass, Formula, Interaction, Metabolism
-    '                     Mol_Weight, Names, Remarks, Source, Targets
+    '         Properties: Activity, Atoms, Bounds, Comments, CompoundID
+    '                     DBLinks, Entry, Exact_Mass, Formula, Interaction
+    '                     Metabolism, Mol_Weight, Names, Remarks, Source
+    '                     Targets
     ' 
     '         Function: ToString
     ' 
@@ -86,6 +87,32 @@ Namespace Assembly.KEGG.Medical
         Public Property Metabolism As NamedValue(Of String)()
         Public Property Interaction As NamedValue(Of String)()
         Public Property Source As String()
+
+        Public ReadOnly Property CompoundID As String()
+            Get
+                If Remarks.IsNullOrEmpty Then
+                    Return {}
+                End If
+
+                Dim table = Remarks _
+                    .Select(Function(s)
+                                Return s.GetTagValue(":", trim:=True)
+                            End Function) _
+                    .ToDictionary() _
+                    .FlatTable
+
+                If table.ContainsKey("Same as") Then
+                    ' 可能会对应多个Compound
+                    Return table("Same as") _
+                        .Split _
+                        .Select(AddressOf Trim) _
+                        .Where(Function(id) id.First = "C"c) _
+                        .ToArray
+                Else
+                    Return {}
+                End If
+            End Get
+        End Property
 
         Public Overrides Function ToString() As String
             Return GetJson

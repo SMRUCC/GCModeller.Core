@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::a34c53ba1baa3cd325e138a138a9eb80, core\Bio.Assembly\Assembly\NCBI\Database\GenBank\TabularFormat\FeatureBriefs\PTT\DbAPI.vb"
+﻿#Region "Microsoft.VisualBasic::e04d9ba139dbc3f1b9d56ca683d6c129, Bio.Assembly\Assembly\NCBI\Database\GenBank\TabularFormat\FeatureBriefs\PTT\DbAPI.vb"
 
     ' Author:
     ' 
@@ -66,11 +66,11 @@ Namespace Assembly.NCBI.GenBank.TabularFormat
         ''' <param name="DIR"></param>
         ''' <returns></returns>
         Public Function GetDbEntries(DIR As String) As String()
-            Dim gbs As IEnumerable(Of String) = ls - l - wildcards("*.gb", "*.gbk") <= DIR
+            Dim gbs() = (ls - l - wildcards("*.gb", "*.gbk") <= DIR).ToArray
             If gbs.IsNullOrEmpty Then
-                gbs = ls - l - wildcards("*.PTT", "*.ptt") <= DIR
+                gbs = (ls - l - wildcards("*.PTT", "*.ptt") <= DIR).ToArray
             End If
-            Dim locus As String() = gbs.Select(Function(x) x.BaseName).Distinct.ToArray
+            Dim locus$() = gbs.Select(Function(x) x.BaseName).Distinct.ToArray
             Return locus
         End Function
 

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::f63d1d44338bb2678b29c821fa16f886, core\Bio.Assembly\SequenceModel\Patterns\Clustal\Residue.vb"
+﻿#Region "Microsoft.VisualBasic::51d1131fcf7db456623a508973a605fb, Bio.Assembly\SequenceModel\Patterns\Clustal\Residue.vb"
 
     ' Author:
     ' 
@@ -89,7 +89,7 @@ Namespace SequenceModel.Patterns.Clustal
         ''' <param name="levels"></param>
         ''' <returns></returns>
         Public Shared Function FromAlign(aln As IEnumerable(Of FastaSeq), Optional block As Double = 1.0R, Optional levels As Integer = 10) As SRChain()
-            If aln.IsNullOrEmpty Then
+            If aln Is Nothing Then
                 Return New SRChain() {}
             Else
                 Try

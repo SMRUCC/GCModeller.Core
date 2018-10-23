@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::958e69b812b6db380f976f910f522207, core\Bio.Assembly\SequenceModel\CutSequence.vb"
+﻿#Region "Microsoft.VisualBasic::958e69b812b6db380f976f910f522207, Bio.Assembly\SequenceModel\CutSequence.vb"
 
     ' Author:
     ' 
@@ -124,9 +124,9 @@ Namespace SequenceModel
 
             site.Strand = If(loci.Strand = Strands.Forward, "+", "-")
             site.ID = If(
-                loci.UserTag.StringEmpty,
+                loci.Tag.StringEmpty,
                 loci.NCBIstyle,
-                loci.UserTag)
+                loci.Tag)
 
             If loci.Strand = Strands.Forward Then
                 Return site
