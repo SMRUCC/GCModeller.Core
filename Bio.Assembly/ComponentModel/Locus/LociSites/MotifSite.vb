@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::6d5bd68b57ab5e351c378b83c74fc289, Bio.Repository\Indexing\NamesFactory.vb"
+﻿#Region "Microsoft.VisualBasic::0049f36691c69b1dd140fa1536a2770c, Bio.Assembly\ComponentModel\Locus\LociSites\MotifSite.vb"
 
     ' Author:
     ' 
@@ -31,29 +31,48 @@
 
     ' Summaries:
 
-    ' Interface NamesFactory
+    '     Interface IMotifSite
     ' 
-    '     Function: GetNames, PopulateObjects
+    '         Properties: Name, Site, Type
+    ' 
+    '     Interface IMotifScoredSite
+    ' 
+    '         Properties: Score
     ' 
     ' 
     ' /********************************************************************************/
 
 #End Region
 
-Public Interface NamesFactory(Of T)
+Namespace ComponentModel.Loci
 
     ''' <summary>
-    ''' 从该对象之中提取出名字的方法
+    ''' Motif site model on both DNA/RNA and protein sequence.
     ''' </summary>
-    ''' <param name="obj"></param>
-    ''' <returns></returns>
-    Function GetNames(obj As T) As String()
+    Public Interface IMotifSite
+
+        ''' <summary>
+        ''' loci types
+        ''' </summary>
+        ''' <returns></returns>
+        Property Type As String
+        ''' <summary>
+        ''' loci name
+        ''' </summary>
+        ''' <returns></returns>
+        Property Name As String
+        Property Site As Location
+    End Interface
+
     ''' <summary>
-    ''' 这个函数是index的数据源
+    ''' This motif site have the scoring calculation value
     ''' </summary>
-    ''' <returns></returns>
-    Function PopulateObjects() As IEnumerable(Of T)
+    Public Interface IMotifScoredSite : Inherits IMotifSite
 
-End Interface
-
-
+        ''' <summary>
+        ''' The site score of this SNP site
+        ''' </summary>
+        ''' <returns></returns>
+        Property Score As Double
+    End Interface
+End Namespace

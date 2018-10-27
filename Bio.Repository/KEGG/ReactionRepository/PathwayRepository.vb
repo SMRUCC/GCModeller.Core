@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::0049f36691c69b1dd140fa1536a2770c, Bio.Assembly\ComponentModel\Loci.Models\LociSites\MotifSite.vb"
+﻿#Region "Microsoft.VisualBasic::cadcdef2226cbcb64d1ffe5467f230f1, Bio.Repository\KEGG\ReactionRepository\PathwayRepository.vb"
 
     ' Author:
     ' 
@@ -31,48 +31,35 @@
 
     ' Summaries:
 
-    '     Interface IMotifSite
+    ' Class PathwayRepository
     ' 
-    '         Properties: Name, Site, Type
+    '     Properties: PathwayMaps
     ' 
-    '     Interface IMotifScoredSite
-    ' 
-    '         Properties: Score
-    ' 
+    '     Function: ScanModels
     ' 
     ' /********************************************************************************/
 
 #End Region
 
-Namespace ComponentModel.Loci
+Imports Microsoft.VisualBasic.ComponentModel
+Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
+Imports Microsoft.VisualBasic.Language.UnixBash
+Imports Microsoft.VisualBasic.Language
 
-    ''' <summary>
-    ''' Motif site model on both DNA/RNA and protein sequence.
-    ''' </summary>
-    Public Interface IMotifSite
+Public Class PathwayRepository : Inherits XmlDataModel
 
-        ''' <summary>
-        ''' loci types
-        ''' </summary>
-        ''' <returns></returns>
-        Property Type As String
-        ''' <summary>
-        ''' loci name
-        ''' </summary>
-        ''' <returns></returns>
-        Property Name As String
-        Property Site As Location
-    End Interface
+    Public Property PathwayMaps As PathwayMap()
 
-    ''' <summary>
-    ''' This motif site have the scoring calculation value
-    ''' </summary>
-    Public Interface IMotifScoredSite : Inherits IMotifSite
+    Public Shared Function ScanModels(directory As String) As PathwayRepository
+        Dim maps As New List(Of PathwayMap)
 
-        ''' <summary>
-        ''' The site score of this SNP site
-        ''' </summary>
-        ''' <returns></returns>
-        Property Score As Double
-    End Interface
-End Namespace
+        For Each file As String In ls - l - r - "*.Xml" <= directory
+            maps += file.LoadXml(Of PathwayMap)
+        Next
+
+        Return New PathwayRepository With {
+            .PathwayMaps = maps
+        }
+    End Function
+End Class
+
