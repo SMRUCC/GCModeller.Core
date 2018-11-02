@@ -76,6 +76,10 @@ Namespace Assembly.NCBI.Taxonomy
                     line = reader.ReadLine
                     tokens = line.Split(ASCII.TAB)
 
+                    ' 2018-11-03 因为下面的解析过程是依据具体的index来进行的
+                    ' 所以即使输入的原始数据之中的行末尾追加了其他的数据
+                    ' 也不会对数据的读取造成影响
+
                     ' 0               1                       2       3
                     ' accession       accession.version       taxid   gi
                     Yield New NamedValue(Of Integer) With {
@@ -99,7 +103,8 @@ Namespace Assembly.NCBI.Taxonomy
 
             If gb_priority Then
                 For i As Integer = 0 To files.Length - 1
-                    If files(i).BaseName.TextEquals("nucl_gb") Then ' 优先加载gb库，提升匹配查找函数的效率
+                    ' 优先加载gb库，提升匹配查找函数的效率
+                    If files(i).BaseName.TextEquals("nucl_gb") Then
                         Call files.Swap(i, Scan0)
                         Exit For
                     End If
@@ -120,6 +125,16 @@ Namespace Assembly.NCBI.Taxonomy
         Public Const Acc2Taxid_Header As String = "accession" & vbTab & "accession.version" & vbTab & "taxid" & vbTab & "gi"
 
         ''' <summary>
+        ''' 在这里移除版本号
+        ''' </summary>
+        ''' <param name="accession"></param>
+        ''' <returns></returns>
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Function TrimAccessionVersion(accession As String) As String
+            Return accession.Split("."c)(Scan0)
+        End Function
+
+        ''' <summary>
         ''' 做数据库的subset操作。这个函数所返回来的数据之中是包含有表头的
         ''' </summary>
         ''' <param name="acc_list"></param>
@@ -135,16 +150,11 @@ Namespace Assembly.NCBI.Taxonomy
             ' 因为后面的循环之中需要进行已经被match上的对象的remove操作
             ' 所以在这里就不适用Index对象了，直接使用Dictionary
             Dim list As Dictionary(Of String, String) = acc_list _
-                .Select(Function(id)
-                            ' 在这里移除版本号
-                            Return id.Split("."c).First
-                        End Function) _
+                .Select(AddressOf TrimAccessionVersion) _
                 .Distinct _
                 .ToDictionary(Function(id) id)
 
-            Yield {
-                "accession", "accession.version", "taxid", "gi"
-            }.JoinBy(vbTab)
+            Yield Acc2Taxid_Header
 
             Dim n% = 0
             Dim ALL% = list.Count
