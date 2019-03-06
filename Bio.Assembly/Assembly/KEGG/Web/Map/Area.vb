@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::128c45647ad7c3d5e9f91b285148d011, Bio.Assembly\Assembly\KEGG\Web\Map\Area.vb"
+﻿#Region "Microsoft.VisualBasic::f5a6d669a539e59abfc47afa0fb6f954, Bio.Assembly\Assembly\KEGG\Web\Map\Area.vb"
 
     ' Author:
     ' 
@@ -50,7 +50,8 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text.HtmlParser
-Imports SMRUCC.genomics.Assembly.KEGG.DBGET.BriteHEntry
+Imports SMRUCC.genomics.Assembly.KEGG.DBGET
+Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 
 Namespace Assembly.KEGG.WebServices
 
@@ -116,7 +117,7 @@ Namespace Assembly.KEGG.WebServices
                         ElseIf .First.IsPattern("R\d+") Then
                             Return "Reaction"
                         ElseIf shape = "rect" AndAlso .First.IndexOf(":"c) = -1 Then
-                            Return NameOf(Pathway)
+                            Return NameOf(BriteHEntry.Pathway)
                         ElseIf shape = "poly" Then
                             Return "Reaction"
                         Else
@@ -124,7 +125,11 @@ Namespace Assembly.KEGG.WebServices
                         End If
                     End With
                 ElseIf InStr(href, "/kegg-bin/show_pathway") = 1 Then
-                    Return NameOf(Pathway)
+                    Return NameOf(BriteHEntry.Pathway)
+                ElseIf InStr(href, "search_htext?htext=") > 0 Then
+                    ' 查看这张pathway的分类信息
+                    ' 不进行绘制
+                    Return "null"
                 Else
                     Throw New NotImplementedException(Me.GetXml)
                 End If

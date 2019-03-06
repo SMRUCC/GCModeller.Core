@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::3a3133b15e6f8f09769112681c97330a, Bio.Assembly\Metagenomics\BIOMTaxonomy.vb"
+﻿#Region "Microsoft.VisualBasic::9c9d32cb023ae38a9099d9de00ea8577, Bio.Assembly\Metagenomics\BIOMTaxonomy.vb"
 
     ' Author:
     ' 
@@ -62,7 +62,7 @@ Namespace Metagenomics
         Public ReadOnly Property BIOMPrefix As String() = {"k__", "p__", "c__", "o__", "f__", "g__", "s__"}
 
         ''' <summary>
-        ''' 
+        ''' ``["superkingdom__", "phylum__", "class__", "order__", "family__", "genus__", "species__"]``
         ''' </summary>
         ''' <returns></returns>
         ''' <remarks>

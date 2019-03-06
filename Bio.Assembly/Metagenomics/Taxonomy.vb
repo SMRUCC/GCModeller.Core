@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::6ad8f159d371a7dc7b0207cd5716575d, Bio.Assembly\Metagenomics\Taxonomy.vb"
+﻿#Region "Microsoft.VisualBasic::1da4ca4fadbec2a8d255737be3941103, Bio.Assembly\Metagenomics\Taxonomy.vb"
 
     ' Author:
     ' 
@@ -50,6 +50,7 @@ Imports System.Runtime.CompilerServices
 Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports SMRUCC.genomics.Assembly.NCBI.Taxonomy
 
@@ -286,7 +287,18 @@ Namespace Metagenomics
         End Operator
 
         Public Overrides Function ToString() As String
-            Return ToArray.JoinBy("->")
+            Dim tax As New List(Of String)
+            Dim i As VBInteger = Scan0
+
+            tax += BIOMPrefixAlt(++i) & Me.kingdom
+            tax += BIOMPrefixAlt(++i) & Me.phylum
+            tax += BIOMPrefixAlt(++i) & Me.class
+            tax += BIOMPrefixAlt(++i) & Me.order
+            tax += BIOMPrefixAlt(++i) & Me.family
+            tax += BIOMPrefixAlt(++i) & Me.genus
+            tax += BIOMPrefixAlt(++i) & Me.species
+
+            Return tax.JoinBy(";")
         End Function
     End Class
 End Namespace

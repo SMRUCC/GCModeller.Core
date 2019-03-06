@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::3f579af13be4426c2188d534a39a2842, Bio.Assembly\Assembly\KEGG\Medical\DrugParser.vb"
+﻿#Region "Microsoft.VisualBasic::1ac3296361250cb1cf96fd8e7ea36b43, Bio.Assembly\Assembly\KEGG\Medical\DrugParser.vb"
 
     ' Author:
     ' 
@@ -47,6 +47,7 @@ Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Extensions
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Text
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.ComponentModel.DBLinkBuilder
 
@@ -57,8 +58,13 @@ Namespace Assembly.KEGG.Medical
     ''' </summary>
     Public Module DrugParser
 
-        Public Iterator Function ParseStream(path$) As IEnumerable(Of Drug)
-            Dim lines$() = path.ReadAllLines
+        ''' <summary>
+        ''' 解析药物数据库的文件
+        ''' </summary>
+        ''' <param name="pathOrDoc$">文件路径或者文件的文本内容</param>
+        ''' <returns></returns>
+        Public Iterator Function ParseStream(pathOrDoc As String) As IEnumerable(Of Drug)
+            Dim lines$() = pathOrDoc.SolveStream.LineTokens
 
             For Each pack As String() In lines.Split("///")
                 Yield pack.ParseStream.CreateDrugModel
@@ -153,7 +159,10 @@ Namespace Assembly.KEGG.Medical
                 .DBLinks = getValue("DBLINKS") _
                     .Select(AddressOf DBLink.FromTagValue) _
                     .ToArray,
-                .Activity = getValue("ACTIVITY").JoinBy(" "),
+                .Efficacy = getValue("EFFICACY").JoinBy(ASCII.TAB),
+                .Classes = ClassInheritance _
+                    .PopulateClasses(getValue("CLASS")) _
+                    .ToArray,
                 .Atoms = __atoms(getValue("ATOM")),
                 .Bounds = __bounds(getValue("BOUND")),
                 .Comments = getValue("COMMENT"),
@@ -179,7 +188,8 @@ Namespace Assembly.KEGG.Medical
         ''' <returns></returns>
         <Extension> Friend Function ParseStream(lines$(), Optional ByRef ref As Reference() = void) As Func(Of String, String())
             Dim list As New Dictionary(Of NamedValue(Of List(Of String)))
-            Dim tag$ = ""  ' 在这里使用空字符串，如果使用Nothing空值的话，添加字典的时候出发生错误
+            ' 在这里使用空字符串，如果使用Nothing空值的话，添加字典的时候出发生错误
+            Dim tag$ = ""
             Dim values As New List(Of String)
             Dim add = Sub()
                           ' 忽略掉original，bracket这些分子结构参数，因为可以很方便的从ChEBI数据库之中获取得到
@@ -191,7 +201,7 @@ Namespace Assembly.KEGG.Medical
                           End If
                       End Sub
 
-            Dim i As int = Scan0
+            Dim i As VBInteger = Scan0
             Dim line As New Value(Of String)
 
             Do While i < lines.Length
@@ -230,14 +240,13 @@ Namespace Assembly.KEGG.Medical
             ' 还会有剩余的数据的，在这里将他们添加上去
             Call add()
 
-            Dim getValue = Function(KEY$) As String()
-                               If list.ContainsKey(KEY) Then
-                                   Return list(KEY).Value
-                               Else
-                                   Return {}
-                               End If
-                           End Function
-            Return getValue
+            Return Function(key As String) As String()
+                       If list.ContainsKey(key) Then
+                           Return list(key).Value
+                       Else
+                           Return {}
+                       End If
+                   End Function
         End Function
 
         Private Function __atoms(lines$()) As Atom()

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::f68df8e5b501470c78da9b7c923c2747, Bio.Assembly\SequenceModel\FASTA\IO\FastaToken.vb"
+﻿#Region "Microsoft.VisualBasic::cf8a76ff6281d2b5805aa550898d48d8, Bio.Assembly\SequenceModel\FASTA\IO\FastaToken.vb"
 
     ' Author:
     ' 
@@ -356,14 +356,14 @@ AAGCGAACAAATGTTCTATA"
                 Return Nothing
             End If
 
-            Dim attrs$() = Mid(lines(Scan0), 2).Split(deli)
+            Dim attrs$() = Mid(lines(Scan0), 2).Trim.Split(deli)
             Dim removeInvalids = Function(s$) s.Replace(StreamIterator.SOH, "")
 
             attrs = attrs.Select(removeInvalids).ToArray
 
             Dim fa As New FastaSeq With {
                 .Headers = attrs,
-                .SequenceData = String.Join("", lines.Skip(1).ToArray)  ' Linux mono does not support <Extension> attribute!
+                .SequenceData = String.Join("", lines.Skip(1).ToArray)
             }
 
             Return fa
@@ -375,11 +375,10 @@ AAGCGAACAAATGTTCTATA"
         ''' <param name="s">The string text value which is in the Fasta format.(FASTA格式的序列文本)</param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        ''' 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
         <ExportAPI("FastaToken.Parser")>
         Public Shared Function TryParse(s As String, Optional deli As Char = DefaultHeaderDelimiter) As FastaSeq
-            Dim lines$() = s.LineTokens
-            Return FastaSeq.ParseFromStream(lines, {deli})
+            Return FastaSeq.ParseFromStream(s.LineTokens, {deli})
         End Function
 
         ''' <summary>

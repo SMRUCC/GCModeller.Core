@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::e56794368becbd208a0c8202f339b192, Bio.Assembly\Assembly\NCBI\Database\GenBank\ExportServices\gbExportService.vb"
+﻿#Region "Microsoft.VisualBasic::7ec3944f1e05230199fd31f6b55d47fc, Bio.Assembly\Assembly\NCBI\Database\GenBank\ExportServices\gbExportService.vb"
 
     ' Author:
     ' 
@@ -478,7 +478,7 @@ Namespace Assembly.NCBI.GenBank
                 If GeneFastaDump.Count > 0 Then
                     Call GeneSequenceList.AddRange(GeneFastaDump.ToArray)
                     Call GeneFastaDump.Save(String.Format("{0}/plasmid_genes/{1}.fasta", FastaExport, gb.Accession.AccessionId))
-                    Call GeneFastaDump.FlushData()
+                    Call GeneFastaDump.Clear()
                 End If
             Next
 

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::0340bbf3fd11fb37fa3a1563bc6c1d23, Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\Compound.vb"
+﻿#Region "Microsoft.VisualBasic::29780966ae991c26144d68667543b1b1, Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\Compound.vb"
 
     ' Author:
     ' 
@@ -62,6 +62,9 @@ Imports SMRUCC.genomics.ComponentModel.EquaionModel
 
 Namespace Assembly.KEGG.DBGET.bGetObject
 
+    ''' <summary>
+    ''' KEGG的代谢物模型
+    ''' </summary>
     Public Class Compound : Inherits XmlDataModel
         Implements ICompoundObject
 
@@ -112,6 +115,10 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             End Set
         End Property
 
+        ''' <summary>
+        ''' 2D分子结构数据
+        ''' </summary>
+        ''' <returns></returns>
         Public Property KCF As String
         Public Property Image As String
 

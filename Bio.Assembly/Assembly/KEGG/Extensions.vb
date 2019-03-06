@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::58bf46d1315d90be67c33735e0195e2a, Bio.Assembly\Assembly\KEGG\Extensions.vb"
+﻿#Region "Microsoft.VisualBasic::af19d4c443f1d1e9bdf24b5397a15182, Bio.Assembly\Assembly\KEGG\Extensions.vb"
 
     ' Author:
     ' 
@@ -34,7 +34,7 @@
     '     Module Extensions
     ' 
     '         Function: DirectGetChEBI, GetIDpairedList, GetPathwayBrite, IDlistStrings, LevelAKOStatics
-    '                   RemarksTable, (+2 Overloads) TheSameAs, ValidateEntryFormat
+    '                   RemarksTable, SingleID, (+2 Overloads) TheSameAs, ValidateEntryFormat
     '         Interface IKEGGRemarks
     ' 
     '             Properties: Remarks
@@ -124,6 +124,8 @@ Namespace Assembly.KEGG
         ''' HSA:6929 5087
         ''' ```
         ''' </returns>
+        ''' 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
         <Extension>
         Public Function IDlistStrings(tag$, list$()) As String
             Return $"{tag}:{list.JoinBy(" ")}"
@@ -134,6 +136,8 @@ Namespace Assembly.KEGG
         ''' </summary>
         ''' <param name="s$"></param>
         ''' <returns></returns>
+        ''' 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
         <Extension>
         Public Function ValidateEntryFormat(s$) As Boolean
             Return s.MatchPattern("[a-z]+\d+")
@@ -157,6 +161,12 @@ Namespace Assembly.KEGG
             Return tags.Value
         End Function
 
+        ''' <summary>
+        ''' 将Remarks数据转换为字典对象
+        ''' </summary>
+        ''' <typeparam name="T"></typeparam>
+        ''' <param name="o"></param>
+        ''' <returns></returns>
         <Extension>
         Public Function RemarksTable(Of T As IKEGGRemarks)(o As T) As Dictionary(Of String, String)
             If Not o.Remarks.IsNullOrEmpty Then
@@ -169,6 +179,26 @@ Namespace Assembly.KEGG
             End If
         End Function
 
+        Public Function SingleID(theSameAs As String) As String
+            Dim tokens = Strings.Trim(theSameAs).StringSplit("\s+")
+            Dim CID As String = tokens _
+                .Where(Function(id) id.IsPattern("C\d+")) _
+                .FirstOrDefault
+
+            If CID.StringEmpty Then
+                Return tokens.FirstOrDefault
+            Else
+                Return CID
+            End If
+        End Function
+
+        ''' <summary>
+        ''' 得到和这个药物同义的KEGG代谢物编号, 返回来的字符串可能会包含有多个ID编号
+        ''' 例如C\d+和G\d+可能会同时出现
+        ''' </summary>
+        ''' <typeparam name="T"></typeparam>
+        ''' <param name="o"></param>
+        ''' <returns></returns>
         <Extension>
         Public Function TheSameAs(Of T As IKEGGRemarks)(o As T) As String
             If Not o.Remarks.IsNullOrEmpty Then
@@ -207,7 +237,9 @@ Namespace Assembly.KEGG
                                         As Dictionary(Of String, NamedValue(Of Integer)())
             Dim brites As htext = htext.ko00001
             Dim KOTable As Dictionary(Of String, BriteHText) = brites.GetEntryDictionary
-            Dim counts = mappings _
+            Dim out As New Dictionary(Of String, NamedValue(Of Integer)())
+
+            KO_counts = mappings _
                 .GroupBy(Function(gene) gene.Value) _
                 .Select(Function(x)
                             ' 对每一个KO进行数量上的统计分析
@@ -228,9 +260,6 @@ Namespace Assembly.KEGG
                             End If
                         End Function) _
                 .ToArray
-            Dim out As New Dictionary(Of String, NamedValue(Of Integer)())
-
-            KO_counts = counts
 
             For Each [class] As BriteHText In brites.Hierarchical.CategoryItems
                 Dim profile As New List(Of NamedValue(Of Integer))
@@ -244,16 +273,19 @@ Namespace Assembly.KEGG
                     profile += New NamedValue(Of Integer) With {
                         .Name = levelACatalog.ClassLabel,
                         .Description = levelACatalog.Description,
-                        .Value = counts _
+                        .Value = KO_counts _
                             .Where(Function(tag) KO(tag.Catalog) > -1) _
                             .Count
                     }
                 Next
 
-                out([class].ClassLabel) = If(
-                    keepsZERO,
-                    profile,
-                    profile.Where(Function(x) x.Value > 0).ToArray)
+                If keepsZERO Then
+                    out([class].ClassLabel) = profile
+                Else
+                    out([class].ClassLabel) = profile _
+                        .Where(Function(x) x.Value > 0) _
+                        .ToArray
+                End If
             Next
 
             Return out

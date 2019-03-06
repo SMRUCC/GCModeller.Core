@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::63ffebdc81e3c25fd83cf4cb01613385, Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\htext.vb"
+﻿#Region "Microsoft.VisualBasic::4251d3cc73d9d5d108242eb485686377, Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\htext.vb"
 
     ' Author:
     ' 
@@ -42,6 +42,7 @@
 
 #End Region
 
+Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Text
@@ -78,6 +79,11 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         ''' <returns></returns>
         Public Property Hierarchical As BriteHText
 
+        ''' <summary>
+        ''' ``KOxxxxx``为键名，注释信息为对应的键值
+        ''' </summary>
+        ''' <returns></returns>
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Function GetEntryDictionary() As Dictionary(Of String, BriteHText)
             Return Hierarchical _
                 .EnumerateEntries _
@@ -105,7 +111,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
             Dim header$() = lines(Scan0).Split(ASCII.TAB)
             Dim title As String = lines(1)
             Dim defs As New List(Of String)
-            Dim i As int = 2
+            Dim i As VBInteger = 2
 
             Do While lines(i) <> "!"
                 Call defs.Add(lines(++i))

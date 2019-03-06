@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::6c6819d253a7975d2ebe3e066b685913, Bio.Assembly\Assembly\UniProt\XML\Extensions.vb"
+﻿#Region "Microsoft.VisualBasic::ef02f0b4d20a42d781b59d6999994d69, Bio.Assembly\Assembly\Uniprot\XML\Extensions.vb"
 
     ' Author:
     ' 
@@ -33,8 +33,8 @@
 
     '     Module Extensions
     ' 
-    '         Function: ECNumberList, GetDomainData, ORF, OrganismScientificName, proteinFullName
-    '                   SubCellularLocations, Term2Gene
+    '         Function: ECNumberList, EnumerateAllIDs, GetDomainData, ORF, OrganismScientificName
+    '                   proteinFullName, SubCellularLocations, Term2Gene
     ' 
     ' 
     ' /********************************************************************************/
@@ -52,12 +52,31 @@ Namespace Assembly.Uniprot.XML
     Public Module Extensions
 
         <Extension>
+        Public Iterator Function EnumerateAllIDs(entry As entry) As IEnumerable(Of (Database$, xrefID$))
+            For Each accession As String In entry.accessions.SafeQuery
+                Yield (entry.dataset, accession)
+            Next
+
+            Yield ("geneName", entry.name)
+
+            For Each reference As dbReference In entry.dbReferences.SafeQuery
+                Yield (reference.type, reference.id)
+
+                For Each prop As [property] In reference.properties.SafeQuery
+                    Yield (reference.type & ":" & prop.type.Replace(" ", "_"), prop.value)
+                Next
+            Next
+        End Function
+
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        <Extension>
         Public Function ECNumberList(protein As entry) As String()
-            Return protein?. _
-                protein?. _
-                recommendedName?. _
-                ecNumber.Select(Function(ec) ec.value) _
-                .ToArray
+            Return protein _
+                ?.protein _
+                ?.recommendedName _
+                ?.ecNumber _
+                 .Select(Function(ec) ec.value) _
+                 .ToArray
         End Function
 
         <Extension>
@@ -94,9 +113,11 @@ Namespace Assembly.Uniprot.XML
             Dim cellularComments = protein _
                 .CommentList _
                 .TryGetValue("subcellular location", [default]:={})
+
             Return cellularComments _
                 .Select(Function(c)
-                            Return c.subcellularLocations _
+                            Return c _
+                                .subcellularLocations _
                                 .Select(Function(x)
                                             Return x.locations _
                                                 .Select(Function(l) l.value)
@@ -125,6 +146,7 @@ Namespace Assembly.Uniprot.XML
                             }
                         End Function) _
                 .ToArray
+
             Return out
         End Function
 
