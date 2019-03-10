@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::db64ff1d19c874b77a9ed97a0345f5f9, Bio.Assembly\Assembly\NCBI\Database\GenBank\GBK\Keywords\SOURCE\SOURCE.vb"
+﻿#Region "Microsoft.VisualBasic::4ad02135bcf43c2db7ec7b038fccae5d, Bio.Assembly\SequenceModel\FASTA\HeaderFormats.vb"
 
     ' Author:
     ' 
@@ -31,11 +31,9 @@
 
     ' Summaries:
 
-    '     Class SOURCE
+    '     Module HeaderFormats
     ' 
-    '         Properties: OrganismHierarchy, SpeciesName
-    ' 
-    '         Function: GetTaxonomy, ToString
+    '         Function: GetUniProtAccession, TrimAccessionVersion, TryGetUniProtAccession
     ' 
     ' 
     ' /********************************************************************************/
@@ -43,40 +41,47 @@
 #End Region
 
 Imports System.Runtime.CompilerServices
+Imports SMRUCC.genomics.Assembly.Uniprot
 
-Namespace Assembly.NCBI.GenBank.GBFF.Keywords
+Namespace SequenceModel.FASTA
 
     ''' <summary>
-    ''' 物种信息
+    ''' Fasta序列在不同的数据库之中的标题的格式的帮助函数模块
     ''' </summary>
-    Public Class SOURCE : Inherits KeyWord
+    Public Module HeaderFormats
 
-        Public Property SpeciesName As String
         ''' <summary>
-        ''' lineage
+        ''' 在这里移除序列编号之中的版本号
         ''' </summary>
+        ''' <param name="accession">``XXXXX.1``</param>
         ''' <returns></returns>
-        Public Property OrganismHierarchy As ORGANISM
-
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
-        Public Function GetTaxonomy() As Metagenomics.Taxonomy
-            Return OrganismHierarchy.ToTaxonomy
+        Public Function TrimAccessionVersion(accession As String) As String
+            Return accession.Split("."c)(Scan0)
         End Function
 
-        Public Overrides Function ToString() As String
-            Return OrganismHierarchy.ToString
+#Region "UniProt"
+
+        ''' <summary>
+        ''' 格式参见<see cref="UniprotFasta"/>
+        ''' </summary>
+        ''' <param name="title"></param>
+        ''' <returns></returns>
+        ''' 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Function GetUniProtAccession(title As String) As String
+            Return title.Split("|"c).ElementAtOrDefault(1)
         End Function
 
-        Public Shared Widening Operator CType(str As String()) As SOURCE
-            Dim source As New SOURCE
-
-            If Not str.IsNullOrEmpty Then
-                Call __trimHeadKey(str)
-                source.SpeciesName = str.First
-                source.OrganismHierarchy = ORGANISM.InternalParser(str.Skip(1).ToArray)
+        Public Function TryGetUniProtAccession(title As String, ByRef accession As String) As Boolean
+            If Not title.StringEmpty AndAlso title.IndexOf("|"c) > -1 Then
+                accession = title.Split("|"c)(1)
+                Return True
+            Else
+                Return False
             End If
+        End Function
+#End Region
 
-            Return source
-        End Operator
-    End Class
+    End Module
 End Namespace
