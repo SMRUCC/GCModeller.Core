@@ -1,11 +1,13 @@
-﻿Imports SMRUCC.genomics.SequenceModel
+﻿Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
+Imports SMRUCC.genomics.SequenceModel
 Imports SMRUCC.genomics.SequenceModel.FASTA
 
 Namespace Assembly.iGEM
 
-    Public Class PartSeq : Implements IPolymerSequenceModel
+    Public Class PartSeq : Implements IPolymerSequenceModel, INamedValue
 
-        Public Property PartName As String
+        Public Property PartName As String Implements IKeyedEntity(Of String).Key
         Public Property Status As String
         Public Property Id As String
         Public Property Type As String
@@ -21,14 +23,25 @@ Namespace Assembly.iGEM
             For Each seq As FastaSeq In StreamIterator.SeqSource(file)
                 Dim headers = CommandLine.GetTokens(seq.Title)
 
-                Yield New PartSeq With {
-                    .PartName = headers(0),
-                    .Status = headers(1),
-                    .Id = headers(2),
-                    .Type = headers(3),
-                    .Description = headers(4),
-                    .SequenceData = seq.SequenceData
-                }
+                If headers.Length = 5 Then
+                    Yield New PartSeq With {
+                        .PartName = headers(0),
+                        .Status = headers(1),
+                        .Id = headers(2),
+                        .Type = headers(3),
+                        .Description = headers(4),
+                        .SequenceData = seq.SequenceData
+                    }
+                Else
+                    Yield New PartSeq With {
+                       .PartName = headers(0),
+                       .Status = headers(1),
+                       .Id = headers(2),
+                       .Type = Nothing,
+                       .Description = headers(3),
+                       .SequenceData = seq.SequenceData
+                   }
+                End If
             Next
         End Function
     End Class
