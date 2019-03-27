@@ -9,6 +9,8 @@ Namespace Assembly.iGEM
         Public Property part_list As Part()
 
         Public Shared Iterator Function FetchByIDList(idlist As IEnumerable(Of String), save$) As IEnumerable(Of String)
+
+
             For Each id As String In idlist
                 Dim path$ = $"{save}/{id}.Xml"
 
