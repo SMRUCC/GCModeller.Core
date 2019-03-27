@@ -1,4 +1,5 @@
-﻿Imports SMRUCC.genomics.ComponentModel
+﻿Imports Microsoft.VisualBasic.Text.Xml
+Imports SMRUCC.genomics.ComponentModel
 
 Namespace Assembly.iGEM
 
@@ -9,7 +10,7 @@ Namespace Assembly.iGEM
         End Sub
 
         Private Shared Function partListParser(text As String, type As Type) As Object
-
+            Return text.RemoveXmlComments.LoadFromXml(type,)
         End Function
 
         Private Shared Function urlCreator(partId As String) As String
