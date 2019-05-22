@@ -126,8 +126,8 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                             LinqAPI.Exec(Of [Module]) <= From ModuleEntry As BriteHText
                                                          In SubCategory.CategoryItems
                                                          Let Entry = New KeyValuePair With {
-                                                             .Key = ModuleEntry.EntryId,
-                                                             .Value = ModuleEntry.Description
+                                                             .Key = ModuleEntry.entryID,
+                                                             .Value = ModuleEntry.description
                                                          }
                                                          Select New [Module] With {
                                                              .Entry = Entry,
@@ -144,7 +144,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         End Function
 
         Public Shared Function LoadFile(path As String) As [Module]()
-            Return Build(Model:=BriteHText.Load(data:=FileIO.FileSystem.ReadAllText(path)))
+            Return Build(Model:=BriteHTextParser.Load(data:=FileIO.FileSystem.ReadAllText(path)))
         End Function
 
         ''' <summary>

@@ -87,8 +87,8 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         Public Function GetEntryDictionary() As Dictionary(Of String, BriteHText)
             Return Hierarchical _
                 .EnumerateEntries _
-                .Where(Function(x) Not x.EntryId.StringEmpty) _
-                .GroupBy(Function(t) t.EntryId) _
+                .Where(Function(x) Not x.entryID.StringEmpty) _
+                .GroupBy(Function(t) t.entryID) _
                 .ToDictionary(Function(k) k.Key,
                               Function(o) o.First)
         End Function
@@ -145,7 +145,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                 .Descript = If(header.Length > 1, header(1), ""),
                 .Title = title,
                 .Schema = schema,
-                .Hierarchical = BriteHText.Load(lines, .MaxDepth)
+                .Hierarchical = BriteHTextParser.Load(lines, .MaxDepth)
             }
         End Function
 

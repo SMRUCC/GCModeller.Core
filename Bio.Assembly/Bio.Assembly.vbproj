@@ -268,7 +268,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DefineTrace>true</DefineTrace>
     <OutputPath>..\..\..\..\..\smartnucl_integrative\biodeepDB\METLINApp\App\</OutputPath>
-    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
     <DocumentationFile>SMRUCC.genomics.Core.xml</DocumentationFile>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
@@ -384,6 +384,7 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
@@ -422,6 +423,7 @@
     <Compile Include="Assembly\DOOR\IO.vb" />
     <Compile Include="Assembly\DOOR\ViewAPI.vb" />
     <Compile Include="Assembly\EBI\ChEBI\Database\DATA.vb" />
+    <Compile Include="Assembly\EBI\ChEBI\EntityModel\EntitySummary.vb" />
     <Compile Include="Assembly\EBI\ChEBI\EntityModel\XML\ChEBIEntity.vb" />
     <Compile Include="Assembly\EBI\ChEBI\Database\DataModels\AccessionTypes.vb" />
     <Compile Include="Assembly\EBI\ChEBI\Database\DataModels\NameOf.vb" />
@@ -430,8 +432,9 @@
     <Compile Include="Assembly\EBI\ChEBI\Database\IO.StreamProviders\Tables.vb" />
     <Compile Include="Assembly\EBI\ChEBI\EntityModel\Extensions.vb" />
     <Compile Include="Assembly\EBI\ChEBI\EntityModel\EntitySearch.vb" />
-    <Compile Include="Assembly\EBI\ChEBI\EntityModel\XML\Extensions.vb" />
+    <Compile Include="Assembly\EBI\ChEBI\EntityModel\XML\EntityList.vb" />
     <Compile Include="Assembly\EBI\ChEBI\EntityModel\XML\Fields.vb" />
+    <Compile Include="Assembly\EBI\ChEBI\Web\QueryImpl.vb" />
     <Compile Include="Assembly\EBI\ChEBI\Web\REST.vb" />
     <Compile Include="Assembly\Expasy\API.vb" />
     <Compile Include="Assembly\Expasy\csv\SwissProt.vb" />
@@ -446,8 +449,10 @@
     <Compile Include="Assembly\KEGG\Archives\Xml\MapAPI.vb" />
     <Compile Include="Assembly\KEGG\Archives\Xml\Nodes\PwyBriteFunc.vb" />
     <Compile Include="Assembly\KEGG\Archives\Xml\Nodes\EC_Mapping.vb" />
-    <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\Organism.vb" />
-    <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\KOCatalog.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\Compounds\TextModel.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\Organism.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\KOCatalog.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\BriteHTextParser.vb" />
     <Compile Include="Assembly\KEGG\DBGET\KEGGObjects.vb" />
     <Compile Include="Assembly\KEGG\DBGET\LinkDB\Relationship.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\Disease\KEGGgenomeFetchs.vb" />
@@ -460,9 +465,13 @@
     <Compile Include="Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\CompleteUsingChEBI.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\Pathway\Module\ModuleDBGet.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\Pathway\PathwayEntry.vb" />
-    <Compile Include="Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\MetabolitesDBGet.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\MetaboliteWebApi.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\Pathway\ReactionWebAPI.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\Pathway\PathwayWebParser.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\WebQuery\Compounds\DownloaderProcess.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\WebQuery\Compounds\DbGetWebQuery.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\WebQuery\Compounds\GlycanParser.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\WebQuery\Compounds\WebParser.vb" />
     <Compile Include="Assembly\KEGG\Medical\DrugGroup.vb" />
     <Compile Include="Assembly\KEGG\Medical\Disease.vb" />
     <Compile Include="Assembly\KEGG\Medical\Drug.vb" />
@@ -490,9 +499,9 @@
     <Compile Include="Assembly\KEGG\DBGET\Objects\SSDB\SShit.vb" />
     <Compile Include="Assembly\KEGG\Web\QueryEntry.vb" />
     <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\BriteHText.vb" />
-    <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\Pathway.vb" />
-    <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\Module.vb" />
-    <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\EnzymaticReaction.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\Pathway.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\Module.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\EnzymaticReaction.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\bGetObject.vb" />
     <Compile Include="Assembly\KEGG\DBGET\LinkDB\KEGGgenes.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\Glycan.vb" />
@@ -626,7 +635,7 @@
     <Compile Include="ComponentModel\PathwayBrief.vb" />
     <Compile Include="Assembly\KEGG\Archives\Xml\XmlModel.vb" />
     <Compile Include="Assembly\KEGG\Archives\Csv\Pathway.vb" />
-    <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\Compound.vb" />
+    <Compile Include="Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\Compounds\Compound.vb" />
     <Compile Include="Assembly\KEGG\DBGET\Objects\Pathway\Pathway.vb" />
     <Compile Include="Assembly\MetaCyc\Schemas\CompoundModelFactory.vb" />
     <Compile Include="Assembly\MetaCyc\Schemas\PathwayBrief\AssignGene.vb" />
@@ -690,7 +699,6 @@
     <Compile Include="SequenceModel\Patterns\Clustal\Residue.vb" />
     <Compile Include="SequenceModel\Patterns\Clustal\Clustal.vb" />
     <Compile Include="SequenceModel\FASTA\Reflection\FastaTools.vb" />
-    <Compile Include="SequenceModel\FASTA\IO\UltralargeSizeFastaReader.vb" />
     <Compile Include="SequenceModel\NucleicAcid\Objects\Contig.vb" />
     <Compile Include="SequenceModel\NucleicAcid\Objects\SimpleSegment.vb" />
     <Compile Include="SequenceModel\NucleicAcid\Extensions.vb" />
@@ -921,33 +929,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\br08610.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\KEGG\Compounds\br08001.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\KEGG\Compounds\br08002.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\KEGG\Compounds\br08003.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\KEGG\Compounds\br08005.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\KEGG\Compounds\br08006.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\KEGG\Compounds\br08007.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\KEGG\Compounds\br08008.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\KEGG\Compounds\br08009.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\KEGG\Compounds\br08010.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\KEGG\Reactions\br08201.txt" />
