@@ -51,7 +51,7 @@
 
 Imports System.Text
 
-Namespace SequenceModel.Polypeptides.SecondaryStructure
+Namespace ProteinModel.ChouFasmanRules
 
     ''' <summary>
     ''' @ - <see cref="ChouFasman.SecondaryStructures.AlphaHelix"></see>;
