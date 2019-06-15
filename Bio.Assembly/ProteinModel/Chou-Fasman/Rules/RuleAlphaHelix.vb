@@ -66,7 +66,7 @@ Namespace ProteinModel.ChouFasmanRules.Rules
                     If Segment.FragmentSize > 5 Then
                         Dim TempChunk As SequenceModel.Polypeptides.AminoAcid() = New SequenceModel.Polypeptides.AminoAcid(Segment.FragmentSize - 1) {}
                         Call Array.ConstrainedCopy(SequenceEnums, Segment.Left, TempChunk, 0, Segment.FragmentSize)
-                        If Avg(TempChunk, AddressOf ChouFasmanParameter.Get_Pa) > Avg(TempChunk, AddressOf ChouFasmanParameter.Get_Pb) Then
+                        If Avg(TempChunk, Function(t) t.Pa) > Avg(TempChunk, Function(t) t.Pb) Then
                             For p As Integer = Segment.Left To Segment.Right
                                 SequenceData(p)._MaskAlphaHelix = True
                             Next
@@ -87,7 +87,7 @@ Namespace ProteinModel.ChouFasmanRules.Rules
             '向左端延伸
             For p As Integer = i To 0 Step -1
                 Call Array.ConstrainedCopy(SequenceData, p, ChunkBuffer, 0, Length)
-                Dim Pa_avg As Double = Avg(ChunkBuffer, AddressOf ChouFasmanParameter.Get_Pa)
+                Dim Pa_avg As Double = Avg(ChunkBuffer, Function(t) t.Pa)
                 If Pa_avg < 100 OrElse p = 0 Then
                     Left = p
                     Exit For
@@ -107,7 +107,7 @@ Namespace ProteinModel.ChouFasmanRules.Rules
             Dim d As Integer = SequenceData.Count - Length - 1
             For p As Integer = i + 1 To d
                 Call Array.ConstrainedCopy(SequenceData, p, ChunkBuffer, 0, Length)
-                Dim Pa_avg As Double = Avg(ChunkBuffer, AddressOf ChouFasmanParameter.Get_Pa)
+                Dim Pa_avg As Double = Avg(ChunkBuffer, Function(t) t.Pa)
                 If Pa_avg < 100 OrElse p = d Then
                     Right = p + Length
                     Exit For
@@ -134,7 +134,7 @@ Namespace ProteinModel.ChouFasmanRules.Rules
         End Function
 
         Private Function CalculateCore(ChunkBuffer As SequenceModel.Polypeptides.AminoAcid()) As Boolean
-            Dim LQuery = (From token In ChunkBuffer Let p = ChouFasmanTable(token).P_a Where p > 100 Select 1).ToArray
+            Dim LQuery = (From token In ChunkBuffer Let p = ChouFasmanTable(token).Pa Where p > 100 Select 1).ToArray
             Return (LQuery.Count / ChunkBuffer.Count) > PROPORTION
         End Function
     End Module

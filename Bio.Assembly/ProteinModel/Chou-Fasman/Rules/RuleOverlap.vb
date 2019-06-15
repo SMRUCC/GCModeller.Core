@@ -89,8 +89,8 @@ Namespace ProteinModel.ChouFasmanRules.Rules
             End If
 
             Dim ChunkBuffer = (From Token In HelixSheetOverlap Select Token.AminoAcid).ToArray
-            Dim Pa = Avg(ChunkBuffer, AddressOf ChouFasmanParameter.Get_Pa)
-            Dim Pb = Avg(ChunkBuffer, AddressOf ChouFasmanParameter.Get_Pb)
+            Dim Pa = Avg(ChunkBuffer, Function(t) t.Pa)
+            Dim Pb = Avg(ChunkBuffer, Function(t) t.Pb)
 
             Dim StructureType = If(Pa > Pb, ChouFasman.SecondaryStructures.AlphaHelix, ChouFasman.SecondaryStructures.BetaSheet)
             Call SetStructureType(HelixSheetOverlap, StructureType)
@@ -102,8 +102,8 @@ Namespace ProteinModel.ChouFasmanRules.Rules
             End If
 
             Dim ChunkBuffer = (From Token In HelixTurnOverlap Select Token.AminoAcid).ToArray
-            Dim Pa = Avg(ChunkBuffer, AddressOf ChouFasmanParameter.Get_Pa)
-            Dim Pt = Avg(ChunkBuffer, AddressOf ChouFasmanParameter.Get_Pt)
+            Dim Pa = Avg(ChunkBuffer, Function(t) t.Pa)
+            Dim Pt = Avg(ChunkBuffer, Function(t) t.Pt)
 
             Dim StructureType = If(Pa > Pt, ChouFasman.SecondaryStructures.AlphaHelix, ChouFasman.SecondaryStructures.BetaTurn)
             Call SetStructureType(HelixTurnOverlap, StructureType)
@@ -115,8 +115,8 @@ Namespace ProteinModel.ChouFasmanRules.Rules
             End If
 
             Dim ChunkBuffer = (From Token In SheetTurnOverlap Select Token.AminoAcid).ToArray
-            Dim Pb = Avg(ChunkBuffer, AddressOf ChouFasmanParameter.Get_Pb)
-            Dim Pt = Avg(ChunkBuffer, AddressOf ChouFasmanParameter.Get_Pt)
+            Dim Pb = Avg(ChunkBuffer, Function(t) t.Pb)
+            Dim Pt = Avg(ChunkBuffer, Function(t) t.Pt)
 
             Dim StructureType = If(Pb > Pt, ChouFasman.SecondaryStructures.BetaSheet, ChouFasman.SecondaryStructures.BetaTurn)
             Call SetStructureType(SheetTurnOverlap, StructureType)
