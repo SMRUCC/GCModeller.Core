@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::9681a0e867b5ab923a9034a1648ea244, Bio.Assembly\Assembly\KEGG\DBGET\Objects\SSDB\Ortholog.vb"
+﻿#Region "Microsoft.VisualBasic::049dec21da6a919e086a0b6e1456ca33, Bio.Assembly\Assembly\KEGG\DBGET\Objects\SSDB\Ortholog.vb"
 
     ' Author:
     ' 
@@ -90,14 +90,14 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
                 .bestAll = $"{hit.Best.Key} {hit.Best.Value}",
                 .bits = Val(hit.Bits),
                 .Definition = hit.Entry.Description,
-                .hit_name = hit.Entry.LocusId,
+                .hit_name = hit.Entry.locusID,
                 .LocusId = result.KEGG_ID,
                 .identity = Val(hit.Identity),
                 .KO = hit.KO.Key,
                 .len = Val(hit.Length),
                 .margin = Val(hit.Margin),
                 .overlap = Val(hit.Overlap),
-                .sp = hit.Entry.SpeciesId,
+                .sp = hit.Entry.speciesID,
                 .SW = Val(hit.SWScore),
                 .query_length = Strings.Len(result.Sequence)
             }

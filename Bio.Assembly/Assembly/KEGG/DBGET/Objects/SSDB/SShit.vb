@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::a3bcb91673d87aad27f990fbd7353d90, Bio.Assembly\Assembly\KEGG\DBGET\Objects\SSDB\SShit.vb"
+﻿#Region "Microsoft.VisualBasic::a81ed968b27580b3d67e98384416278e, Bio.Assembly\Assembly\KEGG\DBGET\Objects\SSDB\SShit.vb"
 
     ' Author:
     ' 
@@ -111,8 +111,8 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
             Dim TempChunk As String() = EntryTemp(0).Split(CChar(":"))
             ResultItem.Entry = New KEGG.WebServices.QueryEntry With {
                 .Description = EntryTemp(1),
-                .SpeciesId = TempChunk(0),
-                .LocusId = TempChunk(1)
+                .speciesID = TempChunk(0),
+                .locusID = TempChunk(1)
             }
 
             Dim strTemp As String = Regex.Match(strData, "<A HREF=""[^>]+?""  TARGET=""_blank"">K.+?</a>", RegexOptions.IgnoreCase).Value

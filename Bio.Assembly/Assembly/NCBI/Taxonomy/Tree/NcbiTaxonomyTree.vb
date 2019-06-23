@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::2c90a29b8ecd62f395ce6454684586e2, Bio.Assembly\Assembly\NCBI\Taxonomy\Tree\NcbiTaxonomyTree.vb"
+﻿#Region "Microsoft.VisualBasic::b7a086dafeebeab40f23cd8416782465, Bio.Assembly\Assembly\NCBI\Taxonomy\Tree\NcbiTaxonomyTree.vb"
 
     ' Author:
     ' 
@@ -82,7 +82,7 @@ Namespace Assembly.NCBI.Taxonomy
     ''' Here I make available my In-memory mapping Of the NCBI taxonomy : a Python 2.7 Class that maps the ``names.dmp`` 
     ''' And ``nodes.dmp`` files In a Python dictionnary which can be used To retrieve lineages, descendants, etc ...
     ''' </remarks>
-    Public Class NcbiTaxonomyTree : Inherits BaseClass
+    Public Class NcbiTaxonomyTree
 
         ''' <summary>
         ''' 这个列表是从小到大进行排序的

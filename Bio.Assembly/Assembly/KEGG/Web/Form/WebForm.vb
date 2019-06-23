@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::55bb75082a41b9c73b825d70320c6691, Bio.Assembly\Assembly\KEGG\Web\Form\WebForm.vb"
+﻿#Region "Microsoft.VisualBasic::e9d6879a5023b13b88db62c76da00056, Bio.Assembly\Assembly\KEGG\Web\Form\WebForm.vb"
 
     ' Author:
     ' 
@@ -38,8 +38,9 @@
     ' 
     '         Constructor: (+1 Overloads) Sub New
     ' 
-    '         Function: ContainsKey, GetEnumerator, GetEnumerator1, GetRaw, GetValue
-    '                   parseList, RegexReplace, RemoveHrefLink, ToString, TryGetValue
+    '         Function: ContainsKey, GetEnumerator, GetEnumerator1, getHtml, GetRaw
+    '                   GetValue, parseList, RegexReplace, RemoveHrefLink, ToString
+    '                   TryGetValue
     ' 
     '         Sub: (+2 Overloads) Dispose, ParseRefList
     ' 
@@ -78,6 +79,10 @@ Namespace Assembly.KEGG.WebServices.InternalWebFormParsers
         Public ReadOnly Property WebPageTitle As String
         Public Property AllLinksWidget As AllLinksWidget
 
+        ''' <summary>
+        ''' 这个构造函数同时支持url或者文本内容
+        ''' </summary>
+        ''' <param name="resource"></param>
         Sub New(resource As String)
             Dim html As String = getHtml(resource)
             Dim tokens As String() = Regex.Split(html, "<th class="".+?"" align="".+?""").Skip(1).ToArray

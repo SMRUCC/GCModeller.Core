@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::805d39e98999ac850eebbc8fe247019e, Bio.Assembly\ComponentModel\Locus\Location.vb"
+﻿#Region "Microsoft.VisualBasic::95f29f191546f0cfa17d50b45bf947f7, Bio.Assembly\ComponentModel\Locus\Location.vb"
 
     ' Author:
     ' 
@@ -33,7 +33,8 @@
 
     '     Class Location
     ' 
-    '         Properties: Center, FragmentSize, IsNormalized, Left, Right
+    '         Properties: Center, Extension, FragmentSize, IsNormalized, Left
+    '                     Right
     ' 
     '         Constructor: (+4 Overloads) Sub New
     '         Function: Clone, ContainSite, CreateObject, Equals, GetOverlapSize
@@ -48,6 +49,7 @@
 Imports System.Runtime.CompilerServices
 Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.ComponentModel.Ranges.Model
 Imports SMRUCC.genomics.ComponentModel.Loci.Abstract
 
@@ -61,6 +63,8 @@ Namespace ComponentModel.Loci
     Public Class Location : Inherits IntRange
         Implements ILocationComponent
         Implements IKeyValuePairObject(Of Integer, Integer)
+
+        Public Property Extension As ExtendedProps
 
         ''' <summary>
         ''' <see cref="Location"/>: Gets or set the left start value of the segment on the target sequence.(目标片段的左端起始区域，与链的方向无关)

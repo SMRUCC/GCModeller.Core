@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::c4361a0324e81c5e967dcbaadf1d090c, Bio.Repository\KEGG\KEGGOrthology\KEGGOrthology.vb"
+﻿#Region "Microsoft.VisualBasic::9cd1a6972db58631c4f88b25d3e8c814, Bio.Repository\KEGG\KEGGOrthology\KEGGOrthology.vb"
 
     ' Author:
     ' 
@@ -115,10 +115,10 @@ Public Class KEGGOrthology
                 In ko.Genes
                 Let desc = If(gene.Description Is Nothing, "", gene.Description)
                 Let og = New KO_gene With {
-                    .gene = gene.LocusId,
+                    .gene = gene.locusID,
                     .ko = ko.Entry,
                     .name = desc,
-                    .sp_code = gene.SpeciesId,
+                    .sp_code = gene.speciesID,
                     .url = ""
                 }
                 Select og

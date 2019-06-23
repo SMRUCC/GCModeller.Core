@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::68b7fc8191805da7904583267c3be41d, Bio.Assembly\Assembly\KEGG\Web\Map\MapIndex.vb"
+﻿#Region "Microsoft.VisualBasic::8c0f537bd1d4bd14ee114cd51594a6d0, Bio.Assembly\Assembly\KEGG\Web\Map\MapIndex.vb"
 
     ' Author:
     ' 
@@ -33,8 +33,7 @@
 
     '     Class MapIndex
     ' 
-    '         Properties: CompoundIndex, Index, KeyVector, KOIndex, Map
-    '                     MapID, MapTitle
+    '         Properties: compoundIndex, index, KeyVector, KOIndex
     ' 
     '         Function: ToString
     ' 
@@ -42,8 +41,9 @@
     ' 
     '         Properties: Maps
     ' 
-    '         Function: BuildRepository, CreateIndex, Exists, GetAll, GetByKey
-    '                   GetWhere, QueryMapsByMembers
+    '         Constructor: (+1 Overloads) Sub New
+    '         Function: BuildRepository, CreateIndex, Exists, GenericEnumerator, GetAll
+    '                   GetByKey, GetEnumerator, GetWhere, QueryMapsByMembers
     ' 
     ' 
     ' /********************************************************************************/
@@ -52,6 +52,7 @@
 
 Imports System.Runtime.CompilerServices
 Imports System.Xml.Serialization
+Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
@@ -61,27 +62,27 @@ Imports Microsoft.VisualBasic.Text.Xml.Models
 
 Namespace Assembly.KEGG.WebServices
 
-    Public Class MapIndex : Implements INamedValue
+    Public Class MapIndex : Inherits Map
+        Implements INamedValue
 
-        <XmlAttribute>
-        Public Property MapID As String Implements IKeyedEntity(Of String).Key
+        <XmlElement("keys")>
         Public Property KeyVector As TermsVector
             <MethodImpl(MethodImplOptions.AggressiveInlining)>
             Get
                 Return New TermsVector With {
-                    .Terms = Index.Objects
+                    .terms = index.Objects
                 }
             End Get
             Set(value As TermsVector)
-                _Index = New Index(Of String)(value.Terms)
+                _index = New Index(Of String)(value.terms)
                 _KOIndex = value _
-                    .Terms _
+                    .terms _
                     .Where(Function(id)
                                Return id.IsPattern("K\d+", RegexICSng)
                            End Function) _
                     .Indexing
-                _CompoundIndex = value _
-                    .Terms _
+                _compoundIndex = value _
+                    .terms _
                     .Where(Function(id)
                                Return id.IsPattern("C\d+", RegexICSng)
                            End Function) _
@@ -89,38 +90,34 @@ Namespace Assembly.KEGG.WebServices
             End Set
         End Property
 
-        Public Property Map As Map
-
         ''' <summary>
         ''' KO, compoundID, reactionID, etc.
         ''' </summary>
         ''' <returns></returns>
-        <XmlIgnore> Public ReadOnly Property Index As Index(Of String)
+        <XmlIgnore> Public ReadOnly Property index As Index(Of String)
         <XmlIgnore> Public ReadOnly Property KOIndex As Index(Of String)
-        <XmlIgnore> Public ReadOnly Property CompoundIndex As Index(Of String)
-
-        Public ReadOnly Property MapTitle As String
-            <MethodImpl(MethodImplOptions.AggressiveInlining)>
-            Get
-                Return Map.Name
-            End Get
-        End Property
+        <XmlIgnore> Public ReadOnly Property compoundIndex As Index(Of String)
 
         Public Overrides Function ToString() As String
-            Return MapID
+            Return ID
         End Function
     End Class
 
-    Public Class MapRepository : Implements IRepositoryRead(Of String, MapIndex)
+    ''' <summary>
+    ''' The repository xml data of kegg <see cref="Map"/>
+    ''' </summary>
+    Public Class MapRepository : Inherits XmlDataModel
+        Implements IRepositoryRead(Of String, MapIndex)
+        Implements Enumeration(Of Map)
 
-        <XmlElement(NameOf(MapIndex))> Public Property Maps As MapIndex()
+        <XmlElement("maps")> Public Property Maps As MapIndex()
             <MethodImpl(MethodImplOptions.AggressiveInlining)>
             Get
                 Return table.Values.ToArray
             End Get
             <MethodImpl(MethodImplOptions.AggressiveInlining)>
             Set(value As MapIndex())
-                table = value.ToDictionary(Function(map) map.MapID)
+                table = value.ToDictionary(Function(map) map.ID)
             End Set
         End Property
 
@@ -129,10 +126,18 @@ Namespace Assembly.KEGG.WebServices
         ''' </summary>
         Dim table As Dictionary(Of String, MapIndex)
 
+        <XmlNamespaceDeclarations()>
+        Public xmlns As XmlSerializerNamespaces
+
+        Sub New()
+            xmlns = New XmlSerializerNamespaces
+            xmlns.Add("map", Map.XmlNamespace)
+        End Sub
+
         Public Iterator Function QueryMapsByMembers(entity As IEnumerable(Of String)) As IEnumerable(Of MapIndex)
             For Each key As String In entity
                 For Each map As MapIndex In table.Values
-                    If map.Index.IndexOf(key) > -1 Then
+                    If map.index.IndexOf(key) > -1 Then
                         Yield map
                     End If
                 Next
@@ -177,19 +182,34 @@ Namespace Assembly.KEGG.WebServices
 
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Private Shared Function CreateIndex(map As Map) As MapIndex
+            Call map.Name.__DEBUG_ECHO
+
             Return New MapIndex With {
-                .Map = map,
-                .MapID = map.ID,
+                .ID = map.ID,
                 .KeyVector = New TermsVector With {
-                    .Terms = map _
+                    .terms = map _
                         .Areas _
                         .Select(Function(a) a.IDVector) _
                         .IteratesALL _
                         .Distinct _
                         .OrderBy(Function(s) s) _
                         .ToArray
-                }
+                },
+                .Areas = map.Areas,
+                .Name = map.Name,
+                .PathwayImage = map.PathwayImage,
+                .URL = map.URL
             }
+        End Function
+
+        Public Iterator Function GenericEnumerator() As IEnumerator(Of Map) Implements Enumeration(Of Map).GenericEnumerator
+            For Each index In Maps
+                Yield index
+            Next
+        End Function
+
+        Public Iterator Function GetEnumerator() As IEnumerator Implements Enumeration(Of Map).GetEnumerator
+            Yield GenericEnumerator()
         End Function
     End Class
 End Namespace

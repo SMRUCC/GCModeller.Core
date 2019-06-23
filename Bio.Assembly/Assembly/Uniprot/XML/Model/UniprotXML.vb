@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::982361b107c907c1f2d68ef17e8a254f, Bio.Assembly\Assembly\UniProt\XML\Model\UniprotXML.vb"
+﻿#Region "Microsoft.VisualBasic::5b43e1a65f0cdec1f3167e8436abd4de, Bio.Assembly\Assembly\UniProt\XML\Model\UniprotXML.vb"
 
     ' Author:
     ' 
@@ -35,7 +35,7 @@
     ' 
     '         Properties: copyright, entries, version
     ' 
-    '         Function: [GetType], CreateTable, EnumerateEntries, Load, LoadDictionary
+    '         Function: [GetType], CreateTable, (+2 Overloads) EnumerateEntries, Load, LoadDictionary
     '                   ToIndexTable, ToString
     ' 
     ' 
@@ -55,7 +55,7 @@ Imports Microsoft.VisualBasic.Text.Xml.Linq
 Namespace Assembly.Uniprot.XML
 
     ''' <summary>
-    ''' Download from the uniprot database id mappings result
+    ''' Describes a collection of UniProtKB entries, XML file can be download from the uniprot database id mappings result.
     ''' </summary>
     <XmlType("uniprot")> Public Class UniProtXML
 
@@ -122,6 +122,16 @@ Namespace Assembly.Uniprot.XML
             Else
                 Return path.LoadUltraLargeXMLDataSet(Of entry)(xmlns:="http://uniprot.org/uniprot")
             End If
+        End Function
+
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Shared Function EnumerateEntries(files$(), Optional isUniParc As Boolean = False) As IEnumerable(Of entry)
+            Return files _
+                .Select(Function(path)
+                            Call $"Populate {path}".__INFO_ECHO
+                            Return EnumerateEntries(path, isUniParc)
+                        End Function) _
+                .IteratesALL
         End Function
 
         ''' <summary>

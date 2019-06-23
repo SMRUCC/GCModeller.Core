@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::e53cf6a8488181038e39ea980730d49f, Bio.Assembly\SequenceModel\FASTA\IO\FastaFile.vb"
+﻿#Region "Microsoft.VisualBasic::2732d31fb399ce5c63e4dbac32a53da3, Bio.Assembly\SequenceModel\FASTA\IO\FastaFile.vb"
 
     ' Author:
     ' 
@@ -41,7 +41,7 @@
     '                   Distinct, (+2 Overloads) DocParser, Find, Generate, GetEnumerator
     '                   GetEnumerator1, IndexOf, IsValidFastaFile, LoadNucleotideData, Match
     '                   ParseDocument, (+2 Overloads) Query, QueryAny, Read, Remove
-    '                   (+3 Overloads) Save, SaveData, SingleSequence, Take, ToLower
+    '                   (+4 Overloads) Save, SaveData, SingleSequence, Take, ToLower
     '                   ToString, ToUpper
     ' 
     '         Sub: Add, AppendToFile, Clear, CopyTo, Insert
@@ -223,7 +223,7 @@ Namespace SequenceModel.FASTA
         ''' <param name="path"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function LoadNucleotideData(path As String, Optional Explicit As Boolean = False) As FastaFile
+        Public Shared Function LoadNucleotideData(path As String, Optional strict As Boolean = False) As FastaFile
             Dim Data As FastaFile = FastaFile.Read(path)
 
             If Data.IsNullOrEmpty Then
@@ -239,7 +239,7 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
                           In Data._innerList
                           Where Not fa.IsProtSource
                           Select fa).ToArray
-            If Explicit Then
+            If strict Then
                 LQuery = (From fa As FastaSeq
                           In LQuery
                           Where Not fa.HaveGaps

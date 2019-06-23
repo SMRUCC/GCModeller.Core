@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::dbd8e3173383b70a0e78ffe84d989a04, Bio.Assembly\Assembly\KEGG\Web\Map\Map.vb"
+﻿#Region "Microsoft.VisualBasic::bc6bf5ac574e07f79fede2eba4ea812c, Bio.Assembly\Assembly\KEGG\Web\Map\Map.vb"
 
     ' Author:
     ' 
@@ -35,7 +35,8 @@
     ' 
     '         Properties: Areas, ID, Name, PathwayImage, URL
     ' 
-    '         Function: GetEntryInfo, GetImage, GetMembers, ParseHTML, ToString
+    '         Function: GetEntryInfo, GetImage, GetMembers, ParseFromUrl, ParseHTML
+    '                   ToString
     ' 
     ' 
     ' /********************************************************************************/
@@ -60,13 +61,19 @@ Imports r = System.Text.RegularExpressions.Regex
 
 Namespace Assembly.KEGG.WebServices
 
-    <XmlRoot("Map", [Namespace]:="http://GCModeller.org/core/KEGG/KGML_map.xsd")>
+    <XmlRoot("Map", [Namespace]:=Map.XmlNamespace)>
     Public Class Map : Inherits XmlDataModel
         Implements INamedValue
+
+        Public Const XmlNamespace$ = "http://GCModeller.org/core/KEGG/KGML_map.xsd"
 
         <XmlAttribute>
         Public Property ID As String Implements IKeyedEntity(Of String).Key
 
+        ''' <summary>
+        ''' The map title
+        ''' </summary>
+        ''' <returns></returns>
         <XmlElement("name")>
         Public Property Name As String
         Public Property URL As String
@@ -130,8 +137,18 @@ Namespace Assembly.KEGG.WebServices
 
         Const mapImageURL$ = "<img src="".+?"" name=""pathwayimage"" usemap=""#mapdata"".+?/>"
 
-        Public Shared Function ParseHTML(url$) As Map
-            Dim html$ = url.GET
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Shared Function ParseFromUrl(url As String) As Map
+            Return ParseHTML(html:=url.GET)
+        End Function
+
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="html"></param>
+        ''' <param name="url">The original source url of this map data</param>
+        ''' <returns></returns>
+        Public Shared Function ParseHTML(html As String, Optional url$ = Nothing) As Map
             Dim map$ = r.Match(html, data, RegexICSng).Value
             Dim areas = map.LineTokens.Skip(1).ToArray
             Dim img = r.Match(html, mapImageURL, RegexICSng).Value

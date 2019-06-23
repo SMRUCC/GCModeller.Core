@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::e0050023543e36c18951c8eb6b260a8f, Bio.Assembly\test\chebiTest.vb"
+﻿#Region "Microsoft.VisualBasic::4cb678178f341857525e0ab9dda3cf91, Bio.Assembly\test\chebiTest.vb"
 
     ' Author:
     ' 
@@ -40,6 +40,7 @@
 #End Region
 
 Imports Microsoft.VisualBasic.ComponentModel
+Imports Microsoft.VisualBasic.Linq
 Imports SMRUCC.genomics.Assembly.EBI.ChEBI.Database.IO.StreamProviders.Tsv
 Imports SMRUCC.genomics.Assembly.EBI.ChEBI.XML
 
@@ -59,7 +60,7 @@ Module chebiTest
         Dim b = handle(30769)
 
         Dim model = EntityList.LoadDirectory("D:\smartnucl_integrative\DATA\ChEBI\chebi_cache\")
-        Dim list = model.AsList
+        Dim list = model.AsEnumerable.AsList
         Dim table = model.ToSearchModel
 
         Call model.GetXml.SaveTo("./chebi-100.xml")

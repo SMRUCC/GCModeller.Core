@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::1d49fc6f09f585fb438c881c66196cb9, Bio.Assembly\Assembly\NCBI\WebServiceHandler\Taxonomy.vb"
+﻿#Region "Microsoft.VisualBasic::631ab9a81294d581ba9edd5321b8e235, Bio.Assembly\Assembly\NCBI\WebServiceHandler\Taxonomy.vb"
 
     ' Author:
     ' 
@@ -149,11 +149,11 @@ Namespace Assembly.NCBI.Entrez
         End Function
     End Module
 
-    Public Class TSeqSet : Inherits BaseClass
+    Public Class TSeqSet
         <XmlElement> Public Property TSeq As TSeq()
     End Class
 
-    Public Class SeqBrief : Inherits BaseClass
+    Public Class SeqBrief
         Public Property TSeq_gi As String
         Public Property TSeq_accver As String
         Public Property TSeq_taxid As String

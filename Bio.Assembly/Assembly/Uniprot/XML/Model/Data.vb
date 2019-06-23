@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::da550f774a4c3e6e70e7e93dedd26045, Bio.Assembly\Assembly\UniProt\XML\Model\Data.vb"
+﻿#Region "Microsoft.VisualBasic::366eca8b7342491209d8a04ac16d8e15, Bio.Assembly\Assembly\UniProt\XML\Model\Data.vb"
 
     ' Author:
     ' 
@@ -55,12 +55,21 @@
     ' 
     '     Class protein
     ' 
-    '         Properties: alternativeNames, FullName, recommendedName, submittedName
+    '         Properties: alternativeNames, fullName, recommendedName, submittedName
+    ' 
+    '         Function: ToString
+    ' 
+    '     Enum featureTypes
+    ' 
+    ' 
+    '  
+    ' 
+    ' 
     ' 
     '     Class feature
     ' 
-    '         Properties: description, evidence, location, original, type
-    '                     value, variation
+    '         Properties: description, evidence, location, original, status
+    '                     type, value, variation
     ' 
     '         Function: ToString
     ' 
@@ -72,7 +81,7 @@
     ' 
     '     Class position
     ' 
-    '         Properties: position
+    '         Properties: position, status
     ' 
     '         Function: ToString
     ' 
@@ -109,6 +118,7 @@
 
 #End Region
 
+Imports System.ComponentModel
 Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
 Imports Microsoft.VisualBasic.Language
@@ -118,6 +128,7 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Namespace Assembly.Uniprot.XML
 
     Public Class sequence
+
         <XmlAttribute> Public Property length As Integer
         <XmlAttribute> Public Property mass As String
         <XmlAttribute> Public Property checksum As String
@@ -131,8 +142,17 @@ Namespace Assembly.Uniprot.XML
         End Function
     End Class
 
+    ''' <summary>
+    ''' Describes a gene.
+    ''' Equivalent to the flat file GN-line.
+    ''' </summary>
     Public Class gene
 
+        ''' <summary>
+        ''' Describes different types of gene designations.
+        ''' Equivalent to the flat file GN-line.
+        ''' </summary>
+        ''' <returns></returns>
         <XmlElement("name")> Public Property names As value()
             Get
                 Return table.Values _
@@ -254,6 +274,10 @@ Namespace Assembly.Uniprot.XML
         <XmlElement("taxon")> Public Property taxonlist As String()
     End Class
 
+    ''' <summary>
+    ''' Describes the names for the protein and parts thereof.
+    ''' Equivalent to the flat file DE-line.
+    ''' </summary>
     Public Class protein
 
         Public Property recommendedName As recommendedName
@@ -262,11 +286,15 @@ Namespace Assembly.Uniprot.XML
         <XmlElement("alternativeName")>
         Public Property alternativeNames As recommendedName()
 
-        Public ReadOnly Property FullName As String
+        ''' <summary>
+        ''' <see cref="recommendedName"/> -> <see cref="submittedName"/> -> <see cref="alternativeNames"/>
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property fullName As String
             Get
                 If recommendedName Is Nothing OrElse recommendedName.fullName Is Nothing Then
                     If submittedName Is Nothing OrElse submittedName.fullName Is Nothing Then
-                        Return Nothing
+                        Return alternativeNames.FirstOrDefault().fullName.value
                     Else
                         Return submittedName.fullName.value
                     End If
@@ -275,20 +303,106 @@ Namespace Assembly.Uniprot.XML
                 End If
             End Get
         End Property
+
+        Public Overrides Function ToString() As String
+            Return fullName
+        End Function
     End Class
 
     ''' <summary>
+    ''' Describes the type of a sequence annotation.
+    ''' Equivalent to the flat file FT feature keys, but using full terms instead 
+    ''' of acronyms. The string value enumeration of <see cref="feature.type"/>
+    ''' property.
+    ''' </summary>
+    Public Enum featureTypes
+
+        <Description("active site")> active_site
+        <Description("binding site")> binding_site
+        <Description("calcium-binding region")> calcium_binding_region
+        <Description("chain")> chain
+        <Description("coiled-coil region")> coiled_coil_region
+        <Description("compositionally biased region")> compositionally_biased_region
+        <Description("cross-link")> cross_link
+        <Description("disulfide bond")> disulfide_bond
+        <Description("DNA-binding region")> DNA_binding_region
+        <Description("domain")> domain
+        <Description("glycosylation site")> glycosylation_site
+        <Description("helix")> helix
+        <Description("initiator methionine")> initiator_methionine
+        <Description("lipid moiety-binding region")> lipid_moiety_binding_region
+        <Description("metal ion-binding site")> metal_ion_binding_site
+        <Description("modified residue")> modified_residue
+        <Description("mutagenesis site")> mutagenesis_site
+        <Description("non-consecutive residues")> non_consecutive_residues
+        <Description("non-terminal residue")> non_terminal_residue
+        <Description("nucleotide phosphate-binding region")> nucleotide_phosphate_binding_region
+        <Description("peptide")> peptide
+        <Description("propeptide")> propeptide
+        <Description("region of interest")> region_of_interest
+        <Description("repeat")> repeat
+        <Description("non-standard amino acid")> non_standard_amino_acid
+        <Description("sequence conflict")> sequence_conflict
+        <Description("sequence variant")> sequence_variant
+        <Description("short sequence motif")> short_sequence_motif
+        <Description("signal peptide")> signal_peptide
+        <Description("site")> site
+        <Description("splice variant")> splice_variant
+        <Description("strand")> strand
+        <Description("topological domain")> topological_domain
+        <Description("transit peptide")> transit_peptide
+        <Description("transmembrane region")> transmembrane_region
+        <Description("turn")> turn
+        <Description("unsure residue")> unsure_residue
+        <Description("zinc finger region")> zinc_finger_region
+        <Description("intramembrane region")> intramembrane_region
+
+    End Enum
+
+    ''' <summary>
+    ''' Describes different types of sequence annotations.
+    ''' Equivalent to the flat file FT-line.
     ''' Get by types using <see cref="Takes"/> extensions
     ''' </summary>
     Public Class feature : Implements INamedValue
 
+        ''' <summary>
+        ''' Describes the type of a sequence annotation.
+        ''' Equivalent to the flat file FT feature keys, but using full terms instead 
+        ''' of acronyms.
+        ''' </summary>
+        ''' <returns></returns>
         <XmlAttribute> Public Property type As String Implements INamedValue.Key
         <XmlAttribute> Public Property evidence As String
         <XmlAttribute> Public Property description As String
-        <XmlText> Public Property value As String
-        Public Property original As String
-        Public Property variation As String
+        ''' <summary>
+        ''' string value could be one of these enumeration:
+        ''' 
+        ''' + by similarity
+        ''' + probable
+        ''' + potential
+        ''' </summary>
+        ''' <returns></returns>
+        <XmlAttribute> Public Property status As String
 
+        <XmlText> Public Property value As String
+
+        ''' <summary>
+        ''' Describes the original sequence in annotations that describe natural 
+        ''' or artifical sequence variations.
+        ''' </summary>
+        ''' <returns></returns>
+        Public Property original As String
+        ''' <summary>
+        ''' Describes the variant sequence in annotations that describe natural 
+        ''' or artifical sequence variations.
+        ''' </summary>
+        ''' <returns></returns>
+        Public Property variation As String
+        ''' <summary>
+        ''' Describes the sequence coordinates of the annotation.
+        ''' </summary>
+        ''' <returns></returns>
         Public Property location As location
 
         Public Overrides Function ToString() As String
@@ -296,7 +410,13 @@ Namespace Assembly.Uniprot.XML
         End Function
     End Class
 
+    ''' <summary>
+    ''' Describes a sequence location as either a range with a begin and end or as a 
+    ''' position. The 'sequence' attribute is only used when the location is not on 
+    ''' the canonical sequence displayed in the current entry.
+    ''' </summary>
     Public Class location
+
         ''' <summary>
         ''' 片段的起点位置
         ''' </summary>
@@ -339,8 +459,18 @@ Namespace Assembly.Uniprot.XML
     ''' </summary>
     Public Class position
 
-        <XmlAttribute>
-        Public Property position As Integer
+        <XmlAttribute> Public Property position As Integer
+        ''' <summary>
+        ''' Value could be one of these enumeration:
+        ''' 
+        ''' + certain
+        ''' + uncertain
+        ''' + less than
+        ''' + greater than
+        ''' + unknown
+        ''' </summary>
+        ''' <returns></returns>
+        <XmlAttribute> Public Property status As String = "certain"
 
         Public Overrides Function ToString() As String
             Return position
@@ -375,11 +505,15 @@ Namespace Assembly.Uniprot.XML
         ''' 这条值对象的文本内容
         ''' </summary>
         ''' <returns></returns>
-        <XmlText> Public Property value As String Implements Value(Of String).IValueOf.value
+        <XmlText> Public Property value As String Implements Value(Of String).IValueOf.Value
 
         Public Overrides Function ToString() As String
             Return Me.GetJson
         End Function
+
+        Public Shared Narrowing Operator CType(val As value) As String
+            Return val.value
+        End Operator
     End Class
 
     Public Class dbReference
@@ -418,6 +552,9 @@ Namespace Assembly.Uniprot.XML
 
     End Class
 
+    ''' <summary>
+    ''' Describes a molecule by name or unique identifier.
+    ''' </summary>
     Public Structure molecule
 
         <XmlAttribute>

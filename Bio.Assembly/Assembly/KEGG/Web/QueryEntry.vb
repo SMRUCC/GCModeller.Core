@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::36ef9f3238e65a3489de0f133029a309, Bio.Assembly\Assembly\KEGG\Web\QueryEntry.vb"
+﻿#Region "Microsoft.VisualBasic::dfaa0ac0307e86a7cb297a84a3c14407, Bio.Assembly\Assembly\KEGG\Web\QueryEntry.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     ' 
     '     Class QueryEntry
     ' 
-    '         Properties: Description, LocusId, SpeciesId
+    '         Properties: Description, locusID, speciesID
     ' 
     '         Constructor: (+2 Overloads) Sub New
     '         Function: ToString
@@ -119,7 +119,7 @@ Namespace Assembly.KEGG.WebServices
                 If entry Is Nothing Then
 
                 Else
-                    sp = EntryAPI.GetValue(entry.SpeciesId)
+                    sp = EntryAPI.GetValue(entry.speciesID)
 
                     If sp Is Nothing Then
                         Return ""
@@ -129,7 +129,7 @@ Namespace Assembly.KEGG.WebServices
                         If lev Is Nothing OrElse lev.NumMatches < 2 Then
                             Return ""
                         Else
-                            Return entry.SpeciesId
+                            Return entry.speciesID
                         End If
                     End If
                 End If
@@ -230,29 +230,29 @@ Namespace Assembly.KEGG.WebServices
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        <XmlAttribute> Public Property SpeciesId As String
+        <XmlAttribute> Public Property speciesID As String
         ''' <summary>
         ''' LocusId in the NCBI database.(NCBI数据库中的基因号)
         ''' </summary>
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        <XmlAttribute> Public Property LocusId As String
+        <XmlAttribute> Public Property locusID As String
         <XmlText>
         Public Property Description As String
 
-        Sub New(str As String, Description As String)
-            Dim Tokens As String() = str.Split(CChar(":"))
-            SpeciesId = Tokens.First
-            LocusId = Tokens.Last
-            Me.Description = Description
+        Sub New(str As String, Optional description As String = Nothing)
+            Dim Tokens As String() = str.Split(":"c)
+            speciesID = Tokens.First
+            locusID = Tokens.Last
+            Me.Description = description
         End Sub
 
         Sub New()
         End Sub
 
         Public Overrides Function ToString() As String
-            Return String.Format("{0}:{1}", SpeciesId, LocusId)
+            Return String.Format("{0}:{1}", speciesID, locusID)
         End Function
 
         Public Shared Widening Operator CType(strArray As String()) As QueryEntry
@@ -261,13 +261,13 @@ Namespace Assembly.KEGG.WebServices
             Else
                 If strArray.Length = 2 Then
                     Return New QueryEntry With {
-                        .SpeciesId = strArray(0),
-                        .LocusId = strArray(1)
+                        .speciesID = strArray(0),
+                        .locusID = strArray(1)
                     }
                 Else
                     Return New QueryEntry With {
-                        .SpeciesId = strArray(0),
-                        .LocusId = strArray(1),
+                        .speciesID = strArray(0),
+                        .locusID = strArray(1),
                         .Description = strArray(2)
                     }
                 End If

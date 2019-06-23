@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::1fe80813f7c04183704d7e1a6af35775, Bio.Assembly\Assembly\KEGG\Web\Map\Downloader.vb"
+﻿#Region "Microsoft.VisualBasic::2d1edc6ae934c085adc8edf861ea1aac, Bio.Assembly\Assembly\KEGG\Web\Map\Downloader.vb"
 
     ' Author:
     ' 
@@ -102,7 +102,7 @@ Namespace Assembly.KEGG.WebServices
 
                     Try
                         If Not save.FileExists(True) Then
-                            Call Map.ParseHTML(url) _
+                            Call Map.ParseFromUrl(url) _
                                 .GetXml _
                                 .SaveTo(save, TextEncodings.UTF8WithoutBOM)
                             Call Thread.Sleep(5000)

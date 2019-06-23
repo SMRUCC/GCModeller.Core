@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::742eee9051b9f9a6962c7d9031ffb7e5, Bio.Assembly\Assembly\NCBI\Taxonomy\Taxonomy.vb"
+﻿#Region "Microsoft.VisualBasic::2ac3281f1f9940779dd14b151af1b75c, Bio.Assembly\Assembly\NCBI\Taxonomy\Taxonomy.vb"
 
     ' Author:
     ' 
@@ -102,7 +102,7 @@ Namespace Assembly.NCBI.Taxonomy
         End Function
     End Class
 
-    Public Class TaxonValue : Inherits BaseClass
+    Public Class TaxonValue
 
         ''' <summary>
         ''' Class level
@@ -117,7 +117,7 @@ Namespace Assembly.NCBI.Taxonomy
         Public Property sp As NamedValue(Of BriefInfo)
     End Class
 
-    Public Class BriefInfo : Inherits BaseClass
+    Public Class BriefInfo
 
     End Class
 

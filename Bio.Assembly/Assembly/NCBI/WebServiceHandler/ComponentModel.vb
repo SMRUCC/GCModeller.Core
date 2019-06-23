@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::789aafb736a5491af1257447a4d900b1, Bio.Assembly\Assembly\NCBI\WebServiceHandler\ComponentModel.vb"
+﻿#Region "Microsoft.VisualBasic::18fd25682ef04cfc069f4b2949df341a, Bio.Assembly\Assembly\NCBI\WebServiceHandler\ComponentModel.vb"
 
     ' Author:
     ' 
@@ -52,7 +52,7 @@ Namespace Assembly.NCBI.Entrez.ComponentModels
     ''' 用于表示获取查询结果的一个入口点
     ''' </summary>
     ''' <remarks></remarks>
-    Public MustInherit Class I_QueryEntry : Inherits BaseClass
+    Public MustInherit Class I_QueryEntry
         Implements IKeyValuePairObject(Of String, String)
 
         Public Property Title As String Implements IKeyValuePairObject(Of String, String).Value

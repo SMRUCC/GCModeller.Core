@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::e357ac1aaa404a41f55ba1bccc4414ee, Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\CompleteUsingChEBI.vb"
+﻿#Region "Microsoft.VisualBasic::4fa94f4d13bd5a442edd5b2f8362be48, Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\CompleteUsingChEBI.vb"
 
     ' Author:
     ' 
@@ -31,7 +31,7 @@
 
     ' Summaries:
 
-    '     Module MetaboliteDBGET
+    '     Module MetaboliteWebApi
     ' 
     '         Function: CompleteUsingChEBI
     ' 
@@ -48,7 +48,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Terminal
 Imports Microsoft.VisualBasic.Terminal.ProgressBar
-Imports SMRUCC.genomics.Assembly.EBI.ChEBI.Database.IO.StreamProviders.Tsv.Tables
+Imports SMRUCC.genomics.Assembly.ELIXIR.EBI.ChEBI.Database.IO.StreamProviders.Tsv.Tables
 
 Namespace Assembly.KEGG.DBGET.bGetObject
 

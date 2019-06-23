@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::c510c3999ac02ef9fcaf5f2ddde239a2, Bio.Repository\NCBI\Genbank.vb"
+﻿#Region "Microsoft.VisualBasic::99483e7628b91a7f9cc3866b86beee4e, Bio.Repository\NCBI\Genbank.vb"
 
     ' Author:
     ' 
@@ -202,7 +202,7 @@ End Module
 ''' <summary>
 ''' NCBI genbank repository system.(请注意，这个对象里面的所有的Repository实体都是使用genbank编号来作为Key的)
 ''' </summary>
-Public Class Genbank : Inherits BaseClass
+Public Class Genbank
     Implements IRepository(Of String, GenbankIndex)
 
     ''' <summary>

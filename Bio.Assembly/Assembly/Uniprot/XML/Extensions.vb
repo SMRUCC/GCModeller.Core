@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::8e9e9e654bd1f8e35308f4b2b3029d5c, Bio.Assembly\Assembly\UniProt\XML\Extensions.vb"
+﻿#Region "Microsoft.VisualBasic::18e186189f3c7e292d7aff07b3c34f27, Bio.Assembly\Assembly\UniProt\XML\Extensions.vb"
 
     ' Author:
     ' 
@@ -33,8 +33,8 @@
 
     '     Module Extensions
     ' 
-    '         Function: ECNumberList, EnumerateAllIDs, GetDomainData, ORF, OrganismScientificName
-    '                   proteinFullName, SubCellularLocations, Term2Gene
+    '         Function: ECNumberList, EnumerateAllIDs, GetDomainData, KO, ORF
+    '                   OrganismScientificName, proteinFullName, ProteinSequence, SubCellularLocations, Term2Gene
     ' 
     ' 
     ' /********************************************************************************/
@@ -70,7 +70,7 @@ Namespace Assembly.Uniprot.XML
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         <Extension>
         Public Function KO(protein As entry) As dbReference
-            Return protein.Xrefs.TryGetValue("KO", [default]:=Nothing).ElementAtOrDefault(0)
+            Return protein.xrefs.TryGetValue("KO", [default]:=Nothing).ElementAtOrDefault(0)
         End Function
 
         <Extension>
@@ -187,9 +187,9 @@ Namespace Assembly.Uniprot.XML
             For Each prot As entry In uniprotXML.entries
                 Dim ID As String = getID(prot)
 
-                If prot.Xrefs.ContainsKey(type) Then
+                If prot.xrefs.ContainsKey(type) Then
                     out += From term As dbReference
-                           In prot.Xrefs(type)
+                           In prot.xrefs(type)
                            Select New IDMap With {
                                .Key = term.id,
                                .Maps = ID
