@@ -62,6 +62,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
     ''' </summary>
     ''' <remarks></remarks>
     <XmlRoot("KEGG_pathway", Namespace:="http://www.genome.jp/kegg/pathway.html")>
+    <XmlType("pathway", Namespace:="http://www.genome.jp/kegg/pathway.html")>
     Public Class Pathway : Inherits PathwayBrief
 
         ''' <summary>
@@ -70,6 +71,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
+        <XmlAttribute>
         Public Property name As String
 
         ''' <summary>
@@ -101,9 +103,10 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 _genes = Value
 
                 If Not Value.IsNullOrEmpty Then
-                    _geneTable = Value.ToDictionary(Function(gene)
-                                                        Return gene.name.Split(":"c).Last
-                                                    End Function)
+                    _geneTable = Value _
+                        .ToDictionary(Function(gene)
+                                          Return gene.name.Split(":"c).Last
+                                      End Function)
                 Else
                     _geneTable = New Dictionary(Of String, NamedValue)
                 End If
@@ -111,9 +114,10 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         End Property
 
         <XmlIgnore>
-        Public Overrides ReadOnly Property BriteId As String
+        Public Overrides ReadOnly Property briteID As String
             Get
                 Dim id As String = Regex.Match(EntryId, "\d+").Value
+
                 If String.IsNullOrEmpty(id) Then
                     Return EntryId
                 Else

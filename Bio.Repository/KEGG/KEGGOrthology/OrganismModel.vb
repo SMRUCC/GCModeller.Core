@@ -45,6 +45,7 @@
 Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Language.UnixBash
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization.JSON
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject.Organism
@@ -67,6 +68,24 @@ Public Class OrganismModel : Inherits XmlDataModel
 
     <XmlNamespaceDeclarations()>
     Public xmlns As New XmlSerializerNamespaces
+
+    ''' <summary>
+    ''' ``[geneID => KO]`` maps
+    ''' </summary>
+    ''' <returns></returns>
+    Public ReadOnly Property KoFunction As Dictionary(Of String, String)
+        Get
+            Return genome.Select(Function(pathway As Pathway)
+                                     Return pathway.genes
+                                 End Function) _
+                         .IteratesALL _
+                         .GroupBy(Function(gene) gene.name.Split(":"c).First) _
+                         .ToDictionary(Function(gene) gene.Key,
+                                       Function(gene)
+                                           Return gene.First.text.Split.First
+                                       End Function)
+        End Get
+    End Property
 
     Sub New()
         Call xmlns.Add("gcmodeller", LICENSE.GCModeller)
@@ -102,18 +121,22 @@ Public Class OrganismModel : Inherits XmlDataModel
     ''' <summary>
     ''' 从KEGG的代谢途径下载文件夹加载零散的文件数据构成这个整体数据模型
     ''' </summary>
-    ''' <param name="directory"></param>
+    ''' <param name="handle"></param>
     ''' <returns></returns>
-    Public Shared Function CreateModel(directory As String) As OrganismModel
-        Dim organism As OrganismInfo = (directory & "/kegg.json").LoadJSON(Of OrganismInfo)
-        Dim model As Pathway() = (ls - l - r - "*.Xml" <= directory) _
-            .Select(AddressOf LoadXml(Of Pathway)) _
-            .ToArray
+    Public Shared Function CreateModel(handle As String) As OrganismModel
+        If handle.FileExists AndAlso handle.ExtensionSuffix.TextEquals("xml") Then
+            Return handle.LoadXml(Of OrganismModel)
+        Else
+            Dim organism As OrganismInfo = (handle & "/kegg.json").LoadJSON(Of OrganismInfo)
+            Dim model As Pathway() = (ls - l - r - "*.Xml" <= handle) _
+                .Select(AddressOf LoadXml(Of Pathway)) _
+                .ToArray
 
-        Return New OrganismModel With {
-            .genome = model,
-            .organism = organism
-        }
+            Return New OrganismModel With {
+                .genome = model,
+                .organism = organism
+            }
+        End If
     End Function
 
     Public Shared Function EnumerateModules(handle As String) As IEnumerable(Of Pathway)
