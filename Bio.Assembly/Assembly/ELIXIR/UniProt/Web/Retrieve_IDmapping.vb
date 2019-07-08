@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::a2c3460739959c640d5945a5923810e9, Bio.Assembly\Assembly\UniProt\Web\Retrieve_IDmapping.vb"
+﻿#Region "Microsoft.VisualBasic::a2c3460739959c640d5945a5923810e9, Bio.Assembly\Assembly\ELIXIR\UniProt\Web\Retrieve_IDmapping.vb"
 
     ' Author:
     ' 
@@ -202,7 +202,9 @@ Namespace Assembly.Uniprot.Web
                                 .Distinct _
                                 .ToArray
                             Return k.Key.Split(","c) _
-                                .Select(Function(key$) New KeyValuePair(Of String, String())(key, values))
+                                .Select(Function(key$)
+                                            Return New KeyValuePair(Of String, String())(key, values)
+                                        End Function)
                         End Function) _
                 .IteratesALL _
                 .GroupBy(Function(g) g.Key) _

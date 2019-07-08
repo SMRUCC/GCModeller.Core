@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::366eca8b7342491209d8a04ac16d8e15, Bio.Assembly\Assembly\UniProt\XML\Model\Data.vb"
+﻿#Region "Microsoft.VisualBasic::366eca8b7342491209d8a04ac16d8e15, Bio.Assembly\Assembly\ELIXIR\UniProt\XML\Model\Data.vb"
 
     ' Author:
     ' 
@@ -167,7 +167,9 @@ Namespace Assembly.Uniprot.XML
                     table = value _
                         .GroupBy(Function(name) name.type) _
                         .ToDictionary(Function(n) n.Key,
-                                      Function(g) g.ToArray)
+                                      Function(g)
+                                          Return g.ToArray
+                                      End Function)
                 End If
             End Set
         End Property
