@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::ec2a36183a21941ce42e7d769e1c3912, Bio.Assembly\Assembly\KEGG\DBGET\Objects\SSDB\ProtMotifs.vb"
+﻿#Region "Microsoft.VisualBasic::c00cec48284a07470ff76c01df8208c4, Bio.Assembly\Assembly\KEGG\DBGET\Objects\SSDB\ProtMotifs.vb"
 
     ' Author:
     ' 
@@ -33,9 +33,9 @@
 
     '     Module ProtMotifsQuery
     ' 
-    '         Function: __parsingDomain, Fetch, (+2 Overloads) Query
+    '         Function: Fetch, parsingDomain, (+2 Overloads) Query
     ' 
-    '         Sub: __fillBasicInfo, __fillMotifs
+    '         Sub: fillBasicInfo, fillMotifs
     ' 
     ' 
     ' /********************************************************************************/
@@ -71,26 +71,26 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
             Dim tables As String() = HtmlParser.GetTablesHTML(form)
             Dim prot As New ProteinModel.Protein
 
-            Call __fillBasicInfo(prot, tables(Scan0))
-            Call __fillMotifs(prot, tables(1))
+            Call fillBasicInfo(prot, tables(Scan0))
+            Call fillMotifs(prot, tables(1))
 
             Return prot
         End Function
 
-        Private Sub __fillBasicInfo(ByRef prot As ProteinModel.Protein, table As String)
+        Private Sub fillBasicInfo(ByRef prot As ProteinModel.Protein, table As String)
             Dim rows As String() = HtmlParser.GetRowsHTML(table)
             prot.Organism = HtmlParser.GetColumnsHTML(rows(0)).Last
             prot.ID = HtmlParser.GetColumnsHTML(rows(1)).Last.GetValue
             prot.Description = HtmlParser.GetColumnsHTML(rows(2)).Last
         End Sub
 
-        Private Sub __fillMotifs(ByRef prot As ProteinModel.Protein, table As String)
+        Private Sub fillMotifs(ByRef prot As ProteinModel.Protein, table As String)
             Dim rows As String() = HtmlParser.GetRowsHTML(table)
-            prot.Domains = rows.Skip(1).Select(Function(s) s.__parsingDomain).ToArray
+            prot.Domains = rows.Skip(1).Select(Function(s) s.parsingDomain).ToArray
         End Sub
 
         <Extension>
-        Private Function __parsingDomain(row As String) As ProteinModel.DomainObject
+        Private Function parsingDomain(row As String) As ProteinModel.DomainObject
             Dim cols As String() = HtmlParser.GetColumnsHTML(row)
             Dim motif As New ProteinModel.DomainObject
 

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::9381de759e7c15915a6d75f1e20dcb80, Bio.Assembly\Assembly\KEGG\Web\Map\KGML.vb"
+﻿#Region "Microsoft.VisualBasic::da0f319a18c3f39d5770a83d36b8ef4c, Bio.Assembly\Assembly\KEGG\Web\Map\KGML\Components.vb"
 
     ' Author:
     ' 
@@ -31,13 +31,6 @@
 
     ' Summaries:
 
-    '     Class pathway
-    ' 
-    '         Properties: image, items, link, name, number
-    '                     org, reactions, relations, title
-    ' 
-    '         Function: ResourceURL, ToString
-    ' 
     '     Class Link
     ' 
     '         Properties: entry1, entry2, type
@@ -80,39 +73,10 @@
 
 #End Region
 
-Imports System.Runtime.CompilerServices
 Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace Assembly.KEGG.WebServices.KGML
-
-    ''' <summary>
-    ''' + pathway map: http://www.kegg.jp/kegg-bin/download?entry=xcb00280&amp;format=kgml
-    ''' </summary>
-    Public Class pathway
-
-        <XmlAttribute> Public Property name As String
-        <XmlAttribute> Public Property org As String
-        <XmlAttribute> Public Property number As String
-        <XmlAttribute> Public Property title As String
-        <XmlAttribute> Public Property image As String
-        <XmlAttribute> Public Property link As String
-
-#Region "pathway network"
-        <XmlElement(NameOf(entry))> Public Property items As entry()
-        <XmlElement(NameOf(relation))> Public Property relations As relation()
-        <XmlElement(NameOf(reaction))> Public Property reactions As reaction()
-#End Region
-
-        <MethodImpl(MethodImplOptions.AggressiveInlining)>
-        Public Shared Function ResourceURL(entry As String) As String
-            Return $"http://www.kegg.jp/kegg-bin/download?entry={entry}&format=kgml"
-        End Function
-
-        Public Overrides Function ToString() As String
-            Return $"[{name}] {title}"
-        End Function
-    End Class
 
     ''' <summary>
     ''' Network edges

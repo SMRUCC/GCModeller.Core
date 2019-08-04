@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::e4dc09317a3bdcfea964bd62ae6d1212, Bio.Assembly\ComponentModel\Annotation\ECNumber.vb"
+﻿#Region "Microsoft.VisualBasic::843d5a99ee80258f8f8e8d13e9fab561, Bio.Assembly\ComponentModel\Annotation\EC\ECNumber.vb"
 
     ' Author:
     ' 
@@ -33,17 +33,9 @@
 
     '     Class ECNumber
     ' 
+    '         Properties: SerialNumber, SubCategory, SubType, Type
     ' 
-    '         Enum ClassTypes
-    ' 
-    ' 
-    ' 
-    ' 
-    '  
-    ' 
-    '     Properties: SerialNumber, SubCategory, SubType, Type
-    ' 
-    '     Function: ToString, ValidateValue, ValueParser
+    '         Function: (+2 Overloads) Contains, ToString, ValidateValue, ValueParser
     ' 
     ' 
     ' /********************************************************************************/
@@ -53,6 +45,7 @@
 Imports System.Runtime.CompilerServices
 Imports System.Text.RegularExpressions
 Imports System.Xml.Serialization
+Imports Microsoft.VisualBasic.Linq
 
 Namespace ComponentModel.Annotation
 
@@ -63,47 +56,10 @@ Namespace ComponentModel.Annotation
     Public Class ECNumber
 
         ''' <summary>
-        ''' The enzyme types enumeration.
-        ''' </summary>
-        ''' <remarks></remarks>
-        Public Enum ClassTypes
-            ''' <summary>
-            ''' Oxido Reductase.(氧化还原酶)
-            ''' </summary>
-            ''' <remarks></remarks>
-            OxidoReductase = 1
-            ''' <summary>
-            ''' Transferase.(转移酶)
-            ''' </summary>
-            ''' <remarks></remarks>
-            Transferase = 2
-            ''' <summary>
-            ''' Hydrolase.(水解酶)
-            ''' </summary>
-            ''' <remarks></remarks>
-            Hydrolase = 3
-            ''' <summary>
-            ''' Lyase.(裂合酶)
-            ''' </summary>
-            ''' <remarks></remarks>
-            Lyase = 4
-            ''' <summary>
-            ''' Isomerase.(异构酶)
-            ''' </summary>
-            ''' <remarks></remarks>
-            Isomerase = 5
-            ''' <summary>
-            ''' Synthetase.(合成酶)
-            ''' </summary>
-            ''' <remarks></remarks>
-            Synthetase = 6
-        End Enum
-
-        ''' <summary>
         ''' EC编号里面的第一个数字代表酶的分类号
         ''' </summary>
         ''' <remarks></remarks>
-        <XmlAttribute> Public Property Type As ECNumber.ClassTypes
+        <XmlAttribute> Public Property Type As EnzymeClasses
 
         ''' <summary>
         ''' 该大类之下的亚分类
@@ -122,10 +78,66 @@ Namespace ComponentModel.Annotation
         ''' <remarks></remarks>
         <XmlAttribute> Public Property SerialNumber As Integer
 
+        Public Function Contains(ec As String) As Boolean
+            Static parserCache As New Dictionary(Of String, ECNumber)
+            Return parserCache _
+                .ComputeIfAbsent(
+                    key:=ec,
+                    lazyValue:=AddressOf ValueParser
+                ) _
+                .DoCall(AddressOf Contains)
+        End Function
+
+        ''' <summary>
+        ''' Contains or equals
+        ''' </summary>
+        ''' <param name="ec"></param>
+        ''' <returns></returns>
+        Public Function Contains(ec As ECNumber) As Boolean
+            If ec Is Nothing Then
+                Return False
+            End If
+
+            If Type <> ec.Type Then
+                Return False
+            End If
+
+            If SubType = 0 Then
+                Return True
+            ElseIf SubType <> ec.SubType Then
+                Return False
+            End If
+
+            If SubCategory = 0 Then
+                Return True
+            ElseIf SubCategory <> ec.SubCategory Then
+                Return False
+            End If
+
+            If SerialNumber = 0 Then
+                Return True
+            ElseIf SerialNumber = ec.SerialNumber Then
+                Return False
+            End If
+
+            Return True
+        End Function
+
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Shared Widening Operator CType(s As String) As ECNumber
             Return ValueParser(s)
         End Operator
+
+        ''' <summary>
+        ''' ```
+        ''' 1.2.3.4
+        ''' 1.2.3.-
+        ''' 1.2.-.-
+        ''' ```
+        ''' </summary>
+        Public Const PatternECNumber$ = "\d(\.((\d+)|[-]))+"
+
+        Shared ReadOnly r As New Regex(PatternECNumber)
 
         ''' <summary>
         ''' 解析一个EC编号字符串，如果出现格式错误，则返回空值
@@ -133,21 +145,20 @@ Namespace ComponentModel.Annotation
         ''' <param name="expr"></param>
         ''' <returns></returns>
         Public Shared Function ValueParser(expr As String) As ECNumber
-            Dim r As New Regex("/d[.]/d+[.]/d+[.]/d+")
             Dim m As Match = r.Match(expr)
 
             ' 格式错误，没有找到相应的编号格式字符串
             If Not m.Success Then Return Nothing
 
-            Dim tokens As String() = m.Value.Split(CChar("."))
+            Dim tokens As String() = m.Value.Split("."c)
             Dim ecNum As New ECNumber With {
                 .Type = CInt(Val(tokens(0))),
-                .SubType = CInt(Val(tokens(1))),
-                .SubCategory = CInt(Val(tokens(2))),
-                .SerialNumber = CInt(Val(tokens(3)))
+                .SubType = CInt(Val(tokens.ElementAtOrDefault(1))),
+                .SubCategory = CInt(Val(tokens.ElementAtOrDefault(2))),
+                .SerialNumber = CInt(Val(tokens.ElementAtOrDefault(3)))
             }
 
-            If ecNum.Type > 6 OrElse ecNum.Type < 0 Then
+            If ecNum.Type > 7 OrElse ecNum.Type < 0 Then
                 ' 格式错误
                 Return Nothing
             Else
@@ -161,17 +172,8 @@ Namespace ComponentModel.Annotation
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Overrides Function ToString() As String
-            Return String.Format("EC-{0}.{1}.{2}.{3}", CInt(Type), SubType, SubCategory, SerialNumber)
+            Return String.Format("[EC: {0}.{1}.{2}.{3}]", CInt(Type), SubType, SubCategory, SerialNumber)
         End Function
-
-        ''' <summary>
-        ''' ```
-        ''' 1.2.3.4
-        ''' 1.2.3.-
-        ''' 1.2.-.-
-        ''' ```
-        ''' </summary>
-        Public Const PatternECNumber$ = "\d+(\.((\d+)|[-]))+"
 
         ''' <summary>
         ''' 验证所输入的字符串的格式是否正确

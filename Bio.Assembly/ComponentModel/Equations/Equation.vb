@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::141f10303325a78ed6819fef31150987, Bio.Assembly\ComponentModel\Equations\Equation(Of T).vb"
+﻿#Region "Microsoft.VisualBasic::a14dfe15155b6a0a9a380811d8fc89ad, Bio.Assembly\ComponentModel\Equations\Equation.vb"
 
     ' Author:
     ' 
@@ -33,7 +33,7 @@
 
     '     Class Equation
     ' 
-    '         Properties: Products, Reactants, Reversible
+    '         Properties: Products, Reactants, reversible
     ' 
     '         Function: (+2 Overloads) Consume, Equals, GetCoEfficient, getDictionary, GetMetabolites
     '                   (+2 Overloads) Produce, ToString
@@ -59,19 +59,20 @@ Namespace ComponentModel.EquaionModel
         ''' <returns></returns>
         <XmlArray("listOfReactants")> Public Overridable Property Reactants As T() Implements IEquation(Of T).Reactants
             Get
-                Return __leftOri
+                Return left
             End Get
             Set(value As T())
                 If value.IsNullOrEmpty Then
-                    __leftHash = New Dictionary(Of String, T())
+                    leftTable = New Dictionary(Of String, T())
                 Else
-                    __leftHash = getDictionary(value)
+                    leftTable = getDictionary(value)
                 End If
 
-                __leftOri = value
+                left = value
             End Set
         End Property
-        <XmlAttribute> Public Overridable Property Reversible As Boolean Implements IEquation(Of T).Reversible
+
+        <XmlAttribute> Public Overridable Property reversible As Boolean Implements IEquation(Of T).Reversible
 
         ''' <summary>
         ''' list of metabolism reaction products
@@ -79,27 +80,27 @@ Namespace ComponentModel.EquaionModel
         ''' <returns></returns>
         <XmlArray("listOfProducts")> Public Overridable Property Products As T() Implements IEquation(Of T).Products
             Get
-                Return __rightOri
+                Return right
             End Get
             Set(value As T())
                 If value.IsNullOrEmpty Then
-                    __rightHash = New Dictionary(Of String, T())
+                    rightTable = New Dictionary(Of String, T())
                 Else
-                    __rightHash = getDictionary(value)
+                    rightTable = getDictionary(value)
                 End If
 
-                __rightOri = value
+                right = value
             End Set
         End Property
 #End Region
 
-        Protected __leftOri As T()
-        Protected __rightOri As T()
+        Protected left As T()
+        Protected right As T()
 
         ' 为了兼容KEGG里面的方程式，因为有些方程式可能会在一边出现相同的化合物
 
-        Protected __leftHash As Dictionary(Of String, T())
-        Protected __rightHash As Dictionary(Of String, T())
+        Protected leftTable As Dictionary(Of String, T())
+        Protected rightTable As Dictionary(Of String, T())
 
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Private Shared Function getDictionary(value As T()) As Dictionary(Of String, T())
@@ -142,10 +143,10 @@ Namespace ComponentModel.EquaionModel
         Public Overridable Function GetCoEfficient(ID As String) As Double
             ID = ID.ToLower
 
-            If __leftHash.ContainsKey(ID) Then
-                Return -1 * __leftHash(ID).Select(Function(x) x.StoiChiometry).Sum
-            ElseIf __rightHash.ContainsKey(ID) Then
-                Return __rightHash(ID).Select(Function(x) x.StoiChiometry).Sum
+            If leftTable.ContainsKey(ID) Then
+                Return -1 * leftTable(ID).Select(Function(x) x.StoiChiometry).Sum
+            ElseIf rightTable.ContainsKey(ID) Then
+                Return rightTable(ID).Select(Function(x) x.StoiChiometry).Sum
             Else
                 Return 0
             End If
@@ -158,7 +159,7 @@ Namespace ComponentModel.EquaionModel
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function Produce(metabolite As T) As Boolean
-            Return __rightHash.ContainsKey(metabolite.Key)
+            Return rightTable.ContainsKey(metabolite.Key)
         End Function
 
         ''' <summary>
@@ -167,7 +168,7 @@ Namespace ComponentModel.EquaionModel
         ''' <param name="metabolite"></param>
         ''' <returns></returns>
         Public Function Consume(metabolite As T) As Boolean
-            Return __leftHash.ContainsKey(metabolite.Key)
+            Return leftTable.ContainsKey(metabolite.Key)
         End Function
 
         ''' <summary>
@@ -177,7 +178,7 @@ Namespace ComponentModel.EquaionModel
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function Produce(metabolite As String) As Boolean
-            Return __rightHash.ContainsKey(metabolite)
+            Return rightTable.ContainsKey(metabolite)
         End Function
 
         ''' <summary>
@@ -187,7 +188,7 @@ Namespace ComponentModel.EquaionModel
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function Consume(metabolite As String) As Boolean
-            Return __leftHash.ContainsKey(metabolite)
+            Return leftTable.ContainsKey(metabolite)
         End Function
 
         Protected MustOverride Function __equals(a As T, b As T, strict As Boolean)

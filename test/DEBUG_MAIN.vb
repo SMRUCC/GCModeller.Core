@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::59c2198381917923454edea59c0b9e26, test\DEBUG_MAIN.vb"
+﻿#Region "Microsoft.VisualBasic::be7c0d95ed7f666bbdf582f6a97188b0, test\DEBUG_MAIN.vb"
 
     ' Author:
     ' 
@@ -93,7 +93,7 @@ Module DEBUG_MAIN
 
         Pause()
 
-        Dim rxn = KEGG.DBGET.bGetObject.ReactionWebAPI.DownloadFrom("http://www.genome.jp/dbget-bin/www_bget?rn:R00235")
+        Dim rxn = KEGG.DBGET.bGetObject.ReactionWebAPI.Download("R00235")
 
 
         Pause()

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::a4e5a615604aaaedb1b2964e454fb323, Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\Compounds\Compound.vb"
+﻿#Region "Microsoft.VisualBasic::fece6bb3b9c3790c58fb482d0674d22a, Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\Compounds\Compound.vb"
 
     ' Author:
     ' 
@@ -35,8 +35,8 @@
     ' 
     '         Properties: [class], category, entry, order, subcategory
     ' 
-    '         Function: BuildPath, DownloadCompounds, GetAllPubchemMapCompound, Lipids, LoadFile
-    '                   ToString
+    '         Function: BuildPath, DownloadCompounds, GetAllPubchemMapCompound, GetCompoundsWithBiologicalRoles, GetInformation
+    '                   GetLipids, Lipids, LoadFile, ToString
     ' 
     '         Sub: DownloadFromResource
     ' 
@@ -97,6 +97,10 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         ''' </summary>
         ''' <returns></returns>
         Public Property order As String
+        ''' <summary>
+        ''' ``{compoundID => name}``
+        ''' </summary>
+        ''' <returns></returns>
         Public Property entry As KeyValuePair
 
         ''' <summary>
@@ -168,6 +172,23 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                 .ToArray
 
             Return id
+        End Function
+
+        Public Shared Function GetLipids() As CompoundBrite()
+            Return GetInformation(cpd_br08002)
+        End Function
+
+        Public Shared Function GetCompoundsWithBiologicalRoles() As CompoundBrite()
+            Return GetInformation(cpd_br08001)
+        End Function
+
+        Private Shared Function GetInformation(resourceName As String) As CompoundBrite()
+            Static satellite As New ResourcesSatellite(GetType(LICENSE))
+
+            Dim htext = BriteHTextParser.Load(satellite.GetString(resourceName))
+            Dim compounds = Build(htext).ToArray
+
+            Return compounds
         End Function
 
         ''' <summary>

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::18d49e4ae46647948bbe5a7fa3acaaf5, Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Reaction.vb"
+﻿#Region "Microsoft.VisualBasic::635abd3f8760e680216b93f7ce2fe3b8, Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Reaction.vb"
 
     ' Author:
     ' 
@@ -31,12 +31,6 @@
 
     ' Summaries:
 
-    '     Class OrthologyTerms
-    ' 
-    '         Properties: EntityList, Terms
-    ' 
-    '         Function: getCollection, getSize, ToString
-    ' 
     '     Class Reaction
     ' 
     '         Properties: [Class], [Module], Comments, CommonNames, Definition
@@ -44,7 +38,7 @@
     '                     ReactionModel, Reversible
     ' 
     '         Constructor: (+1 Overloads) Sub New
-    '         Function: GetSubstrateCompounds, IsConnectWith, ToString
+    '         Function: GetSubstrateCompounds, IsConnectWith, LoadXml, ToString
     ' 
     ' 
     ' /********************************************************************************/
@@ -60,42 +54,8 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports SMRUCC.genomics.ComponentModel.EquaionModel
 Imports r = System.Text.RegularExpressions.Regex
-Imports XmlProperty = Microsoft.VisualBasic.Text.Xml.Models.Property
 
 Namespace Assembly.KEGG.DBGET.bGetObject
-
-    <XmlType("Orthology-terms", [Namespace]:=OrthologyTerms.Xmlns)>
-    Public Class OrthologyTerms : Inherits ListOf(Of XmlProperty)
-
-        Public Const Xmlns$ = "http://GCModeller.org/core/KEGG/Model/OrthologyTerm.xsd"
-
-        <XmlIgnore>
-        Public ReadOnly Property EntityList As String()
-            <MethodImpl(MethodImplOptions.AggressiveInlining)>
-            Get
-                Return Terms.Keys
-            End Get
-        End Property
-
-        ''' <summary>
-        ''' The KO terms?
-        ''' </summary>
-        ''' <returns></returns>
-        <XmlElement("terms")>
-        Public Property Terms As XmlProperty()
-
-        Public Overrides Function ToString() As String
-            Return EntityList.GetJson
-        End Function
-
-        Protected Overrides Function getSize() As Integer
-            Return Terms.Length
-        End Function
-
-        Protected Overrides Function getCollection() As IEnumerable(Of XmlProperty)
-            Return Terms
-        End Function
-    End Class
 
     ''' <summary>
     ''' KEGG reaction annotation data.
@@ -141,6 +101,11 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         Public Property Pathway As NamedValue()
         <XmlArray("module")>
         Public Property [Module] As NamedValue()
+
+        ''' <summary>
+        ''' KO list
+        ''' </summary>
+        ''' <returns></returns>
         <XmlElement("orthology")>
         Public Property Orthology As OrthologyTerms
 
@@ -187,7 +152,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         End Property
 
         Public Overrides Function ToString() As String
-            Return String.Format("[{0}] {1}:  {2}", Enzyme, ID, Definition)
+            Return String.Format("[{0}] {1}:  {2}", Enzyme.JoinBy("|"), ID, Definition)
         End Function
 
         ''' <summary>
@@ -234,6 +199,15 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             Next
 
             Return False
+        End Function
+
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Shared Function LoadXml(handle As String) As Reaction
+            Return handle.LoadXml(Of Reaction)(
+                preprocess:=Function(text)
+                                Return text.Replace("&#x8;", "")
+                            End Function
+            )
         End Function
     End Class
 End Namespace

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::049dec21da6a919e086a0b6e1456ca33, Bio.Assembly\Assembly\KEGG\DBGET\Objects\SSDB\Ortholog.vb"
+﻿#Region "Microsoft.VisualBasic::d22c30067a2f356b41c9d543cdbd666f, Bio.Assembly\Assembly\KEGG\DBGET\Objects\SSDB\Models\Ortholog.vb"
 
     ' Author:
     ' 
@@ -37,7 +37,7 @@
     '                     KO, len, LocusId, margin, overlap
     '                     query_length, sp, SW
     ' 
-    '         Function: __createObject, CreateObjects, ToString
+    '         Function: createObject, CreateObjects, ToString
     ' 
     ' 
     ' /********************************************************************************/
@@ -80,10 +80,10 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
         End Function
 
         Public Shared Function CreateObjects(result As SSDB.OrthologREST) As Ortholog()
-            Return result.Orthologs.Select(Function(x) __createObject(result, x)).ToArray
+            Return result.Orthologs.Select(Function(x) createObject(result, x)).ToArray
         End Function
 
-        Private Shared Function __createObject(result As SSDB.OrthologREST, hit As SShit) As Ortholog
+        Private Shared Function createObject(result As SSDB.OrthologREST, hit As SShit) As Ortholog
             Return New Ortholog With {
                 .bestAll = $"{hit.Best.Key} {hit.Best.Value}",
                 .bits = Val(hit.Bits),
