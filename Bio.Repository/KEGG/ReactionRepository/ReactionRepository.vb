@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::32caf390bdad04b714b5a349c02591b3, Bio.Repository\KEGG\ReactionRepository\ReactionRepository.vb"
+﻿#Region "Microsoft.VisualBasic::9253a4186536363167a0a03cb8e9389f, Bio.Repository\KEGG\ReactionRepository\ReactionRepository.vb"
 
     ' Author:
     ' 
@@ -37,8 +37,8 @@
     ' 
     '     Constructor: (+1 Overloads) Sub New
     '     Function: Enzymetic, Exists, GetAll, GetByKey, GetByKOMatch
-    '               GetCompoundIndex, GetKoIndex, GetWhere, LoadAuto, ScanModel
-    '               (+2 Overloads) Subset
+    '               GetCompoundIndex, GetKoIndex, GetWhere, LoadAuto, NonEnzymetic
+    '               ScanModel, (+2 Overloads) Subset
     ' 
     ' /********************************************************************************/
 
@@ -202,6 +202,13 @@ Public Class ReactionRepository : Inherits XmlDataModel
         }
     End Function
 
+    Public Function NonEnzymetic() As IEnumerable(Of Reaction)
+        Return table.Values _
+            .Where(Function(r)
+                       Return r.Orthology.Terms.IsNullOrEmpty
+                   End Function)
+    End Function
+
     ''' <summary>
     ''' Test if target reaction model is exists in current data repository or not. 
     ''' </summary>
@@ -234,7 +241,8 @@ Public Class ReactionRepository : Inherits XmlDataModel
             Call GetKoIndex()
         End If
 
-        Return KO.Where(Function(id) KOindex.ContainsKey(id)) _
+        Return KO.Distinct _
+            .Where(Function(id) KOindex.ContainsKey(id)) _
             .Select(Function(id)
                         Return table.Takes(KOindex(id))
                     End Function) _

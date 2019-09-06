@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::c9954c47cb5ede881a31ecd67e349a5a, Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\BriteHTextParser.vb"
+﻿#Region "Microsoft.VisualBasic::e400f97d91322d4fac7a76e97110601a, Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\BriteHText\BriteHTextParser.vb"
 
     ' Author:
     ' 
@@ -33,35 +33,46 @@
 
     '     Module BriteHTextParser
     ' 
-    '         Function: (+2 Overloads) Load, LoadData
+    '         Function: isValid, (+2 Overloads) Load, loadData
     ' 
     ' 
     ' /********************************************************************************/
 
 #End Region
 
+Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Language
 
 Namespace Assembly.KEGG.DBGET.BriteHEntry
 
     Module BriteHTextParser
 
-        Friend ReadOnly ClassLevels As Char() = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        Friend ReadOnly classLevels As Index(Of Char) = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToArray
 
         ''' <summary>
         ''' 
         ''' </summary>
-        ''' <param name="data$">文本内容或者文件的路径</param>
+        ''' <param name="text$">文本内容或者文件的路径</param>
         ''' <returns></returns>
-        Public Function Load(data$) As BriteHText
+        Public Function Load(text As String) As BriteHText
+            Dim raw = text.Replace("<b>", "") _
+                          .Replace("</b>", "") _
+                          .LineTokens
             Dim lines As String() = LinqAPI.Exec(Of String) <=
  _
                 From s As String
-                In data.Replace("<b>", "").Replace("</b>", "").LineTokens
-                Where Not String.IsNullOrEmpty(s) AndAlso (Array.IndexOf(ClassLevels, s.First) > -1 AndAlso Len(s) > 1)
+                In raw
+                Where s.isValid
                 Select s
 
-            Return Load(lines, data(1))
+            Return Load(lines, text(1))
+        End Function
+
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        <Extension>
+        Private Function isValid(str As String) As Boolean
+            Return Not String.IsNullOrEmpty(str) AndAlso (str.First Like classLevels AndAlso Len(str) > 1)
         End Function
 
         Public Function Load(lines$(), Optional depth$ = "Z"c) As BriteHText
@@ -74,7 +85,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
             }
 
             Do While p < lines.Length - 1
-                Call classes.Add(LoadData(lines, p, level:=0, parent:=root))
+                classes += lines.loadData(p, level:=0, parent:=root)
             Loop
 
             root.categoryItems = classes
@@ -89,7 +100,9 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         ''' <param name="p"></param>
         ''' <param name="level"></param>
         ''' <returns></returns>
-        Private Function LoadData(lines$(), ByRef p%, level%, parent As BriteHText) As BriteHText
+        ''' 
+        <Extension>
+        Private Function loadData(lines$(), ByRef p%, level%, parent As BriteHText) As BriteHText
             Dim category As New BriteHText With {
                 .level = level,
                 .classLabel = Mid(lines(p), 2).Trim,
@@ -106,7 +119,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                 Dim subCategory As New List(Of BriteHText)
 
                 Do While lines(p).First > category.CategoryLevel
-                    subCategory += LoadData(lines, p, level + 1, parent:=category)
+                    subCategory += loadData(lines, p, level + 1, parent:=category)
 
                     If p > lines.Length - 1 Then
                         Exit Do

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::82d155a43f0dc40b8f36842658c440a1, Bio.Assembly\Assembly\DOOR\Models\OperonGene.vb"
+﻿#Region "Microsoft.VisualBasic::88c7c0bc83c59ffc8d23e73eeedcb397, Bio.Assembly\Assembly\DOOR\Models\OperonGene.vb"
 
     ' Author:
     ' 
@@ -98,7 +98,7 @@ Namespace Assembly.DOOR
         ''' <returns></returns>
         Public Shared Function TryParse(strLine As String) As OperonGene
             Dim tokens As String() = Strings.Split(strLine, vbTab)
-            Dim p As VBInteger = Scan0
+            Dim p As i32 = Scan0
 
             Return New OperonGene With {
                 .OperonID = tokens(++p),

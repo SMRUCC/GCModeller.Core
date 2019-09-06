@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::e9c9f9a980d5cbff48569b7745db5e54, Bio.Assembly\Assembly\NCBI\Database\COG\COGs\COGTable.vb"
+﻿#Region "Microsoft.VisualBasic::68bebd4b948c8fc88061feca8d046911, Bio.Assembly\Assembly\NCBI\Database\COG\COGs\COGTable.vb"
 
     ' Author:
     ' 
@@ -121,7 +121,7 @@ Namespace Assembly.NCBI.COG.COGs
         End Sub
 
         Protected Sub New(tokens As String())
-            Dim i As VBInteger = 0
+            Dim i As i32 = 0
 
             DomainID = tokens(++i)
             GenomeName = tokens(++i)

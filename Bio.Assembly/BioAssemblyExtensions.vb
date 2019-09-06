@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::eceb027a3d7143c820b05d8393b4a43f, Bio.Assembly\BioAssemblyExtensions.vb"
+﻿#Region "Microsoft.VisualBasic::d652ad0d210eb0c5e6becaf8e3f1c599, Bio.Assembly\BioAssemblyExtensions.vb"
 
     ' Author:
     ' 
@@ -228,7 +228,7 @@ Public Module BioAssemblyExtensions
                                          Optional offsets As Integer = 5) As Dictionary(Of Integer, Contig())
 
         Dim Groups As New Dictionary(Of Integer, List(Of Contig))
-        Dim idx As VBInteger = 1
+        Dim idx As i32 = 1
 
         For Each loci As Contig In contigs
             Dim equalContig As Func(Of IEnumerable(Of Contig), Contig) =

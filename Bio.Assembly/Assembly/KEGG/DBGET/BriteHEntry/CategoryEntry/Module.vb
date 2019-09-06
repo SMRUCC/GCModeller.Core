@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::b83ec26f062334105809beef25a4b434, Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\Module.vb"
+﻿#Region "Microsoft.VisualBasic::6f1a82e2d1617c501407cdd49cc21f45, Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\Module.vb"
 
     ' Author:
     ' 
@@ -144,7 +144,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         End Function
 
         Public Shared Function LoadFile(path As String) As [Module]()
-            Return Build(Model:=BriteHTextParser.Load(data:=FileIO.FileSystem.ReadAllText(path)))
+            Return Build(Model:=BriteHTextParser.Load(text:=FileIO.FileSystem.ReadAllText(path)))
         End Function
 
         ''' <summary>

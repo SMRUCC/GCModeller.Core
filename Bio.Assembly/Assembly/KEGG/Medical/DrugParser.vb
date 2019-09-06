@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::132dc6a11e69d68e346ab80cae33c643, Bio.Assembly\Assembly\KEGG\Medical\DrugParser.vb"
+﻿#Region "Microsoft.VisualBasic::e0fe0d9734c337b1700fecbbdfa77b72, Bio.Assembly\Assembly\KEGG\Medical\DrugParser.vb"
 
     ' Author:
     ' 
@@ -201,7 +201,7 @@ Namespace Assembly.KEGG.Medical
                           End If
                       End Sub
 
-            Dim i As VBInteger = Scan0
+            Dim i As i32 = Scan0
             Dim line As New Value(Of String)
 
             Do While i < lines.Length

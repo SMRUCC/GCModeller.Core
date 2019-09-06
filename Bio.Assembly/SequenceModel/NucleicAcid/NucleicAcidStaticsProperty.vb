@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::4496ebb7e80c4f14eb898b8b4a2bb1e0, Bio.Assembly\SequenceModel\NucleicAcid\NucleicAcidStaticsProperty.vb"
+﻿#Region "Microsoft.VisualBasic::7d740074d99f617d09a8dc2648df0088, Bio.Assembly\SequenceModel\NucleicAcid\NucleicAcidStaticsProperty.vb"
 
     ' Author:
     ' 
@@ -161,6 +161,7 @@ Namespace SequenceModel.NucleotideModels
         ''' 
         <ExportAPI("GC%", Info:="Calculate the GC content of the target sequence data.")>
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        <Extension>
         Public Function GCContent(Sequence As IPolymerSequenceModel) As Double
             Return GCContent(Sequence.SequenceData)
         End Function

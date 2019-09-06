@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::43593a825a4d557b1e3db7257c2b97f4, Bio.Assembly\Assembly\NCBI\Database\GenBank\TabularFormat\FeatureBriefs\GeneBrief.vb"
+﻿#Region "Microsoft.VisualBasic::98f6a3693b232bd45165a9da53f38974, Bio.Assembly\Assembly\NCBI\Database\GenBank\TabularFormat\FeatureBriefs\GeneBrief.vb"
 
     ' Author:
     ' 
@@ -178,7 +178,7 @@ Namespace Assembly.NCBI.GenBank.TabularFormat.ComponentModels
                                       In Strings.Split(tokens(Scan0), "..")
                                       Let n = CType(Val(str), Long)
                                       Select n).ToArray
-            Dim p As VBInteger = 2
+            Dim p As i32 = 2
             Dim strand As Strands = tokens(1)(0).GetStrands
             Dim loci = New NucleotideLocation(location(0), location(1), strand).Normalization
             Dim gene As New GeneBrief With {

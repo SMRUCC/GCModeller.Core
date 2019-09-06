@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::a846f8297f8c93b618096f29cdf65f56, Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\Compound.vb"
+﻿#Region "Microsoft.VisualBasic::57fe5bbc86ee5f570f7bd2dec041ddef, Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\Metabolites\Compound.vb"
 
     ' Author:
     ' 
@@ -100,7 +100,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
         Public Property remarks As String()
         Public Property enzyme As String()
 
-        Public Property category As CompoundBrite()
+        Public Property category As BriteTerm()
 
         Protected Friend _DBLinks As DBLinks
 

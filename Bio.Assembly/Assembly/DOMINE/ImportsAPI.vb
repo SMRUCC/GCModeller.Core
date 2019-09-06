@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::a2cfbccc1f422059af0631496ec78f0b, Bio.Assembly\Assembly\DOMINE\ImportsAPI.vb"
+﻿#Region "Microsoft.VisualBasic::064f8e8a43941850e3c2529f5207596a, Bio.Assembly\Assembly\DOMINE\ImportsAPI.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,6 @@
 
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
-Imports Microsoft.VisualBasic
 
 Namespace Assembly.DOMINE
 

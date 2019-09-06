@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::62e6834d6bb74296cb4955aa1cb4c042, Bio.Assembly\Assembly\KEGG\DBGET\Objects\OrthologyTerms.vb"
+﻿#Region "Microsoft.VisualBasic::3a862a92a7992490df15c612fb761bef, Bio.Assembly\Assembly\KEGG\DBGET\Objects\OrthologyTerms.vb"
 
     ' Author:
     ' 
@@ -56,11 +56,15 @@ Namespace Assembly.KEGG.DBGET.bGetObject
 
         Public Const Xmlns$ = "http://GCModeller.org/core/KEGG/Model/OrthologyTerm.xsd"
 
+        ''' <summary>
+        ''' A collection of term id in array <see cref="Terms"/>
+        ''' </summary>
+        ''' <returns></returns>
         <XmlIgnore>
         Public ReadOnly Property EntityList As String()
             <MethodImpl(MethodImplOptions.AggressiveInlining)>
             Get
-                Return Terms.Keys
+                Return Terms.SafeQuery.Keys
             End Get
         End Property
 

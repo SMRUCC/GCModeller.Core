@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::98b34fe283ee9059db38451b7d1e23b2, Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\EnzymaticReaction.vb"
+﻿#Region "Microsoft.VisualBasic::a3f25ff7d15e60d12c96e891cf16c333, Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\EnzymaticReaction.vb"
 
     ' Author:
     ' 
@@ -47,7 +47,6 @@
 
 #End Region
 
-Imports System.Threading
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Terminal
 Imports Microsoft.VisualBasic.Terminal.ProgressBar

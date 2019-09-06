@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::34ef3bd3cea198011c5b0e86558058a1, Bio.Assembly\Assembly\KEGG\DBGET\Objects\KEGGOrganism\Organism.vb"
+﻿#Region "Microsoft.VisualBasic::11da42367453b7d346b43feaece32d2e, Bio.Assembly\Assembly\KEGG\DBGET\Objects\KEGGOrganism\Organism.vb"
 
     ' Author:
     ' 
@@ -37,7 +37,7 @@
     '                     Definition, FullName, Keywords, Lineage, Reference
     '                     Sequence, Taxonomy, TID
     ' 
-    '         Function: links, referenceParser, ShowOrganism, ToString
+    '         Function: links, (+2 Overloads) referenceParser, ShowOrganism, ToString
     ' 
     ' 
     ' /********************************************************************************/
@@ -46,12 +46,16 @@
 
 Imports System.Xml.Serialization
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Text.Parser.HtmlParser
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports r = System.Text.RegularExpressions.Regex
 
 Namespace Assembly.KEGG.DBGET.bGetObject.Organism
 
+    ''' <summary>
+    ''' http://www.kegg.jp/kegg-bin/show_organism?org={code}
+    ''' </summary>
     Public Class OrganismInfo
 
         ''' <summary>
@@ -59,6 +63,10 @@ Namespace Assembly.KEGG.DBGET.bGetObject.Organism
         ''' </summary>
         ''' <returns></returns>
         <XmlAttribute> Public Property TID As String
+        ''' <summary>
+        ''' 物种在KEGG数据库之中的简要缩写代码
+        ''' </summary>
+        ''' <returns></returns>
         <XmlAttribute> Public Property code As String
         <XmlAttribute> Public Property Taxonomy As String
 
@@ -71,7 +79,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject.Organism
         Public Property Comment As String
         Public Property Sequence As String
         Public Property Created As String
-        Public Property Reference As Reference
+        Public Property Reference As Reference()
 
         Public Overrides Function ToString() As String
             Return $"({code}) {FullName}"
@@ -128,12 +136,12 @@ Namespace Assembly.KEGG.DBGET.bGetObject.Organism
                 .FullName = rows("Full name"),
                 .Definition = rows!Definition,
                 .Keywords = keywords,
-                .Sequence = rows!Sequence.href,
+                .Sequence = rows.TryGetValue("Sequence").href,
                 .Lineage = rows!Lineage,
                 .Taxonomy = rows!Taxonomy.StripHTMLTags,
                 .TID = rows("T number").StripHTMLTags,
                 .DataSource = links(rows("Data source")),
-                .Reference = referenceParser(rows)
+                .Reference = infoTable.DoCall(AddressOf referenceParser).ToArray
             }
         End Function
 
@@ -147,6 +155,24 @@ Namespace Assembly.KEGG.DBGET.bGetObject.Organism
                            End Function) _
                 .ToArray
             Return a
+        End Function
+
+        Private Shared Iterator Function referenceParser(source As NamedValue(Of String)()) As IEnumerable(Of Reference)
+            For Each block As NamedValue(Of String)() In source _
+                .Split(delimiter:=Function(r)
+                                      Return r.Name = "Reference"
+                                  End Function,
+                       deliPosition:=DelimiterLocation.NextFirst
+                ) _
+                .Skip(1)
+
+                Dim rows As Dictionary(Of String, String) = block _
+                    .ToDictionary(replaceOnDuplicate:=True) _
+                    .FlatTable
+                Dim ref As Reference = rows.DoCall(AddressOf referenceParser)
+
+                Yield ref
+            Next
         End Function
 
         Private Shared Function referenceParser(rows As Dictionary(Of String, String)) As Reference
@@ -163,8 +189,11 @@ Namespace Assembly.KEGG.DBGET.bGetObject.Organism
                 DOI = ""
             Else
                 DOI = r.Match(J, "DOI[:].+", RegexICSng).Value
-                J = J.Replace(DOI, "").StripHTMLTags.Trim
-                DOI = DOI.StripHTMLTags
+
+                If Not DOI.StringEmpty Then
+                    J = J.Replace(DOI, "").StripHTMLTags.Trim
+                    DOI = DOI.StripHTMLTags
+                End If
             End If
 
             Dim authors = rows.TryGetValue("Authors")?.Split(";"c)
