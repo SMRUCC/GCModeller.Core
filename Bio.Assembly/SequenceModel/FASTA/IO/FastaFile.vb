@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::bb384ffe8e8a3d1193fb15f8101e2c5b, Bio.Assembly\SequenceModel\FASTA\IO\FastaFile.vb"
+﻿#Region "Microsoft.VisualBasic::13fee0fd2a4f57ead875927e8da9e534, core\Bio.Assembly\SequenceModel\FASTA\IO\FastaFile.vb"
 
     ' Author:
     ' 
@@ -77,7 +77,7 @@ Namespace SequenceModel.FASTA
     ''' 
     <ActiveViews(FastaSeq.SampleView, type:="bash")>
     Public Class FastaFile
-        Implements ISaveHandle, IFileReference
+        Implements IFileReference
         Implements IEnumerable(Of FastaSeq)
         Implements IList(Of FastaSeq)
         Implements ICloneable
@@ -416,7 +416,7 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
         ''' 不同的程序会对这个由要求，例如meme程序在linux系统之中要求序列文件为unicode编码格式而windows版本的meme程序则要求ascii格式
         ''' </param>
         ''' <remarks></remarks>
-        Public Overloads Function Save(Path As String, encoding As Encoding) As Boolean Implements ISaveHandle.Save
+        Public Overloads Function Save(Path As String, encoding As Encoding) As Boolean
             Try
                 Return Save(60, Path, encoding)
             Catch ex As Exception
@@ -604,8 +604,7 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
             Dim LQuery$() = LinqAPI.Exec(Of String) <=
                 From fa As T
                 In data
-                Let line As String =
-                    FastaSeq.GenerateDocumentText(fa)
+                Let line As String = FastaSeq.GenerateDocumentText(fa)
                 Select line & vbLf
 
             Return LQuery.FlushAllLines(path, encoding)
@@ -672,7 +671,7 @@ NULL_DATA:      Call $"""{path.ToFileURL}"" fasta data isnull or empty!".__DEBUG
             Return True
         End Function
 
-        Public Overloads Function Save(path As String, Optional encoding As Encodings = Encodings.UTF8) As Boolean Implements ISaveHandle.Save
+        Public Overloads Function Save(path As String, Optional encoding As Encodings = Encodings.ASCII) As Boolean
             Return Save(path, encoding.CodePage)
         End Function
     End Class

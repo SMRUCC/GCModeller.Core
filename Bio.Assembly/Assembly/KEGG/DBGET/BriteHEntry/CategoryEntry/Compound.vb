@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::800992e7b3b7126fa1a3020a666ab707, Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\Compound.vb"
+﻿#Region "Microsoft.VisualBasic::b57cc63e9a7c99b1f717d7df763db581, core\Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\Compound.vb"
 
     ' Author:
     ' 
@@ -34,8 +34,8 @@
     '     Module CompoundBrite
     ' 
     '         Function: BioactivePeptides, Carcinogens, CompoundsWithBiologicalRoles, DownloadCompounds, EndocrineDisruptingCompounds
-    '                   GetAllPubchemMapCompound, Lipids, LoadFile, NaturalToxins, Pesticides
-    '                   PhytochemicalCompounds, TargetbasedClassificationOfCompounds
+    '                   GetAllCompoundResources, GetAllPubchemMapCompound, Lipids, LoadFile, NaturalToxins
+    '                   Pesticides, PhytochemicalCompounds, TargetbasedClassificationOfCompounds
     ' 
     '         Sub: DownloadFromResource
     ' 
@@ -186,6 +186,18 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
             Return BriteTerm.GetInformation(cpd_br08010, CompoundIDPattern)
         End Function
 
+        Public Iterator Function GetAllCompoundResources() As IEnumerable(Of NamedValue(Of BriteTerm()))
+            Yield New NamedValue(Of BriteTerm())("Compounds with biological roles", CompoundsWithBiologicalRoles)
+            Yield New NamedValue(Of BriteTerm())("Lipids", Lipids)
+            Yield New NamedValue(Of BriteTerm())("Phytochemical compounds", PhytochemicalCompounds)
+            Yield New NamedValue(Of BriteTerm())("Bioactive peptides", BioactivePeptides)
+            Yield New NamedValue(Of BriteTerm())("Endocrine disrupting compounds", EndocrineDisruptingCompounds)
+            Yield New NamedValue(Of BriteTerm())("Pesticides", Pesticides)
+            Yield New NamedValue(Of BriteTerm())("Carcinogens", Carcinogens)
+            Yield New NamedValue(Of BriteTerm())("Natural toxins", NaturalToxins)
+            Yield New NamedValue(Of BriteTerm())("Target-based classification of compounds", TargetbasedClassificationOfCompounds)
+        End Function
+
         ''' <summary>
         ''' 请注意，这个函数只能够下载包含有分类信息的化合物，假若代谢物还没有分类信息的话，则无法利用这个函数进行下载
         ''' (gif图片是以base64编码放在XML文件里面的)
@@ -206,17 +218,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         ''' <remarks></remarks>
         Public Sub DownloadFromResource(EXPORT$, Optional directoryOrganized As Boolean = True, Optional structInfo As Boolean = False)
             Dim satellite As New ResourcesSatellite(GetType(LICENSE))
-            Dim resource = {
-                New NamedValue(Of BriteTerm())("Compounds with biological roles", CompoundsWithBiologicalRoles),
-                New NamedValue(Of BriteTerm())("Lipids", Lipids),
-                New NamedValue(Of BriteTerm())("Phytochemical compounds", PhytochemicalCompounds),
-                New NamedValue(Of BriteTerm())("Bioactive peptides", BioactivePeptides),
-                New NamedValue(Of BriteTerm())("Endocrine disrupting compounds", EndocrineDisruptingCompounds),
-                New NamedValue(Of BriteTerm())("Pesticides", Pesticides),
-                New NamedValue(Of BriteTerm())("Carcinogens", Carcinogens),
-                New NamedValue(Of BriteTerm())("Natural toxins", NaturalToxins),
-                New NamedValue(Of BriteTerm())("Target-based classification of compounds", TargetbasedClassificationOfCompounds)
-            }
+            Dim resource = GetAllCompoundResources.ToArray
 
             For Each entry As NamedValue(Of BriteTerm()) In resource
                 With entry

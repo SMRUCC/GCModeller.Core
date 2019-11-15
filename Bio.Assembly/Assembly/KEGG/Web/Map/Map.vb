@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::bc6bf5ac574e07f79fede2eba4ea812c, Bio.Assembly\Assembly\KEGG\Web\Map\Map.vb"
+﻿#Region "Microsoft.VisualBasic::867bb73eed66f6711422ae7ee6f43bb5, core\Bio.Assembly\Assembly\KEGG\Web\Map\Map.vb"
 
     ' Author:
     ' 
@@ -33,7 +33,7 @@
 
     '     Class Map
     ' 
-    '         Properties: Areas, ID, Name, PathwayImage, URL
+    '         Properties: id, Name, PathwayImage, shapes, URL
     ' 
     '         Function: GetEntryInfo, GetImage, GetMembers, ParseFromUrl, ParseHTML
     '                   ToString
@@ -61,6 +61,9 @@ Imports r = System.Text.RegularExpressions.Regex
 
 Namespace Assembly.KEGG.WebServices
 
+    ''' <summary>
+    ''' The kegg reference map
+    ''' </summary>
     <XmlRoot("Map", [Namespace]:=Map.XmlNamespace)>
     Public Class Map : Inherits XmlDataModel
         Implements INamedValue
@@ -68,7 +71,7 @@ Namespace Assembly.KEGG.WebServices
         Public Const XmlNamespace$ = "http://GCModeller.org/core/KEGG/KGML_map.xsd"
 
         <XmlAttribute>
-        Public Property ID As String Implements IKeyedEntity(Of String).Key
+        Public Property id As String Implements IKeyedEntity(Of String).Key
 
         ''' <summary>
         ''' The map title
@@ -83,7 +86,7 @@ Namespace Assembly.KEGG.WebServices
         ''' </summary>
         ''' <returns></returns>
         <XmlArray("shapes")>
-        Public Property Areas As Area()
+        Public Property shapes As Area()
 
         ''' <summary>
         ''' base64 image
@@ -94,7 +97,7 @@ Namespace Assembly.KEGG.WebServices
 
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Function GetMembers() As String()
-            Return Areas _
+            Return shapes _
                 .Select(Function(a) a.IDVector) _
                 .IteratesALL _
                 .Distinct _
@@ -108,11 +111,12 @@ Namespace Assembly.KEGG.WebServices
                 .Select(AddressOf Trim) _
                 .ToArray
             Dim base64$ = String.Join("", lines)
+
             Return base64.GetImage
         End Function
 
         Public Overrides Function ToString() As String
-            Return Areas.GetJson
+            Return shapes.GetJson
         End Function
 
         Const data$ = "<map name=""mapdata"">.+?</map>"
@@ -173,8 +177,8 @@ Namespace Assembly.KEGG.WebServices
 
             Return New Map With {
                 .PathwayImage = img,
-                .Areas = shapes,
-                .ID = info.Name,
+                .shapes = shapes,
+                .id = info.Name,
                 .Name = info.Value,
                 .URL = url
             }

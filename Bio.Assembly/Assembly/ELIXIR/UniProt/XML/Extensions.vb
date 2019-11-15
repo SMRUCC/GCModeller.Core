@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::411eb7efd9a37ca7e596f0c5d8c9d920, Bio.Assembly\Assembly\ELIXIR\UniProt\XML\Extensions.vb"
+﻿#Region "Microsoft.VisualBasic::553dcb83aed17f57348232240c8e1b7d, core\Bio.Assembly\Assembly\ELIXIR\UniProt\XML\Extensions.vb"
 
     ' Author:
     ' 
@@ -33,8 +33,9 @@
 
     '     Module Extensions
     ' 
-    '         Function: ECNumberList, EnumerateAllIDs, GetDomainData, KO, ORF
-    '                   OrganismScientificName, proteinFullName, ProteinSequence, SubCellularLocations, Term2Gene
+    '         Function: ECNumberList, EnumerateAllIDs, GetDomainData, GO, KO
+    '                   ORF, OrganismScientificName, proteinFullName, ProteinSequence, SubCellularLocations
+    '                   Term2Gene
     ' 
     ' 
     ' /********************************************************************************/
@@ -51,6 +52,11 @@ Namespace Assembly.Uniprot.XML
 
     <HideModuleName> Public Module Extensions
 
+        ''' <summary>
+        ''' Get protein sequence
+        ''' </summary>
+        ''' <param name="prot"></param>
+        ''' <returns></returns>
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         <Extension>
         Public Function ProteinSequence(prot As entry) As String
@@ -71,6 +77,17 @@ Namespace Assembly.Uniprot.XML
         <Extension>
         Public Function KO(protein As entry) As dbReference
             Return protein.xrefs.TryGetValue("KO", [default]:=Nothing).ElementAtOrDefault(0)
+        End Function
+
+        ''' <summary>
+        ''' Get KO number of this protein
+        ''' </summary>
+        ''' <param name="protein"></param>
+        ''' <returns></returns>
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        <Extension>
+        Public Function GO(protein As entry) As IEnumerable(Of dbReference)
+            Return protein.xrefs.TryGetValue("GO", [default]:=Nothing)
         End Function
 
         <Extension>

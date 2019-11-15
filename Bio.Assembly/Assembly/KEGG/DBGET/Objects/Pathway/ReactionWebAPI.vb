@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::9eac2adf8ae0bc61d3abc75341920d26, Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\ReactionWebAPI.vb"
+﻿#Region "Microsoft.VisualBasic::d7f88f1fb2b240bab124b8b09299d97b, core\Bio.Assembly\Assembly\KEGG\DBGET\Objects\Pathway\ReactionWebAPI.vb"
 
     ' Author:
     ' 
@@ -67,7 +67,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                 lazyValue:=Function()
                                Return New ReactionQuery(cache, sleepTime)
                            End Function) _
-               .Query(Of Reaction)(ID)
+               .Query(Of Reaction)(ID, cacheType:=".html")
         End Function
 
         ''' <summary>

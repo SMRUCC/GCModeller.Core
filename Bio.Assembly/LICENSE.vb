@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::eb610071ed8eef7105c610cc8ee4060b, Bio.Assembly\LICENSE.vb"
+﻿#Region "Microsoft.VisualBasic::cd005651cbaba7035b01aff6f8636384, core\Bio.Assembly\LICENSE.vb"
 
     ' Author:
     ' 
@@ -99,7 +99,7 @@ Public Module LICENSE
         Call Process.Start("https://github.com/SMRUCC/GCModeller.Core")
     End Sub
 
-    Public Const GCModeller$ = "http://gcmodeller.org"
+    Public Const GCModeller$ = "https://gcmodeller.org"
 
     ''' <summary>
     ''' GCModeller之中的所有的组件通过http请求一些Web API的时候所使用到的默认user-agent字符串。

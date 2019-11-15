@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::d22c30067a2f356b41c9d543cdbd666f, Bio.Assembly\Assembly\KEGG\DBGET\Objects\SSDB\Models\Ortholog.vb"
+﻿#Region "Microsoft.VisualBasic::00134a099d0f187784bccdd4cd3d34c9, core\Bio.Assembly\Assembly\KEGG\DBGET\Objects\SSDB\Models\Ortholog.vb"
 
     ' Author:
     ' 
@@ -87,7 +87,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
             Return New Ortholog With {
                 .bestAll = $"{hit.Best.Key} {hit.Best.Value}",
                 .bits = Val(hit.Bits),
-                .Definition = hit.Entry.Description,
+                .Definition = hit.Entry.description,
                 .hit_name = hit.Entry.locusID,
                 .LocusId = result.KEGG_ID,
                 .identity = Val(hit.Identity),

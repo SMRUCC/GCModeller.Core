@@ -1,45 +1,45 @@
-﻿#Region "Microsoft.VisualBasic::2a54014adca76eaaf9fc508b8416a3f8, Bio.Assembly\Assembly\NCBI\Database\GenBank\ExportServices\gbExportService.vb"
+﻿#Region "Microsoft.VisualBasic::8080a17f32231d072bf531bbb107d50c, core\Bio.Assembly\Assembly\NCBI\Database\GenBank\ExportServices\gbExportService.vb"
 
-' Author:
-' 
-'       asuka (amethyst.asuka@gcmodeller.org)
-'       xie (genetics@smrucc.org)
-'       xieguigang (xie.guigang@live.com)
-' 
-' Copyright (c) 2018 GPL3 Licensed
-' 
-' 
-' GNU GENERAL PUBLIC LICENSE (GPL3)
-' 
-' 
-' This program is free software: you can redistribute it and/or modify
-' it under the terms of the GNU General Public License as published by
-' the Free Software Foundation, either version 3 of the License, or
-' (at your option) any later version.
-' 
-' This program is distributed in the hope that it will be useful,
-' but WITHOUT ANY WARRANTY; without even the implied warranty of
-' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-' GNU General Public License for more details.
-' 
-' You should have received a copy of the GNU General Public License
-' along with this program. If not, see <http://www.gnu.org/licenses/>.
+    ' Author:
+    ' 
+    '       asuka (amethyst.asuka@gcmodeller.org)
+    '       xie (genetics@smrucc.org)
+    '       xieguigang (xie.guigang@live.com)
+    ' 
+    ' Copyright (c) 2018 GPL3 Licensed
+    ' 
+    ' 
+    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
+    ' 
+    ' This program is free software: you can redistribute it and/or modify
+    ' it under the terms of the GNU General Public License as published by
+    ' the Free Software Foundation, either version 3 of the License, or
+    ' (at your option) any later version.
+    ' 
+    ' This program is distributed in the hope that it will be useful,
+    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
+    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    ' GNU General Public License for more details.
+    ' 
+    ' You should have received a copy of the GNU General Public License
+    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
 
-' /********************************************************************************/
+    ' /********************************************************************************/
 
-' Summaries:
+    ' Summaries:
 
-'     Module gbExportService
-' 
-'         Function: __exportNoAnnotation, __exportWithAnnotation, __featureToPTT, __toGenes, BatchExport
-'                   BatchExportPlasmid, CopyGenomeSequence, (+2 Overloads) Distinct, DumpEXPORT, ExportGeneFeatures
-'                   ExportGeneNtFasta, ExportPTTAsDump, GbffToPTT, InvokeExport, LoadGbkSource
-'                   TryParseGBKID
-' 
-' 
-' /********************************************************************************/
+    '     Module gbExportService
+    ' 
+    '         Function: __exportNoAnnotation, __exportWithAnnotation, __featureToPTT, __toGenes, BatchExport
+    '                   BatchExportPlasmid, CopyGenomeSequence, (+2 Overloads) Distinct, DumpEXPORT, EnsureNonEmptyLocusId
+    '                   ExportGeneFeatures, ExportGeneNtFasta, ExportPTTAsDump, GbffToPTT, InvokeExport
+    '                   LoadGbkSource, TryParseGBKID
+    ' 
+    ' 
+    ' /********************************************************************************/
 
 #End Region
 
@@ -69,6 +69,27 @@ Namespace Assembly.NCBI.GenBank
     ''' <remarks></remarks>
     Public Module gbExportService
 
+        <Extension>
+        Public Function EnsureNonEmptyLocusId(feature As Feature) As String
+            Dim locus_id$ = feature("locus_tag")
+
+            If String.IsNullOrEmpty(locus_id) Then
+                locus_id = feature("protein_id")
+            End If
+            If String.IsNullOrEmpty(locus_id) Then
+                locus_id = (From ref As String
+                            In feature.QueryDuplicated("db_xref")
+                            Let Tokens As String() = ref.Split(CChar(":"))
+                            Where String.Equals(Tokens.First, "PSEUDO")
+                            Select Tokens.Last).FirstOrDefault
+            End If
+            If String.IsNullOrEmpty(locus_id) Then
+                locus_id = feature("db_xref")
+            End If
+
+            Return locus_id
+        End Function
+
         ''' <summary>
         ''' Convert a feature site data in the NCBI GenBank file to the dump information table.
         ''' </summary>
@@ -78,26 +99,16 @@ Namespace Assembly.NCBI.GenBank
         ''' 
         <Extension>
         Public Function DumpEXPORT(obj As CDS) As GeneTable
-            Dim gene As New GeneTable
+            Dim gene As New GeneTable With {
+                .locus_id = obj.EnsureNonEmptyLocusId
+            }
 
             Call obj.TryGetValue("product", gene.commonName)
-            Call obj.TryGetValue("locus_tag", gene.locus_id)
             Call obj.TryGetValue("protein_id", gene.ProteinId)
             Call obj.TryGetValue("gene", gene.geneName)
             Call obj.TryGetValue("translation", gene.Translation)
             Call obj.TryGetValue("function", gene.Function)
             Call obj.TryGetValue("transl_table", gene.Transl_table)
-
-            If String.IsNullOrEmpty(gene.locus_id) Then
-                gene.locus_id = gene.ProteinId
-            End If
-            If String.IsNullOrEmpty(gene.locus_id) Then
-                gene.locus_id = (From ref As String
-                                In obj.QueryDuplicated("db_xref")
-                                 Let Tokens As String() = ref.Split(CChar(":"))
-                                 Where String.Equals(Tokens.First, "PSEUDO")
-                                 Select Tokens.Last).FirstOrDefault
-            End If
 
             gene.GI = obj.db_xref_GI
             gene.UniprotSwissProt = obj.db_xref_UniprotKBSwissProt
@@ -604,26 +615,33 @@ Namespace Assembly.NCBI.GenBank
             Dim attrs As String() = Nothing
             Dim Sequence As String
             Dim products As Dictionary(Of GeneTable) = gb.ExportGeneFeatures.ToDictionary
+            Dim geneFeatures = (From x As Feature
+                                In gb.Features._innerList
+                                Where String.Equals(x.KeyName, "gene", StringComparison.OrdinalIgnoreCase)
+                                Select x).ToArray
+            Dim locus_tag As String
+            Dim function$
+
+            If geneFeatures.Length = 0 Then
+                ' 在gb文件中没有定义gene feature
+                ' 则直接导出所有的feature的序列？
+                geneFeatures = gb.Features._innerList _
+                    .Where(Function(feature) feature.KeyName <> "source") _
+                    .ToArray
+            End If
 
             Try
-                For Each gene As Feature In (From x As Feature
-                                             In gb.Features._innerList
-                                             Where String.Equals(x.KeyName, "gene", StringComparison.OrdinalIgnoreCase)
-                                             Select x)
-
-                    Dim locus_tag As String
-                    Dim function$
-
+                For Each gene As Feature In geneFeatures
                     If geneName Then
                         locus_tag = gene.Query("gene")
                         If String.IsNullOrEmpty(locus_tag) OrElse String.Equals(locus_tag, "-") Then
-                            locus_tag = gene.Query("locus_tag")
+                            locus_tag = gene.EnsureNonEmptyLocusId
                         End If
                     Else
-                        locus_tag = gene.Query("locus_tag")
+                        locus_tag = gene.EnsureNonEmptyLocusId
                     End If
 
-                    [function] = products.SafeGetValue(locus_tag)?.Function
+                    [function] = products.SafeGetValue(locus_tag)?.function
                     [function] = If([function].StringEmpty, products.SafeGetValue(locus_tag)?.commonName, [function])
                     loc = gene.Location.ContiguousRegion
                     attrs = {locus_tag, gene.Location.ToString, [function]}

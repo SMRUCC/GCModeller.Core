@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::090bba80e6421f312bb4f3b3a0301583, Bio.Assembly\Assembly\KEGG\Web\QueryEntry.vb"
+﻿#Region "Microsoft.VisualBasic::c5c999a449df9d4d15031aef0fde5c51, core\Bio.Assembly\Assembly\KEGG\Web\QueryEntry.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     ' 
     '     Class QueryEntry
     ' 
-    '         Properties: Description, locusID, speciesID
+    '         Properties: description, locusID, speciesID
     ' 
     '         Constructor: (+2 Overloads) Sub New
     '         Function: ToString
@@ -175,7 +175,7 @@ Namespace Assembly.KEGG.WebServices
     End Class
 
     ''' <summary>
-    ''' 
+    ''' Search entry
     ''' </summary>
     ''' <remarks>
     ''' ```html
@@ -188,33 +188,33 @@ Namespace Assembly.KEGG.WebServices
         ''' The entry data which can be using for downloads data using the KEGG DBGET system.
         ''' </summary>
         ''' <remarks></remarks>
-        <XmlAttribute> Dim EntryID As String
+        <XmlAttribute> Dim entryId As String
         ''' <summary>
-        ''' The brief description information about this <see cref="EntryID">object</see>.
+        ''' The url which indicates the DBGET resource of this <see cref="entryId">object</see>.
         ''' </summary>
         ''' <remarks></remarks>
-        Dim Description As String
+        <XmlAttribute> Dim url As String
 
         ''' <summary>
-        ''' The url which indicates the DBGET resource of this <see cref="EntryID">object</see>.
+        ''' The brief description information about this <see cref="entryId">object</see>.
         ''' </summary>
         ''' <remarks></remarks>
-        Dim Url As String
+        <XmlText> Dim description As String
 
         Public Overrides Function ToString() As String
-            Return String.Format("{0}:  {1}", EntryID, Description)
+            Return String.Format("{0}:  {1}", entryId, description)
         End Function
 
-        Public Shared Function InternalParser(s As String) As ListEntry
+        Friend Shared Function InternalParser(s As String) As ListEntry
             Dim urlEntry As String = Regex.Match(s, "<a href="".+?"">.+?</a>").Value
             Dim descr As String = s.Replace(urlEntry, "").Trim
             Dim url As String = "http://www.genome.jp" & urlEntry.href
             Dim ID As String = urlEntry.GetValue
 
             Return New ListEntry With {
-                .Description = descr,
-                .EntryID = ID,
-                .Url = url
+                .description = descr,
+                .entryId = ID,
+                .url = url
             }
         End Function
     End Structure
@@ -238,14 +238,17 @@ Namespace Assembly.KEGG.WebServices
         ''' <returns></returns>
         ''' <remarks></remarks>
         <XmlAttribute> Public Property locusID As String
-        <XmlText>
-        Public Property Description As String
 
-        Sub New(str As String, Optional description As String = Nothing)
-            Dim Tokens As String() = str.Split(":"c)
-            speciesID = Tokens.First
-            locusID = Tokens.Last
-            Me.Description = description
+        <XmlText>
+        Public Property description As String
+
+        Sub New(str$, Optional description$ = Nothing)
+            With str.Split(":"c)
+                speciesID = .First
+                locusID = .Last
+            End With
+
+            Me.description = description
         End Sub
 
         Sub New()
@@ -268,7 +271,7 @@ Namespace Assembly.KEGG.WebServices
                     Return New QueryEntry With {
                         .speciesID = strArray(0),
                         .locusID = strArray(1),
-                        .Description = strArray(2)
+                        .description = strArray(2)
                     }
                 End If
             End If

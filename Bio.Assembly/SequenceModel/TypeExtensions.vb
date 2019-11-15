@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::8d2f17d78e347dffd281f283f1924da0, Bio.Assembly\SequenceModel\TypeExtensions.vb"
+﻿#Region "Microsoft.VisualBasic::b060967f0a2b4c92a027d1aabeb71951, core\Bio.Assembly\SequenceModel\TypeExtensions.vb"
 
     ' Author:
     ' 
@@ -33,6 +33,8 @@
 
     '     Module TypeExtensions
     ' 
+    '         Properties: AA, NT
+    ' 
     '         Function: GetSeqType, IsProteinSource
     ' 
     ' 
@@ -44,8 +46,22 @@ Imports System.Runtime.CompilerServices
 
 Namespace SequenceModel
 
+    ''' <summary>
+    ''' Extensions helper function for different type of bio-sequence.
+    ''' </summary>
     <HideModuleName>
     Public Module TypeExtensions
+
+        ''' <summary>
+        ''' Enumeration for nucleotide residues
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property NT As IReadOnlyCollection(Of Char) = {"A"c, "T"c, "G"c, "C"c}
+        ''' <summary>
+        ''' Enumeration for amino acid.
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property AA As IReadOnlyCollection(Of Char) = {"A"c, "R"c, "N"c, "D"c, "C"c, "E"c, "Q"c, "G"c, "H"c, "I"c, "L"c, "K"c, "M"c, "F"c, "P"c, "S"c, "T"c, "W"c, "Y"c, "V"c}
 
 #Region "Constants"
 

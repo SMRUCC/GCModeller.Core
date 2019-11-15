@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::eef579092c59f89da4ad82ec0664d14f, Bio.Assembly\Assembly\NCBI\Database\GenBank\GBK\Keywords\Features\Qualifier.vb"
+﻿#Region "Microsoft.VisualBasic::c37fc0cc3b6eba30fda715a89f0d5385, core\Bio.Assembly\Assembly\NCBI\Database\GenBank\GBK\Keywords\Features\Qualifier.vb"
 
     ' Author:
     ' 
@@ -49,9 +49,6 @@
     ' /********************************************************************************/
 
 #End Region
-
-Imports System.Text.RegularExpressions
-Imports System.Text
 
 Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
 

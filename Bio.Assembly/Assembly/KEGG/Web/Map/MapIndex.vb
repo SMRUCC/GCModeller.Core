@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::8c0f537bd1d4bd14ee114cd51594a6d0, Bio.Assembly\Assembly\KEGG\Web\Map\MapIndex.vb"
+﻿#Region "Microsoft.VisualBasic::4fa03d38a2c88fc85986534c15c6e43f, core\Bio.Assembly\Assembly\KEGG\Web\Map\MapIndex.vb"
 
     ' Author:
     ' 
@@ -43,7 +43,7 @@
     ' 
     '         Constructor: (+1 Overloads) Sub New
     '         Function: BuildRepository, CreateIndex, Exists, GenericEnumerator, GetAll
-    '                   GetByKey, GetEnumerator, GetWhere, QueryMapsByMembers
+    '                   GetByKey, GetEnumerator, GetWhere, QueryMapsByMembers, ScanMaps
     ' 
     ' 
     ' /********************************************************************************/
@@ -173,11 +173,16 @@ Namespace Assembly.KEGG.WebServices
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Shared Function BuildRepository(directory As String) As MapRepository
             Return New MapRepository With {
-                .Maps = (ls - l - r - "*.XML" <= directory) _
-                    .Select(AddressOf LoadXml(Of Map)) _
+                .Maps = directory _
+                    .DoCall(AddressOf ScanMaps) _
                     .Select(AddressOf CreateIndex) _
                     .ToArray
             }
+        End Function
+
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Shared Function ScanMaps(directory As String) As IEnumerable(Of Map)
+            Return (ls - l - r - "*.XML" <= directory).Select(AddressOf LoadXml(Of Map))
         End Function
 
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
@@ -188,14 +193,14 @@ Namespace Assembly.KEGG.WebServices
                 .ID = map.ID,
                 .KeyVector = New TermsVector With {
                     .terms = map _
-                        .Areas _
+                        .shapes _
                         .Select(Function(a) a.IDVector) _
                         .IteratesALL _
                         .Distinct _
                         .OrderBy(Function(s) s) _
                         .ToArray
                 },
-                .Areas = map.Areas,
+                .shapes = map.shapes,
                 .Name = map.Name,
                 .PathwayImage = map.PathwayImage,
                 .URL = map.URL

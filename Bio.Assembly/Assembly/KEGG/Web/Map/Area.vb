@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::2f17278cfff4ada48ac242f8c0cbf670, Bio.Assembly\Assembly\KEGG\Web\Map\Area.vb"
+﻿#Region "Microsoft.VisualBasic::0f504e3ba190c9a3c7ec302dfc0e519c, core\Bio.Assembly\Assembly\KEGG\Web\Map\Area.vb"
 
     ' Author:
     ' 
@@ -145,19 +145,27 @@ Namespace Assembly.KEGG.WebServices
 
         Public ReadOnly Property Names As NamedValue(Of String)()
             Get
-                Dim t = title _
-                    .Split(","c) _
-                    .Select(AddressOf Trim) _
-                    .Select(Function(s)
-                                Dim name = s.GetTagValue(" ")
-                                Return New NamedValue(Of String) With {
-                                    .Name = name.Name,
-                                    .Value = name.Value.GetStackValue("(", ")")
-                                }
-                            End Function) _
-                    .ToArray
+                Dim terms As NamedValue(Of String)()
 
-                Return t
+                If title.StringEmpty Then
+                    Return {}
+                Else
+                    terms = title _
+                        .Split(","c) _
+                        .Select(AddressOf Trim) _
+                        .Select(Function(s)
+                                    Dim nameTerm = s.GetTagValue(" ")
+                                    Dim name$ = nameTerm.Value.GetStackValue("(", ")")
+
+                                    Return New NamedValue(Of String) With {
+                                        .Name = nameTerm.Name,
+                                        .Value = name
+                                    }
+                                End Function) _
+                        .ToArray
+                End If
+
+                Return terms
             End Get
         End Property
 

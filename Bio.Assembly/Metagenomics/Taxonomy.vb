@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::b9decf9b4e5e4eb73b3f7c644c08a90a, Bio.Assembly\Metagenomics\Taxonomy.vb"
+﻿#Region "Microsoft.VisualBasic::298fbfa20fefab06bce2ba07884ce0ec, core\Bio.Assembly\Metagenomics\Taxonomy.vb"
 
     ' Author:
     ' 
@@ -33,12 +33,12 @@
 
     '     Class Taxonomy
     ' 
-    '         Properties: [class], family, genus, kingdom, order
-    '                     phylum, scientificName, species
+    '         Properties: [class], family, genus, kingdom, lowestLevel
+    '                     order, phylum, scientificName, species
     ' 
     '         Constructor: (+5 Overloads) Sub New
     '         Function: [Select], compare, CompareWith, CreateTable, IsEmpty
-    '                   (+2 Overloads) ToString
+    '                   Rank, (+3 Overloads) ToString
     '         Operators: (+2 Overloads) IsFalse, (+2 Overloads) IsTrue
     ' 
     ' 
@@ -98,6 +98,34 @@ Namespace Metagenomics
 #End Region
 
         ''' <summary>
+        ''' 获取当前的这个分类结果值的最小分类单元的等级
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property lowestLevel As TaxonomyRanks
+            Get
+                If kingdom.StringEmpty(True) Then
+                    Return TaxonomyRanks.NA
+                ElseIf phylum.StringEmpty(True) Then
+                    Return TaxonomyRanks.Kingdom
+                ElseIf [class].StringEmpty(True) Then
+                    Return TaxonomyRanks.Phylum
+                ElseIf order.StringEmpty(True) Then
+                    Return TaxonomyRanks.Class
+                ElseIf family.StringEmpty(True) Then
+                    Return TaxonomyRanks.Order
+                ElseIf genus.StringEmpty(True) Then
+                    Return TaxonomyRanks.Family
+                ElseIf species.StringEmpty(True) Then
+                    Return TaxonomyRanks.Genus
+                ElseIf scientificName.StringEmpty(True) Then
+                    Return TaxonomyRanks.Species
+                Else
+                    Return TaxonomyRanks.Strain
+                End If
+            End Get
+        End Property
+
+        ''' <summary>
         ''' 这个函数会自动调用<see cref="FillLineageEmpty"/>函数来填充缺失掉的rank部分
         ''' 所以这个构造方法是安全的构造方法，不需要担心会因为缺少否些rank而抛出错误
         ''' </summary>
@@ -118,15 +146,17 @@ Namespace Metagenomics
             Call Me.New(taxonomyNodes.ToDictionary(Function(t) t.rank, Function(t) t.name))
         End Sub
 
-        Shared ReadOnly DescRanks$() = NcbiTaxonomyTree.stdranks.Reverse.ToArray
+        Shared ReadOnly descRanks$() = NcbiTaxonomyTree.stdranks.Reverse.ToArray
 
         Sub New(lineage$())
             Call Me.New(
                 lineage:=lineage _
                     .Take(7) _
                     .SeqIterator _
-                    .ToDictionary(Function(rank) DescRanks(rank.i),
-                                  Function(rank) rank.value)
+                    .ToDictionary(Function(rank) descRanks(rank.i),
+                                  Function(rank)
+                                      Return rank.value
+                                  End Function)
             )
         End Sub
 
@@ -175,6 +205,10 @@ Namespace Metagenomics
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Function [Select](Optional rank As TaxonomyRanks = TaxonomyRanks.Species) As IEnumerable(Of String)
             Return {kingdom, phylum, [class], order, family, genus, species}.Take(CInt(rank) - 100 + 1)
+        End Function
+
+        Public Function Rank(level As TaxonomyRanks) As Taxonomy
+            Return BIOMTaxonomyParser.Parse(Me.ToString(level))
         End Function
 
         ''' <summary>
@@ -309,6 +343,11 @@ Namespace Metagenomics
             tax += BIOMPrefixAlt(++i) & Me.species
 
             Return tax.JoinBy(";")
+        End Function
+
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Overloads Function ToString(rank As TaxonomyRanks) As String
+            Return Me.Select(rank).ToArray.TaxonomyString
         End Function
 
         ''' <summary>

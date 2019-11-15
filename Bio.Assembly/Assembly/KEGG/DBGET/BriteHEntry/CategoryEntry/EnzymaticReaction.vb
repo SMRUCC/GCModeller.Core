@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::a3f25ff7d15e60d12c96e891cf16c333, Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\EnzymaticReaction.vb"
+﻿#Region "Microsoft.VisualBasic::97f3834076d7d65b7785481e06ed57e9, core\Bio.Assembly\Assembly\KEGG\DBGET\BriteHEntry\CategoryEntry\EnzymaticReaction.vb"
 
     ' Author:
     ' 
@@ -37,7 +37,7 @@
     ' 
     '         Constructor: (+1 Overloads) Sub New
     ' 
-    '         Function: __getDIR, __trimInner, Build, DownloadReactions, KEGGrxns
+    '         Function: Build, doLongFileNameTrim, DownloadReactions, getCategorySaveDirectory, KEGGrxns
     '                   LoadFile, LoadFromResource, loadSource, ToString
     ' 
     '         Sub: downloaderInternal
@@ -200,11 +200,11 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         Private Shared Sub downloaderInternal(r As EnzymaticReaction,
                                               EXPORT$,
                                               directoryOrganized As Boolean,
-                                              failures As List(Of String),
+                                              ByRef failures As List(Of String),
                                               tick As Action,
                                               cache As String)
             Dim rnID As String = r.Entry.Key
-            Dim saveDIR As String = If(directoryOrganized, __getDIR(EXPORT, r), EXPORT)
+            Dim saveDIR As String = If(directoryOrganized, getCategorySaveDirectory(EXPORT, r), EXPORT)
             Dim xmlFile As String = String.Format("{0}/{1}.xml", saveDIR, rnID)
 
             Dim reaction As Reaction = ReactionWebAPI.Download(rnID, cache, sleepTime)
@@ -218,16 +218,16 @@ EXIT_LOOP:
             Call tick()
         End Sub
 
-        Private Shared Function __getDIR(outDIR As String, entry As EnzymaticReaction) As String
-            Dim [class] As String = __trimInner(entry.Class)
-            Dim cat As String = __trimInner(entry.Category)
-            Dim subCat As String = __trimInner(entry.SubCategory)
-            Dim ec As String = __trimInner(entry.EC)
+        Private Shared Function getCategorySaveDirectory(outDIR As String, entry As EnzymaticReaction) As String
+            Dim [class] As String = doLongFileNameTrim(entry.Class)
+            Dim cat As String = doLongFileNameTrim(entry.Category)
+            Dim subCat As String = doLongFileNameTrim(entry.SubCategory)
+            Dim ec As String = doLongFileNameTrim(entry.EC)
 
             Return String.Join("/", outDIR, [class], cat, subCat, ec)
         End Function
 
-        Private Shared Function __trimInner(s As String) As String
+        Private Shared Function doLongFileNameTrim(s As String) As String
             Return If(s.Length > 56, Mid(s, 1, 56) & "~", s).Split("\/:*".ToCharArray).JoinBy(" ")
         End Function
     End Class

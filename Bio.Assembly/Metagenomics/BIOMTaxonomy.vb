@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::57c5f8d9860433d649b3d69d78571a31, Bio.Assembly\Metagenomics\BIOMTaxonomy.vb"
+﻿#Region "Microsoft.VisualBasic::9adc000d03507df324df17c77cecf8a3, core\Bio.Assembly\Metagenomics\BIOMTaxonomy.vb"
 
     ' Author:
     ' 
@@ -31,6 +31,10 @@
 
     ' Summaries:
 
+    '     Class BIOMTaxonomyParser
+    ' 
+    '         Function: Parse, ToString, TryParse
+    ' 
     '     Module BIOMTaxonomy
     ' 
     '         Properties: BIOMPrefix, BIOMPrefixAlt, BriefParser, CompleteParser
@@ -51,9 +55,44 @@ Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language.Default
 Imports Microsoft.VisualBasic.Linq
+Imports Microsoft.VisualBasic.Scripting.Runtime
 Imports SMRUCC.genomics.Assembly.NCBI.Taxonomy
 
 Namespace Metagenomics
+
+    ''' <summary>
+    ''' Parser and stringfier of <see cref="Taxonomy"/> object.
+    ''' </summary>
+    Public Class BIOMTaxonomyParser : Implements IParser
+
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="obj">
+        ''' Object value should be in data type <see cref="Taxonomy"/>
+        ''' </param>
+        ''' <returns></returns>
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Overloads Function ToString(obj As Object) As String Implements IParser.ToString
+            Return DirectCast(obj, Taxonomy).ToString(BIOMstyle:=True)
+        End Function
+
+        ''' <summary>
+        ''' Create a <see cref="Taxonomy"/> object from parse taxonomy string
+        ''' </summary>
+        ''' <param name="content"></param>
+        ''' <returns></returns>
+        ''' 
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Function TryParse(content As String) As Object Implements IParser.TryParse
+            Return Parse(biomString:=content)
+        End Function
+
+        <MethodImpl(MethodImplOptions.AggressiveInlining)>
+        Public Shared Function Parse(biomString As String) As Taxonomy
+            Return BIOMTaxonomy.TaxonomyParser(biomString).AsTaxonomy
+        End Function
+    End Class
 
     Public Module BIOMTaxonomy
 
@@ -122,7 +161,7 @@ Namespace Metagenomics
                             If Not prefix.StringEmpty Then
                                 prefix = biomPrefixTable(prefix)
                             Else
-                                prefix = BIOMPrefix(level)
+                                prefix = BIOMPrefix(level).Trim("_"c)
                             End If
 
                             Return $"{prefix}__{node.Value}"
@@ -210,7 +249,7 @@ Namespace Metagenomics
             Dim out As New Dictionary(Of String, String)
 
             For Each level As NamedValue(Of String) In catalogs
-                Dim name$ = level.Value
+                Dim name$ = level.Value.StringReplace("[_]{2,}", "_")
 
                 ' "superkingdom__", "phylum__", "class__", "order__", "family__", "genus__", "species__"
                 Select Case LCase(level.Name)

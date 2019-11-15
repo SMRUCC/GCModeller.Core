@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::80b97062669b2ea68a115b756df52bca, Bio.Repository\KEGG\ReactionRepository\CompoundRepository.vb"
+﻿#Region "Microsoft.VisualBasic::0298960874b13ad184a415fd9b49f454, core\Bio.Repository\KEGG\ReactionRepository\CompoundRepository.vb"
 
     ' Author:
     ' 
@@ -36,6 +36,7 @@
     '     Properties: Compounds
     ' 
     '     Function: Exists, GetAll, GetByKey, GetWhere, ScanModels
+    '               ScanRepository
     ' 
     ' Class CompoundIndex
     ' 
@@ -99,12 +100,17 @@ Public Class CompoundRepository : Inherits XmlDataModel
         Return New Dictionary(Of String, CompoundIndex)(compoundTable)
     End Function
 
-    Public Shared Function ScanModels(directory$, Optional ignoreGlycan As Boolean = True) As CompoundRepository
-        Dim table As New Dictionary(Of String, CompoundIndex)
+    Public Shared Iterator Function ScanRepository(directory$, Optional ignoreGlycan As Boolean = True) As IEnumerable(Of Compound)
+        Dim compound As Compound
+
+        If directory.StringEmpty OrElse Not directory.DirectoryExists Then
+            Call "Repository config invalid...".Warning
+            Return
+        Else
+            Call "Loading compounds data repository...".__DEBUG_ECHO
+        End If
 
         For Each xml As String In ls - l - r - "*.Xml" <= directory
-            Dim compound As Compound
-
             If xml.BaseName.First = "G"c Then
                 If ignoreGlycan Then
                     Continue For
@@ -117,15 +123,23 @@ Public Class CompoundRepository : Inherits XmlDataModel
 
             If compound Is Nothing OrElse compound.entry.StringEmpty Then
                 Continue For
+            Else
+                Yield compound
             End If
+        Next
+    End Function
 
-            If Not table.ContainsKey(compound.Entry) Then
+    Public Shared Function ScanModels(directory$, Optional ignoreGlycan As Boolean = True) As CompoundRepository
+        Dim table As New Dictionary(Of String, CompoundIndex)
+
+        For Each compound As Compound In ScanRepository(directory, ignoreGlycan)
+            If Not table.ContainsKey(compound.entry) Then
                 Dim index As New CompoundIndex With {
                     .Entity = compound,
-                    .ID = compound.Entry,
+                    .ID = compound.entry,
                     .DbTerms = New OrthologyTerms With {
                         .Terms = New List(Of [Property]) From {
-                            {TermKeys.KEGG, compound.Entry}
+                            {TermKeys.KEGG, compound.entry}
                         }
                     }
                 }

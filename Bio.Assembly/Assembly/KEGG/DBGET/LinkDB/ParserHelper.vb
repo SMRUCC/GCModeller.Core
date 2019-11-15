@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::d8eed1d685c3e0ab944ad2482666f1b9, Bio.Assembly\Assembly\KEGG\DBGET\LinkDB\ParserHelper.vb"
+﻿#Region "Microsoft.VisualBasic::47bf742d2e7cde4e2813689c796027db, core\Bio.Assembly\Assembly\KEGG\DBGET\LinkDB\ParserHelper.vb"
 
     ' Author:
     ' 
@@ -55,8 +55,8 @@ Namespace Assembly.KEGG.DBGET.LinkDB
 
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         <Extension>
-        Public Function LinkDbEntries(url As String, Optional cache$ = "./.kegg/linkdb/", Optional offline As Boolean = False) As IEnumerable(Of NamedValue)
-            Return GenericParser.LinkDbEntries(url, cache, offline)
+        Public Function LinkDbEntries(url As String, Optional cacheRoot$ = "./", Optional offline As Boolean = False) As IEnumerable(Of NamedValue)
+            Return GenericParser.LinkDbEntries(url, $"{cacheRoot}/.kegg/linkdb/", offline)
         End Function
 
         <Extension>

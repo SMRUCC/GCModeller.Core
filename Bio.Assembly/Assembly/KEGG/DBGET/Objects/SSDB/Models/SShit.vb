@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::7cc40cb8bd3a176adbc9002813cbb46e, Bio.Assembly\Assembly\KEGG\DBGET\Objects\SSDB\Models\SShit.vb"
+﻿#Region "Microsoft.VisualBasic::5b8425de92e59f9fd5fe56bac8c61633, core\Bio.Assembly\Assembly\KEGG\DBGET\Objects\SSDB\Models\SShit.vb"
 
     ' Author:
     ' 
@@ -110,7 +110,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject.SSDB
             EntryTemp(1) = EntryTemp(1).Trim
             Dim TempChunk As String() = EntryTemp(0).Split(CChar(":"))
             ResultItem.Entry = New KEGG.WebServices.QueryEntry With {
-                .Description = EntryTemp(1),
+                .description = EntryTemp(1),
                 .speciesID = TempChunk(0),
                 .locusID = TempChunk(1)
             }

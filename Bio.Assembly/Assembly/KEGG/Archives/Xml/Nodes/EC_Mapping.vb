@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::898c1bb58288673e6ebf0e3a1ea40ee9, Bio.Assembly\Assembly\KEGG\Archives\Xml\Nodes\EC_Mapping.vb"
+﻿#Region "Microsoft.VisualBasic::3aa987de88b2dbfb61677c3891f7a683, core\Bio.Assembly\Assembly\KEGG\Archives\Xml\Nodes\EC_Mapping.vb"
 
     ' Author:
     ' 
@@ -112,11 +112,11 @@ Namespace Assembly.KEGG.Archives.Xml.Nodes
             Dim gECs = (From cat As PwyBriteFunc In Model.Pathways
                         Select (From Pathway As bGetObject.Pathway
                                 In cat.Pathways
-                                Where Not Pathway.Genes.IsNullOrEmpty
-                                Select (From gene As NamedValue In Pathway.Genes
+                                Where Not Pathway.genes.IsNullOrEmpty
+                                Select (From gene As NamedValue In Pathway.genes
                                         Let EC As String() = gene.text.EcParser
                                         Select locusId = gene.name,
-                                            EC).ToArray).ToArray).ToVector.IteratesALL
+                                            EC).ToArray).ToArray).IteratesALL.IteratesALL
             Dim gLst = (From GG In (From GO In gECs
                                     Select GO
                                     Group GO By GO.locusId Into Group)

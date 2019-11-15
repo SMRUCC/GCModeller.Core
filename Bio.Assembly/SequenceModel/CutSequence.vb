@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::32babc3fd50fef39e5d59f82c6d656ef, Bio.Assembly\SequenceModel\CutSequence.vb"
+﻿#Region "Microsoft.VisualBasic::1bab97cfdbbdad020cc04bf8031795c2, core\Bio.Assembly\SequenceModel\CutSequence.vb"
 
     ' Author:
     ' 
@@ -33,7 +33,7 @@
 
     '     Module CutSequence
     ' 
-    '         Function: CutSequenceBylength, (+3 Overloads) CutSequenceCircular, (+3 Overloads) CutSequenceLinear, ReadComplement
+    '         Function: CutSequenceBylength, (+3 Overloads) CutSequenceCircular, (+4 Overloads) CutSequenceLinear, ReadComplement
     ' 
     ' 
     ' /********************************************************************************/
@@ -63,7 +63,26 @@ Namespace SequenceModel
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         <Extension>
         Public Function CutSequenceLinear(seq As IPolymerSequenceModel, site As Location) As SimpleSegment
-            Return CutSequenceLinear(seq, site.Left, site.Right, site.ToString)
+            Return CutSequenceLinear(seq, site.left, site.right, site.ToString)
+        End Function
+
+#Region "Implementation"
+
+        <Extension>
+        Public Function CutSequenceLinear(ByRef seq$, left%, right%) As String
+            Dim l As Integer = (right - left) + 1
+            Dim start = left - 1
+            Dim cut$
+
+            If start >= seq.Length Then
+                Return ""
+            ElseIf start + l >= seq.Length Then
+                cut = seq.Substring(start)
+            Else
+                cut = seq.Substring(left - 1, l)
+            End If
+
+            Return cut
         End Function
 
         ''' <summary>
@@ -73,8 +92,7 @@ Namespace SequenceModel
         ''' <returns></returns>
         <Extension>
         Public Function CutSequenceLinear(seq As IPolymerSequenceModel, left%, right%, Optional tag$ = Nothing) As SimpleSegment
-            Dim l As Integer = (right - left) + 1
-            Dim cut$ = Mid(seq.SequenceData, left, l)
+            Dim cut$ = seq.SequenceData.CutSequenceLinear(left, right)
 
             Return New SimpleSegment With {
                 .SequenceData = cut,
@@ -84,6 +102,7 @@ Namespace SequenceModel
                 .Strand = "?"
             }
         End Function
+#End Region
 
         <Extension>
         Public Function CutSequenceBylength(seq As IPolymerSequenceModel, left%, length%, Optional tag$ = Nothing) As SimpleSegment
@@ -158,14 +177,14 @@ Namespace SequenceModel
             Dim [join] As NucleotideLocation
             Dim ntLen% = seq.SequenceData.Length
 
-            If site.Left < 0 Then
-                join = New NucleotideLocation(ntLen + site.Left, ntLen, site.Strand)
-                site = New NucleotideLocation(1, site.Right)
+            If site.left < 0 Then
+                join = New NucleotideLocation(ntLen + site.left, ntLen, site.Strand)
+                site = New NucleotideLocation(1, site.right)
 
                 Return seq.CutSequenceCircular(join, site)
-            ElseIf site.Right > ntLen Then
-                join = New NucleotideLocation(1, site.Right - ntLen, site.Strand)
-                site = New NucleotideLocation(site.Left, ntLen)
+            ElseIf site.right > ntLen Then
+                join = New NucleotideLocation(1, site.right - ntLen, site.Strand)
+                site = New NucleotideLocation(site.left, ntLen)
 
                 Return seq.CutSequenceCircular(site, join)
             Else
@@ -189,7 +208,7 @@ Namespace SequenceModel
 
             Dim a As SimpleSegment = seq.CutSequenceLinear(site:=site)
             Dim b As SimpleSegment = seq.CutSequenceLinear(site:=join)
-            Dim tag$ = $"{site.Left}..{site.Right} join {join.Left}..{join.Right}"
+            Dim tag$ = $"{site.left}..{site.right} join {join.left}..{join.right}"
             Dim out As New SimpleSegment With {
                 .Strand = If(site.Strand = Strands.Forward, "+", "-"),
                 .ID = If(site.Strand = Strands.Forward, tag, $"complement({tag})"),

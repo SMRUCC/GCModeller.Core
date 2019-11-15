@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::0a362277e700d27bca68b582cfe670a4, Bio.Assembly\Assembly\NCBI\Database\GenBank\GBK\Keywords\Features\FEATURES.vb"
+﻿#Region "Microsoft.VisualBasic::2d00cb7fd39e672944fe5503e9ac129f, core\Bio.Assembly\Assembly\NCBI\Database\GenBank\GBK\Keywords\Features\FEATURES.vb"
 
     ' Author:
     ' 
@@ -37,19 +37,15 @@
     ' 
     '         Function: GetByLocation, GetEnumerator, GetEnumerator1, ListFeatures, Query
     ' 
-    '         Sub: AddGenes, LinkEntry
+    '         Sub: Add, AddGenes, LinkEntry
     ' 
     ' 
     ' /********************************************************************************/
 
 #End Region
 
-Imports System.Text
-Imports System.Text.RegularExpressions
-Imports SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
-Imports SMRUCC.genomics.ComponentModel.Loci
-Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Language
+Imports SMRUCC.genomics.ComponentModel.Loci
 
 Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
 
@@ -162,6 +158,10 @@ Namespace Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
                 Call gene.SetValue(FeatureQualifiers.locus_tag, x.Query(FeatureQualifiers.locus_tag))
                 Call _innerList.Insert(i, gene)
             Next
+        End Sub
+
+        Public Sub Add(feature As Feature)
+            Call _innerList.Add(feature)
         End Sub
 
         Friend Sub LinkEntry()

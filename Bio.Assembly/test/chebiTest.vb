@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::4cb678178f341857525e0ab9dda3cf91, Bio.Assembly\test\chebiTest.vb"
+﻿#Region "Microsoft.VisualBasic::69081868ec4dfdb361f549f9f896b8c6, core\Bio.Assembly\Test\chebiTest.vb"
 
     ' Author:
     ' 
@@ -41,8 +41,8 @@
 
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Linq
-Imports SMRUCC.genomics.Assembly.EBI.ChEBI.Database.IO.StreamProviders.Tsv
-Imports SMRUCC.genomics.Assembly.EBI.ChEBI.XML
+Imports SMRUCC.genomics.Assembly.ELIXIR.EBI.ChEBI.Database.IO.StreamProviders.Tsv
+Imports SMRUCC.genomics.Assembly.ELIXIR.EBI.ChEBI.XML
 
 Module chebiTest
 

@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::8c3a0d159b195e84c2b66d3fda1c0956, Bio.Assembly\Assembly\KEGG\Web\Form\WebForm.vb"
+﻿#Region "Microsoft.VisualBasic::0fb1c7671286317e221c47c0b5e0c807, core\Bio.Assembly\Assembly\KEGG\Web\Form\WebForm.vb"
 
     ' Author:
     ' 
@@ -216,7 +216,9 @@ Namespace Assembly.KEGG.WebServices.InternalWebFormParsers
                 cpd.text = cpd.text.StripHTMLTags.Trim({ASCII.TAB, ASCII.CR, ASCII.LF, " "c})
             Next
 
-            Return componentList.ToArray
+            Return componentList _
+                .Where(Function(li) li.name <> "DBGET") _
+                .ToArray
         End Function
 
         ''' <summary>
