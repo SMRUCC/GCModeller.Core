@@ -67,6 +67,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
     '''  br08001  Compounds with biological roles
     '''  br08002  Lipids
     '''  br08003  Phytochemical compounds
+    '''  br08021  Glycosides
     '''  br08005  Bioactive peptides
     '''  br08006  Endocrine disrupting compounds
     '''  br08007  Pesticides
@@ -115,6 +116,11 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         ''' </summary>
         Const cpd_br08010 = "br08010"
 
+        ''' <summary>
+        ''' ``br08021``  Glycosides
+        ''' </summary>
+        Const cpd_br08021 = "br08021"
+
 #End Region
 
         Const CompoundIDPattern$ = "[DCG]\d+"
@@ -144,6 +150,10 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Function Lipids() As BriteTerm()
             Return BriteTerm.GetInformation(cpd_br08002, CompoundIDPattern)
+        End Function
+
+        Public Function Glycosides() As BriteTerm()
+            Return BriteTerm.GetInformation(cpd_br08021, CompoundIDPattern)
         End Function
 
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
@@ -196,6 +206,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
             Yield New NamedValue(Of BriteTerm())("Carcinogens", Carcinogens)
             Yield New NamedValue(Of BriteTerm())("Natural toxins", NaturalToxins)
             Yield New NamedValue(Of BriteTerm())("Target-based classification of compounds", TargetbasedClassificationOfCompounds)
+            Yield New NamedValue(Of BriteTerm())("Glycosides", Glycosides)
         End Function
 
         ''' <summary>
@@ -205,6 +216,7 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         ''' + ``br08001``  Compounds with biological roles
         ''' + ``br08002``  Lipids
         ''' + ``br08003``  Phytochemical compounds
+        ''' + ``br08021``  Glycosides
         ''' + ``br08005``  Bioactive peptides
         ''' + ``br08006``  Endocrine disrupting compounds
         ''' + ``br08007``  Pesticides
@@ -226,20 +238,23 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
                 End With
             Next
 
+            Call DownloadOthers(EXPORT, GetAllPubchemMapCompound(), structInfo)
+        End Sub
+
+        Public Sub DownloadOthers(EXPORT$, compoundIds$(), Optional structInfo As Boolean = False)
             Dim success As Index(Of String) = (ls - l - r - "*.xml" <= EXPORT) _
                 .Select(AddressOf BaseName) _
                 .Indexing
-            Dim allPubchemMaps = GetAllPubchemMapCompound()
             Dim saveDIR = EXPORT & "/OtherUnknowns/"
             Dim query As New DbGetWebQuery($"{saveDIR}/.cache")
             Dim details$
 
             Using progress As New ProgressBar($"Downloads others, {success.Count} success was indexed!", 1, CLS:=True)
-                Dim tick As New ProgressProvider(allPubchemMaps.Length)
+                Dim tick As New ProgressProvider(compoundIds.Length)
 
-                For Each id As String In allPubchemMaps
+                For Each id As String In compoundIds
                     If Not id Like success Then
-                        Call query.Download(id, $"{saveDIR}/{id}.xml", structInfo, Nothing)
+                        Call query.Download(id, $"{saveDIR}/{id.Last}/{id}.xml", structInfo, Nothing)
                     End If
 
                     details = $"ETA={tick.ETA(progress.ElapsedMilliseconds)}"

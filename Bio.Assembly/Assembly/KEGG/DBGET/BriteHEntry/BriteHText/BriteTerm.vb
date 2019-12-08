@@ -79,21 +79,34 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
         ''' <returns></returns>
         Public Property entry As KeyValuePair
 
+        ''' <summary>
+        ''' <see cref="KeyValuePair.Key"/> of property <see cref="entry"/>
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property kegg_id As String
+            Get
+                Return entry.Key
+            End Get
+        End Property
+
         Public Overrides Function ToString() As String
             Return entry.ToString
         End Function
 
-        Friend Shared Function GetInformation(resourceName$, entryIDPattern$) As BriteTerm()
+        Private Shared Function getResourceCache() As ResourcesSatellite
             Static satellite As New ResourcesSatellite(GetType(LICENSE))
+            Return satellite
+        End Function
 
+        Friend Shared Function GetInformation(resourceName$, entryIDPattern$) As BriteTerm()
             Dim resource$ = Nothing
 
             If resourceName.IsPattern(Patterns.Identifer, RegexICSng) Then
-                resource = satellite.GetString(resourceName)
+                resource = getResourceCache.GetString(resourceName)
             ElseIf resourceName.IsURLPattern Then
                 With resourceName.Split("?"c).Last.Match("[0-9a-zA-Z_]+\.keg")
                     If Not .StringEmpty Then
-                        resource = satellite.GetString(.Replace(".keg", ""))
+                        resource = getResourceCache.GetString(.Replace(".keg", ""))
                     End If
                 End With
 
