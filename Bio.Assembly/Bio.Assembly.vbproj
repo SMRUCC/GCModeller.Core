@@ -10,7 +10,7 @@
     <AssemblyName>SMRUCC.genomics.Core</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <PublishUrl>publish\</PublishUrl>
@@ -83,9 +83,9 @@
     <DebugSymbols>true</DebugSymbols>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>..\..\..\..\GCModeller\bin\</OutputPath>
     <DefineConstants>PARALLEL=1</DefineConstants>
-    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
     <DocumentationFile>SMRUCC.genomics.Core.xml</DocumentationFile>
     <Optimize>false</Optimize>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
@@ -797,6 +797,7 @@
     <Compile Include="ComponentModel\Locus\Nucleotide\NucleotideLocationParser.vb" />
     <Compile Include="ContextModel\Algorithm\Context.vb" />
     <Compile Include="ContextModel\Algorithm\ContextCore.vb" />
+    <Compile Include="ContextModel\Gtf.vb" />
     <Compile Include="ContextModel\GenomeContext.vb" />
     <Compile Include="ContextModel\Operon\Operon.vb" />
     <Compile Include="ContextModel\Algorithm\ContextProvider.vb" />
@@ -895,6 +896,7 @@
     <Compile Include="SequenceModel\FASTA\HeaderFormats.vb" />
     <Compile Include="SequenceModel\ISequenceModel.vb" />
     <Compile Include="SequenceModel\NucleicAcid\Assembly.vb" />
+    <Compile Include="SequenceModel\NucleicAcid\Translation\NtHelper.vb" />
     <Compile Include="SequenceModel\NucleicAcid\Translation\GeneticCodes.vb" />
     <Compile Include="SequenceModel\NucleicAcid\Translation\TranslTableTextReader.vb" />
     <Compile Include="SequenceModel\TypeExtensions.vb" />
@@ -1077,9 +1079,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ko00001.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Web\KEGG Organisms.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\transl_table\transl_table-1.txt" />

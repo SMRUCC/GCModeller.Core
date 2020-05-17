@@ -42,10 +42,9 @@
 
 Imports System.Runtime.CompilerServices
 Imports System.Threading
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ComponentModel.Algorithm.base
 Imports Microsoft.VisualBasic.Language
-Imports Microsoft.VisualBasic.Terminal
-Imports Microsoft.VisualBasic.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.Text
 Imports Microsoft.VisualBasic.Text.Parser.HtmlParser
 Imports Microsoft.VisualBasic.Text.Xml.Models
@@ -141,7 +140,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             Dim failures As New List(Of String)
 
             Using progress As New ProgressBar("Download genes of human genome...", 1, CLS:=True)
-                Dim tick As New ProgressProvider(list.Length)
+                Dim tick As New ProgressProvider(progress, list.Length)
                 Dim path As New Value(Of String)
                 Dim ETA$
 
@@ -155,7 +154,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                         End Try
                     End If
 
-                    ETA = $"ETA={tick.ETA(progress.ElapsedMilliseconds)}"
+                    ETA = $"ETA={tick.ETA().FormatTime}"
                     progress.SetProgress(tick.StepProgress, details:=ETA)
                 Next
             End Using

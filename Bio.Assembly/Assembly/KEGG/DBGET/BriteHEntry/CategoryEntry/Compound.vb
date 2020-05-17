@@ -46,12 +46,11 @@
 
 Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Language.UnixBash
-Imports Microsoft.VisualBasic.Terminal
-Imports Microsoft.VisualBasic.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.Text
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.WebQuery.Compounds
@@ -250,14 +249,14 @@ Namespace Assembly.KEGG.DBGET.BriteHEntry
             Dim details$
 
             Using progress As New ProgressBar($"Downloads others, {success.Count} success was indexed!", 1, CLS:=True)
-                Dim tick As New ProgressProvider(compoundIds.Length)
+                Dim tick As New ProgressProvider(progress, compoundIds.Length)
 
                 For Each id As String In compoundIds
                     If Not id Like success Then
                         Call query.Download(id, $"{saveDIR}/{id.Last}/{id}.xml", structInfo, Nothing)
                     End If
 
-                    details = $"ETA={tick.ETA(progress.ElapsedMilliseconds)}"
+                    details = $"ETA={tick.ETA().FormatTime}"
                     details = id & "   " & details
 
                     progress.SetProgress(tick.StepProgress, details)

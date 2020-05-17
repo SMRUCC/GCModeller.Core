@@ -61,6 +61,7 @@ Imports SMRUCC.genomics.Assembly.NCBI.GenBank.GBFF.Keywords.FEATURES
 Imports SMRUCC.genomics.SequenceModel
 Imports SMRUCC.genomics.SequenceModel.NucleotideModels
 Imports r = System.Text.RegularExpressions.Regex
+Imports stdNum = System.Math
 
 Namespace Assembly.NCBI.GenBank.GBFF
 
@@ -112,12 +113,13 @@ Namespace Assembly.NCBI.GenBank.GBFF
         Public Property DbLinks As DBLINK
 
         ''' <summary>
-        ''' 这个Genbank对象是否为一个质粒的基因组数据
+        ''' Is plasmid source?
+        ''' (这个Genbank对象是否为一个质粒的基因组数据)
         ''' </summary>
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public ReadOnly Property IsPlasmidSource As Boolean
+        Public ReadOnly Property isPlasmid As Boolean
             Get
                 Return Not String.IsNullOrEmpty(Features.source.Query("plasmid"))
             End Get
@@ -203,7 +205,7 @@ Namespace Assembly.NCBI.GenBank.GBFF
         Public Overloads Function Read(feature As Feature) As FASTA.FastaSeq
             Dim left As Long = feature.Location.Locations.First.Left
             Dim right As Long = feature.Location.Locations.Last.Right
-            Dim sequence As String = Mid(Origin, left, Math.Abs(left - right))
+            Dim sequence As String = Mid(Origin, left, stdNum.Abs(left - right))
 
             If feature.Location.Complement Then
                 sequence = (NucleicAcid.Complement(sequence))
@@ -243,13 +245,7 @@ Namespace Assembly.NCBI.GenBank.GBFF
         '''
         <ExportAPI("Load")>
         Public Shared Function Load(path As String) As NCBI.GenBank.GBFF.File
-            Try
-                Return GbkParser.Read(path)
-            Catch ex As Exception
-                ex = New Exception(path.ToFileURL, ex)
-                Call ex.PrintException
-                Return App.LogException(ex)
-            End Try
+            Return GbkParser.Read(path)
         End Function
 
         ''' <summary>

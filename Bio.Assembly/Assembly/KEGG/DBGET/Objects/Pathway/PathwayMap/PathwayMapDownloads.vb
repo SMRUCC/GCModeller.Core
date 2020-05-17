@@ -2,13 +2,12 @@
 Imports System.Drawing
 Imports System.Runtime.CompilerServices
 Imports System.Threading
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Language.Default
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.JSON
-Imports Microsoft.VisualBasic.Terminal
-Imports Microsoft.VisualBasic.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.Text.Parser.HtmlParser
 Imports Microsoft.VisualBasic.Text.Xml.Models
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.LinkDB
@@ -107,7 +106,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                               End Function
 
             Using progress As New ProgressBar("Download KEGG pathway reference map data...", 1, CLS:=True)
-                Dim tick As New ProgressProvider(entries.Length)
+                Dim tick As New ProgressProvider(progress, entries.Length)
 
                 Call tick.StepProgress()
 
@@ -144,7 +143,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                         Call Thread.Sleep(10000)
                     End If
 EXIT_LOOP:
-                    Dim ETA = tick.ETA(progress.ElapsedMilliseconds).FormatTime
+                    Dim ETA = tick.ETA().FormatTime
                     Call progress.SetProgress(tick.StepProgress, "ETA " & ETA)
                 Next
             End Using

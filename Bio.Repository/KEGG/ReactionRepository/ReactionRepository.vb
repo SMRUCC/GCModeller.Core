@@ -46,12 +46,12 @@
 
 Imports System.Runtime.CompilerServices
 Imports System.Xml.Serialization
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Linq
-Imports Microsoft.VisualBasic.Terminal.ProgressBar
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.ComponentModel.Annotation
 
@@ -277,7 +277,7 @@ Public Class ReactionRepository : Inherits XmlDataModel
 
         Call $"Loading kegg reaction repository: {directory}...".__DEBUG_ECHO(waitOutput:=True)
 
-        For Each Xml As String In ls - l - r - "*.Xml" <= directory
+        For Each Xml As String In ls - l - r - {"*.Xml", "*.xml"} <= directory
             With Reaction.LoadXml(handle:=Xml)
                 If Not list.ContainsKey(.ID) Then
                     list(.ID) = .ByRef

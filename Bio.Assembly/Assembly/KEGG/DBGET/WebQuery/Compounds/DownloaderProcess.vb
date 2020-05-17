@@ -42,11 +42,11 @@
 #End Region
 
 Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Http
-Imports Microsoft.VisualBasic.Terminal.ProgressBar
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.bGetObject
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.BriteHEntry
 Imports SMRUCC.genomics.SequenceModel.FASTA
@@ -90,14 +90,14 @@ Namespace Assembly.KEGG.DBGET.WebQuery.Compounds
                 .ToArray
 
             Using progress As New ProgressBar("Downloads " & key, 1, CLS:=True)
-                Dim tick As New ProgressProvider(keys.Length)
+                Dim tick As New ProgressProvider(progress, keys.Length)
                 Dim query As New DbGetWebQuery($"{EXPORT}/.cache")
 
                 For Each entry As BriteTerm In keys
                     Dim entryId As String = entry.entry.Key
                     Dim saveDIR As String = entry.BuildPath(EXPORT, directoryOrganized, [class]:=key)
                     Dim xmlFile$ = $"{saveDIR}/{entryId}.xml"
-                    Dim ETA$ = $"ETA={tick.ETA(progress.ElapsedMilliseconds)}"
+                    Dim ETA$ = $"ETA={tick.ETA().FormatTime}"
                     Dim category As New NamedValue(Of BriteTerm)(key, entry)
 
                     Call query.Download(entryId, xmlFile, structInfo, category)
@@ -128,7 +128,7 @@ Namespace Assembly.KEGG.DBGET.WebQuery.Compounds
                               End If
                           End Sub)
 
-                If Not compound Is Nothing AndAlso structInfo Then
+                If Not (compound Is Nothing OrElse compound.entry.StringEmpty) AndAlso structInfo Then
                     Dim KCF$ = xmlFile.ChangeSuffix("txt")
                     Dim gif = xmlFile.ChangeSuffix("gif")
 

@@ -48,11 +48,10 @@
 Imports System.Net
 Imports System.Runtime.CompilerServices
 Imports System.Threading
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Serialization.JSON
-Imports Microsoft.VisualBasic.Terminal
-Imports Microsoft.VisualBasic.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.Text
 Imports SMRUCC.genomics.Assembly.KEGG.DBGET.LinkDB
 Imports PathwayEntry = SMRUCC.genomics.Assembly.KEGG.DBGET.BriteHEntry.Pathway
@@ -129,11 +128,12 @@ Namespace Assembly.KEGG.WebServices
             Dim entries As PathwayEntry() = loadEntryAuto(briefFile)
             Dim web As New MapQuery(briefFile, $"{EXPORT}/.cache/")
             Dim failures As New List(Of String)
-            Dim tick As New ProgressProvider(entries.Length)
             Dim msg$
             Dim getId = MapQuery.getID(briefFile)
 
             Using progress As New ProgressBar("Downloads KEGG pathway map data...", 1, CLS:=True)
+                Dim tick As New ProgressProvider(progress, entries.Length)
+
                 For Each entry As PathwayEntry In entries
                     Dim id$ = getId(entry)
                     Dim save$ = $"{EXPORT}/{entry.GetPathCategory}/{id}.XML"
@@ -151,7 +151,7 @@ Namespace Assembly.KEGG.WebServices
                         Call ex.PrintException
                         Call App.LogException(ex)
                     Finally
-                        msg = tick.ETA(progress.ElapsedMilliseconds).FormatTime
+                        msg = tick.ETA().FormatTime
                         msg = entry.EntryId & "  " & msg
 
                         progress.SetProgress(tick.StepProgress, msg)
@@ -193,12 +193,12 @@ Namespace Assembly.KEGG.WebServices
             Dim refer$
 
             Using progress As New ProgressBar("KEGG LinkDB Downloads KEGG Pathways KGML network data....", 1, CLS:=True)
-                Dim tick As New ProgressProvider(all.Length)
+                Dim tick As New ProgressProvider(progress, all.Length)
 
                 For Each entry As ListEntry In all
                     Try
                         url = KGML.pathway.ResourceURL(entry.entryId)
-                        msg = entry.description & " " & tick.ETA(progress.ElapsedMilliseconds).FormatTime
+                        msg = entry.description & " " & tick.ETA().FormatTime
                         bCode = r.Match(entry.entryId, "\d+").Value
                         path = $"{EXPORT}/{briteTable(bCode).GetPathCategory}/{entry.entryId}.Xml"
                         refer = $"http://www.kegg.jp/kegg-bin/highlight_pathway?scale=1.0&map={entry.entryId}"

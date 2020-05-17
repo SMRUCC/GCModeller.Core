@@ -41,13 +41,12 @@
 #End Region
 
 Imports System.Threading
+Imports Microsoft.VisualBasic.ApplicationServices.Terminal.ProgressBar
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization.JSON
-Imports Microsoft.VisualBasic.Terminal
-Imports Microsoft.VisualBasic.Terminal.ProgressBar
 Imports SMRUCC.genomics.Assembly.ELIXIR.EBI.ChEBI.Database.IO.StreamProviders.Tsv.Tables
 
 Namespace Assembly.KEGG.DBGET.bGetObject
@@ -79,7 +78,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
             DIR = DIR & "/" & ChEBI
 
             Using progress As New ProgressBar("Download missing ChEBI compounds data...", 1, CLS:=True)
-                Dim tick As New ProgressProvider(accs.Length)
+                Dim tick As New ProgressProvider(progress, accs.Length)
 
                 Call $"Have {downloads.Count} compounds have been downloaded...".__DEBUG_ECHO
 
@@ -110,7 +109,7 @@ Namespace Assembly.KEGG.DBGET.bGetObject
                         Call cpd.SaveAsXml(path)
                     End If
 EXIT_LOOP:
-                    ETA = tick.ETA(progress.ElapsedMilliseconds).FormatTime
+                    ETA = tick.ETA().FormatTime
                     Call progress.SetProgress(
                         tick.StepProgress,
                         details:=ETA)
