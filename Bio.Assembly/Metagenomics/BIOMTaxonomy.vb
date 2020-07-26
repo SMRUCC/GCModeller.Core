@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::9adc000d03507df324df17c77cecf8a3, core\Bio.Assembly\Metagenomics\BIOMTaxonomy.vb"
+﻿#Region "Microsoft.VisualBasic::09fad594833151b69a6cccce9436fe45, Bio.Assembly\Metagenomics\BIOMTaxonomy.vb"
 
     ' Author:
     ' 
@@ -169,7 +169,7 @@ Namespace Metagenomics
                 .JoinBy(";")
         End Function
 
-        ReadOnly descRanks$() = NcbiTaxonomyTree.stdranks.Reverse.ToArray
+        ReadOnly descRanks$() = NcbiTaxonomyTree.stdranks.Objects.Reverse.ToArray
 
         ''' <summary>
         ''' 这个函数不像<see cref="TaxonomyParser"/>和<see cref="TaxonomyParserAlt"/>这两个是专门针对

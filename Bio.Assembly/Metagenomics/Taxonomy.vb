@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::298fbfa20fefab06bce2ba07884ce0ec, core\Bio.Assembly\Metagenomics\Taxonomy.vb"
+﻿#Region "Microsoft.VisualBasic::dc45193b4ec4fba0d503d81572bc45ad, Bio.Assembly\Metagenomics\Taxonomy.vb"
 
     ' Author:
     ' 
@@ -34,7 +34,7 @@
     '     Class Taxonomy
     ' 
     '         Properties: [class], family, genus, kingdom, lowestLevel
-    '                     order, phylum, scientificName, species
+    '                     ncbi_taxid, order, phylum, scientificName, species
     ' 
     '         Constructor: (+5 Overloads) Sub New
     '         Function: [Select], compare, CompareWith, CreateTable, IsEmpty
@@ -63,6 +63,7 @@ Namespace Metagenomics
     <XmlType("taxonomy", [Namespace]:=SMRUCC.genomics.LICENSE.GCModeller)>
     Public Class Taxonomy
 
+        <XmlAttribute> Public Property ncbi_taxid As String
         <XmlAttribute> Public Property scientificName As String
 
 #Region "BIOM taxonomy k__ p__ c__ o__ f__ g__ s__"
@@ -146,7 +147,7 @@ Namespace Metagenomics
             Call Me.New(taxonomyNodes.ToDictionary(Function(t) t.rank, Function(t) t.name))
         End Sub
 
-        Shared ReadOnly descRanks$() = NcbiTaxonomyTree.stdranks.Reverse.ToArray
+        Shared ReadOnly descRanks$() = NcbiTaxonomyTree.stdranks.Objects.Reverse.ToArray
 
         Sub New(lineage$())
             Call Me.New(
@@ -169,7 +170,7 @@ Namespace Metagenomics
                 Me.genus = .genus
                 Me.kingdom = .kingdom
                 Me.order = .order
-                Me.phylum = phylum
+                Me.phylum = .phylum
                 Me.species = .species
             End With
         End Sub
@@ -188,12 +189,14 @@ Namespace Metagenomics
                 {NcbiTaxonomyTree.order, order},
                 {NcbiTaxonomyTree.phylum, phylum},
                 {NcbiTaxonomyTree.species, species},
-                {NcbiTaxonomyTree.superkingdom, kingdom}
+                {NcbiTaxonomyTree.superkingdom, kingdom},
+                {NameOf(Taxonomy.ncbi_taxid), ncbi_taxid}
             }
 
             Return New NamedValue(Of Dictionary(Of String, String)) With {
                 .Name = scientificName,
-                .Value = table
+                .Value = table,
+                .Description = ncbi_taxid
             }
         End Function
 

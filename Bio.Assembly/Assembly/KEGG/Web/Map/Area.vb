@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::0f504e3ba190c9a3c7ec302dfc0e519c, core\Bio.Assembly\Assembly\KEGG\Web\Map\Area.vb"
+﻿#Region "Microsoft.VisualBasic::fd1317dbea89ac8d4061ecd6a00295b6, Bio.Assembly\Assembly\KEGG\Web\Map\Area.vb"
 
     ' Author:
     ' 
@@ -121,7 +121,7 @@ Namespace Assembly.KEGG.WebServices
                         ElseIf shape = "poly" Then
                             Return "Reaction"
                         Else
-                            Throw New NotImplementedException(Me.GetXml)
+                            Return "unknown"
                         End If
                     End With
                 ElseIf InStr(href, "/kegg-bin/show_pathway") = 1 Then
@@ -130,8 +130,10 @@ Namespace Assembly.KEGG.WebServices
                     ' 查看这张pathway的分类信息
                     ' 不进行绘制
                     Return "null"
+                ElseIf Not title.StringEmpty AndAlso title.StartsWith("PATH:") Then
+                    Return NameOf(BriteHEntry.Pathway)
                 Else
-                    Throw New NotImplementedException(Me.GetXml)
+                    Return "unknown"
                 End If
             End Get
         End Property

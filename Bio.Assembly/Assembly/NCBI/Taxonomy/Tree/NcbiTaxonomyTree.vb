@@ -1,4 +1,4 @@
-﻿#Region "Microsoft.VisualBasic::af933b9cfc7c0937122bcdee835c50b3, core\Bio.Assembly\Assembly\NCBI\Taxonomy\Tree\NcbiTaxonomyTree.vb"
+﻿#Region "Microsoft.VisualBasic::3c4804628d8311da2307c2e3b39f15f8, Bio.Assembly\Assembly\NCBI\Taxonomy\Tree\NcbiTaxonomyTree.vb"
 
     ' Author:
     ' 
@@ -49,6 +49,7 @@
 
 #End Region
 
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Text
@@ -95,7 +96,7 @@ Namespace Assembly.NCBI.Taxonomy
         ''' + phylum
         ''' + superkingdom
         ''' </summary>
-        Public Shared ReadOnly stdranks$() = {
+        Public Shared ReadOnly stdranks As Index(Of String) = {
             "species",
             "genus",
             "family",
@@ -398,27 +399,26 @@ Namespace Assembly.NCBI.Taxonomy
             Dim lineage As New List(Of TaxonomyNode) From {
                 New TaxonomyNode With {
                     .taxid = taxid,
-                    .rank = Taxonomy(taxid).rank,
-                    .name = Taxonomy(taxid).name
+                    .rank = _Taxonomy(taxid).rank,
+                    .name = _Taxonomy(taxid).name
                 }
             }
 
-            Do While Taxonomy(taxid).parent IsNot Nothing
-                taxid = Taxonomy(taxid).parent
+            Do While _Taxonomy(taxid).parent IsNot Nothing
+                taxid = _Taxonomy(taxid).parent
                 lineage += New TaxonomyNode With {
                     .taxid = taxid,
-                    .rank = Taxonomy(taxid).rank,
-                    .name = Taxonomy(taxid).name
+                    .rank = _Taxonomy(taxid).rank,
+                    .name = _Taxonomy(taxid).name
                 }
             Loop
 
             If only_std_ranks Then
-
                 Dim std_lineage = LinqAPI.MakeList(Of TaxonomyNode) _
  _
                     () <= From lvl As TaxonomyNode
                           In lineage
-                          Where Array.IndexOf(stdranks, lvl.rank) > -1
+                          Where lvl.rank Like stdranks
                           Select lvl
 
                 Dim lastlevel As Integer = 0
